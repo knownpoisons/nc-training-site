@@ -119,12 +119,13 @@ export default function AssessPage() {
   async function submitLead(opts: Option[], indices: number[]) {
     const scores = computeScores(opts);
     const rec = getRecommendation(scores);
+    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
     if (!email) return;
     try {
       await fetch("/api/assess", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, recommendation: rec }),
+        body: JSON.stringify({ name, email, tier: rec, score: totalScore }),
       });
     } catch {
       // silent fail
