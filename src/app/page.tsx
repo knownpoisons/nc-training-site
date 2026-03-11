@@ -14,8 +14,8 @@ const clients = [
 ];
 
 const stats = [
-  { value: "96%", label: "Avg. time savings per campaign" },
-  { value: "400%", label: "Increase in creative output" },
+  { value: "90%", label: "Reduction in production time" },
+  { value: "$8M+", label: "Combined estimated client savings" },
   { value: "$280K", label: "Saved on a single brand launch" },
   { value: "3", label: "Enterprise teams transformed" },
 ];
@@ -334,54 +334,87 @@ export default function Home() {
 
           <div className="mt-12 grid gap-8 lg:grid-cols-3">
             {/* Cash App */}
-            <div className="border border-background/20 p-8">
+            <Link
+              href="/results/cash-app"
+              className="group border border-background/20 p-8 transition-colors hover:border-background/40"
+            >
               <p className="text-xs uppercase tracking-widest text-background/60">
                 Fintech / Enterprise
               </p>
               <h3 className="nc-heading-md mt-4">Cash App</h3>
               <p className="mt-4 text-sm leading-relaxed text-background/60">
-                Took an internal creative team from zero AI capability to a
-                cohesive AI production unit. Revolutionized their pitch and
-                brainstorm process, enabling 10x faster campaign execution
-                across performance marketing.
+                Production time cut to 10%. $3.5M in estimated year-one savings.
+                Team production-ready by halfway through the training.
               </p>
-              <p className="mt-6 text-2xl font-medium">10x</p>
+              <p className="mt-6 text-2xl font-medium">90%</p>
               <p className="text-xs text-background/60">
-                Faster campaign production
+                Reduction in production time
               </p>
-            </div>
+              <p className="mt-4 text-xs uppercase tracking-widest text-[#1549CD] transition-colors group-hover:text-[#1549CD]/80">
+                Read case study →
+              </p>
+            </Link>
 
             {/* Herman Scheer */}
-            <div className="border border-background/20 p-8">
+            <Link
+              href="/results/herman-scheer"
+              className="group border border-background/20 p-8 transition-colors hover:border-background/40"
+            >
               <p className="text-xs uppercase tracking-widest text-background/60">
                 Brand Agency / LA
               </p>
               <h3 className="nc-heading-md mt-4">Herman Scheer</h3>
               <p className="mt-4 text-sm leading-relaxed text-background/60">
-                Trained internal teams and key freelancers to produce entire
-                brand campaigns for major supermarket brands using AI workflows.
-                Expanded production capacity without expanding headcount.
+                Zero to full AI production. $4.5M in estimated year-one savings.
+                Now offering new profitable AI services to clients.
               </p>
-              <p className="mt-6 text-2xl font-medium">Full campaigns</p>
+              <p className="mt-6 text-2xl font-medium">$4.5M</p>
               <p className="text-xs text-background/60">
-                Produced end-to-end with AI
+                Estimated year-one savings
               </p>
-            </div>
+              <p className="mt-4 text-xs uppercase tracking-widest text-[#1549CD] transition-colors group-hover:text-[#1549CD]/80">
+                Read case study →
+              </p>
+            </Link>
 
             {/* Maesa */}
-            <div className="border border-background/20 p-8">
+            <Link
+              href="/results/maesa"
+              className="group border border-background/20 p-8 transition-colors hover:border-background/40"
+            >
               <p className="text-xs uppercase tracking-widest text-background/60">
                 Beauty / CPG
               </p>
               <h3 className="nc-heading-md mt-4">Maesa</h3>
               <p className="mt-4 text-sm leading-relaxed text-background/60">
-                Trained from 0-to-1, then immediately ran a live brand launch in
-                Target. Saved $280,000 against traditional production costs and
-                did it in one-fifth of the time.
+                New brand launched into every Target store. 3 months instead
+                of 9. $280K saved on a single launch.
               </p>
-              <p className="mt-6 text-2xl font-medium">$280K saved</p>
+              <p className="mt-6 text-2xl font-medium">$280K</p>
               <p className="text-xs text-background/60">
-                On a single brand launch
+                Saved on a single brand launch
+              </p>
+              <p className="mt-4 text-xs uppercase tracking-widest text-[#1549CD] transition-colors group-hover:text-[#1549CD]/80">
+                Read case study →
+              </p>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonial Callout */}
+      <section className="nc-divider nc-section">
+        <div className="nc-container">
+          <div className="mx-auto max-w-4xl py-8 lg:py-16">
+            <p className="text-2xl font-light leading-relaxed tracking-tight sm:text-3xl lg:text-4xl">
+              &ldquo;Jeremy and NotContent will save us tens of millions of
+              dollars in the next year alone.&rdquo;
+            </p>
+            <div className="mt-8 flex items-center gap-4">
+              <div className="h-px flex-1 bg-foreground/10" />
+              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                Oshyia Savur, VP Marketing, Maesa — on stage at a national
+                beauty conference
               </p>
             </div>
           </div>
