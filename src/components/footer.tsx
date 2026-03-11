@@ -5,6 +5,9 @@ const footerLinks = [
   { name: "Foundations", href: "/programs/foundations" },
   { name: "Accelerator", href: "/programs/accelerator" },
   { name: "Transformation", href: "/programs/transformation" },
+  { name: "Methodology", href: "/methodology" },
+  { name: "Results", href: "/results" },
+  { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
   { name: "Take the Scorecard", href: "/assess" },
 ];

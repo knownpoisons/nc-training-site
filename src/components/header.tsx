@@ -9,7 +9,8 @@ const navigation = [
   { name: "Programs", href: "/programs/transformation" },
   { name: "About", href: "/about" },
   { name: "Methodology", href: "/methodology" },
-  { name: "Results", href: "/#results" },
+  { name: "Results", href: "/results" },
+  { name: "Blog", href: "/blog" },
   { name: "Scorecard", href: "/assess" },
 ];
 
