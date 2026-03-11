@@ -134,7 +134,7 @@ export default function HermanScheerCaseStudy() {
                 creative agencies that are out there.&rdquo;
               </p>
               <p className="mt-4 text-sm text-muted-foreground">
-                — Herman Scheer
+                — Adam, Creative Director, Herman Scheer
               </p>
             </div>
             <div className="border-l-2 border-[#1549CD] pl-8">
@@ -145,7 +145,7 @@ export default function HermanScheerCaseStudy() {
                 were able to do just three months ago.&rdquo;
               </p>
               <p className="mt-4 text-sm text-muted-foreground">
-                — Herman Scheer
+                — Ludovic Bertron, Executive Creative Director, Herman Scheer
               </p>
             </div>
           </div>

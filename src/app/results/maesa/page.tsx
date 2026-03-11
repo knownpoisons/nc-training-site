@@ -130,8 +130,8 @@ export default function MaesaCaseStudy() {
               dollars in the next year alone.&rdquo;
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
-              — Marketing Manager, Maesa (on stage at a national beauty
-              conference)
+              — Oshyia Savur, VP Marketing, Maesa (on stage at a national
+              beauty conference)
             </p>
           </div>
         </div>

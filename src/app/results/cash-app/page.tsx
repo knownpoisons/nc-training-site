@@ -132,7 +132,7 @@ export default function CashAppCaseStudy() {
               pitching and externally for production.&rdquo;
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
-              — Cash App Creative Team
+              — Jose Diaz, Head of Production, Cash App
             </p>
           </div>
         </div>
