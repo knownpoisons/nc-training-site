@@ -75,7 +75,7 @@ export function Footer() {
         <div className="nc-divider mt-12 border-t border-foreground/10 pt-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-medium">Start with a free Training Assessment</p>
+              <p className="text-sm font-medium">Start with a call</p>
               <p className="mt-1 text-xs text-muted-foreground">30 minutes. No pitch. Just clarity on fit and next steps.</p>
             </div>
             <Button asChild size="sm" className="shrink-0 cursor-pointer text-xs uppercase tracking-widest">

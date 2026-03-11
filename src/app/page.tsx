@@ -71,7 +71,7 @@ export default function Home() {
               size="lg"
               className="cursor-pointer text-sm uppercase tracking-widest"
             >
-              <Link href="/book">Book a Training Assessment</Link>
+              <Link href="/book">Book a Call</Link>
             </Button>
             <Button
               asChild
@@ -205,7 +205,7 @@ export default function Home() {
             {[
               {
                 n: "01",
-                title: "Book a free Training Assessment",
+                title: "Book a free call with Jeremy",
                 body: "30 minutes with Jeremy. We map your team's current state, where AI would have the highest impact, and which program is the right fit.",
               },
               {
@@ -406,7 +406,7 @@ export default function Home() {
             size="lg"
             className="mt-10 cursor-pointer text-sm uppercase tracking-widest"
           >
-            <Link href="/book">Book Your Training Assessment</Link>
+            <Link href="/book">Book a Call</Link>
           </Button>
           <p className="mt-4 text-xs text-muted-foreground">
             30 minutes. No pitch. Just a clear picture of where your team stands and what to do about it.

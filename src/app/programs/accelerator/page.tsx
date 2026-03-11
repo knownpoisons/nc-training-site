@@ -74,7 +74,7 @@ export default function AcceleratorPage() {
               size="lg"
               className="cursor-pointer text-sm uppercase tracking-widest"
             >
-              <Link href="/book">Book a Training Assessment</Link>
+              <Link href="/book">Book a Call</Link>
             </Button>
             <p className="text-sm text-muted-foreground">
               From $15,000 · Up to 15 people · 4 weeks
@@ -223,14 +223,14 @@ export default function AcceleratorPage() {
                 </p>
                 <p className="mt-4 text-3xl font-medium">From $15,000</p>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Flat fee, up to 15 people. Scoped in your Training Assessment.
+                  Flat fee, up to 15 people. Scoped on your call with Jeremy.
                 </p>
                 <Button
                   asChild
                   size="lg"
                   className="mt-8 w-full cursor-pointer text-sm uppercase tracking-widest"
                 >
-                  <Link href="/book">Book a Training Assessment</Link>
+                  <Link href="/book">Book a Call</Link>
                 </Button>
                 <p className="mt-4 text-xs text-muted-foreground text-center">
                   30 minutes. No pitch. Just clarity on fit.
@@ -271,7 +271,7 @@ export default function AcceleratorPage() {
             variant="outline"
             className="mt-10 cursor-pointer border-background/20 text-xs uppercase tracking-widest text-background hover:bg-background hover:text-foreground"
           >
-            <Link href="/book">Book a Training Assessment</Link>
+            <Link href="/book">Book a Call</Link>
           </Button>
         </div>
       </section>

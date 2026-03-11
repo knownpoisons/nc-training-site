@@ -236,7 +236,7 @@ export default function AboutPage() {
             let&apos;s talk.
           </h2>
           <p className="nc-body-lg mx-auto mt-6 max-w-xl">
-            Start with a 30-minute Training Assessment. Jeremy will map your
+            Start with a 30-minute call. Jeremy will map your
             team&apos;s current state, identify where AI would have the highest
             impact, and recommend the right program. No obligation.
           </p>
@@ -245,7 +245,7 @@ export default function AboutPage() {
             size="lg"
             className="mt-10 cursor-pointer text-sm uppercase tracking-widest"
           >
-            <Link href="/book">Book a Training Assessment</Link>
+            <Link href="/book">Book a Call</Link>
           </Button>
           <p className="mt-6 text-sm text-muted-foreground">
             Not sure which program fits?{" "}

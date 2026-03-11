@@ -571,7 +571,7 @@ export default function AssessPage() {
                   size="lg"
                   className="mt-8 w-full cursor-pointer text-sm uppercase tracking-widest"
                 >
-                  <Link href="/book">Book a Training Assessment</Link>
+                  <Link href="/book">Book a Call</Link>
                 </Button>
                 <p className="mt-3 text-xs text-muted-foreground text-center">
                   30 min. No pitch. Just clarity on the right next step.

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Book a Training Assessment",
+  title: "Book a Call",
   description:
     "30 minutes. No pitch. A diagnostic of where your creative team stands with AI and what a training roadmap could look like.",
 };
@@ -19,7 +19,7 @@ export default function BookPage() {
                 Let&apos;s Talk
               </p>
               <h1 className="nc-heading-xl mt-4">
-                Book your Training Assessment.
+                Book a call with Jeremy.
               </h1>
               <p className="nc-body-lg mt-6">
                 30 minutes with Jeremy Somers. No pitch deck. No pressure. You
@@ -99,7 +99,7 @@ export default function BookPage() {
                     30 min · Free
                   </p>
                   <h2 className="nc-heading-md mt-3">
-                    Training Assessment with Jeremy Somers
+                    30-Minute Call with Jeremy Somers
                   </h2>
                   <p className="nc-body mt-4 text-muted-foreground">
                     A diagnostic of where your creative team stands with AI,

@@ -95,7 +95,7 @@ export default function TransformationPage() {
               size="lg"
               className="cursor-pointer text-sm uppercase tracking-widest"
             >
-              <Link href="/book">Book a Training Assessment</Link>
+              <Link href="/book">Book a Call</Link>
             </Button>
           </div>
           <p className="mt-6 text-sm text-muted-foreground">
@@ -287,7 +287,7 @@ export default function TransformationPage() {
             <div className="flex flex-col justify-center">
               <div className="border border-background/20 p-8">
                 <p className="text-xs uppercase tracking-widest text-background/60">
-                  What a training assessment covers
+                  What the call covers
                 </p>
                 <ul className="mt-6 space-y-3">
                   <li className="flex gap-3 text-sm text-background/60">
@@ -413,7 +413,7 @@ export default function TransformationPage() {
             variant="outline"
             className="mt-10 cursor-pointer border-background/20 text-xs uppercase tracking-widest text-background hover:bg-background hover:text-foreground"
           >
-            <Link href="/book">Book a Training Assessment</Link>
+            <Link href="/book">Book a Call</Link>
           </Button>
         </div>
       </section>
