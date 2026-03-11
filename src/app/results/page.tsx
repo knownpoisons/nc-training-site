@@ -15,6 +15,7 @@ const caseStudies = [
     slug: "/results/cash-app",
     industry: "Fintech / Enterprise",
     program: "Full Training Program",
+    logo: "/images/logos/cash-app.svg",
     image: "/images/case-studies/cash-app.jpg",
     headline:
       "Production time cut to 10%. $3.5M in estimated year-one savings.",
@@ -39,6 +40,7 @@ const caseStudies = [
     slug: "/results/maesa",
     industry: "Beauty / CPG",
     program: "Full Training Program",
+    logo: "/images/logos/maesa.svg",
     image: "/images/case-studies/maesa.jpg",
     headline:
       "New brand launched into every Target store. 3 months instead of 9. $280K saved.",
@@ -64,6 +66,7 @@ const caseStudies = [
     slug: "/results/herman-scheer",
     industry: "Brand Agency / LA",
     program: "Full Training Program",
+    logo: "/images/logos/herman-scheer.svg",
     image: "/images/case-studies/herman-scheer.jpg",
     headline:
       "$4.5M in estimated year-one production savings. Zero to full AI production.",
@@ -157,6 +160,16 @@ export default function CaseStudiesPage() {
                 {study.program}
               </p>
             </div>
+
+            {/* Client logo */}
+            <div className="mt-6 h-12 w-48">
+              <CaseStudyImage
+                src={study.logo}
+                alt={`${study.client} logo`}
+                className="h-full w-auto object-contain object-left"
+              />
+            </div>
+
             <h2 className="nc-heading-xl mt-4">{study.client}</h2>
             <p className="nc-body-lg mt-4 max-w-3xl">{study.headline}</p>
 
@@ -262,22 +275,23 @@ export default function CaseStudiesPage() {
           <p className="text-xs uppercase tracking-widest text-muted-foreground">
             Teams We&apos;ve Trained
           </p>
-          <div className="mt-8 flex flex-wrap gap-x-10 gap-y-4">
+          <div className="mt-10 flex flex-wrap items-center gap-x-12 gap-y-8">
             {[
-              "Cash App",
-              "Maesa",
-              "Herman Scheer",
-              "Nike",
-              "Apple",
-              "Adidas",
-              "Google",
+              { name: "Cash App", logo: "/images/logos/cash-app.svg" },
+              { name: "Maesa", logo: "/images/logos/maesa.svg" },
+              { name: "Herman Scheer", logo: "/images/logos/herman-scheer.svg" },
+              { name: "Nike", logo: "/images/logos/nike.svg" },
+              { name: "Apple", logo: "/images/logos/apple.svg" },
+              { name: "Adidas", logo: "/images/logos/adidas.svg" },
+              { name: "Google", logo: "/images/logos/google.svg" },
             ].map((brand) => (
-              <span
-                key={brand}
-                className="text-lg font-light tracking-tight text-foreground/60"
-              >
-                {brand}
-              </span>
+              <div key={brand.name} className="h-8 w-28">
+                <CaseStudyImage
+                  src={brand.logo}
+                  alt={brand.name}
+                  className="h-full w-full object-contain opacity-50 grayscale"
+                />
+              </div>
             ))}
           </div>
         </div>
