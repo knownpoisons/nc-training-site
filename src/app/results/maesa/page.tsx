@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "Maesa Case Study | AI Creative Training Results",
   description:
-    "How Maesa saved $280,000 on a single brand launch in Target through NotContent's AI training program.",
+    "How Maesa launched a new hair care brand into every Target store using AI — in 3 months instead of 9, saving $280,000 on a single launch.",
 };
 
 export default function MaesaCaseStudy() {
@@ -26,13 +26,14 @@ export default function MaesaCaseStudy() {
             </p>
             <span className="text-xs text-muted-foreground">·</span>
             <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Transformation (8 weeks)
+              Full Training Program
             </p>
           </div>
           <h1 className="nc-heading-xl mt-4 max-w-3xl">Maesa</h1>
           <p className="nc-body-lg mt-6 max-w-2xl">
-            $280,000 saved on a single brand launch in Target. One-fifth of
-            the usual production time. Same quality bar.
+            Trained two internal teams across a dozen beauty, hair, and
+            fragrance brands. Launched a new brand into every Target store
+            entirely with AI. 3 months instead of 9. $280,000 saved.
           </p>
         </div>
       </section>
@@ -42,9 +43,9 @@ export default function MaesaCaseStudy() {
         <div className="nc-container">
           <div className="grid gap-8 sm:grid-cols-3">
             {[
-              { n: "$280K", label: "Saved on one product launch" },
-              { n: "80%", label: "Faster time-to-market" },
-              { n: "8 weeks", label: "Training program duration" },
+              { n: "$280K", label: "Saved on a single brand launch" },
+              { n: "3 months", label: "Instead of the usual 9 months" },
+              { n: "12+ brands", label: "Rolling out AI processes across all" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-background/30 pl-6">
                 <p className="text-3xl font-light tracking-tight text-[#1549CD]">
@@ -66,18 +67,17 @@ export default function MaesaCaseStudy() {
                 The Challenge
               </p>
               <h2 className="nc-heading-lg mt-4">
-                A major launch on a compressed timeline.
+                A dozen brands. Two teams. No AI process.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                Maesa — one of the largest indie beauty incubators in the world —
-                needed to launch a new brand into Target. The creative production
-                requirements were massive: packaging, in-store displays, digital
-                assets, social content. The traditional production approach would
-                have taken months and cost significantly more. They needed a way to
-                compress the timeline without compromising the quality that Target
-                demands.
+                Maesa is one of the largest indie beauty incubators in the world,
+                producing in-house brands of beauty, hair, and fragrance for
+                Target. They had two internal creative teams covering over a dozen
+                brands. The production process for launching a new brand typically
+                took nine months and cost $280,000. They needed to move faster
+                without sacrificing the quality Target demands.
               </p>
             </div>
           </div>
@@ -88,19 +88,16 @@ export default function MaesaCaseStudy() {
                 The Program
               </p>
               <h2 className="nc-heading-lg mt-4">
-                8-week Transformation with a live launch.
+                Two teams trained. All creatives.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                The Maesa team went through the full Transformation program while
-                simultaneously applying the methodology to their active product
-                launch. Training wasn't theoretical — every session produced
-                real assets for the Target launch. The Diverge/Converge framework
-                allowed the team to explore more creative directions in the first
-                two weeks than they would have in two months of traditional
-                production, then converge on the final direction with precision
-                tooling.
+                We trained two internal teams comprising all of their creatives
+                across a dozen brands. Every designer, every art director, every
+                copywriter — working with their actual brand assets and real
+                campaign briefs from day one. Before the training was finished,
+                they were applying the methodology to a live product launch.
               </p>
             </div>
           </div>
@@ -111,19 +108,31 @@ export default function MaesaCaseStudy() {
                 The Result
               </p>
               <h2 className="nc-heading-lg mt-4">
-                $280K saved. 80% faster. Same quality.
+                New brand in Target. 3 months. Near zero cost.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                The brand launched in Target on time and on budget — $280,000 under
-                what traditional production would have cost. The time savings came
-                from compressed iteration cycles and reduced dependency on external
-                production partners. The team now uses the NotContent Method as
-                their default production workflow, applying it to every subsequent
-                launch with compounding returns.
+                They got from concept into market and into every Target store
+                with a new brand of hair care — and did it all completely with
+                AI based on the training we ran. What usually takes 9 months
+                and costs $280,000 took 3 months and cost them close to zero.
+                They are now rolling out those creative processes across every
+                brand and are able to launch new brands at scale and fast.
               </p>
             </div>
+          </div>
+
+          {/* Testimonial */}
+          <div className="border-l-2 border-[#1549CD] pl-8">
+            <p className="text-lg font-light leading-relaxed italic">
+              &ldquo;Jeremy and NotContent will save us tens of millions of
+              dollars in the next year alone.&rdquo;
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              — Marketing Manager, Maesa (on stage at a national beauty
+              conference)
+            </p>
           </div>
         </div>
       </section>

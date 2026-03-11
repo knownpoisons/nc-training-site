@@ -13,34 +13,34 @@ const caseStudies = [
     client: "Cash App",
     slug: "/results/cash-app",
     industry: "Fintech",
-    headline: "Internal creative team trained to produce AI-assisted campaigns independently.",
+    headline: "Production time cut to 10%. $3.5M in estimated year-one savings.",
     stats: [
-      { n: "96%", label: "Time savings on concept-to-visual" },
-      { n: "400%", label: "Output increase per campaign" },
+      { n: "90%", label: "Reduction in production time" },
+      { n: "$3.5M", label: "Estimated year-one savings" },
     ],
-    program: "Transformation (8 weeks)",
+    program: "Full Training Program",
   },
   {
     client: "Maesa",
     slug: "/results/maesa",
     industry: "Beauty / CPG",
-    headline: "$280K saved on a single brand launch in Target.",
+    headline: "New brand launched into every Target store. 3 months instead of 9. $280K saved on a single launch.",
     stats: [
-      { n: "$280K", label: "Saved on one product launch" },
-      { n: "80%", label: "Faster time-to-market" },
+      { n: "$280K", label: "Saved on one brand launch" },
+      { n: "3 months", label: "Instead of the usual 9" },
     ],
-    program: "Transformation (8 weeks)",
+    program: "Full Training Program",
   },
   {
     client: "Herman Scheer",
     slug: "/results/herman-scheer",
     industry: "Brand Agency",
-    headline: "Agency team upskilled to offer AI-powered creative services to clients.",
+    headline: "$4.5M in estimated year-one production savings. Zero to full AI production.",
     stats: [
-      { n: "3x", label: "Client deliverable volume" },
-      { n: "2 weeks", label: "From zero to AI-capable" },
+      { n: "$4.5M", label: "Estimated year-one savings" },
+      { n: "Zero → full", label: "AI production capability" },
     ],
-    program: "Accelerator (4 weeks)",
+    program: "Full Training Program",
   },
 ];
 
@@ -70,9 +70,9 @@ export default function ResultsPage() {
         <div className="nc-container">
           <div className="grid gap-8 sm:grid-cols-3">
             {[
-              { n: "96%", label: "Average time savings across trained teams" },
-              { n: "400%", label: "Output increase without adding headcount" },
-              { n: "$280K", label: "Saved on a single product launch" },
+              { n: "$8M+", label: "Combined estimated client savings" },
+              { n: "90%", label: "Average reduction in production time" },
+              { n: "Tens of millions", label: "Projected savings (Maesa, on stage)" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-background/30 pl-6">
                 <p className="text-3xl font-light tracking-tight text-[#1549CD]">

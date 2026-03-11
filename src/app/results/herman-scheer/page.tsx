@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "Herman Scheer Case Study | AI Creative Training Results",
   description:
-    "How Herman Scheer's agency team went from zero AI capability to offering AI-powered creative services to clients in 4 weeks.",
+    "How Herman Scheer went from zero AI capability to $4.5M in estimated year-one production savings after NotContent training.",
 };
 
 export default function HermanScheerCaseStudy() {
@@ -26,13 +26,14 @@ export default function HermanScheerCaseStudy() {
             </p>
             <span className="text-xs text-muted-foreground">·</span>
             <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Accelerator (4 weeks)
+              Full Training Program
             </p>
           </div>
           <h1 className="nc-heading-xl mt-4 max-w-3xl">Herman Scheer</h1>
           <p className="nc-body-lg mt-6 max-w-2xl">
-            Agency team upskilled to offer AI-powered creative services to
-            clients. From zero capability to billable AI services in 4 weeks.
+            Big Los Angeles branding and design agency. Trained their entire
+            team from zero to full AI production. Now producing client-ready
+            campaigns visible in supermarkets across America.
           </p>
         </div>
       </section>
@@ -42,9 +43,9 @@ export default function HermanScheerCaseStudy() {
         <div className="nc-container">
           <div className="grid gap-8 sm:grid-cols-3">
             {[
-              { n: "3x", label: "Client deliverable volume" },
-              { n: "4 weeks", label: "From zero to AI-capable" },
-              { n: "New revenue", label: "AI services added to client offering" },
+              { n: "$4.5M", label: "Estimated year-one production savings" },
+              { n: "Zero to full", label: "AI production capability" },
+              { n: "New services", label: "Profitable AI offerings to clients" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-background/30 pl-6">
                 <p className="text-3xl font-light tracking-tight text-[#1549CD]">
@@ -66,18 +67,17 @@ export default function HermanScheerCaseStudy() {
                 The Challenge
               </p>
               <h2 className="nc-heading-lg mt-4">
-                Clients asking about AI. Agency not ready.
+                Clients asking about AI. Agency at zero.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                Herman Scheer is a brand strategy and design agency. Their clients
-                were increasingly asking about AI capability — can you use AI for
-                concept development? For visual exploration? For content production?
-                The agency knew the opportunity was real but didn't have a
-                structured approach. Individual team members had dabbled with
-                Midjourney and ChatGPT, but there was no shared methodology, no
-                quality standard, and no way to offer AI as a reliable service.
+                Herman Scheer is a major Los Angeles branding and design agency
+                working with CPG brands on campaigns that end up in every
+                supermarket across America. Their clients were asking about AI
+                capability. The agency had zero structured AI processes — no
+                shared methodology, no quality standard, no way to offer AI as
+                a reliable production service.
               </p>
             </div>
           </div>
@@ -88,18 +88,16 @@ export default function HermanScheerCaseStudy() {
                 The Program
               </p>
               <h2 className="nc-heading-lg mt-4">
-                4-week Accelerator.
+                Full team. Zero to production.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                The agency team went through the Accelerator program — weekly
-                sessions plus async support, using their own client briefs and
-                brand assets. By week two, the team was producing AI-assisted
-                deliverables for actual client projects. The program included
-                building a custom prompt library tuned to their clients' visual
-                languages, establishing a governance framework for client work,
-                and documenting workflows that any team member could follow.
+                We trained their entire team from zero. Before the training was
+                even finished, they were producing client-ready and
+                production-ready assets — image, copy, video, and full campaigns
+                ready to go out into the world for major CPG launches. Work that
+                can now be seen in every supermarket across America.
               </p>
             </div>
           </div>
@@ -110,17 +108,44 @@ export default function HermanScheerCaseStudy() {
                 The Result
               </p>
               <h2 className="nc-heading-lg mt-4">
-                A new service line. A faster team.
+                $4.5M in estimated year-one savings. New revenue streams.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                Herman Scheer now offers AI-powered creative services as part of
-                their standard client offering. The team produces 3x more
-                deliverable variations per project, enabling better client
-                presentations and faster iteration cycles. The AI capability has
-                become a competitive differentiator — they can answer "yes" when
-                clients ask about AI, with a proven methodology behind the answer.
+                Herman Scheer now offers new and very profitable AI-powered
+                services to existing clients, and uses their new skills to
+                package new offerings to new clients. Estimated production cost
+                savings for year one: $4.5 million. The team went from zero
+                AI capability to full production in a matter of weeks.
+              </p>
+            </div>
+          </div>
+
+          {/* Testimonials */}
+          <div className="space-y-8">
+            <div className="border-l-2 border-[#1549CD] pl-8">
+              <p className="text-lg font-light leading-relaxed italic">
+                &ldquo;We&apos;ve been able to offer new and very profitable
+                services to existing clients and use our skills to package new
+                offerings to new clients as well. We feel comfortable moving
+                into this new AI-powered world — that we are not falling
+                behind, nor will get eaten up by another agency or any AI
+                creative agencies that are out there.&rdquo;
+              </p>
+              <p className="mt-4 text-sm text-muted-foreground">
+                — Herman Scheer
+              </p>
+            </div>
+            <div className="border-l-2 border-[#1549CD] pl-8">
+              <p className="text-lg font-light leading-relaxed italic">
+                &ldquo;Jeremy&apos;s training very quickly showed us what was
+                possible and very soon after that taught us how to do it.
+                It&apos;s insane what we are able to do now compared to what we
+                were able to do just three months ago.&rdquo;
+              </p>
+              <p className="mt-4 text-sm text-muted-foreground">
+                — Herman Scheer
               </p>
             </div>
           </div>

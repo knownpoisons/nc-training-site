@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const metadata: Metadata = {
   title: "Cash App Case Study | AI Creative Training Results",
   description:
-    "How Cash App's internal creative team achieved 96% time savings and 400% output increase through NotContent's AI training program.",
+    "How Cash App's creative team cut production time to 10% and estimated $3.5M in year-one savings after NotContent training.",
 };
 
 export default function CashAppCaseStudy() {
@@ -26,13 +26,14 @@ export default function CashAppCaseStudy() {
             </p>
             <span className="text-xs text-muted-foreground">·</span>
             <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Transformation (8 weeks)
+              Full Training Program
             </p>
           </div>
           <h1 className="nc-heading-xl mt-4 max-w-3xl">Cash App</h1>
           <p className="nc-body-lg mt-6 max-w-2xl">
-            Internal creative team trained to produce AI-assisted campaigns
-            independently. No single point of failure, no bottleneck.
+            Part of Square and Block. Trained a small internal creative team —
+            producers, designers, 3D artists. Production ready by halfway
+            through. Process reduced to 10% of the usual time.
           </p>
         </div>
       </section>
@@ -42,9 +43,9 @@ export default function CashAppCaseStudy() {
         <div className="nc-container">
           <div className="grid gap-8 sm:grid-cols-3">
             {[
-              { n: "96%", label: "Time savings on concept-to-visual" },
-              { n: "400%", label: "Output increase per campaign" },
-              { n: "8 weeks", label: "From kickoff to full capability" },
+              { n: "90%", label: "Reduction in production time" },
+              { n: "$3.5M", label: "Estimated year-one savings" },
+              { n: "30%", label: "Increase in campaign output" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-background/30 pl-6">
                 <p className="text-3xl font-light tracking-tight text-[#1549CD]">
@@ -66,17 +67,17 @@ export default function CashAppCaseStudy() {
                 The Challenge
               </p>
               <h2 className="nc-heading-lg mt-4">
-                An internal team experimenting solo.
+                A multi-billion dollar company. A small creative team.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                Cash App's internal creative team had individuals experimenting
-                with AI tools — producing interesting one-off results. But without
-                a shared methodology, output quality was inconsistent. Some team
-                members were skeptical. There was no governance framework. The team
-                needed a structured approach to make AI a reliable part of their
-                creative production, not a novelty.
+                Cash App — part of Square and Block — has a small but mighty
+                internal creative team. Producers, designers, 3D artists. They
+                needed to produce more campaigns, faster, while still securing
+                the budgets for big hybrid productions — TVC, out-of-home,
+                digital. The existing process was too slow to keep up with the
+                pace the business demanded.
               </p>
             </div>
           </div>
@@ -87,18 +88,16 @@ export default function CashAppCaseStudy() {
                 The Program
               </p>
               <h2 className="nc-heading-lg mt-4">
-                8-week Transformation.
+                Every role. Production ready by halfway.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                The entire creative team trained together on the NotContent
-                Method — Diverge, Converge, Systemize. The program started with
-                a 2-day in-person intensive using Cash App's own brand assets and
-                campaign briefs. Weekly sessions built progressive capability.
-                By week two, the team was shipping real AI-assisted work. By week
-                eight, they had documented workflows, a custom prompt library, and
-                a governance policy.
+                We trained everyone — producers, designers, and 3D artists —
+                on the NotContent Method. By halfway through the training, the
+                team was production ready. They were using AI to pitch
+                internally, get budgets approved, and prepare for hybrid big
+                productions across TVC, out-of-home, and digital campaigns.
               </p>
             </div>
           </div>
@@ -109,19 +108,32 @@ export default function CashAppCaseStudy() {
                 The Result
               </p>
               <h2 className="nc-heading-lg mt-4">
-                A team that runs without a trainer.
+                10% of the time. $3.5M in estimated savings.
               </h2>
             </div>
             <div>
               <p className="nc-body">
-                Concept-to-visual processes that previously took 3-4 days now
-                complete in under half a day. The team produces 4x more creative
-                variations per campaign without additional headcount. Most
-                importantly, the capability is organizational — not dependent on
-                any single individual. New team members get onboarded using the
-                documented workflows and prompt libraries built during the program.
+                We refined their process down to 10% of the time it would
+                usually take to pitch and get the budgets they need for actual
+                campaigns. Estimated increase in campaign capacity: at least
+                30%. Estimated cost savings over year one: in the range of
+                $3.5 million. The team now moves faster, pitches stronger, and
+                produces more — without adding headcount.
               </p>
             </div>
+          </div>
+
+          {/* Testimonial */}
+          <div className="border-l-2 border-[#1549CD] pl-8">
+            <p className="text-lg font-light leading-relaxed italic">
+              &ldquo;Jeremy&apos;s training was fun and really gave us the
+              strategies, frameworks, and tools that we needed to completely
+              revolutionize how we produce creative — both internally for
+              pitching and externally for production.&rdquo;
+            </p>
+            <p className="mt-4 text-sm text-muted-foreground">
+              — Cash App Creative Team
+            </p>
           </div>
         </div>
       </section>
