@@ -8,11 +8,121 @@ export const metadata: Metadata = {
     "Insights on AI creative training, workflow methodology, and enterprise team transformation from NotContent.",
 };
 
+/* Category badge colours */
+const categoryStyles: Record<string, string> = {
+  "Case Study": "bg-[#1549CD]/10 text-[#1549CD]",
+  Guide: "bg-emerald-50 text-emerald-700",
+  Methodology: "bg-amber-50 text-amber-700",
+  Insight: "bg-foreground/5 text-foreground/60",
+};
+
+/* Simple geometric SVG covers per category — no external images needed */
+function BlogCover({
+  category,
+  title,
+}: {
+  category: string;
+  title: string;
+}) {
+  const seed = title.length % 5;
+
+  if (category === "Case Study") {
+    return (
+      <svg
+        viewBox="0 0 640 360"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full"
+      >
+        <rect width="640" height="360" fill="#F8FAFC" />
+        <rect x="60" y="80" width="160" height="80" rx="2" fill="#1549CD" opacity="0.08" />
+        <rect x="240" y="80" width="160" height="80" rx="2" fill="#1549CD" opacity="0.12" />
+        <rect x="420" y="80" width="160" height="80" rx="2" fill="#1549CD" opacity="0.06" />
+        <rect x="60" y="180" width="520" height="2" fill="#1549CD" opacity="0.1" />
+        <rect x="80" y={260 - seed * 20} width="40" height={60 + seed * 20} rx="2" fill="#1549CD" opacity="0.15" />
+        <rect x="140" y="220" width="40" height="100" rx="2" fill="#1549CD" opacity="0.25" />
+        <rect x="200" y="200" width="40" height="120" rx="2" fill="#1549CD" opacity="0.35" />
+        <rect x="260" y="240" width="40" height="80" rx="2" fill="#1549CD" opacity="0.2" />
+        <rect x="320" y="190" width="40" height="130" rx="2" fill="#1549CD" opacity="0.45" />
+        <text x="60" y="50" fontFamily="monospace" fontSize="10" fill="#1549CD" opacity="0.4" letterSpacing="0.1em">CASE STUDY</text>
+      </svg>
+    );
+  }
+
+  if (category === "Guide") {
+    return (
+      <svg
+        viewBox="0 0 640 360"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full"
+      >
+        <rect width="640" height="360" fill="#F8FAFC" />
+        <rect x="200" y="60" width="240" height="240" rx="4" fill="none" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+        <rect x="220" y="100" width="120" height="8" rx="2" fill="#1549CD" opacity="0.12" />
+        <rect x="220" y="120" width="180" height="6" rx="2" fill="#1549CD" opacity="0.08" />
+        <rect x="220" y="136" width="160" height="6" rx="2" fill="#1549CD" opacity="0.08" />
+        <rect x="220" y="152" width="140" height="6" rx="2" fill="#1549CD" opacity="0.08" />
+        <rect x="220" y="180" width="100" height="8" rx="2" fill="#1549CD" opacity="0.12" />
+        <rect x="220" y="200" width="180" height="6" rx="2" fill="#1549CD" opacity="0.08" />
+        <rect x="220" y="216" width="150" height="6" rx="2" fill="#1549CD" opacity="0.08" />
+        <rect x="220" y="232" width="170" height="6" rx="2" fill="#1549CD" opacity="0.08" />
+        <circle cx="520" cy="100" r={30 + seed * 5} fill="#1549CD" opacity="0.06" />
+        <circle cx="120" cy="260" r="20" fill="#1549CD" opacity="0.04" />
+        <text x="200" y="42" fontFamily="monospace" fontSize="10" fill="#16a34a" opacity="0.5" letterSpacing="0.1em">GUIDE</text>
+      </svg>
+    );
+  }
+
+  if (category === "Methodology") {
+    return (
+      <svg
+        viewBox="0 0 640 360"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        className="h-full w-full"
+      >
+        <rect width="640" height="360" fill="#F8FAFC" />
+        <line x1="120" y1="180" x2="320" y2="100" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+        <line x1="120" y1="180" x2="320" y2="180" stroke="#1549CD" strokeWidth="1.5" opacity="0.3" />
+        <line x1="120" y1="180" x2="320" y2="260" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+        <line x1="320" y1="100" x2="520" y2="180" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+        <line x1="320" y1="180" x2="520" y2="180" stroke="#1549CD" strokeWidth="1.5" opacity="0.3" />
+        <line x1="320" y1="260" x2="520" y2="180" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+        <circle cx="120" cy="180" r="8" fill="#1549CD" opacity="0.3" />
+        <circle cx="320" cy="100" r="6" fill="#1549CD" opacity="0.15" />
+        <circle cx="320" cy="180" r="6" fill="#1549CD" opacity="0.25" />
+        <circle cx="320" cy="260" r="6" fill="#1549CD" opacity="0.15" />
+        <circle cx="520" cy="180" r="8" fill="#1549CD" opacity="0.3" />
+        <text x="100" y="310" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.25">DIVERGE</text>
+        <text x="490" y="310" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.25">CONVERGE</text>
+      </svg>
+    );
+  }
+
+  // Default / Insight
+  return (
+    <svg
+      viewBox="0 0 640 360"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-full w-full"
+    >
+      <rect width="640" height="360" fill="#F8FAFC" />
+      <circle cx="320" cy="180" r={80 + seed * 10} fill="#1549CD" opacity="0.04" />
+      <circle cx="320" cy="180" r={50 + seed * 5} fill="#1549CD" opacity="0.06" />
+      <circle cx="320" cy="180" r="20" fill="#1549CD" opacity="0.1" />
+    </svg>
+  );
+}
+
 export default function BlogPage() {
   const posts = getAllPosts();
+  const [featured, ...rest] = posts;
 
   return (
     <>
+      {/* Hero */}
       <section className="nc-section pt-32 lg:pt-40">
         <div className="nc-container">
           <p className="text-xs uppercase tracking-widest text-muted-foreground">
@@ -21,50 +131,104 @@ export default function BlogPage() {
           <h1 className="nc-heading-xl mt-4 max-w-3xl">
             Insights on AI creative training.
           </h1>
-          <p className="nc-body-lg mt-6 max-w-xl">
-            Practical thinking on how enterprise creative teams adopt AI —
-            methodology, mistakes, and what actually works.
-          </p>
         </div>
       </section>
 
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <div className="space-y-16">
-            {posts.map((post) => (
-              <article key={post.slug} className="group">
-                <Link href={`/blog/${post.slug}`} className="block">
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                    {new Date(post.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                    {post.author && ` · ${post.author}`}
-                  </p>
-                  <h2 className="nc-heading-lg mt-3 max-w-2xl transition-colors group-hover:text-[#1549CD]">
-                    {post.title}
-                  </h2>
-                  <p className="nc-body mt-4 max-w-xl">{post.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs uppercase tracking-widest text-muted-foreground"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
+      {/* Featured Post */}
+      {featured && (
+        <section className="nc-divider pb-16 lg:pb-24">
+          <div className="nc-container">
+            <Link href={`/blog/${featured.slug}`} className="group block">
+              <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
+                {/* Cover */}
+                <div className="aspect-[16/9] w-full overflow-hidden border border-foreground/10 bg-foreground/[0.02]">
+                  <BlogCover
+                    category={featured.category}
+                    title={featured.title}
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-col justify-center">
+                  <div className="flex items-center gap-3">
+                    <span
+                      className={`inline-block px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest ${categoryStyles[featured.category] ?? categoryStyles.Insight}`}
+                    >
+                      {featured.category}
+                    </span>
+                    <span className="text-xs text-muted-foreground">
+                      {new Date(featured.date).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric",
+                      })}
+                    </span>
                   </div>
-                  <p className="mt-6 text-sm font-medium uppercase tracking-widest text-[#1549CD]">
-                    Read article →
+                  <h2 className="mt-4 text-2xl font-light leading-snug tracking-tight transition-colors group-hover:text-[#1549CD] lg:text-3xl">
+                    {featured.title}
+                  </h2>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                    {featured.description}
                   </p>
-                </Link>
-              </article>
-            ))}
+                  <p className="mt-6 text-xs font-medium uppercase tracking-widest text-[#1549CD]">
+                    Read article &rarr;
+                  </p>
+                </div>
+              </div>
+            </Link>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* Grid */}
+      {rest.length > 0 && (
+        <section className="nc-divider nc-section">
+          <div className="nc-container">
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {rest.map((post) => (
+                <Link
+                  key={post.slug}
+                  href={`/blog/${post.slug}`}
+                  className="group block"
+                >
+                  <article>
+                    {/* Card cover */}
+                    <div className="aspect-[16/10] w-full overflow-hidden border border-foreground/10 bg-foreground/[0.02]">
+                      <BlogCover
+                        category={post.category}
+                        title={post.title}
+                      />
+                    </div>
+
+                    {/* Card body */}
+                    <div className="mt-5">
+                      <div className="flex items-center gap-3">
+                        <span
+                          className={`inline-block px-2 py-0.5 text-[9px] font-medium uppercase tracking-widest ${categoryStyles[post.category] ?? categoryStyles.Insight}`}
+                        >
+                          {post.category}
+                        </span>
+                        <span className="text-[11px] text-muted-foreground">
+                          {new Date(post.date).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "numeric",
+                          })}
+                        </span>
+                      </div>
+                      <h3 className="mt-3 text-base font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1549CD]">
+                        {post.title}
+                      </h3>
+                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                        {post.description}
+                      </p>
+                    </div>
+                  </article>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }

@@ -11,6 +11,8 @@ export interface BlogPost {
   date: string;
   author: string;
   tags: string[];
+  category: string;
+  coverImage: string;
   content: string;
 }
 
@@ -29,6 +31,8 @@ export function getAllPosts(): BlogPost[] {
       date: data.date ?? "",
       author: data.author ?? "",
       tags: data.tags ?? [],
+      category: data.category ?? "Insight",
+      coverImage: data.coverImage ?? "",
       content,
     } satisfies BlogPost;
   });
@@ -52,6 +56,8 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
     date: data.date ?? "",
     author: data.author ?? "",
     tags: data.tags ?? [],
+    category: data.category ?? "Insight",
+    coverImage: data.coverImage ?? "",
     content,
   };
 }
