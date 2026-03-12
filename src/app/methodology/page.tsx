@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { HeroPattern } from "@/components/hero-pattern";
 import { ServiceIcon } from "@/components/service-icon";
 
 export const metadata: Metadata = {
@@ -86,272 +84,380 @@ const differences = [
 export default function MethodologyPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="nc-section relative pt-32 lg:pt-40">
-        <HeroPattern variant="diagonal" />
-        <div className="nc-container relative">
+      {/* ═══ HERO — Cobalt 60vh ═══ */}
+      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        {/* Grid overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
+            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
+            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 pb-16 lg:pb-24 w-full">
           <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-6">
               The NotContent Method
             </p>
           </Reveal>
           <Reveal delay={100}>
-            <h1 className="nc-heading-xl mt-4 max-w-4xl">
-              Diverge. Converge. Systemize.
+            <h1 className="oci-display text-white leading-[0.93]">
+              Diverge.
+              <br />
+              Converge.
+              <br />
+              Systemize.
             </h1>
           </Reveal>
           <Reveal delay={200}>
-            <p className="nc-body-lg mt-6 max-w-2xl">
-              Three phases. One principle: AI is a creative force multiplier, not
-              a replacement engine. Separate exploration from execution so speed
-              never compromises taste.
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <div className="mt-10 flex flex-wrap items-center gap-6">
-              <Button
-                asChild
-                size="lg"
-                className="cursor-pointer text-sm uppercase tracking-widest"
+            <div className="mt-8 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
+              <p className="max-w-md text-lg text-white/70 leading-relaxed">
+                Three phases. One principle: AI is a creative force multiplier,
+                not a replacement engine.
+              </p>
+              <Link
+                href="/book"
+                className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
               >
-                <Link href="/book">Book a Call</Link>
-              </Button>
-              <p className="text-sm text-muted-foreground">
-                See how this applies to your team
+                Book a Call
+              </Link>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ STATS BAR ═══ */}
+      <section className="py-20 lg:py-28 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Impact</span>
+              <span>[NC.1]</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-16">
+              {[
+                { n: "96%", label: "Average time savings across trained teams" },
+                { n: "400%", label: "Output increase without adding headcount" },
+                { n: "$280K", label: "Saved on a single product launch" },
+              ].map((stat) => (
+                <div key={stat.n}>
+                  <p className="text-4xl lg:text-5xl font-medium tracking-tight text-[#1549CD]">
+                    <AnimatedCounter value={stat.n} />
+                  </p>
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ THREE PHASES INTRO ═══ */}
+      <section className="pb-8 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>The Method</span>
+              <span>[NC.2]</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 mt-8">
+              <h2 className="oci-display-sm">
+                A methodology,
+                <br />
+                not a tool list.
+              </h2>
+              <p className="max-w-sm text-sm text-muted-foreground leading-relaxed lg:text-right">
+                Separate exploration from execution so speed never compromises
+                taste.
               </p>
             </div>
           </Reveal>
         </div>
       </section>
 
-      {/* Stats bar — animated */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <div className="grid gap-8 sm:grid-cols-3">
-            {[
-              { n: "96%", label: "Average time savings across trained teams" },
-              { n: "400%", label: "Output increase without adding headcount" },
-              { n: "$280K", label: "Saved on a single product launch" },
-            ].map((stat, i) => (
-              <Reveal key={stat.n} delay={i * 100}>
-                <div className="border-l-2 border-foreground pl-6">
-                  <p className="text-3xl font-light tracking-tight text-[#1549CD]">
-                    <AnimatedCounter value={stat.n} />
-                  </p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    {stat.label}
+      {/* ═══ PHASE 01 — DIVERGE (cream bg) ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Phase 01</span>
+              <span>Diverge</span>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-16 lg:grid-cols-2">
+            <div>
+              <Reveal delay={100}>
+                <div className="flex items-center gap-4 mb-6">
+                  <ServiceIcon icon={phases[0].icon} size={36} className="opacity-50" />
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {phases[0].hook}
                   </p>
                 </div>
               </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Timeline — visual connecting line */}
-      <section className="nc-divider nc-section bg-foreground/[0.02]">
-        <div className="nc-container">
-          <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              The Three Phases
-            </p>
-            <h2 className="nc-heading-lg mt-4 max-w-2xl">
-              A methodology, not a tool list.
-            </h2>
-          </Reveal>
-
-          {/* Horizontal timeline connector (desktop) */}
-          <div className="mt-16 hidden lg:block">
-            <div className="relative mb-12">
-              {/* Connecting line */}
-              <div className="absolute left-[16.67%] right-[16.67%] top-1/2 h-px bg-foreground/10" />
-              {/* Nodes */}
-              <div className="relative flex justify-between px-[12%]">
-                {phases.map((phase) => (
-                  <div key={phase.n} className="flex flex-col items-center">
-                    <div className="flex h-12 w-12 items-center justify-center border-2 border-[#1549CD]/30 bg-background">
-                      <ServiceIcon icon={phase.icon} size={28} className="opacity-60" />
-                    </div>
-                    <p className="mt-3 text-xs font-medium uppercase tracking-widest text-[#1549CD]">
-                      {phase.name}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <Reveal delay={150}>
+                <h3 className="oci-display-sm">{phases[0].name}.</h3>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
+                  {phases[0].description}
+                </p>
+              </Reveal>
+              <Reveal delay={250}>
+                <div className="mt-8 border border-[#1549CD]/20 p-6">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] mb-2">
+                    The Outcome
+                  </p>
+                  <p className="text-sm leading-relaxed">
+                    {phases[0].outcome}
+                  </p>
+                </div>
+              </Reveal>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Three Phases — detailed */}
-      {phases.map((phase, idx) => (
-        <section
-          key={phase.n}
-          className={`nc-divider nc-section ${
-            phase.n === "02" ? "bg-foreground text-background" : ""
-          }`}
-        >
-          <div className="nc-container">
-            <div className="grid gap-12 lg:grid-cols-2">
+            <Reveal delay={200} direction="right">
               <div>
-                <Reveal>
-                  <div className="flex items-center gap-4">
-                    <ServiceIcon
-                      icon={phase.icon}
-                      size={36}
-                      className={`opacity-50 ${phase.n === "02" ? "[&>svg]:stroke-white" : ""}`}
-                    />
-                    <p
-                      className={`text-xs uppercase tracking-widest ${
-                        phase.n === "02"
-                          ? "text-background/60"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      Phase {phase.n}
-                    </p>
-                  </div>
-                  <h2 className="nc-heading-lg mt-4">{phase.name}.</h2>
-                </Reveal>
-                <Reveal delay={100}>
-                  <p
-                    className={`mt-2 text-lg font-light ${
-                      phase.n === "02" ? "text-background/80" : "text-muted-foreground"
-                    }`}
-                  >
-                    {phase.hook}
-                  </p>
-                </Reveal>
-                <Reveal delay={200}>
-                  <p
-                    className={`nc-body mt-6 ${
-                      phase.n === "02" ? "text-background/70" : ""
-                    }`}
-                  >
-                    {phase.description}
-                  </p>
-                </Reveal>
-                <Reveal delay={300}>
-                  <div
-                    className={`mt-6 border p-6 ${
-                      phase.n === "02"
-                        ? "border-background/20"
-                        : "border-foreground/10"
-                    }`}
-                  >
-                    <p
-                      className={`text-xs uppercase tracking-widest ${
-                        phase.n === "02"
-                          ? "text-background/60"
-                          : "text-muted-foreground"
-                      }`}
-                    >
-                      The Outcome
-                    </p>
-                    <p
-                      className={`mt-2 text-sm font-medium leading-relaxed ${
-                        phase.n === "02" ? "text-background" : ""
-                      }`}
-                    >
-                      {phase.outcome}
-                    </p>
-                  </div>
-                </Reveal>
-              </div>
-              <Reveal delay={150} direction="right">
-                <div>
-                  <p
-                    className={`text-xs uppercase tracking-widest ${
-                      phase.n === "02"
-                        ? "text-background/60"
-                        : "text-muted-foreground"
-                    }`}
-                  >
-                    What Your Team Learns
-                  </p>
-                  <ul className="mt-6 space-y-4">
-                    {phase.what.map((item) => (
-                      <li
-                        key={item}
-                        className={`flex gap-4 text-sm leading-relaxed ${
-                          phase.n === "02" ? "text-background/70" : "text-muted-foreground"
-                        }`}
-                      >
-                        <span
-                          className={`mt-1.5 h-1.5 w-1.5 shrink-0 ${
-                            phase.n === "02" ? "bg-background/40" : "bg-[#1549CD]/40"
-                          }`}
-                        />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      {/* What makes this different — alternating layout */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Why This Works
-            </p>
-            <h2 className="nc-heading-lg mt-4 max-w-2xl">
-              Not another AI workshop.
-            </h2>
-            <p className="nc-body mt-6 max-w-xl">
-              Most AI training teaches tools. Tools change every six months. The
-              NotContent Method teaches a way of working that survives regardless
-              of which platforms ship or die.
-            </p>
-          </Reveal>
-
-          <div className="mt-12 space-y-0">
-            <Reveal>
-              <div className="grid grid-cols-2 border-b border-foreground/10 pb-3">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Typical AI Training
+                <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
+                  What Your Team Learns
                 </p>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  The NotContent Method
-                </p>
+                <ul className="space-y-5">
+                  {phases[0].what.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-4 text-sm text-muted-foreground leading-relaxed"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
-            {differences.map((diff, i) => (
-              <Reveal key={diff.ours} delay={i * 80}>
-                <div className="grid grid-cols-2 border-b border-foreground/5 py-4">
-                  <p className="pr-8 text-sm text-muted-foreground line-through decoration-foreground/20">
-                    {diff.theirs}
-                  </p>
-                  <p className="text-sm">{diff.ours}</p>
-                </div>
-              </Reveal>
-            ))}
           </div>
         </div>
       </section>
 
-      {/* Clients */}
-      <section className="nc-divider nc-section bg-foreground text-background">
-        <div className="nc-container">
+      {/* ═══ PHASE 02 — CONVERGE (cobalt bg) ═══ */}
+      <section className="py-24 lg:py-36 bg-[#1549CD] text-white relative overflow-hidden">
+        {/* Grid overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
+            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
+            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
-            <p className="text-xs uppercase tracking-widest text-background/60">
-              Trusted By
-            </p>
-            <h2 className="nc-heading-lg mt-4">
+            <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/50">
+              <span>Phase 02</span>
+              <span>Converge</span>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-16 lg:grid-cols-2">
+            <div>
+              <Reveal delay={100}>
+                <div className="flex items-center gap-4 mb-6">
+                  <ServiceIcon icon={phases[1].icon} size={36} className="opacity-50 [&>svg]:stroke-white" />
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-white/50">
+                    {phases[1].hook}
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={150}>
+                <h3 className="oci-display-sm text-white">{phases[1].name}.</h3>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="mt-6 text-sm text-white/60 leading-relaxed">
+                  {phases[1].description}
+                </p>
+              </Reveal>
+              <Reveal delay={250}>
+                <div className="mt-8 border border-white/20 p-6">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-2">
+                    The Outcome
+                  </p>
+                  <p className="text-sm text-white leading-relaxed">
+                    {phases[1].outcome}
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={200} direction="right">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-6">
+                  What Your Team Learns
+                </p>
+                <ul className="space-y-5">
+                  {phases[1].what.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-4 text-sm text-white/60 leading-relaxed"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-white/40" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ PHASE 03 — SYSTEMIZE (cream bg) ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Phase 03</span>
+              <span>Systemize</span>
+            </div>
+          </Reveal>
+
+          <div className="mt-12 grid gap-16 lg:grid-cols-2">
+            <div>
+              <Reveal delay={100}>
+                <div className="flex items-center gap-4 mb-6">
+                  <ServiceIcon icon={phases[2].icon} size={36} className="opacity-50" />
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {phases[2].hook}
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={150}>
+                <h3 className="oci-display-sm">{phases[2].name}.</h3>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="mt-6 text-sm text-muted-foreground leading-relaxed">
+                  {phases[2].description}
+                </p>
+              </Reveal>
+              <Reveal delay={250}>
+                <div className="mt-8 border border-[#1549CD]/20 p-6">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] mb-2">
+                    The Outcome
+                  </p>
+                  <p className="text-sm leading-relaxed">
+                    {phases[2].outcome}
+                  </p>
+                </div>
+              </Reveal>
+            </div>
+
+            <Reveal delay={200} direction="right">
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
+                  What Your Team Learns
+                </p>
+                <ul className="space-y-5">
+                  {phases[2].what.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-4 text-sm text-muted-foreground leading-relaxed"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ COMPARISON TABLE ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Why This Works</span>
+              <span>[NC.3]</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 mt-8 mb-16">
+              <h2 className="oci-display-sm">
+                Not another
+                <br />
+                AI workshop.
+              </h2>
+              <p className="max-w-sm text-sm text-muted-foreground leading-relaxed lg:text-right">
+                Most AI training teaches tools. Tools change every six months.
+                The NotContent Method teaches a way of working that survives
+                regardless of which platforms ship or die.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Table header */}
+          <Reveal delay={150}>
+            <div className="grid grid-cols-2 border-b border-[#1549CD]/20 pb-3">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                Typical AI Training
+              </p>
+              <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                The NotContent Method
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Table rows */}
+          {differences.map((diff, i) => (
+            <Reveal key={diff.ours} delay={180 + i * 60}>
+              <div className="grid grid-cols-2 border-b border-[#1549CD]/10 py-5">
+                <p className="pr-8 text-sm text-muted-foreground line-through decoration-foreground/20">
+                  {diff.theirs}
+                </p>
+                <p className="text-sm font-medium">{diff.ours}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ CLIENTS ═══ */}
+      <section className="py-24 lg:py-36 bg-[#1549CD] text-white relative overflow-hidden">
+        {/* Grid overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
+            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
+            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/50">
+              <span>Trusted By</span>
+              <span>[NC.4]</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <h2 className="oci-display-sm text-white mt-8">
               The teams already using this method.
             </h2>
           </Reveal>
-          <div className="mt-12 grid grid-cols-2 gap-8 sm:grid-cols-3 lg:grid-cols-6">
+
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
             {["Nike", "Apple", "Cash App", "Maesa", "Adidas", "Google"].map(
               (brand, i) => (
-                <Reveal key={brand} delay={i * 60}>
-                  <div className="flex items-center justify-center border border-background/10 py-6 transition-colors hover:border-background/30">
-                    <p className="text-sm font-medium uppercase tracking-widest text-background/60">
+                <Reveal key={brand} delay={150 + i * 60}>
+                  <div className="flex items-center justify-center border border-white/15 py-8 transition-colors hover:border-white/30 hover:bg-white/5">
+                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-white/60">
                       {brand}
                     </p>
                   </div>
@@ -362,38 +468,44 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container text-center">
+      {/* ═══ CTA BAND ═══ */}
+      <section className="py-24 lg:py-36 bg-[#1549CD] text-white relative overflow-hidden border-t border-white/10">
+        {/* Grid overlay */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
+            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
+            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Start Here
-            </p>
-            <h2 className="nc-heading-lg mx-auto mt-4 max-w-2xl">
-              See how this applies to your team.
+            <h2 className="oci-display-sm text-white mx-auto max-w-3xl">
+              See how this applies
+              <br />
+              to your team.
             </h2>
-            <p className="nc-body mx-auto mt-6 max-w-lg">
-              Take the 2-minute Scorecard to find out where your team stands — or
-              skip straight to a conversation.
-            </p>
           </Reveal>
           <Reveal delay={100}>
-            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-              <Button
-                asChild
-                size="lg"
-                className="cursor-pointer text-sm uppercase tracking-widest"
+            <p className="mt-6 text-lg text-white/60 max-w-lg mx-auto leading-relaxed">
+              Take the 2-minute Scorecard to find out where your team stands
+              &mdash; or skip straight to a conversation.
+            </p>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/assess"
+                className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
               >
-                <Link href="/assess">Take the Scorecard</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="cursor-pointer text-sm uppercase tracking-widest"
+                Take the Scorecard
+              </Link>
+              <Link
+                href="/book"
+                className="inline-flex items-center justify-center h-14 px-10 border border-white/30 text-white text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/10 transition-colors"
               >
-                <Link href="/book">Book a Call</Link>
-              </Button>
+                Book a Call
+              </Link>
             </div>
           </Reveal>
         </div>

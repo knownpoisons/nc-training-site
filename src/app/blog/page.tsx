@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
-import { Reveal } from "@/components/reveal";
-import { HeroPattern } from "@/components/hero-pattern";
 
 export const metadata: Metadata = {
   title: "Blog | AI Creative Training Insights",
@@ -18,7 +16,7 @@ const categoryStyles: Record<string, string> = {
   Insight: "bg-foreground/5 text-foreground/60",
 };
 
-/* Simple geometric SVG covers per category — no external images needed */
+/* Simple geometric SVG covers per category */
 function BlogCover({
   category,
   title,
@@ -36,7 +34,7 @@ function BlogCover({
         xmlns="http://www.w3.org/2000/svg"
         className="h-full w-full"
       >
-        <rect width="640" height="360" fill="#F8FAFC" />
+        <rect width="640" height="360" fill="#E8E6E0" />
         <rect x="60" y="80" width="160" height="80" rx="2" fill="#1549CD" opacity="0.08" />
         <rect x="240" y="80" width="160" height="80" rx="2" fill="#1549CD" opacity="0.12" />
         <rect x="420" y="80" width="160" height="80" rx="2" fill="#1549CD" opacity="0.06" />
@@ -59,7 +57,7 @@ function BlogCover({
         xmlns="http://www.w3.org/2000/svg"
         className="h-full w-full"
       >
-        <rect width="640" height="360" fill="#F8FAFC" />
+        <rect width="640" height="360" fill="#E8E6E0" />
         <rect x="200" y="60" width="240" height="240" rx="4" fill="none" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
         <rect x="220" y="100" width="120" height="8" rx="2" fill="#1549CD" opacity="0.12" />
         <rect x="220" y="120" width="180" height="6" rx="2" fill="#1549CD" opacity="0.08" />
@@ -84,7 +82,7 @@ function BlogCover({
         xmlns="http://www.w3.org/2000/svg"
         className="h-full w-full"
       >
-        <rect width="640" height="360" fill="#F8FAFC" />
+        <rect width="640" height="360" fill="#E8E6E0" />
         <line x1="120" y1="180" x2="320" y2="100" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
         <line x1="120" y1="180" x2="320" y2="180" stroke="#1549CD" strokeWidth="1.5" opacity="0.3" />
         <line x1="120" y1="180" x2="320" y2="260" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
@@ -110,7 +108,7 @@ function BlogCover({
       xmlns="http://www.w3.org/2000/svg"
       className="h-full w-full"
     >
-      <rect width="640" height="360" fill="#F8FAFC" />
+      <rect width="640" height="360" fill="#E8E6E0" />
       <circle cx="320" cy="180" r={80 + seed * 10} fill="#1549CD" opacity="0.04" />
       <circle cx="320" cy="180" r={50 + seed * 5} fill="#1549CD" opacity="0.06" />
       <circle cx="320" cy="180" r="20" fill="#1549CD" opacity="0.1" />
@@ -124,32 +122,34 @@ export default function BlogPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="nc-section relative pt-32 lg:pt-40">
-        <HeroPattern variant="waves" />
-        <div className="nc-container relative">
-          <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Blog
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h1 className="nc-heading-xl mt-4 max-w-3xl">
-              Insights on AI creative training.
-            </h1>
-          </Reveal>
+      {/* Hero — cobalt */}
+      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        <div className="oci-grid-lines-light" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+          <div className="oci-section-label mb-8 border-white/20 text-white/40">
+            <span>BLOG</span>
+            <span>[NC]</span>
+          </div>
+          <h1 className="oci-display-sm max-w-3xl">
+            Insights on AI
+            <br />
+            creative training.
+          </h1>
         </div>
       </section>
 
       {/* Featured Post */}
       {featured && (
-        <section className="nc-divider pb-16 lg:pb-24">
-          <div className="nc-container">
-            <Reveal>
-            <Link href={`/blog/${featured.slug}`} className="nc-glow-hover group block">
+        <section className="py-16 lg:py-24 relative oci-grid-lines">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="oci-section-label mb-12">
+              <span>FEATURED</span>
+              <span>[NC.1]</span>
+            </div>
+            <Link href={`/blog/${featured.slug}`} className="group block">
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                 {/* Cover */}
-                <div className="aspect-[16/9] w-full overflow-hidden border border-foreground/10 bg-foreground/[0.02]">
+                <div className="aspect-[16/9] w-full overflow-hidden border border-foreground/10">
                   <BlogCover
                     category={featured.category}
                     title={featured.title}
@@ -164,7 +164,7 @@ export default function BlogPage() {
                     >
                       {featured.category}
                     </span>
-                    <span className="text-xs text-muted-foreground">
+                    <span className="text-[11px] text-foreground/40">
                       {new Date(featured.date).toLocaleDateString("en-US", {
                         month: "short",
                         day: "numeric",
@@ -175,34 +175,37 @@ export default function BlogPage() {
                   <h2 className="mt-4 text-2xl font-light leading-snug tracking-tight transition-colors group-hover:text-[#1549CD] lg:text-3xl">
                     {featured.title}
                   </h2>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground line-clamp-3">
+                  <p className="mt-4 text-sm leading-relaxed text-foreground/60 line-clamp-3">
                     {featured.description}
                   </p>
-                  <p className="mt-6 text-xs font-medium uppercase tracking-widest text-[#1549CD]">
-                    Read article &rarr;
+                  <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD]">
+                    Read article →
                   </p>
                 </div>
               </div>
             </Link>
-            </Reveal>
           </div>
         </section>
       )}
 
       {/* Grid */}
       {rest.length > 0 && (
-        <section className="nc-divider nc-section">
-          <div className="nc-container">
-            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {rest.map((post, idx) => (
-                <Reveal key={post.slug} delay={idx * 80}>
+        <section className="py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="oci-section-label mb-12">
+              <span>ALL POSTS</span>
+              <span>[NC.2]</span>
+            </div>
+            <div className="grid gap-px bg-foreground/10 sm:grid-cols-2 lg:grid-cols-3">
+              {rest.map((post) => (
                 <Link
+                  key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="nc-card-hover group block"
+                  className="group block bg-[#E8E6E0] p-6"
                 >
                   <article>
                     {/* Card cover */}
-                    <div className="aspect-[16/10] w-full overflow-hidden border border-foreground/10 bg-foreground/[0.02]">
+                    <div className="aspect-[16/10] w-full overflow-hidden border border-foreground/10">
                       <BlogCover
                         category={post.category}
                         title={post.title}
@@ -217,7 +220,7 @@ export default function BlogPage() {
                         >
                           {post.category}
                         </span>
-                        <span className="text-[11px] text-muted-foreground">
+                        <span className="text-[11px] text-foreground/40">
                           {new Date(post.date).toLocaleDateString("en-US", {
                             month: "short",
                             day: "numeric",
@@ -227,13 +230,12 @@ export default function BlogPage() {
                       <h3 className="mt-3 text-base font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1549CD]">
                         {post.title}
                       </h3>
-                      <p className="mt-2 text-xs leading-relaxed text-muted-foreground line-clamp-2">
+                      <p className="mt-2 text-xs leading-relaxed text-foreground/60 line-clamp-2">
                         {post.description}
                       </p>
                     </div>
                   </article>
                 </Link>
-                </Reveal>
               ))}
             </div>
           </div>

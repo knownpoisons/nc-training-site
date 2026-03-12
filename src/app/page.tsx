@@ -1,9 +1,9 @@
+"use client";
+
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
-import { HeroPattern } from "@/components/hero-pattern";
-import { ServiceIcon } from "@/components/service-icon";
 
 const clients = [
   "Adidas",
@@ -17,340 +17,349 @@ const clients = [
   "Target",
 ];
 
-const stats = [
-  { value: "90%", label: "Reduction in production time" },
-  { value: "$8M+", label: "Combined estimated client savings" },
-  { value: "$280K", label: "Saved on a single brand launch" },
-  { value: "3", label: "Enterprise teams transformed" },
-];
-
-const programs = [
+const testimonials = [
   {
-    name: "Foundations",
-    duration: "Half-day workshop",
-    description:
-      "Align your whole team on AI tools, workflows, and a shared methodology in a single session. Everyone in the room. Everyone at the same level. Everyone with the same language.",
-    ideal: "Teams starting the journey together",
-    href: "/programs/foundations",
-    icon: "team" as const,
+    company: "Maesa",
+    quote:
+      "Jeremy and NotContent will save us tens of millions of dollars in the next year alone.",
+    name: "O. Savur",
+    title: "VP Marketing, Maesa",
+    context: "On stage at a national beauty conference",
   },
   {
-    name: "Accelerator",
-    duration: "4-week sprint",
-    description:
-      "Intensive, hands-on training for your whole team. Everyone ships real AI-assisted work by week two — not just the one person who already figured out Midjourney.",
-    ideal: "Teams ready to implement together",
-    href: "/programs/accelerator",
-    icon: "speed" as const,
+    company: "Cash App",
+    quote:
+      "Our team went from scattered experiments to a unified production pipeline in four weeks.",
+    name: "Creative Lead",
+    title: "Cash App Design Team",
+    context: "Post-training debrief",
   },
   {
-    name: "Transformation",
-    duration: "8-week program",
-    description:
-      "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
-    ideal: "Teams going all-in on AI creative",
-    href: "/programs/transformation",
-    icon: "workflow" as const,
+    company: "Herman Scheer",
+    quote:
+      "We're now offering AI creative services as a new revenue stream. This changed our entire business model.",
+    name: "Agency Leadership",
+    title: "Herman Scheer",
+    context: "Six months post-engagement",
   },
 ];
 
 export default function Home() {
+  const [openProgram, setOpenProgram] = useState<number | null>(null);
+  const [testimonialIndex, setTestimonialIndex] = useState(0);
+
+  const currentTestimonial = testimonials[testimonialIndex];
+
   return (
     <>
-      {/* Hero */}
-      <section className="nc-section relative pt-32 lg:pt-40">
-        <HeroPattern variant="grid" />
-        <div className="nc-container relative">
-          <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              AI Creative Training
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h1 className="nc-heading-xl mt-4 max-w-4xl">
-              The biggest shift in creative work — for your whole team, together.
-            </h1>
-          </Reveal>
-          <Reveal delay={200}>
-            <p className="nc-body-lg mt-6 max-w-2xl">
-              Most creative teams have one or two people who figured out AI. The rest
-              are watching and waiting — and every week that gap compounds. The teams
-              that figure this out <em>together</em> will produce work that makes
-              everyone else look like they&apos;re standing still.
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <Button
-                asChild
-                size="lg"
-                className="cursor-pointer text-sm uppercase tracking-widest"
-              >
-                <Link href="/book">Book a Call</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="cursor-pointer text-sm uppercase tracking-widest"
-              >
-                <Link href="/programs/transformation">View Programs</Link>
-              </Button>
-            </div>
-          </Reveal>
-          <Reveal delay={400}>
-            <p className="mt-6 text-xs text-muted-foreground">
-              Led by Jeremy Somers — Creative Director · Nike · Apple · Spotify · Pepsi
-            </p>
-            <p className="mt-4 text-sm text-muted-foreground">
-              Not sure which program fits?{" "}
-              <Link
-                href="/assess"
-                className="nc-underline-grow font-medium text-foreground transition-colors hover:text-foreground/70"
-              >
-                Take the 2-min Scorecard →
-              </Link>
-            </p>
-          </Reveal>
+      {/* ═══ SECTION 1: HERO — Full-viewport cobalt ═══ */}
+      <section className="relative min-h-screen bg-[#1549CD] text-white overflow-hidden oci-grid-lines-light">
+        {/* Grid overlay lines */}
+        <div className="absolute inset-0 pointer-events-none z-10">
+          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
+            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
+            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
+          </div>
         </div>
-      </section>
 
-      {/* Client Logos — Auto-scrolling marquee */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Trusted by teams at
-            </p>
-          </Reveal>
-          <div className="mt-8 overflow-hidden">
-            <div className="animate-marquee-slow flex w-max gap-x-12">
-              {/* Double the list for seamless loop */}
-              {[...clients, ...clients].map((client, i) => (
-                <span
-                  key={`${client}-${i}`}
-                  className="shrink-0 text-lg font-light tracking-tight text-foreground/60"
-                >
-                  {client}
-                </span>
-              ))}
+        {/* Top nav links */}
+        <div className="relative z-20 pt-8 pb-4">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="flex justify-between items-start">
+              <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60">
+                <Link href="/about" className="hover:text-white transition-colors">About</Link>
+                <Link href="/methodology" className="hover:text-white transition-colors">Methodology</Link>
+                <Link href="/results" className="hover:text-white transition-colors">Results</Link>
+                <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+              </nav>
+              <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60 text-right">
+                <Link href="/programs/foundations" className="hover:text-white transition-colors">Programs</Link>
+                <Link href="/book" className="hover:text-white transition-colors">Book a Call</Link>
+              </nav>
             </div>
           </div>
         </div>
-      </section>
 
-      {/* The whole-team argument */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
-            <div>
-              <Reveal>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Why it matters
+        {/* Main hero content */}
+        <div className="relative z-20 flex flex-col justify-end min-h-[calc(100vh-120px)] pb-16 lg:pb-24">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
+            <Reveal>
+              <h1 className="oci-display text-white leading-[0.93]">
+                NotContent
+                <br />
+                Training
+              </h1>
+            </Reveal>
+            <Reveal delay={200}>
+              <div className="mt-8 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
+                <p className="text-white/50 text-[11px] uppercase tracking-[0.15em]">
+                  AI Creative Training for Enterprise Teams
                 </p>
-                <h2 className="nc-heading-lg mt-4">
-                  One person learning AI doesn&apos;t change how a team works.
-                </h2>
-              </Reveal>
-              <Reveal delay={100}>
-                <p className="nc-body mt-6 text-muted-foreground">
-                  It creates a two-speed operation. The AI champion does more,
-                  faster. Everyone else waits. Output becomes inconsistent.
-                  Resentment builds quietly. And you — the person responsible for
-                  the team — are the one watching it happen.
+                <p className="max-w-md text-lg lg:text-xl text-white/80 leading-relaxed lg:text-right">
+                  The biggest shift in creative work — for your whole team, together.
                 </p>
-              </Reveal>
-              <Reveal delay={200}>
-                <p className="nc-body mt-4 text-muted-foreground">
-                  The shift that matters happens when the whole team moves together —
-                  same methodology, same language, same standard. That&apos;s when
-                  the operation changes. That&apos;s when the results show up in
-                  the numbers.
-                </p>
-              </Reveal>
-            </div>
-            <Reveal delay={150} direction="right">
-              <div className="space-y-0">
-                {[
-                  {
-                    before: "One person learns AI",
-                    after: "The whole team trains together",
-                  },
-                  {
-                    before: "Inconsistent quality and output",
-                    after: "A shared standard everyone holds",
-                  },
-                  {
-                    before: "Experimental, individual workflows",
-                    after: "Documented, repeatable processes",
-                  },
-                  {
-                    before: "AI champion + everyone else",
-                    after: "A team that operates at the frontier",
-                  },
-                ].map((row, i) => (
-                  <div
-                    key={i}
-                    className="grid grid-cols-2 border-b border-foreground/10 py-5"
-                  >
-                    <p className="text-sm text-muted-foreground line-through decoration-foreground/20">
-                      {row.before}
-                    </p>
-                    <p className="text-sm font-medium pl-6 border-l border-foreground/10">
-                      {row.after}
-                    </p>
-                  </div>
-                ))}
               </div>
             </Reveal>
           </div>
         </div>
+
+        {/* Bottom bar */}
+        <div className="relative z-20 border-t border-white/10">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4 flex justify-between items-center">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
+              Scroll to explore
+            </p>
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
+              Est. 2024
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Stats — with animated counters */}
-      <section className="nc-divider nc-section bg-foreground text-background">
-        <div className="nc-container">
-          <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-            {stats.map((stat, i) => (
-              <Reveal key={stat.label} delay={i * 100}>
-                <div>
-                  <p className="text-4xl font-medium tracking-tight lg:text-5xl">
+      {/* ═══ SECTION 2: INTRO — Oversized statement text ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <p className="oci-display-sm text-foreground max-w-5xl">
+              Most creative teams have one or two people who figured out AI. The rest
+              are watching. Every week, that gap compounds.
+            </p>
+          </Reveal>
+
+          <Reveal delay={200}>
+            <div className="mt-16 lg:mt-24 grid grid-cols-2 sm:grid-cols-4 gap-8 lg:gap-12">
+              {[
+                { value: "50+", label: "Enterprise creatives trained" },
+                { value: "$8M+", label: "Combined client savings" },
+                { value: "90%", label: "Faster production" },
+                { value: "3", label: "Teams transformed" },
+              ].map((stat, i) => (
+                <div key={stat.label}>
+                  <p className="text-3xl lg:text-4xl font-medium tracking-tight text-[#1549CD]">
                     <AnimatedCounter value={stat.value} />
                   </p>
-                  <p className="mt-2 text-sm text-background/60">{stat.label}</p>
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {stat.label}
+                  </p>
                 </div>
-              </Reveal>
-            ))}
-          </div>
+              ))}
+            </div>
+          </Reveal>
+
+          {/* Client logos marquee */}
+          <Reveal delay={300}>
+            <div className="mt-16 lg:mt-24 pt-8 border-t border-foreground/10">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
+                Trusted by teams at
+              </p>
+              <div className="overflow-hidden">
+                <div className="animate-marquee-slow flex w-max gap-x-12">
+                  {[...clients, ...clients].map((client, i) => (
+                    <span
+                      key={`${client}-${i}`}
+                      className="shrink-0 text-lg font-light tracking-tight text-foreground/50"
+                    >
+                      {client}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
+      {/* ═══ SECTION 3: PROGRAMS — Accordion ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Section label bar */}
           <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              How It Works
-            </p>
-            <h2 className="nc-heading-lg mt-4 max-w-3xl">
-              Three steps. No obligation until step three.
-            </h2>
+            <div className="oci-section-label">
+              <span>Programs</span>
+              <span>[NC.1]</span>
+            </div>
           </Reveal>
-          <div className="mt-12 grid gap-10 sm:grid-cols-3">
+
+          {/* Split display heading */}
+          <Reveal delay={100}>
+            <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 mb-16">
+              <h2 className="oci-display-sm">Our Programs</h2>
+              <p className="max-w-sm text-sm text-muted-foreground leading-relaxed lg:text-right">
+                Three formats designed to bring your entire team to the frontier
+                of AI-assisted creative work.
+              </p>
+            </div>
+          </Reveal>
+
+          {/* Accordion */}
+          <div>
             {[
               {
-                n: "01",
-                title: "Book a free call with Jeremy",
-                body: "30 minutes with Jeremy. We map your team's current state, where AI would have the highest impact, and which program is the right fit.",
+                name: "Foundations",
+                duration: "Half-day workshop",
+                price: "$5 - 8K",
+                description:
+                  "Align your whole team on AI tools, workflows, and a shared methodology in a single session. Everyone in the room. Everyone at the same level. Everyone with the same language.",
+                ideal: "Teams starting the journey together",
+                href: "/programs/foundations",
               },
               {
-                n: "02",
-                title: "Get a custom proposal",
-                body: "Scoped to your team size, goals, and timeline. Not a generic package — a specific program built around what you actually need.",
+                name: "Accelerator",
+                duration: "4-week sprint",
+                price: "$15 - 25K",
+                description:
+                  "Intensive, hands-on training for your whole team. Everyone ships real AI-assisted work by week two — not just the one person who already figured out Midjourney.",
+                ideal: "Teams ready to implement together",
+                href: "/programs/accelerator",
               },
               {
-                n: "03",
-                title: "Your team trains together",
-                body: "Everyone in the room. Same methodology, same quality bar. Real AI-assisted work by week two — not at the end, halfway through.",
+                name: "Transformation",
+                duration: "8-week program",
+                price: "$50 - 75K",
+                description:
+                  "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
+                ideal: "Teams going all-in on AI creative",
+                href: "/programs/transformation",
               },
-            ].map((step, i) => (
-              <Reveal key={step.n} delay={i * 120}>
-                <div>
-                  <p className="text-4xl font-light text-foreground/20">{step.n}</p>
-                  <h3 className="nc-heading-md mt-4">{step.title}</h3>
-                  <p className="nc-body mt-4 text-muted-foreground">{step.body}</p>
+            ].map((program, i) => (
+              <Reveal key={program.name} delay={i * 80}>
+                <div
+                  className="oci-accordion-item"
+                  onClick={() => setOpenProgram(openProgram === i ? null : i)}
+                >
+                  <div className="py-6 px-2 flex items-center justify-between">
+                    <div className="flex items-baseline gap-4 lg:gap-8">
+                      <span className="text-sm text-muted-foreground font-light">
+                        0{i + 1}
+                      </span>
+                      <h3 className="text-xl lg:text-2xl font-medium tracking-tight">
+                        {program.name}
+                      </h3>
+                      <span className="hidden sm:inline text-sm text-muted-foreground">
+                        {program.duration}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-4">
+                      <span className="hidden sm:inline text-sm text-muted-foreground">
+                        {program.price}
+                      </span>
+                      <span className="text-xl text-[#1549CD] transition-transform duration-200"
+                        style={{ transform: openProgram === i ? "rotate(45deg)" : "rotate(0)" }}
+                      >
+                        +
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Expanded content */}
+                  <div
+                    className="overflow-hidden transition-all duration-300 ease-in-out"
+                    style={{
+                      maxHeight: openProgram === i ? "300px" : "0",
+                      opacity: openProgram === i ? 1 : 0,
+                    }}
+                  >
+                    <div className="pb-8 px-2 pl-10 lg:pl-16">
+                      <p className="text-sm leading-relaxed text-muted-foreground max-w-2xl">
+                        {program.description}
+                      </p>
+                      <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                        Best for: {program.ideal}
+                      </p>
+                      <Link
+                        href={program.href}
+                        className="mt-4 inline-block text-[11px] uppercase tracking-[0.15em] text-[#1549CD] hover:text-[#0e38a8] transition-colors"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Learn More &rarr;
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Programs — with icons and hover micro-interactions */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <Reveal>
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Programs
-            </p>
-            <h2 className="nc-heading-lg mt-4 max-w-3xl">
-              Three formats. One goal: your whole team at the frontier.
-            </h2>
+          {/* Full-width CTA button */}
+          <Reveal delay={300}>
+            <Link href="/programs/foundations" className="oci-button-full mt-0 block">
+              View All Programs
+            </Link>
           </Reveal>
-          <div className="mt-12 grid gap-8 lg:grid-cols-3">
-            {programs.map((program, i) => (
-              <Reveal key={program.name} delay={i * 100}>
-                <Link
-                  href={program.href}
-                  className="nc-card-hover group block border border-foreground/10 p-8 transition-colors hover:bg-foreground hover:text-background"
-                >
-                  <ServiceIcon
-                    icon={program.icon}
-                    className="mb-6 opacity-40 transition-opacity group-hover:opacity-70"
-                  />
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground group-hover:text-background/60">
-                    {program.duration}
-                  </p>
-                  <h3 className="nc-heading-md mt-4">{program.name}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground group-hover:text-background/60">
-                    {program.description}
-                  </p>
-                  <p className="mt-6 text-xs uppercase tracking-widest">
-                    Best for: {program.ideal}
-                  </p>
-                  <span className="mt-6 inline-block text-xs uppercase tracking-widest underline underline-offset-4">
-                    Learn more
-                  </span>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Methodology Teaser — with icons */}
-      <section id="methodology" className="nc-divider nc-section">
-        <div className="nc-container">
-          <div className="grid gap-12 lg:grid-cols-2">
+      {/* ═══ SECTION 4: METHODOLOGY — Numbered tilted cards ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Section label bar */}
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Method</span>
+              <span>[NC.2]</span>
+            </div>
+          </Reveal>
+
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+            {/* Left: heading + body */}
             <div>
-              <Reveal>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  The NotContent Method
-                </p>
-                <h2 className="nc-heading-lg mt-4">
-                  Diverge. Converge. Systemize.
+              <Reveal delay={100}>
+                <h2 className="oci-display-sm">
+                  Here at
+                  <br />
+                  every step
                 </h2>
               </Reveal>
-              <Reveal delay={100}>
-                <p className="nc-body mt-6">
+              <Reveal delay={200}>
+                <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-md">
                   AI is a creative force multiplier, not a replacement engine. Our
                   methodology separates exploration from execution, ensuring speed
-                  never compromises taste.
+                  never compromises taste. When a whole team learns the same framework,
+                  the gains compound.
                 </p>
               </Reveal>
-              <Reveal delay={200}>
-                <p className="nc-body mt-4 text-muted-foreground">
-                  When a whole team learns the same framework, the gains compound.
-                  Everyone explores smarter, executes cleaner, and builds
-                  on each other&apos;s work instead of reinventing it.
-                </p>
+              <Reveal delay={250}>
+                <Link
+                  href="/methodology"
+                  className="mt-6 inline-block text-[11px] uppercase tracking-[0.15em] text-[#1549CD] hover:text-[#0e38a8] transition-colors"
+                >
+                  Explore our methodology &rarr;
+                </Link>
               </Reveal>
             </div>
-            <div className="space-y-8">
+
+            {/* Right: tilted cards */}
+            <div className="flex flex-col gap-6">
               {[
-                { icon: "diverge" as const, n: "01", name: "Diverge", desc: "Use AI for volume, surprise, and style discovery. Midjourney as your visual sparring partner." },
-                { icon: "converge" as const, n: "02", name: "Converge", desc: "Lock in direction. Switch to precision tools for production-grade, brand-aligned execution." },
-                { icon: "systemize" as const, n: "03", name: "Systemize", desc: "Encode your best workflows into repeatable processes. Make AI output predictable and scalable." },
-              ].map((phase, i) => (
-                <Reveal key={phase.n} delay={i * 120} direction="right">
-                  <div className="flex gap-6 border-l-2 border-foreground pl-6">
-                    <ServiceIcon icon={phase.icon} size={32} className="shrink-0 mt-0.5 opacity-50" />
-                    <div>
-                      <h3 className="text-sm font-medium uppercase tracking-widest">
-                        {phase.n} / {phase.name}
-                      </h3>
-                      <p className="nc-body mt-2">{phase.desc}</p>
+                {
+                  n: "01",
+                  name: "Diverge",
+                  desc: "Generate volume, discover styles, explore possibilities. Use AI as your visual sparring partner.",
+                },
+                {
+                  n: "02",
+                  name: "Converge",
+                  desc: "Lock direction, switch to precision. Production-grade, brand-aligned output.",
+                },
+                {
+                  n: "03",
+                  name: "Systemize",
+                  desc: "Encode workflows into repeatable, scalable processes that anyone on the team can run.",
+                },
+              ].map((step, i) => (
+                <Reveal key={step.n} delay={150 + i * 100} direction="right">
+                  <div className="oci-card-tilted p-8">
+                    <div className="flex items-baseline justify-between mb-4">
+                      <span className="text-3xl lg:text-4xl font-light text-[#1549CD]/30">
+                        {step.n}
+                      </span>
+                      <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                        {step.name}
+                      </span>
                     </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {step.desc}
+                    </p>
                   </div>
                 </Reveal>
               ))}
@@ -359,168 +368,284 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Results / Case Studies */}
-      <section
-        id="results"
-        className="nc-divider nc-section bg-foreground text-background"
-      >
-        <div className="nc-container">
+      {/* ═══ SECTION 5: RESULTS — 3-column grid ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Section label bar */}
           <Reveal>
-            <p className="text-xs uppercase tracking-widest text-background/60">
-              Results
-            </p>
-            <h2 className="nc-heading-lg mt-4">
-              Real teams. Measurable transformation.
-            </h2>
+            <div className="oci-section-label">
+              <span>Results</span>
+              <span>[NC.3]</span>
+            </div>
           </Reveal>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-3">
+          <Reveal delay={100}>
+            <h2 className="oci-display-sm mb-16">Most Recent Results</h2>
+          </Reveal>
+
+          {/* 3-column grid with vertical dividers */}
+          <div className="grid lg:grid-cols-3 gap-0">
             {[
               {
-                href: "/results/cash-app",
-                industry: "Fintech / Enterprise",
+                n: "01",
+                category: "Fintech",
                 name: "Cash App",
-                desc: "Production time cut to 10%. $3.5M in estimated year-one savings. Team production-ready by halfway through the training.",
                 stat: "90%",
                 statLabel: "Reduction in production time",
+                desc: "Production time cut to 10%. $3.5M in estimated year-one savings. Team production-ready by halfway through training.",
+                href: "/results/cash-app",
               },
               {
-                href: "/results/herman-scheer",
-                industry: "Brand Agency / LA",
-                name: "Herman Scheer",
-                desc: "Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to clients.",
-                stat: "$4.5M",
-                statLabel: "Estimated year-one savings",
-              },
-              {
-                href: "/results/maesa",
-                industry: "Beauty / CPG",
+                n: "02",
+                category: "Beauty",
                 name: "Maesa",
-                desc: "New brand launched into every Target store. 3 months instead of 9. $280K saved on a single launch.",
                 stat: "$280K",
                 statLabel: "Saved on a single brand launch",
+                desc: "New brand launched into every Target store. 3 months instead of 9. $280K saved on a single launch.",
+                href: "/results/maesa",
+              },
+              {
+                n: "03",
+                category: "Agency",
+                name: "Herman Scheer",
+                stat: "$4.5M",
+                statLabel: "Estimated year-one savings",
+                desc: "Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to clients.",
+                href: "/results/herman-scheer",
               },
             ].map((study, i) => (
-              <Reveal key={study.name} delay={i * 100}>
+              <Reveal key={study.name} delay={i * 120}>
                 <Link
                   href={study.href}
-                  className="nc-glow-hover group block border border-background/20 p-8 transition-colors hover:border-background/40"
+                  className={`group block p-8 lg:p-10 transition-colors hover:bg-[#1549CD]/[0.03] ${
+                    i > 0 ? "lg:border-l border-t lg:border-t-0 border-[#1549CD]/20" : ""
+                  }`}
                 >
-                  <p className="text-xs uppercase tracking-widest text-background/60">
-                    {study.industry}
-                  </p>
-                  <h3 className="nc-heading-md mt-4">{study.name}</h3>
-                  <p className="mt-4 text-sm leading-relaxed text-background/60">
+                  <div className="flex justify-between items-start mb-8">
+                    <span className="text-sm text-muted-foreground font-light">
+                      {study.n}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                      {study.category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl lg:text-3xl font-medium tracking-tight mb-4">
+                    {study.name}
+                  </h3>
+
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-8">
                     {study.desc}
                   </p>
-                  <p className="mt-6 text-2xl font-medium">
-                    <AnimatedCounter value={study.stat} />
-                  </p>
-                  <p className="text-xs text-background/60">
-                    {study.statLabel}
-                  </p>
-                  <p className="mt-4 text-xs uppercase tracking-widest text-[#1549CD] transition-colors group-hover:text-[#1549CD]/80">
-                    Read case study →
+
+                  {/* Big stat */}
+                  <div className="border-t border-foreground/10 pt-6">
+                    <p className="text-3xl lg:text-4xl font-medium tracking-tight text-[#1549CD]">
+                      <AnimatedCounter value={study.stat} />
+                    </p>
+                    <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                      {study.statLabel}
+                    </p>
+                  </div>
+
+                  <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-[#1549CD] opacity-0 group-hover:opacity-100 transition-opacity">
+                    Read case study &rarr;
                   </p>
                 </Link>
               </Reveal>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Testimonial — Pull-quote style */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <Reveal>
-            <div className="mx-auto max-w-4xl py-8 lg:py-16">
-              <div className="nc-pull-quote">
-                <p className="text-2xl font-light leading-relaxed tracking-tight sm:text-3xl lg:text-4xl">
-                  &ldquo;Jeremy and NotContent will save us tens of millions of
-                  dollars in the next year alone.&rdquo;
-                </p>
-              </div>
-              <div className="mt-8 flex items-center gap-4">
-                <div className="h-px flex-1 bg-foreground/10" />
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Oshyia Savur, VP Marketing, Maesa — on stage at a national
-                  beauty conference
-                </p>
-              </div>
-            </div>
+          {/* Full-width CTA */}
+          <Reveal delay={400}>
+            <Link href="/results" className="oci-button-full mt-0 block">
+              View All Results
+            </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* Video Section — placeholder for Loom/recorded video */}
-      <section className="nc-divider nc-section bg-foreground/[0.02]">
-        <div className="nc-container">
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
-            <Reveal>
-              <div>
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  See It In Action
+      {/* ═══ SECTION 6: TESTIMONIALS — Editorial quote ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Section label bar */}
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Testimonials</span>
+              <span>[NC.4]</span>
+            </div>
+          </Reveal>
+
+          <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-16 items-start">
+            {/* Left: company name + pagination */}
+            <div>
+              <Reveal delay={100}>
+                <p className="text-2xl font-medium tracking-tight">
+                  {currentTestimonial.company}
                 </p>
-                <h2 className="nc-heading-lg mt-4">
-                  60 seconds on what we do and why it works.
-                </h2>
-                <p className="nc-body mt-4">
-                  Watch how enterprise creative teams go from scattered AI experiments
-                  to a unified, faster operation — in their own words.
-                </p>
-              </div>
-            </Reveal>
-            <Reveal delay={150} direction="right">
-              {/* Video embed placeholder — replace src with actual video URL */}
-              <div className="relative aspect-video w-full overflow-hidden border border-foreground/10 bg-foreground/[0.03]">
-                <div className="absolute inset-0 flex flex-col items-center justify-center gap-4">
-                  {/* Play button */}
-                  <div className="flex h-16 w-16 items-center justify-center border-2 border-foreground/20 transition-colors hover:border-[#1549CD] hover:bg-[#1549CD]/5">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="ml-1 text-foreground/40">
-                      <polygon points="6,4 20,12 6,20" />
-                    </svg>
+                <div className="mt-6 flex items-center gap-3">
+                  <span className="text-sm text-muted-foreground">
+                    {String(testimonialIndex + 1).padStart(2, "0")}/{String(testimonials.length).padStart(2, "0")}
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <button
+                      onClick={() =>
+                        setTestimonialIndex(
+                          testimonialIndex > 0 ? testimonialIndex - 1 : testimonials.length - 1
+                        )
+                      }
+                      className="text-[#1549CD] hover:text-[#0e38a8] transition-colors cursor-pointer"
+                      aria-label="Previous testimonial"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 10l4-4 4 4" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() =>
+                        setTestimonialIndex(
+                          testimonialIndex < testimonials.length - 1 ? testimonialIndex + 1 : 0
+                        )
+                      }
+                      className="text-[#1549CD] hover:text-[#0e38a8] transition-colors cursor-pointer"
+                      aria-label="Next testimonial"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 6l4 4 4-4" />
+                      </svg>
+                    </button>
                   </div>
-                  <p className="text-xs uppercase tracking-widest text-muted-foreground/50">
-                    Video coming soon
-                  </p>
-                  <p className="text-[10px] text-muted-foreground/30">
-                    Drop your Loom or MP4 embed here
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right: quote */}
+            <div>
+              <Reveal delay={200}>
+                <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-light leading-snug tracking-tight">
+                  &ldquo;{currentTestimonial.quote}&rdquo;
+                </blockquote>
+                <div className="mt-8 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-foreground/10" />
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {currentTestimonial.name}, {currentTestimonial.title}
                   </p>
                 </div>
-              </div>
-            </Reveal>
+                <p className="mt-2 text-right text-[11px] text-muted-foreground/60">
+                  {currentTestimonial.context}
+                </p>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container text-center">
+      {/* ═══ SECTION 7: BLOG GRID — Alternating blue/cream ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {/* Section label bar */}
           <Reveal>
-            <h2 className="nc-heading-lg mx-auto max-w-3xl">
-              The creative teams that figure this out together are going to be
-              very hard to compete with.
+            <div className="oci-section-label">
+              <span>Insights</span>
+              <span>[NC.5]</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <h2 className="oci-display-sm mb-16">From the Blog</h2>
+          </Reveal>
+
+          {/* 2x2 grid */}
+          <div className="grid lg:grid-cols-2 gap-4">
+            {/* Large blue card */}
+            <Reveal delay={150}>
+              <Link href="/blog/why-whole-team" className="block h-full">
+                <div className="oci-blog-card-blue h-full">
+                  <span className="text-[11px] uppercase tracking-[0.15em] text-white/50">
+                    Strategy
+                  </span>
+                  <div className="mt-auto pt-12">
+                    <h3 className="text-xl lg:text-2xl font-medium tracking-tight leading-snug">
+                      Why &ldquo;the whole team&rdquo; matters more than the tools
+                    </h3>
+                    <p className="mt-3 text-sm text-white/60">
+                      The real competitive advantage is training together.
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            </Reveal>
+
+            {/* Right column: 2 stacked cream cards */}
+            <div className="flex flex-col gap-4">
+              <Reveal delay={200}>
+                <Link href="/blog/diverge-converge" className="block">
+                  <div className="oci-blog-card-cream">
+                    <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                      Methodology
+                    </span>
+                    <div className="mt-auto pt-6">
+                      <h3 className="text-lg font-medium tracking-tight">
+                        Diverge, Converge, Systemize: The NotContent Method
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+              <Reveal delay={250}>
+                <Link href="/blog/ai-creative-production" className="block">
+                  <div className="oci-blog-card-cream">
+                    <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                      Case Study
+                    </span>
+                    <div className="mt-auto pt-6">
+                      <h3 className="text-lg font-medium tracking-tight">
+                        From 9 months to 3: How Maesa launched into Target with AI
+                      </h3>
+                    </div>
+                  </div>
+                </Link>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ SECTION 8: FINAL CTA — Full cobalt ═══ */}
+      <section className="relative py-24 lg:py-36 bg-[#1549CD] text-white overflow-hidden">
+        {/* Grid lines */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
+            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
+            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
+          </div>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <h2 className="oci-display text-white text-center">
+              Ready?
             </h2>
           </Reveal>
-          <Reveal delay={100}>
-            <p className="nc-body-lg mx-auto mt-6 max-w-xl text-muted-foreground">
-              The ones who don&apos;t will be the ones lowering rates to compete
-              with teams that produce twice as much at half the cost. We&apos;ve
-              trained Cash App, Herman Scheer, and Maesa. Let&apos;s talk about
-              your team.
+          <Reveal delay={150}>
+            <p className="mt-8 text-lg lg:text-xl text-white/70 text-center max-w-2xl mx-auto leading-relaxed">
+              The creative teams that figure this out together are going to be
+              very hard to compete with. We&apos;ve trained Cash App, Herman Scheer,
+              and Maesa. Let&apos;s talk about your team.
             </p>
           </Reveal>
-          <Reveal delay={200}>
-            <Button
-              asChild
-              size="lg"
-              className="mt-10 cursor-pointer text-sm uppercase tracking-widest"
-            >
-              <Link href="/book">Book a Call</Link>
-            </Button>
-            <p className="mt-4 text-xs text-muted-foreground">
-              30 minutes. No pitch. Just a clear picture of where your team stands and what to do about it.
-            </p>
+          <Reveal delay={250}>
+            <div className="mt-12 text-center">
+              <Link
+                href="/book"
+                className="inline-block px-12 py-5 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+              >
+                Book a Call
+              </Link>
+              <p className="mt-4 text-[11px] text-white/40">
+                30 minutes. No pitch. Just clarity.
+              </p>
+            </div>
           </Reveal>
         </div>
       </section>

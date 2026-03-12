@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const navigation = [
@@ -16,29 +15,46 @@ const navigation = [
 
 export function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-foreground/10 bg-background/80 backdrop-blur-md">
-      <div className="nc-container flex h-16 items-center justify-between">
-        <Link href="/" className="text-sm font-semibold tracking-tight">
+    <header
+      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+        scrolled
+          ? "bg-[#E8E6E0]/95 backdrop-blur-sm border-b border-[#1549CD]/10"
+          : "bg-transparent border-b border-transparent"
+      }`}
+    >
+      <div className="mx-auto max-w-7xl px-6 lg:px-8 flex h-14 items-center justify-between">
+        <Link href="/" className="text-[11px] font-semibold uppercase tracking-[0.15em]">
           NOTCONTENT{" "}
-          <span className="font-light text-muted-foreground">/ training</span>
+          <span className="font-light text-foreground/40">/ training</span>
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-8 md:flex">
+        <nav className="hidden items-center gap-6 md:flex">
           {navigation.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              className="text-xs uppercase tracking-widest text-muted-foreground transition-colors hover:text-foreground"
+              className="relative text-[11px] uppercase tracking-[0.15em] text-foreground/50 transition-colors hover:text-foreground after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-[#1549CD] after:transition-all hover:after:w-full"
             >
               {item.name}
             </Link>
           ))}
-          <Button asChild size="sm" className="cursor-pointer text-xs uppercase tracking-widest">
-            <Link href="/book">Book a Call</Link>
-          </Button>
+          <Link
+            href="/book"
+            className="ml-2 px-5 py-2 bg-[#1549CD] text-white text-[11px] uppercase tracking-[0.15em] hover:bg-[#0e38a8] transition-colors"
+          >
+            Book a Call
+          </Link>
         </nav>
 
         {/* Mobile nav */}
@@ -50,7 +66,7 @@ export function Header() {
               </svg>
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full border-l border-foreground/10 bg-background pt-16">
+          <SheetContent side="right" className="w-full border-l border-[#1549CD]/10 bg-[#E8E6E0] pt-16">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
             <nav className="flex flex-col gap-6">
               {navigation.map((item) => (
@@ -63,11 +79,13 @@ export function Header() {
                   {item.name}
                 </Link>
               ))}
-              <Button asChild size="lg" className="mt-4 cursor-pointer text-sm uppercase tracking-widest">
-                <Link href="/book" onClick={() => setOpen(false)}>
-                  Book a Call
-                </Link>
-              </Button>
+              <Link
+                href="/book"
+                onClick={() => setOpen(false)}
+                className="mt-4 block w-full py-4 bg-[#1549CD] text-white text-center text-[11px] uppercase tracking-[0.15em]"
+              >
+                Book a Call
+              </Link>
             </nav>
           </SheetContent>
         </Sheet>

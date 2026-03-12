@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { questions, type Option } from "./questions";
 import { computeScores, getRecommendation, normalisedScores, getReasons } from "./logic";
 import { programs, alternativeProgram } from "./programs";
@@ -30,19 +29,16 @@ export default function AssessPage() {
   const [answerIndices, setAnswerIndices] = useState<number[]>([]);
   const [pendingSection, setPendingSection] = useState<string | null>(null);
   const [justSelected, setJustSelected] = useState<number | null>(null);
-  // Multi-select: tracks which option indices are toggled for the current question
   const [multiSelections, setMultiSelections] = useState<number[]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
 
   const q = questions[currentQ];
   const progress = (currentQ / questions.length) * 100;
 
-  // Reset multi-select state when question changes
   useEffect(() => {
     setMultiSelections([]);
   }, [currentQ]);
 
-  // Scroll to top on step/question change
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [currentQ, step]);
@@ -52,7 +48,6 @@ export default function AssessPage() {
     setStep("quiz");
   }
 
-  // ── Advance to next question ─────────────────────────────────────────────────
   function advance(newOptions: Option[], newIndices: number[]) {
     const nextIndex = currentQ + 1;
 
@@ -74,9 +69,8 @@ export default function AssessPage() {
     }
   }
 
-  // ── Single-select click (Section 2 questions) ────────────────────────────────
   function handleOptionClick(optionIndex: number) {
-    if (justSelected !== null) return; // debounce
+    if (justSelected !== null) return;
 
     const opt = q.options[optionIndex];
     setJustSelected(optionIndex);
@@ -91,7 +85,6 @@ export default function AssessPage() {
     }, 350);
   }
 
-  // ── Multi-select toggle ───────────────────────────────────────────────────────
   function handleMultiToggle(optionIndex: number) {
     setMultiSelections((prev) =>
       prev.includes(optionIndex)
@@ -100,13 +93,10 @@ export default function AssessPage() {
     );
   }
 
-  // ── Multi-select: commit and advance ─────────────────────────────────────────
   function handleMultiNext() {
     if (multiSelections.length === 0) return;
 
-    // Collect selected options (preserve click order for scoring)
     const selectedOpts = multiSelections.map((i) => q.options[i]);
-    // Use lowest index as the primary signal for getReasons
     const primaryIndex = Math.min(...multiSelections);
 
     const newOptions = [...selectedOptions, ...selectedOpts];
@@ -146,84 +136,97 @@ export default function AssessPage() {
   if (step === "landing") {
     return (
       <div className="min-h-screen">
-        <section className="nc-section pt-32 lg:pt-40">
-          <div className="nc-container">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Free · 5 minutes
-            </p>
-            <h1 className="nc-heading-xl mt-4 max-w-3xl">
-              Find the right training for your team.
+        {/* Cobalt hero */}
+        <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+          <div className="oci-grid-lines-light" />
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+            <div className="oci-section-label mb-8 border-white/20 text-white/40">
+              <span>SCORECARD</span>
+              <span>[NC]</span>
+            </div>
+            <h1 className="oci-display-sm max-w-3xl">
+              Find the right training
+              <br />
+              for your team.
             </h1>
-            <p className="nc-body-lg mt-6 max-w-xl">
+            <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
               12 questions about what you want to achieve, where your team is now,
               and what&apos;s in the way. We&apos;ll recommend the program that
               actually fits — not just the most expensive one.
             </p>
+          </div>
+        </section>
 
-            <div className="mt-8 max-w-sm space-y-2">
-              {[
-                "A personalised program recommendation",
-                "3 specific reasons it fits your situation",
-                "Fit scores across all 3 programs",
-                "Pricing, format, and a clear next step",
-              ].map((item) => (
-                <div key={item} className="flex items-center gap-3">
-                  <span className="text-foreground/40 text-xs">✓</span>
-                  <p className="text-sm text-muted-foreground">{item}</p>
+        {/* Content */}
+        <section className="py-16 lg:py-24 relative oci-grid-lines">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+            <div className="grid gap-12 lg:grid-cols-2">
+              <div>
+                <div className="oci-section-label mb-8">
+                  <span>WHAT YOU GET</span>
+                  <span>[NC.1]</span>
                 </div>
-              ))}
-            </div>
-
-            <div className="mt-12 grid gap-4 sm:grid-cols-3 max-w-2xl">
-              {[
-                {
-                  n: "01",
-                  label: "Your Goal",
-                  q: "What are you trying to achieve?",
-                },
-                {
-                  n: "02",
-                  label: "Your Team",
-                  q: "Where are you right now?",
-                },
-                {
-                  n: "03",
-                  label: "Your Context",
-                  q: "What's in the way?",
-                },
-              ].map((s) => (
-                <div key={s.n} className="border border-foreground/10 p-5">
-                  <p className="text-2xl font-light text-foreground/20">{s.n}</p>
-                  <p className="mt-2 text-xs uppercase tracking-widest font-medium">
-                    {s.label}
-                  </p>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
-                    {s.q}
-                  </p>
+                <div className="space-y-3">
+                  {[
+                    "A personalised program recommendation",
+                    "3 specific reasons it fits your situation",
+                    "Fit scores across all 3 programs",
+                    "Pricing, format, and a clear next step",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <span className="text-[#1549CD] text-xs">✓</span>
+                      <p className="text-sm text-foreground/60">{item}</p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
 
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <Button
-                size="lg"
-                className="cursor-pointer text-sm uppercase tracking-widest"
-                onClick={() => setStep("capture")}
-              >
-                Find My Program →
-              </Button>
-              <p className="text-xs text-muted-foreground">
-                Free. No pitch required to see your recommendation.
-              </p>
-            </div>
+                <div className="mt-12 grid gap-px bg-foreground/10 sm:grid-cols-3">
+                  {[
+                    { n: "01", label: "Your Goal", q: "What are you trying to achieve?" },
+                    { n: "02", label: "Your Team", q: "Where are you right now?" },
+                    { n: "03", label: "Your Context", q: "What's in the way?" },
+                  ].map((s) => (
+                    <div key={s.n} className="bg-[#E8E6E0] p-6">
+                      <p className="text-2xl font-light text-[#1549CD]/30">{s.n}</p>
+                      <p className="mt-2 text-[11px] uppercase tracking-[0.15em] font-medium">
+                        {s.label}
+                      </p>
+                      <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
+                        {s.q}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            <div className="mt-16 border-t border-foreground/10 pt-10 max-w-2xl">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground mb-3">
-                Informed by training teams at
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Cash App · Maesa · Herman Scheer · Adidas · Google · Tommy Hilfiger
-              </p>
+              <div className="flex items-start justify-center lg:pt-12">
+                <div className="w-full border border-foreground/10 p-10">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+                    Free · 5 minutes
+                  </p>
+                  <h2 className="mt-4 text-2xl font-light tracking-tight">
+                    Ready to find the right fit?
+                  </h2>
+                  <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                    No pitch required to see your recommendation.
+                  </p>
+                  <button
+                    onClick={() => setStep("capture")}
+                    className="mt-8 w-full cursor-pointer bg-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
+                  >
+                    Find My Program →
+                  </button>
+
+                  <div className="mt-8 border-t border-foreground/10 pt-6">
+                    <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 mb-3">
+                      Informed by training teams at
+                    </p>
+                    <p className="text-sm text-foreground/40">
+                      Cash App · Maesa · Herman Scheer · Adidas · Google
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -237,22 +240,23 @@ export default function AssessPage() {
   if (step === "capture") {
     return (
       <div className="min-h-screen">
-        <section className="nc-section pt-32 lg:pt-40">
-          <div className="nc-container max-w-lg">
-            <p className="text-xs uppercase tracking-widest text-muted-foreground">
-              Section 01 / Your Goal
-            </p>
-            <h2 className="nc-heading-lg mt-4">
+        <section className="py-32 lg:py-40 relative oci-grid-lines">
+          <div className="mx-auto max-w-lg px-6 lg:px-8">
+            <div className="oci-section-label mb-8">
+              <span>SECTION 01 / YOUR GOAL</span>
+              <span>[NC]</span>
+            </div>
+            <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
               Where should we send your recommendation?
             </h2>
-            <p className="nc-body mt-4 text-muted-foreground">
+            <p className="mt-4 text-sm leading-relaxed text-foreground/60">
               Your personalised program recommendation — with the reasoning behind
               it — sent straight to your inbox when you&apos;re done.
             </p>
 
             <form onSubmit={handleCapture} className="mt-10 space-y-4">
               <div>
-                <label className="text-xs uppercase tracking-widest text-muted-foreground">
+                <label className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                   First Name
                 </label>
                 <input
@@ -261,11 +265,11 @@ export default function AssessPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your first name"
-                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/40 focus:border-foreground transition-colors"
+                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
                 />
               </div>
               <div>
-                <label className="text-xs uppercase tracking-widest text-muted-foreground">
+                <label className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                   Work Email
                 </label>
                 <input
@@ -274,18 +278,17 @@ export default function AssessPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@company.com"
-                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-muted-foreground/40 focus:border-foreground transition-colors"
+                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
                 />
               </div>
-              <Button
+              <button
                 type="submit"
-                size="lg"
-                className="w-full cursor-pointer text-sm uppercase tracking-widest mt-2"
                 disabled={!name || !email}
+                className="w-full cursor-pointer bg-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8] disabled:opacity-30 disabled:cursor-not-allowed mt-2"
               >
                 Start →
-              </Button>
-              <p className="text-xs text-muted-foreground text-center">
+              </button>
+              <p className="text-xs text-foreground/40 text-center">
                 No spam. Unsubscribe anytime.
               </p>
             </form>
@@ -296,7 +299,7 @@ export default function AssessPage() {
   }
 
   // ═══════════════════════════════════════════════════════════════════════════════
-  // SECTION INTRO (transition screen between sections)
+  // SECTION INTRO
   // ═══════════════════════════════════════════════════════════════════════════════
   if (step === "section-intro" && pendingSection) {
     const intro = sectionIntros[pendingSection];
@@ -304,29 +307,28 @@ export default function AssessPage() {
       <div className="min-h-screen">
         <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-foreground/10">
           <div
-            className="h-full bg-cobalt transition-all duration-500"
+            className="h-full bg-[#1549CD] transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <section className="nc-section pt-32 lg:pt-40 bg-foreground text-background">
-          <div className="nc-container max-w-lg">
-            <p className="text-xs uppercase tracking-widest text-background/50">
+        <section className="min-h-screen bg-[#1549CD] text-white flex items-center overflow-hidden relative">
+          <div className="oci-grid-lines-light" />
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
               {intro.label}
             </p>
-            <h2 className="nc-heading-lg mt-4 text-background">
+            <h2 className="oci-display-sm mt-4 max-w-2xl">
               {intro.description}
             </h2>
-            <Button
-              size="lg"
-              variant="outline"
-              className="mt-10 cursor-pointer border-background/30 text-xs uppercase tracking-widest text-background hover:bg-background hover:text-foreground"
+            <button
               onClick={() => {
                 setPendingSection(null);
                 setStep("quiz");
               }}
+              className="mt-10 cursor-pointer border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
             >
               Continue →
-            </Button>
+            </button>
           </div>
         </section>
       </div>
@@ -344,29 +346,31 @@ export default function AssessPage() {
         {/* Progress bar */}
         <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-foreground/10">
           <div
-            className="h-full bg-cobalt transition-all duration-500 ease-out"
+            className="h-full bg-[#1549CD] transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
 
-        <section className="nc-section pt-32 lg:pt-40">
-          <div className="nc-container max-w-2xl">
+        <section className="py-32 lg:py-40 relative oci-grid-lines">
+          <div className="mx-auto max-w-2xl px-6 lg:px-8">
             {/* Header */}
             <div className="flex items-center justify-between">
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                 {q.section} · {q.sectionIndex}/{q.sectionTotal}
               </p>
-              <p className="text-xs text-muted-foreground">
+              <p className="text-[11px] text-foreground/40">
                 {currentQ + 1} / {questions.length}
               </p>
             </div>
 
             {/* Question */}
-            <h2 className="nc-heading-md mt-6 leading-snug">{q.text}</h2>
+            <h2 className="mt-6 text-2xl lg:text-3xl font-light tracking-tight leading-snug">
+              {q.text}
+            </h2>
 
             {/* Multi-select hint */}
             {isMulti && (
-              <p className="mt-2 text-xs text-muted-foreground uppercase tracking-widest">
+              <p className="mt-2 text-[11px] text-foreground/40 uppercase tracking-[0.15em]">
                 Select all that apply
               </p>
             )}
@@ -387,12 +391,12 @@ export default function AssessPage() {
                     className={`w-full border text-left px-6 py-4 text-sm leading-relaxed transition-all duration-200 cursor-pointer flex items-start gap-4
                       ${
                         isHighlighted
-                          ? "border-foreground bg-foreground text-background"
+                          ? "border-[#1549CD] bg-[#1549CD] text-white"
                           : isSelected
-                          ? "border-cobalt bg-cobalt/8 text-foreground"
+                          ? "border-[#1549CD] bg-[#1549CD]/5 text-foreground"
                           : isFading
                           ? "border-foreground/10 text-foreground/30 cursor-not-allowed"
-                          : "border-foreground/15 hover:border-cobalt/50 text-foreground"
+                          : "border-foreground/15 hover:border-[#1549CD]/50 text-foreground"
                       }`}
                   >
                     {/* Checkbox indicator for multi-select */}
@@ -400,7 +404,7 @@ export default function AssessPage() {
                       <span
                         className={`mt-0.5 shrink-0 w-4 h-4 border flex items-center justify-center transition-all duration-150 ${
                           isSelected
-                            ? "border-cobalt bg-cobalt"
+                            ? "border-[#1549CD] bg-[#1549CD]"
                             : "border-foreground/30"
                         }`}
                       >
@@ -410,7 +414,7 @@ export default function AssessPage() {
                             height="8"
                             viewBox="0 0 10 8"
                             fill="none"
-                            className="text-background"
+                            className="text-white"
                           >
                             <path
                               d="M1 4L3.5 6.5L9 1"
@@ -432,14 +436,13 @@ export default function AssessPage() {
             {/* Next button for multi-select */}
             {isMulti && (
               <div className="mt-8">
-                <Button
-                  size="lg"
-                  className="cursor-pointer text-sm uppercase tracking-widest"
+                <button
+                  className="cursor-pointer bg-[#1549CD] px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8] disabled:opacity-30 disabled:cursor-not-allowed"
                   disabled={multiSelections.length === 0}
                   onClick={handleMultiNext}
                 >
                   {currentQ + 1 === questions.length ? "See My Result →" : "Next →"}
-                </Button>
+                </button>
               </div>
             )}
 
@@ -450,7 +453,7 @@ export default function AssessPage() {
                   key={i}
                   className={`h-0.5 flex-1 transition-all duration-300 ${
                     i < currentQ
-                      ? "bg-foreground"
+                      ? "bg-[#1549CD]"
                       : i === currentQ
                       ? "bg-foreground/30"
                       : "bg-foreground/10"
@@ -469,20 +472,21 @@ export default function AssessPage() {
   // ═══════════════════════════════════════════════════════════════════════════════
   return (
     <div className="min-h-screen">
-      {/* Hero — dark */}
-      <section className="nc-section pt-32 lg:pt-40 bg-foreground text-background">
-        <div className="nc-container">
-          <p className="text-xs uppercase tracking-widest text-background/50">
+      {/* Hero — cobalt */}
+      <section className="relative min-h-[50vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        <div className="oci-grid-lines-light" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+          <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
             {name ? `${name}'s Result` : "Your Result"} · Program Finder
           </p>
-          <h1 className="nc-heading-xl mt-4 max-w-3xl">
+          <h1 className="oci-display-sm mt-4 max-w-3xl">
             {program.tagline}
           </h1>
-          <div className="mt-6 inline-flex items-center border border-cobalt/40 bg-cobalt/10 px-5 py-2">
-            <p className="text-xs uppercase tracking-widest text-cobalt/80">
+          <div className="mt-6 inline-flex items-center border border-white/20 bg-white/10 px-5 py-2">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/60">
               Recommended:
             </p>
-            <p className="ml-3 text-sm font-medium text-background">
+            <p className="ml-3 text-sm font-medium text-white">
               {program.label}
             </p>
           </div>
@@ -490,20 +494,21 @@ export default function AssessPage() {
       </section>
 
       {/* Why this program */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
+      <section className="py-16 lg:py-24 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                Why this fits
-              </p>
-              <div className="mt-8 space-y-6">
+              <div className="oci-section-label mb-8">
+                <span>WHY THIS FITS</span>
+                <span>[NC.1]</span>
+              </div>
+              <div className="space-y-6">
                 {reasons.map((reason, i) => (
                   <div key={i} className="flex gap-5">
-                    <span className="mt-1 text-2xl font-light text-foreground/20 shrink-0 w-6">
+                    <span className="mt-1 text-2xl font-light text-[#1549CD]/30 shrink-0 w-6">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="nc-body text-muted-foreground leading-relaxed">
+                    <p className="text-sm text-foreground/60 leading-relaxed">
                       {reason}
                     </p>
                   </div>
@@ -511,7 +516,7 @@ export default function AssessPage() {
               </div>
 
               <div className="mt-12">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground mb-6">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 mb-6">
                   Program Fit
                 </p>
                 <div className="space-y-4">
@@ -524,10 +529,10 @@ export default function AssessPage() {
                   ).map(([key, label]) => (
                     <div key={key} className="flex items-center gap-4">
                       <p
-                        className={`text-xs uppercase tracking-widest w-28 shrink-0 ${
+                        className={`text-[11px] uppercase tracking-[0.15em] w-28 shrink-0 ${
                           key === recommendation
                             ? "text-foreground font-medium"
-                            : "text-muted-foreground"
+                            : "text-foreground/40"
                         }`}
                       >
                         {label}
@@ -536,14 +541,14 @@ export default function AssessPage() {
                         <div
                           className={`h-full transition-all duration-1000 delay-300 ${
                             key === recommendation
-                              ? "bg-cobalt"
+                              ? "bg-[#1549CD]"
                               : "bg-foreground/20"
                           }`}
                           style={{ width: `${normalised[key]}%` }}
                         />
                       </div>
                       {key === recommendation && (
-                        <p className="text-xs text-cobalt shrink-0 font-medium">
+                        <p className="text-[11px] text-[#1549CD] shrink-0 font-medium">
                           ← recommended
                         </p>
                       )}
@@ -556,33 +561,31 @@ export default function AssessPage() {
             {/* CTA card */}
             <div className="space-y-6">
               <div className="border border-foreground/10 p-8">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                   {program.label}
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                   {program.detail}
                 </p>
                 <div className="mt-6 flex gap-4 text-sm">
                   <p className="font-medium">{program.pricing}</p>
-                  <p className="text-muted-foreground">{program.duration}</p>
+                  <p className="text-foreground/60">{program.duration}</p>
                 </div>
-                <Button
-                  asChild
-                  size="lg"
-                  className="mt-8 w-full cursor-pointer text-sm uppercase tracking-widest"
+                <Link
+                  href="/book"
+                  className="mt-8 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
-                  <Link href="/book">Book a Call</Link>
-                </Button>
-                <p className="mt-3 text-xs text-muted-foreground text-center">
+                  Book a Call
+                </Link>
+                <p className="mt-3 text-xs text-foreground/40 text-center">
                   30 min. No pitch. Just clarity on the right next step.
                 </p>
               </div>
 
-              {/* See program details */}
               <div className="border border-foreground/10 p-6">
                 <Link
                   href={program.href}
-                  className="text-xs uppercase tracking-widest underline underline-offset-4 hover:text-muted-foreground transition-colors"
+                  className="text-[11px] uppercase tracking-[0.15em] underline underline-offset-4 hover:text-foreground/60 transition-colors"
                 >
                   Full program details →
                 </Link>
@@ -593,24 +596,25 @@ export default function AssessPage() {
       </section>
 
       {/* Alternative option */}
-      <section className="nc-divider nc-section bg-foreground/[0.02]">
-        <div className="nc-container">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            Alternatively
-          </p>
-          <div className="mt-6 grid gap-8 lg:grid-cols-[1fr_auto] items-center">
+      <section className="py-16 lg:py-24 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="oci-section-label mb-8 border-white/20 text-white/40">
+            <span>ALTERNATIVELY</span>
+            <span>[NC.2]</span>
+          </div>
+          <div className="grid gap-8 lg:grid-cols-[1fr_auto] items-center">
             <div>
-              <h3 className="text-lg font-light">{altProgram.label}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-muted-foreground max-w-xl">
+              <h3 className="text-xl font-light">{altProgram.label}</h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/60 max-w-xl">
                 {altProgram.tagline}
               </p>
-              <p className="mt-2 text-xs text-muted-foreground">
+              <p className="mt-2 text-[11px] text-white/40">
                 {altProgram.pricing} · {altProgram.duration}
               </p>
             </div>
             <Link
               href={altProgram.href}
-              className="text-xs uppercase tracking-widest underline underline-offset-4 whitespace-nowrap hover:text-muted-foreground transition-colors"
+              className="text-[11px] uppercase tracking-[0.15em] border border-white/20 px-8 py-3 text-white/60 transition-colors hover:bg-white hover:text-foreground whitespace-nowrap"
             >
               See details →
             </Link>
@@ -619,18 +623,17 @@ export default function AssessPage() {
       </section>
 
       {/* Retake */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container text-center">
-          <p className="text-sm text-muted-foreground">
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <p className="text-sm text-foreground/60">
             Want to run this with your team?
           </p>
-          <Button
-            asChild
-            variant="outline"
-            className="mt-4 cursor-pointer text-xs uppercase tracking-widest"
+          <Link
+            href="/assess"
+            className="mt-4 inline-block border border-foreground/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-foreground/60 transition-colors hover:bg-foreground hover:text-white"
           >
-            <Link href="/assess">Retake the Finder</Link>
-          </Button>
+            Retake the Finder
+          </Link>
         </div>
       </section>
     </div>

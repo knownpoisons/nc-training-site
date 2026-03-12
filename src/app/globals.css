@@ -51,7 +51,8 @@
 :root {
   --radius: 0rem;
   --cobalt: #1549CD;
-  --background: #ffffff;
+  --cream: #E8E6E0;
+  --background: #E8E6E0;
   --foreground: #000000;
   --card: #ffffff;
   --card-foreground: #000000;
@@ -197,4 +198,158 @@
   bottom: 0;
   width: 3px;
   background: linear-gradient(180deg, #1549CD 0%, #1549CD40 100%);
+}
+
+/* ═══ OCI-INSPIRED EDITORIAL STYLES ═══ */
+
+/* Massive display headings */
+.oci-display {
+  font-size: clamp(3.5rem, 8vw, 9rem);
+  font-weight: 500;
+  line-height: 0.93;
+  letter-spacing: -0.03em;
+}
+
+.oci-display-sm {
+  font-size: clamp(2rem, 5vw, 5.5rem);
+  font-weight: 500;
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+
+/* Section label bar: LABEL left ... [NC.X] right */
+.oci-section-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #1549CD;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(21, 73, 205, 0.2);
+  margin-bottom: 48px;
+}
+
+/* Grid lines overlay */
+.oci-grid-lines {
+  position: relative;
+}
+.oci-grid-lines::before,
+.oci-grid-lines::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(21, 73, 205, 0.1);
+  pointer-events: none;
+  z-index: 1;
+}
+.oci-grid-lines::before {
+  left: 33.333%;
+}
+.oci-grid-lines::after {
+  right: 33.333%;
+}
+
+/* Grid lines on dark/blue sections */
+.oci-grid-lines-light::before,
+.oci-grid-lines-light::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  z-index: 1;
+}
+.oci-grid-lines-light::before {
+  left: 33.333%;
+}
+.oci-grid-lines-light::after {
+  right: 33.333%;
+}
+
+/* Accordion items */
+.oci-accordion-item {
+  border-top: 1px solid rgba(21, 73, 205, 0.2);
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.oci-accordion-item:hover {
+  background: rgba(21, 73, 205, 0.03);
+}
+.oci-accordion-item:last-child {
+  border-bottom: 1px solid rgba(21, 73, 205, 0.2);
+}
+
+/* Tilted process cards */
+.oci-card-tilted {
+  border: 1px solid rgba(21, 73, 205, 0.15);
+  background: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.oci-card-tilted:nth-child(1) { transform: rotate(-1.5deg); }
+.oci-card-tilted:nth-child(2) { transform: rotate(1deg); }
+.oci-card-tilted:nth-child(3) { transform: rotate(-2deg); }
+.oci-card-tilted:hover {
+  transform: rotate(0deg) translateY(-4px);
+  box-shadow: 0 12px 40px -12px rgba(21, 73, 205, 0.15);
+}
+
+/* Full-width blue CTA button */
+.oci-button-full {
+  display: block;
+  width: 100%;
+  padding: 20px;
+  background: #1549CD;
+  color: #fff;
+  text-align: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.oci-button-full:hover {
+  background: #0e38a8;
+}
+
+/* Vertical line decorations */
+.oci-vline {
+  width: 1px;
+  background: rgba(21, 73, 205, 0.2);
+}
+
+/* Blog card alternating styles */
+.oci-blog-card-blue {
+  background: #1549CD;
+  color: #fff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 320px;
+  transition: background 0.2s ease;
+}
+.oci-blog-card-blue:hover {
+  background: #0e38a8;
+}
+
+.oci-blog-card-cream {
+  background: #fff;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 160px;
+  border: 1px solid rgba(21, 73, 205, 0.1);
+  transition: border-color 0.2s ease;
+}
+.oci-blog-card-cream:hover {
+  border-color: #1549CD;
 }

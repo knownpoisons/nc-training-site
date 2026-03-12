@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "AI Creative Accelerator | 4-Week Sprint",
@@ -20,21 +19,21 @@ const weeks = [
     week: "02",
     title: "Divergence Mastery",
     description:
-      "Your Creative Director gets 50 concept directions in a morning instead of 5 in a day. This is where the realisation hits. Midjourney as a visual sparring partner, not a vending machine — style refs, image refs, combinatorial batching. This is the session where people stop being sceptical.",
+      "Your Creative Director gets 50 concept directions in a morning instead of 5 in a day. Midjourney as a visual sparring partner, not a vending machine — style refs, image refs, combinatorial batching.",
     deliverable: "Custom prompt library built around your brand",
   },
   {
     week: "03",
     title: "Convergence & Production",
     description:
-      "Shift from exploration to execution. Production-grade precision tools. Brand asset integration into AI scenes. Video transformation and extension workflows. The point where your team stops experimenting and starts shipping.",
+      "Shift from exploration to execution. Production-grade precision tools. Brand asset integration into AI scenes. Video transformation and extension workflows.",
     deliverable: "Production workflow documented for at least 2 use cases",
   },
   {
     week: "04",
     title: "Systemize & Ship",
     description:
-      "Lock in what works. Build repeatable processes your whole team runs. AI governance basics — approved tools, data protocols, client disclosure standards. The team leaves with a system, not just skills they might use.",
+      "Lock in what works. Build repeatable processes your whole team runs. AI governance basics — approved tools, data protocols, client disclosure standards.",
     deliverable: "Documented workflows + governance policy starter + certificate",
   },
 ];
@@ -53,116 +52,101 @@ const included = [
 export default function AcceleratorPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="nc-section pt-32 lg:pt-40">
-        <div className="nc-container">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            Program 02 / Growth
-          </p>
-          <h1 className="nc-heading-xl mt-4 max-w-4xl">
-            AI Creative Accelerator.
+      {/* Hero — cobalt */}
+      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        <div className="oci-grid-lines-light" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+          <div className="oci-section-label mb-8 border-white/20 text-white/40">
+            <span>PROGRAM 02 / GROWTH</span>
+            <span>[NC]</span>
+          </div>
+          <h1 className="oci-display-sm max-w-4xl">
+            AI Creative
+            <br />
+            Accelerator.
           </h1>
-          <p className="nc-body-lg mt-6 max-w-2xl">
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             For teams that have tried AI and know it&apos;s not sticking yet.
             Four weeks. One live session per week, plus async Slack support.
-            Your whole team ships real AI-assisted work by week two — not at
-            the end of a course, halfway through it.
+            Your whole team ships real AI-assisted work by week two.
           </p>
-          <div className="mt-10 flex flex-wrap items-center gap-6">
-            <Button
-              asChild
-              size="lg"
-              className="cursor-pointer text-sm uppercase tracking-widest"
+          <div className="mt-8 flex flex-wrap items-center gap-6">
+            <Link
+              href="/book"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
             >
-              <Link href="/book">Book a Call</Link>
-            </Button>
-            <p className="text-sm text-muted-foreground">
+              Book a Call
+            </Link>
+            <p className="text-sm text-white/40">
               From $15,000 · Up to 15 people · 4 weeks
             </p>
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
-            Comparing programs?{" "}
-            <Link
-              href="/assess"
-              className="font-medium text-foreground underline underline-offset-4 transition-colors hover:text-foreground/70"
-            >
-              Take the 2-min Scorecard →
-            </Link>
-          </p>
         </div>
       </section>
 
-      {/* The gap this fills */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
+      {/* Problem / Fix */}
+      <section className="py-16 lg:py-24 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                The Problem
-              </p>
-              <h2 className="nc-heading-lg mt-4">
+              <div className="oci-section-label mb-8">
+                <span>THE PROBLEM</span>
+                <span>[NC.1]</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
                 Your team has tried AI. It&apos;s not sticking.
               </h2>
-              <p className="nc-body mt-6">
+              <p className="mt-6 text-sm leading-relaxed text-foreground/60">
                 A few people experiment with Midjourney. Someone figures out
                 ChatGPT for briefs. But it&apos;s fragmented — no shared
                 methodology, no quality standard, no system. Output is
-                inconsistent. Leadership isn&apos;t convinced. And you&apos;re
-                the one explaining why the investment isn&apos;t showing yet.
+                inconsistent. Leadership isn&apos;t convinced.
               </p>
             </div>
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                The Fix
-              </p>
-              <h2 className="nc-heading-lg mt-4">
+              <div className="oci-section-label mb-8">
+                <span>THE FIX</span>
+                <span>[NC.2]</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
                 A shared system that survives Monday morning.
               </h2>
-              <p className="nc-body mt-6">
+              <p className="mt-6 text-sm leading-relaxed text-foreground/60">
                 The Accelerator builds a common language, workflow, and quality
                 bar across your whole team. By week two everyone&apos;s
-                producing. By week four it&apos;s embedded in how they work —
-                not an experiment they do after hours, their actual process.
+                producing. By week four it&apos;s embedded in how they work.
               </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Week by week */}
-      <section className="nc-divider nc-section bg-foreground text-background">
-        <div className="nc-container">
-          <p className="text-xs uppercase tracking-widest text-background/60">
-            Curriculum
-          </p>
-          <h2 className="nc-heading-lg mt-4">Four weeks. One deliverable each.</h2>
-
+      {/* Curriculum — dark */}
+      <section className="py-16 lg:py-24 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="oci-section-label mb-12 border-white/20 text-white/40">
+            <span>CURRICULUM</span>
+            <span>[NC.3]</span>
+          </div>
+          <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
+            Four weeks. One deliverable each.
+          </h2>
           <div className="mt-12 space-y-0">
             {weeks.map((week, i) => (
               <div
                 key={week.week}
-                className={`grid gap-8 py-10 lg:grid-cols-[80px_1fr_1fr] ${i < weeks.length - 1 ? "border-b border-background/10" : ""}`}
+                className={`grid gap-8 py-10 lg:grid-cols-[80px_1fr_1fr] ${i < weeks.length - 1 ? "border-b border-white/10" : ""}`}
               >
                 <div>
-                  <p className="text-4xl font-light text-background/30">
-                    {week.week}
-                  </p>
+                  <p className="text-4xl font-light text-white/20">{week.week}</p>
                 </div>
                 <div>
-                  <h3 className="text-sm font-medium uppercase tracking-widest">
-                    {week.title}
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-background/60">
-                    {week.description}
-                  </p>
+                  <h3 className="text-[11px] font-medium uppercase tracking-[0.15em]">{week.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-white/50">{week.description}</p>
                 </div>
-                <div className="border border-background/20 p-6">
-                  <p className="text-xs uppercase tracking-widest text-background/40">
-                    Deliverable
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-background/70">
-                    {week.deliverable}
-                  </p>
+                <div className="border border-white/10 p-6">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-white/30">Deliverable</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/60">{week.deliverable}</p>
                 </div>
               </div>
             ))}
@@ -170,47 +154,22 @@ export default function AcceleratorPage() {
         </div>
       </section>
 
-      {/* Mid-page CTA */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <p className="nc-heading-md max-w-xl">
-                Sounds like the right fit?
-              </p>
-              <p className="mt-2 text-sm text-muted-foreground">
-                Book a free 30-minute assessment. No pitch — just a clear recommendation for your team.
-              </p>
-            </div>
-            <Button
-              asChild
-              size="lg"
-              className="shrink-0 cursor-pointer text-sm uppercase tracking-widest"
-            >
-              <Link href="/book">Book a Call</Link>
-            </Button>
-          </div>
-        </div>
-      </section>
-
-      {/* What's included */}
-      <section className="nc-divider nc-section">
-        <div className="nc-container">
+      {/* What's included + pricing */}
+      <section className="py-16 lg:py-24 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
-              <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                What&apos;s Included
-              </p>
-              <h2 className="nc-heading-lg mt-4">
+              <div className="oci-section-label mb-12">
+                <span>WHAT&apos;S INCLUDED</span>
+                <span>[NC.4]</span>
+              </div>
+              <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
                 Everything to go from stuck to shipping.
               </h2>
               <ul className="mt-8 space-y-4">
                 {included.map((item) => (
-                  <li
-                    key={item}
-                    className="flex gap-3 text-sm leading-relaxed text-muted-foreground"
-                  >
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-foreground" />
+                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/60">
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
                     {item}
                   </li>
                 ))}
@@ -218,39 +177,35 @@ export default function AcceleratorPage() {
             </div>
             <div className="space-y-6">
               <div className="border border-foreground/10 p-8">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
-                  Investment
-                </p>
-                <p className="mt-4 text-3xl font-medium">From $15,000</p>
-                <p className="mt-2 text-sm text-muted-foreground">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">Investment</p>
+                <p className="mt-4 text-3xl font-light tracking-tight">From $15,000</p>
+                <p className="mt-2 text-sm text-foreground/60">
                   Flat fee, up to 15 people. Scoped on your call with Jeremy.
                 </p>
-                <Button
-                  asChild
-                  size="lg"
-                  className="mt-8 w-full cursor-pointer text-sm uppercase tracking-widest"
+                <Link
+                  href="/book"
+                  className="mt-8 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
-                  <Link href="/book">Book a Call</Link>
-                </Button>
-                <p className="mt-4 text-xs text-muted-foreground text-center">
+                  Book a Call
+                </Link>
+                <p className="mt-4 text-xs text-foreground/40 text-center">
                   30 minutes. No pitch. Just clarity on fit.
                 </p>
               </div>
               <div className="border border-foreground/10 p-8">
-                <p className="text-xs uppercase tracking-widest text-muted-foreground">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                   Want to go deeper?
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                   The Accelerator covers the essentials. The Transformation
                   program adds a 2-day in-person intensive, role-specific tracks,
-                  custom workflow buildout, governance policy, and ongoing
-                  monthly support.
+                  custom workflow buildout, governance policy, and ongoing support.
                 </p>
                 <Link
                   href="/programs/transformation"
-                  className="mt-4 inline-block text-xs uppercase tracking-widest underline underline-offset-4"
+                  className="mt-4 inline-block text-[11px] uppercase tracking-[0.15em] underline underline-offset-4"
                 >
-                  See the Transformation Program
+                  See the Transformation Program →
                 </Link>
               </div>
             </div>
@@ -258,21 +213,18 @@ export default function AcceleratorPage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="nc-divider nc-section bg-foreground text-background">
-        <div className="nc-container text-center">
-          <h2 className="nc-heading-lg mx-auto max-w-2xl">
-            Four weeks from now, AI isn&apos;t something your team should be
-            doing. It&apos;s something they do.
+      {/* CTA — cobalt band */}
+      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <h2 className="oci-display-sm mx-auto max-w-2xl">
+            Four weeks from now, AI isn&apos;t something your team should be doing. It&apos;s something they do.
           </h2>
-          <Button
-            asChild
-            size="lg"
-            variant="outline"
-            className="mt-10 cursor-pointer border-background/20 text-xs uppercase tracking-widest text-background hover:bg-background hover:text-foreground"
+          <Link
+            href="/book"
+            className="mt-10 inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
           >
-            <Link href="/book">Book a Call</Link>
-          </Button>
+            Book a Call
+          </Link>
         </div>
       </section>
     </>
