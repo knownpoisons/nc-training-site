@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
+import { Reveal } from "@/components/reveal";
+import { HeroPattern } from "@/components/hero-pattern";
 
 export const metadata: Metadata = {
   title: "Blog | AI Creative Training Insights",
@@ -123,14 +125,19 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero */}
-      <section className="nc-section pt-32 lg:pt-40">
-        <div className="nc-container">
-          <p className="text-xs uppercase tracking-widest text-muted-foreground">
-            Blog
-          </p>
-          <h1 className="nc-heading-xl mt-4 max-w-3xl">
-            Insights on AI creative training.
-          </h1>
+      <section className="nc-section relative pt-32 lg:pt-40">
+        <HeroPattern variant="waves" />
+        <div className="nc-container relative">
+          <Reveal>
+            <p className="text-xs uppercase tracking-widest text-muted-foreground">
+              Blog
+            </p>
+          </Reveal>
+          <Reveal delay={100}>
+            <h1 className="nc-heading-xl mt-4 max-w-3xl">
+              Insights on AI creative training.
+            </h1>
+          </Reveal>
         </div>
       </section>
 
@@ -138,7 +145,8 @@ export default function BlogPage() {
       {featured && (
         <section className="nc-divider pb-16 lg:pb-24">
           <div className="nc-container">
-            <Link href={`/blog/${featured.slug}`} className="group block">
+            <Reveal>
+            <Link href={`/blog/${featured.slug}`} className="nc-glow-hover group block">
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                 {/* Cover */}
                 <div className="aspect-[16/9] w-full overflow-hidden border border-foreground/10 bg-foreground/[0.02]">
@@ -176,6 +184,7 @@ export default function BlogPage() {
                 </div>
               </div>
             </Link>
+            </Reveal>
           </div>
         </section>
       )}
@@ -185,11 +194,11 @@ export default function BlogPage() {
         <section className="nc-divider nc-section">
           <div className="nc-container">
             <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-              {rest.map((post) => (
+              {rest.map((post, idx) => (
+                <Reveal key={post.slug} delay={idx * 80}>
                 <Link
-                  key={post.slug}
                   href={`/blog/${post.slug}`}
-                  className="group block"
+                  className="nc-card-hover group block"
                 >
                   <article>
                     {/* Card cover */}
@@ -224,6 +233,7 @@ export default function BlogPage() {
                     </div>
                   </article>
                 </Link>
+                </Reveal>
               ))}
             </div>
           </div>
