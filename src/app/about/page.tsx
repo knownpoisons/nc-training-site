@@ -81,7 +81,7 @@ export default function AboutPage() {
       <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img
-            src="/images/training/speaking-wide-2.png"
+            src="/images/training/speaking-wide-4.png"
             alt=""
             className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten"
           />
@@ -146,15 +146,6 @@ export default function AboutPage() {
                 className="aspect-[3/4] w-full object-cover border border-foreground/10"
               />
             </div>
-          </div>
-
-          {/* Training in action */}
-          <div className="mt-12">
-            <img
-              src="/images/training/speaking-wide-4.png"
-              alt="Jeremy Somers leading a training session"
-              className="w-full aspect-[21/9] object-cover border border-foreground/10"
-            />
           </div>
 
           {/* Brand experience */}

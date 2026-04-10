@@ -74,18 +74,17 @@ export function Footer() {
               <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD]">
                 Navigate
               </p>
-              <ul className="mt-4 space-y-3">
+              <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-3">
                 {footerLinks.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-[11px] uppercase tracking-[0.15em] text-foreground/60 transition-colors hover:text-foreground"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className="text-[11px] uppercase tracking-[0.15em] text-foreground/60 transition-colors hover:text-foreground"
+                  >
+                    {link.name}
+                  </Link>
                 ))}
-              </ul>
+              </div>
             </div>
 
             <div>

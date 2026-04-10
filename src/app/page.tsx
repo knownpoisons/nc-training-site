@@ -191,9 +191,21 @@ export default function Home() {
             </div>
           </Reveal>
 
+          {/* Maesa quote callout */}
+          <Reveal delay={250}>
+            <div className="mt-16 lg:mt-24 bg-[#1549CD] text-white px-8 lg:px-16 py-12 lg:py-16">
+              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-light leading-snug tracking-tight">
+                &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
+              </blockquote>
+              <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-white/50">
+                — O. Savur, VP Marketing, Maesa · On stage at a national beauty conference
+              </p>
+            </div>
+          </Reveal>
+
           {/* Client logos marquee */}
-          <Reveal delay={300}>
-            <div className="mt-16 lg:mt-24 pt-8 border-t border-foreground/10">
+          <Reveal delay={350}>
+            <div className="mt-12 pt-8 border-t border-foreground/10">
               <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
                 Trusted by teams at
               </p>

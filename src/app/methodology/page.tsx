@@ -271,11 +271,13 @@ export default function MethodologyPage() {
           </Reveal>
 
           <Reveal delay={50}>
-            <img
-              src="/images/training/speaking-wide-1.png"
-              alt="Live training session — intimate workshop setting"
-              className="mt-12 w-full aspect-[21/9] object-cover border border-foreground/10"
-            />
+            <div className="mt-12 relative aspect-[21/9] overflow-hidden bg-[#1549CD]">
+              <img
+                src="/images/training/speaking-wide-1.png"
+                alt="Live training session — intimate workshop setting"
+                className="h-full w-full object-cover grayscale mix-blend-multiply opacity-60"
+              />
+            </div>
           </Reveal>
 
           <div className="mt-12 grid gap-16 lg:grid-cols-2">
