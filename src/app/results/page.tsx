@@ -106,18 +106,8 @@ export default function CaseStudiesPage() {
       {caseStudies.map((study, i) => (
         <section
           key={study.client}
-          className="relative py-16 lg:py-24 oci-grid-lines border-b border-foreground/10 overflow-hidden"
+          className="relative py-16 lg:py-24 oci-grid-lines border-b border-foreground/10"
         >
-          {study.image && (
-            <div className="absolute inset-0 flex items-center justify-end">
-              <img
-                src={study.image}
-                alt=""
-                className="h-full w-auto max-w-[60%] object-cover opacity-[0.06]"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
-            </div>
-          )}
           <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="oci-section-label mb-12">
               <span>{study.industry.toUpperCase()}</span>
@@ -125,17 +115,28 @@ export default function CaseStudiesPage() {
             </div>
 
             <div className="grid gap-12 lg:grid-cols-2">
-              <div>
-                <h2 className="oci-display-sm">{study.client}</h2>
-                <p className="mt-6 text-sm leading-relaxed text-foreground/60">
-                  {study.summary}
-                </p>
-                <Link
-                  href={study.slug}
-                  className="mt-8 inline-block text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD] transition-colors hover:text-[#1549CD]/70"
-                >
-                  Read full case study →
-                </Link>
+              <div className="relative overflow-hidden">
+                {study.image && (
+                  <div className="absolute -inset-6 overflow-hidden">
+                    <img
+                      src={study.image}
+                      alt=""
+                      className="h-full w-full object-cover opacity-[0.07]"
+                    />
+                  </div>
+                )}
+                <div className="relative">
+                  <h2 className="oci-display-sm">{study.client}</h2>
+                  <p className="mt-6 text-sm leading-relaxed text-foreground/60">
+                    {study.summary}
+                  </p>
+                  <Link
+                    href={study.slug}
+                    className="mt-8 inline-block text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD] transition-colors hover:text-[#1549CD]/70"
+                  >
+                    Read full case study →
+                  </Link>
+                </div>
               </div>
 
               <div>
