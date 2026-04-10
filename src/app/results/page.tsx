@@ -15,6 +15,7 @@ const caseStudies = [
     headline: "Production time cut to 10%. $3.5M in estimated year-one savings.",
     summary:
       "Part of Square and Block. Trained a small internal creative team — producers, designers, 3D artists. Production ready by halfway through.",
+    image: "/images/case-studies/cash-app/campaign-1.png",
     stats: [
       { n: "90%", label: "Reduction in production time" },
       { n: "$3.5M", label: "Estimated year-one savings" },
@@ -28,6 +29,7 @@ const caseStudies = [
     headline: "New brand launched into every Target store. 3 months instead of 9.",
     summary:
       "Trained two internal teams across a dozen beauty, hair, and fragrance brands. Launched a new brand into every Target store entirely with AI.",
+    image: null as string | null,
     stats: [
       { n: "$280K", label: "Saved on a single brand launch" },
       { n: "3 months", label: "Instead of the usual 9 months" },
@@ -41,6 +43,7 @@ const caseStudies = [
     headline: "$4.5M in estimated year-one production savings.",
     summary:
       "Big Los Angeles branding and design agency. Trained their entire team from zero to full AI production.",
+    image: null as string | null,
     stats: [
       { n: "$4.5M", label: "Estimated year-one savings" },
       { n: "Zero to full", label: "AI production capability" },
@@ -125,8 +128,17 @@ export default function CaseStudiesPage() {
                 </Link>
               </div>
 
-              <div>
-                <div className="grid gap-6 sm:grid-cols-3">
+              <div className="relative">
+                {study.image && (
+                  <div className="absolute -right-4 top-2 bottom-2 w-[50%] overflow-hidden border border-foreground/5">
+                    <img
+                      src={study.image}
+                      alt=""
+                      className="h-full w-full object-cover opacity-[0.09]"
+                    />
+                  </div>
+                )}
+                <div className="relative grid gap-6 sm:grid-cols-3">
                   {study.stats.map((stat) => (
                     <div key={stat.label} className="border-l-2 border-[#1549CD] pl-5">
                       <p className="text-2xl font-light tracking-tight text-[#1549CD]">
@@ -138,7 +150,7 @@ export default function CaseStudiesPage() {
                     </div>
                   ))}
                 </div>
-                <p className="mt-8 text-sm leading-relaxed text-foreground/60">
+                <p className="relative mt-8 text-sm leading-relaxed text-foreground/60">
                   {study.headline}
                 </p>
               </div>
