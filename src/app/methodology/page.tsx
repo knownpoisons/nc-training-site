@@ -79,6 +79,10 @@ const differences = [
     theirs: "Theory and slides",
     ours: "Your brand assets, your briefs, your output — from session one",
   },
+  {
+    theirs: "No governance framework",
+    ours: "AI Governance Starter Kit — approved tools, IP frameworks, disclosure standards",
+  },
 ];
 
 export default function MethodologyPage() {
@@ -124,7 +128,7 @@ export default function MethodologyPage() {
                 href="/book"
                 className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
               >
-                Book a Call
+                Book a Discovery Call
               </Link>
             </div>
           </Reveal>
@@ -575,7 +579,7 @@ export default function MethodologyPage() {
           </Reveal>
           <Reveal delay={100}>
             <p className="mt-6 text-lg text-white/60 max-w-lg mx-auto leading-relaxed">
-              Take the 2-minute Scorecard to find out where your team stands
+              Take the 2-minute Readiness Scorecard to find out where your team stands
               &mdash; or skip straight to a conversation.
             </p>
           </Reveal>
@@ -585,13 +589,13 @@ export default function MethodologyPage() {
                 href="/assess"
                 className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
               >
-                Take the Scorecard
+                Take the Readiness Scorecard
               </Link>
               <Link
                 href="/book"
                 className="inline-flex items-center justify-center h-14 px-10 border border-white/30 text-white text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/10 transition-colors"
               >
-                Book a Call
+                Book a Discovery Call
               </Link>
             </div>
           </Reveal>

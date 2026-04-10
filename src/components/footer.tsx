@@ -9,7 +9,7 @@ const footerLinks = [
   { name: "Results", href: "/results" },
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
-  { name: "Scorecard", href: "/assess" },
+  { name: "Readiness Scorecard", href: "/assess" },
 ];
 
 const socialLinks = [
@@ -42,7 +42,7 @@ export function Footer() {
             href="/book"
             className="px-8 py-3 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors shrink-0"
           >
-            Book a Call
+            Book a Discovery Call
           </Link>
         </div>
       </div>

@@ -182,7 +182,7 @@ export default function CaseStudiesPage() {
             href="/assess"
             className="shrink-0 border border-white/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
           >
-            Take the Scorecard →
+            Take the Readiness Scorecard →
           </Link>
         </div>
       </section>
@@ -194,7 +194,7 @@ export default function CaseStudiesPage() {
             Your team could be next.
           </h2>
           <p className="mx-auto mt-6 max-w-md text-sm text-white/60">
-            Take the 2-minute Scorecard to find out where your team stands — or
+            Take the 2-minute Readiness Scorecard to find out where your team stands — or
             skip straight to a conversation.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -202,13 +202,13 @@ export default function CaseStudiesPage() {
               href="/assess"
               className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
             >
-              Take the Scorecard
+              Take the Readiness Scorecard
             </Link>
             <Link
               href="/book"
               className="px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:text-white"
             >
-              Book a Call →
+              Book a Discovery Call →
             </Link>
           </div>
         </div>

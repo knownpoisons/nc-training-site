@@ -6,6 +6,9 @@ import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ScorecardNudge } from "@/components/scorecard-nudge";
+import { ExitIntent } from "@/components/exit-intent";
+import { AnnouncementBar } from "@/components/announcement-bar";
+import { ScrollPopup } from "@/components/scroll-popup";
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
@@ -58,10 +61,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ibmPlexMono.variable} font-mono antialiased`}>
+        <AnnouncementBar />
         <Header />
         <main>{children}</main>
         <Footer />
         <ScorecardNudge />
+        <ExitIntent />
+        <ScrollPopup />
         <Analytics />
         <SpeedInsights />
       </body>

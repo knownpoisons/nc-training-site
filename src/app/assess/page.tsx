@@ -141,7 +141,7 @@ export default function AssessPage() {
           <div className="oci-grid-lines-light" />
           <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
             <div className="oci-section-label mb-8 border-white/20 text-white/40">
-              <span>SCORECARD</span>
+              <span>AI TRAINING READINESS SCORECARD</span>
               <span>[NC]</span>
             </div>
             <h1 className="oci-display-sm max-w-3xl">
@@ -150,9 +150,10 @@ export default function AssessPage() {
               for your team.
             </h1>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-              12 questions about what you want to achieve, where your team is now,
-              and what&apos;s in the way. We&apos;ll recommend the program that
-              actually fits — not just the most expensive one.
+              Most teams think they&apos;re AI-ready. Almost none actually are.
+              12 questions. 2 minutes. A personalized program recommendation
+              based on where your team actually stands — not where you hope
+              they are.
             </p>
           </div>
         </section>
@@ -202,7 +203,7 @@ export default function AssessPage() {
               <div className="flex items-start justify-center lg:pt-12">
                 <div className="w-full border border-foreground/10 p-10">
                   <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
-                    Free · 5 minutes
+                    Free · 2 minutes
                   </p>
                   <h2 className="mt-4 text-2xl font-light tracking-tight">
                     Ready to find the right fit?
@@ -214,7 +215,7 @@ export default function AssessPage() {
                     onClick={() => setStep("capture")}
                     className="mt-8 w-full cursor-pointer bg-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                   >
-                    Find My Program →
+                    Start the Scorecard →
                   </button>
 
                   <div className="mt-8 border-t border-foreground/10 pt-6">
@@ -575,7 +576,7 @@ export default function AssessPage() {
                   href="/book"
                   className="mt-8 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
-                  Book a Call
+                  Book a Discovery Call
                 </Link>
                 <p className="mt-3 text-xs text-foreground/40 text-center">
                   30 min. No pitch. Just clarity on the right next step.

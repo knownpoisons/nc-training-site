@@ -140,6 +140,26 @@ export default function MaesaCaseStudy() {
         </div>
       </section>
 
+      {/* Scorecard callout */}
+      <section className="py-10 bg-[#1549CD] text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-lg font-light tracking-tight">
+              See where your team stands first.
+            </p>
+            <p className="mt-1 text-sm text-white/50">
+              Take the 2-minute Readiness Scorecard and get a personalized program recommendation.
+            </p>
+          </div>
+          <Link
+            href="/assess"
+            className="shrink-0 bg-white text-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+          >
+            Take the Readiness Scorecard →
+          </Link>
+        </div>
+      </section>
+
       {/* CTA — cobalt band */}
       <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
@@ -151,13 +171,13 @@ export default function MaesaCaseStudy() {
               href="/assess"
               className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
             >
-              Take the Scorecard
+              Take the Readiness Scorecard
             </Link>
             <Link
               href="/book"
               className="px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:text-white"
             >
-              Book a Call →
+              Book a Discovery Call →
             </Link>
           </div>
         </div>

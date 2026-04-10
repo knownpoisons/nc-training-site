@@ -29,17 +29,17 @@ const testimonials = [
   {
     company: "Cash App",
     quote:
-      "Our team went from scattered experiments to a unified production pipeline in four weeks.",
-    name: "Creative Lead",
-    title: "Cash App Design Team",
+      "Jeremy\u2019s training was fun and really gave us the strategies, frameworks, and tools that we needed to completely revolutionize how we produce creative \u2014 both internally for pitching and externally for production.",
+    name: "Jose Diaz",
+    title: "Head of Production, Cash App",
     context: "Post-training debrief",
   },
   {
     company: "Herman Scheer",
     quote:
-      "We're now offering AI creative services as a new revenue stream. This changed our entire business model.",
-    name: "Agency Leadership",
-    title: "Herman Scheer",
+      "We\u2019ve been able to offer new and very profitable services to existing clients and use our skills to package new offerings to new clients as well. We feel comfortable moving into this new AI-powered world.",
+    name: "Adam",
+    title: "Creative Director, Herman Scheer",
     context: "Six months post-engagement",
   },
 ];
@@ -63,7 +63,7 @@ export default function Home() {
         </div>
 
         {/* Top nav links */}
-        <div className="relative z-20 pt-8 pb-4 hidden lg:block">
+        <div className="relative z-20 pb-4 hidden lg:block" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 4.5rem)" }}>
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex justify-between items-start">
               <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60">
@@ -73,8 +73,8 @@ export default function Home() {
                 <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
               </nav>
               <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60 text-right">
-                <Link href="/programs/foundations" className="hover:text-white transition-colors">Programs</Link>
-                <Link href="/book" className="hover:text-white transition-colors">Book a Call</Link>
+                <Link href="/programs" className="hover:text-white transition-colors">Programs</Link>
+                <Link href="/book" className="hover:text-white transition-colors">Book a Discovery Call</Link>
               </nav>
             </div>
           </div>
@@ -95,9 +95,15 @@ export default function Home() {
                 <p className="text-white/50 text-[11px] uppercase tracking-[0.15em]">
                   AI Creative Training for Enterprise Teams
                 </p>
-                <p className="max-w-md text-lg lg:text-xl text-white/80 leading-relaxed lg:text-right">
-                  The biggest shift in creative work — for your whole team, together.
-                </p>
+                <div className="max-w-md lg:text-right">
+                  <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
+                    The biggest shift in creative work — for your whole team, together.
+                  </p>
+                  <p className="mt-3 text-sm text-white/40 leading-relaxed">
+                    Teams trained in how to apply AI are 3&times; more likely to use it
+                    strategically. Most teams have never been trained at all.
+                  </p>
+                </div>
               </div>
             </Reveal>
           </div>
@@ -119,15 +125,19 @@ export default function Home() {
       {/* ═══ SCORECARD BAND — Right at the fold ═══ */}
       <section className="py-6 lg:py-8 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-sm text-white/60">
-            Not sure which program fits your team?{" "}
-            <span className="text-white/40">5 minutes. Free. Personalized recommendation.</span>
-          </p>
+          <div>
+            <p className="text-sm text-white/80">
+              Most teams think they&apos;re AI-ready. Almost none actually are.
+            </p>
+            <p className="text-sm text-white/40">
+              Find out where you stand in 2 minutes.
+            </p>
+          </div>
           <Link
             href="/assess"
             className="shrink-0 border border-[#1549CD] bg-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
           >
-            Find Out Your Score →
+            Take the Readiness Scorecard →
           </Link>
         </div>
       </section>
@@ -161,7 +171,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION 2: INTRO — Oversized statement text ═══ */}
+      {/* ═══ INTRO — Oversized statement + stats + Maesa quote + logos ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
@@ -172,15 +182,17 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={200}>
-            <div className="mt-16 lg:mt-24 grid grid-cols-2 sm:grid-cols-4 gap-8 lg:gap-12">
+            <div className="mt-16 lg:mt-24 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
               {[
-                { value: "50+", label: "Enterprise creatives trained" },
                 { value: "$8M+", label: "Combined client savings" },
-                { value: "90%", label: "Faster production" },
-                { value: "3", label: "Teams transformed" },
-              ].map((stat, i) => (
+                { value: "96%", label: "Average time savings" },
+                { value: "400%", label: "Output increase" },
+                { value: "$280K", label: "Saved on a single launch" },
+                { value: "$3.5M", label: "Year-one savings (Cash App)" },
+                { value: "3", label: "Enterprise teams transformed" },
+              ].map((stat) => (
                 <div key={stat.label}>
-                  <p className="text-3xl lg:text-4xl font-medium tracking-tight text-[#1549CD]">
+                  <p className="text-2xl lg:text-3xl font-medium tracking-tight text-[#1549CD]">
                     <AnimatedCounter value={stat.value} />
                   </p>
                   <p className="mt-2 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
@@ -207,7 +219,7 @@ export default function Home() {
           <Reveal delay={350}>
             <div className="mt-12 pt-8 border-t border-foreground/10">
               <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
-                Trusted by teams at
+                Trusted by teams at Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target — and growing.
               </p>
               <div className="overflow-hidden">
                 <div className="animate-marquee-slow flex w-max gap-x-12">
@@ -226,18 +238,270 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION 3: PROGRAMS — Accordion ═══ */}
+      {/* ═══ RESULTS — Proof before process ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Section label bar */}
           <Reveal>
             <div className="oci-section-label">
-              <span>Programs</span>
+              <span>Results</span>
               <span>[NC.1]</span>
             </div>
           </Reveal>
 
-          {/* Split display heading */}
+          <Reveal delay={100}>
+            <h2 className="oci-display-sm mb-16">Most Recent Results</h2>
+          </Reveal>
+
+          {/* 3-column grid with vertical dividers */}
+          <div className="grid lg:grid-cols-3 gap-0">
+            {[
+              {
+                n: "01",
+                category: "Fintech",
+                name: "Cash App",
+                stat: "90%",
+                statLabel: "Reduction in production time",
+                desc: "Production time cut to 10%. $3.5M in estimated year-one savings. Team production-ready by halfway through training.",
+                href: "/results/cash-app",
+              },
+              {
+                n: "02",
+                category: "Beauty",
+                name: "Maesa",
+                stat: "$280K",
+                statLabel: "Saved on a single brand launch",
+                desc: "New brand launched into every Target store. 3 months instead of 9. $280K saved on a single launch.",
+                href: "/results/maesa",
+              },
+              {
+                n: "03",
+                category: "Agency",
+                name: "Herman Scheer",
+                stat: "$4.5M",
+                statLabel: "Estimated year-one savings",
+                desc: "Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to clients.",
+                href: "/results/herman-scheer",
+              },
+            ].map((study, i) => (
+              <Reveal key={study.name} delay={i * 120}>
+                <Link
+                  href={study.href}
+                  className={`group block p-8 lg:p-10 transition-colors hover:bg-[#1549CD]/[0.03] ${
+                    i > 0 ? "lg:border-l border-t lg:border-t-0 border-[#1549CD]/20" : ""
+                  }`}
+                >
+                  <div className="flex justify-between items-start mb-8">
+                    <span className="text-sm text-muted-foreground font-light">
+                      {study.n}
+                    </span>
+                    <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                      {study.category}
+                    </span>
+                  </div>
+
+                  <h3 className="text-2xl lg:text-3xl font-medium tracking-tight mb-4">
+                    {study.name}
+                  </h3>
+
+                  <p className="text-sm leading-relaxed text-muted-foreground mb-8">
+                    {study.desc}
+                  </p>
+
+                  {/* Big stat */}
+                  <div className="border-t border-foreground/10 pt-6">
+                    <p className="text-3xl lg:text-4xl font-medium tracking-tight text-[#1549CD]">
+                      <AnimatedCounter value={study.stat} />
+                    </p>
+                    <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                      {study.statLabel}
+                    </p>
+                  </div>
+
+                  <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-[#1549CD] opacity-0 group-hover:opacity-100 transition-opacity">
+                    Read case study &rarr;
+                  </p>
+                </Link>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={400}>
+            <Link href="/results" className="oci-button-full mt-0 block">
+              View All Results
+            </Link>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ═══ TESTIMONIALS — Editorial quote carousel ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Testimonials</span>
+              <span>[NC.2]</span>
+            </div>
+          </Reveal>
+
+          <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-16 items-start">
+            {/* Left: company name + pagination */}
+            <div>
+              <Reveal delay={100}>
+                <p className="text-2xl font-medium tracking-tight">
+                  {currentTestimonial.company}
+                </p>
+                <div className="mt-6 flex items-center gap-3">
+                  <span className="text-sm text-muted-foreground">
+                    {String(testimonialIndex + 1).padStart(2, "0")}/{String(testimonials.length).padStart(2, "0")}
+                  </span>
+                  <div className="flex flex-col gap-1">
+                    <button
+                      onClick={() =>
+                        setTestimonialIndex(
+                          testimonialIndex > 0 ? testimonialIndex - 1 : testimonials.length - 1
+                        )
+                      }
+                      className="text-[#1549CD] hover:text-[#0e38a8] transition-colors cursor-pointer"
+                      aria-label="Previous testimonial"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 10l4-4 4 4" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={() =>
+                        setTestimonialIndex(
+                          testimonialIndex < testimonials.length - 1 ? testimonialIndex + 1 : 0
+                        )
+                      }
+                      className="text-[#1549CD] hover:text-[#0e38a8] transition-colors cursor-pointer"
+                      aria-label="Next testimonial"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
+                        <path d="M4 6l4 4 4-4" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Right: quote */}
+            <div>
+              <Reveal delay={200}>
+                <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-light leading-snug tracking-tight">
+                  &ldquo;{currentTestimonial.quote}&rdquo;
+                </blockquote>
+                <div className="mt-8 flex items-center gap-4">
+                  <div className="h-px flex-1 bg-foreground/10" />
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {currentTestimonial.name}, {currentTestimonial.title}
+                  </p>
+                </div>
+                <p className="mt-2 text-right text-[11px] text-muted-foreground/60">
+                  {currentTestimonial.context}
+                </p>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ METHODOLOGY — Tilted cards ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Method</span>
+              <span>[NC.3]</span>
+            </div>
+          </Reveal>
+
+          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
+            {/* Left: heading + body + photo */}
+            <div>
+              <Reveal delay={100}>
+                <h2 className="oci-display-sm">
+                  Here at
+                  <br />
+                  every step
+                </h2>
+              </Reveal>
+              <Reveal delay={200}>
+                <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-md">
+                  AI is a creative force multiplier, not a replacement engine. Our
+                  methodology separates exploration from execution, ensuring speed
+                  never compromises taste. When a whole team learns the same framework,
+                  the gains compound.
+                </p>
+              </Reveal>
+              <Reveal delay={250}>
+                <Link
+                  href="/methodology"
+                  className="mt-6 inline-block text-[11px] uppercase tracking-[0.15em] text-[#1549CD] hover:text-[#0e38a8] transition-colors"
+                >
+                  Explore our methodology &rarr;
+                </Link>
+              </Reveal>
+              <Reveal delay={300}>
+                <img
+                  src="/images/training/speaking-tall-2.png"
+                  alt="Jeremy Somers speaking on stage"
+                  className="mt-10 w-full aspect-[3/4] object-cover border border-foreground/10"
+                />
+              </Reveal>
+            </div>
+
+            {/* Right: tilted cards */}
+            <div className="flex flex-col gap-6">
+              {[
+                {
+                  n: "01",
+                  name: "Diverge",
+                  desc: "Generate volume, discover styles, explore possibilities. Use AI as your visual sparring partner.",
+                },
+                {
+                  n: "02",
+                  name: "Converge",
+                  desc: "Lock direction, switch to precision. Production-grade, brand-aligned output.",
+                },
+                {
+                  n: "03",
+                  name: "Systemize",
+                  desc: "Encode workflows into repeatable, scalable processes that anyone on the team can run.",
+                },
+              ].map((step, i) => (
+                <Reveal key={step.n} delay={150 + i * 100} direction="right">
+                  <div className="oci-card-tilted p-8">
+                    <div className="flex items-baseline justify-between mb-4">
+                      <span className="text-3xl lg:text-4xl font-light text-[#1549CD]/30">
+                        {step.n}
+                      </span>
+                      <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                        {step.name}
+                      </span>
+                    </div>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                      {step.desc}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ PROGRAMS — Accordion ═══ */}
+      <section className="py-24 lg:py-36 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Programs</span>
+              <span>[NC.4]</span>
+            </div>
+          </Reveal>
+
           <Reveal delay={100}>
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 mb-16">
               <h2 className="oci-display-sm">Our Programs</h2>
@@ -337,277 +601,51 @@ export default function Home() {
             ))}
           </div>
 
-          {/* Full-width CTA button */}
           <Reveal delay={300}>
-            <Link href="/programs/foundations" className="oci-button-full mt-0 block">
+            <Link href="/programs" className="oci-button-full mt-0 block">
               View All Programs
             </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 4: METHODOLOGY — Numbered tilted cards ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Section label bar */}
-          <Reveal>
-            <div className="oci-section-label">
-              <span>Method</span>
-              <span>[NC.2]</span>
-            </div>
-          </Reveal>
-
-          <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            {/* Left: heading + body + photo */}
-            <div>
-              <Reveal delay={100}>
-                <h2 className="oci-display-sm">
-                  Here at
-                  <br />
-                  every step
-                </h2>
-              </Reveal>
-              <Reveal delay={200}>
-                <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-md">
-                  AI is a creative force multiplier, not a replacement engine. Our
-                  methodology separates exploration from execution, ensuring speed
-                  never compromises taste. When a whole team learns the same framework,
-                  the gains compound.
-                </p>
-              </Reveal>
-              <Reveal delay={250}>
-                <Link
-                  href="/methodology"
-                  className="mt-6 inline-block text-[11px] uppercase tracking-[0.15em] text-[#1549CD] hover:text-[#0e38a8] transition-colors"
-                >
-                  Explore our methodology &rarr;
-                </Link>
-              </Reveal>
-              <Reveal delay={300}>
-                <img
-                  src="/images/training/speaking-tall-2.png"
-                  alt="Jeremy Somers speaking on stage"
-                  className="mt-10 w-full aspect-[3/4] object-cover border border-foreground/10"
-                />
-              </Reveal>
-            </div>
-
-            {/* Right: tilted cards */}
-            <div className="flex flex-col gap-6">
-              {[
-                {
-                  n: "01",
-                  name: "Diverge",
-                  desc: "Generate volume, discover styles, explore possibilities. Use AI as your visual sparring partner.",
-                },
-                {
-                  n: "02",
-                  name: "Converge",
-                  desc: "Lock direction, switch to precision. Production-grade, brand-aligned output.",
-                },
-                {
-                  n: "03",
-                  name: "Systemize",
-                  desc: "Encode workflows into repeatable, scalable processes that anyone on the team can run.",
-                },
-              ].map((step, i) => (
-                <Reveal key={step.n} delay={150 + i * 100} direction="right">
-                  <div className="oci-card-tilted p-8">
-                    <div className="flex items-baseline justify-between mb-4">
-                      <span className="text-3xl lg:text-4xl font-light text-[#1549CD]/30">
-                        {step.n}
-                      </span>
-                      <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
-                        {step.name}
-                      </span>
-                    </div>
-                    <p className="text-sm leading-relaxed text-muted-foreground">
-                      {step.desc}
-                    </p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 5: RESULTS — 3-column grid ═══ */}
+      {/* ═══ URGENCY BLOCK ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Section label bar */}
           <Reveal>
-            <div className="oci-section-label">
-              <span>Results</span>
-              <span>[NC.3]</span>
+            <p className="oci-display-sm text-foreground max-w-5xl">
+              One third of creative teams are now using AI regularly.
+              Most are stuck experimenting alone.
+            </p>
+          </Reveal>
+          <Reveal delay={150}>
+            <p className="mt-8 text-xl lg:text-2xl font-light text-foreground/60 max-w-3xl leading-relaxed">
+              The ones that trained together are already hard to compete with.
+              Your team&apos;s next 90 days will matter more than the last 18 months.
+            </p>
+          </Reveal>
+          <Reveal delay={250}>
+            <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:gap-6">
+              <Link
+                href="/assess"
+                className="inline-block px-10 py-4 bg-[#1549CD] text-white text-[11px] uppercase tracking-[0.15em] transition-colors hover:bg-[#0e38a8]"
+              >
+                Take the Readiness Scorecard →
+              </Link>
+              <Link
+                href="/book"
+                className="inline-block px-10 py-4 border border-foreground/20 text-[11px] uppercase tracking-[0.15em] transition-colors hover:bg-foreground hover:text-white"
+              >
+                Book a Discovery Call
+              </Link>
             </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h2 className="oci-display-sm mb-16">Most Recent Results</h2>
-          </Reveal>
-
-          {/* 3-column grid with vertical dividers */}
-          <div className="grid lg:grid-cols-3 gap-0">
-            {[
-              {
-                n: "01",
-                category: "Fintech",
-                name: "Cash App",
-                stat: "90%",
-                statLabel: "Reduction in production time",
-                desc: "Production time cut to 10%. $3.5M in estimated year-one savings. Team production-ready by halfway through training.",
-                href: "/results/cash-app",
-              },
-              {
-                n: "02",
-                category: "Beauty",
-                name: "Maesa",
-                stat: "$280K",
-                statLabel: "Saved on a single brand launch",
-                desc: "New brand launched into every Target store. 3 months instead of 9. $280K saved on a single launch.",
-                href: "/results/maesa",
-              },
-              {
-                n: "03",
-                category: "Agency",
-                name: "Herman Scheer",
-                stat: "$4.5M",
-                statLabel: "Estimated year-one savings",
-                desc: "Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to clients.",
-                href: "/results/herman-scheer",
-              },
-            ].map((study, i) => (
-              <Reveal key={study.name} delay={i * 120}>
-                <Link
-                  href={study.href}
-                  className={`group block p-8 lg:p-10 transition-colors hover:bg-[#1549CD]/[0.03] ${
-                    i > 0 ? "lg:border-l border-t lg:border-t-0 border-[#1549CD]/20" : ""
-                  }`}
-                >
-                  <div className="flex justify-between items-start mb-8">
-                    <span className="text-sm text-muted-foreground font-light">
-                      {study.n}
-                    </span>
-                    <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
-                      {study.category}
-                    </span>
-                  </div>
-
-                  <h3 className="text-2xl lg:text-3xl font-medium tracking-tight mb-4">
-                    {study.name}
-                  </h3>
-
-                  <p className="text-sm leading-relaxed text-muted-foreground mb-8">
-                    {study.desc}
-                  </p>
-
-                  {/* Big stat */}
-                  <div className="border-t border-foreground/10 pt-6">
-                    <p className="text-3xl lg:text-4xl font-medium tracking-tight text-[#1549CD]">
-                      <AnimatedCounter value={study.stat} />
-                    </p>
-                    <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                      {study.statLabel}
-                    </p>
-                  </div>
-
-                  <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-[#1549CD] opacity-0 group-hover:opacity-100 transition-opacity">
-                    Read case study &rarr;
-                  </p>
-                </Link>
-              </Reveal>
-            ))}
-          </div>
-
-          {/* Full-width CTA */}
-          <Reveal delay={400}>
-            <Link href="/results" className="oci-button-full mt-0 block">
-              View All Results
-            </Link>
           </Reveal>
         </div>
       </section>
 
-      {/* ═══ SECTION 6: TESTIMONIALS — Editorial quote ═══ */}
+      {/* ═══ BLOG GRID — Alternating blue/cream ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Section label bar */}
-          <Reveal>
-            <div className="oci-section-label">
-              <span>Testimonials</span>
-              <span>[NC.4]</span>
-            </div>
-          </Reveal>
-
-          <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-16 items-start">
-            {/* Left: company name + pagination */}
-            <div>
-              <Reveal delay={100}>
-                <p className="text-2xl font-medium tracking-tight">
-                  {currentTestimonial.company}
-                </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <span className="text-sm text-muted-foreground">
-                    {String(testimonialIndex + 1).padStart(2, "0")}/{String(testimonials.length).padStart(2, "0")}
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <button
-                      onClick={() =>
-                        setTestimonialIndex(
-                          testimonialIndex > 0 ? testimonialIndex - 1 : testimonials.length - 1
-                        )
-                      }
-                      className="text-[#1549CD] hover:text-[#0e38a8] transition-colors cursor-pointer"
-                      aria-label="Previous testimonial"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M4 10l4-4 4 4" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() =>
-                        setTestimonialIndex(
-                          testimonialIndex < testimonials.length - 1 ? testimonialIndex + 1 : 0
-                        )
-                      }
-                      className="text-[#1549CD] hover:text-[#0e38a8] transition-colors cursor-pointer"
-                      aria-label="Next testimonial"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M4 6l4 4 4-4" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Right: quote */}
-            <div>
-              <Reveal delay={200}>
-                <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-light leading-snug tracking-tight">
-                  &ldquo;{currentTestimonial.quote}&rdquo;
-                </blockquote>
-                <div className="mt-8 flex items-center gap-4">
-                  <div className="h-px flex-1 bg-foreground/10" />
-                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                    {currentTestimonial.name}, {currentTestimonial.title}
-                  </p>
-                </div>
-                <p className="mt-2 text-right text-[11px] text-muted-foreground/60">
-                  {currentTestimonial.context}
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ SECTION 7: BLOG GRID — Alternating blue/cream ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          {/* Section label bar */}
           <Reveal>
             <div className="oci-section-label">
               <span>Insights</span>
@@ -675,7 +713,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SECTION 8: FINAL CTA — Full cobalt ═══ */}
+      {/* ═══ FINAL CTA — Full cobalt ═══ */}
       <section className="relative py-24 lg:py-36 bg-[#1549CD] text-white overflow-hidden">
         {/* Grid lines */}
         <div className="absolute inset-0 pointer-events-none">
@@ -704,7 +742,7 @@ export default function Home() {
                 href="/book"
                 className="inline-block px-12 py-5 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
               >
-                Book a Call
+                Book a Discovery Call
               </Link>
               <p className="mt-4 text-[11px] text-white/40">
                 30 minutes. No pitch. Just clarity.

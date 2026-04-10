@@ -79,7 +79,7 @@ export default function AcceleratorPage() {
               href="/book"
               className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
             >
-              Book a Call
+              Book a Discovery Call
             </Link>
             <p className="text-sm text-white/40">
               From $15,000 · Up to 15 people · 4 weeks
@@ -186,11 +186,14 @@ export default function AcceleratorPage() {
                 <p className="mt-2 text-sm text-foreground/60">
                   Flat fee, up to 15 people. Scoped on your call with Jeremy.
                 </p>
+                <p className="mt-3 text-xs text-[#1549CD]/70">
+                  Cash App&apos;s team was production-ready by halfway through.
+                </p>
                 <Link
                   href="/book"
                   className="mt-8 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
-                  Book a Call
+                  Book a Discovery Call
                 </Link>
                 <p className="mt-4 text-xs text-foreground/40 text-center">
                   30 minutes. No pitch. Just clarity on fit.
@@ -231,7 +234,7 @@ export default function AcceleratorPage() {
               href="/assess"
               className="shrink-0 border border-foreground/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] transition-colors hover:bg-foreground hover:text-white"
             >
-              Take the Scorecard →
+              Take the Readiness Scorecard →
             </Link>
           </div>
         </div>
@@ -247,7 +250,7 @@ export default function AcceleratorPage() {
             href="/book"
             className="mt-10 inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
           >
-            Book a Call
+            Book a Discovery Call
           </Link>
         </div>
       </section>

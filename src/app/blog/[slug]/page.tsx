@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { BlogScorecardCta } from "@/components/blog-scorecard-cta";
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -74,6 +75,9 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </article>
 
+      {/* Scorecard CTA */}
+      <BlogScorecardCta />
+
       {/* Footer CTA — cobalt band */}
       <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
@@ -85,13 +89,13 @@ export default async function BlogPostPage({ params }: Props) {
               href="/assess"
               className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
             >
-              Take the Scorecard
+              Take the Readiness Scorecard
             </Link>
             <Link
               href="/book"
               className="px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:text-white"
             >
-              Book a Call →
+              Book a Discovery Call →
             </Link>
           </div>
         </div>

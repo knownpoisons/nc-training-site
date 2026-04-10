@@ -167,6 +167,36 @@ export default function FoundationsPage() {
         </div>
       </section>
 
+      {/* Governance callout */}
+      <section className="py-12 lg:py-16 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:items-center">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
+              Included in every program
+            </p>
+            <div>
+              <h3 className="text-lg font-light tracking-tight">
+                AI Governance Starter Kit
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-white/50">
+                Approved tools, IP frameworks, disclosure standards, and data
+                handling protocols. Because your clients are going to ask. And
+                you need to answer.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Value anchor */}
+      <section className="py-6 lg:py-8 border-b border-foreground/10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+          <p className="text-sm text-foreground/50">
+            $5,000 today. The average team recoups this in week two.
+          </p>
+        </div>
+      </section>
+
       {/* Scorecard callout */}
       <section className="py-10 lg:py-12">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -174,14 +204,14 @@ export default function FoundationsPage() {
             <div>
               <p className="text-lg font-light tracking-tight">Not sure where to start?</p>
               <p className="mt-2 text-sm text-foreground/60">
-                The scorecard matches your team&apos;s current AI maturity to the right program — in 5 minutes.
+                The scorecard matches your team&apos;s current AI maturity to the right program — in 2 minutes.
               </p>
             </div>
             <Link
               href="/assess"
               className="shrink-0 border border-foreground/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] transition-colors hover:bg-foreground hover:text-white"
             >
-              Take the Scorecard →
+              Take the Readiness Scorecard →
             </Link>
           </div>
         </div>

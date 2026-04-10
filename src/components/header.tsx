@@ -5,13 +5,13 @@ import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const navigation = [
-  { name: "Programs", href: "/programs/foundations" },
+  { name: "Programs", href: "/programs" },
   { name: "Imperative", href: "/programs/imperative" },
   { name: "About", href: "/about" },
   { name: "Methodology", href: "/methodology" },
   { name: "Results", href: "/results" },
   { name: "Blog", href: "/blog" },
-  { name: "Scorecard", href: "/assess" },
+  { name: "Readiness Scorecard", href: "/assess" },
 ];
 
 export function Header() {
@@ -27,7 +27,8 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 z-50 w-full transition-all duration-300 ${
+      style={{ top: "var(--announcement-height, 0px)" }}
+      className={`fixed z-50 w-full transition-all duration-300 ${
         scrolled
           ? "bg-[#E8E6E0]/95 backdrop-blur-sm border-b border-[#1549CD]/10"
           : "bg-transparent border-b border-transparent"
@@ -54,7 +55,7 @@ export function Header() {
             href="/book"
             className="ml-2 px-5 py-2 bg-[#1549CD] text-white text-[11px] uppercase tracking-[0.15em] hover:bg-[#0e38a8] transition-colors"
           >
-            Book a Call
+            Book a Discovery Call
           </Link>
         </nav>
 
@@ -85,7 +86,7 @@ export function Header() {
                 onClick={() => setOpen(false)}
                 className="mt-4 block w-full py-4 bg-[#1549CD] text-white text-center text-[11px] uppercase tracking-[0.15em]"
               >
-                Book a Call
+                Book a Discovery Call
               </Link>
             </nav>
           </SheetContent>

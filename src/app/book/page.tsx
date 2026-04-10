@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Book a Call",
+  title: "Book a Discovery Call",
   description:
     "30 minutes. No pitch. A diagnostic of where your creative team stands with AI and what a training roadmap could look like.",
 };
@@ -15,7 +15,7 @@ export default function BookPage() {
         <div className="oci-grid-lines-light" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <div className="oci-section-label mb-8 border-white/20 text-white/40">
-            <span>BOOK A CALL</span>
+            <span>BOOK A DISCOVERY CALL</span>
             <span>[NC]</span>
           </div>
           <h1 className="oci-display-sm max-w-3xl">
