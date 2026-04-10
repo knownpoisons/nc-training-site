@@ -346,7 +346,7 @@ export default function Home() {
           </Reveal>
 
           <div className="grid lg:grid-cols-2 gap-16 lg:gap-24">
-            {/* Left: heading + body */}
+            {/* Left: heading + body + photo */}
             <div>
               <Reveal delay={100}>
                 <h2 className="oci-display-sm">
@@ -370,6 +370,13 @@ export default function Home() {
                 >
                   Explore our methodology &rarr;
                 </Link>
+              </Reveal>
+              <Reveal delay={300}>
+                <img
+                  src="/images/training/speaking-tall-2.png"
+                  alt="Jeremy Somers speaking on stage"
+                  className="mt-10 w-full aspect-[3/4] object-cover border border-foreground/10"
+                />
               </Reveal>
             </div>
 

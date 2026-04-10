@@ -86,6 +86,11 @@ export default function MethodologyPage() {
     <>
       {/* ═══ HERO — Cobalt 60vh ═══ */}
       <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        {/* Hero background image */}
+        <div className="absolute inset-0">
+          <img src="/images/training/speaking-wide-3.png" alt="" className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+        </div>
         {/* Grid overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
@@ -263,6 +268,14 @@ export default function MethodologyPage() {
               <span>Phase 01</span>
               <span>Diverge</span>
             </div>
+          </Reveal>
+
+          <Reveal delay={50}>
+            <img
+              src="/images/training/speaking-wide-1.png"
+              alt="Live training session — intimate workshop setting"
+              className="mt-12 w-full aspect-[21/9] object-cover border border-foreground/10"
+            />
           </Reveal>
 
           <div className="mt-12 grid gap-16 lg:grid-cols-2">

@@ -79,8 +79,16 @@ export default function AboutPage() {
     <>
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        <div className="absolute inset-0">
+          <img
+            src="/images/training/speaking-wide-2.png"
+            alt=""
+            className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+        </div>
         <div className="oci-grid-lines-light" />
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <div className="oci-section-label mb-8">
             <span>ABOUT</span>
             <span>[NC]</span>
@@ -138,6 +146,15 @@ export default function AboutPage() {
                 className="aspect-[3/4] w-full object-cover border border-foreground/10"
               />
             </div>
+          </div>
+
+          {/* Training in action */}
+          <div className="mt-12">
+            <img
+              src="/images/training/speaking-wide-4.png"
+              alt="Jeremy Somers leading a training session"
+              className="w-full aspect-[21/9] object-cover border border-foreground/10"
+            />
           </div>
 
           {/* Brand experience */}

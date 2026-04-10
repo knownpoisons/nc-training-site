@@ -54,8 +54,12 @@ export default function AcceleratorPage() {
     <>
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        <div className="absolute inset-0">
+          <img src="/images/training/speaking-wide-1.png" alt="" className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+        </div>
         <div className="oci-grid-lines-light" />
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <div className="oci-section-label mb-8 border-white/20 text-white/40">
             <span>PROGRAM 02 / GROWTH</span>
             <span>[NC]</span>
