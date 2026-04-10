@@ -70,6 +70,11 @@ export default function CaseStudiesPage() {
             from enterprise creative teams that completed NotContent training
             programs.
           </p>
+          <div className="mt-12 flex items-center gap-10">
+            <img src="/images/logos/cashapp.png" alt="Cash App" className="h-6 opacity-40" />
+            <img src="/images/logos/maesa.png" alt="Maesa" className="h-4 opacity-40" />
+            <img src="/images/logos/hermanscheer.jpg" alt="Herman Scheer" className="h-5 opacity-40" />
+          </div>
         </div>
       </section>
 
@@ -141,6 +146,24 @@ export default function CaseStudiesPage() {
           </div>
         </section>
       ))}
+
+      {/* Scorecard mid-page callout */}
+      <section className="py-8 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-lg font-light tracking-tight">Where does your team sit?</p>
+            <p className="mt-1 text-sm text-white/50">
+              See how you compare in 5 minutes.
+            </p>
+          </div>
+          <Link
+            href="/assess"
+            className="shrink-0 border border-white/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
+          >
+            Take the Scorecard →
+          </Link>
+        </div>
+      </section>
 
       {/* CTA — cobalt band */}
       <section className="py-16 lg:py-24 bg-[#1549CD] text-white">

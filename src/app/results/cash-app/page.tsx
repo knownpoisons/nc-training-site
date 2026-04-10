@@ -29,6 +29,7 @@ export default function CashAppCaseStudy() {
               Full Training Program
             </p>
           </div>
+          <img src="/images/logos/cashapp.png" alt="Cash App" className="mt-4 h-8 brightness-0 invert opacity-80" />
           <h1 className="oci-display-sm mt-4">Cash App</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Part of Square and Block. Trained a small internal creative team —
@@ -124,6 +125,40 @@ export default function CashAppCaseStudy() {
                 produces more — without adding headcount.
               </p>
             </div>
+          </div>
+
+          {/* Campaign Work */}
+          <div>
+            <div className="oci-section-label mb-8">
+              <span>THE WORK</span>
+              <span>[NC.4]</span>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
+                <img
+                  src="/images/case-studies/cash-app/campaign-1.png"
+                  alt="Cash App campaign — AI-generated creative"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
+                <img
+                  src="/images/case-studies/cash-app/campaign-2.png"
+                  alt="Cash App campaign — product visualization"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+              <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
+                <img
+                  src="/images/case-studies/cash-app/campaign-3.png"
+                  alt="Cash App campaign — no hidden fees"
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+            <p className="mt-4 text-xs text-foreground/40">
+              Campaign work produced by the Cash App creative team after NotContent training.
+            </p>
           </div>
 
           {/* Testimonial */}

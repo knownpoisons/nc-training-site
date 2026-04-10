@@ -24,7 +24,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: post.title,
       description: post.description,
       type: "article",
-      publishedTime: post.date,
       authors: [post.author],
     },
   };
@@ -47,14 +46,18 @@ export default async function BlogPostPage({ params }: Props) {
           >
             ← Back to Blog
           </Link>
-          <p className="mt-8 text-[11px] uppercase tracking-[0.15em] text-white/40">
-            {new Date(post.date).toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-            {post.author && ` · ${post.author}`}
-          </p>
+          {post.author && (
+            <div className="mt-8 flex items-center gap-3">
+              <img
+                src="/images/jeremy-somers.jpg"
+                alt={post.author}
+                className="h-8 w-8 rounded-full object-cover"
+              />
+              <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
+                {post.author}
+              </p>
+            </div>
+          )}
           <h1 className="oci-display-sm mt-4 max-w-3xl">{post.title}</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             {post.description}

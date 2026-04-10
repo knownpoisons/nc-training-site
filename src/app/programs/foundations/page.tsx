@@ -163,6 +163,26 @@ export default function FoundationsPage() {
         </div>
       </section>
 
+      {/* Scorecard callout */}
+      <section className="py-10 lg:py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex flex-col gap-6 border border-foreground/10 p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10">
+            <div>
+              <p className="text-lg font-light tracking-tight">Not sure where to start?</p>
+              <p className="mt-2 text-sm text-foreground/60">
+                The scorecard matches your team&apos;s current AI maturity to the right program — in 5 minutes.
+              </p>
+            </div>
+            <Link
+              href="/assess"
+              className="shrink-0 border border-foreground/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] transition-colors hover:bg-foreground hover:text-white"
+            >
+              Take the Scorecard →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* CTA — cobalt band */}
       <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">

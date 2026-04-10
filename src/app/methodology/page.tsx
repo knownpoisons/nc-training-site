@@ -183,6 +183,78 @@ export default function MethodologyPage() {
         </div>
       </section>
 
+      {/* ═══ FLOW DIAGRAM ═══ */}
+      <section className="pb-16 lg:pb-24 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal delay={150}>
+            <svg viewBox="0 0 960 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" aria-hidden="true">
+              {/* Phase 1: Diverge — explosion */}
+              <g>
+                <circle cx="160" cy="100" r="60" fill="#1549CD" opacity="0.04" />
+                <circle cx="160" cy="100" r="40" fill="#1549CD" opacity="0.06" />
+                <circle cx="160" cy="100" r="8" fill="#1549CD" opacity="0.3" />
+                {/* Diverging lines */}
+                <line x1="168" y1="92" x2="220" y2="50" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
+                <line x1="168" y1="96" x2="225" y2="75" stroke="#1549CD" strokeWidth="1" opacity="0.25" />
+                <line x1="168" y1="100" x2="230" y2="100" stroke="#1549CD" strokeWidth="1" opacity="0.3" />
+                <line x1="168" y1="104" x2="225" y2="125" stroke="#1549CD" strokeWidth="1" opacity="0.25" />
+                <line x1="168" y1="108" x2="220" y2="150" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
+                <circle cx="220" cy="50" r="3" fill="#1549CD" opacity="0.15" />
+                <circle cx="225" cy="75" r="3" fill="#1549CD" opacity="0.2" />
+                <circle cx="230" cy="100" r="3" fill="#1549CD" opacity="0.25" />
+                <circle cx="225" cy="125" r="3" fill="#1549CD" opacity="0.2" />
+                <circle cx="220" cy="150" r="3" fill="#1549CD" opacity="0.15" />
+                <text x="160" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.4" letterSpacing="0.15em">DIVERGE</text>
+              </g>
+
+              {/* Arrow 1→2 */}
+              <line x1="280" y1="100" x2="370" y2="100" stroke="#1549CD" strokeWidth="1" opacity="0.15" strokeDasharray="4 4" />
+              <polygon points="370,96 380,100 370,104" fill="#1549CD" opacity="0.2" />
+
+              {/* Phase 2: Converge — funnel */}
+              <g>
+                <rect x="420" y="50" width="120" height="100" rx="2" fill="#1549CD" opacity="0.03" />
+                {/* Converging lines */}
+                <line x1="420" y1="55" x2="480" y2="85" stroke="#1549CD" strokeWidth="1" opacity="0.15" />
+                <line x1="420" y1="75" x2="480" y2="90" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
+                <line x1="420" y1="100" x2="480" y2="100" stroke="#1549CD" strokeWidth="1.5" opacity="0.3" />
+                <line x1="420" y1="125" x2="480" y2="110" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
+                <line x1="420" y1="145" x2="480" y2="115" stroke="#1549CD" strokeWidth="1" opacity="0.15" />
+                {/* Output arrow */}
+                <line x1="480" y1="100" x2="540" y2="100" stroke="#1549CD" strokeWidth="2" opacity="0.35" />
+                <circle cx="480" cy="100" r="6" fill="#1549CD" opacity="0.25" />
+                <circle cx="540" cy="100" r="4" fill="#1549CD" opacity="0.35" />
+                <text x="480" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.4" letterSpacing="0.15em">CONVERGE</text>
+              </g>
+
+              {/* Arrow 2→3 */}
+              <line x1="590" y1="100" x2="680" y2="100" stroke="#1549CD" strokeWidth="1" opacity="0.15" strokeDasharray="4 4" />
+              <polygon points="680,96 690,100 680,104" fill="#1549CD" opacity="0.2" />
+
+              {/* Phase 3: Systemize — structured grid */}
+              <g>
+                <rect x="720" y="60" width="80" height="80" rx="2" fill="none" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+                {/* Internal grid lines */}
+                <line x1="720" y1="86" x2="800" y2="86" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
+                <line x1="720" y1="114" x2="800" y2="114" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
+                <line x1="747" y1="60" x2="747" y2="140" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
+                <line x1="773" y1="60" x2="773" y2="140" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
+                {/* Filled cells showing system */}
+                <rect x="721" y="61" width="26" height="25" fill="#1549CD" opacity="0.08" />
+                <rect x="748" y="87" width="25" height="27" fill="#1549CD" opacity="0.12" />
+                <rect x="774" y="115" width="25" height="24" fill="#1549CD" opacity="0.16" />
+                <rect x="721" y="87" width="26" height="27" fill="#1549CD" opacity="0.06" />
+                <rect x="774" y="61" width="25" height="25" fill="#1549CD" opacity="0.1" />
+                {/* Repeat arrow */}
+                <path d="M810 100 Q 830 100 830 80 Q 830 50 800 50" stroke="#1549CD" strokeWidth="1" opacity="0.2" fill="none" />
+                <polygon points="802,47 798,53 794,47" fill="#1549CD" opacity="0.2" />
+                <text x="760" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.4" letterSpacing="0.15em">SYSTEMIZE</text>
+              </g>
+            </svg>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ PHASE 01 — DIVERGE (cream bg) ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

@@ -164,13 +164,6 @@ export default function BlogPage() {
                     >
                       {featured.category}
                     </span>
-                    <span className="text-[11px] text-foreground/40">
-                      {new Date(featured.date).toLocaleDateString("en-US", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </span>
                   </div>
                   <h2 className="mt-4 text-2xl font-light leading-snug tracking-tight transition-colors group-hover:text-[#1549CD] lg:text-3xl">
                     {featured.title}
@@ -219,12 +212,6 @@ export default function BlogPage() {
                           className={`inline-block px-2 py-0.5 text-[9px] font-medium uppercase tracking-widest ${categoryStyles[post.category] ?? categoryStyles.Insight}`}
                         >
                           {post.category}
-                        </span>
-                        <span className="text-[11px] text-foreground/40">
-                          {new Date(post.date).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "numeric",
-                          })}
                         </span>
                       </div>
                       <h3 className="mt-3 text-base font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1549CD]">

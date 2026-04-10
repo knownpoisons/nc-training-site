@@ -132,12 +132,11 @@ export default function AboutPage() {
               </p>
             </div>
             <div>
-              {/* Photo placeholder */}
-              <div className="flex aspect-[3/4] w-full items-center justify-center bg-foreground/5 border border-foreground/10">
-                <p className="text-xs uppercase tracking-[0.15em] text-foreground/30">
-                  Jeremy&apos;s photo here
-                </p>
-              </div>
+              <img
+                src="/images/jeremy-somers.jpg"
+                alt="Jeremy Somers"
+                className="aspect-[3/4] w-full object-cover border border-foreground/10"
+              />
             </div>
           </div>
 

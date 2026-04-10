@@ -116,6 +116,51 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ SCORECARD BAND — Right at the fold ═══ */}
+      <section className="py-6 lg:py-8 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          <p className="text-sm text-white/60">
+            Not sure which program fits your team?{" "}
+            <span className="text-white/40">5 minutes. Free. Personalized recommendation.</span>
+          </p>
+          <Link
+            href="/assess"
+            className="shrink-0 border border-[#1549CD] bg-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
+          >
+            Find Out Your Score →
+          </Link>
+        </div>
+      </section>
+
+      {/* ═══ "THIS ISN'T" MANIFESTO ═══ */}
+      <section className="py-16 lg:py-24 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="space-y-4">
+            <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
+              This isn&apos;t Midjourney training.
+            </p>
+            <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
+              This isn&apos;t your mom&apos;s ChatGPT workshop.
+            </p>
+            <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
+              This isn&apos;t a webinar with a PDF.
+            </p>
+          </div>
+          <div>
+            <p className="text-2xl lg:text-3xl font-light tracking-tight leading-snug">
+              This is a system for making your entire creative team dangerous with AI
+              — in weeks, not quarters.
+            </p>
+            <Link
+              href="/blog/ai-training-your-team-doesnt-need"
+              className="mt-6 inline-block text-[11px] uppercase tracking-[0.15em] text-white/50 transition-colors hover:text-white"
+            >
+              Read why →
+            </Link>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ SECTION 2: INTRO — Oversized statement text ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -559,17 +604,17 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-4">
             {/* Large blue card */}
             <Reveal delay={150}>
-              <Link href="/blog/why-whole-team" className="block h-full">
+              <Link href="/blog/raise-the-ceiling-not-the-floor" className="block h-full">
                 <div className="oci-blog-card-blue h-full">
                   <span className="text-[11px] uppercase tracking-[0.15em] text-white/50">
                     Strategy
                   </span>
                   <div className="mt-auto pt-12">
                     <h3 className="text-xl lg:text-2xl font-medium tracking-tight leading-snug">
-                      Why &ldquo;the whole team&rdquo; matters more than the tools
+                      Raise the Ceiling, Not the Floor
                     </h3>
                     <p className="mt-3 text-sm text-white/60">
-                      The real competitive advantage is training together.
+                      AI mandates fail. Find your believers, make them dangerous.
                     </p>
                   </div>
                 </div>
@@ -579,28 +624,28 @@ export default function Home() {
             {/* Right column: 2 stacked cream cards */}
             <div className="flex flex-col gap-4">
               <Reveal delay={200}>
-                <Link href="/blog/diverge-converge" className="block">
+                <Link href="/blog/stop-teaching-ai-start-building" className="block">
                   <div className="oci-blog-card-cream">
                     <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
                       Methodology
                     </span>
                     <div className="mt-auto pt-6">
                       <h3 className="text-lg font-medium tracking-tight">
-                        Diverge, Converge, Systemize: The NotContent Method
+                        Stop Teaching AI. Start Building With It.
                       </h3>
                     </div>
                   </div>
                 </Link>
               </Reveal>
               <Reveal delay={250}>
-                <Link href="/blog/ai-creative-production" className="block">
+                <Link href="/blog/the-confidence-gap-is-killing-your-ai-strategy" className="block">
                   <div className="oci-blog-card-cream">
                     <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
-                      Case Study
+                      Insight
                     </span>
                     <div className="mt-auto pt-6">
                       <h3 className="text-lg font-medium tracking-tight">
-                        From 9 months to 3: How Maesa launched into Target with AI
+                        83% Confident. 15% Ready. The Gap That&apos;s Killing Your AI Strategy.
                       </h3>
                     </div>
                   </div>
