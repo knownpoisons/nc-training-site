@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const navigation = [
-  { name: "Programs", href: "/programs/transformation" },
+  { name: "Programs", href: "/programs/foundations" },
   { name: "Imperative", href: "/programs/imperative" },
   { name: "About", href: "/about" },
   { name: "Methodology", href: "/methodology" },

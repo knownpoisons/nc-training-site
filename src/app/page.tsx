@@ -63,7 +63,7 @@ export default function Home() {
         </div>
 
         {/* Top nav links */}
-        <div className="relative z-20 pt-8 pb-4">
+        <div className="relative z-20 pt-8 pb-4 hidden lg:block">
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="flex justify-between items-start">
               <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60">
@@ -347,7 +347,7 @@ export default function Home() {
       </section>
 
       {/* ═══ SECTION 4: METHODOLOGY — Numbered tilted cards ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section className="py-24 lg:py-36 relative oci-grid-lines overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           {/* Section label bar */}
           <Reveal>

@@ -81,7 +81,7 @@ export default function CaseStudiesPage() {
             from enterprise creative teams that completed NotContent training
             programs.
           </p>
-          <div className="mt-12 flex items-center gap-10">
+          <div className="mt-12 flex items-center gap-6 sm:gap-10 flex-wrap">
             <img src="/images/logos/cashapp.png" alt="Cash App" className="h-6 opacity-40" />
             <img src="/images/logos/maesa.png" alt="Maesa" className="h-4 opacity-40" />
             <img src="/images/logos/hermanscheer.jpg" alt="Herman Scheer" className="h-5 opacity-40" />
@@ -92,7 +92,7 @@ export default function CaseStudiesPage() {
       {/* Aggregate stats */}
       <section className="py-16 lg:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
             {[
               { n: "$8M+", label: "Combined estimated client savings" },
               { n: "90%", label: "Average reduction in production time" },

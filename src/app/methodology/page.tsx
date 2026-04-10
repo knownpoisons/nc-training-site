@@ -192,7 +192,7 @@ export default function MethodologyPage() {
       <section className="pb-16 lg:pb-24 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal delay={150}>
-            <svg viewBox="0 0 960 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full" aria-hidden="true">
+            <svg viewBox="0 0 960 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full hidden sm:block" aria-hidden="true">
               {/* Phase 1: Diverge — explosion */}
               <g>
                 <circle cx="160" cy="100" r="60" fill="#1549CD" opacity="0.04" />
@@ -505,7 +505,7 @@ export default function MethodologyPage() {
           {differences.map((diff, i) => (
             <Reveal key={diff.ours} delay={180 + i * 60}>
               <div className="grid grid-cols-2 border-b border-[#1549CD]/10 py-5">
-                <p className="pr-8 text-sm text-muted-foreground line-through decoration-foreground/20">
+                <p className="pr-3 sm:pr-8 text-sm text-muted-foreground line-through decoration-foreground/20">
                   {diff.theirs}
                 </p>
                 <p className="text-sm font-medium">{diff.ours}</p>
