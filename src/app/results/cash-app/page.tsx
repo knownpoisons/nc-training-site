@@ -12,8 +12,17 @@ export default function CashAppCaseStudy() {
     <>
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        {/* Header image — full bleed, faded behind content */}
+        <div className="absolute inset-0">
+          <img
+            src="/images/case-studies/cash-app/header.png"
+            alt=""
+            className="h-full w-full object-cover object-center opacity-[0.15] mix-blend-lighten"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/40 to-transparent" />
+        </div>
         <div className="oci-grid-lines-light" />
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <Link
             href="/results"
             className="text-[11px] uppercase tracking-[0.15em] text-white/40 transition-colors hover:text-white/70"

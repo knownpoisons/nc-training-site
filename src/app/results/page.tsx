@@ -106,9 +106,19 @@ export default function CaseStudiesPage() {
       {caseStudies.map((study, i) => (
         <section
           key={study.client}
-          className="py-16 lg:py-24 relative oci-grid-lines border-b border-foreground/10"
+          className="relative py-16 lg:py-24 oci-grid-lines border-b border-foreground/10 overflow-hidden"
         >
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          {study.image && (
+            <div className="absolute inset-0 flex items-center justify-end">
+              <img
+                src={study.image}
+                alt=""
+                className="h-full w-auto max-w-[60%] object-cover opacity-[0.06]"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-background via-background/80 to-background/20" />
+            </div>
+          )}
+          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
             <div className="oci-section-label mb-12">
               <span>{study.industry.toUpperCase()}</span>
               <span>[NC.{i + 1}]</span>
@@ -128,17 +138,8 @@ export default function CaseStudiesPage() {
                 </Link>
               </div>
 
-              <div className="relative">
-                {study.image && (
-                  <div className="absolute -right-4 top-2 bottom-2 w-[50%] overflow-hidden border border-foreground/5">
-                    <img
-                      src={study.image}
-                      alt=""
-                      className="h-full w-full object-cover opacity-[0.09]"
-                    />
-                  </div>
-                )}
-                <div className="relative grid gap-6 sm:grid-cols-3">
+              <div>
+                <div className="grid gap-6 sm:grid-cols-3">
                   {study.stats.map((stat) => (
                     <div key={stat.label} className="border-l-2 border-[#1549CD] pl-5">
                       <p className="text-2xl font-light tracking-tight text-[#1549CD]">
@@ -150,7 +151,7 @@ export default function CaseStudiesPage() {
                     </div>
                   ))}
                 </div>
-                <p className="relative mt-8 text-sm leading-relaxed text-foreground/60">
+                <p className="mt-8 text-sm leading-relaxed text-foreground/60">
                   {study.headline}
                 </p>
               </div>
