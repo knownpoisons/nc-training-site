@@ -133,7 +133,7 @@ export function computeStackAudit(
 
 const TIER_TO_PROGRAM: Record<Tier, Program> = {
   starting_line: "foundations",
-  two_speed: "accelerator",
+  two_speed: "foundations",
   capable_but_exposed: "transformation",
   at_frontier: "transformation",
 };

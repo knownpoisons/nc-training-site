@@ -17,12 +17,12 @@ const phases = [
     icon: "diverge" as const,
     hook: "Generate volume. Break habits. See what's possible.",
     description:
-      "Most teams start AI adoption by trying to replace existing workflows. Wrong move. Diverge is about exploration — using AI to generate options at a speed and scale your team has never experienced. Midjourney for style discovery. ChatGPT for concept iteration. Runway for motion exploration. No judgment, no polish, no 'is this on-brand?' yet.",
+      "Most teams start AI adoption by trying to replace existing workflows. Wrong move.\n\nDiverge is about exploration — using AI to generate options at a speed and scale your team has never experienced. No judgment, no polish, no 'is this on-brand?' yet.",
     outcome: "Your team discovers that AI isn't replacing them — it's removing the bottlenecks that slow them down.",
     what: [
       "Prompt engineering for creative exploration",
-      "Tool selection based on your team's actual discipline",
-      "Combinatorial batching — generating 50 options in the time it took to make 3",
+      "Tool selection based on your team's discipline",
+      "Combinatorial batching — 50 options in the time it took to make 3",
       "The Stop Rule: knowing when you've explored enough",
     ],
   },
@@ -32,7 +32,7 @@ const phases = [
     icon: "converge" as const,
     hook: "Filter through craft. Ship what's actually good.",
     description:
-      "This is where most AI training falls apart. Teams learn to generate but never learn to select. Converge is the discipline of applying human taste, brand standards, and craft expertise to AI output. It's the difference between 'we used AI' and 'we made something great, faster.'",
+      "This is where most AI training falls apart. Teams learn to generate but never learn to select.\n\nConverge is the discipline of applying human taste, brand standards, and craft expertise to AI output. It's the difference between 'we used AI' and 'we made something great, faster.'",
     outcome: "AI-generated work becomes portfolio-worthy. Your team directs AI like a junior creative — fast iteration, human curation.",
     what: [
       "Quality frameworks for evaluating AI output",
@@ -47,10 +47,10 @@ const phases = [
     icon: "systemize" as const,
     hook: "Build workflows that run without you.",
     description:
-      "The team that depends on a trainer isn't trained. Systemize is where individual skill becomes organizational capability. Document what works. Build templates. Create processes that any team member can run on day one. This is where training becomes transformation.",
+      "The team that depends on a trainer isn't trained.\n\nSystemize is where individual skill becomes organisational capability. Document what works. Build templates. Create processes any team member can run from day one. This is where training becomes transformation.",
     outcome: "The team doesn't need Jeremy anymore. That's the point.",
     what: [
-      "Workflow documentation that people actually follow",
+      "Workflow documentation people actually follow",
       "Prompt libraries tuned to your brand voice and visual identity",
       "Quality gates — when to use AI, when to do it by hand",
       "Onboarding templates so new hires get up to speed in days, not months",
@@ -65,7 +65,7 @@ const differences = [
   },
   {
     theirs: "One-day workshop, then you're on your own",
-    ours: "Structured programs from half-day to 8 weeks with ongoing support",
+    ours: "Half-day entry point or 8-week transformation with ongoing monthly support",
   },
   {
     theirs: "Tool demos and prompt templates",
@@ -543,8 +543,8 @@ export default function MethodologyPage() {
             </h2>
           </Reveal>
 
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {["Nike", "Apple", "Cash App", "Maesa", "Adidas", "Google"].map(
+          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
+            {["Cash App", "Maesa", "Herman Scheer", "Nike", "Apple", "Adidas", "Google"].map(
               (brand, i) => (
                 <Reveal key={brand} delay={150 + i * 60}>
                   <div className="flex items-center justify-center border border-white/15 py-8 transition-colors hover:border-white/30 hover:bg-white/5">

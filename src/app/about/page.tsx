@@ -50,7 +50,7 @@ const differentiators = [
   {
     title: "Built to Outlast the Tools",
     description:
-      "Tools change every month. The Diverge/Converge/Systemize methodology is tool-agnostic — so when Midjourney changes (and it will), your team knows exactly how to adapt.",
+      "Tools change every month. The Diverge / Converge / Systemize methodology is tool-agnostic — so when the landscape shifts (and it will), your team knows exactly how to adapt.",
   },
   {
     title: "Taste Stays in the Room",
@@ -60,17 +60,17 @@ const differentiators = [
   {
     title: "Your Brand, Not a Generic Exercise",
     description:
-      "Every program is built around your brand assets, your style guides, your production needs. By the end, your team has workflows that work for your operation specifically.",
+      "Every program is built around your brand assets, your style guides, your production needs. By the end, your team has workflows built for your operation specifically.",
   },
   {
     title: "We Don\u2019t Disappear After Week 8",
     description:
-      "Monthly maintenance calls keep your team current as AI evolves. Most training fades within 60 days. Ours compounds — because we\u2019re still there when it matters.",
+      "Monthly coaching keeps your team current as AI evolves. Most training fades within 60 days. Ours compounds — because we\u2019re still there when it matters.",
   },
   {
     title: "The Numbers Are Real",
     description:
-      "Maesa saved $280K on a single brand launch. Cash App went 10x on campaign velocity. We run before/after benchmarks on every program — so you can see exactly what changed.",
+      "Maesa saved $280K on a single brand launch. Cash App went 10x on campaign velocity. We run before/after benchmarks on every program — so you can show leadership exactly what changed.",
   },
 ];
 
@@ -249,7 +249,7 @@ export default function AboutPage() {
             If this is the kind of training you&apos;ve been looking for, let&apos;s talk.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            Start with a 30-minute call. Jeremy will map your team&apos;s current
+            30 minutes with Jeremy. He&apos;ll map your team&apos;s current
             state, identify where AI would have the highest impact, and recommend
             the right program. No obligation.
           </p>

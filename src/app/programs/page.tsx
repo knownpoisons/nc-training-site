@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Programs",
   description:
-    "Three training formats designed to bring your entire creative team to the frontier of AI-assisted work. From a half-day workshop to an 8-week transformation.",
+    "Two programs. One methodology — Diverge, Converge, Systemize — scaled to match where your team is now.",
 };
 
 const programs = [
@@ -12,41 +12,21 @@ const programs = [
     n: "01",
     name: "Foundations",
     format: "Half-day workshop",
-    price: "$5 – 8K",
+    price: "$5,000",
     description:
       "Align your whole team on AI tools, workflows, and a shared methodology in a single session. Everyone in the room. Everyone at the same level.",
-    ideal: "Teams starting the journey together",
+    ideal: "Teams that haven't aligned yet",
     href: "/programs/foundations",
   },
   {
     n: "02",
-    name: "Accelerator",
-    format: "4-week sprint",
-    price: "$15 – 25K",
-    description:
-      "Intensive, hands-on training for your whole team. Everyone ships real AI-assisted work by week two — not just the one person who already figured out Midjourney.",
-    ideal: "Teams ready to implement together",
-    href: "/programs/accelerator",
-  },
-  {
-    n: "03",
     name: "Transformation",
     format: "8-week program",
-    price: "$50 – 75K",
+    price: "From $50,000",
     description:
       "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes.",
     ideal: "Teams going all-in on AI creative",
     href: "/programs/transformation",
-  },
-  {
-    n: "04",
-    name: "Imperative",
-    format: "Custom engagement",
-    price: "Scoped per team",
-    description:
-      "For non-creative operations teams. Claude workflows, automation pipelines, and AI-powered processes for strategy, operations, and production management.",
-    ideal: "Operations and strategy teams",
-    href: "/programs/imperative",
   },
 ];
 
@@ -75,8 +55,7 @@ export default function ProgramsPage() {
             for your team.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            Three creative training programs and one operations track.
-            Every format uses the same methodology — Diverge, Converge,
+            Two programs. One methodology — Diverge, Converge,
             Systemize — scaled to match where your team is now.
           </p>
         </div>
@@ -135,11 +114,11 @@ export default function ProgramsPage() {
           <div className="flex flex-col gap-6 border border-foreground/10 p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10">
             <div>
               <p className="text-lg font-light tracking-tight">
-                Not sure which program fits?
+                Not sure which fits?
               </p>
               <p className="mt-2 text-sm text-foreground/60">
                 The Readiness Scorecard matches your team&apos;s AI maturity to the
-                right program — in 2 minutes.
+                right program in 2 minutes.
               </p>
             </div>
             <Link

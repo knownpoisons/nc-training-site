@@ -127,7 +127,7 @@ export default function AssessPage() {
   // ═══════════════════════════════════════════════════════════════════════════════
   if (step === "landing") {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
         {/* Cobalt hero */}
         <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
           <div className="oci-grid-lines-light" />
@@ -233,7 +233,7 @@ export default function AssessPage() {
   // ═══════════════════════════════════════════════════════════════════════════════
   if (step === "capture") {
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
         <section className="py-32 lg:py-40 relative oci-grid-lines">
           <div className="mx-auto max-w-lg px-6 lg:px-8">
             <div className="oci-section-label mb-8">
@@ -298,8 +298,8 @@ export default function AssessPage() {
   if (step === "section-intro" && pendingSection) {
     const intro = sectionIntros[pendingSection];
     return (
-      <div className="min-h-screen">
-        <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-foreground/10">
+      <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
+        <div className="fixed left-0 right-0 z-40 h-1 bg-foreground/10" style={{ top: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
           <div
             className="h-full bg-[#1549CD] transition-all duration-500"
             style={{ width: `${progress}%` }}
@@ -337,9 +337,9 @@ export default function AssessPage() {
     const isFinal = !!q.isFinal;
 
     return (
-      <div className="min-h-screen">
+      <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
         {/* Progress bar */}
-        <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-foreground/10">
+        <div className="fixed left-0 right-0 z-40 h-1 bg-foreground/10" style={{ top: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
           <div
             className="h-full bg-[#1549CD] transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
@@ -484,7 +484,7 @@ export default function AssessPage() {
   const altProgram = programs[alternativeProgram[result.recommendedProgram]];
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
       {/* ── Hero: score + tier ─────────────────────────────────────────────── */}
       <section className="relative min-h-[70vh] bg-[#1549CD] text-white overflow-hidden flex items-center">
         <div className="oci-grid-lines-light" />

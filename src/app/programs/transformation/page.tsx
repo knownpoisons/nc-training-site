@@ -13,16 +13,16 @@ const curriculum = [
     title: "Audit & Foundation",
     items: [
       "AI Creative Audit of current workflows and bottlenecks",
-      "Tool ecosystem setup (Midjourney, production tools, systemization layer)",
+      "Tool ecosystem setup and team configuration",
       "Team skill baseline assessment",
-      "NotContent Methodology deep-dive: Diverge/Converge/Systemize",
+      "NotContent Methodology deep-dive: Diverge / Converge / Systemize",
     ],
   },
   {
     week: "03-04",
     title: "Divergence Mastery",
     items: [
-      "Midjourney advanced techniques: style refs, image refs, combinatorial batching",
+      "Midjourney advanced: style refs, image refs, combinatorial batching",
       "AI as a visual sparring partner for concepting",
       "Prompt engineering for brand-specific output",
       "The Stop Rule: knowing when to shift from exploration to execution",
@@ -42,32 +42,23 @@ const curriculum = [
     week: "07-08",
     title: "Systemization & Governance",
     items: [
-      "Building repeatable workflows for your specific operations",
-      "AI governance policy development (approved tools, data protocols, disclosure)",
-      "Proprietary prompt playbooks for your brand/category",
-      "Before/After production benchmark report",
+      "Building repeatable workflows for your specific operation",
+      "AI governance policy — approved tools, data protocols, client disclosure standards",
+      "Role-specific documentation your team actually uses",
+      "Onboarding templates so new hires get up to speed in days, not months",
     ],
   },
 ];
 
 const included = [
-  "2-day in-person intensive kickoff",
-  "Weekly 2-hour live sessions with Jeremy Somers",
-  "Role-specific tracks (Creative Directors, Designers, Strategists, Production)",
-  "Bi-weekly 1-on-1 coaching sessions",
-  "Custom workflow buildout for your operations",
-  "AI Governance Policy document (custom to your org)",
-  "Proprietary prompt playbooks for your brand",
-  "Slack channel for async Q&A throughout the program",
-  "Before/After production benchmark report",
-  "Certificate of completion",
-];
-
-const ongoing = [
-  "Monthly maintenance call (new tech, models, workflows, troubleshooting)",
-  "Slack access for real-time questions",
-  "Tool update briefings as the landscape evolves",
-  "Priority access to new training modules",
+  "2-day in-person intensive with Jeremy (your office or offsite)",
+  "Weekly live sessions — role-specific tracks for CDs, designers, strategists, producers",
+  "Custom workflow buildout for your specific production setup",
+  "Dedicated Slack channel — async support throughout",
+  "AI Governance Policy — built for your team, your clients, your risk profile",
+  "Before/after workflow benchmarks so you can show leadership exactly what changed",
+  "Ongoing monthly coaching calls",
+  "NotContent AI Creative Transformation Certificate for every participant",
 ];
 
 export default function TransformationPage() {
@@ -94,6 +85,9 @@ export default function TransformationPage() {
             You&apos;ve seen what AI does for one person. This is what it does
             for a whole operation. Eight weeks. Custom workflows. Role-specific
             training. Governance policy. Ongoing support.
+          </p>
+          <p className="mt-4 text-sm font-light tracking-tight text-white/80">
+            From $50,000
           </p>
           <div className="mt-8">
             <Link
@@ -122,8 +116,11 @@ export default function TransformationPage() {
                 A few people attended a workshop. Someone got good at prompting.
                 By Monday they were back to their old workflows. Output looks the
                 same. Leadership isn&apos;t convinced. The operation hasn&apos;t
-                moved. That&apos;s not a skills problem — it&apos;s an
-                implementation problem.
+                moved.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                That&apos;s not a skills problem. It&apos;s an implementation
+                problem.
               </p>
             </div>
             <div>
@@ -138,8 +135,11 @@ export default function TransformationPage() {
                 Over 8 weeks, we don&apos;t teach tools and leave. We build the
                 operating model: custom workflows for your specific production
                 setup, role-specific tracks for every function, a governance
-                policy your team actually uses, and the ongoing support to keep
+                policy your team actually uses, and ongoing support to keep
                 it compounding.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                This is what we delivered to Cash App, Maesa, and Herman Scheer.
               </p>
             </div>
           </div>
@@ -181,9 +181,9 @@ export default function TransformationPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-2xl font-light tracking-tight">Sounds like the right fit?</p>
+              <p className="text-2xl font-light tracking-tight">From $50,000</p>
               <p className="mt-2 text-sm text-foreground/60">
-                Book a free 30-minute assessment. No pitch — just a clear recommendation.
+                30 minutes. No pitch. Just a clear picture of fit and next steps.
               </p>
             </div>
             <Link
@@ -196,7 +196,7 @@ export default function TransformationPage() {
         </div>
       </section>
 
-      {/* What's Included + Ongoing */}
+      {/* What's Included + Results */}
       <section className="py-16 lg:py-24 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
@@ -206,13 +206,8 @@ export default function TransformationPage() {
                 <span>[NC.4]</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-                Eight deliverables your team owns when it&apos;s done.
+                Everything to change how your operation runs.
               </h2>
-              <p className="mt-6 text-sm leading-relaxed text-foreground/60">
-                Not slides from a seminar. Not recordings to watch later.
-                Actual assets: the workflows, the policy, the playbooks —
-                built around your brand and your production setup.
-              </p>
               <ul className="mt-8 space-y-4">
                 {included.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/60">
@@ -224,25 +219,35 @@ export default function TransformationPage() {
             </div>
             <div>
               <div className="oci-section-label mb-12">
-                <span>ONGOING SUPPORT</span>
+                <span>THE RESULTS</span>
                 <span>[NC.5]</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-                We don&apos;t disappear after week 8.
+                What this looks like in practice.
               </h2>
-              <p className="mt-6 text-sm leading-relaxed text-foreground/60">
-                AI moves fast. Your team needs someone keeping them current.
-                Every program includes ongoing monthly maintenance to ensure
-                what you built keeps compounding.
-              </p>
-              <ul className="mt-8 space-y-4">
-                {ongoing.map((item) => (
-                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/60">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="mt-8 space-y-6">
+                <div>
+                  <h3 className="text-sm font-medium">Cash App</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                    Production time cut to 10%. $3.5M in estimated year-one savings. Team production-ready by halfway through the program.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium">Maesa</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                    New brand launched into every Target store. 3 months instead of 9. $280K saved on a single launch. Now rolling out across 12+ brands.
+                  </p>
+                </div>
+                <div>
+                  <h3 className="text-sm font-medium">Herman Scheer</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/60">
+                    Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to their own clients.
+                  </p>
+                </div>
+                <Link href="/case-studies" className="mt-4 inline-block text-sm text-[#1549CD] hover:underline">
+                  Read the case studies &rarr;
+                </Link>
+              </div>
             </div>
           </div>
         </div>
@@ -258,95 +263,30 @@ export default function TransformationPage() {
                 <span>[NC.6]</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-                Custom-scoped. ROI-anchored.
+                From $50,000
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
-                Every team gets a custom proposal based on size, AI maturity,
-                and production goals. There&apos;s no generic tier — just a
-                specific program scoped to what you actually need.
+                Scoped to your team size, structure, and production needs.
+                Confirmed on your discovery call with Jeremy.
               </p>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
-                Reference point: Maesa saved $280,000 on a single brand launch.
-                Cash App went 10x on campaign velocity. The program pays for
-                itself on the first project it touches.
+                This isn&apos;t a course. It&apos;s a bespoke operational
+                engagement. The price reflects that.
               </p>
             </div>
             <div className="flex flex-col justify-center">
               <div className="border border-white/10 p-8">
-                <p className="text-[11px] uppercase tracking-[0.15em] text-white/30">
-                  What the call covers
-                </p>
-                <ul className="mt-6 space-y-3">
-                  {[
-                    "Current team workflow and AI maturity audit",
-                    "Identification of highest-impact AI opportunities",
-                    "Custom program recommendation and timeline",
-                    "30 minutes. No pitch. Just clarity.",
-                  ].map((item) => (
-                    <li key={item} className="flex gap-3 text-sm text-white/50">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-white/30" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
                 <Link
                   href="/book"
                   className="mt-8 block w-full border border-white/20 px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
                 >
-                  Book Your Assessment
+                  Book a Discovery Call
                 </Link>
+                <p className="mt-4 text-sm text-white/40 text-center">
+                  30 minutes. No pitch. Just a clear picture of fit and next steps.
+                </p>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Governance callout */}
-      <section className="py-12 lg:py-16 bg-[#1549CD] text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-[1fr_2fr] lg:items-center">
-            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              Included in this program
-            </p>
-            <div>
-              <h3 className="text-lg font-light tracking-tight">
-                AI Governance Starter Kit
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-white/50">
-                Approved tools, IP frameworks, disclosure standards, and data
-                handling protocols. Because your clients are going to ask. And
-                you need to answer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Value anchor */}
-      <section className="py-6 lg:py-8 border-b border-foreground/10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <p className="text-sm text-foreground/50">
-            Maesa saved $280K on a single launch. Herman Scheer: $4.5M in year one.
-          </p>
-        </div>
-      </section>
-
-      {/* Scorecard callout */}
-      <section className="py-10 lg:py-12">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex flex-col gap-6 border border-foreground/10 p-8 lg:flex-row lg:items-center lg:justify-between lg:p-10">
-            <div>
-              <p className="text-lg font-light tracking-tight">Want to confirm this is the right investment?</p>
-              <p className="mt-2 text-sm text-foreground/60">
-                The scorecard gives you a clear recommendation based on your team&apos;s situation.
-              </p>
-            </div>
-            <Link
-              href="/assess"
-              className="shrink-0 border border-foreground/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] transition-colors hover:bg-foreground hover:text-white"
-            >
-              Take the Readiness Scorecard →
-            </Link>
           </div>
         </div>
       </section>
@@ -369,7 +309,7 @@ export default function TransformationPage() {
               },
               {
                 title: "Creative Agencies",
-                description: "Agencies that need to deliver faster, expand capabilities, and stay competitive.",
+                description: "Agencies that need to deliver faster, expand capabilities, and stay ahead of what clients are starting to demand.",
               },
               {
                 title: "Production Studios",
@@ -393,8 +333,6 @@ export default function TransformationPage() {
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             We take on a limited number of Transformation clients each quarter.
-            The assessment is the right first step — it costs nothing, and
-            you&apos;ll leave with a clear picture regardless.
           </p>
           <Link
             href="/book"

@@ -148,6 +148,6 @@ Q6 = segmentation only (work_type tag). Q7 = stack audit routing (Bucket A/B). N
 
 Tier → program mapping:
 - STARTING LINE → Foundations
-- TWO-SPEED → Accelerator
+- TWO-SPEED → Foundations
 - CAPABLE BUT EXPOSED → Transformation
 - AT THE FRONTIER → Transformation
