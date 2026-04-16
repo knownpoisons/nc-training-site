@@ -62,24 +62,6 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Top nav links */}
-        <div className="relative z-20 pb-4 hidden lg:block" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 4.5rem)" }}>
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="flex justify-between items-start">
-              <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60">
-                <Link href="/about" className="hover:text-white transition-colors">About</Link>
-                <Link href="/methodology" className="hover:text-white transition-colors">Methodology</Link>
-                <Link href="/results" className="hover:text-white transition-colors">Results</Link>
-                <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
-              </nav>
-              <nav className="flex flex-col gap-2 text-[11px] uppercase tracking-[0.15em] text-white/60 text-right">
-                <Link href="/programs" className="hover:text-white transition-colors">Programs</Link>
-                <Link href="/book" className="hover:text-white transition-colors">Book a Discovery Call</Link>
-              </nav>
-            </div>
-          </div>
-        </div>
-
         {/* Main hero content */}
         <div className="relative z-20 flex flex-col justify-end min-h-[calc(100vh-120px)] pb-16 lg:pb-24">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
@@ -105,21 +87,10 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="relative z-20 border-t border-white/10">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 py-4 flex justify-between items-center">
-            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              Scroll to explore
-            </p>
-            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              Est. 2024
-            </p>
-          </div>
-        </div>
       </section>
 
       {/* ═══ SCORECARD BAND — Right at the fold ═══ */}
-      <section className="py-6 lg:py-8 bg-foreground text-white">
+      <section className="py-6 lg:py-8 bg-[#1549CD] text-white border-y-2 border-white/20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-sm text-white/80">
@@ -144,8 +115,14 @@ export default function Home() {
       </section>
 
       {/* ═══ "THIS ISN'T" MANIFESTO ═══ */}
-      <section className="py-16 lg:py-24 bg-foreground text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
+      <section className="py-16 lg:py-24 bg-foreground text-white relative overflow-hidden">
+        <img
+          src="/images/illustrations/chaos-dark.png"
+          alt=""
+          className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] object-contain opacity-25 pointer-events-none hidden lg:block"
+          role="presentation"
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-4">
             <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
               This isn&apos;t Midjourney training.
@@ -167,19 +144,12 @@ export default function Home() {
             >
               Read why →
             </Link>
-            {/* Illustration — right column, below text */}
-            <img
-              src="/images/illustrations/chaos-dark.png"
-              alt=""
-              className="mt-8 w-full max-w-xs max-h-[280px] object-contain opacity-50 ml-auto"
-              role="presentation"
-            />
           </div>
         </div>
       </section>
 
       {/* ═══ INTRO — Oversized statement + stats + Maesa quote + logos ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section className="py-32 lg:py-44 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <p className="oci-display-sm text-foreground max-w-5xl">
@@ -193,8 +163,18 @@ export default function Home() {
             </p>
           </Reveal>
 
+          <Reveal delay={150}>
+            <div className="oci-section-label mt-16 lg:mt-24">
+              <span>By the Numbers</span>
+              <span>[NC]</span>
+            </div>
+            <p className="mt-4 text-sm text-muted-foreground max-w-xl">
+              Real results from real training engagements — not projections.
+            </p>
+          </Reveal>
+
           <Reveal delay={200}>
-            <div className="mt-16 lg:mt-24 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
               {[
                 { value: "$8M+", label: "Combined client savings" },
                 { value: "96%", label: "Average time savings" },
@@ -229,16 +209,16 @@ export default function Home() {
 
           {/* Client logos marquee */}
           <Reveal delay={350}>
-            <div className="mt-12 pt-8 border-t border-foreground/10">
-              <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
+            <div className="mt-20 lg:mt-28 pt-12 pb-4 border-t border-foreground/10">
+              <p className="text-sm font-medium tracking-tight text-foreground mb-8">
                 Trusted by teams at Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target — and growing.
               </p>
               <div className="overflow-hidden">
-                <div className="animate-marquee-slow flex w-max gap-x-12">
+                <div className="animate-marquee-slow flex w-max gap-x-16">
                   {[...clients, ...clients].map((client, i) => (
                     <span
                       key={`${client}-${i}`}
-                      className="shrink-0 text-lg font-light tracking-tight text-foreground/50"
+                      className="shrink-0 text-2xl lg:text-3xl font-light tracking-tight text-foreground/50"
                     >
                       {client}
                     </span>
@@ -251,7 +231,7 @@ export default function Home() {
       </section>
 
       {/* ═══ RESULTS — Proof before process ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section className="py-32 lg:py-44 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="oci-section-label">
@@ -261,7 +241,7 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={100}>
-            <h2 className="oci-display-sm mb-16">Most Recent Results</h2>
+            <h2 className="oci-display-sm mb-16">Recent Training Results</h2>
           </Reveal>
 
           {/* 3-column grid with vertical dividers */}
@@ -346,7 +326,7 @@ export default function Home() {
       </section>
 
       {/* ═══ TESTIMONIALS — Editorial quote carousel ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section className="py-32 lg:py-44 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="oci-section-label">
@@ -420,7 +400,7 @@ export default function Home() {
       </section>
 
       {/* ═══ METHODOLOGY — Tilted cards ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines overflow-hidden">
+      <section className="py-32 lg:py-44 relative oci-grid-lines overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="oci-section-label">
@@ -504,8 +484,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ WHY NOTCONTENT ═══ */}
+      <section className="py-32 lg:py-44 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
+              <span>Why NotContent</span>
+              <span>[NC]</span>
+            </div>
+          </Reveal>
+          <Reveal delay={100}>
+            <h2 className="oci-display-sm text-white mt-8 max-w-3xl">
+              Most AI trainers teach tools.
+              <br />
+              We teach production.
+            </h2>
+          </Reveal>
+          <Reveal delay={200}>
+            <div className="mt-12 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
+              {[
+                { title: "Earned in the Field", description: "Everything we teach has been production-tested on real campaigns for real clients. Your team learns what actually works — not what sounds good in a seminar." },
+                { title: "Built to Outlast the Tools", description: "Tools change every month. The Diverge / Converge / Systemize methodology is tool-agnostic — so when the landscape shifts, your team knows exactly how to adapt." },
+                { title: "Taste Stays in the Room", description: "We train teams to use AI as a force multiplier for human creativity — not a replacement for it. Speed without taste produces mediocrity at scale." },
+                { title: "Your Brand, Not a Generic Exercise", description: "Every program is built around your brand assets, your style guides, your production needs. By the end, your team has workflows built for your operation specifically." },
+                { title: "We Don\u2019t Disappear After Week 8", description: "Monthly coaching keeps your team current as AI evolves. Most training fades within 60 days. Ours compounds — because we\u2019re still there when it matters." },
+                { title: "The Numbers Are Real", description: "Maesa saved $280K on a single brand launch. Cash App went 10x on campaign velocity. We run before/after benchmarks on every program." },
+              ].map((diff) => (
+                <div key={diff.title} className="bg-foreground p-8">
+                  <h3 className="text-[11px] uppercase tracking-[0.15em] text-white/80">{diff.title}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-white/50">{diff.description}</p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ PROGRAMS — Accordion ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section className="py-32 lg:py-44 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="oci-section-label">
@@ -539,7 +555,7 @@ export default function Home() {
                 duration: "8-week program",
                 price: "From $50,000",
                 description:
-                  "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
+                  "Full operational transformation. Custom workflows and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
                 ideal: "Teams going all-in on AI creative",
                 href: "/programs/transformation",
               },
@@ -611,7 +627,7 @@ export default function Home() {
       </section>
 
       {/* ═══ URGENCY BLOCK ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines overflow-hidden">
+      <section className="py-32 lg:py-44 relative oci-grid-lines overflow-hidden">
         {/* Illustration — right side, behind text */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
           <img
@@ -653,7 +669,7 @@ export default function Home() {
       </section>
 
       {/* ═══ BLOG GRID — Alternating blue/cream ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section className="py-32 lg:py-44 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="oci-section-label">
@@ -722,44 +738,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ FINAL CTA — Full cobalt ═══ */}
-      <section className="relative py-24 lg:py-36 bg-[#1549CD] text-white overflow-hidden">
-        {/* Grid lines */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
-            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
-            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
-          </div>
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <h2 className="oci-display text-white text-center">
-              Ready?
-            </h2>
-          </Reveal>
-          <Reveal delay={150}>
-            <p className="mt-8 text-lg lg:text-xl text-white/70 text-center max-w-2xl mx-auto leading-relaxed">
-              The creative teams that figure this out together are going to be
-              very hard to compete with. We&apos;ve trained Cash App, Herman Scheer,
-              and Maesa. Let&apos;s talk about your team.
-            </p>
-          </Reveal>
-          <Reveal delay={250}>
-            <div className="mt-12 text-center">
-              <Link
-                href="/book"
-                className="inline-block px-12 py-5 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
-              >
-                Book a Discovery Call
-              </Link>
-              <p className="mt-4 text-[11px] text-white/40">
-                30 minutes. No pitch. Just clarity.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
     </>
   );
 }

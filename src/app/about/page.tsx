@@ -99,10 +99,7 @@ export default function AboutPage() {
             Now we teach it.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            NotContent isn&apos;t a training consultancy that read a book about
-            AI. We built one of the first AI-assisted creative agencies —
-            figuring out how to execute real campaigns for real brands before
-            most agencies knew what Midjourney was.
+            NotContent isn&apos;t a training consultancy that read a book about AI. We built the first AI-assisted creative agency — working with Adidas, Sephora, Google, Meta and more — figuring out how to execute real campaigns for real brands before most agencies knew what Midjourney was.
           </p>
         </div>
       </section>
@@ -125,7 +122,7 @@ export default function AboutPage() {
                 built one that ran on AI from day one.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                NotContent was one of the first AI-assisted creative agencies —
+                NotContent was the first AI-assisted creative agency (launched before ChatGPT, in 2022) —
                 producing real campaigns for real brands before most of the
                 industry caught on. The agency delivers 2× content output in
                 half the time. Work has appeared across 11,473+ retail
@@ -164,18 +161,6 @@ export default function AboutPage() {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Illustration — The Team, right-aligned */}
-      <section className="py-4 lg:py-8 relative oci-grid-lines overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex justify-end">
-          <img
-            src="/images/illustrations/team-cream.png"
-            alt=""
-            className="w-full max-w-md max-h-[320px] object-contain opacity-60"
-            role="presentation"
-          />
         </div>
       </section>
 
@@ -230,7 +215,7 @@ export default function AboutPage() {
       <section className="py-16 lg:py-24 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="oci-section-label mb-12">
-            <span>FEATURED IN</span>
+            <span>PEOPLE ARE TALKING</span>
             <span>[NC.3]</span>
           </div>
           <div className="grid gap-px bg-foreground/10 sm:grid-cols-2">
@@ -254,25 +239,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <h2 className="oci-display-sm mx-auto max-w-3xl">
-            If this is the kind of training you&apos;ve been looking for, let&apos;s talk.
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            30 minutes with Jeremy. He&apos;ll map your team&apos;s current
-            state, identify where AI would have the highest impact, and recommend
-            the right program. No obligation.
-          </p>
-          <Link
-            href="/book"
-            className="mt-10 inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
-          >
-            Book a Discovery Call
-          </Link>
-        </div>
-      </section>
     </>
   );
 }

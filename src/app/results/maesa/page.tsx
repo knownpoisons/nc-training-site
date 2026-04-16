@@ -29,6 +29,7 @@ export default function MaesaCaseStudy() {
               8-Week Transformation
             </p>
           </div>
+          <img src="/images/logos/maesa.png" alt="Maesa" className="mt-4 h-6 brightness-0 invert opacity-80" />
           <h1 className="oci-display-sm mt-4">Maesa</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Trained two internal teams across a dozen beauty, hair, and

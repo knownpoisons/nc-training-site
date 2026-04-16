@@ -29,6 +29,7 @@ export default function HermanScheerCaseStudy() {
               8-Week Transformation
             </p>
           </div>
+          <img src="/images/logos/hermanscheer.jpg" alt="Herman Scheer" className="mt-4 h-6 brightness-0 invert opacity-80" />
           <h1 className="oci-display-sm mt-4">Herman Scheer</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Big Los Angeles branding and design agency. Trained their entire

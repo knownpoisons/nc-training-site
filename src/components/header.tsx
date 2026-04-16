@@ -6,7 +6,6 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 
 const navigation = [
   { name: "Programs", href: "/programs" },
-  { name: "Imperative", href: "/programs/imperative" },
   { name: "About", href: "/about" },
   { name: "Methodology", href: "/methodology" },
   { name: "Results", href: "/results" },
