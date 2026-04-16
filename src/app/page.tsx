@@ -97,11 +97,7 @@ export default function Home() {
                 </p>
                 <div className="max-w-md lg:text-right">
                   <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                    The biggest shift in creative work — for your whole team, together.
-                  </p>
-                  <p className="mt-3 text-sm text-white/40 leading-relaxed">
-                    Teams trained in how to apply AI are 3&times; more likely to use it
-                    strategically. Most teams have never been trained at all.
+                    The biggest shift in creative work since the internet. Most creative teams are watching it happen.
                   </p>
                 </div>
               </div>
@@ -130,15 +126,20 @@ export default function Home() {
               Most teams think they&apos;re AI-ready. Almost none actually are.
             </p>
             <p className="text-sm text-white/40">
-              Find out where you stand in 2 minutes.
+              Find out exactly where your team stands — and what to do about it.
             </p>
           </div>
-          <Link
-            href="/assess"
-            className="shrink-0 border border-[#1549CD] bg-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
-          >
-            Take the Readiness Scorecard →
-          </Link>
+          <div className="shrink-0 flex flex-col items-end gap-2">
+            <Link
+              href="/assess"
+              className="shrink-0 border border-[#1549CD] bg-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
+            >
+              Take the AI Readiness Scorecard →
+            </Link>
+            <p className="text-[11px] text-white/40">
+              2 minutes. Free. No pitch.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -158,8 +159,7 @@ export default function Home() {
           </div>
           <div>
             <p className="text-2xl lg:text-3xl font-light tracking-tight leading-snug">
-              This is a system for making your entire creative team dangerous with AI
-              — in weeks, not quarters.
+              This is operational change. Your whole team. Dangerous with AI — in weeks, not quarters.
             </p>
             <Link
               href="/blog/ai-training-your-team-doesnt-need"
@@ -176,8 +176,13 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <p className="oci-display-sm text-foreground max-w-5xl">
-              Most creative teams have one or two people who figured out AI. The rest
-              are watching. Every week, that gap compounds.
+              Most creative teams have one or two people who figured out AI. The rest are watching.
+            </p>
+            <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-3xl">
+              Every week that gap compounds — in output, in speed, in what leadership sees when they compare your team to the one down the hall.
+            </p>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-3xl">
+              The teams that trained together are already hard to compete with.
             </p>
           </Reveal>
 
@@ -422,17 +427,17 @@ export default function Home() {
             <div>
               <Reveal delay={100}>
                 <h2 className="oci-display-sm">
-                  Here at
+                  A methodology,
                   <br />
-                  every step
+                  not a tool list.
                 </h2>
               </Reveal>
               <Reveal delay={200}>
                 <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-md">
-                  AI is a creative force multiplier, not a replacement engine. Our
-                  methodology separates exploration from execution, ensuring speed
-                  never compromises taste. When a whole team learns the same framework,
-                  the gains compound.
+                  AI is a creative force multiplier, not a replacement engine. The NotContent Method separates exploration from execution — so speed never compromises taste.
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-md">
+                  When a whole team learns the same framework, the gains compound. Everyone explores smarter, executes cleaner, and builds on each other&apos;s work instead of reinventing it.
                 </p>
               </Reveal>
               <Reveal delay={250}>
@@ -440,7 +445,7 @@ export default function Home() {
                   href="/methodology"
                   className="mt-6 inline-block text-[11px] uppercase tracking-[0.15em] text-[#1549CD] hover:text-[#0e38a8] transition-colors"
                 >
-                  Explore our methodology &rarr;
+                  Explore the methodology &rarr;
                 </Link>
               </Reveal>
               <Reveal delay={300}>
@@ -458,17 +463,17 @@ export default function Home() {
                 {
                   n: "01",
                   name: "Diverge",
-                  desc: "Generate volume, discover styles, explore possibilities. Use AI as your visual sparring partner.",
+                  desc: "Generate volume, discover styles, break habits. AI as your visual sparring partner — not a vending machine.",
                 },
                 {
                   n: "02",
                   name: "Converge",
-                  desc: "Lock direction, switch to precision. Production-grade, brand-aligned output.",
+                  desc: "Lock direction. Switch to precision tools. Production-grade, brand-aligned output.",
                 },
                 {
                   n: "03",
                   name: "Systemize",
-                  desc: "Encode workflows into repeatable, scalable processes that anyone on the team can run.",
+                  desc: "Encode what works into repeatable processes anyone on the team can run. That\u2019s when training becomes transformation.",
                 },
               ].map((step, i) => (
                 <Reveal key={step.n} delay={150 + i * 100} direction="right">
@@ -504,10 +509,8 @@ export default function Home() {
 
           <Reveal delay={100}>
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-4 mb-16">
-              <h2 className="oci-display-sm">Our Programs</h2>
+              <h2 className="oci-display-sm">Two ways in.</h2>
               <p className="max-w-sm text-sm text-muted-foreground leading-relaxed lg:text-right">
-                Three formats designed to bring your entire team to the frontier
-                of AI-assisted creative work.
               </p>
             </div>
           </Reveal>
@@ -518,25 +521,16 @@ export default function Home() {
               {
                 name: "Foundations",
                 duration: "Half-day workshop",
-                price: "$5 - 8K",
+                price: "$5,000",
                 description:
                   "Align your whole team on AI tools, workflows, and a shared methodology in a single session. Everyone in the room. Everyone at the same level. Everyone with the same language.",
-                ideal: "Teams starting the journey together",
+                ideal: "Teams that haven\u2019t aligned yet",
                 href: "/programs/foundations",
-              },
-              {
-                name: "Accelerator",
-                duration: "4-week sprint",
-                price: "$15 - 25K",
-                description:
-                  "Intensive, hands-on training for your whole team. Everyone ships real AI-assisted work by week two — not just the one person who already figured out Midjourney.",
-                ideal: "Teams ready to implement together",
-                href: "/programs/accelerator",
               },
               {
                 name: "Transformation",
                 duration: "8-week program",
-                price: "$50 - 75K",
+                price: "From $50,000",
                 description:
                   "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
                 ideal: "Teams going all-in on AI creative",
@@ -620,7 +614,6 @@ export default function Home() {
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 text-xl lg:text-2xl font-light text-foreground/60 max-w-3xl leading-relaxed">
-              The ones that trained together are already hard to compete with.
               Your team&apos;s next 90 days will matter more than the last 18 months.
             </p>
           </Reveal>

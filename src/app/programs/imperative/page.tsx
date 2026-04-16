@@ -23,21 +23,6 @@ const tiers = [
     ],
   },
   {
-    name: "Accelerator",
-    duration: "4-week sprint",
-    price: "$15,000",
-    people: "Up to 15",
-    description:
-      "Map your workflows, connect your tools, and systematically automate anything your team does more than twice.",
-    items: [
-      "Workflow mapping and systematic automation",
-      "MCP connectors: Slack, Notion, CRM, Google Workspace",
-      "Meeting intelligence: AI note-taking + structured extraction",
-      "Cowork for non-technical leaders",
-      "Hands-on: Automate 3 real workflows by end of program",
-    ],
-  },
-  {
     name: "Transformation",
     duration: "8-week program",
     price: "Custom",
@@ -198,13 +183,13 @@ export default function ImperativePage() {
             <span>[NC.4]</span>
           </div>
           <h2 className="text-3xl lg:text-4xl font-light tracking-tight max-w-3xl">
-            Three levels. Same methodology.
+            Two levels. Same methodology.
           </h2>
           <p className="mt-4 max-w-xl text-sm text-foreground/60">
             Start where you are. Each tier builds on the last.
           </p>
 
-          <div className="mt-12 grid gap-px bg-foreground/10 lg:grid-cols-3">
+          <div className="mt-12 grid gap-px bg-foreground/10 lg:grid-cols-2">
             {tiers.map((tier, i) => (
               <div key={tier.name} className="bg-background p-8 lg:p-10">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">

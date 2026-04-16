@@ -11,10 +11,10 @@ const caseStudies = [
   {
     client: "Cash App",
     slug: "/results/cash-app",
-    industry: "Fintech / Enterprise",
+    industry: "Fintech · Enterprise",
     headline: "Production time cut to 10%. $3.5M in estimated year-one savings.",
     summary:
-      "Part of Square and Block. Trained a small internal creative team — producers, designers, 3D artists. Production ready by halfway through.",
+      "Part of Square and Block. Trained a small internal creative team — producers, designers, 3D artists. Production-ready by halfway through.",
     image: "/images/case-studies/cash-app/campaign-1.png",
     stats: [
       { n: "90%", label: "Reduction in production time" },
@@ -25,21 +25,21 @@ const caseStudies = [
   {
     client: "Maesa",
     slug: "/results/maesa",
-    industry: "Beauty / CPG",
+    industry: "Beauty · CPG",
     headline: "New brand launched into every Target store. 3 months instead of 9.",
     summary:
       "Trained two internal teams across a dozen beauty, hair, and fragrance brands. Launched a new brand into every Target store entirely with AI.",
     image: null as string | null,
     stats: [
       { n: "$280K", label: "Saved on a single brand launch" },
-      { n: "3 months", label: "Instead of the usual 9 months" },
+      { n: "3 months", label: "Instead of the usual 9" },
       { n: "12+", label: "Brands rolling out AI processes" },
     ],
   },
   {
     client: "Herman Scheer",
     slug: "/results/herman-scheer",
-    industry: "Brand Agency / LA",
+    industry: "Brand Agency · LA",
     headline: "$4.5M in estimated year-one production savings.",
     summary:
       "Big Los Angeles branding and design agency. Trained their entire team from zero to full AI production.",
@@ -48,6 +48,7 @@ const caseStudies = [
       { n: "$4.5M", label: "Estimated year-one savings" },
       { n: "Zero to full", label: "AI production capability" },
       { n: "New", label: "Profitable AI offerings to clients" },
+
     ],
   },
 ];
@@ -175,7 +176,7 @@ export default function CaseStudiesPage() {
           <div>
             <p className="text-lg font-light tracking-tight">Where does your team sit?</p>
             <p className="mt-1 text-sm text-white/50">
-              See how you compare in 5 minutes.
+              See how you compare in 2 minutes.
             </p>
           </div>
           <Link
@@ -194,7 +195,7 @@ export default function CaseStudiesPage() {
             Your team could be next.
           </h2>
           <p className="mx-auto mt-6 max-w-md text-sm text-white/60">
-            Take the 2-minute Readiness Scorecard to find out where your team stands — or
+            Take the Readiness Scorecard to find out where your team stands — or
             skip straight to a conversation.
           </p>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">

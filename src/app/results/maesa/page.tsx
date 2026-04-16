@@ -26,7 +26,7 @@ export default function MaesaCaseStudy() {
             </p>
             <span className="text-[11px] text-white/30">·</span>
             <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              Full Training Program
+              8-Week Transformation
             </p>
           </div>
           <h1 className="oci-display-sm mt-4">Maesa</h1>
@@ -73,10 +73,12 @@ export default function MaesaCaseStudy() {
             </div>
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
-                Maesa is one of the largest indie beauty incubators in the world,
-                producing in-house brands of beauty, hair, and fragrance for
-                Target. They had two internal creative teams covering over a dozen
-                brands. The production process for launching a new brand typically
+                Maesa is one of the largest indie beauty incubators in the
+                world, producing in-house brands of beauty, hair, and fragrance
+                for Target. Two internal creative teams. Over a dozen brands.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                The production process for launching a new brand typically
                 took nine months and cost $280,000. They needed to move faster
                 without sacrificing the quality Target demands.
               </p>
@@ -95,11 +97,13 @@ export default function MaesaCaseStudy() {
             </div>
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
-                We trained two internal teams comprising all of their creatives
-                across a dozen brands. Every designer, every art director, every
-                copywriter — working with their actual brand assets and real
-                campaign briefs from day one. Before the training was finished,
-                they were applying the methodology to a live product launch.
+                We trained two internal teams — every designer, every art
+                director, every copywriter — working with their actual brand
+                assets and real campaign briefs from day one.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                Before the training was finished, they were applying the
+                methodology to a live product launch.
               </p>
             </div>
           </div>
@@ -116,12 +120,17 @@ export default function MaesaCaseStudy() {
             </div>
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
-                They got from concept into market and into every Target store
-                with a new brand of hair care — and did it all completely with
-                AI based on the training we ran. What usually takes 9 months
-                and costs $280,000 took 3 months and cost them close to zero.
+                They got from concept to market and into every Target store
+                with a new brand of hair care — built entirely on what we
+                taught them.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                What usually takes 9 months and costs $280,000 took 3 months
+                and cost them close to zero.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 They are now rolling out those creative processes across every
-                brand and are able to launch new brands at scale and fast.
+                brand — and are able to launch new brands at scale, fast.
               </p>
             </div>
           </div>
@@ -133,8 +142,8 @@ export default function MaesaCaseStudy() {
               dollars in the next year alone.&rdquo;
             </p>
             <p className="mt-4 text-sm text-foreground/40">
-              — Oshyia Savur, VP Marketing, Maesa (on stage at a national
-              beauty conference)
+              — Oshyia Savur, VP Marketing, Maesa / On stage at a national
+              beauty conference
             </p>
           </div>
         </div>
@@ -148,7 +157,7 @@ export default function MaesaCaseStudy() {
               See where your team stands first.
             </p>
             <p className="mt-1 text-sm text-white/50">
-              Take the 2-minute Readiness Scorecard and get a personalized program recommendation.
+              Take the 2-minute Readiness Scorecard and get a personalised program recommendation.
             </p>
           </div>
           <Link

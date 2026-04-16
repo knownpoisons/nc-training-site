@@ -26,7 +26,7 @@ export default function HermanScheerCaseStudy() {
             </p>
             <span className="text-[11px] text-white/30">·</span>
             <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              Full Training Program
+              8-Week Transformation
             </p>
           </div>
           <h1 className="oci-display-sm mt-4">Herman Scheer</h1>
@@ -96,10 +96,12 @@ export default function HermanScheerCaseStudy() {
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
                 We trained their entire team from zero. Before the training was
-                even finished, they were producing client-ready and
-                production-ready assets — image, copy, video, and full campaigns
-                ready to go out into the world for major CPG launches. Work that
-                can now be seen in every supermarket across America.
+                even finished, they were producing client-ready assets — image,
+                copy, video, and full campaigns ready to go out into the world
+                for major CPG launches.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                Work that can now be seen in every supermarket across America.
               </p>
             </div>
           </div>
@@ -117,10 +119,15 @@ export default function HermanScheerCaseStudy() {
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
                 Herman Scheer now offers new and very profitable AI-powered
-                services to existing clients, and uses their new skills to
-                package new offerings to new clients. Estimated production cost
-                savings for year one: $4.5 million. The team went from zero
-                AI capability to full production in a matter of weeks.
+                services to existing clients — and uses their new capability
+                to package offerings for new clients entirely.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                Estimated production cost savings for year one: $4.5 million.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                The team went from zero AI capability to full production in a
+                matter of weeks.
               </p>
             </div>
           </div>
@@ -133,7 +140,7 @@ export default function HermanScheerCaseStudy() {
                 services to existing clients and use our skills to package new
                 offerings to new clients as well. We feel comfortable moving
                 into this new AI-powered world — that we are not falling
-                behind, nor will get eaten up by another agency or any AI
+                behind, nor will we get eaten up by another agency or any AI
                 creative agencies that are out there.&rdquo;
               </p>
               <p className="mt-4 text-sm text-foreground/40">
@@ -163,7 +170,7 @@ export default function HermanScheerCaseStudy() {
               See where your team stands first.
             </p>
             <p className="mt-1 text-sm text-white/50">
-              Take the 2-minute Readiness Scorecard and get a personalized program recommendation.
+              Take the 2-minute Readiness Scorecard and get a personalised program recommendation.
             </p>
           </div>
           <Link

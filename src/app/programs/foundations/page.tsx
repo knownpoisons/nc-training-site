@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const whatYouGet = [
   "NotContent Methodology overview — Diverge, Converge, Systemize",
   "Live tool demonstrations using your team's actual brand assets",
-  "Hands-on exercises (everyone leaves having made something)",
+  "Hands-on exercises — everyone leaves having made something real",
   "The Stop Rule: knowing when to explore vs. when to execute",
   "AI Ethics & Governance starter kit (approved tools, disclosure standards)",
   "Post-workshop resource pack with prompt templates and workflow guides",
@@ -20,17 +20,17 @@ const whoItsFor = [
   {
     title: "Teams that haven't aligned yet",
     description:
-      "You know AI is important but different people have different tools, different opinions, and no shared language. One session gets everyone to the same starting line.",
+      "Different people, different tools, different opinions, no shared language. One session gets everyone to the same starting line.",
   },
   {
     title: "Leaders who need to build the case",
     description:
-      "Leadership hasn't fully committed. Use Foundations to produce real output with real brand assets — it tends to be more convincing than any deck you could build.",
+      "Leadership hasn't fully committed. Foundations produces real output with real brand assets — that tends to be more convincing than any deck you could build.",
   },
   {
     title: "Agencies entering the AI conversation",
     description:
-      "Clients are asking about AI capability. This workshop gives your team enough to answer with confidence — and often becomes the starting point for a client training proposal.",
+      "Clients are asking about AI capability. This workshop gives your team enough to answer with confidence — and often becomes the starting point for a full Transformation engagement.",
   },
 ];
 
@@ -67,7 +67,7 @@ export default function FoundationsPage() {
               Book This Workshop
             </Link>
             <p className="text-sm text-white/40">
-              From $5,000 · Up to 25 people · Half-day
+              $5,000 flat · Up to 25 people · Half-day
             </p>
           </div>
         </div>
@@ -99,7 +99,7 @@ export default function FoundationsPage() {
                 <h3 className="mt-2 text-lg font-light">Framework & Philosophy</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
                   The NotContent Method. Why most teams get AI wrong. The
-                  Diverge/Converge model. The Stop Rule. Tool ecosystem overview.
+                  Diverge/Converge/Systemize model. The Stop Rule. Tool ecosystem overview.
                 </p>
               </div>
               <div className="border-l-2 border-[#1549CD] pl-6">
@@ -135,7 +135,7 @@ export default function FoundationsPage() {
             {[
               { title: "In-Person", desc: "We come to your office. Maximum energy, maximum output." },
               { title: "Virtual", desc: "Zoom + shared workspace. Works well for remote teams." },
-              { title: "Hybrid", desc: "Some in-room, some remote. It works if your tech is solid." },
+              { title: "Hybrid", desc: "Some in-room, some remote. Works if your tech is solid." },
             ].map((fmt) => (
               <div key={fmt.title} className="bg-foreground p-8">
                 <h3 className="text-[11px] uppercase tracking-[0.15em] text-white/80">{fmt.title}</h3>
@@ -192,7 +192,7 @@ export default function FoundationsPage() {
       <section className="py-6 lg:py-8 border-b border-foreground/10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <p className="text-sm text-foreground/50">
-            $5,000 today. The average team recoups this in week two.
+            $5,000. The average team recoups this in week two of their Transformation.
           </p>
         </div>
       </section>
@@ -234,7 +234,7 @@ export default function FoundationsPage() {
               href="/programs/transformation"
               className="px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:text-white"
             >
-              See Full Transformation →
+              See the Transformation Program →
             </Link>
           </div>
         </div>

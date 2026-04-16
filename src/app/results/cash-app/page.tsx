@@ -35,14 +35,14 @@ export default function CashAppCaseStudy() {
             </p>
             <span className="text-[11px] text-white/30">·</span>
             <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              Full Training Program
+              8-Week Transformation
             </p>
           </div>
           <img src="/images/logos/cashapp.png" alt="Cash App" className="mt-4 h-8 brightness-0 invert opacity-80" />
           <h1 className="oci-display-sm mt-4">Cash App</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Part of Square and Block. Trained a small internal creative team —
-            producers, designers, 3D artists. Production ready by halfway
+            producers, designers, 3D artists. Production-ready by halfway
             through. Process reduced to 10% of the usual time.
           </p>
         </div>
@@ -86,8 +86,11 @@ export default function CashAppCaseStudy() {
                 Cash App — part of Square and Block — has a small but mighty
                 internal creative team. Producers, designers, 3D artists. They
                 needed to produce more campaigns, faster, while still securing
-                the budgets for big hybrid productions — TVC, out-of-home,
-                digital. The existing process was too slow to keep up with the
+                budgets for big hybrid productions — TVC, out-of-home,
+                digital.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                The existing process was too slow to keep up with the
                 pace the business demanded.
               </p>
             </div>
@@ -100,15 +103,18 @@ export default function CashAppCaseStudy() {
                 <span>[NC.2]</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-                Every role. Production ready by halfway.
+                Every role. Production-ready by halfway.
               </h2>
             </div>
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
                 We trained everyone — producers, designers, and 3D artists —
                 on the NotContent Method. By halfway through the training, the
-                team was production ready. They were using AI to pitch
-                internally, get budgets approved, and prepare for hybrid big
+                team was production-ready.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                They were using AI to pitch
+                internally, get budgets approved, and prepare for hybrid
                 productions across TVC, out-of-home, and digital campaigns.
               </p>
             </div>
@@ -127,10 +133,16 @@ export default function CashAppCaseStudy() {
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
                 We refined their process down to 10% of the time it would
-                usually take to pitch and get the budgets they need for actual
-                campaigns. Estimated increase in campaign capacity: at least
+                usually take to pitch and secure budgets for actual
+                campaigns.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                Estimated increase in campaign capacity: at least
                 30%. Estimated cost savings over year one: in the range of
-                $3.5 million. The team now moves faster, pitches stronger, and
+                $3.5 million.
+              </p>
+              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
+                The team now moves faster, pitches stronger, and
                 produces more — without adding headcount.
               </p>
             </div>
@@ -193,7 +205,7 @@ export default function CashAppCaseStudy() {
               See where your team stands first.
             </p>
             <p className="mt-1 text-sm text-white/50">
-              Take the 2-minute Readiness Scorecard and get a personalized program recommendation.
+              Take the 2-minute Readiness Scorecard and get a personalised program recommendation.
             </p>
           </div>
           <Link
