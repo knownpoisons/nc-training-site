@@ -167,16 +167,14 @@ export default function Home() {
             >
               Read why →
             </Link>
+            {/* Illustration — right column, below text */}
+            <img
+              src="/images/illustrations/chaos-dark.png"
+              alt=""
+              className="mt-8 w-full max-w-xs max-h-[280px] object-contain opacity-50 ml-auto"
+              role="presentation"
+            />
           </div>
-        </div>
-        {/* Illustration — the overwhelm */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-8 lg:mt-12">
-          <img
-            src="/images/illustrations/chaos-dark.png"
-            alt=""
-            className="mx-auto w-full max-w-xl max-h-[400px] object-contain opacity-60"
-            role="presentation"
-          />
         </div>
       </section>
 
@@ -506,18 +504,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ ILLUSTRATION BREAK — Cloud Workspace ═══ */}
-      <section className="py-4 lg:py-8 relative oci-grid-lines overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <img
-            src="/images/illustrations/cloud-cream.png"
-            alt=""
-            className="w-full max-w-2xl max-h-[360px] object-contain mx-auto opacity-70"
-            role="presentation"
-          />
-        </div>
-      </section>
-
       {/* ═══ PROGRAMS — Accordion ═══ */}
       <section className="py-24 lg:py-36 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -625,8 +611,17 @@ export default function Home() {
       </section>
 
       {/* ═══ URGENCY BLOCK ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="py-24 lg:py-36 relative oci-grid-lines overflow-hidden">
+        {/* Illustration — right side, behind text */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
+          <img
+            src="/images/illustrations/cloud-cream.png"
+            alt=""
+            className="w-[480px] max-h-[400px] object-contain opacity-[0.15]"
+            role="presentation"
+          />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <p className="oci-display-sm text-foreground max-w-5xl">
               One third of creative teams are now using AI regularly.

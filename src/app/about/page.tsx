@@ -167,13 +167,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Illustration break — The Team */}
+      {/* Illustration — The Team, right-aligned */}
       <section className="py-4 lg:py-8 relative oci-grid-lines overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex justify-end">
           <img
             src="/images/illustrations/team-cream.png"
             alt=""
-            className="w-full max-w-2xl max-h-[360px] object-contain mx-auto opacity-70"
+            className="w-full max-w-md max-h-[320px] object-contain opacity-60"
             role="presentation"
           />
         </div>
