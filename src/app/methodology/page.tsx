@@ -407,7 +407,7 @@ export default function MethodologyPage() {
                 <img
                   src="/images/illustrations/pyramid-blue.png"
                   alt=""
-                  className="mt-10 w-full max-w-sm ml-auto opacity-60"
+                  className="mt-8 w-full max-w-[280px] max-h-[380px] object-contain ml-auto opacity-50"
                   role="presentation"
                 />
               </Reveal>

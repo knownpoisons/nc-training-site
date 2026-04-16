@@ -168,12 +168,12 @@ export default function AboutPage() {
       </section>
 
       {/* Illustration break — The Team */}
-      <section className="py-8 lg:py-12 relative oci-grid-lines overflow-hidden">
+      <section className="py-4 lg:py-8 relative oci-grid-lines overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <img
             src="/images/illustrations/team-cream.png"
             alt=""
-            className="w-full max-w-3xl mx-auto opacity-80"
+            className="w-full max-w-2xl max-h-[360px] object-contain mx-auto opacity-70"
             role="presentation"
           />
         </div>

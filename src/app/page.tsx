@@ -170,11 +170,11 @@ export default function Home() {
           </div>
         </div>
         {/* Illustration — the overwhelm */}
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-12 lg:mt-16">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-8 lg:mt-12">
           <img
             src="/images/illustrations/chaos-dark.png"
             alt=""
-            className="mx-auto w-full max-w-2xl opacity-70"
+            className="mx-auto w-full max-w-xl max-h-[400px] object-contain opacity-60"
             role="presentation"
           />
         </div>
@@ -507,12 +507,12 @@ export default function Home() {
       </section>
 
       {/* ═══ ILLUSTRATION BREAK — Cloud Workspace ═══ */}
-      <section className="py-0 relative oci-grid-lines overflow-hidden">
+      <section className="py-4 lg:py-8 relative oci-grid-lines overflow-hidden">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <img
             src="/images/illustrations/cloud-cream.png"
             alt=""
-            className="w-full max-w-3xl mx-auto opacity-80"
+            className="w-full max-w-2xl max-h-[360px] object-contain mx-auto opacity-70"
             role="presentation"
           />
         </div>
