@@ -1,375 +1,213 @@
-// Each option scores independently toward each program.
-// The quiz recommends whichever program scores highest overall.
+// ═══════════════════════════════════════════════════════════════════════════════
+// NOTCONTENT TRAINING — AI READINESS SCORECARD
+// 10-question diagnostic across 3 dimensions: ADOPTION / READINESS / BLOCKERS
+// Q6 = segmentation tag only (unscored)
+// Q7 = stack audit (unscored, routes to Bucket A / Bucket B)
+// ═══════════════════════════════════════════════════════════════════════════════
 
-export type Program = "foundations" | "accelerator" | "transformation";
+export type Dimension = "adoption" | "readiness" | "blockers" | "none";
 
 export interface Option {
   label: string;
-  scores: Record<Program, number>;
+  points: number;
+  dimension: Dimension;
+  /** Optional segmentation tag for Q6 */
+  tag?: string;
+  /** Optional canonical tool id for Q7 stack audit */
+  toolId?: string;
 }
+
+export type QuestionKind =
+  | "single" // single-select, auto-advance
+  | "multi" // multi-select, NEXT button to advance, scored by sum of selections
+  | "stack"; // multi-select, unscored, routes stack audit bucket
 
 export interface Question {
   id: number;
   section: string;
-  sectionIndex: number;
-  sectionTotal: number;
+  sectionLabel: string; // "YOUR SITUATION · 1/4"
   text: string;
+  kind: QuestionKind;
   options: Option[];
-  multiSelect?: boolean; // true = select all that apply
+  /** Final question triggers results render + email send */
+  isFinal?: boolean;
 }
 
-export const questions: Question[] = [
-  // ─────────────────────────────────────────────────────────────
-  // SECTION 1: YOUR GOAL (Q1–Q3) — multi-select
-  // ─────────────────────────────────────────────────────────────
-  {
-    id: 1,
-    section: "Your Goal",
-    sectionIndex: 1,
-    sectionTotal: 4,
-    multiSelect: true,
-    text: "What do you most want AI training to achieve for your team?",
-    options: [
-      {
-        label: "Increase creative output — more work, faster, without more headcount",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "Replace or reduce what we spend on external production",
-        scores: { foundations: 0, accelerator: 1, transformation: 5 },
-      },
-      {
-        label: "Give the team AI skills to work alongside what they already do",
-        scores: { foundations: 2, accelerator: 5, transformation: 1 },
-      },
-      {
-        label: "Move faster — hit a launch deadline or compress timelines",
-        scores: { foundations: 0, accelerator: 4, transformation: 2 },
-      },
-      {
-        label: "Create structure around AI that's already happening ad-hoc",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "Understand what's possible before we commit to anything bigger",
-        scores: { foundations: 5, accelerator: 2, transformation: 0 },
-      },
-    ],
-  },
-  {
-    id: 2,
-    section: "Your Goal",
-    sectionIndex: 2,
-    sectionTotal: 4,
-    multiSelect: true,
-    text: "What does success look like 90 days from now?",
-    options: [
-      {
-        label: "Our team independently runs AI-assisted production on real campaigns",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "A meaningful portion of the team has practical AI skills they use regularly",
-        scores: { foundations: 1, accelerator: 5, transformation: 2 },
-      },
-      {
-        label: "We've shipped something real with AI and proved the ROI to leadership",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "Everyone follows the same methodology and we have a governance policy",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "We understand AI's potential and have made a clear investment decision",
-        scores: { foundations: 5, accelerator: 2, transformation: 0 },
-      },
-    ],
-  },
-  {
-    id: 3,
-    section: "Your Goal",
-    sectionIndex: 3,
-    sectionTotal: 4,
-    multiSelect: true,
-    text: "How significant is the change you're actually looking for?",
-    options: [
-      {
-        label: "Transformational — AI permanently embedded in how we operate",
-        scores: { foundations: 0, accelerator: 0, transformation: 6 },
-      },
-      {
-        label: "Meaningful — a real capability shift across the whole team",
-        scores: { foundations: 0, accelerator: 4, transformation: 3 },
-      },
-      {
-        label: "Targeted — skills for specific people or specific workflows",
-        scores: { foundations: 3, accelerator: 4, transformation: 0 },
-      },
-      {
-        label: "Exploratory — we need to understand the landscape before deciding",
-        scores: { foundations: 6, accelerator: 1, transformation: 0 },
-      },
-    ],
-  },
+// ─── Q1 ───────────────────────────────────────────────────────────────────────
+const q1: Question = {
+  id: 1,
+  section: "Your Situation",
+  sectionLabel: "YOUR SITUATION · 1/4",
+  text: "Where is your team with AI right now?",
+  kind: "single",
+  options: [
+    { label: "We haven't started — this would be from scratch", points: 0, dimension: "adoption" },
+    { label: "A few people experimenting on their own, nothing shared", points: 5, dimension: "adoption" },
+    { label: "People use AI but every person does it differently", points: 10, dimension: "adoption" },
+    { label: "We have something working, but it's not consistent across the team", points: 15, dimension: "adoption" },
+  ],
+};
 
-  {
-    id: 4,
-    section: "Your Goal",
-    sectionIndex: 4,
-    sectionTotal: 4,
-    multiSelect: true,
-    text: "Why does it matter that your whole team goes through this together — not just a few individuals?",
-    options: [
-      {
-        label: "One person using AI well creates a two-speed team — and two-speed teams produce inconsistent work",
-        scores: { foundations: 0, accelerator: 3, transformation: 5 },
-      },
-      {
-        label: "Workflows only change when everyone changes — individual skills don't shift how the operation runs",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "We want to be in the first wave of teams that figures this out — not catching up in two years",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "This is the biggest shift in creative work in my lifetime — I want us to rise through it together",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "Practically: the ROI only works if everyone can execute independently, not just the champions",
-        scores: { foundations: 0, accelerator: 4, transformation: 3 },
-      },
-    ],
-  },
+// ─── Q2 ───────────────────────────────────────────────────────────────────────
+const q2: Question = {
+  id: 2,
+  section: "Your Situation",
+  sectionLabel: "YOUR SITUATION · 2/4",
+  text: "How is that showing up day to day?",
+  kind: "single",
+  options: [
+    { label: "It isn't yet — we're getting ahead of it", points: 15, dimension: "adoption" },
+    { label: "One or two people carry the AI work, everyone else waits", points: 5, dimension: "adoption" },
+    { label: "Output quality varies depending on who made it", points: 8, dimension: "adoption" },
+    { label: "We're losing pitches or timelines to faster-moving teams", points: 3, dimension: "adoption" },
+  ],
+};
 
-  // ─────────────────────────────────────────────────────────────
-  // SECTION 2: YOUR TEAM (Q5–Q7) — single select
-  // ─────────────────────────────────────────────────────────────
-  {
-    id: 5,
-    section: "Your Team",
-    sectionIndex: 1,
-    sectionTotal: 3,
-    text: "Where is your team with AI right now?",
-    options: [
-      {
-        label: "Zero — we haven't started, this would be from scratch",
-        scores: { foundations: 3, accelerator: 2, transformation: 1 },
-      },
-      {
-        label: "Early — a few people experimenting on their own",
-        scores: { foundations: 2, accelerator: 3, transformation: 2 },
-      },
-      {
-        label: "Active but fragmented — people use AI but there's no shared system",
-        scores: { foundations: 0, accelerator: 3, transformation: 3 },
-      },
-      {
-        label: "Capable but limited — we have something working, need to scale it",
-        scores: { foundations: 0, accelerator: 2, transformation: 4 },
-      },
-    ],
-  },
-  {
-    id: 6,
-    section: "Your Team",
-    sectionIndex: 2,
-    sectionTotal: 3,
-    text: "How many people are you looking to train?",
-    options: [
-      {
-        label: "5 or fewer",
-        scores: { foundations: 3, accelerator: 2, transformation: 1 },
-      },
-      {
-        label: "6–15 people",
-        scores: { foundations: 1, accelerator: 3, transformation: 2 },
-      },
-      {
-        label: "16–30 people",
-        scores: { foundations: 0, accelerator: 2, transformation: 4 },
-      },
-      {
-        label: "30+ people",
-        scores: { foundations: 0, accelerator: 1, transformation: 5 },
-      },
-    ],
-  },
-  {
-    id: 7,
-    section: "Your Team",
-    sectionIndex: 3,
-    sectionTotal: 3,
-    text: "Is there a project or deadline pushing this?",
-    options: [
-      {
-        label: "Yes — something major in the next 4–8 weeks",
-        scores: { foundations: 1, accelerator: 5, transformation: 1 },
-      },
-      {
-        label: "Yes — something in the next 2–4 months",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "No — building capability before we urgently need it",
-        scores: { foundations: 3, accelerator: 3, transformation: 2 },
-      },
-      {
-        label: "We should have done this already — we're behind",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-    ],
-  },
+// ─── Q3 ───────────────────────────────────────────────────────────────────────
+const q3: Question = {
+  id: 3,
+  section: "Your Situation",
+  sectionLabel: "YOUR SITUATION · 3/4",
+  text: "Has your team done any formal AI training before?",
+  kind: "single",
+  options: [
+    { label: "No — nothing yet", points: 0, dimension: "readiness" },
+    { label: "Informal only — tool tutorials, YouTube, self-taught", points: 5, dimension: "readiness" },
+    { label: "Yes, but it didn't change how the team actually works", points: 8, dimension: "readiness" },
+    { label: "Yes — and we're ready to go deeper", points: 10, dimension: "readiness" },
+  ],
+};
 
-  // ─────────────────────────────────────────────────────────────
-  // SECTION 3: YOUR CONTEXT (Q8–Q12) — multi-select
-  // ─────────────────────────────────────────────────────────────
-  {
-    id: 8,
-    section: "Your Context",
-    sectionIndex: 1,
-    sectionTotal: 5,
-    multiSelect: true,
-    text: "What's the biggest obstacle to AI adoption on your team right now?",
-    options: [
-      {
-        label: "No shared methodology — everyone doing their own thing",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "Skills gap — people don't know how to use the tools well",
-        scores: { foundations: 2, accelerator: 4, transformation: 2 },
-      },
-      {
-        label: "Governance — concerned about data, rights, or client disclosure",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "Leadership buy-in — no clear mandate from above",
-        scores: { foundations: 4, accelerator: 2, transformation: 1 },
-      },
-      {
-        label: "Time — hard to learn properly alongside existing workload",
-        scores: { foundations: 2, accelerator: 4, transformation: 2 },
-      },
-    ],
-  },
-  {
-    id: 9,
-    section: "Your Context",
-    sectionIndex: 2,
-    sectionTotal: 5,
-    multiSelect: true,
-    text: "Has your team done any formal AI training before?",
-    options: [
-      {
-        label: "No — this would be a first",
-        scores: { foundations: 3, accelerator: 3, transformation: 1 },
-      },
-      {
-        label: "Basic tool tutorials — Midjourney, ChatGPT — no methodology",
-        scores: { foundations: 1, accelerator: 3, transformation: 3 },
-      },
-      {
-        label: "Something more structured, but it didn't really stick",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "Internal-only sessions — we need external expertise now",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-    ],
-  },
-  {
-    id: 10,
-    section: "Your Context",
-    sectionIndex: 3,
-    sectionTotal: 5,
-    multiSelect: true,
-    text: "What kind of creative work does your team primarily produce?",
-    options: [
-      {
-        label: "Brand campaigns, visual identity, editorial",
-        scores: { foundations: 2, accelerator: 3, transformation: 3 },
-      },
-      {
-        label: "Performance marketing — content at volume, across channels",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "Product launches, retail or e-commerce creative",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "Agency work — creative for external clients",
-        scores: { foundations: 2, accelerator: 4, transformation: 2 },
-      },
-    ],
-  },
-  {
-    id: 11,
-    section: "Your Context",
-    sectionIndex: 4,
-    sectionTotal: 5,
-    multiSelect: true,
-    text: "Which AI tools does your team currently use or have experience with?",
-    options: [
-      {
-        label: "ChatGPT or Claude — language, copy, briefs",
-        scores: { foundations: 1, accelerator: 3, transformation: 2 },
-      },
-      {
-        label: "Midjourney, DALL-E or Firefly — image generation",
-        scores: { foundations: 1, accelerator: 3, transformation: 2 },
-      },
-      {
-        label: "Adobe AI features — Generative Fill, Firefly in workflow",
-        scores: { foundations: 1, accelerator: 2, transformation: 3 },
-      },
-      {
-        label: "Video or audio AI — Runway, Sora, ElevenLabs",
-        scores: { foundations: 0, accelerator: 2, transformation: 4 },
-      },
-      {
-        label: "None — we haven't started with any AI tools yet",
-        scores: { foundations: 5, accelerator: 1, transformation: 0 },
-      },
-    ],
-  },
-  {
-    id: 12,
-    section: "Your Context",
-    sectionIndex: 5,
-    sectionTotal: 5,
-    multiSelect: true,
-    text: "How is uneven AI adoption showing up on your team right now?",
-    options: [
-      {
-        label: "We have a two-speed team — a few AI champions and everyone else standing still",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "Work quality is inconsistent — different people, different tools, no shared standard",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "People are experimenting in silos — nothing gets shared or scaled",
-        scores: { foundations: 0, accelerator: 2, transformation: 5 },
-      },
-      {
-        label: "There's anxiety, avoidance or quiet resentment around AI on the team",
-        scores: { foundations: 2, accelerator: 3, transformation: 3 },
-      },
-      {
-        label: "We're losing time and competitive ground waiting for everyone to catch up",
-        scores: { foundations: 0, accelerator: 3, transformation: 4 },
-      },
-      {
-        label: "None of these — our team is already pulling in the same direction",
-        scores: { foundations: 3, accelerator: 2, transformation: 1 },
-      },
-    ],
-  },
-];
+// ─── Q4 ───────────────────────────────────────────────────────────────────────
+const q4: Question = {
+  id: 4,
+  section: "Your Situation",
+  sectionLabel: "YOUR SITUATION · 4/4",
+  text: "How urgent is this for you right now?",
+  kind: "single",
+  options: [
+    { label: "Exploratory — we want to understand the landscape first", points: 3, dimension: "readiness" },
+    { label: "Building — we want capability before we urgently need it", points: 7, dimension: "readiness" },
+    { label: "Urgent — we have a launch or deadline in the next 2–3 months", points: 10, dimension: "readiness" },
+    { label: "Critical — we're already behind and feeling it", points: 10, dimension: "readiness" },
+  ],
+};
+
+// ─── Q5 ───────────────────────────────────────────────────────────────────────
+const q5: Question = {
+  id: 5,
+  section: "Your Team",
+  sectionLabel: "YOUR TEAM · 1/2",
+  text: "How many people are you looking to train?",
+  kind: "single",
+  options: [
+    { label: "5 or fewer", points: 3, dimension: "readiness" },
+    { label: "6–15", points: 5, dimension: "readiness" },
+    { label: "16–30", points: 5, dimension: "readiness" },
+    { label: "30+", points: 5, dimension: "readiness" },
+  ],
+};
+
+// ─── Q6 — UNSCORED · segmentation tag ─────────────────────────────────────────
+const q6: Question = {
+  id: 6,
+  section: "Your Team",
+  sectionLabel: "YOUR TEAM · 2/2",
+  text: "What kind of creative work does your team primarily produce?",
+  kind: "single",
+  options: [
+    { label: "Brand, campaigns, visual identity", points: 0, dimension: "none", tag: "brand" },
+    { label: "Performance marketing — content at volume, across channels", points: 0, dimension: "none", tag: "performance" },
+    { label: "Product, retail or e-commerce creative", points: 0, dimension: "none", tag: "retail" },
+    { label: "Agency work — creative for external clients", points: 0, dimension: "none", tag: "agency" },
+  ],
+};
+
+// ─── Q7 — STACK AUDIT · unscored · multi-select ───────────────────────────────
+const q7: Question = {
+  id: 7,
+  section: "Your Stack",
+  sectionLabel: "YOUR STACK · 1/4",
+  text: "Which AI tools is your team currently paying for or actively using? Select everything that applies — even tools only one or two people use.",
+  kind: "stack",
+  options: [
+    { label: "ChatGPT (OpenAI)", points: 0, dimension: "none", toolId: "chatgpt" },
+    { label: "Claude (Anthropic)", points: 0, dimension: "none", toolId: "claude" },
+    { label: "Midjourney", points: 0, dimension: "none", toolId: "midjourney" },
+    { label: "Adobe Firefly / Adobe AI features", points: 0, dimension: "none", toolId: "adobe_firefly" },
+    { label: "DALL-E", points: 0, dimension: "none", toolId: "dalle" },
+    { label: "Runway", points: 0, dimension: "none", toolId: "runway" },
+    { label: "Kling", points: 0, dimension: "none", toolId: "kling" },
+    { label: "Sora", points: 0, dimension: "none", toolId: "sora" },
+    { label: "ElevenLabs", points: 0, dimension: "none", toolId: "elevenlabs" },
+    { label: "Canva AI", points: 0, dimension: "none", toolId: "canva_ai" },
+    { label: "Jasper, Copy.ai or similar AI writing tools", points: 0, dimension: "none", toolId: "ai_writing" },
+    { label: "Notion AI, ClickUp AI or similar productivity AI", points: 0, dimension: "none", toolId: "productivity_ai" },
+    { label: "GitHub Copilot or similar code AI", points: 0, dimension: "none", toolId: "code_ai" },
+    { label: "None yet", points: 0, dimension: "none", toolId: "none" },
+  ],
+};
+
+// ─── Q8 ───────────────────────────────────────────────────────────────────────
+const q8: Question = {
+  id: 8,
+  section: "Your Stack",
+  sectionLabel: "YOUR STACK · 2/4",
+  text: "Roughly how much is your team spending on AI tools per month in total?",
+  kind: "single",
+  options: [
+    { label: "Under $100", points: 3, dimension: "blockers" },
+    { label: "$100–$500", points: 7, dimension: "blockers" },
+    { label: "$500–$2,000", points: 10, dimension: "blockers" },
+    { label: "$2,000+", points: 10, dimension: "blockers" },
+    { label: "Honestly, we don't know", points: 5, dimension: "blockers" },
+  ],
+};
+
+// ─── Q9 — multi-select, scored by sum ─────────────────────────────────────────
+const q9: Question = {
+  id: 9,
+  section: "Your Stack",
+  sectionLabel: "YOUR STACK · 3/4",
+  text: "What's the biggest thing getting in the way of AI adoption right now? Select all that apply.",
+  kind: "multi",
+  options: [
+    { label: "No shared methodology — everyone doing their own thing", points: 0, dimension: "blockers" },
+    { label: "Skills gap — people don't know how to use the tools well", points: 3, dimension: "blockers" },
+    { label: "Governance concerns — data security, IP rights, client disclosure", points: 5, dimension: "blockers" },
+    { label: "No clear mandate — leadership hasn't fully committed", points: 3, dimension: "blockers" },
+    { label: "Time — hard to learn properly alongside existing workload", points: 5, dimension: "blockers" },
+  ],
+};
+
+// ─── Q10 — FINAL ──────────────────────────────────────────────────────────────
+const q10: Question = {
+  id: 10,
+  section: "Your Stack",
+  sectionLabel: "YOUR STACK · 4/4",
+  text: "What does success look like for your team 90 days from now?",
+  kind: "single",
+  isFinal: true,
+  options: [
+    { label: "We understand what's possible and have made a clear investment decision", points: 5, dimension: "readiness" },
+    { label: "A meaningful portion of the team has practical AI skills they use regularly", points: 10, dimension: "readiness" },
+    { label: "Everyone follows the same methodology with governance in place", points: 13, dimension: "readiness" },
+    { label: "Our team independently runs AI-assisted production on live campaigns", points: 15, dimension: "readiness" },
+  ],
+};
+
+export const questions: Question[] = [q1, q2, q3, q4, q5, q6, q7, q8, q9, q10];
+
+// ─── Dimension maxes ──────────────────────────────────────────────────────────
+// Adoption  (Q1 + Q2)            max 30 pts
+// Readiness (Q3 + Q4 + Q5 + Q10) max 40 pts
+// Blockers  (Q8 + Q9)            max 26 pts
+// Total raw                      max 96 pts → normalised to 100 on display
+
+export const DIMENSION_MAX = {
+  adoption: 30,
+  readiness: 40,
+  blockers: 26,
+} as const;
+
+export const RAW_MAX = 96;

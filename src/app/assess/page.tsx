@@ -1,20 +1,21 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { questions, type Option } from "./questions";
-import { computeScores, getRecommendation, normalisedScores, getReasons } from "./logic";
+import { questions, DIMENSION_MAX } from "./questions";
+import { computeResult, type AnswerRecord } from "./logic";
 import { programs, alternativeProgram } from "./programs";
+import { tierCopy, getStackAuditCopy } from "./tiers";
 
-// ─── Section transition screen ────────────────────────────────────────────────
+// ─── Section transitions ──────────────────────────────────────────────────────
 const sectionIntros: Record<string, { label: string; description: string }> = {
   "Your Team": {
     label: "Section 02 / Your Team",
-    description: "Now let's understand where your team actually stands.",
+    description: "Now a quick read on the team itself.",
   },
-  "Your Context": {
-    label: "Section 03 / Your Context",
-    description: "Last section — this helps us personalise the recommendation.",
+  "Your Stack": {
+    label: "Section 03 / Your Stack",
+    description: "Last section — this audits the tools and blockers in play.",
   },
 };
 
@@ -24,17 +25,18 @@ export default function AssessPage() {
   const [step, setStep] = useState<Step>("landing");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+
   const [currentQ, setCurrentQ] = useState(0);
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([]);
-  const [answerIndices, setAnswerIndices] = useState<number[]>([]);
+  const [answers, setAnswers] = useState<AnswerRecord[]>([]);
+
   const [pendingSection, setPendingSection] = useState<string | null>(null);
   const [justSelected, setJustSelected] = useState<number | null>(null);
   const [multiSelections, setMultiSelections] = useState<number[]>([]);
-  const containerRef = useRef<HTMLDivElement>(null);
 
   const q = questions[currentQ];
   const progress = (currentQ / questions.length) * 100;
 
+  // Reset multi-select state when question changes
   useEffect(() => {
     setMultiSelections([]);
   }, [currentQ]);
@@ -48,11 +50,12 @@ export default function AssessPage() {
     setStep("quiz");
   }
 
-  function advance(newOptions: Option[], newIndices: number[]) {
+  function advance(newAnswers: AnswerRecord[]) {
     const nextIndex = currentQ + 1;
 
     if (nextIndex >= questions.length) {
-      submitLead(newOptions, newIndices);
+      // Last question answered — fire submission + go to results
+      submitLead(newAnswers);
       setStep("results");
       return;
     }
@@ -69,20 +72,19 @@ export default function AssessPage() {
     }
   }
 
-  function handleOptionClick(optionIndex: number) {
+  function handleSingleClick(optionIndex: number) {
     if (justSelected !== null) return;
-
-    const opt = q.options[optionIndex];
     setJustSelected(optionIndex);
 
     setTimeout(() => {
-      const newOptions = [...selectedOptions, opt];
-      const newIndices = [...answerIndices, optionIndex];
-      setSelectedOptions(newOptions);
-      setAnswerIndices(newIndices);
+      const newAnswers: AnswerRecord[] = [
+        ...answers,
+        { questionId: q.id, indices: [optionIndex] },
+      ];
+      setAnswers(newAnswers);
       setJustSelected(null);
-      advance(newOptions, newIndices);
-    }, 350);
+      advance(newAnswers);
+    }, 320);
   }
 
   function handleMultiToggle(optionIndex: number) {
@@ -95,40 +97,30 @@ export default function AssessPage() {
 
   function handleMultiNext() {
     if (multiSelections.length === 0) return;
-
-    const selectedOpts = multiSelections.map((i) => q.options[i]);
-    const primaryIndex = Math.min(...multiSelections);
-
-    const newOptions = [...selectedOptions, ...selectedOpts];
-    const newIndices = [...answerIndices, primaryIndex];
-    setSelectedOptions(newOptions);
-    setAnswerIndices(newIndices);
-    advance(newOptions, newIndices);
+    const newAnswers: AnswerRecord[] = [
+      ...answers,
+      { questionId: q.id, indices: [...multiSelections].sort((a, b) => a - b) },
+    ];
+    setAnswers(newAnswers);
+    advance(newAnswers);
   }
 
-  async function submitLead(opts: Option[], indices: number[]) {
-    const scores = computeScores(opts);
-    const rec = getRecommendation(scores);
-    const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+  async function submitLead(finalAnswers: AnswerRecord[]) {
     if (!email) return;
+    const result = computeResult(finalAnswers);
     try {
       await fetch("/api/assess", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, tier: rec, score: totalScore }),
+        body: JSON.stringify({ name, email, result, answers: finalAnswers }),
       });
     } catch {
-      // silent fail
+      // silent — user already has result client-side
     }
   }
 
-  // ── Results data ─────────────────────────────────────────────────────────────
-  const scores = computeScores(selectedOptions);
-  const recommendation = getRecommendation(scores);
-  const normalised = normalisedScores(scores);
-  const reasons = getReasons(answerIndices, recommendation);
-  const program = programs[recommendation];
-  const altProgram = programs[alternativeProgram[recommendation]];
+  // Compute result client-side for rendering
+  const result = answers.length === questions.length ? computeResult(answers) : null;
 
   // ═══════════════════════════════════════════════════════════════════════════════
   // LANDING
@@ -145,15 +137,14 @@ export default function AssessPage() {
               <span>[NC]</span>
             </div>
             <h1 className="oci-display-sm max-w-3xl">
-              Find the right training
+              Most teams think they&apos;re AI-ready.
               <br />
-              for your team.
+              Almost none actually are.
             </h1>
             <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-              Most teams think they&apos;re AI-ready. Almost none actually are.
-              12 questions. 2 minutes. A personalized program recommendation
-              based on where your team actually stands — not where you hope
-              they are.
+              10 questions. 2 minutes. A full diagnostic across three dimensions —
+              plus a stack audit and a program recommendation for where your
+              team actually stands. Delivered to your inbox.
             </p>
           </div>
         </section>
@@ -169,10 +160,11 @@ export default function AssessPage() {
                 </div>
                 <div className="space-y-3">
                   {[
-                    "A personalised program recommendation",
-                    "3 specific reasons it fits your situation",
-                    "Fit scores across all 3 programs",
-                    "Pricing, format, and a clear next step",
+                    "A readiness score out of 100",
+                    "Your tier — from Starting Line to At The Frontier",
+                    "Sub-scores across Adoption, Readiness, and Blockers",
+                    "A stack audit of the tools you're using (or aren't)",
+                    "A program recommendation with pricing and next step",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <span className="text-[#1549CD] text-xs">✓</span>
@@ -183,9 +175,9 @@ export default function AssessPage() {
 
                 <div className="mt-12 grid gap-px bg-foreground/10 sm:grid-cols-3">
                   {[
-                    { n: "01", label: "Your Goal", q: "What are you trying to achieve?" },
-                    { n: "02", label: "Your Team", q: "Where are you right now?" },
-                    { n: "03", label: "Your Context", q: "What's in the way?" },
+                    { n: "01", label: "Your Situation", q: "Where are you actually at?" },
+                    { n: "02", label: "Your Team", q: "Who are we working with?" },
+                    { n: "03", label: "Your Stack", q: "What's in play and what's in the way?" },
                   ].map((s) => (
                     <div key={s.n} className="bg-[#E8E6E0] p-6">
                       <p className="text-2xl font-light text-[#1549CD]/30">{s.n}</p>
@@ -203,13 +195,14 @@ export default function AssessPage() {
               <div className="flex items-start justify-center lg:pt-12">
                 <div className="w-full border border-foreground/10 p-10">
                   <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
-                    Free · 2 minutes
+                    Free · 2 minutes · Emailed to you
                   </p>
                   <h2 className="mt-4 text-2xl font-light tracking-tight">
-                    Ready to find the right fit?
+                    Find out where your team actually stands.
                   </h2>
                   <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                    No pitch required to see your recommendation.
+                    No pitch to see your result. You get the full scorecard in
+                    your inbox — diagnose, share, revisit.
                   </p>
                   <button
                     onClick={() => setStep("capture")}
@@ -244,15 +237,15 @@ export default function AssessPage() {
         <section className="py-32 lg:py-40 relative oci-grid-lines">
           <div className="mx-auto max-w-lg px-6 lg:px-8">
             <div className="oci-section-label mb-8">
-              <span>SECTION 01 / YOUR GOAL</span>
+              <span>SECTION 01 / YOUR SITUATION</span>
               <span>[NC]</span>
             </div>
             <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-              Where should we send your recommendation?
+              Where should we send your scorecard?
             </h2>
             <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-              Your personalised program recommendation — with the reasoning behind
-              it — sent straight to your inbox when you&apos;re done.
+              The full readiness scorecard — score, tier, diagnosis, stack audit,
+              and a program recommendation — sent to your inbox when you&apos;re done.
             </p>
 
             <form onSubmit={handleCapture} className="mt-10 space-y-4">
@@ -340,10 +333,11 @@ export default function AssessPage() {
   // QUIZ
   // ═══════════════════════════════════════════════════════════════════════════════
   if (step === "quiz") {
-    const isMulti = !!q.multiSelect;
+    const isMulti = q.kind === "multi" || q.kind === "stack";
+    const isFinal = !!q.isFinal;
 
     return (
-      <div className="min-h-screen" ref={containerRef}>
+      <div className="min-h-screen">
         {/* Progress bar */}
         <div className="fixed top-0 left-0 right-0 z-50 h-1 bg-foreground/10">
           <div
@@ -357,7 +351,7 @@ export default function AssessPage() {
             {/* Header */}
             <div className="flex items-center justify-between">
               <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
-                {q.section} · {q.sectionIndex}/{q.sectionTotal}
+                {q.sectionLabel}
               </p>
               <p className="text-[11px] text-foreground/40">
                 {currentQ + 1} / {questions.length}
@@ -387,7 +381,7 @@ export default function AssessPage() {
                   <button
                     key={i}
                     onClick={() =>
-                      isMulti ? handleMultiToggle(i) : handleOptionClick(i)
+                      isMulti ? handleMultiToggle(i) : handleSingleClick(i)
                     }
                     className={`w-full border text-left px-6 py-4 text-sm leading-relaxed transition-all duration-200 cursor-pointer flex items-start gap-4
                       ${
@@ -400,7 +394,6 @@ export default function AssessPage() {
                           : "border-foreground/15 hover:border-[#1549CD]/50 text-foreground"
                       }`}
                   >
-                    {/* Checkbox indicator for multi-select */}
                     {isMulti && (
                       <span
                         className={`mt-0.5 shrink-0 w-4 h-4 border flex items-center justify-center transition-all duration-150 ${
@@ -442,7 +435,7 @@ export default function AssessPage() {
                   disabled={multiSelections.length === 0}
                   onClick={handleMultiNext}
                 >
-                  {currentQ + 1 === questions.length ? "See My Result →" : "Next →"}
+                  {isFinal ? "See My Results →" : "Next →"}
                 </button>
               </div>
             )}
@@ -471,124 +464,229 @@ export default function AssessPage() {
   // ═══════════════════════════════════════════════════════════════════════════════
   // RESULTS
   // ═══════════════════════════════════════════════════════════════════════════════
+  if (!result) {
+    // Defensive — shouldn't happen. Kick them back to landing.
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <button
+          onClick={() => setStep("landing")}
+          className="text-[11px] uppercase tracking-[0.15em] underline"
+        >
+          ← Start over
+        </button>
+      </div>
+    );
+  }
+
+  const tier = tierCopy[result.tier];
+  const stack = getStackAuditCopy(result.stackBucket, result.stackCount);
+  const program = programs[result.recommendedProgram];
+  const altProgram = programs[alternativeProgram[result.recommendedProgram]];
+
   return (
     <div className="min-h-screen">
-      {/* Hero — cobalt */}
-      <section className="relative min-h-[50vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      {/* ── Hero: score + tier ─────────────────────────────────────────────── */}
+      <section className="relative min-h-[70vh] bg-[#1549CD] text-white overflow-hidden flex items-center">
         <div className="oci-grid-lines-light" />
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 w-full">
           <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-            {name ? `${name}'s Result` : "Your Result"} · Program Finder
+            {name ? `${name}'s Scorecard` : "Your Scorecard"} · AI Readiness
           </p>
-          <h1 className="oci-display-sm mt-4 max-w-3xl">
-            {program.tagline}
-          </h1>
-          <div className="mt-6 inline-flex items-center border border-white/20 bg-white/10 px-5 py-2">
-            <p className="text-[11px] uppercase tracking-[0.15em] text-white/60">
-              Recommended:
+
+          <div className="mt-8 flex flex-col items-start">
+            <p className="font-light leading-none tracking-tight text-white" style={{ fontSize: "clamp(6rem, 18vw, 13rem)" }}>
+              {result.normalizedScore}
+              <span className="text-white/30 font-light" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)" }}>
+                {" / 100"}
+              </span>
             </p>
-            <p className="ml-3 text-sm font-medium text-white">
-              {program.label}
+            <p className="mt-6 text-[13px] font-medium uppercase tracking-[0.25em] text-white">
+              {tier.label}
             </p>
           </div>
+
+          <p className="mt-10 max-w-2xl text-base lg:text-lg leading-relaxed text-white/80 font-light">
+            {tier.tagline}
+          </p>
         </div>
       </section>
 
-      {/* Why this program */}
+      {/* ── What this means (tier diagnosis) ──────────────────────────────── */}
       <section className="py-16 lg:py-24 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="oci-section-label mb-8">
+            <span>WHAT THIS MEANS</span>
+            <span>[NC.1]</span>
+          </div>
           <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
             <div>
-              <div className="oci-section-label mb-8">
-                <span>WHY THIS FITS</span>
-                <span>[NC.1]</span>
-              </div>
-              <div className="space-y-6">
-                {reasons.map((reason, i) => (
+              <p className="text-lg leading-relaxed text-foreground/80 max-w-2xl">
+                {tier.diagnosis}
+              </p>
+              <div className="mt-10 space-y-5">
+                {tier.whatItMeans.map((w, i) => (
                   <div key={i} className="flex gap-5">
                     <span className="mt-1 text-2xl font-light text-[#1549CD]/30 shrink-0 w-6">
                       {String(i + 1).padStart(2, "0")}
                     </span>
-                    <p className="text-sm text-foreground/60 leading-relaxed">
-                      {reason}
-                    </p>
+                    <p className="text-sm text-foreground/70 leading-relaxed">{w}</p>
                   </div>
                 ))}
               </div>
+            </div>
 
-              <div className="mt-12">
-                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 mb-6">
-                  Program Fit
+            {/* Score summary card */}
+            <div className="border border-foreground/10 p-8 self-start">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+                Summary
+              </p>
+              <p className="mt-4 text-5xl font-light text-[#1549CD]">
+                {result.normalizedScore}
+                <span className="text-foreground/30 text-xl">/100</span>
+              </p>
+              <p className="mt-3 text-[11px] uppercase tracking-[0.2em] font-medium">
+                {tier.label}
+              </p>
+              <div className="mt-6 space-y-2 text-xs text-foreground/60">
+                <p>
+                  Stack: <span className="text-foreground">Bucket {result.stackBucket}</span>{" "}
+                  · {result.stackCount} tools
                 </p>
-                <div className="space-y-4">
-                  {(
-                    [
-                      ["foundations", "Foundations"],
-                      ["accelerator", "Accelerator"],
-                      ["transformation", "Transformation"],
-                    ] as const
-                  ).map(([key, label]) => (
-                    <div key={key} className="flex items-center gap-4">
-                      <p
-                        className={`text-[11px] uppercase tracking-[0.15em] w-28 shrink-0 ${
-                          key === recommendation
-                            ? "text-foreground font-medium"
-                            : "text-foreground/40"
-                        }`}
-                      >
-                        {label}
-                      </p>
-                      <div className="flex-1 h-1 bg-foreground/10">
-                        <div
-                          className={`h-full transition-all duration-1000 delay-300 ${
-                            key === recommendation
-                              ? "bg-[#1549CD]"
-                              : "bg-foreground/20"
-                          }`}
-                          style={{ width: `${normalised[key]}%` }}
-                        />
-                      </div>
-                      {key === recommendation && (
-                        <p className="text-[11px] text-[#1549CD] shrink-0 font-medium">
-                          ← recommended
-                        </p>
-                      )}
-                    </div>
-                  ))}
-                </div>
+                <p>
+                  Recommended: <span className="text-foreground">{program.label}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── The diagnosis: dimensions ─────────────────────────────────────── */}
+      <section className="py-16 lg:py-24 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="oci-section-label mb-8 border-white/20 text-white/40">
+            <span>THE DIAGNOSIS</span>
+            <span>[NC.2]</span>
+          </div>
+          <p className="oci-display-sm max-w-3xl">Three dimensions. One picture.</p>
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
+            Your score isn&apos;t one number — it&apos;s a composite. Here&apos;s how
+            each dimension shakes out on its own.
+          </p>
+
+          <div className="mt-12 space-y-8 max-w-3xl">
+            <DimensionBar
+              label="Adoption"
+              description="How embedded AI is in day-to-day work right now."
+              score={result.dimensions.adoption}
+              max={DIMENSION_MAX.adoption}
+            />
+            <DimensionBar
+              label="Readiness"
+              description="Prior training, urgency, team size, and where you want to land."
+              score={result.dimensions.readiness}
+              max={DIMENSION_MAX.readiness}
+            />
+            <DimensionBar
+              label="Blockers"
+              description="How much of the work to unblock AI adoption has been done."
+              score={result.dimensions.blockers}
+              max={DIMENSION_MAX.blockers}
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ── Stack audit ───────────────────────────────────────────────────── */}
+      <section className="py-16 lg:py-24 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="oci-section-label mb-8">
+            <span>YOUR STACK</span>
+            <span>[NC.3]</span>
+          </div>
+          <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
+            <div>
+              <p className="oci-display-sm max-w-2xl">{stack.headline}</p>
+              <p className="mt-6 text-base leading-relaxed text-foreground/70 max-w-2xl">
+                {stack.body}
+              </p>
+              <div className="mt-8 border-l-2 border-[#1549CD] pl-6 max-w-2xl">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 mb-2">
+                  Priority
+                </p>
+                <p className="text-sm leading-relaxed text-foreground">
+                  {stack.takeaway.replace(/^Priority: /, "")}
+                </p>
               </div>
             </div>
 
+            <div className="border border-foreground/10 p-8 self-start">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+                Tools in rotation
+              </p>
+              <p className="mt-4 text-5xl font-light text-[#1549CD]">
+                {result.stackCount}
+              </p>
+              <p className="mt-2 text-[11px] uppercase tracking-[0.2em] font-medium">
+                Bucket {result.stackBucket}
+              </p>
+              <p className="mt-6 text-xs text-foreground/60 leading-relaxed">
+                {result.stackBucket === "A"
+                  ? "Light stack. Methodology is your unlock."
+                  : "Deep stack. Consolidation is your unlock."}
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Program recommendation ────────────────────────────────────────── */}
+      <section className="py-16 lg:py-24 bg-[#E8E6E0] relative">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="oci-section-label mb-8">
+            <span>RECOMMENDED PROGRAM</span>
+            <span>[NC.4]</span>
+          </div>
+          <div className="grid gap-12 lg:grid-cols-[1fr_380px]">
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+                Based on your tier
+              </p>
+              <h3 className="mt-3 text-4xl lg:text-5xl font-light tracking-tight">
+                {program.label}
+              </h3>
+              <p className="mt-4 text-lg text-foreground/70 max-w-2xl">
+                {program.tagline}
+              </p>
+              <p className="mt-6 text-sm leading-relaxed text-foreground/70 max-w-2xl">
+                {program.detail}
+              </p>
+              <p className="mt-8 text-[11px] uppercase tracking-[0.15em] text-foreground/50">
+                {program.pricing} · {program.duration}
+              </p>
+            </div>
+
             {/* CTA card */}
-            <div className="space-y-6">
-              <div className="border border-foreground/10 p-8">
+            <div className="space-y-4 self-start">
+              <div className="border border-foreground/20 bg-background p-8">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
-                  {program.label}
+                  Next Step
                 </p>
-                <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                  {program.detail}
+                <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+                  30 minutes with Jeremy. No pitch. He maps the program to your
+                  specific team and timeline.
                 </p>
-                <div className="mt-6 flex gap-4 text-sm">
-                  <p className="font-medium">{program.pricing}</p>
-                  <p className="text-foreground/60">{program.duration}</p>
-                </div>
                 <Link
                   href="/book"
-                  className="mt-8 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
+                  className="mt-6 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
                   Book a Discovery Call
                 </Link>
-                <p className="mt-3 text-xs text-foreground/40 text-center">
-                  30 min. No pitch. Just clarity on the right next step.
-                </p>
-              </div>
-
-              <div className="border border-foreground/10 p-6">
                 <Link
                   href={program.href}
-                  className="text-[11px] uppercase tracking-[0.15em] underline underline-offset-4 hover:text-foreground/60 transition-colors"
+                  className="mt-3 block w-full border border-foreground/20 px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-foreground transition-colors hover:bg-foreground hover:text-white"
                 >
-                  Full program details →
+                  Program Details →
                 </Link>
               </div>
             </div>
@@ -596,12 +694,12 @@ export default function AssessPage() {
         </div>
       </section>
 
-      {/* Alternative option */}
+      {/* ── Alternative program ───────────────────────────────────────────── */}
       <section className="py-16 lg:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="oci-section-label mb-8 border-white/20 text-white/40">
             <span>ALTERNATIVELY</span>
-            <span>[NC.2]</span>
+            <span>[NC.5]</span>
           </div>
           <div className="grid gap-8 lg:grid-cols-[1fr_auto] items-center">
             <div>
@@ -623,20 +721,59 @@ export default function AssessPage() {
         </div>
       </section>
 
-      {/* Retake */}
+      {/* ── Retake + inbox nudge ──────────────────────────────────────────── */}
       <section className="py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <p className="text-sm text-foreground/60">
-            Want to run this with your team?
+            Check your inbox — the full scorecard is on its way to{" "}
+            <span className="text-foreground">{email}</span>.
           </p>
           <Link
             href="/assess"
             className="mt-4 inline-block border border-foreground/20 px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-foreground/60 transition-colors hover:bg-foreground hover:text-white"
           >
-            Retake the Finder
+            Retake the Scorecard
           </Link>
         </div>
       </section>
+    </div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// DimensionBar
+// ═══════════════════════════════════════════════════════════════════════════════
+function DimensionBar({
+  label,
+  description,
+  score,
+  max,
+}: {
+  label: string;
+  description: string;
+  score: number;
+  max: number;
+}) {
+  const pct = Math.round((score / max) * 100);
+  return (
+    <div>
+      <div className="flex items-end justify-between">
+        <div>
+          <p className="text-[11px] uppercase tracking-[0.2em] font-medium">
+            {label}
+          </p>
+          <p className="mt-1 text-xs text-white/50 max-w-md">{description}</p>
+        </div>
+        <p className="text-[11px] font-light text-white/70 whitespace-nowrap ml-4">
+          {score} / {max}
+        </p>
+      </div>
+      <div className="mt-3 h-[3px] w-full bg-white/10 overflow-hidden">
+        <div
+          className="h-full bg-white transition-all duration-1000 ease-out"
+          style={{ width: `${pct}%` }}
+        />
+      </div>
     </div>
   );
 }

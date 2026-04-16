@@ -1,4 +1,7 @@
-import type { Program } from "./questions";
+// Program metadata for the 3 creative training programs.
+// Tier-to-program mapping lives in logic.ts.
+
+export type Program = "foundations" | "accelerator" | "transformation";
 
 export interface ProgramData {
   label: string;
@@ -39,7 +42,7 @@ export const programs: Record<Program, ProgramData> = {
   },
 };
 
-// The alternative program to surface alongside the recommendation
+// The alternative program to surface alongside the recommendation.
 export const alternativeProgram: Record<Program, Program> = {
   foundations: "accelerator",
   accelerator: "transformation",
