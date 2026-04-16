@@ -384,24 +384,34 @@ export default function MethodologyPage() {
               </Reveal>
             </div>
 
-            <Reveal delay={200} direction="right">
-              <div>
-                <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-6">
-                  What Your Team Learns
-                </p>
-                <ul className="space-y-5">
-                  {phases[1].what.map((item) => (
-                    <li
-                      key={item}
-                      className="flex gap-4 text-sm text-white/60 leading-relaxed"
-                    >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-white/40" />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </Reveal>
+            <div>
+              <Reveal delay={200} direction="right">
+                <div>
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-6">
+                    What Your Team Learns
+                  </p>
+                  <ul className="space-y-5">
+                    {phases[1].what.map((item) => (
+                      <li
+                        key={item}
+                        className="flex gap-4 text-sm text-white/60 leading-relaxed"
+                      >
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-white/40" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </Reveal>
+              <Reveal delay={300}>
+                <img
+                  src="/images/illustrations/pyramid-blue.png"
+                  alt=""
+                  className="mt-10 w-full max-w-sm ml-auto opacity-60"
+                  role="presentation"
+                />
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
