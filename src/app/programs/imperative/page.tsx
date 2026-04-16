@@ -172,6 +172,16 @@ export default function ImperativePage() {
               </div>
             ))}
           </div>
+
+          {/* Illustration accent */}
+          <div className="mt-16">
+            <img
+              src="/images/illustrations/cloud-dark.png"
+              alt=""
+              className="w-full max-w-2xl mx-auto opacity-50"
+              role="presentation"
+            />
+          </div>
         </div>
       </section>
 

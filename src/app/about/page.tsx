@@ -167,6 +167,18 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Illustration break — The Team */}
+      <section className="py-8 lg:py-12 relative oci-grid-lines overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <img
+            src="/images/illustrations/team-cream.png"
+            alt=""
+            className="w-full max-w-3xl mx-auto opacity-80"
+            role="presentation"
+          />
+        </div>
+      </section>
+
       {/* Differentiators — cobalt bg */}
       <section className="py-16 lg:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

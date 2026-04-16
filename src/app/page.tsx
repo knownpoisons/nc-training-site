@@ -169,6 +169,15 @@ export default function Home() {
             </Link>
           </div>
         </div>
+        {/* Illustration — the overwhelm */}
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 mt-12 lg:mt-16">
+          <img
+            src="/images/illustrations/chaos-dark.png"
+            alt=""
+            className="mx-auto w-full max-w-2xl opacity-70"
+            role="presentation"
+          />
+        </div>
       </section>
 
       {/* ═══ INTRO — Oversized statement + stats + Maesa quote + logos ═══ */}
@@ -494,6 +503,18 @@ export default function Home() {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ ILLUSTRATION BREAK — Cloud Workspace ═══ */}
+      <section className="py-0 relative oci-grid-lines overflow-hidden">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <img
+            src="/images/illustrations/cloud-cream.png"
+            alt=""
+            className="w-full max-w-3xl mx-auto opacity-80"
+            role="presentation"
+          />
         </div>
       </section>
 
