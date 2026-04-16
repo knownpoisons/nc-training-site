@@ -58,6 +58,9 @@ export default function ProgramsPage() {
             Two programs. One methodology — Diverge, Converge,
             Systemize — scaled to match where your team is now.
           </p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/60">
+            Most teams have a few people dabbling in AI — using different tools, with no shared methodology, and no structured training to bring the team together. Our programs are designed to solve for this. The teams that go through them come together and move at speed into the new world of AI-assisted work.
+          </p>
         </div>
       </section>
 
@@ -104,6 +107,44 @@ export default function ProgramsPage() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Imperative — Operations Training */}
+      <section className="py-16 lg:py-24 bg-foreground text-white">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
+            <span>ALSO AVAILABLE</span>
+            <span>[NC]</span>
+          </div>
+          <h2 className="mt-8 text-3xl lg:text-4xl font-light tracking-tight max-w-3xl">
+            AI training for the rest of the business.
+          </h2>
+          <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
+            Not every team makes ads. But every team has workflows that AI can transform. Claude training for operations, leadership, and non-creative teams — from context engineering to agent management.
+          </p>
+
+          <div className="mt-12 grid gap-px bg-white/10 lg:grid-cols-3">
+            {[
+              { label: "Context Engineering", description: "The most important skill in AI isn't prompting. It's knowing what context to give the model — and what to leave out." },
+              { label: "Workflow Mapping", description: "Before you automate anything, you map everything. Then you systematically eliminate anything your team does more than twice." },
+              { label: "Agent Management", description: "Context switching, output evaluation, systematic delegation. Management skills applied to a new kind of direct report." },
+            ].map((concept) => (
+              <div key={concept.label} className="bg-foreground p-8">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">{concept.label}</p>
+                <p className="mt-6 text-sm leading-relaxed text-white/50">{concept.description}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10">
+            <Link
+              href="/book"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+            >
+              Book a Discovery Call
+            </Link>
           </div>
         </div>
       </section>

@@ -48,7 +48,7 @@ const phases = [
     hook: "Build workflows that run without you.",
     description:
       "The team that depends on a trainer isn't trained.\n\nSystemize is where individual skill becomes organisational capability. Document what works. Build templates. Create processes any team member can run from day one. This is where training becomes transformation.",
-    outcome: "The team doesn't need Jeremy anymore. That's the point.",
+    outcome: "The team doesn't need us anymore. That's the point.",
     what: [
       "Workflow documentation people actually follow",
       "Prompt libraries tuned to your brand voice and visual identity",
@@ -78,10 +78,6 @@ const differences = [
   {
     theirs: "Theory and slides",
     ours: "Your brand assets, your briefs, your output — from session one",
-  },
-  {
-    theirs: "No governance framework",
-    ours: "AI Governance Starter Kit — approved tools, IP frameworks, disclosure standards",
   },
 ];
 
@@ -130,37 +126,6 @@ export default function MethodologyPage() {
               >
                 Book a Discovery Call
               </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ═══ STATS BAR ═══ */}
-      <section className="py-20 lg:py-28 relative oci-grid-lines">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <div className="oci-section-label">
-              <span>Impact</span>
-              <span>[NC.1]</span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-16">
-              {[
-                { n: "96%", label: "Average time savings across trained teams" },
-                { n: "400%", label: "Output increase without adding headcount" },
-                { n: "$280K", label: "Saved on a single product launch" },
-              ].map((stat) => (
-                <div key={stat.n}>
-                  <p className="text-4xl lg:text-5xl font-medium tracking-tight text-[#1549CD]">
-                    <AnimatedCounter value={stat.n} />
-                  </p>
-                  <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
             </div>
           </Reveal>
         </div>
@@ -315,7 +280,7 @@ export default function MethodologyPage() {
             </div>
 
             <Reveal delay={200} direction="right">
-              <div>
+              <div className="border border-[#1549CD]/20 bg-[#1549CD]/[0.02] p-8">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
                   What Your Team Learns
                 </p>
@@ -384,34 +349,24 @@ export default function MethodologyPage() {
               </Reveal>
             </div>
 
-            <div>
-              <Reveal delay={200} direction="right">
-                <div>
-                  <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-6">
-                    What Your Team Learns
-                  </p>
-                  <ul className="space-y-5">
-                    {phases[1].what.map((item) => (
-                      <li
-                        key={item}
-                        className="flex gap-4 text-sm text-white/60 leading-relaxed"
-                      >
-                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-white/40" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </Reveal>
-              <Reveal delay={300}>
-                <img
-                  src="/images/illustrations/pyramid-blue.png"
-                  alt=""
-                  className="mt-8 w-full max-w-[280px] max-h-[380px] object-contain ml-auto opacity-50"
-                  role="presentation"
-                />
-              </Reveal>
-            </div>
+            <Reveal delay={200} direction="right">
+              <div className="border border-white/20 bg-white/[0.05] p-8">
+                <p className="text-[11px] uppercase tracking-[0.15em] text-white/50 mb-6">
+                  What Your Team Learns
+                </p>
+                <ul className="space-y-5">
+                  {phases[1].what.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-4 text-sm text-white/60 leading-relaxed"
+                    >
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-white/40" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
@@ -457,7 +412,7 @@ export default function MethodologyPage() {
             </div>
 
             <Reveal delay={200} direction="right">
-              <div>
+              <div className="border border-[#1549CD]/20 bg-[#1549CD]/[0.02] p-8">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
                   What Your Team Learns
                 </p>
@@ -475,6 +430,37 @@ export default function MethodologyPage() {
               </div>
             </Reveal>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ STATS BAR ═══ */}
+      <section className="py-20 lg:py-28 relative oci-grid-lines">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="oci-section-label">
+              <span>Impact</span>
+              <span>[NC.1]</span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={100}>
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-10 lg:gap-16">
+              {[
+                { n: "96%", label: "Average time savings across trained teams" },
+                { n: "400%", label: "Output increase without adding headcount" },
+                { n: "$280K", label: "Saved on a single product launch" },
+              ].map((stat) => (
+                <div key={stat.n}>
+                  <p className="text-4xl lg:text-5xl font-medium tracking-tight text-[#1549CD]">
+                    <AnimatedCounter value={stat.n} />
+                  </p>
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </Reveal>
         </div>
       </section>
 
@@ -529,88 +515,6 @@ export default function MethodologyPage() {
         </div>
       </section>
 
-      {/* ═══ CLIENTS ═══ */}
-      <section className="py-24 lg:py-36 bg-[#1549CD] text-white relative overflow-hidden">
-        {/* Grid overlay */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
-            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
-            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
-          </div>
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/50">
-              <span>Trusted By</span>
-              <span>[NC.4]</span>
-            </div>
-          </Reveal>
-
-          <Reveal delay={100}>
-            <h2 className="oci-display-sm text-white mt-8">
-              The teams already using this method.
-            </h2>
-          </Reveal>
-
-          <div className="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-4">
-            {["Cash App", "Maesa", "Herman Scheer", "Nike", "Apple", "Adidas", "Google"].map(
-              (brand, i) => (
-                <Reveal key={brand} delay={150 + i * 60}>
-                  <div className="flex items-center justify-center border border-white/15 py-8 transition-colors hover:border-white/30 hover:bg-white/5">
-                    <p className="text-sm font-medium uppercase tracking-[0.15em] text-white/60">
-                      {brand}
-                    </p>
-                  </div>
-                </Reveal>
-              )
-            )}
-          </div>
-        </div>
-      </section>
-
-      {/* ═══ CTA BAND ═══ */}
-      <section className="py-24 lg:py-36 bg-[#1549CD] text-white relative overflow-hidden border-t border-white/10">
-        {/* Grid overlay */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
-            <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
-            <div className="absolute top-0 bottom-0 right-1/3 w-px bg-white/[0.08]" />
-          </div>
-        </div>
-
-        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <Reveal>
-            <h2 className="oci-display-sm text-white mx-auto max-w-3xl">
-              See how this applies
-              <br />
-              to your team.
-            </h2>
-          </Reveal>
-          <Reveal delay={100}>
-            <p className="mt-6 text-lg text-white/60 max-w-lg mx-auto leading-relaxed">
-              Take the 2-minute Readiness Scorecard to find out where your team stands
-              &mdash; or skip straight to a conversation.
-            </p>
-          </Reveal>
-          <Reveal delay={200}>
-            <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/assess"
-                className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
-              >
-                Take the Readiness Scorecard
-              </Link>
-              <Link
-                href="/book"
-                className="inline-flex items-center justify-center h-14 px-10 border border-white/30 text-white text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/10 transition-colors"
-              >
-                Book a Discovery Call
-              </Link>
-            </div>
-          </Reveal>
-        </div>
-      </section>
     </>
   );
 }

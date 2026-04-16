@@ -24,6 +24,7 @@ type Step = "landing" | "capture" | "section-intro" | "quiz" | "results";
 export default function AssessPage() {
   const [step, setStep] = useState<Step>("landing");
   const [name, setName] = useState("");
+  const [company, setCompany] = useState("");
   const [email, setEmail] = useState("");
 
   const [currentQ, setCurrentQ] = useState(0);
@@ -112,7 +113,7 @@ export default function AssessPage() {
       await fetch("/api/assess", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, result, answers: finalAnswers }),
+        body: JSON.stringify({ name, company, email, result, answers: finalAnswers }),
       });
     } catch {
       // silent — user already has result client-side
@@ -128,100 +129,30 @@ export default function AssessPage() {
   if (step === "landing") {
     return (
       <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
-        {/* Cobalt hero */}
-        <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+        <section className="min-h-[calc(100vh-3.5rem)] bg-[#1549CD] text-white flex items-center relative overflow-hidden">
           <div className="oci-grid-lines-light" />
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
-            <div className="oci-section-label mb-8 border-white/20 text-white/40">
-              <span>AI TRAINING READINESS SCORECARD</span>
-              <span>[NC]</span>
-            </div>
-            <h1 className="oci-display-sm max-w-3xl">
-              Most teams think they&apos;re AI-ready.
-              <br />
-              Almost none actually are.
-            </h1>
-            <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-              10 questions. 2 minutes. A full diagnostic across three dimensions —
-              plus a stack audit and a program recommendation for where your
-              team actually stands. Delivered to your inbox.
+          <div className="relative z-10 mx-auto max-w-2xl px-6 lg:px-8 text-center">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
+              AI Training Readiness Scorecard
             </p>
-          </div>
-        </section>
-
-        {/* Content */}
-        <section className="py-16 lg:py-24 relative oci-grid-lines">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="grid gap-12 lg:grid-cols-2">
-              <div>
-                <div className="oci-section-label mb-8">
-                  <span>WHAT YOU GET</span>
-                  <span>[NC.1]</span>
-                </div>
-                <div className="space-y-3">
-                  {[
-                    "A readiness score out of 100",
-                    "Your tier — from Starting Line to At The Frontier",
-                    "Sub-scores across Adoption, Readiness, and Blockers",
-                    "A stack audit of the tools you're using (or aren't)",
-                    "A program recommendation with pricing and next step",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <span className="text-[#1549CD] text-xs">✓</span>
-                      <p className="text-sm text-foreground/60">{item}</p>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-12 grid gap-px bg-foreground/10 sm:grid-cols-3">
-                  {[
-                    { n: "01", label: "Your Situation", q: "Where are you actually at?" },
-                    { n: "02", label: "Your Team", q: "Who are we working with?" },
-                    { n: "03", label: "Your Stack", q: "What's in play and what's in the way?" },
-                  ].map((s) => (
-                    <div key={s.n} className="bg-[#E8E6E0] p-6">
-                      <p className="text-2xl font-light text-[#1549CD]/30">{s.n}</p>
-                      <p className="mt-2 text-[11px] uppercase tracking-[0.15em] font-medium">
-                        {s.label}
-                      </p>
-                      <p className="mt-2 text-sm text-foreground/60 leading-relaxed">
-                        {s.q}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex items-start justify-center lg:pt-12">
-                <div className="w-full border border-foreground/10 p-10">
-                  <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
-                    Free · 2 minutes · Emailed to you
-                  </p>
-                  <h2 className="mt-4 text-2xl font-light tracking-tight">
-                    Find out where your team actually stands.
-                  </h2>
-                  <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                    No pitch to see your result. You get the full scorecard in
-                    your inbox — diagnose, share, revisit.
-                  </p>
-                  <button
-                    onClick={() => setStep("capture")}
-                    className="mt-8 w-full cursor-pointer bg-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
-                  >
-                    Start the Scorecard →
-                  </button>
-
-                  <div className="mt-8 border-t border-foreground/10 pt-6">
-                    <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 mb-3">
-                      Informed by training teams at
-                    </p>
-                    <p className="text-sm text-foreground/40">
-                      Cash App · Maesa · Herman Scheer · Adidas · Google
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <h1 className="mt-6 text-4xl lg:text-5xl font-light tracking-tight leading-tight">
+              Find out where your team
+              <br />
+              actually stands.
+            </h1>
+            <p className="mt-6 text-sm leading-relaxed text-white/60 max-w-md mx-auto">
+              10 questions. 2 minutes. You&apos;ll get a readiness score, a tier diagnosis,
+              a stack audit, and a program recommendation.
+            </p>
+            <button
+              onClick={() => setStep("capture")}
+              className="mt-10 cursor-pointer bg-white text-[#1549CD] px-10 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+            >
+              Start the Scorecard →
+            </button>
+            <p className="mt-4 text-[11px] text-white/30">
+              Free · No pitch to see results
+            </p>
           </div>
         </section>
       </div>
@@ -259,6 +190,19 @@ export default function AssessPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your first name"
+                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
+                />
+              </div>
+              <div>
+                <label className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+                  Company
+                </label>
+                <input
+                  type="text"
+                  required
+                  value={company}
+                  onChange={(e) => setCompany(e.target.value)}
+                  placeholder="Your company"
                   className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
                 />
               </div>
@@ -350,13 +294,29 @@ export default function AssessPage() {
           <div className="mx-auto max-w-2xl px-6 lg:px-8">
             {/* Header */}
             <div className="flex items-center justify-between">
-              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
                 {q.sectionLabel}
               </p>
-              <p className="text-[11px] text-foreground/40">
-                {currentQ + 1} / {questions.length}
+              <p className="text-[11px] text-[#1549CD]">
+                {currentQ + 1} of {questions.length} · Total Progress
               </p>
             </div>
+
+            {/* Back button */}
+            {currentQ > 0 && (
+              <button
+                onClick={() => {
+                  setAnswers(answers.slice(0, -1));
+                  setCurrentQ(currentQ - 1);
+                }}
+                className="mt-4 text-[11px] uppercase tracking-[0.15em] text-foreground/40 hover:text-[#1549CD] transition-colors cursor-pointer flex items-center gap-2"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M8 3L4 7l4 4" />
+                </svg>
+                Back
+              </button>
+            )}
 
             {/* Question */}
             <h2 className="mt-6 text-2xl lg:text-3xl font-light tracking-tight leading-snug">
