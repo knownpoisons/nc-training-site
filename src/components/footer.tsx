@@ -30,13 +30,20 @@ export function Footer() {
 
           <div className="grid gap-12 md:grid-cols-3">
             <div>
-              <p className="text-[11px] font-semibold uppercase tracking-[0.15em]">
-                NOTCONTENT{" "}
-                <span className="font-light text-foreground/40">
-                  / training
-                </span>
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logos/brand/NCT-Icon-PlatinumonBlue.png"
+                  alt=""
+                  className="h-10 w-10 rounded-[2px] shadow-sm ring-1 ring-black/5"
+                />
+                <p className="text-[11px] font-semibold uppercase tracking-[0.15em]">
+                  NOTCONTENT{" "}
+                  <span className="font-light text-foreground/40">
+                    / training
+                  </span>
+                </p>
+              </div>
+              <p className="mt-5 text-sm leading-relaxed text-muted-foreground">
                 AI creative training for enterprise teams. From the agency behind
                 Adidas, Google, and Tommy Hilfiger campaigns.
               </p>
@@ -82,9 +89,16 @@ export function Footer() {
 
           <div className="mt-12 border-t border-foreground/10 pt-8">
             <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
-                &copy; {new Date().getFullYear()} NotContent. All rights reserved.
-              </p>
+              <div className="flex items-center gap-3">
+                <img
+                  src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
+                  alt=""
+                  className="h-5 w-5 rounded-[2px] opacity-50"
+                />
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
+                  &copy; {new Date().getFullYear()} NotContent. All rights reserved.
+                </p>
+              </div>
               <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
                 Los Angeles · Hawaii · Sydney
               </p>
