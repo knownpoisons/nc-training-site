@@ -70,13 +70,13 @@ export default function Home() {
               <img
                 src="/images/logos/brand/NCT-Logo-Platinum-Transparent.png"
                 alt="NotContent — AI Creative Training for Creative Teams and Brands"
-                className="mx-auto w-full max-w-[720px] lg:max-w-[820px] h-auto"
+                className="mx-auto w-full max-w-[380px] lg:max-w-[480px] h-auto"
               />
             </Reveal>
 
             {/* Tagline + value prop */}
             <Reveal delay={200}>
-              <div className="mt-12 lg:mt-16 max-w-2xl mx-auto space-y-5">
+              <div className="mt-8 lg:mt-10 max-w-2xl mx-auto space-y-5">
                 <div className="flex items-center justify-center gap-3">
                   <span className="h-px w-10 bg-white/30" />
                   <p className="text-white/60 text-[11px] uppercase tracking-[0.2em]">
