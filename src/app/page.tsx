@@ -63,43 +63,32 @@ export default function Home() {
         </div>
 
         {/* Main hero content */}
-        <div className="relative z-20 flex flex-col justify-end min-h-[calc(100vh-120px)] pb-16 lg:pb-24 pt-24 lg:pt-32">
-          <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
-            <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 items-end">
-              {/* Logo poster — the hero feature */}
-              <Reveal>
-                <div className="relative">
-                  <img
-                    src="/images/logos/brand/NCT-Logo-PlatinumonBlue.jpg"
-                    alt="NotContent — AI Creative Training for Creative Teams and Brands"
-                    className="w-full max-w-[640px] aspect-square object-cover shadow-2xl shadow-black/30 ring-1 ring-white/10"
-                  />
-                  {/* Corner ticks */}
-                  <span className="absolute -top-2 -left-2 h-4 w-4 border-t border-l border-white/30" />
-                  <span className="absolute -top-2 -right-2 h-4 w-4 border-t border-r border-white/30" />
-                  <span className="absolute -bottom-2 -left-2 h-4 w-4 border-b border-l border-white/30" />
-                  <span className="absolute -bottom-2 -right-2 h-4 w-4 border-b border-r border-white/30" />
-                </div>
-              </Reveal>
+        <div className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-120px)] pb-12 lg:pb-16 pt-20 lg:pt-28">
+          <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full text-center">
+            {/* Transparent logo — floats on the cobalt with no frame */}
+            <Reveal>
+              <img
+                src="/images/logos/brand/NCT-Logo-Platinum-Transparent.png"
+                alt="NotContent — AI Creative Training for Creative Teams and Brands"
+                className="mx-auto w-full max-w-[720px] lg:max-w-[820px] h-auto"
+              />
+            </Reveal>
 
-              {/* Right column: tagline + value prop */}
-              <Reveal delay={200}>
-                <div className="space-y-8 lg:pb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="h-px w-8 bg-white/30" />
-                    <p className="text-white/60 text-[11px] uppercase tracking-[0.2em]">
-                      AI Creative Training · Enterprise Teams
-                    </p>
-                  </div>
-                  <p className="text-2xl lg:text-3xl text-white leading-tight tracking-tight font-light">
-                    The biggest shift in creative work since the internet.
+            {/* Tagline + value prop */}
+            <Reveal delay={200}>
+              <div className="mt-12 lg:mt-16 max-w-2xl mx-auto space-y-5">
+                <div className="flex items-center justify-center gap-3">
+                  <span className="h-px w-10 bg-white/30" />
+                  <p className="text-white/60 text-[11px] uppercase tracking-[0.2em]">
+                    Enterprise Teams · Production-Ready in Weeks
                   </p>
-                  <p className="text-base lg:text-lg text-white/60 leading-relaxed max-w-md">
-                    Most creative teams are watching it happen. We train them to lead it instead.
-                  </p>
+                  <span className="h-px w-10 bg-white/30" />
                 </div>
-              </Reveal>
-            </div>
+                <p className="text-xl lg:text-2xl text-white/90 leading-snug tracking-tight font-light">
+                  The biggest shift in creative work since the internet. Most creative teams are watching it happen — we train them to lead it instead.
+                </p>
+              </div>
+            </Reveal>
           </div>
         </div>
 
