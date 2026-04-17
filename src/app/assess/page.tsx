@@ -132,6 +132,11 @@ export default function AssessPage() {
         <section className="min-h-[calc(100vh-3.5rem)] bg-[#1549CD] text-white flex items-center relative overflow-hidden">
           <div className="oci-grid-lines-light" />
           <div className="relative z-10 mx-auto max-w-2xl px-6 lg:px-8 text-center">
+            <img
+              src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
+              alt=""
+              className="mx-auto h-14 w-14 rounded-[2px] shadow-md ring-1 ring-white/10 mb-8"
+            />
             <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
               AI Training Readiness Scorecard
             </p>

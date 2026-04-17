@@ -52,7 +52,7 @@ export default function Home() {
 
   return (
     <>
-      {/* ═══ SECTION 1: HERO — Full-viewport cobalt ═══ */}
+      {/* ═══ SECTION 1: HERO — Full-viewport cobalt with brand logo feature ═══ */}
       <section className="relative min-h-screen bg-[#1549CD] text-white overflow-hidden oci-grid-lines-light">
         {/* Grid overlay lines */}
         <div className="absolute inset-0 pointer-events-none z-10">
@@ -63,27 +63,43 @@ export default function Home() {
         </div>
 
         {/* Main hero content */}
-        <div className="relative z-20 flex flex-col justify-end min-h-[calc(100vh-120px)] pb-16 lg:pb-24">
+        <div className="relative z-20 flex flex-col justify-end min-h-[calc(100vh-120px)] pb-16 lg:pb-24 pt-24 lg:pt-32">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
-            <Reveal>
-              <h1 className="oci-display text-white leading-[0.93]">
-                NotContent
-                <br />
-                Training
-              </h1>
-            </Reveal>
-            <Reveal delay={200}>
-              <div className="mt-8 flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6">
-                <p className="text-white/50 text-[11px] uppercase tracking-[0.15em]">
-                  AI Creative Training for Enterprise Teams
-                </p>
-                <div className="max-w-md lg:text-right">
-                  <p className="text-lg lg:text-xl text-white/80 leading-relaxed">
-                    The biggest shift in creative work since the internet. Most creative teams are watching it happen.
+            <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16 items-end">
+              {/* Logo poster — the hero feature */}
+              <Reveal>
+                <div className="relative">
+                  <img
+                    src="/images/logos/brand/NCT-Logo-PlatinumonBlue.jpg"
+                    alt="NotContent — AI Creative Training for Creative Teams and Brands"
+                    className="w-full max-w-[640px] aspect-square object-cover shadow-2xl shadow-black/30 ring-1 ring-white/10"
+                  />
+                  {/* Corner ticks */}
+                  <span className="absolute -top-2 -left-2 h-4 w-4 border-t border-l border-white/30" />
+                  <span className="absolute -top-2 -right-2 h-4 w-4 border-t border-r border-white/30" />
+                  <span className="absolute -bottom-2 -left-2 h-4 w-4 border-b border-l border-white/30" />
+                  <span className="absolute -bottom-2 -right-2 h-4 w-4 border-b border-r border-white/30" />
+                </div>
+              </Reveal>
+
+              {/* Right column: tagline + value prop */}
+              <Reveal delay={200}>
+                <div className="space-y-8 lg:pb-4">
+                  <div className="flex items-center gap-3">
+                    <span className="h-px w-8 bg-white/30" />
+                    <p className="text-white/60 text-[11px] uppercase tracking-[0.2em]">
+                      AI Creative Training · Enterprise Teams
+                    </p>
+                  </div>
+                  <p className="text-2xl lg:text-3xl text-white leading-tight tracking-tight font-light">
+                    The biggest shift in creative work since the internet.
+                  </p>
+                  <p className="text-base lg:text-lg text-white/60 leading-relaxed max-w-md">
+                    Most creative teams are watching it happen. We train them to lead it instead.
                   </p>
                 </div>
-              </div>
-            </Reveal>
+              </Reveal>
+            </div>
           </div>
         </div>
 
@@ -92,13 +108,20 @@ export default function Home() {
       {/* ═══ SCORECARD BAND — Right at the fold ═══ */}
       <section className="py-6 lg:py-8 bg-[#1549CD] text-white border-y-2 border-white/20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p className="text-sm text-white/80">
-              Most teams think they&apos;re AI-ready. Almost none actually are.
-            </p>
-            <p className="text-sm text-white/40">
-              Find out exactly where your team stands — and what to do about it.
-            </p>
+          <div className="flex items-center gap-4">
+            <img
+              src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
+              alt=""
+              className="hidden sm:block shrink-0 h-10 w-10 rounded-[2px] shadow-sm ring-1 ring-white/10"
+            />
+            <div>
+              <p className="text-sm text-white/80">
+                Most teams think they&apos;re AI-ready. Almost none actually are.
+              </p>
+              <p className="text-sm text-white/40">
+                Find out exactly where your team stands — and what to do about it.
+              </p>
+            </div>
           </div>
           <div className="shrink-0 flex flex-col items-end gap-2">
             <Link
@@ -197,7 +220,13 @@ export default function Home() {
 
           {/* Maesa quote callout */}
           <Reveal delay={250}>
-            <div className="mt-16 lg:mt-24 bg-[#1549CD] text-white px-8 lg:px-16 py-12 lg:py-16">
+            <div className="relative mt-16 lg:mt-24 bg-[#1549CD] text-white px-8 lg:px-16 py-12 lg:py-16">
+              {/* Corner sticker */}
+              <img
+                src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
+                alt=""
+                className="absolute -top-4 -right-4 hidden sm:block h-16 w-16 rounded-[2px] shadow-lg ring-1 ring-white/20 rotate-3"
+              />
               <blockquote className="text-xl sm:text-2xl lg:text-3xl font-light leading-snug tracking-tight">
                 &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
               </blockquote>
@@ -489,7 +518,14 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
-              <span>Why NotContent</span>
+              <span className="flex items-center gap-2.5">
+                <img
+                  src="/images/logos/brand/NCT-Icon-PlatinumonBlue.png"
+                  alt=""
+                  className="h-5 w-5 rounded-[2px]"
+                />
+                Why NotContent
+              </span>
               <span>[NC]</span>
             </div>
           </Reveal>

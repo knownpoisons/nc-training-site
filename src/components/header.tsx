@@ -34,9 +34,26 @@ export function Header() {
       }`}
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 flex h-14 items-center justify-between">
-        <Link href="/" className="text-[11px] font-semibold uppercase tracking-[0.15em]">
-          NOTCONTENT{" "}
-          <span className="font-light text-foreground/40">/ training</span>
+        <Link href="/" className="flex items-center gap-2.5 group">
+          <img
+            src={
+              scrolled
+                ? "/images/logos/brand/NCT-Icon-PlatinumonBlue.png"
+                : "/images/logos/brand/NCT-Icon-blueonplatinum.png"
+            }
+            alt=""
+            className="h-7 w-7 rounded-[2px] shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:ring-[#1549CD]/20"
+          />
+          <span
+            className={`text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors ${
+              scrolled ? "text-foreground" : "text-white"
+            }`}
+          >
+            NOTCONTENT{" "}
+            <span className={`font-light transition-colors ${scrolled ? "text-foreground/40" : "text-white/50"}`}>
+              / training
+            </span>
+          </span>
         </Link>
 
         {/* Desktop nav */}
