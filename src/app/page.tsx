@@ -80,12 +80,12 @@ export default function Home() {
                 <div className="flex items-center justify-center gap-3">
                   <span className="h-px w-10 bg-white/30" />
                   <p className="text-white/60 text-[11px] uppercase tracking-[0.2em]">
-                    Enterprise Teams · Production-Ready in Weeks
+                    AI Creative Training · Enterprise Teams
                   </p>
                   <span className="h-px w-10 bg-white/30" />
                 </div>
                 <p className="text-xl lg:text-2xl text-white/90 leading-snug tracking-tight font-light">
-                  The biggest shift in creative work since the internet. Most creative teams are watching it happen — we train them to lead it instead.
+                  Most creative teams have one or two people who figured out AI on their own. The rest are watching. Every week, that gap gets wider.
                 </p>
               </div>
             </Reveal>
@@ -439,7 +439,7 @@ export default function Home() {
               </Reveal>
               <Reveal delay={200}>
                 <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-md">
-                  AI is a creative force multiplier, not a replacement engine. The NotContent Method separates exploration from execution — so speed never compromises taste.
+                  AI doesn&apos;t replace your team. It removes the bottlenecks that slow them down. The NotContent Method keeps exploration and execution separate — so speed never means sloppy.
                 </p>
                 <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-md">
                   When a whole team learns the same framework, the gains compound. Everyone explores smarter, executes cleaner, and builds on each other&apos;s work instead of reinventing it.
@@ -522,7 +522,9 @@ export default function Home() {
             <h2 className="oci-display-sm text-white mt-8 max-w-3xl">
               Most AI trainers teach tools.
               <br />
-              We teach production.
+              Tools change every six months.
+              <br />
+              We teach a way of working.
             </h2>
           </Reveal>
           <Reveal delay={200}>
