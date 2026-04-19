@@ -105,7 +105,7 @@ export default function AboutPage() {
       </section>
 
       {/* Jeremy */}
-      <section className="py-16 lg:py-24 relative oci-grid-lines">
+      <section className="py-16 lg:py-24 relative">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="oci-section-label mb-12">
             <span>YOUR TRAINER</span>
@@ -174,7 +174,9 @@ export default function AboutPage() {
           <h2 className="oci-display-sm max-w-3xl">
             Most AI trainers teach tools.
             <br />
-            We teach production.
+            Tools change every six months.
+            <br />
+            We teach a way of working.
           </h2>
           <div className="mt-12 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
             {differentiators.map((diff) => (

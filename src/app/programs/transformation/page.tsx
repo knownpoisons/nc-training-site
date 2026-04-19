@@ -183,7 +183,7 @@ export default function TransformationPage() {
             <div>
               <p className="text-2xl font-light tracking-tight">From $50,000</p>
               <p className="mt-2 text-sm text-foreground/60">
-                30 minutes. No pitch. Just a clear picture of fit and next steps.
+                30 minutes. We&apos;ll tell you straight whether we&apos;re the right fit.
               </p>
             </div>
             <Link
@@ -283,7 +283,7 @@ export default function TransformationPage() {
                   Book a Discovery Call
                 </Link>
                 <p className="mt-4 text-sm text-white/40 text-center">
-                  30 minutes. No pitch. Just a clear picture of fit and next steps.
+                  30 minutes. We&apos;ll tell you straight whether we&apos;re the right fit.
                 </p>
               </div>
             </div>

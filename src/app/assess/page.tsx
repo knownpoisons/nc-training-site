@@ -131,6 +131,13 @@ export default function AssessPage() {
       <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
         <section className="min-h-[calc(100vh-3.5rem)] bg-[#1549CD] text-white flex items-center relative overflow-hidden">
           <div className="oci-grid-lines-light" />
+          {/* Subtle exit link — landing only */}
+          <Link
+            href="/"
+            className="absolute top-6 left-6 z-20 text-[11px] uppercase tracking-[0.15em] text-white/30 hover:text-white/60 transition-colors"
+          >
+            ← Exit
+          </Link>
           <div className="relative z-10 mx-auto max-w-2xl px-6 lg:px-8 text-center">
             <img
               src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
