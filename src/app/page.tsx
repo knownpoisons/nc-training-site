@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
+import { BrandIcon, type BrandIconName } from "@/components/brand-icon";
 
 const clients = [
   "Adidas",
@@ -468,28 +469,34 @@ export default function Home() {
                 {
                   n: "01",
                   name: "Diverge",
+                  icon: "diverge" as BrandIconName,
                   desc: "Generate volume, discover styles, break habits. AI as your visual sparring partner — not a vending machine.",
                 },
                 {
                   n: "02",
                   name: "Converge",
+                  icon: "converge" as BrandIconName,
                   desc: "Lock direction. Switch to precision tools. Production-grade, brand-aligned output.",
                 },
                 {
                   n: "03",
                   name: "Systemize",
+                  icon: "systemize" as BrandIconName,
                   desc: "Encode what works into repeatable processes anyone on the team can run. That\u2019s when training becomes transformation.",
                 },
               ].map((step, i) => (
                 <Reveal key={step.n} delay={150 + i * 100} direction="right">
                   <div className="oci-card-tilted p-8">
-                    <div className="flex items-baseline justify-between mb-4">
-                      <span className="text-3xl lg:text-4xl font-light text-[#1549CD]/30">
-                        {step.n}
-                      </span>
-                      <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
-                        {step.name}
-                      </span>
+                    <div className="flex items-start justify-between mb-4 gap-4">
+                      <div className="flex items-baseline gap-4">
+                        <span className="text-3xl lg:text-4xl font-light text-[#1549CD]/30">
+                          {step.n}
+                        </span>
+                        <span className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+                          {step.name}
+                        </span>
+                      </div>
+                      <BrandIcon icon={step.icon} size={52} />
                     </div>
                     <p className="text-sm leading-relaxed text-muted-foreground">
                       {step.desc}
@@ -530,14 +537,15 @@ export default function Home() {
           <Reveal delay={200}>
             <div className="mt-12 grid gap-px bg-white/10 sm:grid-cols-2 lg:grid-cols-3">
               {[
-                { title: "Earned in the Field", description: "Everything we teach has been production-tested on real campaigns for real clients. Your team learns what actually works — not what sounds good in a seminar." },
-                { title: "Built to Outlast the Tools", description: "Tools change every month. The Diverge / Converge / Systemize methodology is tool-agnostic — so when the landscape shifts, your team knows exactly how to adapt." },
-                { title: "Taste Stays in the Room", description: "We train teams to use AI as a force multiplier for human creativity — not a replacement for it. Speed without taste produces mediocrity at scale." },
-                { title: "Your Brand, Not a Generic Exercise", description: "Every program is built around your brand assets, your style guides, your production needs. By the end, your team has workflows built for your operation specifically." },
-                { title: "We Don\u2019t Disappear After Week 8", description: "Monthly coaching keeps your team current as AI evolves. Most training fades within 60 days. Ours compounds — because we\u2019re still there when it matters." },
-                { title: "The Numbers Are Real", description: "Maesa saved $280K on a single brand launch. Cash App went 10x on campaign velocity. We run before/after benchmarks on every program." },
+                { title: "Earned in the Field", icon: "shield" as BrandIconName, description: "Everything we teach has been production-tested on real campaigns for real clients. Your team learns what actually works — not what sounds good in a seminar." },
+                { title: "Built to Outlast the Tools", icon: "compass" as BrandIconName, description: "Tools change every month. The Diverge / Converge / Systemize methodology is tool-agnostic — so when the landscape shifts, your team knows exactly how to adapt." },
+                { title: "Taste Stays in the Room", icon: "quality" as BrandIconName, description: "We train teams to use AI as a force multiplier for human creativity — not a replacement for it. Speed without taste produces mediocrity at scale." },
+                { title: "Your Brand, Not a Generic Exercise", icon: "fingerprint" as BrandIconName, description: "Every program is built around your brand assets, your style guides, your production needs. By the end, your team has workflows built for your operation specifically." },
+                { title: "We Don\u2019t Disappear After Week 8", icon: "team" as BrandIconName, description: "Monthly coaching keeps your team current as AI evolves. Most training fades within 60 days. Ours compounds — because we\u2019re still there when it matters." },
+                { title: "The Numbers Are Real", icon: "chart" as BrandIconName, description: "Maesa saved $280K on a single brand launch. Cash App went 10x on campaign velocity. We run before/after benchmarks on every program." },
               ].map((diff) => (
                 <div key={diff.title} className="bg-foreground p-8">
+                  <BrandIcon icon={diff.icon} color="#E8E6E0" size={56} className="mb-5" />
                   <h3 className="text-[11px] uppercase tracking-[0.15em] text-white/80">{diff.title}</h3>
                   <p className="mt-4 text-sm leading-relaxed text-white/50">{diff.description}</p>
                 </div>
