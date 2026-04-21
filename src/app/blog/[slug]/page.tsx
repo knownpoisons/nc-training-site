@@ -75,31 +75,8 @@ export default async function BlogPostPage({ params }: Props) {
         </div>
       </article>
 
-      {/* Scorecard CTA */}
+      {/* Single CTA — Scorecard band */}
       <BlogScorecardCta />
-
-      {/* Footer CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-          <h2 className="oci-display-sm mx-auto max-w-xl">
-            See where your team stands.
-          </h2>
-          <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-            <Link
-              href="/assess"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
-            >
-              Take the Readiness Scorecard
-            </Link>
-            <Link
-              href="/book"
-              className="px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:text-white"
-            >
-              Book a Discovery Call →
-            </Link>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
