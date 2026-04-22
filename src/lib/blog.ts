@@ -61,3 +61,58 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
     content,
   };
 }
+
+/**
+ * Reading time in minutes, based on 200 words per minute.
+ * Minimum 1 minute so a very short post never shows "0 min read".
+ */
+export function getReadingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}
+
+/**
+ * Format an ISO date string as "Apr 21, 2026".
+ * Uses a fixed en-US locale so it renders identically on server and client.
+ */
+export function formatPostDate(iso: string): string {
+  if (!iso) return "";
+  const date = new Date(iso);
+  if (Number.isNaN(date.getTime())) return iso;
+  return new Intl.DateTimeFormat("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  }).format(date);
+}
+
+/**
+ * Related posts — ranked by shared tag count, then shared category,
+ * then recency. Excludes the current post. Returns up to `limit` posts.
+ */
+export function getRelatedPosts(
+  currentSlug: string,
+  limit = 3
+): BlogPost[] {
+  const all = getAllPosts();
+  const current = all.find((p) => p.slug === currentSlug);
+  if (!current) return all.slice(0, limit);
+
+  const currentTags = new Set(current.tags);
+
+  const scored = all
+    .filter((p) => p.slug !== currentSlug)
+    .map((p) => {
+      const sharedTags = p.tags.filter((t) => currentTags.has(t)).length;
+      const sameCategory = p.category === current.category ? 1 : 0;
+      return { post: p, score: sharedTags * 10 + sameCategory };
+    })
+    .sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      // Tie-break by recency
+      return new Date(b.post.date).getTime() - new Date(a.post.date).getTime();
+    });
+
+  return scored.slice(0, limit).map((s) => s.post);
+}
