@@ -16,6 +16,16 @@ export interface BlogPost {
   content: string;
 }
 
+/**
+ * Cover image default: every post has an illustration at
+ * /public/images/llustrations/{slug}.jpg — so we auto-derive the path
+ * from the slug. Individual MDX frontmatter can override with an
+ * explicit `coverImage` field if needed.
+ */
+function defaultCoverImage(slug: string): string {
+  return `/images/llustrations/${slug}.jpg`;
+}
+
 export function getAllPosts(): BlogPost[] {
   const files = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".mdx"));
 
@@ -32,7 +42,7 @@ export function getAllPosts(): BlogPost[] {
       author: data.author ?? "",
       tags: data.tags ?? [],
       category: data.category ?? "Insight",
-      coverImage: data.coverImage ?? "",
+      coverImage: data.coverImage ?? defaultCoverImage(slug),
       content,
     } satisfies BlogPost;
   });
@@ -57,7 +67,7 @@ export function getPostBySlug(slug: string): BlogPost | undefined {
     author: data.author ?? "",
     tags: data.tags ?? [],
     category: data.category ?? "Insight",
-    coverImage: data.coverImage ?? "",
+    coverImage: data.coverImage ?? defaultCoverImage(slug),
     content,
   };
 }
