@@ -88,8 +88,8 @@
 
 .nc-blog-body {
   font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
-  font-size: 18px;
-  line-height: 1.75;
+  font-size: 19px;
+  line-height: 1.6;
   color: rgba(0, 0, 0, 0.9);
 }
 
@@ -98,19 +98,19 @@
   margin-bottom: 0;
 }
 
-/* Paragraphs — proper blank-line spacing */
+/* Paragraphs — editorial paragraph rhythm (Substack/Stripe Press range) */
 .nc-blog-body p {
   font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
-  font-size: 18px;
-  line-height: 1.75;
+  font-size: 19px;
+  line-height: 1.6;
   color: rgba(0, 0, 0, 0.9);
-  margin-top: 1.75em;
+  margin-top: 1.25em;
 }
 .nc-blog-body > p:first-child {
   margin-top: 0;
 }
 
-/* Headings — Plex Mono, strong hierarchy */
+/* Headings — Plex Mono, strong hierarchy but tight to the content that follows */
 .nc-blog-body h2 {
   font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
   font-size: 26px;
@@ -118,8 +118,8 @@
   line-height: 1.15;
   letter-spacing: -0.01em;
   color: #000;
-  margin-top: 3em;
-  margin-bottom: 0.9em;
+  margin-top: 2.25em;
+  margin-bottom: 0.6em;
 }
 .nc-blog-body > h2:first-child {
   margin-top: 0;
@@ -132,18 +132,18 @@
   line-height: 1.3;
   letter-spacing: -0.005em;
   color: #000;
-  margin-top: 2.5em;
-  margin-bottom: 0.6em;
+  margin-top: 1.75em;
+  margin-bottom: 0.4em;
 }
 
 /* Lists */
 .nc-blog-body ul,
 .nc-blog-body ol {
   font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
-  font-size: 18px;
-  line-height: 1.75;
+  font-size: 19px;
+  line-height: 1.6;
   color: rgba(0, 0, 0, 0.9);
-  margin-top: 1.5em;
+  margin-top: 1.1em;
   padding-left: 1.5em;
 }
 .nc-blog-body ul {
@@ -153,15 +153,15 @@
   list-style: decimal;
 }
 .nc-blog-body li {
-  margin-top: 0.6em;
-  margin-bottom: 0.6em;
+  margin-top: 0.4em;
+  margin-bottom: 0.4em;
   padding-left: 0.25em;
 }
 .nc-blog-body li::marker {
   color: rgba(21, 73, 205, 0.55);
 }
 .nc-blog-body li p {
-  margin-top: 0.4em;
+  margin-top: 0.3em;
 }
 .nc-blog-body li:first-child {
   margin-top: 0;
@@ -194,13 +194,13 @@
 .nc-blog-body blockquote {
   font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
   font-size: 22px;
-  line-height: 1.5;
+  line-height: 1.45;
   font-style: italic;
   font-weight: 300;
   color: #000;
   border-left: 2px solid #1549cd;
   padding-left: 1.5em;
-  margin: 2.25em 0;
+  margin: 1.75em 0;
 }
 .nc-blog-body blockquote p {
   margin-top: 0;
@@ -215,7 +215,7 @@
 .nc-blog-body hr {
   border: 0;
   border-top: 1px solid rgba(21, 73, 205, 0.15);
-  margin: 3em 0;
+  margin: 2.25em 0;
 }
 
 /* Inline code */
