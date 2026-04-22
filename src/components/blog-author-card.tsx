@@ -4,9 +4,9 @@
  */
 export function BlogAuthorCard() {
   return (
-    <section className="py-12 lg:py-16">
+    <section className="pb-6">
       <div className="mx-auto max-w-[680px] px-6 lg:px-8">
-        <div className="flex flex-col sm:flex-row gap-6 border-t border-foreground/10 pt-10">
+        <div className="flex flex-col sm:flex-row gap-5 border-t border-foreground/15 pt-8">
           <img
             src="/images/jeremy-somers.jpg"
             alt="Jeremy Somers"
@@ -19,7 +19,7 @@ export function BlogAuthorCard() {
             <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-foreground/50">
               Founder, NotContent
             </p>
-            <p className="mt-4 font-sans text-[15px] leading-[1.7] text-foreground/75">
+            <p className="mt-3 font-sans text-[15px] leading-[1.65] text-foreground/75">
               15 years as a creative director (Spotify, Nike, Pepsi, Samsung,
               Mercedes-Benz). Built the first AI-assisted creative agency in
               2022.

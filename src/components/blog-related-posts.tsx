@@ -14,7 +14,7 @@ export function BlogRelatedPosts({ currentSlug }: Props) {
   if (posts.length === 0) return null;
 
   return (
-    <section className="py-16 lg:py-20 border-t border-foreground/10 bg-background">
+    <section className="py-14 lg:py-16 border-t border-foreground/15 bg-background">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="oci-section-label mb-10">
           <span>Related Reading</span>
