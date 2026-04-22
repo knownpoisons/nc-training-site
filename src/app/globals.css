@@ -82,6 +82,151 @@
   }
 }
 
+/* ─── Blog post body styles ──────────────────────────────────────────── */
+/* Explicit CSS for the MDX body. Avoids Tailwind Typography specificity
+   wars and guarantees Source Serif 4 actually applies to paragraphs. */
+
+.nc-blog-body {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.9);
+}
+
+.nc-blog-body > * {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Paragraphs — proper blank-line spacing */
+.nc-blog-body p {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.9);
+  margin-top: 1.75em;
+}
+.nc-blog-body > p:first-child {
+  margin-top: 0;
+}
+
+/* Headings — Plex Mono, strong hierarchy */
+.nc-blog-body h2 {
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-size: 26px;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #000;
+  margin-top: 3em;
+  margin-bottom: 0.9em;
+}
+.nc-blog-body > h2:first-child {
+  margin-top: 0;
+}
+
+.nc-blog-body h3 {
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+  color: #000;
+  margin-top: 2.5em;
+  margin-bottom: 0.6em;
+}
+
+/* Lists */
+.nc-blog-body ul,
+.nc-blog-body ol {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  line-height: 1.75;
+  color: rgba(0, 0, 0, 0.9);
+  margin-top: 1.5em;
+  padding-left: 1.5em;
+}
+.nc-blog-body ul {
+  list-style: disc;
+}
+.nc-blog-body ol {
+  list-style: decimal;
+}
+.nc-blog-body li {
+  margin-top: 0.6em;
+  margin-bottom: 0.6em;
+  padding-left: 0.25em;
+}
+.nc-blog-body li::marker {
+  color: rgba(21, 73, 205, 0.55);
+}
+.nc-blog-body li p {
+  margin-top: 0.4em;
+}
+.nc-blog-body li:first-child {
+  margin-top: 0;
+}
+
+/* Emphasis */
+.nc-blog-body strong {
+  font-weight: 700;
+  color: #000;
+}
+.nc-blog-body em {
+  font-style: italic;
+}
+
+/* Links */
+.nc-blog-body a {
+  color: #1549cd;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(21, 73, 205, 0.4);
+  text-decoration-thickness: 1px;
+  transition: text-decoration-color 0.15s ease;
+}
+.nc-blog-body a:hover {
+  text-decoration-color: #1549cd;
+}
+
+/* Blockquote */
+.nc-blog-body blockquote {
+  font-family: var(--font-source-serif), Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  line-height: 1.5;
+  font-style: italic;
+  font-weight: 300;
+  color: #000;
+  border-left: 2px solid #1549cd;
+  padding-left: 1.5em;
+  margin: 2.25em 0;
+}
+.nc-blog-body blockquote p {
+  margin-top: 0;
+  font-size: inherit;
+  line-height: inherit;
+  font-family: inherit;
+  font-style: inherit;
+  color: inherit;
+}
+
+/* HR */
+.nc-blog-body hr {
+  border: 0;
+  border-top: 1px solid rgba(21, 73, 205, 0.15);
+  margin: 3em 0;
+}
+
+/* Inline code */
+.nc-blog-body code {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 0.1em 0.4em;
+  border-radius: 2px;
+  font-size: 0.88em;
+  font-family: var(--font-ibm-plex-mono), ui-monospace, monospace;
+}
+
 /* NotContent brand styles */
 .nc-container {
   @apply mx-auto max-w-7xl px-6 lg:px-8;
