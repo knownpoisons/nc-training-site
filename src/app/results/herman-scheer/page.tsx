@@ -148,17 +148,6 @@ export default function HermanScheerCaseStudy() {
                 — Adam, Creative Director, Herman Scheer
               </p>
             </div>
-            <div className="border-l-2 border-[#1549CD] pl-8">
-              <p className="text-lg font-light leading-relaxed italic">
-                &ldquo;Jeremy&apos;s training very quickly showed us what was
-                possible and very soon after that taught us how to do it.
-                It&apos;s insane what we are able to do now compared to what we
-                were able to do just three months ago.&rdquo;
-              </p>
-              <p className="mt-4 text-sm text-foreground/40">
-                — Ludovic Bertron, Executive Creative Director, Herman Scheer
-              </p>
-            </div>
           </div>
         </div>
       </section>
