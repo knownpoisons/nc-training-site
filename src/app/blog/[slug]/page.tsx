@@ -60,16 +60,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
  */
 const PROSE_CLASSES = [
   "prose prose-neutral max-w-none",
-  // Paragraphs — Source Serif 4, 18px, tight rhythm, high contrast
-  "prose-p:font-serif prose-p:text-[18px] prose-p:leading-[1.65] prose-p:text-foreground/90 prose-p:mt-5 prose-p:mb-0",
+  // Paragraphs — Source Serif 4, 18px, open rhythm (full blank-line feel between paragraphs)
+  "prose-p:font-serif prose-p:text-[18px] prose-p:leading-[1.7] prose-p:text-foreground/90 prose-p:mt-10 prose-p:mb-0",
   // Headings — Plex Mono, strong hierarchy, air above
   "prose-headings:font-mono prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-foreground",
-  "prose-h2:text-[26px] prose-h2:leading-[1.15] prose-h2:mt-14 prose-h2:mb-5",
-  "prose-h3:text-[18px] prose-h3:leading-tight prose-h3:mt-10 prose-h3:mb-3",
-  // Lists — match body font + rhythm
-  "prose-ul:font-serif prose-ul:text-[18px] prose-ul:leading-[1.65] prose-ul:text-foreground/90 prose-ul:my-5 prose-ul:space-y-2 prose-ul:pl-6",
-  "prose-ol:font-serif prose-ol:text-[18px] prose-ol:leading-[1.65] prose-ol:text-foreground/90 prose-ol:my-5 prose-ol:space-y-2 prose-ol:pl-6",
-  "prose-li:my-1 prose-li:marker:text-[#1549CD]/50",
+  "prose-h2:text-[26px] prose-h2:leading-[1.15] prose-h2:mt-16 prose-h2:mb-6",
+  "prose-h3:text-[18px] prose-h3:leading-tight prose-h3:mt-12 prose-h3:mb-4",
+  // Lists — match body font + rhythm, spacious between items
+  "prose-ul:font-serif prose-ul:text-[18px] prose-ul:leading-[1.7] prose-ul:text-foreground/90 prose-ul:mt-8 prose-ul:mb-0 prose-ul:space-y-4 prose-ul:pl-6",
+  "prose-ol:font-serif prose-ol:text-[18px] prose-ol:leading-[1.7] prose-ol:text-foreground/90 prose-ol:mt-8 prose-ol:mb-0 prose-ol:space-y-4 prose-ol:pl-6",
+  "prose-li:my-0 prose-li:marker:text-[#1549CD]/50",
   // Emphasis — bold gets full weight + pure black for emphasis
   "prose-strong:text-foreground prose-strong:font-bold",
   "prose-em:italic",
@@ -161,7 +161,7 @@ export default async function BlogPostPage({ params }: Props) {
       </section>
 
       {/* ─── BODY ──────────────────────────────────────────────────────── */}
-      <article className="py-16 lg:py-24">
+      <article className="pt-16 lg:pt-24 pb-8 lg:pb-10">
         <div className="mx-auto max-w-[680px] px-6 lg:px-8">
           <div className={PROSE_CLASSES}>
             <MDXRemote source={post.content} components={mdxComponents} />

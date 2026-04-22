@@ -5,7 +5,7 @@
  */
 export function BlogLinkedInCta() {
   return (
-    <section className="py-8 lg:py-10">
+    <section className="pb-16 lg:pb-20">
       <div className="mx-auto max-w-[680px] px-6 lg:px-8">
         <a
           href="https://www.linkedin.com/in/jeremy-somers/recent-activity/all/"
