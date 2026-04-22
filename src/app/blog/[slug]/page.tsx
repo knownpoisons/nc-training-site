@@ -10,11 +10,18 @@ import {
 } from "@/lib/blog";
 import { BlogScorecardCta } from "@/components/blog-scorecard-cta";
 import { BlogAuthorCard } from "@/components/blog-author-card";
+import { BlogLinkedInCta } from "@/components/blog-linkedin-cta";
 import { BlogRelatedPosts } from "@/components/blog-related-posts";
+import { EndCta } from "@/components/end-cta";
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+/** MDX components available inside blog post .mdx files */
+const mdxComponents = {
+  EndCta,
+};
 
 export async function generateStaticParams() {
   return getAllPosts().map((post) => ({ slug: post.slug }));
@@ -46,30 +53,30 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * Prose styling for the MDX body. Kept as a single string so it's easy to tune
- * without digging through the JSX. Uses Plex Sans for body, Plex Mono for
- * headings, and enforces a centered ~680px column with generous vertical
- * rhythm.
+ * Prose styling for the MDX body.
+ * Body copy is Source Serif 4 (editorial, long-form friendly).
+ * Headings stay in IBM Plex Mono for brand continuity.
+ * Centered 680px column, dark high-contrast text, tight paragraph rhythm.
  */
 const PROSE_CLASSES = [
   "prose prose-neutral max-w-none",
-  // Paragraphs — Plex Sans, 17px, generous line-height, consistent spacing
-  "prose-p:font-sans prose-p:text-[17px] prose-p:leading-[1.75] prose-p:text-foreground/80 prose-p:mt-6 prose-p:mb-0",
-  // Headings — Plex Mono, stronger hierarchy, breathing room above
+  // Paragraphs — Source Serif 4, 18px, tight rhythm, high contrast
+  "prose-p:font-serif prose-p:text-[18px] prose-p:leading-[1.65] prose-p:text-foreground/90 prose-p:mt-5 prose-p:mb-0",
+  // Headings — Plex Mono, strong hierarchy, air above
   "prose-headings:font-mono prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-foreground",
-  "prose-h2:text-[26px] prose-h2:leading-tight prose-h2:mt-14 prose-h2:mb-5",
+  "prose-h2:text-[26px] prose-h2:leading-[1.15] prose-h2:mt-14 prose-h2:mb-5",
   "prose-h3:text-[18px] prose-h3:leading-tight prose-h3:mt-10 prose-h3:mb-3",
-  // Lists
-  "prose-ul:font-sans prose-ul:text-[17px] prose-ul:leading-[1.75] prose-ul:text-foreground/80 prose-ul:my-6 prose-ul:space-y-2 prose-ul:pl-6",
-  "prose-ol:font-sans prose-ol:text-[17px] prose-ol:leading-[1.75] prose-ol:text-foreground/80 prose-ol:my-6 prose-ol:space-y-2 prose-ol:pl-6",
-  "prose-li:my-1 prose-li:marker:text-[#1549CD]/40",
-  // Emphasis
-  "prose-strong:text-foreground prose-strong:font-semibold",
+  // Lists — match body font + rhythm
+  "prose-ul:font-serif prose-ul:text-[18px] prose-ul:leading-[1.65] prose-ul:text-foreground/90 prose-ul:my-5 prose-ul:space-y-2 prose-ul:pl-6",
+  "prose-ol:font-serif prose-ol:text-[18px] prose-ol:leading-[1.65] prose-ol:text-foreground/90 prose-ol:my-5 prose-ol:space-y-2 prose-ol:pl-6",
+  "prose-li:my-1 prose-li:marker:text-[#1549CD]/50",
+  // Emphasis — bold gets full weight + pure black for emphasis
+  "prose-strong:text-foreground prose-strong:font-bold",
   "prose-em:italic",
-  // Links — cobalt, subtle underline, stronger on hover
-  "prose-a:text-[#1549CD] prose-a:font-medium prose-a:underline prose-a:underline-offset-[3px] prose-a:decoration-[#1549CD]/30 hover:prose-a:decoration-[#1549CD]",
-  // Blockquotes — cobalt left border, Sans italic
-  "prose-blockquote:my-10 prose-blockquote:border-l-2 prose-blockquote:border-[#1549CD] prose-blockquote:pl-6 prose-blockquote:not-italic prose-blockquote:font-sans prose-blockquote:text-[20px] prose-blockquote:leading-[1.55] prose-blockquote:text-foreground prose-blockquote:font-light",
+  // Links — cobalt with underline that darkens on hover
+  "prose-a:text-[#1549CD] prose-a:font-semibold prose-a:underline prose-a:underline-offset-[3px] prose-a:decoration-[#1549CD]/40 hover:prose-a:decoration-[#1549CD]",
+  // Blockquote — cobalt hairline, serif italic
+  "prose-blockquote:my-10 prose-blockquote:border-l-2 prose-blockquote:border-[#1549CD] prose-blockquote:pl-6 prose-blockquote:font-serif prose-blockquote:text-[22px] prose-blockquote:leading-[1.45] prose-blockquote:text-foreground prose-blockquote:font-light prose-blockquote:italic",
   // Inline code — subtle chip
   "prose-code:before:content-none prose-code:after:content-none prose-code:bg-foreground/5 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-[15px] prose-code:font-mono",
   // HR — cobalt hairline
@@ -100,7 +107,6 @@ export default async function BlogPostPage({ params }: Props) {
           </div>
         )}
 
-        {/* Editorial grid lines */}
         <div className="oci-grid-lines-light" />
 
         <div className="relative z-10 mx-auto max-w-3xl px-6 lg:px-8 w-full">
@@ -119,12 +125,10 @@ export default async function BlogPostPage({ params }: Props) {
             </span>
           </div>
 
-          {/* Title */}
           <h1 className="oci-display-sm mt-6 max-w-3xl">{post.title}</h1>
 
-          {/* Subtitle / description */}
           {post.description && (
-            <p className="mt-6 max-w-2xl font-sans text-lg lg:text-xl leading-[1.55] font-light text-white/80">
+            <p className="mt-6 max-w-2xl font-serif text-lg lg:text-xl leading-[1.5] font-light text-white/80">
               {post.description}
             </p>
           )}
@@ -141,7 +145,8 @@ export default async function BlogPostPage({ params }: Props) {
                 {post.author}
               </span>
               <span className="mt-0.5 text-[11px] uppercase tracking-[0.15em] text-white/50">
-                Founder, NotContent{formattedDate && (
+                Founder, NotContent
+                {formattedDate && (
                   <>
                     <span className="mx-2 text-white/30">·</span>
                     {formattedDate}
@@ -159,13 +164,16 @@ export default async function BlogPostPage({ params }: Props) {
       <article className="py-16 lg:py-24">
         <div className="mx-auto max-w-[680px] px-6 lg:px-8">
           <div className={PROSE_CLASSES}>
-            <MDXRemote source={post.content} />
+            <MDXRemote source={post.content} components={mdxComponents} />
           </div>
         </div>
       </article>
 
       {/* ─── AUTHOR BIO CARD ───────────────────────────────────────────── */}
       <BlogAuthorCard />
+
+      {/* ─── LINKEDIN CTA ──────────────────────────────────────────────── */}
+      <BlogLinkedInCta />
 
       {/* ─── RELATED POSTS ─────────────────────────────────────────────── */}
       <BlogRelatedPosts currentSlug={post.slug} />
