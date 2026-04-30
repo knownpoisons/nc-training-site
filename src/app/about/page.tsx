@@ -43,34 +43,34 @@ const brandExperience = [
 
 const differentiators = [
   {
-    title: "Earned in the Field",
+    title: "Fifteen Years Inside the Work",
     description:
-      "Everything we teach has been production-tested on real campaigns for real clients. Your team learns what actually works — not what sounds good in a seminar.",
+      "Spotify. Nike. Pepsi. Samsung. Mercedes-Benz. Every framework I teach has shipped on a real campaign with a real client and a real deadline. None of it is theory.",
   },
   {
-    title: "Built to Outlast the Tools",
+    title: "I Built the Agency First",
     description:
-      "Tools change every month. The Diverge / Converge / Systemize methodology is tool-agnostic — so when the landscape shifts (and it will), your team knows exactly how to adapt.",
+      "NotContent was the first AI-assisted creative agency, launched in 2022 — before most of the industry knew what Midjourney was. The training is everything we figured out the hard way producing actual campaigns.",
   },
   {
-    title: "Taste Stays in the Room",
+    title: "Methodology Over Tools",
     description:
-      "We train teams to use AI as a force multiplier for human creativity — not a replacement for it. Speed without taste produces mediocrity at scale. We don\u2019t teach that.",
+      "Tools change every six months. Diverge / Converge / Systemize doesn’t. I teach the way of working that survives whatever the platforms do next.",
   },
   {
-    title: "Your Brand, Not a Generic Exercise",
+    title: "Direct, Without Apology",
     description:
-      "Every program is built around your brand assets, your style guides, your production needs. By the end, your team has workflows built for your operation specifically.",
+      "I won’t sell you the workshop. I won’t pretend AI is going to fix what your leadership hasn’t decided. I tell teams exactly where the gaps are — and exactly what to do about them.",
   },
   {
-    title: "We Don\u2019t Disappear After Week 8",
+    title: "Built Around Your Operation",
     description:
-      "Monthly coaching keeps your team current as AI evolves. Most training fades within 60 days. Ours compounds — because we\u2019re still there when it matters.",
+      "Every engagement is shaped to your brand, your team, your production reality. By the end, the workflows are yours — not a generic playbook with your logo on it.",
   },
   {
-    title: "The Numbers Are Real",
+    title: "I Stay Past Week Eight",
     description:
-      "Maesa saved $280K on a single brand launch. Cash App went 10x on campaign velocity. We run before/after benchmarks on every program — so you can show leadership exactly what changed.",
+      "Most training fades inside sixty days. Mine compounds. Monthly coaching keeps the methodology sharp as the landscape shifts — because the part that matters is what your team is still doing six months on.",
   },
 ];
 

@@ -202,10 +202,10 @@ export default function CashAppCaseStudy() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-lg font-light tracking-tight">
-              See where your team stands first.
+              Could your production model handle this kind of compression?
             </p>
             <p className="mt-1 text-sm text-white/50">
-              Take the 2-minute Readiness Scorecard and get a personalised program recommendation.
+              Two minutes. Ten questions. A diagnosis you can act on.
             </p>
           </div>
           <Link

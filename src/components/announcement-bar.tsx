@@ -54,7 +54,7 @@ export function AnnouncementBar() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 h-full flex items-center justify-between gap-4">
         <p className="text-[11px] tracking-[0.1em] text-white/70 truncate">
-          Most teams think they&apos;re AI-ready. Almost none actually are.
+          83% of agency staff say they&apos;re capable with AI. Only 15% actually are.
         </p>
         <div className="flex items-center gap-4 shrink-0">
           <Link
