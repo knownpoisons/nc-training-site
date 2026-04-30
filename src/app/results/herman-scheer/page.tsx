@@ -157,10 +157,10 @@ export default function HermanScheerCaseStudy() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-lg font-light tracking-tight">
-              See where your team stands first.
+              Your clients are asking about AI. Find out where you stand.
             </p>
             <p className="mt-1 text-sm text-white/50">
-              Take the 2-minute Readiness Scorecard and get a personalised program recommendation.
+              Two minutes. Ten questions. The answer your next pitch needs.
             </p>
           </div>
           <Link

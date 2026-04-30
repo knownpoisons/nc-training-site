@@ -20,14 +20,6 @@ const clients = [
 
 const testimonials = [
   {
-    company: "Maesa",
-    quote:
-      "Jeremy and NotContent will save us tens of millions of dollars in the next year alone.",
-    name: "O. Savur",
-    title: "VP Marketing, Maesa",
-    context: "On stage at a national beauty conference",
-  },
-  {
     company: "Cash App",
     quote:
       "Jeremy\u2019s training was fun and really gave us the strategies, frameworks, and tools that we needed to completely revolutionize how we produce creative \u2014 both internally for pitching and externally for production.",
