@@ -508,6 +508,97 @@
   .topbar .clock .t { color: var(--accent); font-weight: 600; }
 
   /* Honour reduced-motion fully */
+  /* ───────── Programme progress (retro) ───────── */
+  .prog {
+    max-width: 1100px;
+    margin: 0 auto 12vh;
+    padding: 0 40px;
+  }
+  .prog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .prog-lbl, .prog-count {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .prog-count {
+    letter-spacing: 0.16em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .prog-count strong { color: var(--accent); font-weight: 600; }
+  .prog-track {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 6px;
+  }
+  .prog-seg {
+    position: relative;
+    height: 46px;
+    border: 1.5px solid var(--rule);
+    border-radius: 3px;
+    background: var(--surface);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 7px;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.45s ease, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
+  }
+  .prog-seg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleY(0);
+    transform-origin: bottom;
+    transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1) 0.55s;
+  }
+  .prog-seg .prog-wk {
+    position: relative;
+    z-index: 2;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+    transition: color 0.4s ease 0.6s;
+  }
+  /* in-view: segments rise in (staggered), filled ones load up */
+  .prog.in-view .prog-seg { opacity: 1; transform: translateY(0); }
+  .prog.in-view .prog-seg.done::before,
+  .prog.in-view .prog-seg.current::before { transform: scaleY(1); }
+  .prog-seg.done .prog-wk,
+  .prog-seg.current .prog-wk { color: var(--bg); }
+  .prog-seg.current { border-color: var(--accent); }
+  .prog.in-view .prog-seg.current { animation: prog-pulse 2.4s ease-in-out 1.4s infinite; }
+  @keyframes prog-pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(19, 56, 190, 0); }
+    50%      { box-shadow: 0 0 0 3px rgba(19, 56, 190, 0.18); }
+  }
+  .prog-seg:nth-child(1) { transition-delay: 0.04s; }
+  .prog-seg:nth-child(2) { transition-delay: 0.09s; }
+  .prog-seg:nth-child(3) { transition-delay: 0.14s; }
+  .prog-seg:nth-child(4) { transition-delay: 0.19s; }
+  .prog-seg:nth-child(5) { transition-delay: 0.24s; }
+  .prog-seg:nth-child(6) { transition-delay: 0.29s; }
+  .prog-seg:nth-child(7) { transition-delay: 0.34s; }
+  .prog-seg:nth-child(8) { transition-delay: 0.39s; }
+  @media (max-width: 640px) {
+    .prog-seg { height: 40px; }
+    .prog-seg .prog-wk { font-size: 9px; }
+  }
+
   /* ───────── Page loader ───────── */
   .nc-loader {
     position: fixed;
@@ -554,7 +645,7 @@
     margin: 0 auto 24px;
     border-radius: 50%;
     box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
-    animation: nc-globe-spin 2s linear infinite;
+    animation: nc-globe-spin 3s linear infinite;
   }
   @keyframes nc-globe-spin {
     from { transform: perspective(520px) rotateY(0deg); }
@@ -615,7 +706,7 @@
     <span><span class="num">01</span> &nbsp;/&nbsp; Programme overview</span>
     <span class="rule"></span>
   </div>
-  <h1>An 8-week<br>training to make<br>JD a creative <span class="accent">production capability</span>.</h1>
+  <h1>Eight weeks to make<br>January&nbsp;Digital a<br><span class="accent">creative production capability</span>.</h1>
   <p class="sub">Eight weekly sessions. Six people. One through-line — by Session 8, every person in this room can take a client brief and produce client-grade creative.</p>
 </header>
 
@@ -639,6 +730,24 @@
     <div class="lbl">Cadence</div>
     <div class="val">Thursdays</div>
     <div class="meta">9:30 AM EDT</div>
+  </div>
+</div>
+
+<!-- ═════ PROGRAMME PROGRESS ═════ -->
+<div class="prog" id="prog">
+  <div class="prog-head">
+    <span class="prog-lbl">Programme progress</span>
+    <span class="prog-count"><strong id="prog-done">00</strong> of 08 sessions delivered</span>
+  </div>
+  <div class="prog-track">
+    <div class="prog-seg" data-date="2026-05-21"><span class="prog-wk">01</span></div>
+    <div class="prog-seg" data-date="2026-05-28"><span class="prog-wk">02</span></div>
+    <div class="prog-seg" data-date="2026-06-04"><span class="prog-wk">03</span></div>
+    <div class="prog-seg" data-date="2026-06-11"><span class="prog-wk">04</span></div>
+    <div class="prog-seg" data-date="2026-06-18"><span class="prog-wk">05</span></div>
+    <div class="prog-seg" data-date="2026-06-25"><span class="prog-wk">06</span></div>
+    <div class="prog-seg" data-date="2026-07-02"><span class="prog-wk">07</span></div>
+    <div class="prog-seg" data-date="2026-07-09"><span class="prog-wk">08</span></div>
   </div>
 </div>
 
@@ -909,6 +1018,41 @@
     }
     tick();
     setInterval(tick, 1000);
+  })();
+
+  /*
+    Programme progress bar — marks each week delivered (past), the current
+    week (today), and upcoming weeks, then loads up when scrolled into view.
+  */
+  (function () {
+    const prog = document.getElementById('prog');
+    if (!prog) return;
+    const segs = prog.querySelectorAll('.prog-seg');
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let delivered = 0;
+
+    segs.forEach(seg => {
+      const [y, m, d] = seg.dataset.date.split('-').map(Number);
+      const diff = new Date(y, m - 1, d).getTime() - today.getTime();
+      if (diff < 0) { seg.classList.add('done'); delivered++; }
+      else if (diff === 0) { seg.classList.add('current'); }
+    });
+
+    const count = document.getElementById('prog-done');
+    if (count) count.textContent = String(delivered).padStart(2, '0');
+
+    // Load up when scrolled into view (fallback: reveal immediately)
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { prog.classList.add('in-view'); obs.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(prog);
+    } else {
+      prog.classList.add('in-view');
+    }
   })();
 </script>
 
