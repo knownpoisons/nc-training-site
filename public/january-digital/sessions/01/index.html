@@ -25,7 +25,7 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
   }
-  body { padding-bottom: 12vh; }
+  body { padding-bottom: 0; }
 
   /* ─── Top bar ─── */
   .topbar {
@@ -92,6 +92,12 @@
     letter-spacing: -0.025em;
   }
   .hero h1 .accent { color: var(--accent); }
+  .hero .hero-logo {
+    display: block;
+    width: 104px;
+    height: auto;
+    margin-bottom: 30px;
+  }
   .hero .meta {
     margin-top: 28px;
     display: flex;
@@ -364,6 +370,17 @@
     border-top: 1px solid var(--rule);
   }
   .doc-foot .accent { color: var(--accent); }
+  /* Full-width footer graphic — flush to the bottom of the page */
+  .doc-foot-graphic {
+    margin-top: 10vh;
+    width: 100%;
+    line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
   .doc-foot a {
     color: var(--accent);
     text-decoration: none;
@@ -512,6 +529,7 @@
 
 <!-- ─── HERO ─── -->
 <header class="hero">
+  <img class="hero-logo" src="/january-digital/nct-logo-cobalt.png" alt="NotContent — AI Creative Training" />
   <div class="eyebrow">
     <span><span class="num">01</span> &nbsp;/&nbsp; Session</span>
     <span class="pill" id="status-pill">Today</span>
@@ -615,10 +633,8 @@
   </div>
 </section>
 
-<footer class="doc-foot">
-  <img class="foot-globe" src="/january-digital/nct-globe.png" alt="" aria-hidden>
-  <div>NotContent <span class="accent">×</span> January Digital &nbsp;·&nbsp; Session 01 &nbsp;·&nbsp;
-  <a href="/january-digital">Hub</a></div>
+<footer class="doc-foot-graphic">
+  <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
 </footer>
 
 <script>
