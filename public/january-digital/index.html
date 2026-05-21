@@ -508,7 +508,54 @@
   .topbar .clock .t { color: var(--accent); font-weight: 600; }
 
   /* Honour reduced-motion fully */
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
   @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
     *, *::before, *::after {
       animation-duration: 0.001ms !important;
       animation-iteration-count: 1 !important;
@@ -518,6 +565,13 @@
 </style>
 </head>
 <body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <div class="nc-loader-mark">January&nbsp;Digital <span class="x">×</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
 
 <div class="topbar">
   <div class="brand">January Digital <span class="dot">×</span> NotContent</div>
