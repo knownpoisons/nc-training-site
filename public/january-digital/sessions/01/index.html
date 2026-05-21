@@ -375,13 +375,63 @@
     .agenda-item { grid-template-columns: 1fr; gap: 6px; }
     .next-up { grid-template-columns: 1fr; }
   }
+
+  /* ───────── Motion (animate-ui inspired) ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+
+  /* Refined spring hover */
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  /* Live clock in the topbar */
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <a class="back" href="/january-digital/index.html"><span class="arrow">←</span>Back to hub</a>
-  <div class="progress"><strong>Session 01</strong> of 08</div>
+  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock"><span class="live-dot"></span><span class="t" id="nc-clock">--:--:--</span></span></div>
 </div>
 
 <!-- ─── HERO ─── -->
@@ -524,6 +574,22 @@
     btn.textContent = 'Join meeting';
     btn.classList.add('disabled');
   }
+
+  /* Live clock — current time in the programme timezone (ET) */
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    function tick() {
+      el.textContent = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+      }) + ' ET';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 
 </body>

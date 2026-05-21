@@ -448,13 +448,80 @@
     .topbar { position: static; }
     section.block, .throughline, .stats { page-break-inside: avoid; }
   }
+
+  /* ───────── Motion (animate-ui inspired) ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* Sleek entrance — staggered fade-up, no markup changes */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, .stats, .throughline, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .stats        { animation-delay: 0.06s; }
+    .throughline  { animation-delay: 0.12s; }
+    section.block { animation-delay: 0.16s; }
+    .sessions .session {
+      animation: nc-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .sessions .session:nth-child(1) { animation-delay: 0.20s; }
+    .sessions .session:nth-child(2) { animation-delay: 0.25s; }
+    .sessions .session:nth-child(3) { animation-delay: 0.30s; }
+    .sessions .session:nth-child(4) { animation-delay: 0.35s; }
+    .sessions .session:nth-child(5) { animation-delay: 0.40s; }
+    .sessions .session:nth-child(6) { animation-delay: 0.45s; }
+    .sessions .session:nth-child(7) { animation-delay: 0.50s; }
+    .sessions .session:nth-child(8) { animation-delay: 0.55s; }
+  }
+
+  /* Refined spring hover */
+  .session.clickable {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s;
+  }
+  .session.clickable:hover { transform: translateY(-3px); }
+  .stat, .person, .resource {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .person:hover, .resource:hover { transform: translateY(-3px); }
+
+  /* Live clock in the topbar */
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+
+  /* Honour reduced-motion fully */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
 </style>
 </head>
 <body>
 
 <div class="topbar">
   <div class="brand">January Digital <span class="dot">×</span> NotContent</div>
-  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; Today</div>
+  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock"><span class="live-dot"></span><span class="t" id="nc-clock">--:--:--</span></span></div>
 </div>
 
 <!-- ═════ HERO ═════ -->
@@ -720,6 +787,25 @@
       window.location.href = href;
     });
   });
+
+  /*
+    Live clock — shows the current time in the programme timezone (EDT/New York),
+    so attendees can see at a glance whether they're on time for a 9:30 AM EDT session.
+  */
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    function tick() {
+      el.textContent = new Date().toLocaleTimeString('en-US', {
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: '2-digit',
+        second: '2-digit',
+      }) + ' ET';
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
 </script>
 
 <!-- ═════ TEAM ═════ -->
