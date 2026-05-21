@@ -387,10 +387,139 @@
     margin: 0 8px;
   }
 
+  /* ─── Session 01 cheat sheet ─── */
+  .cheat-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .cheat-figure { margin: 0; }
+  .cheat-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+  }
+  .cheat-hero-text p {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .cheat-hero-text p em { font-style: italic; color: var(--accent); }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  /* Handshake 10–80–10 */
+  .handshake {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .hs-step {
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--rule);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .hs-step.mid { background: var(--accent); color: var(--bg); border-top-color: var(--accent); }
+  .hs-step .pct {
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .hs-step.mid .pct { color: var(--bg); }
+  .hs-step .who {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .hs-step.mid .who { color: rgba(229, 228, 226, 0.85); }
+  .hs-step .what {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .hs-step.mid .what { color: rgba(229, 228, 226, 0.9); }
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  /* remember / hints two-up list */
+  .cheat-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
   @media (max-width: 760px) {
     .cards-2col { grid-template-columns: 1fr; }
     .agenda-item { grid-template-columns: 1fr; gap: 6px; }
     .next-up { grid-template-columns: 1fr; }
+    .cheat-hero { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .handshake { grid-template-columns: 1fr; }
   }
 
   /* ───────── Motion (animate-ui inspired) ───────── */
@@ -579,57 +708,169 @@
   </div>
 </section>
 
-<!-- ─── HOMEWORK ─── -->
-<section class="block">
+<!-- ─── CHEAT 01 · THE BIG IDEA ─── -->
+<section class="block" id="cheatsheet">
   <div class="head">
-    <div class="eyebrow"><span class="num">02</span> &nbsp;Homework <span class="rule"></span></div>
-    <h2>Bring to next session.</h2>
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The big idea <span class="rule"></span></div>
+    <h2>JD doesn’t end at the wall anymore.</h2>
   </div>
 
-  <div class="homework">
-    <div class="lbl">Due Thursday May 28</div>
-    <div class="ask">Five pieces of creative work you genuinely admire. Any category. Any medium.</div>
-    <div class="due">A Nike spot. A piece of packaging. A TikTok ad that hit you last week. A book cover. A piece of editorial. Doesn't matter. Five — no more. Be ready to say why each one made the cut.</div>
+  <div class="cheat-hero">
+    <figure class="cheat-figure">
+      <img src="/january-digital/sessions/01/wall-bypass.jpg" alt="Hand-drawn diagram showing JD’s new creative production model bypassing the insights wall to reach the revenue box." />
+    </figure>
+    <div class="cheat-hero-text">
+      <p>The old model: JD takes the brief, produces insights, hands them to the client. Most of it dies. Insights pile up. Clients don’t act. The work goes nowhere.</p>
+      <p>The new model: JD takes the brief, produces insights, <em>produces the creative</em>, ships it. The wall gets bypassed. The work — and the money — moves.</p>
+      <p class="cheat-kicker">That’s the eight weeks. That’s the through-line.</p>
+    </div>
   </div>
 </section>
 
-<!-- ─── DELIVERABLES ─── -->
+<!-- ─── CHEAT 02 · THE HANDSHAKE ─── -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">03</span> &nbsp;After the session <span class="rule"></span></div>
-    <h2>Resources land here.</h2>
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The framework <span class="rule"></span></div>
+    <h2>The Handshake.</h2>
+  </div>
+
+  <p class="cheat-sub">Every AI creative workflow runs on a 10–80–10 split.</p>
+
+  <div class="handshake">
+    <div class="hs-step">
+      <div class="pct">10%</div>
+      <div class="who">Human</div>
+      <div class="what">Brief, context, references, direction. The setup.</div>
+    </div>
+    <div class="hs-step mid">
+      <div class="pct">80%</div>
+      <div class="who">AI</div>
+      <div class="what">Generation, iteration, production. The volume.</div>
+    </div>
+    <div class="hs-step">
+      <div class="pct">10%</div>
+      <div class="who">Human</div>
+      <div class="what">Editing, checking, finishing, brand alignment. The polish.</div>
+    </div>
+  </div>
+
+  <p class="cheat-note">Without the human bookends, you get AI slop. With them, you get work that ships.</p>
+
+  <blockquote class="cheat-pull">The trap: 80% of the <em>value</em> lives in the 20% human work. The middle scales. The ends are where craft happens.</blockquote>
+</section>
+
+<!-- ─── CHEAT 03 · WHAT TO REMEMBER ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;What to remember <span class="rule"></span></div>
+    <h2>What to remember.</h2>
+  </div>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">This is not Thursday morning training.</div>
+      <div class="p">You’re building a category. Not learning a tool.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Rise together.</div>
+      <div class="p">Share workflows, outputs, references. Teams that share win. Teams that hoard lose.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Tools are decided. Stop debating them.</div>
+      <div class="p">Claude as the brain. Flora as the canvas. The production models I’ll tell you when to use.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Speed without taste is dangerous.</div>
+      <div class="p">AI lets us be the best on day one — but only if we know what to tell it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHEAT 04 · HELPFUL HINTS ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Helpful hints <span class="rule"></span></div>
+    <h2>Helpful hints.</h2>
+  </div>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">Thirty minutes a day on AI.</div>
+      <div class="p">Not work. Read, watch, scroll. Get it in your feeds. Live it.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Type “Y” into your YouTube search.</div>
+      <div class="p">Let the algorithm do the work. Curate your feed actively.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Your “key eye” matters more than your prompts.</div>
+      <div class="p">Aesthetic taste is the thing AI can’t generate. That’s what we’re building.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Share workflows in Flora.</div>
+      <div class="p">If it works for you, it should work for the team. Repeatable processes scale.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHEAT 05 · HOMEWORK ─── -->
+<section class="block" id="homework">
+  <div class="head">
+    <div class="eyebrow"><span class="num">06</span> &nbsp;Homework <span class="rule"></span></div>
+    <h2>Homework for Session 02.</h2>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">Due Thursday, 28 May 2026</div>
+    <div class="ask">Bring five pieces of creative you love. Any medium. Music, photo, design, packaging, a TikTok ad, a billboard, something you saved on Instagram. Be ready to say why.</div>
+  </div>
+  <p class="cheat-kicker">This is how we build your eye.</p>
+</section>
+
+<!-- ─── CHEAT 06 · COMING NEXT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up">
+    <div>
+      <div class="lbl">Session 02 &nbsp;·&nbsp; Thursday, 28 May 2026 &nbsp;·&nbsp; 9:30 AM EDT</div>
+      <div class="title">Inspiration, Curation, and the Creative Idea</div>
+      <div class="date">Where creative ideas actually come from. The difference between design and an idea. How to build a reference library that earns its keep.</div>
+    </div>
+    <a class="btn" href="/january-digital">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── CHEAT 07 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">08</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
   </div>
 
   <div class="cards-2col">
     <div class="resource-card muted">
       <div class="lbl">Recording</div>
       <div class="name">Session 01 recording</div>
-      <div class="desc">Posted within 24 hours of the session. You'll also get the link in Slack.</div>
-      <span class="empty">Available after session</span>
+      <div class="desc">Posted here once it’s uploaded. You’ll get the link in Slack too.</div>
+      <span class="empty">Available after upload</span>
     </div>
 
-    <div class="resource-card muted">
+    <div class="resource-card">
       <div class="lbl">Cheat sheet</div>
       <div class="name">Session 01 cheat sheet</div>
-      <div class="desc">The frameworks, language, and key moments distilled to one page. Tomorrow morning in Slack.</div>
-      <span class="empty">Available after session</span>
+      <div class="desc">This page. Bookmark it. Everything from tonight on one screen.</div>
+      <a class="link" href="#cheatsheet">Back to the top</a>
     </div>
-  </div>
-</section>
 
-<!-- ─── COMING NEXT ─── -->
-<section class="block">
-  <div class="head">
-    <div class="eyebrow"><span class="num">04</span> &nbsp;Coming next <span class="rule"></span></div>
-  </div>
-
-  <div class="next-up">
-    <div>
-      <div class="lbl">Session 02 &nbsp;·&nbsp; Thursday May 28 &nbsp;·&nbsp; 9:30 AM EDT</div>
-      <div class="title">Inspiration, Curation, and the Creative Idea</div>
-      <div class="date">Where creative ideas actually come from. Design vs. idea. Building a reference library that earns its keep.</div>
+    <div class="resource-card">
+      <div class="lbl">Homework</div>
+      <div class="name">Bring five pieces you love</div>
+      <div class="desc">Due before Session 02. Any medium. Be ready to say why.</div>
+      <a class="link" href="#homework">View homework</a>
     </div>
-    <a class="btn" href="/january-digital">View all sessions</a>
   </div>
 </section>
 
