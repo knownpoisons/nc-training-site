@@ -25,7 +25,7 @@
     -moz-osx-font-smoothing: grayscale;
     scroll-behavior: smooth;
   }
-  body { padding-bottom: 12vh; }
+  body { padding-bottom: 0; }
 
   /* ───────── Top bar ───────── */
   .topbar {
@@ -278,6 +278,7 @@
   .session.past .topic, .session.past .summary { color: var(--muted); }
   .session.clickable {
     cursor: pointer;
+    position: relative;
     transition: transform 0.15s, box-shadow 0.15s;
   }
   .session.clickable:hover {
@@ -287,6 +288,36 @@
   .session.today.clickable:hover {
     box-shadow: 0 6px 20px rgba(19, 56, 190, 0.32);
   }
+  /* shine flash on hover — signals the card is clickable */
+  .session.clickable::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.30) 50%, transparent 70%);
+    transform: translateX(-120%);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .session.clickable:hover::after { animation: session-shine 0.7s ease; }
+  @keyframes session-shine { to { transform: translateX(120%); } }
+  /* "open session" hint with long arrow */
+  .session .open-hint {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--bg);
+  }
+  .session .open-hint .arr {
+    font-size: 15px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .session.clickable:hover .open-hint .arr { transform: translateX(8px); }
   .join-btn {
     font-family: var(--sans);
     font-size: 11px;
@@ -392,6 +423,13 @@
     line-height: 1.55;
   }
 
+  .hero .hero-logo {
+    display: block;
+    width: 104px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
   /* ───────── Through-line ───────── */
   .throughline {
     position: relative;
@@ -409,8 +447,8 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 420px;
-    max-width: 58%;
+    width: 520px;
+    max-width: 68%;
     aspect-ratio: 1100 / 469;
     background: url("/january-digital/nct-globe-mark.png") no-repeat center / contain;
     opacity: 0.06;
@@ -455,6 +493,17 @@
     max-width: 60%;
     height: auto;
     margin: 0 auto 28px;
+  }
+  /* Full-width footer graphic — flush to the bottom of the page */
+  .doc-foot-graphic {
+    margin-top: 10vh;
+    width: 100%;
+    line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
   /* Resources section sticker pack (top-right) */
   .resources-block { position: relative; }
@@ -755,6 +804,7 @@
 
 <!-- ═════ HERO ═════ -->
 <header class="hero">
+  <img class="hero-logo" src="/january-digital/nct-logo-cobalt.png" alt="NotContent — AI Creative Training" />
   <div class="eyebrow">
     <span><span class="num">01</span> &nbsp;/&nbsp; Programme overview</span>
     <span class="rule"></span>
@@ -829,6 +879,7 @@
       <div class="body">
         <div class="topic">Three Questions, Two Truths, One Handshake</div>
         <div class="summary">The strategic frame. The operating discipline. The mental model that runs the whole programme.</div>
+        <div class="open-hint">Open session <span class="arr">⟶</span></div>
       </div>
       <div class="date">
         <div class="day">Thu, May 21</div>
@@ -1246,9 +1297,8 @@
   </div>
 </section>
 
-<footer class="doc-foot">
-  <img class="foot-logo" src="/january-digital/nct-logo-cobalt.png" alt="NotContent" />
-  <div>NotContent <span class="accent">×</span> January Digital &nbsp;·&nbsp; Programme Hub &nbsp;·&nbsp; May 2026</div>
+<footer class="doc-foot-graphic">
+  <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
 </footer>
 
 </body>
