@@ -521,7 +521,7 @@
 
 <div class="topbar">
   <div class="brand">January Digital <span class="dot">×</span> NotContent</div>
-  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock"><span class="live-dot"></span><span class="t" id="nc-clock">--:--:--</span></span></div>
+  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></div>
 </div>
 
 <!-- ═════ HERO ═════ -->
@@ -789,19 +789,38 @@
   });
 
   /*
-    Live clock — shows the current time in the programme timezone (EDT/New York),
-    so attendees can see at a glance whether they're on time for a 9:30 AM EDT session.
+    Countdown to the next session — every session starts 9:30 AM EDT (UTC-4).
+    The programme runs entirely within Daylight Saving (May–Jul 2026), so a
+    fixed -4 offset (13:30 UTC) is correct. Shows "Live now" while a session
+    is running and "Programme complete" once the last one has passed.
   */
   (function () {
     const el = document.getElementById('nc-clock');
     if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-04', '2026-06-11',
+      '2026-06-18', '2026-06-25', '2026-07-02', '2026-07-09'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 13, 30, 0); // 9:30 AM EDT
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
     function tick() {
-      el.textContent = new Date().toLocaleTimeString('en-US', {
-        timeZone: 'America/New_York',
-        hour: 'numeric',
-        minute: '2-digit',
-        second: '2-digit',
-      }) + ' ET';
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
     }
     tick();
     setInterval(tick, 1000);
