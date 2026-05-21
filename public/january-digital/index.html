@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>January Digital × NotContent — Programme Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
   :root {
@@ -551,75 +554,61 @@
   .topbar .clock .t { color: var(--accent); font-weight: 600; }
 
   /* Honour reduced-motion fully */
-  /* ───────── Programme progress (retro) ───────── */
+  /* ───────── Programme progress (8-bit arcade) ───────── */
   .prog {
     max-width: 1100px;
     margin: 0 auto 12vh;
     padding: 0 40px;
   }
-  .prog-head {
+  /* Cobalt band with a double white frame */
+  .prog-inner {
     display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 16px;
+    align-items: center;
+    gap: 28px;
+    background: var(--accent);
+    border: 2px solid #fff;
+    outline: 2px solid #fff;
+    outline-offset: 3px;
+    border-radius: 6px;
+    padding: 16px 22px;
   }
-  .prog-lbl, .prog-count {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .prog-count {
-    letter-spacing: 0.16em;
-    font-variant-numeric: tabular-nums;
-    white-space: nowrap;
-  }
-  .prog-count strong { color: var(--accent); font-weight: 600; }
-  /* Sunken bevel tray — Win95 loader, our colours */
+  /* Segmented bar — grows to fill, own white frame */
   .prog-track {
+    flex: 1;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    gap: 5px;
-    padding: 5px;
-    background: var(--bg);
-    border-style: solid;
-    border-width: 2px;
-    border-color: #9d9c9a #ffffff #ffffff #9d9c9a;
+    gap: 4px;
+    padding: 4px;
+    background: var(--accent);
+    border: 2px solid #fff;
+    border-radius: 3px;
   }
   .prog-seg {
-    height: 30px;
+    height: 26px;
     position: relative;
     overflow: hidden;
-    background: rgba(19, 56, 190, 0.06);
-    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+    /* upcoming = white with a cobalt crosshatch screen-tone */
+    background-color: #fff;
+    background-image:
+      repeating-linear-gradient(45deg, var(--accent) 0 1px, transparent 1px 6px),
+      repeating-linear-gradient(-45deg, var(--accent) 0 1px, transparent 1px 6px);
   }
   .prog-seg::before {
     content: "";
     position: absolute;
     inset: 0;
-    background: var(--accent);
-    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.28),
-                inset 0 -3px 0 rgba(0, 0, 0, 0.18);
-    opacity: 0;
-    transform: scaleX(0.35);
-    transform-origin: left center;
-    transition: opacity 0.18s ease, transform 0.18s ease;
+    background: #fff;            /* solid white = filled */
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.22s steps(2);
   }
   .prog.in-view .prog-seg.done::before,
+  .prog.in-view .prog-seg.current::before { transform: scaleX(1); }
+  /* current segment blinks like a cursor */
   .prog.in-view .prog-seg.current::before {
-    opacity: 1;
-    transform: scaleX(1);
+    animation: prog-blink 1s steps(1) 1.4s infinite;
   }
-  /* current week blinks like a retro cursor */
-  .prog.in-view .prog-seg.current::before {
-    animation: prog-blink 1.1s steps(1) 1.7s infinite;
-  }
-  @keyframes prog-blink {
-    0%, 100% { opacity: 1; }
-    50%      { opacity: 0.5; }
-  }
+  @keyframes prog-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.45; } }
   /* left-to-right load cascade */
   .prog-seg:nth-child(1)::before { transition-delay: 0.10s; }
   .prog-seg:nth-child(2)::before { transition-delay: 0.20s; }
@@ -629,27 +618,23 @@
   .prog-seg:nth-child(6)::before { transition-delay: 0.60s; }
   .prog-seg:nth-child(7)::before { transition-delay: 0.70s; }
   .prog-seg:nth-child(8)::before { transition-delay: 0.80s; }
-  /* week marks below the tray */
-  .prog-marks {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 5px;
-    margin-top: 10px;
-    padding: 0 7px;
+  /* pixel label */
+  .prog-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: #fff;
+    font-family: "Press Start 2P", "Courier New", monospace;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
-  .prog-marks span {
-    text-align: center;
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.1em;
-    font-weight: 600;
-    color: var(--muted);
-    font-variant-numeric: tabular-nums;
-  }
-  .prog-marks span.is-current { color: var(--accent); }
-  @media (max-width: 640px) {
-    .prog-seg { height: 26px; }
-    .prog-marks span { font-size: 9px; }
+  @media (max-width: 760px) {
+    .prog-inner { flex-direction: column; align-items: stretch; gap: 16px; }
+    .prog-meta { justify-content: space-between; font-size: 10px; }
+    .prog-seg { height: 22px; }
   }
 
   /* ───────── Page loader ───────── */
@@ -788,22 +773,21 @@
 
 <!-- ═════ PROGRAMME PROGRESS ═════ -->
 <div class="prog" id="prog">
-  <div class="prog-head">
-    <span class="prog-lbl">Programme progress</span>
-    <span class="prog-count"><strong id="prog-done">00</strong> of 08 weeks delivered</span>
-  </div>
-  <div class="prog-track">
-    <div class="prog-seg" data-date="2026-05-21"></div>
-    <div class="prog-seg" data-date="2026-05-28"></div>
-    <div class="prog-seg" data-date="2026-06-04"></div>
-    <div class="prog-seg" data-date="2026-06-11"></div>
-    <div class="prog-seg" data-date="2026-06-18"></div>
-    <div class="prog-seg" data-date="2026-06-25"></div>
-    <div class="prog-seg" data-date="2026-07-02"></div>
-    <div class="prog-seg" data-date="2026-07-09"></div>
-  </div>
-  <div class="prog-marks">
-    <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span>
+  <div class="prog-inner">
+    <div class="prog-track">
+      <div class="prog-seg" data-date="2026-05-21"></div>
+      <div class="prog-seg" data-date="2026-05-28"></div>
+      <div class="prog-seg" data-date="2026-06-04"></div>
+      <div class="prog-seg" data-date="2026-06-11"></div>
+      <div class="prog-seg" data-date="2026-06-18"></div>
+      <div class="prog-seg" data-date="2026-06-25"></div>
+      <div class="prog-seg" data-date="2026-07-02"></div>
+      <div class="prog-seg" data-date="2026-07-09"></div>
+    </div>
+    <div class="prog-meta">
+      <span class="prog-title">Training Progress</span>
+      <span class="prog-count" id="prog-count">0/8</span>
+    </div>
   </div>
 </div>
 
@@ -1084,23 +1068,19 @@
     const prog = document.getElementById('prog');
     if (!prog) return;
     const segs = prog.querySelectorAll('.prog-seg');
-    const marks = prog.querySelectorAll('.prog-marks span');
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    let delivered = 0;
+    let reached = 0;
 
-    segs.forEach((seg, i) => {
+    segs.forEach((seg) => {
       const [y, m, d] = seg.dataset.date.split('-').map(Number);
       const diff = new Date(y, m - 1, d).getTime() - today.getTime();
-      if (diff < 0) { seg.classList.add('done'); delivered++; }
-      else if (diff === 0) {
-        seg.classList.add('current');
-        if (marks[i]) marks[i].classList.add('is-current');
-      }
+      if (diff < 0) { seg.classList.add('done'); reached++; }
+      else if (diff === 0) { seg.classList.add('current'); reached++; }
     });
 
-    const count = document.getElementById('prog-done');
-    if (count) count.textContent = String(delivered).padStart(2, '0');
+    const count = document.getElementById('prog-count');
+    if (count) count.textContent = reached + '/8';
 
     // Load up when scrolled into view (fallback: reveal immediately)
     if ('IntersectionObserver' in window) {
