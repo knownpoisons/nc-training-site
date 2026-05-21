@@ -547,6 +547,36 @@
     transform-origin: left;
     animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
   }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 2s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  /* Globe marks — topbar lockup + footer sign-off */
+  .topbar .brand-globe {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: -2px 2px 0;
+  }
+  .doc-foot .foot-globe {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    opacity: 0.85;
+  }
   @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
   @keyframes nc-mark-in {
     from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
@@ -568,13 +598,14 @@
 
 <div class="nc-loader" aria-hidden="true">
   <div>
+    <img class="nc-loader-globe" src="/january-digital/nct-globe.png" alt="" />
     <div class="nc-loader-mark">January&nbsp;Digital <span class="x">×</span> NotContent</div>
     <div class="nc-loader-rule"><span></span></div>
   </div>
 </div>
 
 <div class="topbar">
-  <div class="brand">January Digital <span class="dot">×</span> NotContent</div>
+  <div class="brand">January Digital <span class="dot">×</span> <img class="brand-globe" src="/january-digital/nct-globe.png" alt="" aria-hidden> NotContent</div>
   <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></div>
 </div>
 
@@ -1011,7 +1042,8 @@
 </section>
 
 <footer class="doc-foot">
-  NotContent <span class="accent">×</span> January Digital &nbsp;·&nbsp; Programme Hub &nbsp;·&nbsp; May 2026
+  <img class="foot-globe" src="/january-digital/nct-globe.png" alt="" aria-hidden>
+  <div>NotContent <span class="accent">×</span> January Digital &nbsp;·&nbsp; Programme Hub &nbsp;·&nbsp; May 2026</div>
 </footer>
 
 </body>
