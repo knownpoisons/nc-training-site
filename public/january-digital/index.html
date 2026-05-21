@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>January Digital × NotContent — Programme Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 12vh; }
+
+  /* ───────── Top bar ───────── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .brand { font-weight: 500; }
+  .topbar .brand .dot { color: var(--accent); margin: 0 0.5em; }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ───────── Hero ───────── */
+  .hero {
+    max-width: 1100px;
+    margin: 14vh auto 8vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .rule {
+    flex: 1; height: 1px; background: var(--rule); max-width: 380px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(56px, 9vw, 132px);
+    line-height: 0.92;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); font-style: italic; }
+  .hero .sub {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 30px);
+    color: var(--muted);
+    margin-top: 28px;
+    line-height: 1.3;
+    font-style: italic;
+    max-width: 760px;
+  }
+
+  /* ───────── Stat row ───────── */
+  .stats {
+    max-width: 1100px;
+    margin: 6vh auto 10vh;
+    padding: 32px 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 36px;
+  }
+  .stats .stat .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .stats .stat .val {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .stats .stat .val .accent { color: var(--accent); }
+  .stats .stat .meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ───────── Section ───────── */
+  section.block {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head {
+    margin-bottom: 36px;
+  }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule {
+    flex: 1; height: 1px; background: var(--rule);
+  }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4.6vw, 56px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  section.block .head .sub {
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.4;
+    font-style: italic;
+    max-width: 720px;
+  }
+
+  /* ───────── Session list ───────── */
+  .sessions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .session {
+    display: grid;
+    grid-template-columns: 72px 1fr 180px 180px;
+    align-items: stretch;
+    background: var(--surface);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .session.today {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .session.today .num { color: rgba(229, 228, 226, 0.5); }
+  .session.today .topic { color: var(--bg); }
+  .session.today .summary { color: rgba(229, 228, 226, 0.8); }
+  .session.today .date .day { color: var(--bg); }
+  .session.today .date .time { color: rgba(229, 228, 226, 0.7); }
+  .session.today .action-cell { color: var(--bg); }
+  .session.today .status-pill {
+    background: var(--bg);
+    color: var(--accent);
+  }
+  .session.today .join-btn {
+    background: var(--bg);
+    color: var(--accent);
+    border-color: var(--bg);
+  }
+  .session.today .join-btn:hover {
+    background: transparent;
+    color: var(--bg);
+    border-color: var(--bg);
+  }
+  .session .num {
+    font-family: var(--serif);
+    font-size: 38px;
+    line-height: 1;
+    color: var(--muted);
+    padding: 22px 0 22px 22px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+  }
+  .session .body {
+    padding: 20px 24px;
+    border-left: 1px solid var(--rule);
+  }
+  .session.today .body { border-left-color: rgba(229, 228, 226, 0.2); }
+  .session .topic {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .session .summary {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .session .date {
+    padding: 20px 24px;
+    border-left: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .session.today .date { border-left-color: rgba(229, 228, 226, 0.2); }
+  .session .date .day {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1;
+    letter-spacing: -0.005em;
+  }
+  .session .date .time {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .session .action-cell {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+  }
+  .status-pill {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 3px;
+    background: var(--rule);
+    color: var(--ink);
+  }
+  .status-pill.upcoming { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .status-pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); opacity: 0.7; }
+  .session.past { opacity: 0.6; }
+  .session.past .topic, .session.past .summary { color: var(--muted); }
+  .session.clickable {
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .session.clickable:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(19, 56, 190, 0.12);
+  }
+  .session.today.clickable:hover {
+    box-shadow: 0 6px 20px rgba(19, 56, 190, 0.32);
+  }
+  .join-btn {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .join-btn:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .join-btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* ───────── Team ───────── */
+  .team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .person {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .person .name {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .person .role {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .person .clients {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .person .clients .lbl {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* ───────── Resources ───────── */
+  .resources {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .resource {
+    padding: 22px 24px;
+    background: var(--soft);
+    border-radius: 4px;
+  }
+  .resource .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource .name {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .resource .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+  }
+
+  /* ───────── Through-line ───────── */
+  .throughline {
+    max-width: 1100px;
+    margin: 4vh auto 8vh;
+    padding: 6vh 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .throughline .lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .throughline .quote {
+    font-family: var(--serif);
+    font-size: clamp(26px, 3.4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    max-width: 920px;
+  }
+  .throughline .quote .accent { color: var(--accent); }
+
+  /* ───────── Footer ───────── */
+  .doc-foot {
+    max-width: 1100px;
+    margin: 8vh auto 4vh;
+    padding: 4vh 40px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+  }
+  .doc-foot .accent { color: var(--accent); }
+
+  @media (max-width: 760px) {
+    .session {
+      grid-template-columns: 1fr;
+    }
+    .session .body, .session .date, .session .status-cell {
+      border-left: none;
+      border-top: 1px solid var(--rule);
+    }
+    .session .num { padding: 16px 22px 0; font-size: 28px; }
+  }
+
+  @media print {
+    .topbar { position: static; }
+    section.block, .throughline, .stats { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="brand">January Digital <span class="dot">×</span> NotContent</div>
+  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; Today</div>
+</div>
+
+<!-- ═════ HERO ═════ -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">01</span> &nbsp;/&nbsp; Programme overview</span>
+    <span class="rule"></span>
+  </div>
+  <h1>An 8-week<br>training to make<br>JD a creative <span class="accent">production capability</span>.</h1>
+  <p class="sub">Eight weekly sessions. Six people. One through-line — by Session 8, every person in this room can take a client brief and produce client-grade creative.</p>
+</header>
+
+<div class="stats">
+  <div class="stat">
+    <div class="lbl">Programme</div>
+    <div class="val">8 weeks</div>
+    <div class="meta">May 21 → July 9, 2026</div>
+  </div>
+  <div class="stat">
+    <div class="lbl">Sessions</div>
+    <div class="val">8 <span class="accent">×</span> 60 min</div>
+    <div class="meta">Plus 2 office hours</div>
+  </div>
+  <div class="stat">
+    <div class="lbl">Team</div>
+    <div class="val">9 people</div>
+    <div class="meta">Across 9 client accounts</div>
+  </div>
+  <div class="stat">
+    <div class="lbl">Cadence</div>
+    <div class="val">Thursdays</div>
+    <div class="meta">9:30 AM EDT</div>
+  </div>
+</div>
+
+<!-- ═════ THROUGH-LINE ═════ -->
+<div class="throughline">
+  <div class="lbl">The through-line</div>
+  <p class="quote">Stop treating AI as a silver bullet. Build the systems that survive client chaos. Figure out what <span class="accent">January Digital</span> does with this that nobody else does.</p>
+</div>
+
+<!-- ═════ SESSIONS ═════ -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The eight sessions <span class="rule"></span></div>
+    <h2>What we cover, week by week.</h2>
+    <p class="sub">Sessions 1 and 8 set and close the frame. Sessions 2 through 7 are the build. Cheat sheets and recordings are published in Slack within 24 hours of each session.</p>
+  </div>
+
+  <div class="sessions">
+
+    <!-- Session 1 — TODAY -->
+    <div class="session today" data-date="2026-05-21" data-href="sessions/01/index.html">
+      <div class="num">01</div>
+      <div class="body">
+        <div class="topic">Three Questions, Two Truths, One Handshake</div>
+        <div class="summary">The strategic frame. The operating discipline. The mental model that runs the whole programme.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, May 21</div>
+        <div class="time">9:30 AM EDT · 75 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill">Today</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 2 -->
+    <div class="session" data-date="2026-05-28">
+      <div class="num">02</div>
+      <div class="body">
+        <div class="topic">Inspiration, Curation, and the Creative Idea</div>
+        <div class="summary">Where creative ideas actually come from. Design vs idea. Building a reference library that earns its keep.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, May 28</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 3 -->
+    <div class="session" data-date="2026-06-04">
+      <div class="num">03</div>
+      <div class="body">
+        <div class="topic">The Brief on Both Sides of the Table</div>
+        <div class="summary">Receiving a brief, writing a brief, briefing AI. Translating vague client direction into production-grade direction.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 4</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 4 -->
+    <div class="session" data-date="2026-06-11">
+      <div class="num">04</div>
+      <div class="body">
+        <div class="topic">The Production Stack</div>
+        <div class="summary">Flora as canvas. Claude as thinking layer. Nano Banana Pro, Veo 3, Seedance for production. Divergence at scale.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 11</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 5 -->
+    <div class="session" data-date="2026-06-18">
+      <div class="num">05</div>
+      <div class="body">
+        <div class="topic">Static to Motion, Concept to Craft</div>
+        <div class="summary">Precision stills and short-form motion. Hybrid model where AI does volume and humans bring taste. Creative from scratch.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 18</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 6 -->
+    <div class="session" data-date="2026-06-25">
+      <div class="num">06</div>
+      <div class="body">
+        <div class="topic">Feedback When You're the Production House</div>
+        <div class="summary">The production-house revision frame. Translating vague feedback into AI direction. Internal feedback rituals.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 25</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 7 -->
+    <div class="session" data-date="2026-07-02">
+      <div class="num">07</div>
+      <div class="body">
+        <div class="topic">The Creative Service Blueprint</div>
+        <div class="summary">What "creative as a service" means at JD. Pricing and scoping. The internal handoff between media, creative, and back.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, July 2</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 8 -->
+    <div class="session" data-date="2026-07-09">
+      <div class="num">08</div>
+      <div class="body">
+        <div class="topic">Scaling the System Across the Portfolio</div>
+        <div class="summary">The workflow as an asset. Replication test across a second client. Capacity maths. Each person's 30-day build plan.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, July 9</div>
+        <div class="time">9:30 AM EDT · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════ Meet link + auto-state injection ═════ -->
+<script>
+  /*
+    Recurring Google Calendar event creates one Meet link reused across all 8 sessions.
+    To change the Meet link, edit this one line and refresh the page.
+  */
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  /*
+    Auto-apply session state (past / today / future) based on the date each card carries.
+    - Today's session: active cobalt "Join meeting" button linking to Meet
+    - Future sessions: greyed, disabled, not clickable
+    - Past sessions: muted, "Session complete" label
+    Works automatically — when you open the hub on May 28, Session 2 lights up.
+  */
+  function applyStates() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+    document.querySelectorAll('.session').forEach(card => {
+      const dateStr = card.dataset.date;
+      if (!dateStr) return;
+
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const sessionDate = new Date(y, m - 1, d);
+      const diff = sessionDate.getTime() - today.getTime();
+
+      card.classList.remove('today', 'past', 'future');
+      const pill = card.querySelector('.status-pill');
+      const btn = card.querySelector('.join-link');
+
+      if (diff === 0) {
+        card.classList.add('today');
+        if (pill) { pill.textContent = 'Today'; pill.className = 'status-pill'; }
+        if (btn) {
+          btn.classList.remove('disabled');
+          btn.textContent = 'Join meeting';
+          btn.href = MEET_LINK;
+        }
+      } else if (diff < 0) {
+        card.classList.add('past');
+        if (pill) { pill.textContent = 'Complete'; pill.className = 'status-pill past'; }
+        if (btn) {
+          btn.classList.add('disabled');
+          btn.textContent = 'Session complete';
+          btn.href = '#';
+        }
+      } else {
+        card.classList.add('future');
+        if (pill) { pill.textContent = 'Upcoming'; pill.className = 'status-pill upcoming'; }
+        if (btn) {
+          btn.classList.add('disabled');
+          btn.textContent = 'Join meeting';
+          btn.href = '#';
+        }
+      }
+    });
+  }
+
+  applyStates();
+
+  /*
+    Make session cards clickable — click anywhere on the card (except the Meet button)
+    opens the session detail page. Set per card via data-href.
+  */
+  document.querySelectorAll('.session').forEach(card => {
+    const href = card.dataset.href;
+    if (!href) return;
+    card.classList.add('clickable');
+    card.addEventListener('click', (e) => {
+      // Don't intercept clicks on the Meet button — let it open the Meet link
+      if (e.target.closest('.join-link')) return;
+      window.location.href = href;
+    });
+  });
+</script>
+
+<!-- ═════ TEAM ═════ -->
+<section class="block">
+  <div class="head" style="margin-bottom: 24px;">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The cohort <span class="rule"></span></div>
+  </div>
+
+  <div class="team">
+
+    <div class="person">
+      <div class="name">Jeremy Ekes</div>
+      <div class="role">Vice President</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        Carhartt · Supergoop · Interstate Batteries · Tanger Outlets
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Luisa Melo</div>
+      <div class="role">Sr Manager, Creative</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        All accounts
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Christina Cardino</div>
+      <div class="role">Associate Director</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        amika · StriVectin
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Salome Sadovnik</div>
+      <div class="role">Sr Manager, Client Services</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        Carhartt · Supergoop
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Justin Johnes</div>
+      <div class="role">Manager</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        SPANX (onboarding)
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Omama Qureshi</div>
+      <div class="role">Manager</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        Steve Madden
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Addison Meek</div>
+      <div class="role">Senior Coordinator</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        Carhartt
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">C. Berg</div>
+      <div class="role">Intake pending</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        Joining the programme &mdash; details to come
+      </div>
+    </div>
+
+    <div class="person">
+      <div class="name">Jared</div>
+      <div class="role">Intake pending</div>
+      <div class="clients">
+        <span class="lbl">Accounts</span>
+        Joining the programme &mdash; details to come
+      </div>
+    </div>
+
+  </div>
+
+  <div style="margin-top: 24px; padding: 18px 22px; background: var(--soft); border-radius: 4px; display: flex; align-items: center; gap: 16px;">
+    <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600;">Leadership</div>
+    <div style="flex: 1; height: 1px; background: var(--rule);"></div>
+    <div style="font-family: var(--serif); font-size: 18px;">Vic Drabicky <span style="font-family: var(--sans); font-size: 11px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-left: 10px;">Founder</span></div>
+  </div>
+</section>
+
+<!-- ═════ RESOURCES ═════ -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>What's around the sessions.</h2>
+    <p class="sub">The work happens in the hour each Thursday. The support happens in between, after, and beyond.</p>
+  </div>
+
+  <div class="resources">
+
+    <div class="resource">
+      <div class="lbl">Async</div>
+      <div class="name">Slack channel</div>
+      <div class="desc">Goes live tonight. Post work in progress, ask questions between sessions, grab recordings, links, and assets. Working-week response from Jeremy.</div>
+    </div>
+
+    <div class="resource">
+      <div class="lbl">Drop-in</div>
+      <div class="name">Office hours</div>
+      <div class="desc">Two optional one-hour sessions scheduled around weeks 3 and 6. Drop-in, live work, anything you're stuck on.</div>
+    </div>
+
+    <div class="resource">
+      <div class="lbl">After</div>
+      <div class="name">6 months post-programme</div>
+      <div class="desc">Light advisement from Jeremy after the programme ends — quick monthly check-ins and ad-hoc questions. Through January 2027.</div>
+    </div>
+
+  </div>
+</section>
+
+<footer class="doc-foot">
+  NotContent <span class="accent">×</span> January Digital &nbsp;·&nbsp; Programme Hub &nbsp;·&nbsp; May 2026
+</footer>
+
+</body>
+</html>
