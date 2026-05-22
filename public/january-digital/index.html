@@ -274,8 +274,42 @@
   }
   .status-pill.upcoming { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
   .status-pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); opacity: 0.7; }
-  .session.past { opacity: 0.6; }
-  .session.past .topic, .session.past .summary { color: var(--muted); }
+  .status-pill.next { background: var(--accent); color: var(--bg); }
+  .status-pill.complete { background: var(--soft); color: var(--accent); }
+  .status-pill.complete::before { content: "\2713"; margin-right: 5px; font-weight: 700; }
+  /* Completed without a published page yet — stays muted, not clickable */
+  .session.past:not(.complete) { opacity: 0.6; }
+  .session.past:not(.complete) .topic,
+  .session.past:not(.complete) .summary { color: var(--muted); }
+  .session.complete { opacity: 1; }
+  /* Next session — accent edge + soft tint (full cobalt fill is reserved for live/today) */
+  .session.next {
+    background-image: linear-gradient(var(--soft), var(--soft));
+    background-color: var(--surface);
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  /* Completed CTA strip — spans the full card grid */
+  .session-cta {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 24px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .session-cta .arr {
+    font-size: 15px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .session.clickable:hover .session-cta .arr { transform: translateX(8px); }
   .session.clickable {
     cursor: pointer;
     position: relative;
@@ -529,7 +563,7 @@
     .session {
       grid-template-columns: 1fr;
     }
-    .session .body, .session .date, .session .status-cell {
+    .session .body, .session .date, .session .action-cell {
       border-left: none;
       border-top: 1px solid var(--rule);
     }
@@ -873,13 +907,12 @@
 
   <div class="sessions">
 
-    <!-- Session 1 — TODAY -->
-    <div class="session today" data-date="2026-05-21" data-href="/january-digital/sessions/01">
+    <!-- Session 1 — state applied by JS (date-driven) -->
+    <div class="session" data-date="2026-05-21" data-href="/january-digital/sessions/01">
       <div class="num">01</div>
       <div class="body">
         <div class="topic">Three Questions, Two Truths, One Handshake</div>
         <div class="summary">The strategic frame. The operating discipline. The mental model that runs the whole programme.</div>
-        <div class="open-hint">Open session <span class="arr">⟶</span></div>
       </div>
       <div class="date">
         <div class="day">Thu, May 21</div>
@@ -1028,9 +1061,20 @@
     - Past sessions: muted, "Session complete" label
     Works automatically — when you open the hub on May 28, Session 2 lights up.
   */
+  // Completed sessions get a full-width clickable CTA strip to their resources.
+  function injectCta(card, href) {
+    if (card.querySelector('.session-cta')) return;       // idempotent
+    const a = document.createElement('a');
+    a.className = 'session-cta';
+    a.href = href;
+    a.innerHTML = 'Session Notes, Recording &amp; Resources <span class="arr">⟶</span>';
+    card.appendChild(a);
+  }
+
   function applyStates() {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let nextAssigned = false;   // the soonest future row becomes "Next session"
 
     document.querySelectorAll('.session').forEach(card => {
       const dateStr = card.dataset.date;
@@ -1040,30 +1084,52 @@
       const sessionDate = new Date(y, m - 1, d);
       const diff = sessionDate.getTime() - today.getTime();
 
-      card.classList.remove('today', 'past', 'future');
+      card.classList.remove('today', 'past', 'future', 'next', 'upcoming', 'complete');
       const pill = card.querySelector('.status-pill');
       const btn = card.querySelector('.join-link');
+      const href = card.dataset.href;
 
       if (diff === 0) {
+        // Live / today
         card.classList.add('today');
         if (pill) { pill.textContent = 'Today'; pill.className = 'status-pill'; }
         if (btn) {
+          btn.style.display = '';
           btn.classList.remove('disabled');
           btn.textContent = 'Join meeting';
           btn.href = MEET_LINK;
         }
       } else if (diff < 0) {
+        // Completed
         card.classList.add('past');
-        if (pill) { pill.textContent = 'Complete'; pill.className = 'status-pill past'; }
-        if (btn) {
-          btn.classList.add('disabled');
-          btn.textContent = 'Session complete';
-          btn.href = '#';
+        if (href) {
+          card.classList.add('complete');
+          if (pill) { pill.textContent = 'Complete'; pill.className = 'status-pill complete'; }
+          if (btn) btn.style.display = 'none';   // CTA strip replaces the join button
+          injectCta(card, href);
+        } else {
+          // Page not published yet — stays muted, no CTA
+          if (pill) { pill.textContent = 'Complete'; pill.className = 'status-pill past'; }
+          if (btn) {
+            btn.style.display = '';
+            btn.classList.add('disabled');
+            btn.textContent = 'Session complete';
+            btn.href = '#';
+          }
         }
       } else {
+        // Future — first encountered (chronological markup order) is "next"
         card.classList.add('future');
-        if (pill) { pill.textContent = 'Upcoming'; pill.className = 'status-pill upcoming'; }
+        if (!nextAssigned) {
+          nextAssigned = true;
+          card.classList.add('next');
+          if (pill) { pill.textContent = 'Next session'; pill.className = 'status-pill next'; }
+        } else {
+          card.classList.add('upcoming');
+          if (pill) { pill.textContent = 'Upcoming'; pill.className = 'status-pill upcoming'; }
+        }
         if (btn) {
+          btn.style.display = '';
           btn.classList.add('disabled');
           btn.textContent = 'Join meeting';
           btn.href = '#';
@@ -1083,8 +1149,8 @@
     if (!href) return;
     card.classList.add('clickable');
     card.addEventListener('click', (e) => {
-      // Don't intercept clicks on the Meet button — let it open the Meet link
-      if (e.target.closest('.join-link')) return;
+      // Let the Meet button and the resources CTA handle their own clicks
+      if (e.target.closest('.join-link, .session-cta')) return;
       window.location.href = href;
     });
   });
