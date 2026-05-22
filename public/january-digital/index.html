@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <title>January Digital × NotContent — Programme Hub</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An eight-week AI creative training programme for January Digital — sessions, cheat sheets, and recordings in one place." />
+<link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="January Digital × NotContent — Programme Hub" />
+<meta property="og:description" content="An eight-week AI creative training programme — sessions, cheat sheets, and recordings in one place." />
+<meta property="og:image" content="https://training.notcontent.ai/january-digital/footer-graphic.png" />
+<meta property="og:url" content="https://training.notcontent.ai/january-digital" />
+<meta name="twitter:card" content="summary_large_image" />
 <style>
   :root {
     --bg: #E5E4E2;
@@ -72,7 +80,7 @@
   }
   .hero h1 {
     font-family: var(--serif);
-    font-size: clamp(56px, 9vw, 132px);
+    font-size: clamp(40px, 9vw, 132px);
     line-height: 0.92;
     font-weight: 400;
     letter-spacing: -0.025em;
@@ -633,6 +641,10 @@
     animation: nc-pulse 1.8s ease-in-out infinite;
   }
   .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  /* De-crowd the topbar on narrow phones — drop the countdown, keep "Session 01 of 08" */
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
 
   /* Honour reduced-motion fully */
   /* ───────── Programme progress (retro) ───────── */
@@ -834,7 +846,7 @@
 
 <div class="topbar">
   <div class="brand">January Digital <span class="dot">×</span> <img class="brand-globe" src="/january-digital/nct-globe.png" alt="" aria-hidden> NotContent</div>
-  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></div>
+  <div class="progress"><strong>Session 01</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
 </div>
 
 <!-- ═════ HERO ═════ -->
@@ -1234,109 +1246,11 @@
   })();
 </script>
 
-<!-- ═════ TEAM ═════ -->
-<section class="block">
-  <div class="head" style="margin-bottom: 24px;">
-    <div class="eyebrow"><span class="num">03</span> &nbsp;The cohort <span class="rule"></span></div>
-  </div>
-
-  <div class="team">
-
-    <div class="person">
-      <div class="name">Jeremy Ekes</div>
-      <div class="role">Vice President</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        Carhartt · Supergoop · Interstate Batteries · Tanger Outlets
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Luisa Melo</div>
-      <div class="role">Sr Manager, Creative</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        All accounts
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Christina Cardino</div>
-      <div class="role">Associate Director</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        amika · StriVectin
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Salome Sadovnik</div>
-      <div class="role">Sr Manager, Client Services</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        Carhartt · Supergoop
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Justin Johnes</div>
-      <div class="role">Manager</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        SPANX (onboarding)
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Omama Qureshi</div>
-      <div class="role">Manager</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        Steve Madden
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Addison Meek</div>
-      <div class="role">Senior Coordinator</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        Carhartt
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">C. Berg</div>
-      <div class="role">Intake pending</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        Joining the programme &mdash; details to come
-      </div>
-    </div>
-
-    <div class="person">
-      <div class="name">Jared</div>
-      <div class="role">Intake pending</div>
-      <div class="clients">
-        <span class="lbl">Accounts</span>
-        Joining the programme &mdash; details to come
-      </div>
-    </div>
-
-  </div>
-
-  <div style="margin-top: 24px; padding: 18px 22px; background: var(--soft); border-radius: 4px; display: flex; align-items: center; gap: 16px;">
-    <div style="font-family: var(--sans); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); font-weight: 600;">Leadership</div>
-    <div style="flex: 1; height: 1px; background: var(--rule);"></div>
-    <div style="font-family: var(--serif); font-size: 18px;">Vic Drabicky <span style="font-family: var(--sans); font-size: 11px; color: var(--muted); letter-spacing: 0.18em; text-transform: uppercase; margin-left: 10px;">Founder</span></div>
-  </div>
-</section>
-
 <!-- ═════ RESOURCES ═════ -->
 <section class="block resources-block">
   <img class="resources-stickers" src="/january-digital/nct-stickers.png" alt="NotContent stickers" />
   <div class="head">
-    <div class="eyebrow"><span class="num">04</span> &nbsp;Resources <span class="rule"></span></div>
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Resources <span class="rule"></span></div>
     <h2>What's around the sessions.</h2>
     <p class="sub">The work happens in the hour each Thursday.<br>The support happens in between, after, and beyond.</p>
   </div>

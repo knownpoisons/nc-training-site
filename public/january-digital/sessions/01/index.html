@@ -2,8 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Session 01 · Three Questions, Two Truths, One Handshake — January Digital × NotContent</title>
+<title>Session 01 Cheat Sheet — January Digital × NotContent</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 01 cheat sheet — how creative actually works: the big idea, the Handshake, homework, and your session resources." />
+<link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 01 Cheat Sheet — January Digital × NotContent" />
+<meta property="og:description" content="How creative actually works: the big idea, the Handshake, homework, and your session resources." />
+<meta property="og:image" content="https://training.notcontent.ai/january-digital/sessions/01/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/01" />
+<meta name="twitter:card" content="summary_large_image" />
 <style>
   :root {
     --bg: #E5E4E2;
@@ -610,6 +618,10 @@
     animation: nc-pulse 1.8s ease-in-out infinite;
   }
   .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  /* De-crowd the topbar on narrow phones — drop the countdown, keep "Session 01 of 08" */
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
 
   /* ───────── Page loader ───────── */
   .nc-loader {
@@ -700,7 +712,7 @@
 
 <div class="topbar">
   <a class="back" href="/january-digital"><span class="arrow">←</span>Back to hub</a>
-  <div class="progress"><strong>Session 01</strong> of 08 &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></div>
+  <div class="progress"><strong>Session 01</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
 </div>
 
 <!-- ─── HERO ─── -->
