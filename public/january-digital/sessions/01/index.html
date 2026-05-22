@@ -335,6 +335,43 @@
     border-color: var(--bg);
   }
 
+  /* ─── Highlighted (cobalt) resource cards ─── */
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+  .resource-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 16px;
+    color: var(--bg);
+  }
+  .resource-icon svg { display: block; width: 100%; height: 100%; }
+  .resource-icon.slack { width: 26px; height: 26px; }
+
+  /* ─── Section split line ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Coming next — neutral (non-cobalt) variant ─── */
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
   /* ─── Homework callout ─── */
   .homework {
     margin: 28px 0;
@@ -670,7 +707,6 @@
 <header class="hero">
   <div class="eyebrow">
     <span><span class="num">01</span> &nbsp;/&nbsp; Session</span>
-    <span class="pill" id="status-pill">Today</span>
   </div>
   <h1 class="cheat-header">
     <img src="/january-digital/sessions/01/cheatsheet-header.png" alt="Cheatsheet: Session One — for creative teams and brands." />
@@ -692,10 +728,6 @@
       <div class="lbl">Format</div>
       <div class="val">Google Meet</div>
     </div>
-  </div>
-  <div class="actions">
-    <a class="btn join-link" id="join-btn" href="https://meet.google.com/wqi-pvcy-hvp" target="_blank" rel="noopener">Join meeting</a>
-    <a class="btn ghost" href="/january-digital">View all sessions</a>
   </div>
 </header>
 
@@ -838,13 +870,52 @@
   <p class="cheat-kicker">This is how we build your eye.</p>
 </section>
 
-<!-- ─── CHEAT 06 · COMING NEXT ─── -->
+<!-- ─── CHEAT 07 · RESOURCES (highlighted) ─── -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">07</span> &nbsp;Coming next <span class="rule"></span></div>
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
   </div>
 
-  <div class="next-up">
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <span class="resource-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2.5" y="5" width="19" height="14" rx="2.5"/>
+          <path d="M10 9.2v5.6l4.8-2.8z" fill="currentColor" stroke="none"/>
+        </svg>
+      </span>
+      <div class="lbl">Recording</div>
+      <div class="name">Session 01 video</div>
+      <div class="desc">The full session, start to finish. Watch it back any time.</div>
+      <a class="link" href="https://drive.google.com/file/d/1rcgIqSrCu6VFmUNTgei48gBD17GcHH13/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+
+    <div class="resource-card highlight">
+      <span class="resource-icon slack" aria-hidden="true">
+        <svg viewBox="0 0 122.8 122.8" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#E01E5A"/>
+          <path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36C5F0"/>
+          <path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2EB67D"/>
+          <path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ECB22E"/>
+        </svg>
+      </span>
+      <div class="lbl">Slack</div>
+      <div class="name">#project-creative-training</div>
+      <div class="desc">Find this channel in the January Digital Slack. Share workflows, outputs, references. Where the team rises together.</div>
+    </div>
+  </div>
+</section>
+
+<div class="cheat-split"><hr></div>
+
+<!-- ─── CHEAT 08 · COMING NEXT (neutral) ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">08</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
     <div>
       <div class="lbl">Session 02 &nbsp;·&nbsp; Thursday, 28 May 2026 &nbsp;·&nbsp; 9:30 AM EDT</div>
       <div class="title">Inspiration, Curation, and the Creative Idea</div>
@@ -854,63 +925,12 @@
   </div>
 </section>
 
-<!-- ─── CHEAT 07 · RESOURCES ─── -->
-<section class="block">
-  <div class="head">
-    <div class="eyebrow"><span class="num">08</span> &nbsp;Resources <span class="rule"></span></div>
-    <h2>Take it with you.</h2>
-  </div>
-
-  <div class="cards-2col">
-    <div class="resource-card">
-      <div class="lbl">Recording</div>
-      <div class="name">Session 01 video</div>
-      <div class="desc">The full session, start to finish. Watch it back any time.</div>
-      <a class="link" href="https://drive.google.com/file/d/1rcgIqSrCu6VFmUNTgei48gBD17GcHH13/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
-    </div>
-
-    <div class="resource-card">
-      <div class="lbl">Slack</div>
-      <div class="name">#project-creative-training</div>
-      <div class="desc">Find this channel in the January Digital Slack. Share workflows, outputs, references. Where the team rises together.</div>
-    </div>
-  </div>
-</section>
-
 <footer class="doc-foot-graphic">
   <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
 </footer>
 
 <script>
-  // Auto-update the status pill + join button based on the date
-  const SESSION_DATE = "2026-05-21";
-  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
-
-  const now = new Date();
-  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  const [y, m, d] = SESSION_DATE.split('-').map(Number);
-  const sessionDate = new Date(y, m - 1, d);
-  const diff = sessionDate.getTime() - today.getTime();
-
-  const pill = document.getElementById('status-pill');
-  const btn = document.getElementById('join-btn');
-
-  if (diff === 0) {
-    pill.textContent = 'Today';
-    pill.className = 'pill';
-    btn.href = MEET_LINK;
-    btn.classList.remove('disabled');
-  } else if (diff < 0) {
-    pill.textContent = 'Complete';
-    pill.className = 'pill past';
-    btn.textContent = 'Session complete';
-    btn.classList.add('disabled');
-  } else {
-    pill.textContent = 'Upcoming';
-    pill.className = 'pill future';
-    btn.textContent = 'Join meeting';
-    btn.classList.add('disabled');
-  }
+  // Hero status pill + join button were removed (session is complete).
 
   /*
     Countdown to the next session — every session starts 9:30 AM EDT (UTC-4).
