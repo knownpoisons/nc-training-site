@@ -281,7 +281,8 @@
   .session.past:not(.complete) { opacity: 0.6; }
   .session.past:not(.complete) .topic,
   .session.past:not(.complete) .summary { color: var(--muted); }
-  .session.complete { opacity: 1; }
+  /* Cobalt keyline frames the card top/sides into the CTA bar below */
+  .session.complete { opacity: 1; border-color: var(--accent); }
   /* Next session — accent edge + soft tint (full cobalt fill is reserved for live/today) */
   .session.next {
     background-image: linear-gradient(var(--soft), var(--soft));
