@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session 02 — Inspiration, Curation, and the Creative Idea — January Digital × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 02 — Inspiration, Curation, and the Creative Idea. Learning to see, before AI helps us shortcut it. Thursday 28 May 2026." />
+<link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 02 — Inspiration, Curation, and the Creative Idea" />
+<meta property="og:description" content="This week is the eye. Learning to see — before AI helps us shortcut it. Thursday 28 May 2026, 9:30 AM EDT." />
+<meta property="og:image" content="https://training.notcontent.ai/january-digital/footer-graphic.png" />
+<meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/02" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .topbar .back .arrow {
+    margin-right: 8px;
+  }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 6vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .pill {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+  .hero .eyebrow .pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero .eyebrow .pill.future { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .hero-logo {
+    display: block;
+    width: 104px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+  .hero h1.cheat-header {
+    margin: 6px auto 0;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .hero h1.cheat-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .hero .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+  }
+  .hero .meta .item .lbl {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .hero .meta .item .val {
+    font-family: var(--serif);
+    font-size: 19px;
+  }
+  .hero .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .btn:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+  }
+  .btn.ghost:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head {
+    margin-bottom: 28px;
+  }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule {
+    flex: 1; height: 1px; background: var(--rule);
+  }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Agenda list ─── */
+  .agenda {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--rule);
+  }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .agenda-item .n {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.005em;
+  }
+  .agenda-item .title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Cards ─── */
+  .cards-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .resource-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .resource-card.muted {
+    border-top-color: var(--rule);
+    opacity: 0.7;
+  }
+  .resource-card .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource-card.muted .lbl { color: var(--muted); }
+  .resource-card .name {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .resource-card .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .resource-card a.link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .resource-card.muted .empty {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ─── Next session preview ─── */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: rgba(229,228,226,0.85);
+    letter-spacing: 0.05em;
+  }
+  .next-up .btn {
+    background: var(--bg);
+    color: var(--accent);
+    border-color: var(--bg);
+  }
+  .next-up .btn:hover {
+    background: transparent;
+    color: var(--bg);
+    border-color: var(--bg);
+  }
+
+  /* ─── Highlighted (cobalt) resource cards ─── */
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+  .resource-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 16px;
+    color: var(--bg);
+  }
+  .resource-icon svg { display: block; width: 100%; height: 100%; }
+  .resource-icon.slack { width: 26px; height: 26px; }
+
+  /* ─── Section split line ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Coming next — neutral (non-cobalt) variant ─── */
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Homework callout ─── */
+  .homework {
+    margin: 28px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--accent);
+    background: var(--soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .homework .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .homework .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .homework .due {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Footer ─── */
+  .doc-foot {
+    max-width: 880px;
+    margin: 8vh auto 4vh;
+    padding: 4vh 40px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+  }
+  .doc-foot .accent { color: var(--accent); }
+  /* Full-width footer graphic — flush to the bottom of the page */
+  .doc-foot-graphic {
+    margin-top: 10vh;
+    width: 100%;
+    line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .doc-foot a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 8px;
+  }
+
+  /* ─── Session 01 cheat sheet ─── */
+  .cheat-hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    align-items: center;
+  }
+  .cheat-figure { margin: 0; }
+  .cheat-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    border: 1px solid var(--rule);
+  }
+  .cheat-hero-text p {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 14px;
+  }
+  .cheat-hero-text p em { font-style: italic; color: var(--accent); }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  /* Handshake 10–80–10 */
+  .handshake {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .hs-step {
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--rule);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .hs-step.mid { background: var(--accent); color: var(--bg); border-top-color: var(--accent); }
+  .hs-step .pct {
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .hs-step.mid .pct { color: var(--bg); }
+  .hs-step .who {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .hs-step.mid .who { color: rgba(229, 228, 226, 0.85); }
+  .hs-step .what {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .hs-step.mid .what { color: rgba(229, 228, 226, 0.9); }
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  /* remember / hints two-up list */
+  .cheat-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
+  @media (max-width: 760px) {
+    .cards-2col { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 1fr; gap: 6px; }
+    .next-up { grid-template-columns: 1fr; }
+    .cheat-hero { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .handshake { grid-template-columns: 1fr; }
+  }
+
+  /* ───────── Motion (animate-ui inspired) ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+
+  /* Refined spring hover */
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  /* Live clock in the topbar */
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  /* De-crowd the topbar on narrow phones — drop the countdown, keep "Session 01 of 08" */
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  .doc-foot .foot-globe {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    opacity: 0.85;
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/january-digital/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">January&nbsp;Digital <span class="x">×</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/january-digital"><span class="arrow">←</span>Back to hub</a>
+  <div class="progress"><strong>Session 01</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">02</span> &nbsp;/&nbsp; Phase 01 · Week 02 of 08</span>
+    <span class="pill" id="status-pill">Upcoming</span>
+  </div>
+  <h1>Inspiration, Curation,<br>and the Creative Idea.</h1>
+  <p class="hero-lede">This week is the eye. Learning to see — before AI helps us shortcut it.</p>
+  <div class="meta">
+    <div class="item">
+      <div class="lbl">Date</div>
+      <div class="val">Thursday, May 28, 2026</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Time</div>
+      <div class="val">9:30 AM EDT</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Length</div>
+      <div class="val">60 minutes</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Format</div>
+      <div class="val">Google Meet</div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn join-link" id="join-btn" href="#" target="_blank" rel="noopener">Join meeting</a>
+    <a class="btn ghost" href="/january-digital">View all sessions</a>
+  </div>
+</header>
+
+<!-- ─── AGENDA ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
+    <h2>This week was the eye.</h2>
+    <p class="cheat-note" style="margin-top:14px;">Last week was the <em>why</em>. This week was the <em>eye</em>. AI is brilliant at making assets. The thing it can't make is the unexpected — the idea behind the asset. That's still on us. So this session was about learning to see.</p>
+  </div>
+
+  <div class="agenda">
+    <div class="agenda-item"><div class="n">01</div><div class="title">The frame — assets vs ideas. Why creativity is forward-looking and data is backward-looking.</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">The wall. Four of you share your five admired references. We read them together.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">Reading work like a creative director. Three questions you ask of every piece of work. Every time.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">The borrow-from-elsewhere rule. Why the best ideas come from outside your category.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">The three-layer library. How to save references so they earn their keep — and how to share them as a team.</div></div>
+  </div>
+</section>
+
+<!-- ─── 02 · A note before we start ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;A note before we start <span class="rule"></span></div>
+    <h2>A note before we start.</h2>
+  </div>
+
+  <p class="cheat-note">There's no AI in this session. That's on purpose. The goal this week is learning to see — before we hand AI the work of helping us look faster. AI enters Session 3.</p>
+
+  <blockquote class="cheat-pull">Creatives don't turn it off. We're always logging things. The eye is built by paying attention all the time.</blockquote>
+</section>
+
+<!-- ─── 03 · HOMEWORK ─── -->
+<section class="block" id="homework">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Homework <span class="rule"></span></div>
+    <h2>Do this before Session 3.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;"><strong>Read this — we didn't get to it live.</strong> We ran out of clock before the homework, so here's the full version. It's the work that makes Session 3 land. Three things before <strong>Thursday, 4 June</strong>.</p>
+
+  <div class="homework">
+    <div class="lbl">1 · Practise the three questions</div>
+    <div class="ask">On every piece of work you see this week, run them: <strong>What is it? What's the idea? What's the unexpected thing?</strong></div>
+    <div class="due">Just notice. By Session 4 it should be automatic.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">2 · Start the three-layer Carhartt library</div>
+    <div class="ask">Five references per layer — <strong>brand aesthetic</strong>, <strong>campaign-specific</strong>, and <strong>open exploration</strong>.</div>
+    <div class="due">Brand aesthetic — what Carhartt already looks like. Campaign-specific — Spring/Summer workwear briefs and recent campaigns. Open exploration — the wildcard, from outside the category. That third layer is the one most people skip. It's the most important.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">3 · Share as you go</div>
+    <div class="ask">Your library isn't yours — it's the team's. Drop links in Slack as you find them, and tag the layer.</div>
+    <div class="due">The team that shares taste develops it faster than the team that hoards it.</div>
+  </div>
+
+  <div class="homework" style="border-left-color:var(--accent);background:rgba(19,56,190,0.07);">
+    <div class="lbl">The deliverable · due Thursday, 4 June</div>
+    <div class="ask">Bring your Carhartt three-layer library started — 15 references total, 5 per layer.</div>
+    <div class="due">Each with a one-line note on why it's in. We'll use these live in Session 3, and push hardest on the open-exploration layer — so don't skimp on it.</div>
+  </div>
+</section>
+
+<div class="cheat-split"><hr></div>
+
+<!-- ─── 04 · COMING NEXT (neutral) ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
+    <div>
+      <div class="lbl">Session 03 &nbsp;·&nbsp; Thursday, 4 June 2026 &nbsp;·&nbsp; 9:30 AM EDT</div>
+      <div class="title">The Brief on Both Sides of the Table</div>
+      <div class="date">What changes when JD becomes the production house. How to receive briefs — and how to teach your clients to write better ones for AI work.</div>
+    </div>
+    <a class="btn" href="/january-digital">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── 05 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <div class="lbl">Recording</div>
+      <div class="name">Session 02 video</div>
+      <div class="desc">The full session, start to finish. Watch it back any time.</div>
+      <a class="link" href="https://drive.google.com/file/d/1uie3zER5qARx2becuZKXBq_5xmrwLVYH/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+
+    <div class="resource-card highlight">
+      <div class="lbl">Slack</div>
+      <div class="name">#project-creative-training</div>
+      <div class="desc">Where the library gets built. Drop your Carhartt references as you find them and tag the layer. The team rises together.</div>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-foot-graphic">
+  <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  // Auto-update the status pill + join button based on the date
+  const SESSION_DATE = "2026-05-28";
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const [y, m, d] = SESSION_DATE.split('-').map(Number);
+  const sessionDate = new Date(y, m - 1, d);
+  const diff = sessionDate.getTime() - today.getTime();
+
+  const pill = document.getElementById('status-pill');
+  const btn = document.getElementById('join-btn');
+
+  if (diff === 0) {
+    pill.textContent = 'Today';
+    pill.className = 'pill';
+    btn.href = MEET_LINK;
+    btn.classList.remove('disabled');
+  } else if (diff < 0) {
+    pill.textContent = 'Complete';
+    pill.className = 'pill past';
+    btn.textContent = 'Session complete';
+    btn.classList.add('disabled');
+  } else {
+    pill.textContent = 'Upcoming';
+    pill.className = 'pill future';
+    btn.textContent = 'Join meeting';
+    btn.classList.add('disabled');
+  }
+
+  /*
+    Countdown to the next session — every session starts 9:30 AM EDT (UTC-4).
+    Programme runs entirely within Daylight Saving, so a fixed -4 offset
+    (13:30 UTC) is correct. "Live now" while running, "Programme complete" after.
+  */
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-04', '2026-06-11',
+      '2026-06-18', '2026-06-25', '2026-07-02', '2026-07-09'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 13, 30, 0); // 9:30 AM EDT
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>
