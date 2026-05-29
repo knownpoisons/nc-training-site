@@ -271,7 +271,7 @@ export default function TransformationPage() {
               </p>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
                 This isn&apos;t a course. It&apos;s a bespoke operational
-                engagement. The price reflects that.
+                engagement.
               </p>
             </div>
             <div className="flex flex-col justify-center">
