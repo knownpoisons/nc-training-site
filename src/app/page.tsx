@@ -580,7 +580,7 @@ export default function Home() {
               {
                 name: "Transformation",
                 duration: "8-week program",
-                price: "From $50,000",
+                price: "Starts at $50,000",
                 description:
                   "Full operational transformation. Custom workflows and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
                 ideal: "Teams going all-in on AI creative",

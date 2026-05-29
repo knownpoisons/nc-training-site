@@ -28,7 +28,7 @@ export const programs: Record<Program, ProgramData> = {
     detail:
       "In-person 2-day intensive plus weekly sessions. Role-specific tracks for CDs, designers, strategists, and production. Custom workflow buildout, governance policy, and ongoing monthly support. This is what we delivered to Cash App, Maesa, and Herman Scheer.",
     href: "/programs/transformation",
-    pricing: "From $50,000",
+    pricing: "Starts at $50,000",
     duration: "8 weeks + ongoing",
   },
 };

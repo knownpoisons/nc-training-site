@@ -87,7 +87,7 @@ export default function TransformationPage() {
             training. Governance policy. Ongoing support.
           </p>
           <p className="mt-4 text-sm font-light tracking-tight text-white/80">
-            From $50,000
+            Starts at $50,000
           </p>
           <div className="mt-8">
             <Link
@@ -181,7 +181,7 @@ export default function TransformationPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-2xl font-light tracking-tight">From $50,000</p>
+              <p className="text-2xl font-light tracking-tight">Starts at $50,000</p>
               <p className="mt-2 text-sm text-foreground/60">
                 30 minutes. We&apos;ll tell you straight whether we&apos;re the right fit.
               </p>
@@ -263,7 +263,7 @@ export default function TransformationPage() {
                 <span>[NC.6]</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-                From $50,000
+                Starts at $50,000
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
                 Scoped to your team size, structure, and production needs.

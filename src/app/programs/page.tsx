@@ -22,7 +22,7 @@ const programs = [
     n: "02",
     name: "Transformation",
     format: "8-week program",
-    price: "From $50,000",
+    price: "Starts at $50,000",
     description:
       "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes.",
     ideal: "Teams going all-in on AI creative",
