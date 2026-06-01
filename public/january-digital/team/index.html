@@ -28,18 +28,18 @@
 
   /* ─── Topbar ─── */
   .topbar {
-    position: sticky; top: 0; z-index: 100;
-    background: var(--bg); border-bottom: 1px solid var(--rule);
+    position: absolute; top: 0; left: 0; right: 0; z-index: 100;
     padding: 16px 40px; display: flex; justify-content: space-between; align-items: center;
     font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
-    text-transform: uppercase; color: var(--muted);
+    text-transform: uppercase; color: rgba(229,228,226,0.9);
   }
-  .topbar .back { text-decoration: none; color: var(--accent); font-weight: 600; }
+  .topbar .back { text-decoration: none; color: #fff; font-weight: 600; }
   .topbar .back .arrow { margin-right: 8px; }
-  .topbar .label { font-weight: 600; color: var(--accent); }
+  .topbar .label { font-weight: 600; color: #fff; }
 
   /* ─── Header image ─── */
   .hero-img {
+    position: relative;
     width: 100%;
     line-height: 0;
     background: var(--accent);
@@ -236,12 +236,11 @@
   </div>
 </div>
 
-<div class="topbar">
-  <a class="back" href="/january-digital"><span class="arrow">&larr;</span>Back to hub</a>
-  <span class="label">The Team</span>
-</div>
-
 <div class="hero-img">
+  <div class="topbar">
+    <a class="back" href="/january-digital"><span class="arrow">&larr;</span>Back to hub</a>
+    <span class="label">The Team</span>
+  </div>
   <img src="/january-digital/team/header.png" alt="NotContent — January Digital Training ID Cards" />
 </div>
 
