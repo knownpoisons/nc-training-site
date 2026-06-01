@@ -93,17 +93,12 @@
     display: block; width: 100%; height: auto;
   }
 
-  /* Jiggle on hover */
-  @keyframes jiggle {
-    0%, 100% { transform: rotate(var(--rot)); }
-    15%  { transform: rotate(calc(var(--rot) + 4deg)); }
-    30%  { transform: rotate(calc(var(--rot) - 3deg)); }
-    45%  { transform: rotate(calc(var(--rot) + 2.5deg)); }
-    60%  { transform: rotate(calc(var(--rot) - 1.5deg)); }
-    80%  { transform: rotate(calc(var(--rot) + 0.8deg)); }
+  .id-card {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .id-card:hover {
-    animation: jiggle 0.6s ease-in-out;
+    transform: rotate(var(--rot)) scale(1.05);
     box-shadow: 0 16px 44px rgba(19, 56, 190, 0.22), 0 6px 16px rgba(0, 0, 0, 0.1);
   }
 
