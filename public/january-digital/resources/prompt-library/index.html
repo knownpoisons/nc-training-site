@@ -347,92 +347,148 @@
     padding: 0 40px 6vh;
   }
   .icc-diagram {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 36px 32px 32px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: 56px 40px 48px;
     text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .icc-letters {
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 8px;
-  }
-  .icc-letters span {
+  .icc-diagram::before {
+    content: "ICC";
+    position: absolute;
+    top: -30px;
+    right: -20px;
     font-family: var(--serif);
-    font-size: clamp(48px, 6vw, 72px);
+    font-size: clamp(180px, 22vw, 280px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.04em;
+    color: rgba(229, 228, 226, 0.06);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .icc-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.6);
+    font-weight: 600;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--bg);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-title-full {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.7);
+    font-weight: 500;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-node {
+    background: rgba(229, 228, 226, 0.1);
+    border: 1px solid rgba(229, 228, 226, 0.2);
+    border-radius: 6px;
+    padding: 28px 22px 24px;
+    text-align: left;
+    position: relative;
+  }
+  .icc-node .icc-letter {
+    font-family: var(--serif);
+    font-size: 42px;
     font-weight: 400;
     line-height: 1;
     letter-spacing: -0.02em;
-    color: var(--accent);
-  }
-  .icc-subtitle {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: 28px;
-  }
-  .icc-connectors {
-    display: flex;
-    justify-content: center;
-    gap: 0;
-    margin-bottom: 16px;
-  }
-  .icc-connector {
-    width: 1px;
-    height: 24px;
-    background: var(--rule);
-    margin: 0 auto;
-    flex: 1;
-    max-width: 1px;
-  }
-  .icc-nodes {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16px;
-  }
-  .icc-node {
-    background: var(--bg);
-    border-radius: 4px;
-    border-top: 3px solid var(--accent);
-    padding: 20px 18px;
-    text-align: left;
+    color: var(--bg);
+    margin-bottom: 6px;
   }
   .icc-node .icc-label {
     font-family: var(--sans);
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: rgba(229, 228, 226, 0.7);
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 12px;
   }
   .icc-node .icc-def {
     font-family: var(--sans);
     font-size: 14px;
-    line-height: 1.5;
-    color: var(--ink);
+    line-height: 1.55;
+    color: rgba(229, 228, 226, 0.9);
+  }
+  .icc-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: rgba(229, 228, 226, 0.35);
+  }
+  .icc-arrow svg {
+    width: 28px;
+    height: 28px;
   }
   .icc-explainer {
     font-family: var(--sans);
     font-size: 15px;
-    line-height: 1.6;
-    color: var(--muted);
-    max-width: 680px;
-    margin: 28px auto 0;
-    text-align: left;
+    line-height: 1.65;
+    color: rgba(229, 228, 226, 0.8);
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
   }
   .template-block pre .section-label {
     color: var(--accent);
     font-weight: 700;
     letter-spacing: 0.08em;
   }
+
+  /* ─── Category nav ─── */
+  .cat-nav-label {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 40px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
   @media (max-width: 560px) {
-    .icc-nodes { grid-template-columns: 1fr; }
+    .icc-flow { grid-template-columns: 1fr; gap: 12px; }
+    .icc-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .icc-diagram { padding: 40px 24px 36px; }
   }
 
   /* ─── Responsive ─── */
@@ -538,18 +594,24 @@
 <!-- ─── ICC EXPLAINER ─── -->
 <div class="icc-section">
   <div class="icc-diagram">
-    <div class="icc-letters"><span>I</span><span>C</span><span>C</span></div>
-    <div class="icc-subtitle">Instructions &middot; Context &middot; Constraints</div>
-    <div class="icc-nodes">
+    <div class="icc-eyebrow">The framework</div>
+    <div class="icc-title">I &middot; C &middot; C</div>
+    <div class="icc-title-full">Instructions &middot; Context &middot; Constraints</div>
+    <div class="icc-flow">
       <div class="icc-node">
+        <div class="icc-letter">I</div>
         <div class="icc-label">Instructions</div>
         <div class="icc-def">Define the task and the action you want taken.</div>
       </div>
+      <div class="icc-arrow"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="14" x2="22" y2="14"/><polyline points="16 8 22 14 16 20"/></svg></div>
       <div class="icc-node">
+        <div class="icc-letter">C</div>
         <div class="icc-label">Context</div>
         <div class="icc-def">Your role, objectives, background, anything relevant to the task.</div>
       </div>
+      <div class="icc-arrow"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="14" x2="22" y2="14"/><polyline points="16 8 22 14 16 20"/></svg></div>
       <div class="icc-node">
+        <div class="icc-letter">C</div>
         <div class="icc-label">Constraints</div>
         <div class="icc-def">Rules, style, tone, length, output format.</div>
       </div>
@@ -559,6 +621,7 @@
 </div>
 
 <!-- ─── Category nav ─── -->
+<div class="cat-nav-label">Jump to category</div>
 <nav class="cat-nav" aria-label="Jump to category">
   <a href="#research">Research</a>
   <a href="#writing">Writing</a>
