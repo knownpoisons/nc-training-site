@@ -355,17 +355,14 @@
     position: relative;
     overflow: hidden;
   }
-  .icc-diagram::before {
-    content: "ICC";
+  .icc-globe {
     position: absolute;
-    top: -30px;
-    right: -20px;
-    font-family: var(--serif);
-    font-size: clamp(180px, 22vw, 280px);
-    font-weight: 400;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: rgba(229, 228, 226, 0.06);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(220px, 28vw, 340px);
+    height: auto;
+    opacity: 0.08;
     pointer-events: none;
     z-index: 0;
   }
@@ -594,6 +591,7 @@
 <!-- ─── ICC EXPLAINER ─── -->
 <div class="icc-section">
   <div class="icc-diagram">
+    <img class="icc-globe" src="/january-digital/nct-globe.png" alt="" aria-hidden="true" />
     <div class="icc-eyebrow">The framework</div>
     <div class="icc-title">I &middot; C &middot; C</div>
     <div class="icc-title-full">Instructions &middot; Context &middot; Constraints</div>
