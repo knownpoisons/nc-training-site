@@ -78,94 +78,70 @@
     justify-content: center;
   }
 
-  /* ─── Individual card ─── */
+  /* ─── Individual card (grid — shows back image only) ─── */
   .id-card {
     position: relative;
     width: 260px;
     flex-shrink: 0;
-    aspect-ratio: 3 / 4.2;
     border-radius: 10px;
     overflow: hidden;
-    cursor: pointer;
-    transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 28 28'%3E%3Ccircle cx='14' cy='14' r='12' fill='%231338BE' opacity='0.9'/%3E%3Cpath d='M10 14l3 3 5-5' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") 14 14, pointer;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
     will-change: transform;
-    perspective: 800px;
   }
-  .id-card .card-inner {
-    width: 100%; height: 100%;
-    transform: rotateY(180deg);
-    transform-style: preserve-3d;
-    position: relative;
-  }
-  .id-card .card-front,
-  .id-card .card-back {
-    position: absolute; inset: 0;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  .id-card .card-back {
-    transform: rotateY(180deg);
-    background: var(--accent);
-  }
-  .id-card .card-front img,
-  .id-card .card-back img {
-    display: block; width: 100%; height: 100%; object-fit: cover;
+  .id-card img {
+    display: block; width: 100%; height: auto;
   }
 
   /* Jiggle on hover */
   @keyframes jiggle {
     0%, 100% { transform: rotate(var(--rot)); }
-    20%  { transform: rotate(calc(var(--rot) + 3deg)); }
-    40%  { transform: rotate(calc(var(--rot) - 2.5deg)); }
-    60%  { transform: rotate(calc(var(--rot) + 1.5deg)); }
-    80%  { transform: rotate(calc(var(--rot) - 1deg)); }
+    15%  { transform: rotate(calc(var(--rot) + 4deg)); }
+    30%  { transform: rotate(calc(var(--rot) - 3deg)); }
+    45%  { transform: rotate(calc(var(--rot) + 2.5deg)); }
+    60%  { transform: rotate(calc(var(--rot) - 1.5deg)); }
+    80%  { transform: rotate(calc(var(--rot) + 0.8deg)); }
   }
   .id-card:hover {
-    animation: jiggle 0.5s ease-in-out;
-    box-shadow: 0 16px 44px rgba(19, 56, 190, 0.2), 0 6px 16px rgba(0, 0, 0, 0.1);
+    animation: jiggle 0.6s ease-in-out;
+    box-shadow: 0 16px 44px rgba(19, 56, 190, 0.22), 0 6px 16px rgba(0, 0, 0, 0.1);
   }
-
-  /* Holographic sheen overlay */
-  .id-card .card-front::after {
-    content: "";
-    position: absolute; inset: 0;
-    background: linear-gradient(
-      135deg,
-      rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.1) 40%,
-      rgba(19,56,190,0.08) 50%,
-      rgba(255,255,255,0.1) 60%,
-      rgba(255,255,255,0) 100%
-    );
-    pointer-events: none; opacity: 0; transition: opacity 0.3s;
-  }
-  .id-card:hover .card-front::after { opacity: 1; }
 
   /* ─── Overlay (click to enlarge + flip) ─── */
   .card-overlay {
     position: fixed; inset: 0; z-index: 9000;
     display: flex; align-items: center; justify-content: center;
+    background: rgba(14, 14, 12, 0);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    pointer-events: none;
+    transition: background 0.4s, backdrop-filter 0.4s, -webkit-backdrop-filter 0.4s;
+    cursor: pointer;
+  }
+  .card-overlay.active {
     background: rgba(14, 14, 12, 0.7);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    opacity: 0; pointer-events: none;
-    transition: opacity 0.35s;
+    pointer-events: auto;
   }
-  .card-overlay.active { opacity: 1; pointer-events: auto; cursor: pointer; }
   .card-overlay .overlay-card {
-    width: min(380px, 85vw);
-    aspect-ratio: 3 / 4.2;
-    border-radius: 14px;
-    perspective: 1000px;
-    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-    transform: scale(0.8);
+    width: min(400px, 85vw);
+    perspective: 1200px;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s;
+    transform: scale(0.5);
+    opacity: 0;
   }
-  .card-overlay.active .overlay-card { transform: scale(1); }
+  .card-overlay.active .overlay-card {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .card-overlay.closing .overlay-card {
+    transform: scale(0.5);
+    opacity: 0;
+  }
   .card-overlay .overlay-inner {
-    width: 100%; height: 100%;
+    width: 100%;
     transform-style: preserve-3d;
     transform: rotateY(180deg);
     transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
@@ -174,14 +150,18 @@
   .card-overlay.show-front .overlay-inner { transform: rotateY(0deg); }
   .card-overlay .overlay-front,
   .card-overlay .overlay-back {
-    position: absolute; inset: 0;
     backface-visibility: hidden;
     -webkit-backface-visibility: hidden;
     border-radius: 14px; overflow: hidden;
-    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
   }
-  .card-overlay .overlay-back { transform: rotateY(180deg); background: var(--accent); }
-  .card-overlay img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .card-overlay .overlay-front { position: relative; }
+  .card-overlay .overlay-back {
+    position: absolute; inset: 0;
+    transform: rotateY(180deg);
+    background: var(--accent);
+  }
+  .card-overlay img { display: block; width: 100%; height: auto; }
 
   /* Scattered rotations — assigned via inline style */
   .id-card:nth-child(1)  { --rot: -3deg; }
@@ -314,80 +294,47 @@
   <div class="card-grid">
 
     <div class="id-card head-trainer" style="--delay: 0.1s; --rot: 0deg;" data-front="/january-digital/team/id-jeremy-trainer.png" data-back="/january-digital/team/id-jeremy-trainer-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-jeremy-trainer.png" alt="Jeremy — Head Trainer" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-jeremy-trainer-back.png" alt="Jeremy — Head Trainer" />
     </div>
 
     <div class="id-card" style="--delay: 0.18s;" data-front="/january-digital/team/id-addison.png" data-back="/january-digital/team/id-addison-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-addison.png" alt="Addison" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-addison-back.png" alt="Addison" />
     </div>
 
     <div class="id-card" style="--delay: 0.26s;" data-front="/january-digital/team/id-chris.png" data-back="/january-digital/team/id-chris-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-chris.png" alt="Chris" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-chris-back.png" alt="Chris" />
     </div>
 
     <div class="id-card" style="--delay: 0.34s;" data-front="/january-digital/team/id-christina.png" data-back="/january-digital/team/id-christina-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-christina.png" alt="Christina" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-christina-back.png" alt="Christina" />
     </div>
 
     <div class="id-card" style="--delay: 0.42s;" data-front="/january-digital/team/id-jared.png" data-back="/january-digital/team/id-jared-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-jared.png" alt="Jared" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-jared-back.png" alt="Jared" />
     </div>
 
     <div class="id-card" style="--delay: 0.5s;" data-front="/january-digital/team/id-jeremy.png" data-back="/january-digital/team/id-jeremy-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-jeremy.png" alt="Jeremy" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-jeremy-back.png" alt="Jeremy" />
     </div>
 
     <div class="id-card" style="--delay: 0.58s;" data-front="/january-digital/team/id-justin.png" data-back="/january-digital/team/id-justin-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-justin.png" alt="Justin" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-justin-back.png" alt="Justin" />
     </div>
 
     <div class="id-card" style="--delay: 0.66s;" data-front="/january-digital/team/id-luisa.png" data-back="/january-digital/team/id-luisa-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-luisa.png" alt="Luisa" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-luisa-back.png" alt="Luisa" />
     </div>
 
     <div class="id-card" style="--delay: 0.74s;" data-front="/january-digital/team/id-omama.png" data-back="/january-digital/team/id-omama-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-omama.png" alt="Omama" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-omama-back.png" alt="Omama" />
     </div>
 
     <div class="id-card" style="--delay: 0.82s;" data-front="/january-digital/team/id-salome.png" data-back="/january-digital/team/id-salome-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-salome.png" alt="Salome" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-salome-back.png" alt="Salome" />
     </div>
 
     <div class="id-card" style="--delay: 0.9s;" data-front="/january-digital/team/id-vic.png" data-back="/january-digital/team/id-vic-back.png">
-      <div class="card-inner">
-        <div class="card-front"><img src="/january-digital/team/id-vic.png" alt="Vic" /></div>
-        <div class="card-back"></div>
-      </div>
+      <img src="/january-digital/team/id-vic-back.png" alt="Vic" />
     </div>
 
   </div>
@@ -411,12 +358,14 @@
   const overlay = document.getElementById('card-overlay');
   const frontImg = document.getElementById('overlay-front-img');
   const backImg = document.getElementById('overlay-back-img');
+  let closing = false;
 
   document.querySelectorAll('.id-card').forEach(card => {
     card.addEventListener('click', () => {
+      if (closing) return;
       frontImg.src = card.dataset.front;
       backImg.src = card.dataset.back;
-      overlay.classList.remove('show-front');
+      overlay.classList.remove('show-front', 'closing');
       overlay.classList.add('active');
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -426,18 +375,20 @@
     });
   });
 
-  overlay.addEventListener('click', () => {
+  function closeOverlay() {
+    if (closing || !overlay.classList.contains('active')) return;
+    closing = true;
     overlay.classList.remove('show-front');
+    overlay.classList.add('closing');
     setTimeout(() => {
-      overlay.classList.remove('active');
-    }, 600);
-  });
+      overlay.classList.remove('active', 'closing');
+      closing = false;
+    }, 700);
+  }
 
+  overlay.addEventListener('click', closeOverlay);
   document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && overlay.classList.contains('active')) {
-      overlay.classList.remove('show-front');
-      setTimeout(() => { overlay.classList.remove('active'); }, 600);
-    }
+    if (e.key === 'Escape') closeOverlay();
   });
 </script>
 
