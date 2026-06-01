@@ -340,6 +340,101 @@
     height: auto;
   }
 
+  /* ─── ICC diagram ─── */
+  .icc-section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 40px 6vh;
+  }
+  .icc-diagram {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 36px 32px 32px;
+    text-align: center;
+  }
+  .icc-letters {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .icc-letters span {
+    font-family: var(--serif);
+    font-size: clamp(48px, 6vw, 72px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+  .icc-subtitle {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 28px;
+  }
+  .icc-connectors {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    margin-bottom: 16px;
+  }
+  .icc-connector {
+    width: 1px;
+    height: 24px;
+    background: var(--rule);
+    margin: 0 auto;
+    flex: 1;
+    max-width: 1px;
+  }
+  .icc-nodes {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 16px;
+  }
+  .icc-node {
+    background: var(--bg);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+    padding: 20px 18px;
+    text-align: left;
+  }
+  .icc-node .icc-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .icc-node .icc-def {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .icc-explainer {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--muted);
+    max-width: 680px;
+    margin: 28px auto 0;
+    text-align: left;
+  }
+  .template-block pre .section-label {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  @media (max-width: 560px) {
+    .icc-nodes { grid-template-columns: 1fr; }
+  }
+
   /* ─── Responsive ─── */
   @media (max-width: 760px) {
     .prompt-card summary { grid-template-columns: 28px 1fr 20px; gap: 12px; }
@@ -440,6 +535,29 @@
   <p class="hero-intro">These are reference examples &mdash; not scripts to paste daily. Dip in when starting a new conversation or project, internalise the pattern, then adapt for your own work. Every template has <code style="font-family:var(--mono);color:var(--accent);font-size:14px;">[BRACKETS]</code> where your context goes.</p>
 </header>
 
+<!-- ─── ICC EXPLAINER ─── -->
+<div class="icc-section">
+  <div class="icc-diagram">
+    <div class="icc-letters"><span>I</span><span>C</span><span>C</span></div>
+    <div class="icc-subtitle">Instructions &middot; Context &middot; Constraints</div>
+    <div class="icc-nodes">
+      <div class="icc-node">
+        <div class="icc-label">Instructions</div>
+        <div class="icc-def">Define the task and the action you want taken.</div>
+      </div>
+      <div class="icc-node">
+        <div class="icc-label">Context</div>
+        <div class="icc-def">Your role, objectives, background, anything relevant to the task.</div>
+      </div>
+      <div class="icc-node">
+        <div class="icc-label">Constraints</div>
+        <div class="icc-def">Rules, style, tone, length, output format.</div>
+      </div>
+    </div>
+    <p class="icc-explainer">Every good prompt has three parts. Most weak prompts are just missing one of them. Instructions tell Claude what to do. Context gives it what it needs to do it well. Constraints shape how the answer comes back. The twelve prompts below all use this structure &mdash; read them as examples of the pattern, not scripts.</p>
+  </div>
+</div>
+
 <!-- ─── Category nav ─── -->
 <nav class="cat-nav" aria-label="Jump to category">
   <a href="#research">Research</a>
@@ -472,11 +590,15 @@
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>Here's what I think about <span class="bracket">[TOPIC/BRIEF/IDEA]</span>:
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Tell me everything important that I do not know, am underestimating, or am misunderstanding about this. Find the blindspot.
 
+<span class="section-label">CONTEXT</span>
+Here's the idea, brief, or strategy and what I currently think about it:
 <span class="bracket">[Paste your thinking here]</span>
 
-Your job is to tell me everything important that I do not know, am underestimating, or am misunderstanding about this. What am I missing? What's the blindspot?</pre>
+<span class="section-label">CONSTRAINTS</span>
+Be direct. Prioritise what would actually change my decision over what's merely interesting.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -500,17 +622,15 @@ Your job is to tell me everything important that I do not know, am underestimati
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>I need to deeply understand <span class="bracket">[TOPIC]</span>.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Give me a deep, working understanding of <span class="bracket">[TOPIC]</span> from every angle.
 
-Analyse this from every angle:
-- Theoretical or academic foundations
-- Expert perspectives and case studies
-- Historical patterns and precedent
-- Real-world applications and tradeoffs
-- Common misconceptions
-- Emerging shifts or counterintuitive takes
+<span class="section-label">CONTEXT</span>
+Why I need it and what I'll use it for:
+<span class="bracket">[Paste here]</span>
 
-Give me a working understanding, not definitions.</pre>
+<span class="section-label">CONSTRAINTS</span>
+Cover: theoretical foundations, expert perspectives and case studies, historical patterns, real-world tradeoffs, common misconceptions, emerging or counterintuitive shifts. Give me a working understanding, not definitions.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -534,17 +654,15 @@ Give me a working understanding, not definitions.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>I need to get good at <span class="bracket">[SKILL/TOOL]</span> quickly.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Build me the fastest path to competence in <span class="bracket">[SKILL/TOOL]</span>.
 
-Break this down into:
-- Core concepts I need to understand first
-- Mental models that unlock the rest
-- The most common mistakes people make
-- The 20 percent that gets me 80 percent of the way
-- Quick wins I can execute today
-- Next-level moves once I've got the basics
+<span class="section-label">CONTEXT</span>
+Where I'm starting from and why I need this:
+<span class="bracket">[Paste here]</span>
 
-What's the fastest path to competence?</pre>
+<span class="section-label">CONSTRAINTS</span>
+Break it into: core concepts first, the mental models that unlock the rest, the most common mistakes, the 20 percent that gets me 80 percent of the way, quick wins for today, and next-level moves once I've got the basics.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -568,18 +686,14 @@ What's the fastest path to competence?</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>I'm going to give you a pile of information. Organise it into something I can reference:
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Organise the information below into something I can reference and act on.
 
+<span class="section-label">CONTEXT</span>
 <span class="bracket">[Paste your notes, research, ideas — brain dump it]</span>
 
-Structure this as:
-- Core ideas or themes
-- Supporting detail under each
-- Actionable takeaways
-- Questions or gaps
-- How these connect to each other
-
-Make it scannable and useful, not just reorganised.</pre>
+<span class="section-label">CONSTRAINTS</span>
+Structure as: core themes, supporting detail under each, actionable takeaways, open questions or gaps, and how the pieces connect. Make it scannable, not just reorganised.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -603,15 +717,15 @@ Make it scannable and useful, not just reorganised.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>Give me the most powerful mental models for understanding <span class="bracket">[TOPIC]</span>.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Give me the most powerful mental models for understanding <span class="bracket">[TOPIC]</span>.
 
-For each model, show me:
-- What it is, in plain English
-- How it applies to real decisions
-- Where it breaks down or has blindspots
-- One concrete example
+<span class="section-label">CONTEXT</span>
+What I'm actually trying to figure out:
+<span class="bracket">[Paste here]</span>
 
-I want to think about this differently, not just know more facts about it.</pre>
+<span class="section-label">CONSTRAINTS</span>
+For each model: plain-English definition, how it applies to a real decision, where it breaks down, and one concrete example. I want to think differently, not just know more facts.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -649,17 +763,15 @@ I want to think about this differently, not just know more facts about it.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>Here's something I wrote:
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Rewrite the text below as the sharpest version of what I'm trying to say.
 
+<span class="section-label">CONTEXT</span>
+What I wrote, and who it's for:
 <span class="bracket">[Paste your message, email, brief, or copy]</span>
 
-Rewrite this so it's:
-- Clearer (no ambiguity, no jargon unless it's earned)
-- More persuasive (why should someone care?)
-- Better paced (shorter sentences where it matters)
-- Still in my voice (keep my personality)
-
-What's the sharpest version of what I'm trying to say?</pre>
+<span class="section-label">CONSTRAINTS</span>
+Clearer, more persuasive, better paced. Keep my voice and personality — don't make it sound like a robot wrote it.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -683,18 +795,15 @@ What's the sharpest version of what I'm trying to say?</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>I need to send an email about <span class="bracket">[SUBJECT]</span>.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Write me an email about <span class="bracket">[SUBJECT]</span> that's impossible to misunderstand.
 
-What I'm trying to communicate:
-<span class="bracket">[The point. What do you want them to do or understand?]</span>
+<span class="section-label">CONTEXT</span>
+The point I'm making, and what they need to know first:
+<span class="bracket">[Paste here]</span>
 
-Context they need first:
-<span class="bracket">[Anything they should know going in]</span>
-
-Tone:
-<span class="bracket">[Professional / collaborative / direct / warm — or describe it]</span>
-
-Write me an email that's impossible to misunderstand.</pre>
+<span class="section-label">CONSTRAINTS</span>
+Tone: <span class="bracket">[professional / collaborative / direct / warm — or describe it]</span>. Keep it tight. No filler, no burying the ask.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -718,19 +827,15 @@ Write me an email that's impossible to misunderstand.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>Here's a piece of writing I want to improve:
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Do a full improvement pass on the writing below.
 
+<span class="section-label">CONTEXT</span>
+The piece, and what it's for:
 <span class="bracket">[Paste the full thing]</span>
 
-Make it better by:
-- Tightening sentences (cut the dead words)
-- Clarifying logic (does each idea connect to the next?)
-- Adding a human moment where it earns one
-- Improving transitions (does it flow or jump?)
-- Sharpening rhythm (vary short and long)
-- Using vivid language where it matters
-
-I want to read this back and think, that's what I meant to say.</pre>
+<span class="section-label">CONSTRAINTS</span>
+Tighter sentences, clearer logic, stronger transitions, sharper rhythm, vivid language where it earns it. Keep my meaning and voice intact.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -768,21 +873,15 @@ I want to read this back and think, that's what I meant to say.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>I need to get proficient at <span class="bracket">[SKILL]</span> in the next <span class="bracket">[TIMEFRAME]</span>.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Build me a plan to get proficient at <span class="bracket">[SKILL]</span> in <span class="bracket">[TIMEFRAME]</span>.
 
-Context:
-- Why I need this skill
-- What "proficient" looks like to me
-- Any constraints (time per day, tools I have)
+<span class="section-label">CONTEXT</span>
+Why I need it, what "proficient" looks like to me, and my real constraints (time per day, tools I have):
+<span class="bracket">[Paste here]</span>
 
-Build me a plan with:
-- Daily exercises or practice drills
-- Real projects to test myself on
-- Quick wins early, for momentum
-- Weekly check-in questions, am I actually improving?
-- Next-level moves once I've got the basics
-
-Make it doable, not theoretical.</pre>
+<span class="section-label">CONSTRAINTS</span>
+Include daily drills, real projects to test myself on, early quick wins for momentum, weekly check-in questions, and next-level moves. Doable, not theoretical.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -806,17 +905,15 @@ Make it doable, not theoretical.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>Here's how I'm currently thinking about <span class="bracket">[SITUATION/DECISION]</span>:
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Analyse my reasoning below and find the flaws.
 
+<span class="section-label">CONTEXT</span>
+How I'm currently thinking about <span class="bracket">[SITUATION/DECISION]</span>:
 <span class="bracket">[Paste your reasoning]</span>
 
-Analyse my thought process. Identify:
-- Flawed assumptions I'm making
-- Biases that might be distorting this
-- Logic that's missing or doesn't hold
-- What a clearer way of thinking about this looks like
-
-Be direct. I'd rather know now.</pre>
+<span class="section-label">CONSTRAINTS</span>
+Identify flawed assumptions, biases that might be distorting it, logic that's missing or doesn't hold, and a clearer way to think about it. Be direct — I'd rather know now.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -839,7 +936,7 @@ Be direct. I'd rather know now.</pre>
     <h2>The habits underneath.</h2>
   </div>
 
-  <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:24px;max-width:640px;">These two aren't fancy prompts. They're the base habits everything else depends on: how to give Claude enough to work with, and how to work with it rather than one-shot it.</p>
+  <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:24px;max-width:640px;">These two are the base habits ICC sits on top of: how to hand Claude your actual material, and how to work with it across rounds instead of one-shotting it.</p>
 
   <div class="prompt-stack">
 
@@ -848,7 +945,7 @@ Be direct. I'd rather know now.</pre>
       <summary>
         <span class="num">11</span>
         <div class="info">
-          <div class="title">Context Loading</div>
+          <div class="title">Load Your Material</div>
           <div class="desc">The habit that makes everything else work. Give Claude the material before you ask for anything.</div>
         </div>
         <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
@@ -856,18 +953,16 @@ Be direct. I'd rather know now.</pre>
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>Before I ask you to do anything, here's the context you need.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Read everything I'm giving you before you do anything. If something's unclear or missing, ask me before you start.
 
-What I'm working on:
-<span class="bracket">[The project, the goal, the situation]</span>
-
-What I'm giving you:
+<span class="section-label">CONTEXT</span>
+What I'm working on, plus the actual material:
 <span class="bracket">[Paste or upload your documents, brief, references, notes, examples]</span>
 
-What good looks like to me:
-<span class="bracket">[Tone, format, constraints, anything non-negotiable]</span>
-
-Read all of this first. If anything's unclear or missing, ask me before you start.</pre>
+<span class="section-label">CONSTRAINTS</span>
+What good looks like to me — tone, format, anything non-negotiable:
+<span class="bracket">[Paste here]</span></pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
@@ -891,18 +986,16 @@ Read all of this first. If anything's unclear or missing, ask me before you star
       <div class="prompt-body">
         <div class="template-block">
           <button class="copy-btn" aria-label="Copy template">Copy</button>
-          <pre>That's a solid start. Here's what's working and what isn't.
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Revise your last output using the feedback below. Show me one version, then we'll refine from there.
 
-Working:
-<span class="bracket">[What to keep]</span>
+<span class="section-label">CONTEXT</span>
+What's working and what isn't:
+Working: <span class="bracket">[what to keep]</span>
+Not working: <span class="bracket">[what's off, and why]</span>
 
-Not working:
-<span class="bracket">[What's off, and why]</span>
-
-For the next version:
-<span class="bracket">[The specific change you want — tighter, different angle, new tone, etc.]</span>
-
-Try again with that in mind. Show me one version, then we'll refine.</pre>
+<span class="section-label">CONSTRAINTS</span>
+The specific change I want this round: <span class="bracket">[tighter / different angle / new tone / etc.]</span>. One version, not five.</pre>
         </div>
         <div class="use-cases-label">Example use cases</div>
         <ul class="use-cases">
