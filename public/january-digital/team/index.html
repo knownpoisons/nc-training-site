@@ -93,14 +93,14 @@
   .id-card img {
     display: block; width: 100%; height: auto;
     border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+    transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .id-card:hover {
-    transform: rotate(var(--rot)) scale(1.05);
+    transform: scale(1.05);
   }
   .id-card:hover img {
-    box-shadow: 0 16px 44px rgba(19, 56, 190, 0.22), 0 6px 16px rgba(0, 0, 0, 0.1);
+    filter: drop-shadow(0 14px 28px rgba(19, 56, 190, 0.2));
   }
 
   /* ─── Overlay (click to enlarge + flip) ─── */
@@ -155,50 +155,11 @@
   }
   .card-overlay img { display: block; width: 100%; height: auto; }
 
-  /* Scattered rotations — assigned via inline style */
-  .id-card:nth-child(1)  { --rot: -3deg; }
-  .id-card:nth-child(2)  { --rot: 2deg; }
-  .id-card:nth-child(3)  { --rot: -1.5deg; }
-  .id-card:nth-child(4)  { --rot: 3deg; }
-  .id-card:nth-child(5)  { --rot: -2deg; }
-  .id-card:nth-child(6)  { --rot: 1deg; }
-  .id-card:nth-child(7)  { --rot: -2.5deg; }
-  .id-card:nth-child(8)  { --rot: 2.5deg; }
-  .id-card:nth-child(9)  { --rot: -1deg; }
-  .id-card:nth-child(10) { --rot: 3.5deg; }
-  .id-card:nth-child(11) { --rot: -3.5deg; }
-
-  /* ─── Entrance animation ─── */
-  @keyframes card-deal {
-    from {
-      opacity: 0;
-      transform: translateY(60px) rotate(calc(var(--rot) * 3)) scale(0.85);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) rotate(var(--rot)) scale(1);
-    }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .id-card {
-      opacity: 0;
-      animation: card-deal 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      animation-delay: var(--delay);
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .id-card { transform: rotate(var(--rot)); }
-  }
-
   /* ─── Head trainer call-out ─── */
   .id-card.head-trainer {
     width: 280px;
     flex-basis: 100%;
     max-width: 280px;
-    box-shadow: 0 12px 40px rgba(19, 56, 190, 0.25), 0 4px 12px rgba(0, 0, 0, 0.1);
-  }
-  .id-card.head-trainer:hover {
-    box-shadow: 0 24px 60px rgba(19, 56, 190, 0.3), 0 8px 24px rgba(0, 0, 0, 0.12);
   }
 
   /* ─── Footer ─── */
@@ -279,47 +240,47 @@
 
   <div class="card-grid">
 
-    <div class="id-card head-trainer" style="--delay: 0.1s; --rot: 0deg;" data-front="/january-digital/team/id-jeremy-trainer.png" data-back="/january-digital/team/id-jeremy-trainer-back.png">
+    <div class="id-card head-trainer" style="transform: rotate(0deg);" data-front="/january-digital/team/id-jeremy-trainer.png" data-back="/january-digital/team/id-jeremy-trainer-back.png">
       <img src="/january-digital/team/id-jeremy-trainer-back.png" alt="Jeremy — Head Trainer" />
     </div>
 
-    <div class="id-card" style="--delay: 0.18s;" data-front="/january-digital/team/id-salome.png" data-back="/january-digital/team/id-salome-back.png">
+    <div class="id-card" style="transform: rotate(2deg);" data-front="/january-digital/team/id-salome.png" data-back="/january-digital/team/id-salome-back.png">
       <img src="/january-digital/team/id-salome-back.png" alt="Salome" />
     </div>
 
-    <div class="id-card" style="--delay: 0.26s;" data-front="/january-digital/team/id-vic.png" data-back="/january-digital/team/id-vic-back.png">
+    <div class="id-card" style="transform: rotate(-1.5deg);" data-front="/january-digital/team/id-vic.png" data-back="/january-digital/team/id-vic-back.png">
       <img src="/january-digital/team/id-vic-back.png" alt="Vic" />
     </div>
 
-    <div class="id-card" style="--delay: 0.34s;" data-front="/january-digital/team/id-christina.png" data-back="/january-digital/team/id-christina-back.png">
+    <div class="id-card" style="transform: rotate(3deg);" data-front="/january-digital/team/id-christina.png" data-back="/january-digital/team/id-christina-back.png">
       <img src="/january-digital/team/id-christina-back.png" alt="Christina" />
     </div>
 
-    <div class="id-card" style="--delay: 0.42s;" data-front="/january-digital/team/id-jared.png" data-back="/january-digital/team/id-jared-back.png">
+    <div class="id-card" style="transform: rotate(-2deg);" data-front="/january-digital/team/id-jared.png" data-back="/january-digital/team/id-jared-back.png">
       <img src="/january-digital/team/id-jared-back.png" alt="Jared" />
     </div>
 
-    <div class="id-card" style="--delay: 0.5s;" data-front="/january-digital/team/id-jeremy.png" data-back="/january-digital/team/id-jeremy-back.png">
+    <div class="id-card" style="transform: rotate(1deg);" data-front="/january-digital/team/id-jeremy.png" data-back="/january-digital/team/id-jeremy-back.png">
       <img src="/january-digital/team/id-jeremy-back.png" alt="Jeremy" />
     </div>
 
-    <div class="id-card" style="--delay: 0.58s;" data-front="/january-digital/team/id-justin.png" data-back="/january-digital/team/id-justin-back.png">
+    <div class="id-card" style="transform: rotate(-2.5deg);" data-front="/january-digital/team/id-justin.png" data-back="/january-digital/team/id-justin-back.png">
       <img src="/january-digital/team/id-justin-back.png" alt="Justin" />
     </div>
 
-    <div class="id-card" style="--delay: 0.66s;" data-front="/january-digital/team/id-luisa.png" data-back="/january-digital/team/id-luisa-back.png">
+    <div class="id-card" style="transform: rotate(2.5deg);" data-front="/january-digital/team/id-luisa.png" data-back="/january-digital/team/id-luisa-back.png">
       <img src="/january-digital/team/id-luisa-back.png" alt="Luisa" />
     </div>
 
-    <div class="id-card" style="--delay: 0.74s;" data-front="/january-digital/team/id-omama.png" data-back="/january-digital/team/id-omama-back.png">
+    <div class="id-card" style="transform: rotate(-1deg);" data-front="/january-digital/team/id-omama.png" data-back="/january-digital/team/id-omama-back.png">
       <img src="/january-digital/team/id-omama-back.png" alt="Omama" />
     </div>
 
-    <div class="id-card" style="--delay: 0.82s;" data-front="/january-digital/team/id-addison.png" data-back="/january-digital/team/id-addison-back.png">
+    <div class="id-card" style="transform: rotate(3.5deg);" data-front="/january-digital/team/id-addison.png" data-back="/january-digital/team/id-addison-back.png">
       <img src="/january-digital/team/id-addison-back.png" alt="Addison" />
     </div>
 
-    <div class="id-card" style="--delay: 0.9s;" data-front="/january-digital/team/id-chris.png" data-back="/january-digital/team/id-chris-back.png">
+    <div class="id-card" style="transform: rotate(-3.5deg);" data-front="/january-digital/team/id-chris.png" data-back="/january-digital/team/id-chris-back.png">
       <img src="/january-digital/team/id-chris-back.png" alt="Chris" />
     </div>
 
