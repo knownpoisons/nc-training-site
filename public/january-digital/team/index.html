@@ -72,56 +72,123 @@
   .cards-section h2 .accent { color: var(--accent); }
 
   .card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 32px;
-    justify-items: center;
+    justify-content: center;
   }
 
   /* ─── Individual card ─── */
   .id-card {
     position: relative;
-    width: 100%;
-    max-width: 260px;
+    width: 260px;
+    flex-shrink: 0;
     aspect-ratio: 3 / 4.2;
     border-radius: 10px;
     overflow: hidden;
-    cursor: default;
-    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                box-shadow 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+    transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
     will-change: transform;
+    perspective: 800px;
   }
-  .id-card img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .id-card .card-inner {
+    width: 100%; height: 100%;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform-style: preserve-3d;
+    position: relative;
+  }
+  .id-card .card-front,
+  .id-card .card-back {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .id-card .card-back {
+    transform: rotateY(180deg);
+    background: var(--accent);
+  }
+  .id-card .card-front img,
+  .id-card .card-back img {
+    display: block; width: 100%; height: 100%; object-fit: cover;
+  }
+
+  /* Jiggle on hover */
+  @keyframes jiggle {
+    0%, 100% { transform: rotate(var(--rot)); }
+    20%  { transform: rotate(calc(var(--rot) + 3deg)); }
+    40%  { transform: rotate(calc(var(--rot) - 2.5deg)); }
+    60%  { transform: rotate(calc(var(--rot) + 1.5deg)); }
+    80%  { transform: rotate(calc(var(--rot) - 1deg)); }
+  }
+  .id-card:hover {
+    animation: jiggle 0.5s ease-in-out;
+    box-shadow: 0 16px 44px rgba(19, 56, 190, 0.2), 0 6px 16px rgba(0, 0, 0, 0.1);
   }
 
   /* Holographic sheen overlay */
-  .id-card::after {
+  .id-card .card-front::after {
     content: "";
-    position: absolute;
-    inset: 0;
+    position: absolute; inset: 0;
     background: linear-gradient(
       135deg,
       rgba(255,255,255,0) 0%,
-      rgba(255,255,255,0.08) 40%,
-      rgba(19,56,190,0.06) 50%,
-      rgba(255,255,255,0.08) 60%,
+      rgba(255,255,255,0.1) 40%,
+      rgba(19,56,190,0.08) 50%,
+      rgba(255,255,255,0.1) 60%,
       rgba(255,255,255,0) 100%
     );
+    pointer-events: none; opacity: 0; transition: opacity 0.3s;
+  }
+  .id-card:hover .card-front::after { opacity: 1; }
+
+  /* ─── Overlay (click to enlarge + flip) ─── */
+  .card-overlay {
+    position: fixed; inset: 0; z-index: 9000;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(14, 14, 12, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.35s;
+  }
+  .card-overlay.active { opacity: 1; pointer-events: auto; cursor: pointer; }
+  .card-overlay .overlay-card {
+    width: min(380px, 85vw);
+    aspect-ratio: 3 / 4.2;
+    border-radius: 14px;
+    perspective: 1000px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.8);
+  }
+  .card-overlay.active .overlay-card { transform: scale(1); }
+  .card-overlay .overlay-inner {
+    width: 100%; height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  .card-overlay.flipped .overlay-inner { transform: rotateY(180deg); }
+  .card-overlay .overlay-front,
+  .card-overlay .overlay-back {
+    position: absolute; inset: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  }
+  .card-overlay .overlay-back { transform: rotateY(180deg); background: var(--accent); }
+  .card-overlay img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .overlay-hint {
+    position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
+    font-family: var(--sans); font-size: 10px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: rgba(229,228,226,0.6); font-weight: 600;
     pointer-events: none;
-    opacity: 0;
     transition: opacity 0.3s;
   }
-  .id-card:hover::after { opacity: 1; }
-
-  .id-card:hover {
-    transform: translateY(-12px) rotate(0deg) scale(1.04);
-    box-shadow: 0 20px 50px rgba(19, 56, 190, 0.2), 0 8px 20px rgba(0, 0, 0, 0.1);
-  }
+  .card-overlay.flipped .overlay-hint { opacity: 0; }
 
   /* Scattered rotations — assigned via inline style */
   .id-card:nth-child(1)  { --rot: -3deg; }
@@ -166,9 +233,9 @@
 
   /* ─── Head trainer call-out ─── */
   .id-card.head-trainer {
+    width: 280px;
+    flex-basis: 100%;
     max-width: 280px;
-    grid-column: 1 / -1;
-    justify-self: center;
     box-shadow: 0 12px 40px rgba(19, 56, 190, 0.25), 0 4px 12px rgba(0, 0, 0, 0.1);
   }
   .id-card.head-trainer:hover {
@@ -220,9 +287,10 @@
   }
 
   @media (max-width: 600px) {
-    .card-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .card-grid { gap: 20px; }
+    .id-card { width: calc(50% - 10px); }
     .cards-section { padding: 6vh 20px 10vh; }
-    .id-card.head-trainer { max-width: 240px; }
+    .id-card.head-trainer { width: 240px; max-width: 240px; }
   }
 </style>
 </head>
@@ -252,56 +320,131 @@
 
   <div class="card-grid">
 
-    <div class="id-card head-trainer" style="--delay: 0.1s; --rot: 0deg;">
-      <img src="/january-digital/team/id-jeremy-trainer.png" alt="Jeremy — Head Trainer" />
+    <div class="id-card head-trainer" style="--delay: 0.1s; --rot: 0deg;" data-front="/january-digital/team/id-jeremy-trainer.png" data-back="/january-digital/team/id-jeremy-trainer-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-jeremy-trainer.png" alt="Jeremy — Head Trainer" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.18s;">
-      <img src="/january-digital/team/id-addison.png" alt="Addison" />
+    <div class="id-card" style="--delay: 0.18s;" data-front="/january-digital/team/id-addison.png" data-back="/january-digital/team/id-addison-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-addison.png" alt="Addison" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.26s;">
-      <img src="/january-digital/team/id-chris.png" alt="Chris" />
+    <div class="id-card" style="--delay: 0.26s;" data-front="/january-digital/team/id-chris.png" data-back="/january-digital/team/id-chris-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-chris.png" alt="Chris" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.34s;">
-      <img src="/january-digital/team/id-christina.png" alt="Christina" />
+    <div class="id-card" style="--delay: 0.34s;" data-front="/january-digital/team/id-christina.png" data-back="/january-digital/team/id-christina-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-christina.png" alt="Christina" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.42s;">
-      <img src="/january-digital/team/id-jared.png" alt="Jared" />
+    <div class="id-card" style="--delay: 0.42s;" data-front="/january-digital/team/id-jared.png" data-back="/january-digital/team/id-jared-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-jared.png" alt="Jared" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.5s;">
-      <img src="/january-digital/team/id-jeremy.png" alt="Jeremy" />
+    <div class="id-card" style="--delay: 0.5s;" data-front="/january-digital/team/id-jeremy.png" data-back="/january-digital/team/id-jeremy-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-jeremy.png" alt="Jeremy" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.58s;">
-      <img src="/january-digital/team/id-justin.png" alt="Justin" />
+    <div class="id-card" style="--delay: 0.58s;" data-front="/january-digital/team/id-justin.png" data-back="/january-digital/team/id-justin-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-justin.png" alt="Justin" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.66s;">
-      <img src="/january-digital/team/id-luisa.png" alt="Luisa" />
+    <div class="id-card" style="--delay: 0.66s;" data-front="/january-digital/team/id-luisa.png" data-back="/january-digital/team/id-luisa-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-luisa.png" alt="Luisa" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.74s;">
-      <img src="/january-digital/team/id-omama.png" alt="Omama" />
+    <div class="id-card" style="--delay: 0.74s;" data-front="/january-digital/team/id-omama.png" data-back="/january-digital/team/id-omama-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-omama.png" alt="Omama" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.82s;">
-      <img src="/january-digital/team/id-salome.png" alt="Salome" />
+    <div class="id-card" style="--delay: 0.82s;" data-front="/january-digital/team/id-salome.png" data-back="/january-digital/team/id-salome-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-salome.png" alt="Salome" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
-    <div class="id-card" style="--delay: 0.9s;">
-      <img src="/january-digital/team/id-vic.png" alt="Vic" />
+    <div class="id-card" style="--delay: 0.9s;" data-front="/january-digital/team/id-vic.png" data-back="/january-digital/team/id-vic-back.png">
+      <div class="card-inner">
+        <div class="card-front"><img src="/january-digital/team/id-vic.png" alt="Vic" /></div>
+        <div class="card-back"></div>
+      </div>
     </div>
 
   </div>
 </div>
 
+<!-- Overlay for enlarged card view -->
+<div class="card-overlay" id="card-overlay">
+  <div class="overlay-card">
+    <div class="overlay-inner">
+      <div class="overlay-front"><img id="overlay-front-img" src="" alt="" /></div>
+      <div class="overlay-back"><img id="overlay-back-img" src="" alt="" /></div>
+    </div>
+  </div>
+  <div class="overlay-hint">Click to flip &middot; click again to close</div>
+</div>
+
 <footer class="doc-foot-graphic">
   <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
 </footer>
+
+<script>
+  const overlay = document.getElementById('card-overlay');
+  const frontImg = document.getElementById('overlay-front-img');
+  const backImg = document.getElementById('overlay-back-img');
+
+  document.querySelectorAll('.id-card').forEach(card => {
+    card.addEventListener('click', () => {
+      const front = card.dataset.front;
+      const back = card.dataset.back;
+      frontImg.src = front;
+      backImg.src = back;
+      overlay.classList.remove('flipped');
+      overlay.classList.add('active');
+    });
+  });
+
+  overlay.addEventListener('click', () => {
+    if (overlay.classList.contains('flipped')) {
+      overlay.classList.remove('active', 'flipped');
+    } else {
+      overlay.classList.add('flipped');
+    }
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && overlay.classList.contains('active')) {
+      overlay.classList.remove('active', 'flipped');
+    }
+  });
+</script>
 
 </body>
 </html>
