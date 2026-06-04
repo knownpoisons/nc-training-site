@@ -25,7 +25,8 @@ export interface Prompt {
   quickFire: string[];             // numbered instructions
   prompt?: string;                 // single-prompt mode (omit if using phases)
   phases?: PromptPhase[];          // multi-phase mode (renders as tabs)
-  heroImage?: string;              // optional, /images/library/<file>
+  heroImage?: string;              // optional poster / fallback still
+  heroVideo?: string;              // optional looping showcase video (mp4 — autoplays muted)
   // For future filtering
   tags?: string[];
 }
@@ -361,6 +362,7 @@ The same single HTML file, now with three functional tabs. No additional files n
       },
     ],
     heroImage: "/images/library/linkedin-prospect-intelligence-sample.png",
+    heroVideo: "/images/library/linkedin-prospect-intelligence-sample-dash.mp4",
     tags: ["sales", "outreach", "linkedin", "dashboard", "multi-phase"],
   },
 ];
