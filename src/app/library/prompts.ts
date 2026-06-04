@@ -44,7 +44,7 @@ export const PROMPTS: Prompt[] = [
 The prompt forces a phased process — no rushing to output. Phase 1 forces alignment on your goals, ICP, and voice before any data is touched. The gatekeeper question makes sure you're set up before you spend ten minutes typing into a vacuum.`,
     whenToUse: [
       "You have a LinkedIn export sitting in a folder doing nothing.",
-      "You want to send 20–50 personalised outreach messages, not a blast.",
+      "You want to prepare personalised messages for 20–50 prospects, not blast a generic one.",
       "You're tired of generic AI cold emails that sound like everyone else's.",
       "You want a sales tool that survives past one session — a dashboard, not a chat.",
     ],
