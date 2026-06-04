@@ -43,10 +43,11 @@ export const PROMPTS: Prompt[] = [
 
 The prompt forces a phased process — no rushing to output. Phase 1 forces alignment on your goals, ICP, and voice before any data is touched. The gatekeeper question makes sure you're set up before you spend ten minutes typing into a vacuum.`,
     whenToUse: [
-      "You have a LinkedIn export sitting in a folder doing nothing.",
-      "You want to prepare personalised messages for 20–50 prospects, not blast a generic one.",
-      "You're tired of generic AI cold emails that sound like everyone else's.",
-      "You want a sales tool that survives past one session — a dashboard, not a chat.",
+      "You want a single source of truth for your LinkedIn network — every connection, every company, every signal — and you want to query it like a database, not click through Sales Nav.",
+      "You want every cut on demand: hot leads, warm intros, dormant clients, AI-cluster opportunities, network density by company, who's worth a message this quarter. One CMS, every question.",
+      "You're done renting your own data. This is a sales asset you build once, own forever, and extend whenever a new question comes up — new tabs, new analyses, new outreach plays.",
+      "You want messages that read like a person wrote each one — because you did. The AI does the work. The words are yours.",
+      "You want a working CMS at the end of the hour. Not another chat output you'll lose in a thread by Friday.",
     ],
     whatYoullGet: [
       "A scored prospect shortlist ranked against your ICP.",
