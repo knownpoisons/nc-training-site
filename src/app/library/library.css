@@ -409,14 +409,149 @@
 }
 
 /* ───────── Misc ───────── */
-.library .anchor-link {
+.library .anchor-link,
+.library .inline-link {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 1px;
-  transition: opacity 120ms;
+  transition: opacity 120ms, color 120ms;
+  font-weight: 500;
 }
-.library .anchor-link:hover { opacity: 0.7; }
+.library .anchor-link:hover,
+.library .inline-link:hover { opacity: 0.7; }
+.library .section ol li strong,
+.library .section ul li strong { font-weight: 600; color: var(--ink); }
+
+/* ───────── Phase tabs (multi-phase prompts) ───────── */
+.library .phases { display: block; }
+
+.library .phase-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+}
+.library .phase-tab {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  padding: 16px 22px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 2px solid transparent;
+  transition: color 120ms, border-color 120ms, background 120ms;
+  font-variant-numeric: tabular-nums;
+}
+.library .phase-tab:hover { color: var(--ink); }
+.library .phase-tab .phase-tab-num { color: var(--ink); font-weight: 600; }
+.library .phase-tab .phase-tab-dot { color: var(--rule); }
+.library .phase-tab .phase-tab-label { color: inherit; }
+.library .phase-tab-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  background: var(--soft);
+}
+.library .phase-tab-active .phase-tab-num { color: var(--accent); }
+.library .phase-tab-active .phase-tab-dot { color: var(--accent); opacity: 0.5; }
+
+.library .phase-panel {
+  display: block;
+}
+
+.library .phase-prereq {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 20px;
+  background: var(--soft);
+  border-left: 3px solid var(--accent);
+  margin-bottom: 22px;
+}
+.library .phase-prereq-label {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+  padding-top: 3px;
+  letter-spacing: 0.18em;
+}
+.library .phase-prereq-text {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.library .phase-blurb {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.45;
+  color: var(--ink);
+  margin: 0 0 24px;
+  max-width: 880px;
+  font-style: italic;
+}
+
+@media (max-width: 640px) {
+  .library .phase-tab {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    padding: 12px 14px;
+    gap: 6px;
+  }
+  .library .phase-tab .phase-tab-label {
+    /* Truncate the label on narrow phones — Phase 01/02 prefix carries the meaning */
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .library .phase-prereq {
+    flex-direction: column;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+}
+
+/* ───────── Sample image (hero output preview) ───────── */
+.library .sample {
+  max-width: 1100px;
+  margin: 0 auto 8vh;
+  padding: 0 40px;
+}
+.library .sample figure { margin: 0; }
+.library .sample-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid var(--rule);
+  background: var(--surface);
+}
+.library .sample figcaption {
+  margin-top: 16px;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-style: italic;
+  max-width: 760px;
+}
+
+@media (max-width: 640px) {
+  .library .sample { padding: 0 20px; margin-bottom: 5vh; }
+  .library .sample figcaption { font-size: 12px; }
+}
 
 /* Focus indicator (matches nc-reviews pattern) */
 .library *:focus-visible {
