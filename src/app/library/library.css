@@ -1,0 +1,388 @@
+/* ─── Library section styles (editorial / JD-aesthetic) ─────────────────────
+   Scoped to .library — these tokens do not leak into the marketing chrome.
+   ───────────────────────────────────────────────────────────────────────── */
+
+.library {
+  --bg: #E5E4E2;
+  --ink: #0E0E0C;
+  --muted: #5F5F60;
+  --rule: #C2C1BF;
+  --accent: #1338BE;
+  --soft: rgba(19, 56, 190, 0.07);
+  --surface: #EFEEEC;
+  --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+  --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+
+/* ───────── Top bar ───────── */
+.library .topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--rule);
+  padding: 16px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.library .topbar a {
+  color: inherit;
+  text-decoration: none;
+}
+.library .topbar .brand {
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.library .topbar .brand .dot {
+  color: var(--accent);
+  margin: 0 0.2em;
+}
+.library .topbar .counter {
+  font-variant-numeric: tabular-nums;
+}
+.library .topbar .counter strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .library .topbar { padding: 14px 20px; font-size: 10px; letter-spacing: 0.18em; }
+}
+
+/* ───────── Hero ───────── */
+.library .hero {
+  max-width: 1100px;
+  margin: 12vh auto 6vh;
+  padding: 0 40px;
+}
+.library .hero .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.library .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+.library .hero .eyebrow .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+  max-width: 380px;
+}
+.library .hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(40px, 8.5vw, 124px);
+  line-height: 0.92;
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+  margin: 0;
+}
+.library .hero h1 .accent { color: var(--accent); font-style: italic; }
+.library .hero .sub {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: var(--muted);
+  margin-top: 28px;
+  line-height: 1.3;
+  font-style: italic;
+  max-width: 760px;
+}
+
+@media (max-width: 640px) {
+  .library .hero { margin: 6vh auto 4vh; padding: 0 20px; }
+}
+
+/* ───────── Section heads ───────── */
+.library .section {
+  max-width: 1100px;
+  margin: 0 auto 6vh;
+  padding: 0 40px;
+}
+.library .section .head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+.library .section .head .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.library .section .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+.library .section .head .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.library .section h2 {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.6vw, 42px);
+  line-height: 1.05;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 0 0 14px;
+}
+.library .section p {
+  font-size: 18px;
+  line-height: 1.55;
+  color: var(--ink);
+  margin: 0 0 14px;
+  max-width: 760px;
+}
+.library .section p.muted { color: var(--muted); }
+
+.library .section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  max-width: 760px;
+}
+.library .section ul li {
+  font-size: 17px;
+  line-height: 1.5;
+  padding: 10px 0 10px 28px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.library .section ul li:first-child { border-top: 1px solid var(--rule); }
+.library .section ul li::before {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 22px;
+  width: 12px;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Ordered list for quick-fire instructions — numbered, cobalt */
+.library .section ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: instr;
+  max-width: 760px;
+}
+.library .section ol li {
+  counter-increment: instr;
+  font-size: 17px;
+  line-height: 1.5;
+  padding: 12px 0 12px 56px;
+  border-bottom: 1px solid var(--rule);
+  position: relative;
+}
+.library .section ol li:first-child { border-top: 1px solid var(--rule); }
+.library .section ol li::before {
+  content: counter(instr, decimal-leading-zero);
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 640px) {
+  .library .section { padding: 0 20px; margin-bottom: 4vh; }
+}
+
+/* ───────── Prompt block ───────── */
+.library .prompt-block {
+  max-width: 1100px;
+  margin: 0 auto 8vh;
+  padding: 0 40px;
+}
+.library .prompt-block .head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.library .prompt-block .head .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.library .prompt-block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+.library .prompt-block .head .rule {
+  flex: 1;
+  height: 1px;
+  background: var(--rule);
+}
+.library .prompt-block .surface {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+}
+.library .prompt-block .copy {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--accent);
+  border: none;
+  padding: 10px 18px;
+  cursor: pointer;
+  transition: background 120ms, transform 120ms;
+}
+.library .prompt-block .copy:hover { background: #0F2DA0; }
+.library .prompt-block .copy:active { transform: translateY(1px); }
+.library .prompt-block .copy.copied {
+  background: #0E0E0C;
+}
+.library .prompt-block pre {
+  margin: 0;
+  padding: 56px 28px 28px;
+  font-family: "SF Mono", "JetBrains Mono", ui-monospace, Menlo, monospace;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--ink);
+  overflow-x: auto;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+@media (max-width: 640px) {
+  .library .prompt-block { padding: 0 20px; margin-bottom: 6vh; }
+  .library .prompt-block pre { padding: 56px 18px 18px; font-size: 12.5px; }
+  .library .prompt-block .copy { font-size: 10px; padding: 8px 14px; letter-spacing: 0.15em; }
+}
+
+/* ───────── Index list rows ───────── */
+.library .row-list {
+  max-width: 1100px;
+  margin: 0 auto 8vh;
+  padding: 0 40px;
+}
+.library .row {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 28px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 120ms;
+}
+.library .row:last-child { border-bottom: 1px solid var(--rule); }
+.library .row:hover { background: var(--soft); }
+.library .row .num {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.library .row .body .topic {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.6vw, 32px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.library .row .body .summary {
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--muted);
+  max-width: 600px;
+}
+.library .row .meta {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.library .row .arrow {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--accent);
+  transition: transform 200ms;
+}
+.library .row:hover .arrow { transform: translateX(8px); }
+
+@media (max-width: 640px) {
+  .library .row-list { padding: 0 20px; }
+  .library .row {
+    grid-template-columns: 56px 1fr;
+    gap: 16px;
+    padding: 22px 0;
+  }
+  .library .row .meta { grid-column: 2; }
+}
+
+/* ───────── Footer ───────── */
+.library .foot {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 40px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.library .foot a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.library .foot a:hover { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .library .foot { padding: 24px 20px 40px; font-size: 10px; }
+}
+
+/* ───────── Misc ───────── */
+.library .anchor-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity 120ms;
+}
+.library .anchor-link:hover { opacity: 0.7; }
+
+/* Focus indicator (matches nc-reviews pattern) */
+.library *:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

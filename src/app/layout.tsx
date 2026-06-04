@@ -9,6 +9,7 @@ import { ScorecardNudge } from "@/components/scorecard-nudge";
 import { ExitIntent } from "@/components/exit-intent";
 import { AnnouncementBar } from "@/components/announcement-bar";
 import { ScrollPopup } from "@/components/scroll-popup";
+import { ChromeGate } from "@/components/chrome-gate";
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
@@ -74,13 +75,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ibmPlexMono.variable} ${ibmPlexSans.variable} ${sourceSerif.variable} font-mono antialiased`}>
-        <AnnouncementBar />
-        <Header />
+        <ChromeGate>
+          <AnnouncementBar />
+          <Header />
+        </ChromeGate>
         <main>{children}</main>
-        <Footer />
-        <ScorecardNudge />
-        <ExitIntent />
-        <ScrollPopup />
+        <ChromeGate>
+          <Footer />
+          <ScorecardNudge />
+          <ExitIntent />
+          <ScrollPopup />
+        </ChromeGate>
         <Analytics />
         <SpeedInsights />
       </body>
