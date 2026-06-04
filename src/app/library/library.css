@@ -58,9 +58,36 @@
   color: var(--accent);
   font-weight: 600;
 }
+.library .topbar-meta {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.library .share {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  background: transparent;
+  border: 1px solid var(--accent);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 120ms, color 120ms;
+  font-variant-numeric: tabular-nums;
+}
+.library .share:hover { background: var(--accent); color: var(--bg); }
+.library .share.share-active {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
 
 @media (max-width: 640px) {
   .library .topbar { padding: 14px 20px; font-size: 10px; letter-spacing: 0.18em; }
+  .library .topbar-meta { gap: 12px; }
+  .library .share { font-size: 9.5px; padding: 5px 10px; letter-spacing: 0.15em; }
 }
 
 /* ───────── Hero ───────── */
@@ -110,38 +137,55 @@
   .library .hero { margin: 6vh auto 4vh; padding: 0 20px; }
 }
 
-/* ───────── Section heads ───────── */
+/* ───────── Section heads (heroed) ───────── */
 .library .section {
   max-width: 1100px;
-  margin: 0 auto 6vh;
+  margin: 0 auto 8vh;
   padding: 0 40px;
 }
-.library .section .head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 28px;
+/* New hero-style section head: small cobalt number, big serif title,
+   hairline rule below. Replaces the old in-line eyebrow pattern. */
+.library .section .hed,
+.library .prompt-block .hed {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 32px;
+  row-gap: 18px;
+  align-items: end;
+  margin-bottom: 32px;
 }
-.library .section .head .eyebrow {
-  font-size: 12px;
+.library .section .hed .num,
+.library .prompt-block .hed .num {
+  grid-row: 1;
+  grid-column: 1;
+  font-family: var(--sans);
+  font-size: 13px;
   letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-weight: 600;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+  padding-bottom: 8px;
 }
-.library .section .head .eyebrow .num { color: var(--accent); font-weight: 600; }
-.library .section .head .rule {
-  flex: 1;
+.library .section .hed h2,
+.library .prompt-block .hed h2 {
+  grid-row: 1;
+  grid-column: 2;
+  font-family: var(--serif);
+  font-size: clamp(38px, 6vw, 76px);
+  line-height: 0.95;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin: 0;
+}
+.library .section .hed .rule,
+.library .prompt-block .hed .rule {
+  grid-row: 2;
+  grid-column: 1 / -1;
   height: 1px;
   background: var(--rule);
-}
-.library .section h2 {
-  font-family: var(--serif);
-  font-size: clamp(28px, 3.6vw, 42px);
-  line-height: 1.05;
-  font-weight: 400;
-  letter-spacing: -0.015em;
-  color: var(--ink);
-  margin: 0 0 14px;
+  margin-top: 2px;
 }
 .library .section p {
   font-size: 18px;
@@ -206,7 +250,18 @@
 }
 
 @media (max-width: 640px) {
-  .library .section { padding: 0 20px; margin-bottom: 4vh; }
+  .library .section { padding: 0 20px; margin-bottom: 5vh; }
+  .library .section .hed,
+  .library .prompt-block .hed {
+    column-gap: 14px;
+    row-gap: 12px;
+    margin-bottom: 22px;
+  }
+  .library .section .hed .num,
+  .library .prompt-block .hed .num {
+    font-size: 11px;
+    padding-bottom: 4px;
+  }
 }
 
 /* ───────── Prompt block ───────── */
@@ -214,24 +269,6 @@
   max-width: 1100px;
   margin: 0 auto 8vh;
   padding: 0 40px;
-}
-.library .prompt-block .head {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  margin-bottom: 18px;
-}
-.library .prompt-block .head .eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.library .prompt-block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
-.library .prompt-block .head .rule {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
 }
 .library .prompt-block .surface {
   position: relative;

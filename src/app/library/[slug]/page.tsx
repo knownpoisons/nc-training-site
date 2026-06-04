@@ -34,7 +34,11 @@ export default async function PromptPage({ params }: Props) {
 
   return (
     <div className="library">
-      <LibraryTopbar currentNumber={p.number} total={PROMPTS.length} />
+      <LibraryTopbar
+        currentNumber={p.number}
+        total={PROMPTS.length}
+        shareTitle={`${p.title} — NotContent Library`}
+      />
 
       {/* ─── Hero ────────────────────────────────────────────────────── */}
       <section className="hero">
@@ -68,10 +72,9 @@ export default async function PromptPage({ params }: Props) {
 
       {/* ─── What it does ────────────────────────────────────────────── */}
       <section className="section">
-        <div className="head">
-          <span className="eyebrow">
-            <span className="num">01</span>&nbsp; What it does
-          </span>
+        <div className="hed">
+          <span className="num">01</span>
+          <h2>What it does.</h2>
           <span className="rule" />
         </div>
         {p.whatItDoes.split("\n\n").map((para, i) => (
@@ -81,10 +84,9 @@ export default async function PromptPage({ params }: Props) {
 
       {/* ─── When to use ─────────────────────────────────────────────── */}
       <section className="section">
-        <div className="head">
-          <span className="eyebrow">
-            <span className="num">02</span>&nbsp; When to use it
-          </span>
+        <div className="hed">
+          <span className="num">02</span>
+          <h2>When to use it.</h2>
           <span className="rule" />
         </div>
         <ul>
@@ -96,10 +98,9 @@ export default async function PromptPage({ params }: Props) {
 
       {/* ─── What you'll get ─────────────────────────────────────────── */}
       <section className="section">
-        <div className="head">
-          <span className="eyebrow">
-            <span className="num">03</span>&nbsp; What you&rsquo;ll get
-          </span>
+        <div className="hed">
+          <span className="num">03</span>
+          <h2>What you&rsquo;ll get.</h2>
           <span className="rule" />
         </div>
         <ul>
@@ -111,10 +112,9 @@ export default async function PromptPage({ params }: Props) {
 
       {/* ─── Quick-fire instructions ─────────────────────────────────── */}
       <section className="section">
-        <div className="head">
-          <span className="eyebrow">
-            <span className="num">04</span>&nbsp; Quick-fire instructions
-          </span>
+        <div className="hed">
+          <span className="num">04</span>
+          <h2>Quick-fire instructions.</h2>
           <span className="rule" />
         </div>
         <ol>
@@ -126,10 +126,9 @@ export default async function PromptPage({ params }: Props) {
 
       {/* ─── The prompt ──────────────────────────────────────────────── */}
       <section className="prompt-block">
-        <div className="head">
-          <span className="eyebrow">
-            <span className="num">05</span>&nbsp; The prompt
-          </span>
+        <div className="hed">
+          <span className="num">05</span>
+          <h2>The prompt.</h2>
           <span className="rule" />
         </div>
         <div className="surface">
