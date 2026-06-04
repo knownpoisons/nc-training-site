@@ -55,11 +55,12 @@ The prompt forces a phased process — no rushing to output. Phase 1 forces alig
     ],
     quickFire: [
       "Kick off the LinkedIn data export FIRST — it usually lands in your inbox within a few minutes, but LinkedIn warns it can take up to 24 hours. Go to [LinkedIn → Settings → Get a copy of your data](https://www.linkedin.com/mypreferences/d/download-my-data), tick the box for **Connections**, and request the archive. Open the email and download the ZIP when it arrives.",
-      "While you wait, paste this prompt into Claude (or your AI of choice). It starts in Phase 1.",
+      "While you wait, paste the **Phase 01** prompt into Claude (or your AI of choice). It starts in its own Phase 1 (preparation).",
       "Answer the clarifying questions — ICP, voice, target audience.",
       "When the AI asks the gatekeeper question, upload the **Connections.csv** from the LinkedIn ZIP you downloaded.",
       "Let the AI work through the phases. Don't skip ahead — the prompt is built to slow you down deliberately.",
       "Save the HTML dashboard locally and use it as your outreach launchpad for the next two weeks.",
+      "Optionally come back and run **Phase 02** (Network Intelligence) on the same dataset to add the network-analysis tab, or **Phase 03** (Network Matchmaking) when you've had a conversation with someone you'd like to make introductions for.",
     ],
     phases: [
       {
@@ -229,6 +230,134 @@ Change footer subtitle from \`/ linkedin prospects\` to \`/ linkedin intelligenc
 # Output
 
 The same single HTML file, now with two functional tabs. No additional files needed.`,
+      },
+      {
+        number: 3,
+        label: "Network Matchmaking",
+        prerequisite:
+          "Run this AFTER Phase 1 + Phase 2 are complete on someone else's LinkedIn dashboard. You'll need: their completed Phase 1+2 dashboard HTML, a transcript of the conversation with the person you're matchmaking for (e.g. Jeremy), and the dashboard owner's Connections.csv.",
+        blurb:
+          "Adds a third tab — Network Matchmaking. Reads your conversation with someone (Jeremy in the worked example), extracts their actual ICP and language from the transcript, then scores every connection in the dashboard owner's network against it. Returns ranked match cards with intro angles you can copy and send.",
+        prompt: `# Context
+
+Jeremy Somers (founder of NotContent.AI — AI creative training for enterprise teams at training.notcontent.ai) had a conversation with you. In that conversation, he explained what he does, who he's looking for, and what makes a great prospect for his training programs. You offered to make introductions from your LinkedIn network.
+
+This prompt takes your completed LinkedIn Intelligence dashboard (Phase 1 + 2) and the transcript of your conversation with Jeremy, and builds a **Phase 3 tab: Network Matchmaking** — a ranked list of people in YOUR network who are the best introductions for Jeremy, based on what he actually said he needs.
+
+# Inputs you'll need ready
+
+1. **Your completed dashboard HTML** (with Phase 1 prospect cards and Phase 2 network intelligence already built from your own Connections.csv)
+2. **Conversation transcript** — the full conversation between you and Jeremy. This could be a Zoom/meeting transcript, a WhatsApp export, a text file, or pasted text. Paste it or attach it.
+3. **Your Connections.csv** — the same LinkedIn data export used for Phase 1 + 2
+
+# Your task
+
+You have a completed LinkedIn Intelligence dashboard (Phase 1 + Phase 2). Now add a **third tab: Network Matchmaking** that identifies the best introductions from this person's network for Jeremy Somers / NotContent Training.
+
+## Step 1: Extract matching criteria from the transcript
+
+Read the conversation transcript carefully. Extract:
+
+1. **What Jeremy is selling:** AI creative training programs ($5K–$75K) at training.notcontent.ai. NOT agency services — he trains teams to use AI together.
+2. **Who he wants to meet** (pull EXACT quotes from the transcript where he describes his ideal customer):
+   * Creative directors, heads of creative, CCOs at agencies or brand in-house teams
+   * Agency founders/CEOs running creative shops (NOT AI agencies — those are competitors)
+   * Brand-side creative/content leads (Director of Creative, Head of Brand, VP Creative)
+   * Heads of production, studio directors
+   * Anyone running an in-house creative team ("The Greenhouse" type setups)
+   * People at companies with high-volume creative output (e-commerce, FMCG, fashion, DTC, pharma)
+3. **Who he does NOT want:**
+   * AI tool companies / AI agencies (competitors, not customers)
+   * Pure tech/engineering roles with no creative mandate
+   * Junior roles without budget authority
+   * Sales/recruiting outreach
+4. **What makes someone high-value** (from the conversation):
+   * Large team they could train (team size = deal size)
+   * High-volume creative production (lots of "a little bit creative" work)
+   * Already experimenting with AI individually but no team alignment
+   * Global or multi-market operations (more complexity = more need)
+   * Decision-making authority (can sign a $50K engagement)
+5. **Any specific names, companies, industries, or signals** Jeremy mentioned in the conversation as interesting.
+
+## Step 2: Score every connection
+
+For each connection in Connections.csv, calculate a **Match Score (0–100)** across these dimensions:
+
+| Dimension | Max Points | What to assess |
+|---|---|---|
+| **Role fit** | 30 | Does their title match who Jeremy wants to meet? Creative leadership, agency founder, brand creative lead, head of production = high. Sales, engineering, recruiting = zero. |
+| **Company fit** | 25 | Is the company an agency, brand with in-house creative, or organization with high-volume creative needs? Size matters — big company = bigger training deal. Exclude AI tool companies. |
+| **Authority** | 20 | Can this person approve a $5K–$75K engagement? C-suite, VP, Director, Founder = high. Manager, Senior, Junior = lower. |
+| **Relevance signals** | 15 | Does anything in their title or company suggest they're dealing with the exact problem Jeremy solves (AI adoption, creative production, team alignment)? |
+| **Intro quality** | 10 | How strong is YOUR relationship with this person? If you have context from the conversation about who you know well vs. barely, factor that in. Default to 5 if unknown. |
+
+## Step 3: Build the matchmaking tab
+
+Add a third tab to the dashboard: **Network Matchmaking**
+
+**Layout:**
+
+1. **Context card** at the top — a styled box summarizing:
+   * Who this matchmaking is for (Jeremy Somers / NotContent Training)
+   * What he's looking for (1-2 sentence summary extracted from the transcript)
+   * 2-3 direct quotes from the transcript that capture what he needs
+   * Link: training.notcontent.ai
+2. **Match stats bar** (4 metrics):
+   * Total connections scanned
+   * Strong matches (score 70+)
+   * Good matches (score 50–69)
+   * Conversation quotes used
+3. **Ranked match cards** — show the top 20-30 matches, each card containing:
+   * Rank and match score (/100)
+   * Name, title, company
+   * Score breakdown bars (same visual style as Phase 1 prospect cards)
+   * **Why this is a match** — 2-3 sentences explaining why this person fits what Jeremy described. Reference specific things from the transcript where possible ("Jeremy mentioned he's looking for teams with high-volume e-commerce content — [Name] leads exactly that at [Company]").
+   * **Suggested intro angle** — a one-liner the dashboard owner could use when making the intro. Something like: "Jeremy trains creative teams to use AI together — your [team/operation] at [company] is exactly the kind of setup he works with."
+   * LinkedIn profile link
+   * Badge: "STRONG MATCH" (70+), "GOOD MATCH" (50-69), or no badge below 50
+4. **Filter bar** — same style as Phase 1:
+   * All Matches
+   * Strong Matches (70+)
+   * Agency People
+   * Brand People
+
+**Card styling:** Match the existing prospect card design exactly — same card structure, same score breakdown bars, same badge styling. Use the same color palette (orange accent, teal, sage, cream, gray). The "Why this is a match" section replaces the "Intel" section from Phase 1. The "Suggested intro angle" replaces the "Outreach Message" section but is shorter (1-2 sentences, no copy button needed).
+
+## Step 4: Update tab navigation
+
+The tab bar now shows three tabs:
+* Prospect Intelligence
+* Network Intelligence
+* Network Matchmaking ← new
+
+## Step 5: Generate a shareable summary
+
+Below the match cards, add a **summary block** styled like the footer — a pre-written message the dashboard owner can copy and send to Jeremy:
+
+\`\`\`
+Hey Jeremy — ran your criteria against my LinkedIn network. Found [X] strong matches and [Y] good matches. Here are the top [N] I think are worth an intro:
+
+1. [Name] — [Title] at [Company]. [One-line why].
+2. [Name] — [Title] at [Company]. [One-line why].
+3. [Name] — [Title] at [Company]. [One-line why].
+...
+
+Want me to make intros to any of these?
+\`\`\`
+
+Include a copy button on this summary block.
+
+# Important rules
+
+* **The transcript is the source of truth.** Don't assume what Jeremy wants — extract it from what he actually said. If he mentioned specific industries, company sizes, or types of people, those should weight the scoring.
+* **Quote the transcript.** The "Why this is a match" sections are more powerful when they reference specific things Jeremy said.
+* **Don't include AI agencies/tool companies.** These are Jeremy's competitors, not his customers.
+* **Rank by match score.** The person making intros should see the best matches first.
+* **The intro angle should be usable.** Write it as something the dashboard owner would actually send — casual, personal, one sentence.
+
+# Output
+
+The same single HTML file, now with three functional tabs. No additional files needed.`,
       },
     ],
     heroImage: "/images/library/linkedin-prospect-intelligence-sample.png",
