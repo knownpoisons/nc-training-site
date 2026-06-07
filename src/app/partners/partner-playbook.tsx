@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CopyLine } from "./copy-line";
 import { AccordionItem } from "./accordion-item";
+import { RevealOnScroll } from "./reveal-on-scroll";
 
 // ─── Section head: small cobalt num + big serif title + hairline rule ─────────
 function Hed({ num, title }: { num: string; title: string }) {
@@ -16,6 +17,7 @@ function Hed({ num, title }: { num: string; title: string }) {
 export function PartnerPlaybook() {
   return (
     <div className="partners">
+      <RevealOnScroll />
       {/* ─── Topbar ──────────────────────────────────────────────────── */}
       <div className="topbar">
         <Link href="/" className="brand">
