@@ -81,11 +81,10 @@
 }
 .partners .hero h1 .accent { color: var(--accent); font-style: italic; }
 
+/* Hero pull-quote wrapper — no double box. The CopyLine inside carries the
+   cobalt left border + soft fill. The wrapper is just label + spacing. */
 .partners .hero-quote-block {
-  margin-top: 44px;
-  border-left: 3px solid var(--accent);
-  padding: 14px 0 14px 24px;
-  background: var(--soft);
+  margin-top: 36px;
 }
 .partners .hero-quote-label {
   font-family: var(--sans);
@@ -186,6 +185,21 @@
   .partners .section .hed .num { font-size: 11px; padding-bottom: 4px; }
 }
 
+/* ───────── About Jem (credential strip) ───────── */
+.partners .about-jem .cred-strip {
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  margin: 0 0 22px;
+}
+.partners .about-jem .cred-strip .cred-dot {
+  color: var(--rule);
+  margin: 0 6px;
+}
+
 /* ───────── Start here / lead section ───────── */
 .partners .section-lead .lead-statement {
   font-family: var(--serif);
@@ -248,19 +262,20 @@
 .partners .permissions {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin: 32px 0 0;
+  gap: 28px;
+  margin: 36px 0 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 24px;
 }
 .partners .permission {
-  background: var(--soft);
-  border-left: 3px solid var(--accent);
-  padding: 18px 22px;
+  /* Typography pair — no box */
 }
 .partners .permission-title {
   font-family: var(--serif);
   font-size: 19px;
   font-weight: 500;
-  color: var(--ink);
+  color: var(--accent);
+  font-style: italic;
   margin: 0 0 8px;
 }
 .partners .permission p {
@@ -281,7 +296,7 @@
   display: block;
 }
 .partners .copy-line-quote { margin: 0 0 6px; }
-.partners .copy-line-block { margin: 24px 0 0; }
+.partners .copy-line-block { margin: 32px 0 0; padding: 20px 0 0; border-top: 1px solid var(--rule); }
 .partners .copy-line-plain { display: inline-flex; align-items: center; gap: 12px; }
 
 .partners .copy-line-body {
@@ -293,10 +308,12 @@
   padding: 14px 88px 14px 20px;
   position: relative;
 }
+/* Block variant: no box. Just typography with a copy button to the right.
+   Used for the kicker quote and any other "lift this line in a beat" moment. */
 .partners .copy-line-block .copy-line-body {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  padding: 20px 100px 20px 24px;
+  background: transparent;
+  border: none;
+  padding: 0 100px 0 0;
   position: relative;
 }
 .partners .copy-line-btn {
@@ -411,15 +428,21 @@
 .partners .acc-body {
   padding: 0 0 28px;
 }
-.partners .play-body { display: flex; flex-direction: column; gap: 18px; }
-.partners .play-row { display: flex; flex-direction: column; gap: 8px; }
+.partners .play-body { display: flex; flex-direction: column; gap: 22px; }
+.partners .play-row {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 18px;
+  align-items: baseline;
+}
 .partners .play-label {
   font-family: var(--sans);
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--accent);
+  padding-top: 6px;
 }
 .partners .play-quote {
   font-family: var(--serif);
@@ -429,6 +452,31 @@
   color: var(--ink);
   margin: 0;
   max-width: 760px;
+}
+
+/* Strip the cobalt-bordered box on copy-lines INSIDE accordion play-rows
+   — they become quiet typography. The mono label on the left supplies the
+   visual scaffolding instead of a coloured box. */
+.partners .play-row .copy-line-quote .copy-line-body {
+  background: transparent;
+  border-left: none;
+  padding: 0 88px 0 0;
+}
+.partners .play-row .copy-line-btn {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 5px 9px;
+}
+.partners .play-row .copy-line-btn:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
+}
+
+@media (max-width: 640px) {
+  .partners .play-row { grid-template-columns: 1fr; gap: 8px; }
+  .partners .play-label { padding-top: 0; }
 }
 
 @media (max-width: 640px) {
@@ -470,16 +518,13 @@
   list-style: none;
   padding: 0;
   margin: 0;
-  border-top: 1px solid var(--rule);
-  border-bottom: 1px solid var(--rule);
-  padding: 14px 0;
 }
 .partners .proof-stats li {
   font-family: var(--serif);
   font-size: 16px;
   line-height: 1.4;
   color: var(--ink);
-  padding: 4px 0;
+  padding: 3px 0;
 }
 .partners .proof-line {
   font-family: var(--serif);
@@ -488,6 +533,24 @@
   line-height: 1.45;
   color: var(--ink);
   margin: 0;
+}
+/* Strip the cobalt-bordered box on copy-lines INSIDE proof cards — they
+   become quiet typography with a small copy button only. */
+.partners .proof-card .copy-line-quote .copy-line-body {
+  background: transparent;
+  border-left: none;
+  padding: 0 80px 0 0;
+}
+.partners .proof-card .copy-line-btn {
+  background: transparent;
+  border: 1px solid var(--rule);
+  color: var(--muted);
+  padding: 5px 9px;
+}
+.partners .proof-card .copy-line-btn:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--bg);
 }
 
 @media (max-width: 900px) {
@@ -532,24 +595,23 @@
   height: 1px;
   background: var(--accent);
 }
-.partners .criteria-list li.hot {
-  background: var(--hot-soft);
-  padding-left: 90px;
-}
-.partners .criteria-list li.hot::before { display: none; }
+/* Hot-signal items: small inline tag, no background fill — keeps the list
+   visually uniform and lets the typography do the work. */
+.partners .criteria-list li.hot { padding-left: 24px; }
+.partners .criteria-list li.hot::before { background: var(--hot); }
 .partners .hot-flag {
-  position: absolute;
-  left: 14px;
-  top: 16px;
+  display: inline-block;
   font-family: var(--sans);
   font-size: 9px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   font-weight: 600;
   color: var(--hot);
-  background: var(--bg);
-  padding: 3px 8px;
+  padding: 2px 6px;
   border: 1px solid var(--hot);
+  margin-right: 10px;
+  vertical-align: 2px;
+  position: static;
 }
 
 .partners .intro-surface {
@@ -582,10 +644,6 @@
 
 @media (max-width: 800px) {
   .partners .who-grid { grid-template-columns: 1fr; gap: 28px; }
-}
-@media (max-width: 640px) {
-  .partners .criteria-list li.hot { padding-left: 14px; padding-top: 38px; }
-  .partners .hot-flag { top: 8px; }
 }
 
 /* ───────── Facts ───────── */
@@ -641,9 +699,9 @@
   margin: 16px 0 0;
 }
 .partners .rule-card {
-  background: var(--soft);
-  border-left: 3px solid var(--accent);
-  padding: 22px 24px;
+  background: var(--surface);
+  border: 1px solid var(--rule);
+  padding: 24px;
 }
 .partners .rule-title {
   font-family: var(--serif);

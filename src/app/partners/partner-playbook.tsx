@@ -53,11 +53,25 @@ export function PartnerPlaybook() {
           <p className="hero-quote-label">If you say one thing</p>
           <CopyLine
             variant="quote"
-            text={`"Your team is already using AI. You just have no idea what they're doing with it."`}
+            text={`"Your team is already using AI. But not as a team — different tools, different skill levels, no shared standard."`}
           >
             <p className="hero-quote">
-              &ldquo;Your team is already using AI. You just have no idea what
-              they&rsquo;re doing with it.&rdquo;
+              &ldquo;Your team is already using AI. But not as a team — different
+              tools, different skill levels, no shared standard.&rdquo;
+            </p>
+          </CopyLine>
+        </div>
+
+        <div className="hero-quote-block">
+          <p className="hero-quote-label">And the fix</p>
+          <CopyLine
+            variant="quote"
+            text={`"One simple, shared stack that takes the whole team from zero to a hundred — without the hype, and without chasing a new tool or model every week."`}
+          >
+            <p className="hero-quote">
+              &ldquo;One simple, shared stack that takes the whole team from zero
+              to a hundred — without the hype, and without chasing a new tool or
+              model every week.&rdquo;
             </p>
           </CopyLine>
         </div>
@@ -116,13 +130,12 @@ export function PartnerPlaybook() {
               </p>
               <CopyLine
                 variant="quote"
-                text={`"Honestly, your team's already using AI and you've probably got no idea what they're doing with it — bit of a mess, right? I know the guy who fixes exactly that."`}
+                text={`"Honestly, your team's already using AI — just all doing their own thing. Different tools, no shared level, bit of a mess. I know the guy who sorts exactly that."`}
               >
                 <p className="quote">
-                  &ldquo;Honestly, your team&rsquo;s already using AI and
-                  you&rsquo;ve probably got no idea what they&rsquo;re doing with
-                  it — bit of a mess, right? I know the guy who fixes exactly
-                  that.&rdquo;
+                  &ldquo;Honestly, your team&rsquo;s already using AI — just all
+                  doing their own thing. Different tools, no shared level, bit
+                  of a mess. I know the guy who sorts exactly that.&rdquo;
                 </p>
               </CopyLine>
             </div>
@@ -232,8 +245,8 @@ export function PartnerPlaybook() {
             title="Mandate. Stack. Brains switched back on"
           >
             <PlayBody
-              say="Three things fix it. A mandate that says it's okay. One shared stack the whole team runs. And training that gets them to switch their brains back on — the reason you hired them. We're strapping each person to a rocket so they can drive it, not pressing go and walking away."
-              sayDisplay={`"Three things fix it. A mandate that says it’s okay. One shared stack the whole team runs. And training that gets them to switch their brains back on — the reason you hired them. We’re strapping each person to a rocket so they can drive it, not pressing go and walking away."`}
+              say="Three things fix it. A mandate that says it's okay. One simple, shared stack — so nobody's stuck asking 'which tool, which model' every week. And training that switches their brains back on. None of this has been anyone's job yet — and it's the biggest technical and creative shift our industry's ever seen. They need structure and guidance, not more hype."
+              sayDisplay={`"Three things fix it. A mandate that says it’s okay. One simple, shared stack — so nobody’s stuck asking 'which tool, which model' every week. And training that switches their brains back on. None of this has been anyone’s job yet — and it’s the biggest technical and creative shift our industry’s ever seen. They need structure and guidance, not more hype."`}
               ask="What would change if every person here was at the same standard — not one or two heroes, the whole team?"
               askDisplay={`"What would change if every person here was at the same standard — not one or two heroes, the whole team?"`}
             />
@@ -264,17 +277,6 @@ export function PartnerPlaybook() {
         </p>
 
         <div className="acc">
-          <AccordionItem
-            stage="Objection"
-            title="Aren&rsquo;t you using AI? Why&rsquo;s the bill still high?"
-          >
-            <PunchBody
-              punch={`"If you want to fly New York to London faster, you pay more. Faster Amazon delivery, you pay more. This gives you 10x the output in 10% of the time. The question isn't why it costs this much — it's why it doesn't cost ten times more."`}
-              redirect="Want me to show you what that same campaign would've cost as a shoot?"
-              redirectDisplay={`"Want me to show you what that same campaign would’ve cost as a shoot?"`}
-            />
-          </AccordionItem>
-
           <AccordionItem
             stage="Objection"
             title="You&rsquo;re going to replace our people."
@@ -315,9 +317,33 @@ export function PartnerPlaybook() {
         </div>
       </section>
 
-      {/* ─── 5 — Proof (3 cards + kicker) ────────────────────────────── */}
+      {/* ─── 5 — Who you're sending them to (about Jem) ──────────────── */}
+      <section className="section about-jem">
+        <Hed num="04" title="Who you’re sending them to." />
+        <p className="section-sub">So you can vouch with a straight face.</p>
+
+        <p className="cred-strip">
+          First AI creative agency <span className="cred-dot">·</span> before
+          ChatGPT <span className="cred-dot">·</span> 90%+ margins
+        </p>
+
+        <p className="lead-statement">
+          Jem started the first AI creative agency three years ago — before
+          ChatGPT existed.
+        </p>
+
+        <p className="body">
+          He built it to 90%+ margins making work for Adidas, Tommy Hilfiger,
+          Google and a lot more. He&rsquo;s not a consultant who read about this
+          in a newsletter — he ran the business, shipped the work, took the
+          money. Now he trains agencies and in-house brand teams to do the
+          same.
+        </p>
+      </section>
+
+      {/* ─── 6 — Proof (3 cards + kicker) ────────────────────────────── */}
       <section className="section">
-        <Hed num="04" title="Proof." />
+        <Hed num="05" title="Proof." />
         <p className="section-sub">
           Use these numbers exactly · don&rsquo;t round, don&rsquo;t reattach.
         </p>
@@ -396,7 +422,7 @@ export function PartnerPlaybook() {
 
       {/* ─── 6 — Who to send our way ─────────────────────────────────── */}
       <section className="section">
-        <Hed num="05" title="Who to send our way." />
+        <Hed num="06" title="Who to send our way." />
         <p className="section-sub">Criteria · and the forwardable intro.</p>
 
         <div className="who-grid">
@@ -455,7 +481,7 @@ export function PartnerPlaybook() {
 
       {/* ─── 7 — The facts ───────────────────────────────────────────── */}
       <section className="section">
-        <Hed num="06" title="The facts." />
+        <Hed num="07" title="The facts." />
         <p className="section-sub">
           Only after the value&rsquo;s built · never lead with price.
         </p>
@@ -495,7 +521,7 @@ export function PartnerPlaybook() {
 
       {/* ─── 8 — Three rules ─────────────────────────────────────────── */}
       <section className="section">
-        <Hed num="07" title="Three rules." />
+        <Hed num="08" title="Three rules." />
         <p className="section-sub">Guardrails.</p>
 
         <div className="rules">
