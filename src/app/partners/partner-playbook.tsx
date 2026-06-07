@@ -445,26 +445,12 @@ export function PartnerPlaybook() {
 
         <div className="facts-grid">
           <article className="fact">
-            <p className="fact-num">$50k</p>
-            <p className="fact-label">8-week programme. The standard.</p>
-          </article>
-          <article className="fact">
-            <p className="fact-num">~12</p>
-            <p className="fact-label">
-              people, 1 hour a week. Splits past ~15; 8–9 is the sweet spot.
+            <p className="fact-prefix">Starts at</p>
+            <p className="fact-num">
+              $50k <span className="fact-currency">USD</span>
             </p>
-          </article>
-          <article className="fact">
-            <p className="fact-num">~$65k</p>
             <p className="fact-label">
-              the continuation: 12 monthly sessions across a year.
-            </p>
-          </article>
-          <article className="fact">
-            <p className="fact-num">2</p>
-            <p className="fact-label">
-              layers: an LLM Chat &amp; Build ecosystem + an AI node-canvas
-              suite, where production happens.
+              8-week programme. Anything bigger scales from here.
             </p>
           </article>
         </div>

@@ -708,6 +708,15 @@
   gap: 10px;
 }
 .partners .fact:first-child { border-left: none; padding-left: 0; }
+.partners .fact-prefix {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0 0 4px;
+}
 .partners .fact-num {
   font-family: var(--serif);
   font-size: clamp(34px, 4vw, 52px);
@@ -718,11 +727,29 @@
   margin: 0;
   font-variant-numeric: tabular-nums;
 }
+.partners .fact-currency {
+  font-family: var(--sans);
+  font-size: 0.42em;
+  letter-spacing: 0.18em;
+  vertical-align: 0.5em;
+  margin-left: 4px;
+  color: var(--muted);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
 .partners .fact-label {
   font-size: 14px;
   line-height: 1.45;
   color: var(--ink);
   margin: 0;
+}
+/* If only one fact remains, span the full strip so it doesn't sit in a
+   quarter column. */
+.partners .facts-grid > .fact:only-child {
+  grid-column: 1 / -1;
+  border-left: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 .partners .framing {
   margin: 28px 0 0;
