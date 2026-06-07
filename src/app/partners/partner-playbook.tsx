@@ -377,8 +377,7 @@ export function PartnerPlaybook() {
               Every launch needed hero shoots and outside production partners.
             </p>
             <ul className="proof-stats">
-              <li>$180k recovered on a single launch</li>
-              <li>10x output on the same budget</li>
+              <li>$280K saved on a single campaign — weeks after the programme finished</li>
             </ul>
             <CopyLine
               variant="quote"
@@ -506,8 +505,8 @@ export function PartnerPlaybook() {
           <article className="fact">
             <p className="fact-num">2</p>
             <p className="fact-label">
-              platforms: Claude (or their LLM) + Flora, the canvas where
-              production happens.
+              layers: an LLM Chat &amp; Build ecosystem + an AI node-canvas
+              suite, where production happens.
             </p>
           </article>
         </div>
@@ -542,8 +541,9 @@ export function PartnerPlaybook() {
           <article className="rule-card">
             <p className="rule-title">Don&rsquo;t sell outside the stack.</p>
             <p>
-              Claude and Flora. If they ask about something else, flag it and
-              pass it back to Jem.
+              The LLM Chat &amp; Build ecosystem and the AI node-canvas suite.
+              If they ask about something else, flag it and pass it back to
+              Jem.
             </p>
           </article>
         </div>
