@@ -2,17 +2,6 @@ import Link from "next/link";
 import { CopyLine } from "./copy-line";
 import { AccordionItem } from "./accordion-item";
 
-// ─── Intro message (the full, copy-as-a-block forwardable email) ──────────────
-const INTRO_MESSAGE = `Subject: the AI thing your team's already doing
-
-[Name] — quick one.
-
-Your designers are already using AI on client work. Most teams are, three years in — and usually nobody can tell you which tools, or whether it's any good.
-
-I know the person who fixes that. Jem at NotContent trains creative teams to actually operate with AI in eight weeks — not "how to make an AI video", the whole operating model. He's done it for Cash App, Maesa, Herman Scheer.
-
-Worth 30 minutes? Happy to intro you.`;
-
 // ─── Section head: small cobalt num + big serif title + hairline rule ─────────
 function Hed({ num, title }: { num: string; title: string }) {
   return (
@@ -417,60 +406,34 @@ export function PartnerPlaybook() {
       {/* ─── 6 — Who to send our way ─────────────────────────────────── */}
       <section className="section section-tight">
         <Hed num="06" title="Who to send our way." />
-        <p className="section-sub">Criteria · and the forwardable intro.</p>
+        <p className="section-sub">Look for.</p>
 
-        <div className="who-grid">
-          {/* ─── Criteria ─────────────────────────────────────────── */}
-          <div className="criteria">
-            <p className="who-label">Look for</p>
-            <ul className="criteria-list">
-              <li>
-                Agencies — creative, media or branding — or in-house creative,
-                brand and media teams.
-              </li>
-              <li>
-                The decision-maker with budget, or the AI-forward person right
-                beside them.
-              </li>
-              <li className="hot">
-                <span className="hot-flag">Hot signal</span>
-                They post about AI, or have publicly named it as a priority.
-              </li>
-              <li className="hot">
-                <span className="hot-flag">Hot signal</span>
-                They&rsquo;re hiring for &ldquo;AI skills&rdquo; — and clearly
-                can&rsquo;t define it.
-              </li>
-              <li>
-                Strong seam: media agencies. Effectively non-creative, and the
-                briefing bottleneck is brutal.
-              </li>
-              <li>
-                Anyone visibly drowning in tool chaos with no stack and no
-                rules.
-              </li>
-            </ul>
-          </div>
-
-          {/* ─── Forwardable intro message ────────────────────────── */}
-          <div className="intro-msg">
-            <p className="who-label">Paste, edit the name, send</p>
-            <div className="intro-surface">
-              <pre className="intro-body">{INTRO_MESSAGE}</pre>
-            </div>
-            <div className="intro-actions">
-              <CopyLine
-                variant="plain"
-                text={INTRO_MESSAGE}
-                label="✦ Copy intro message"
-              >
-                <span className="intro-actions-label">
-                  Plain text with paragraph breaks
-                </span>
-              </CopyLine>
-            </div>
-          </div>
-        </div>
+        <ul className="criteria-list">
+          <li>
+            Agencies — creative, media or branding — or in-house creative,
+            brand and media teams.
+          </li>
+          <li>
+            The decision-maker with budget, or the AI-forward person right
+            beside them.
+          </li>
+          <li className="hot">
+            <span className="hot-flag">Hot signal</span>
+            They post about AI, or have publicly named it as a priority.
+          </li>
+          <li className="hot">
+            <span className="hot-flag">Hot signal</span>
+            They&rsquo;re hiring for &ldquo;AI skills&rdquo; — and clearly
+            can&rsquo;t define it.
+          </li>
+          <li>
+            Strong seam: media agencies. Effectively non-creative, and the
+            briefing bottleneck is brutal.
+          </li>
+          <li>
+            Anyone visibly drowning in tool chaos with no stack and no rules.
+          </li>
+        </ul>
       </section>
 
       {/* ─── 7 — The facts ───────────────────────────────────────────── */}
