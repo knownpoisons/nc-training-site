@@ -304,6 +304,12 @@
   border-top: 1px solid var(--rule);
   padding-top: 24px;
 }
+/* If only one permission remains, span the full row instead of hugging the
+   left column. Keeps the grid future-proof if more get added later. */
+.partners .permissions > .permission:only-child {
+  grid-column: 1 / -1;
+  max-width: 880px;
+}
 .partners .permission {
   /* Typography pair — no box */
 }

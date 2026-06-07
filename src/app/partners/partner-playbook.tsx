@@ -160,16 +160,8 @@ export function PartnerPlaybook() {
           </div>
         </div>
 
-        {/* ─── Two permissions ──────────────────────────────────────── */}
+        {/* ─── Permission ───────────────────────────────────────────── */}
         <div className="permissions">
-          <div className="permission">
-            <p className="permission-title">You&rsquo;re allowed to not know.</p>
-            <p>
-              Don&rsquo;t vouch for a number you&rsquo;re unsure of. &ldquo;I
-              think it&rsquo;s something like… Jem&rsquo;ll give you the exact
-              figures&rdquo; is a perfect answer. When in doubt, intro.
-            </p>
-          </div>
           <div className="permission">
             <p className="permission-title">Say it like you, not like this page.</p>
             <p>
