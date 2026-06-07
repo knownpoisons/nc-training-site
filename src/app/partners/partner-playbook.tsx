@@ -88,7 +88,10 @@ export function PartnerPlaybook() {
 
       {/* ─── 2 — Start here (the most important section) ─────────────── */}
       <section className="section section-lead">
-        <Hed num="01" title="Start here." />
+        <div className="hed hed-lead">
+          <h2>Start here.</h2>
+          <span className="rule" />
+        </div>
         <p className="section-sub">Read this even if you read nothing else.</p>
 
         <p className="lead-statement">
@@ -420,7 +423,7 @@ export function PartnerPlaybook() {
       </section>
 
       {/* ─── 6 — Who to send our way ─────────────────────────────────── */}
-      <section className="section">
+      <section className="section section-tight">
         <Hed num="06" title="Who to send our way." />
         <p className="section-sub">Criteria · and the forwardable intro.</p>
 
@@ -479,7 +482,7 @@ export function PartnerPlaybook() {
       </section>
 
       {/* ─── 7 — The facts ───────────────────────────────────────────── */}
-      <section className="section">
+      <section className="section section-tight section-facts">
         <Hed num="07" title="The facts." />
         <p className="section-sub">
           Only after the value&rsquo;s built · never lead with price.
@@ -519,7 +522,7 @@ export function PartnerPlaybook() {
       </section>
 
       {/* ─── 8 — Three rules ─────────────────────────────────────────── */}
-      <section className="section">
+      <section className="section section-close">
         <Hed num="08" title="Three rules." />
         <p className="section-sub">Guardrails.</p>
 

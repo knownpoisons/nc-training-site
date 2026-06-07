@@ -86,6 +86,21 @@
 .partners .hero-quote-block {
   margin-top: 36px;
 }
+/* Second hero pull-quote ("And the fix") sits offset right and at a
+   smaller scale — it reads as the *answer* to the first, not a peer. */
+.partners .hero-quote-block + .hero-quote-block {
+  margin-top: 22px;
+  margin-left: clamp(0px, 10vw, 130px);
+}
+.partners .hero-quote-block + .hero-quote-block .hero-quote-label {
+  color: var(--muted);
+}
+.partners .hero-quote-block + .hero-quote-block .hero-quote {
+  font-size: clamp(18px, 2vw, 25px);
+}
+@media (max-width: 640px) {
+  .partners .hero-quote-block + .hero-quote-block { margin-left: 0; }
+}
 .partners .hero-quote-label {
   font-family: var(--sans);
   font-size: 11px;
@@ -122,8 +137,17 @@
 /* ───────── Section heads (heroed) ───────── */
 .partners .section {
   max-width: 1100px;
-  margin: 0 auto 8vh;
+  margin: 0 auto 10vh;       /* default — narrative beat */
   padding: 0 40px;
+}
+/* Reference beats (Who-to-send, Facts) — tighter grouping signals
+   "we're past the narrative, this is the reference layer." */
+.partners .section.section-tight { margin-bottom: 5vh; }
+/* Close — dramatic break before "Three rules" lands as the page's exit. */
+.partners .section.section-close {
+  margin-top: 6vh;
+  padding-top: 5vh;
+  border-top: 1px solid var(--rule);
 }
 .partners .section .hed {
   display: grid;
@@ -162,6 +186,19 @@
   height: 1px;
   background: var(--rule);
 }
+
+/* Lead variant: no cobalt number prefix, oversized serif title.
+   Used only on the "Start here" section to signal "read this first." */
+.partners .section .hed-lead {
+  grid-template-columns: 1fr;
+  margin-bottom: 36px;
+}
+.partners .section .hed-lead h2 {
+  grid-column: 1;
+  font-size: clamp(56px, 9vw, 108px);
+  letter-spacing: -0.028em;
+}
+.partners .section .hed-lead .rule { grid-column: 1; }
 
 .partners .section-sub {
   font-family: var(--sans);
@@ -646,21 +683,25 @@
   .partners .who-grid { grid-template-columns: 1fr; gap: 28px; }
 }
 
-/* ───────── Facts ───────── */
+/* ───────── Facts (typographic strip — no card surface) ───────── */
 .partners .facts-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+  gap: 0;
   margin: 16px 0 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
 }
 .partners .fact {
-  background: var(--surface);
-  border: 1px solid var(--rule);
-  padding: 24px;
+  background: transparent;
+  border: none;
+  border-left: 1px solid var(--rule);
+  padding: 28px 28px 28px 28px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
+.partners .fact:first-child { border-left: none; padding-left: 0; }
 .partners .fact-num {
   font-family: var(--serif);
   font-size: clamp(34px, 4vw, 52px);
@@ -689,6 +730,15 @@
 
 @media (max-width: 900px) {
   .partners .facts-grid { grid-template-columns: 1fr 1fr; }
+  .partners .fact { padding: 22px; }
+  .partners .fact:nth-child(odd) { border-left: none; padding-left: 0; }
+  .partners .fact:nth-child(even) { padding-right: 0; }
+  .partners .fact:nth-child(n+3) { border-top: 1px solid var(--rule); margin-top: -1px; }
+}
+@media (max-width: 540px) {
+  .partners .facts-grid { grid-template-columns: 1fr; }
+  .partners .fact { border-left: none; padding: 20px 0; border-top: 1px solid var(--rule); }
+  .partners .fact:first-child { border-top: none; padding-top: 22px; }
 }
 
 /* ───────── Three rules ───────── */
