@@ -661,6 +661,44 @@
   }
   .person:hover, .resource:hover { transform: translateY(-3px); }
 
+  /* ───────── Resource cards — refined hover + click choreography ─────────
+     Layered micro-interactions on top of the base translateY(-3px) lift:
+     deeper lift, cobalt-tinted shadow grows in, icon scales up, link
+     arrow nudges right, focus ring for keyboard nav, and a quick scale
+     dip on :active for tactile feedback. Same ease-out-quint everywhere. */
+  .resource {
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .resource:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px -10px rgba(19, 56, 190, 0.38);
+  }
+  .resource:active {
+    transition-duration: 140ms;
+    transform: translateY(-1px) scale(0.985);
+    box-shadow: 0 4px 14px -10px rgba(19, 56, 190, 0.28);
+  }
+  .resource:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .resource .icon {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .resource:hover .icon {
+    transform: scale(1.06);
+  }
+  .resource .link-arrow {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .resource:hover .link-arrow {
+    transform: translateX(4px);
+  }
+
   /* Live clock in the topbar */
   .topbar .clock {
     display: inline-flex;
@@ -1344,7 +1382,7 @@
       <div class="lbl">Library</div>
       <div class="name">Claude Prompt Library</div>
       <div class="desc">The starter set of prompts for the programme. Copy, paste, run. Grows as new prompts get tested in the cohort.</div>
-      <span class="link">Open the library →</span>
+      <span class="link">Open the library <span class="link-arrow">→</span></span>
     </a>
 
     <div class="resource">
@@ -1385,7 +1423,7 @@
       <div class="lbl">The team</div>
       <div class="name">Meet the cohort</div>
       <div class="desc">ID cards for the 2026 training cohort. Click to flip.</div>
-      <span class="link">Meet the team →</span>
+      <span class="link">Meet the team <span class="link-arrow">→</span></span>
     </a>
 
   </div>
