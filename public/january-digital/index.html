@@ -432,23 +432,35 @@
     display: block;
   }
 
-  /* ───────── Resources ───────── */
+  /* ───────── Resources (highlighted cobalt cards — matches session pages) ───────── */
   .resources {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 18px;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
   .resource {
-    padding: 22px 24px;
-    background: var(--soft);
+    padding: 24px 26px;
+    background: var(--accent);
+    color: var(--bg);
     border-radius: 4px;
+    display: flex;
+    flex-direction: column;
   }
+  .resource .icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 16px;
+    color: var(--bg);
+  }
+  .resource .icon svg { display: block; width: 100%; height: 100%; }
+  .resource .icon.slack { width: 26px; height: 26px; }
   .resource .lbl {
     font-family: var(--sans);
     font-size: 10px;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent);
+    color: rgba(229, 228, 226, 0.8);
     font-weight: 600;
     margin-bottom: 10px;
   }
@@ -457,13 +469,34 @@
     font-size: 22px;
     line-height: 1.15;
     letter-spacing: -0.01em;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    color: var(--bg);
   }
   .resource .desc {
     font-family: var(--sans);
     font-size: 13px;
-    color: var(--muted);
+    color: rgba(229, 228, 226, 0.85);
     line-height: 1.55;
+    margin-bottom: 14px;
+    flex-grow: 1;
+  }
+  .resource a.link,
+  .resource .link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--bg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--bg);
+    padding-bottom: 1px;
+    align-self: flex-start;
+  }
+  .resource a.link:hover,
+  .resource:hover .link { opacity: 0.85; }
+  @media (max-width: 720px) {
+    .resources { grid-template-columns: 1fr; }
   }
 
   .hero .hero-logo {
@@ -1258,27 +1291,71 @@
   <div class="resources">
 
     <div class="resource">
-      <div class="lbl">Async</div>
+      <span class="icon slack" aria-hidden="true">
+        <svg viewBox="0 0 122.8 122.8" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#E01E5A"/>
+          <path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36C5F0"/>
+          <path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2EB67D"/>
+          <path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ECB22E"/>
+        </svg>
+      </span>
+      <div class="lbl">Slack</div>
       <div class="name">#project-creative-training</div>
       <div class="desc">The programme Slack channel, in the January Digital workspace. Post work in progress, ask questions between sessions, grab recordings, links, and assets. Working-week response from Jeremy.</div>
     </div>
 
+    <a class="resource" href="/january-digital/resources/prompt-library" style="text-decoration:none;color:inherit;">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z"/>
+          <path d="M19.2 4l.5 1.3L21 5.8l-1.3.5L19.2 7.6l-.5-1.3L17.4 5.8l1.3-.5z"/>
+        </svg>
+      </span>
+      <div class="lbl">Library</div>
+      <div class="name">Claude Prompt Library</div>
+      <div class="desc">The starter set of prompts for the programme. Copy, paste, run. Grows as new prompts get tested in the cohort.</div>
+      <span class="link">Open the library →</span>
+    </a>
+
     <div class="resource">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <polyline points="12 7 12 12 15.5 14"/>
+        </svg>
+      </span>
       <div class="lbl">Drop-in</div>
       <div class="name">Office hours</div>
       <div class="desc">Two optional one-hour sessions scheduled around weeks 3 and 6. Drop-in, live work, anything you're stuck on.</div>
     </div>
 
     <div class="resource">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="8" y1="3" x2="8" y2="7"/>
+          <line x1="16" y1="3" x2="16" y2="7"/>
+        </svg>
+      </span>
       <div class="lbl">After</div>
       <div class="name">6 months post-programme</div>
       <div class="desc">Light advisement from Jeremy after the programme ends — quick monthly check-ins and ad-hoc questions. Through January 2027.</div>
     </div>
 
     <a class="resource" href="/january-digital/team" style="text-decoration:none;color:inherit;">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="8" r="3.5"/>
+          <circle cx="17" cy="9.5" r="2.5"/>
+          <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          <path d="M14 14c1-1 2.3-1.5 3-1.5 2.5 0 4 2 4 4.5"/>
+        </svg>
+      </span>
       <div class="lbl">The team</div>
-      <div class="name">Meet the cohort →</div>
+      <div class="name">Meet the cohort</div>
       <div class="desc">ID cards for the 2026 training cohort. Click to flip.</div>
+      <span class="link">Meet the team →</span>
     </a>
 
   </div>
