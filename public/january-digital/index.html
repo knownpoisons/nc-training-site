@@ -12,6 +12,7 @@
 <meta property="og:image" content="https://training.notcontent.ai/january-digital/footer-graphic.png" />
 <meta property="og:url" content="https://training.notcontent.ai/january-digital" />
 <meta name="twitter:card" content="summary_large_image" />
+<script>document.documentElement.classList.add('nc-js');</script>
 <style>
   :root {
     --bg: #E5E4E2;
@@ -857,6 +858,35 @@
   }
   @keyframes nc-rule-draw { to { transform: scaleX(1); } }
 
+  /* ───────── Resources cards — scroll-triggered cascade ─────────
+     Cards stay hidden until the .resources-block enters viewport.
+     `html.nc-js` gates so no-JS visitors still see the cards. */
+  html.nc-js .resources-block .resource {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.nc-js .resources-block.in-view .resource {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  html.nc-js .resources-block.in-view .resource:nth-child(2) { transition-delay: 0.07s; }
+  html.nc-js .resources-block.in-view .resource:nth-child(3) { transition-delay: 0.14s; }
+  html.nc-js .resources-block.in-view .resource:nth-child(4) { transition-delay: 0.21s; }
+  html.nc-js .resources-block.in-view .resource:nth-child(5) { transition-delay: 0.28s; }
+
+  /* ───────── Today session — ambient cream-on-cobalt glow pulse ─────────
+     Loops while a session card has the `.today` class (live state).
+     Subtle box-shadow breath — no transform, doesn't compete with hover. */
+  @keyframes nc-today-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(229, 228, 226, 0); }
+    50%      { box-shadow: 0 0 36px 4px rgba(229, 228, 226, 0.22); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .session.today { animation: nc-today-glow 3s ease-in-out infinite; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .nc-loader { display: none; }
     *, *::before, *::after {
@@ -1275,6 +1305,26 @@
       io.observe(prog);
     } else {
       prog.classList.add('in-view');
+    }
+  })();
+
+  /*
+    Resources block — scroll-triggered cascade. When the .resources-block
+    crosses 15% into viewport, add .in-view so the 5 cards stagger in.
+    Mirrors the progress-bar reveal pattern. Fallback: reveal immediately.
+  */
+  (function () {
+    const block = document.querySelector('.resources-block');
+    if (!block) return;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { block.classList.add('in-view'); obs.disconnect(); }
+        });
+      }, { threshold: 0.15 });
+      io.observe(block);
+    } else {
+      block.classList.add('in-view');
     }
   })();
 </script>
