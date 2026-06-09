@@ -1307,26 +1307,6 @@
       prog.classList.add('in-view');
     }
   })();
-
-  /*
-    Resources block — scroll-triggered cascade. When the .resources-block
-    crosses 15% into viewport, add .in-view so the 5 cards stagger in.
-    Mirrors the progress-bar reveal pattern. Fallback: reveal immediately.
-  */
-  (function () {
-    const block = document.querySelector('.resources-block');
-    if (!block) return;
-    if ('IntersectionObserver' in window) {
-      const io = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) { block.classList.add('in-view'); obs.disconnect(); }
-        });
-      }, { threshold: 0.15 });
-      io.observe(block);
-    } else {
-      block.classList.add('in-view');
-    }
-  })();
 </script>
 
 <!-- ═════ RESOURCES ═════ -->
@@ -1410,6 +1390,30 @@
 
   </div>
 </section>
+
+<script>
+  /*
+    Resources block — scroll-triggered cascade. Lives here, after the
+    .resources-block markup, so the element is guaranteed parsed when
+    the IIFE runs. Fires .in-view as soon as 5% of the block crosses
+    into the viewport, which kicks the 5 cards' staggered transitions.
+    Fallback: reveal immediately if IntersectionObserver isn't supported.
+  */
+  (function () {
+    const block = document.querySelector('.resources-block');
+    if (!block) return;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { block.classList.add('in-view'); obs.disconnect(); }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+      io.observe(block);
+    } else {
+      block.classList.add('in-view');
+    }
+  })();
+</script>
 
 <footer class="doc-foot-graphic">
   <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
