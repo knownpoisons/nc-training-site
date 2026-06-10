@@ -135,6 +135,22 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ═══ ANTHEM — Techniques over tools ═══ */}
+      <section className="py-20 lg:py-32 border-b border-foreground/10">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <Reveal>
+            <div className="border-l-[3px] border-[#1338BE] pl-8 lg:pl-12">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] text-foreground leading-[1.1] tracking-tight font-normal">
+                Techniques over <em className="font-serif italic text-[#1338BE]">tools.</em>
+              </h2>
+              <p className="mt-6 lg:mt-8 text-base lg:text-lg text-foreground/70 leading-relaxed max-w-2xl">
+                The tools change every week. The techniques don&rsquo;t. We teach the way of working that survives every new release — so the work compounds instead of restarting.
+              </p>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* ═══ SCORECARD BAND — Cream with cobalt left rule (per design system pullquote pattern) ═══ */}
       <section className="border-b border-foreground/10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
