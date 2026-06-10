@@ -33,11 +33,11 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "NotContent Training | AI Creative Training for Enterprise Teams",
+    default: "NotContent Training | Think. Make. Build. — The AI operating model for creative teams",
     template: "%s | NotContent Training",
   },
   description:
-    "Transform your creative team with AI. 96% time savings. 400% output increase. Hands-on training from the team behind Adidas, Google, and Tommy Hilfiger campaigns.",
+    "The AI operating model for creative and media teams. Built by the team behind Adidas, Google, and Tommy Hilfiger campaigns. Techniques over tools — the work that compounds.",
   keywords: [
     "AI training",
     "creative teams",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
     "generative AI training",
   ],
   openGraph: {
-    title: "NotContent Training | AI Creative Training for Enterprise Teams",
+    title: "NotContent Training | Think. Make. Build.",
     description:
-      "Transform your creative team with AI. Hands-on training from the team behind Adidas, Google, and Tommy Hilfiger campaigns.",
+      "The AI operating model for creative and media teams. Built by the team behind Adidas, Google, and Tommy Hilfiger campaigns.",
     url: "https://training.notcontent.ai",
     siteName: "NotContent Training",
     type: "website",
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "NotContent Training",
     description:
-      "AI Creative Training for Enterprise Teams. 96% time savings. 400% output increase.",
+      "The AI operating model for creative and media teams. Techniques over tools.",
   },
   robots: {
     index: true,
