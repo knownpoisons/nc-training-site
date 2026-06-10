@@ -70,11 +70,11 @@ export default function Home() {
             <Reveal delay={200}>
               <div className="mt-7 lg:mt-9 max-w-3xl mx-auto space-y-5">
                 <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.875rem] xl:text-5xl text-white leading-[1.08] tracking-tight font-normal">
-                  Your team is already using AI.{" "}
-                  <em className="not-italic text-white/70 font-serif italic">You can&rsquo;t name the tools.</em>
+                  Your most curious people already use AI.{" "}
+                  <em className="not-italic text-white/70 font-serif italic">We bring the whole team with them.</em>
                 </h1>
                 <p className="text-base lg:text-lg text-white/80 leading-snug max-w-2xl mx-auto font-light">
-                  The gap between the people who figured it out and the rest gets wider every week. We close it in eight weeks — one operating model, not a workshop.
+                  Eight weeks. One operating model — installed across your team, not learned at a workshop.
                 </p>
               </div>
             </Reveal>

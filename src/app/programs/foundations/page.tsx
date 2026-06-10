@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Creative Foundations | Half-Day Workshop",
+  title: "AI Audit Workshop | Half-Day Audit Session",
   description:
-    "Get your creative team aligned on AI tools and the NotContent methodology in a single half-day session. Up to 25 people. From $5,000.",
+    "A half-day audit of your team's current AI state. What's working, what's blocking, where the next 8 weeks of work should focus. Up to 25 people. From $5,000.",
 };
 
 const whatYouGet = [
@@ -18,19 +18,19 @@ const whatYouGet = [
 
 const whoItsFor = [
   {
-    title: "Teams that haven't aligned yet",
+    title: "Teams already using AI unevenly",
     description:
-      "Different people, different tools, different opinions, no shared language. One session gets everyone to the same starting line.",
+      "Different people, different tools, different opinions, no shared language. The audit names exactly where the gaps are and what to do about them.",
   },
   {
     title: "Leaders who need to build the case",
     description:
-      "Leadership hasn't fully committed. Foundations produces real output with real brand assets — that tends to be more convincing than any deck you could build.",
+      "Leadership hasn't fully committed. An audit with real findings about your team's actual AI use is more convincing than any deck you could build.",
   },
   {
     title: "Agencies entering the AI conversation",
     description:
-      "Clients are asking about AI capability. This workshop gives your team enough to answer with confidence — and often becomes the starting point for a full Operating Model engagement.",
+      "Clients are asking about AI capability. The audit gives your team a clear-eyed read on where you actually stand — and becomes the brief for an Operating Model engagement when the gaps are bigger than a workshop can close.",
   },
 ];
 
@@ -50,21 +50,22 @@ export default function FoundationsPage() {
             <span>[NC]</span>
           </div>
           <h1 className="oci-display-sm max-w-4xl">
-            AI Creative
+            The Audit
             <br />
-            Foundations.
+            Workshop.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            Not ready to commit to a full program? Not sure where to even start?
-            This is the right move. Half a day. Your whole team in the room.
-            Everyone leaves having made real work with their own brand assets.
+            A half-day audit of your team&apos;s current AI state. What&apos;s
+            working, what&apos;s blocking, where the next 8 weeks of work
+            should focus. Your whole team in the room. Honest about where
+            you are.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <Link
               href="/book"
               className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
-              Book This Workshop
+              Book the Audit
             </Link>
             <p className="text-sm text-white/40">
               $5,000 flat · Up to 25 people · Half-day
@@ -221,14 +222,14 @@ export default function FoundationsPage() {
       <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-2xl">
-            Foundations is the start, not the finish.
+            The audit is the start, not the finish.
           </h2>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/book"
               className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
-              Book This Workshop
+              Book the Audit
             </Link>
             <Link
               href="/programs/transformation"

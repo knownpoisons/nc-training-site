@@ -14,10 +14,10 @@ export interface ProgramData {
 
 export const programs: Record<Program, ProgramData> = {
   foundations: {
-    label: "AI Creative Foundations",
-    tagline: "Half-day workshop. One session that aligns your whole team.",
+    label: "Audit Workshop",
+    tagline: "Half-day audit. Names what's working, what's blocking, and where the next 8 weeks should focus.",
     detail:
-      "Hands-on methodology session for teams starting out or needing alignment. Everyone leaves having produced real work with your brand assets — and a clear view of what AI can do for your workflow.",
+      "A half-day audit of your team's current AI state. Honest about where you are. Your whole team in the room. The audit becomes the brief for an Operating Model engagement when the gaps are bigger than a workshop can close.",
     href: "/programs/foundations",
     pricing: "$5,000",
     duration: "Half-day · Up to 25 people",

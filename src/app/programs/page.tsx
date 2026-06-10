@@ -10,12 +10,12 @@ export const metadata: Metadata = {
 const programs = [
   {
     n: "01",
-    name: "Foundations",
-    format: "Half-day workshop",
+    name: "Audit Workshop",
+    format: "Half-day audit session",
     price: "$5,000",
     description:
-      "Align your whole team on AI tools, workflows, and a shared methodology in a single session. Everyone in the room. Everyone at the same level.",
-    ideal: "Teams that haven't aligned yet",
+      "A half-day audit of your team's current AI state. What's working, what's blocking, where the next 8 weeks of work should focus.",
+    ideal: "Teams already using AI unevenly and ready to name what's blocking them",
     href: "/programs/foundations",
   },
   {
