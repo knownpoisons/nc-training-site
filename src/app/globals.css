@@ -71,6 +71,34 @@
   --border: #e5e5e5;
   --input: #e5e5e5;
   --ring: #000000;
+
+  /* ─── Editorial tokens (DESIGN_SYSTEM section 2) ───────────────────
+     Used on editorial pages (/methodology, blog, about) where the
+     property reads as authored, not marketed. Iowan Old Style is a
+     macOS system font — falls back to Source Serif 4 (loaded by next/
+     font) for every other client, then to platform serifs. Result:
+     Mac users get the documented editorial face; everyone else gets a
+     close near-twin. */
+  --font-serif-editorial: "Iowan Old Style", "Iowan Old Style BT", var(--font-source-serif), Georgia, serif;
+  --color-ink: #0E0E0C;
+  --color-muted-ed: #5F5F60;
+}
+
+/* Editorial typography utilities — applied selectively on editorial
+   pages so the marketing surfaces stay on their current stack.
+   Wrapped in @layer utilities so they override body-level font-mono
+   without needing !important. */
+@layer utilities {
+  .font-editorial {
+    font-family: "Iowan Old Style", "Iowan Old Style BT", var(--font-source-serif), Georgia, serif;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+  .text-ink {
+    color: #0E0E0C;
+  }
+  .text-ink-muted {
+    color: #5F5F60;
+  }
 }
 
 @layer base {

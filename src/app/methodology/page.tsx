@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { ServiceIcon } from "@/components/service-icon";
+import { MethodologyTopbar } from "@/components/methodology-topbar";
 
 export const metadata: Metadata = {
   title: "The NotContent Method | Think. Make. Build. | NotContent Training",
@@ -170,6 +171,8 @@ const EYEBROW = "text-[11px] uppercase tracking-[0.22em]";
 export default function MethodologyPage() {
   return (
     <>
+      <MethodologyTopbar />
+
       {/* ═══ HERO — Cobalt 60vh ═══ */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
@@ -258,6 +261,49 @@ export default function MethodologyPage() {
       {/* ═══ ARC DIAGRAM — Think → [Diverge | Converge] → Build ═══ */}
       <section className="pb-16 lg:pb-24 relative oci-grid-lines">
         <div className={CONTAINER}>
+          {/* Mobile arc — typographic stack (replaces the desktop SVG below) */}
+          <Reveal delay={150}>
+            <div className="sm:hidden" role="img" aria-label="The capability arc: Think leads to Make leads to Build">
+              <ol className="border-t border-[#1338BE]/15">
+                {/* THINK */}
+                <li className="grid grid-cols-[64px_1fr] gap-5 py-5 border-b border-[#1338BE]/15 items-start">
+                  <span className={EYEBROW + " text-[#1338BE] font-semibold pt-0.5"}>Think</span>
+                  <div className="space-y-1.5">
+                    <p className="font-editorial text-lg text-ink leading-snug">
+                      <span className="text-[#1338BE]/40 text-sm tabular-nums mr-2">00</span>
+                      Foundations
+                    </p>
+                  </div>
+                </li>
+                {/* MAKE — brackets two phases */}
+                <li className="grid grid-cols-[64px_1fr] gap-5 py-5 border-b border-[#1338BE]/15 items-start">
+                  <span className={EYEBROW + " text-[#1338BE] font-semibold pt-0.5"}>Make</span>
+                  <div className="space-y-2">
+                    <p className="font-editorial text-lg text-ink leading-snug">
+                      <span className="text-[#1338BE]/40 text-sm tabular-nums mr-2">01</span>
+                      Diverge
+                    </p>
+                    <p className="font-editorial text-lg text-ink leading-snug">
+                      <span className="text-[#1338BE]/40 text-sm tabular-nums mr-2">02</span>
+                      Converge
+                    </p>
+                  </div>
+                </li>
+                {/* BUILD */}
+                <li className="grid grid-cols-[64px_1fr] gap-5 py-5 border-b border-[#1338BE]/15 items-start">
+                  <span className={EYEBROW + " text-[#1338BE] font-semibold pt-0.5"}>Build</span>
+                  <div className="space-y-1.5">
+                    <p className="font-editorial text-lg text-ink leading-snug">
+                      <span className="text-[#1338BE]/40 text-sm tabular-nums mr-2">03</span>
+                      Build
+                    </p>
+                  </div>
+                </li>
+              </ol>
+            </div>
+          </Reveal>
+
+          {/* Desktop arc — SVG */}
           <Reveal delay={150}>
             <svg viewBox="0 0 1000 280" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full hidden sm:block" aria-hidden="true" role="img" aria-label="The capability arc: Think (Foundations) leads to Make (Diverge and Converge) leads to Build">
 
@@ -357,7 +403,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══ PHASE 00 — FOUNDATIONS (quieter, narrower, no full-bleed image) ═══ */}
-      <section className="py-20 lg:py-28 relative oci-grid-lines">
+      <section id="phase-00" data-phase="00" className="py-20 lg:py-28 relative oci-grid-lines scroll-mt-24">
         <div className={CONTAINER}>
           <Reveal>
             <div className="oci-section-label" style={{ letterSpacing: "0.22em" }}>
@@ -433,7 +479,7 @@ export default function MethodologyPage() {
                   The Handshake
                 </p>
               </div>
-              <h4 className="font-serif text-2xl sm:text-3xl lg:text-4xl tracking-tight font-normal text-foreground leading-[1.1]">
+              <h4 className="font-editorial text-2xl sm:text-3xl lg:text-4xl tracking-tight font-normal text-foreground leading-[1.1]">
                 The 10/80/10 split.
               </h4>
               <p className="mt-3 max-w-2xl text-sm text-muted-foreground leading-relaxed">
@@ -450,7 +496,7 @@ export default function MethodologyPage() {
                   key={i}
                   className="bg-background p-7 lg:p-8"
                 >
-                  <p className="font-serif text-3xl lg:text-4xl text-[#1338BE] font-normal leading-none">
+                  <p className="font-editorial text-3xl lg:text-4xl text-[#1338BE] font-normal leading-none">
                     {step.pct}
                   </p>
                   <p className={EYEBROW + " text-foreground mt-4"}>
@@ -467,7 +513,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══ PHASE 01 — DIVERGE (cream bg, full-bleed image) ═══ */}
-      <section className="py-24 lg:py-36 relative oci-grid-lines">
+      <section id="phase-01" data-phase="01" className="py-24 lg:py-36 relative oci-grid-lines scroll-mt-24">
         <div className={CONTAINER}>
           <Reveal>
             <div className="oci-section-label" style={{ letterSpacing: "0.22em" }}>
@@ -539,7 +585,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══ PHASE 02 — CONVERGE (cobalt bg, no full-bleed image) ═══ */}
-      <section className="py-24 lg:py-36 bg-[#1338BE] text-white relative overflow-hidden">
+      <section id="phase-02" data-phase="02" className="py-24 lg:py-36 bg-[#1338BE] text-white relative overflow-hidden scroll-mt-24">
         <div className="absolute inset-0 pointer-events-none">
           <div className={"h-full " + CONTAINER + " relative"}>
             <div className="absolute top-0 bottom-0 left-1/3 w-px bg-white/[0.08]" />
@@ -608,7 +654,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══ PHASE 03 — BUILD (culmination: larger outcome + pull-quote callouts) ═══ */}
-      <section className="py-28 lg:py-40 relative oci-grid-lines">
+      <section id="phase-03" data-phase="03" className="py-28 lg:py-40 relative oci-grid-lines scroll-mt-24">
         <div className={CONTAINER}>
           <Reveal>
             <div className="oci-section-label" style={{ letterSpacing: "0.22em" }}>
@@ -652,7 +698,7 @@ export default function MethodologyPage() {
               <p className={EYEBROW + " text-[#1338BE] mb-3"}>
                 The Outcome
               </p>
-              <p className="font-serif text-xl sm:text-2xl lg:text-3xl text-foreground leading-snug tracking-tight font-normal">
+              <p className="font-editorial text-xl sm:text-2xl lg:text-3xl text-foreground leading-snug tracking-tight font-normal">
                 {phases[3]!.outcome}
               </p>
             </div>
@@ -667,7 +713,7 @@ export default function MethodologyPage() {
               <div className="grid gap-px bg-foreground/10 border border-foreground/10 sm:grid-cols-2">
                 {phases[3]!.callouts?.map((c, i) => (
                   <div key={i} className="bg-background p-8 lg:p-10">
-                    <p className="font-serif text-base lg:text-lg text-foreground leading-snug tracking-tight font-normal">
+                    <p className="font-editorial text-base lg:text-lg text-foreground leading-snug tracking-tight font-normal">
                       {c.kicker}
                     </p>
                     <p className="mt-3 text-sm text-foreground/65 leading-relaxed">
@@ -702,8 +748,8 @@ export default function MethodologyPage() {
 
           <Reveal delay={100}>
             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-end gap-6 mt-8 mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] text-foreground leading-[1.1] tracking-tight font-normal max-w-2xl">
-                Techniques over <em className="font-serif italic text-[#1338BE]">tools.</em>
+              <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] text-foreground leading-[1.1] tracking-tight font-normal max-w-2xl">
+                Techniques over <em className="font-editorial italic text-[#1338BE]">tools.</em>
               </h2>
               <p className="max-w-sm text-sm text-muted-foreground leading-relaxed lg:text-right">
                 The tools change every week. The techniques don&rsquo;t. The
@@ -748,10 +794,10 @@ export default function MethodologyPage() {
                 <p className={EYEBROW + " text-[#1338BE] mb-4"}>
                   Two ways in
                 </p>
-                <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] tracking-tight font-normal">
+                <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.1] tracking-tight font-normal">
                   Not ready for the call?
                   <br />
-                  <em className="font-serif italic text-[#1338BE]">See how this runs.</em>
+                  <em className="font-editorial italic text-[#1338BE]">See how this runs.</em>
                 </h2>
                 <p className="mt-6 text-sm text-muted-foreground leading-relaxed max-w-md">
                   Start with a half-day audit of where your team actually
