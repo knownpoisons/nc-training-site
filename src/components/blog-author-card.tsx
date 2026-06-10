@@ -13,7 +13,7 @@ export function BlogAuthorCard() {
             className="h-20 w-20 shrink-0 object-cover rounded-[2px] ring-1 ring-foreground/10"
           />
           <div className="flex-1">
-            <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] font-semibold">
+            <p className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE] font-semibold">
               Jeremy Somers
             </p>
             <p className="mt-1 text-[11px] uppercase tracking-[0.15em] text-foreground/50">

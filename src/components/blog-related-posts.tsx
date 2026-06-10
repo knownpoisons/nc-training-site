@@ -26,12 +26,12 @@ export function BlogRelatedPosts({ currentSlug }: Props) {
             <Link
               key={post.slug}
               href={`/blog/${post.slug}`}
-              className="group flex flex-col border border-foreground/10 p-6 transition-colors hover:border-[#1549CD]/40 hover:bg-[#1549CD]/[0.02]"
+              className="group flex flex-col border border-foreground/10 p-6 transition-colors hover:border-[#1338BE]/40 hover:bg-[#1338BE]/[0.02]"
             >
-              <span className="text-[10px] uppercase tracking-[0.15em] text-[#1549CD] font-medium">
+              <span className="text-[10px] uppercase tracking-[0.15em] text-[#1338BE] font-medium">
                 {post.category}
               </span>
-              <h3 className="mt-4 font-mono text-lg font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1549CD]">
+              <h3 className="mt-4 font-mono text-lg font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1338BE]">
                 {post.title}
               </h3>
               <p className="mt-3 font-sans text-sm leading-relaxed text-foreground/60 line-clamp-3">

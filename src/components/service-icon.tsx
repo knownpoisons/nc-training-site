@@ -1,6 +1,6 @@
 /**
  * Monoline geometric icons for service/feature cards.
- * All rendered in cobalt (#1549CD) stroke at consistent sizing.
+ * All rendered in cobalt (#1338BE) stroke at consistent sizing.
  */
 
 interface ServiceIconProps {
@@ -17,7 +17,7 @@ export function ServiceIcon({ icon, className = "", size = 40 }: ServiceIconProp
       height={size}
       viewBox="0 0 40 40"
       fill="none"
-      stroke="#1549CD"
+      stroke="#1338BE"
       strokeWidth="1.5"
       strokeLinecap="round"
       strokeLinejoin="round"
@@ -104,17 +104,17 @@ const icons = {
     <>
       <circle cx="20" cy="20" r="14" />
       <circle cx="20" cy="20" r="2" />
-      <polygon points="20 6 22 18 20 20 18 18" opacity="0.4" fill="#1549CD" stroke="none" />
-      <polygon points="20 34 18 22 20 20 22 22" opacity="0.15" fill="#1549CD" stroke="none" />
+      <polygon points="20 6 22 18 20 20 18 18" opacity="0.4" fill="#1338BE" stroke="none" />
+      <polygon points="20 34 18 22 20 20 22 22" opacity="0.15" fill="#1338BE" stroke="none" />
     </>
   ),
   /** Chart — results */
   chart: () => (
     <>
       <line x1="6" y1="34" x2="34" y2="34" />
-      <rect x="8" y="22" width="6" height="12" rx="1" opacity="0.3" fill="#1549CD" stroke="none" />
-      <rect x="17" y="14" width="6" height="20" rx="1" opacity="0.5" fill="#1549CD" stroke="none" />
-      <rect x="26" y="8" width="6" height="26" rx="1" opacity="0.7" fill="#1549CD" stroke="none" />
+      <rect x="8" y="22" width="6" height="12" rx="1" opacity="0.3" fill="#1338BE" stroke="none" />
+      <rect x="17" y="14" width="6" height="20" rx="1" opacity="0.5" fill="#1338BE" stroke="none" />
+      <rect x="26" y="8" width="6" height="26" rx="1" opacity="0.7" fill="#1338BE" stroke="none" />
     </>
   ),
   /** Workflow — connected nodes */

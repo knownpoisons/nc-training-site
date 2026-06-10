@@ -69,7 +69,7 @@ export default async function BlogPostPage({ params }: Props) {
   return (
     <>
       {/* ─── HERO ──────────────────────────────────────────────────────── */}
-      <section className="relative bg-[#1549CD] text-white overflow-hidden pt-32 lg:pt-36 pb-14 lg:pb-20">
+      <section className="relative bg-[#1338BE] text-white overflow-hidden pt-32 lg:pt-36 pb-14 lg:pb-20">
         {/* Cover illustration — full-bleed background, faded behind cobalt gradient */}
         {post.coverImage && (
           <div className="absolute inset-0">
@@ -79,7 +79,7 @@ export default async function BlogPostPage({ params }: Props) {
               className="h-full w-full object-cover opacity-[0.45]"
             />
             {/* Top-down gradient: image visible at top, cobalt dominates toward the text below */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#1549CD]/10 via-[#1549CD]/60 to-[#1549CD]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1338BE]/10 via-[#1338BE]/60 to-[#1338BE]" />
           </div>
         )}
 

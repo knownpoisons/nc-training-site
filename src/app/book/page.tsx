@@ -11,7 +11,7 @@ export default function BookPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="oci-grid-lines-light" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <div className="oci-section-label mb-8 border-white/20 text-white/40">
@@ -47,7 +47,7 @@ export default function BookPage() {
                   "A rough timeline and next steps",
                 ].map((item) => (
                   <div key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/60">
-                    <span className="mt-1.5 h-1 w-1 shrink-0 bg-[#1549CD]/40" />
+                    <span className="mt-1.5 h-1 w-1 shrink-0 bg-[#1338BE]/40" />
                     {item}
                   </div>
                 ))}
@@ -103,15 +103,15 @@ export default function BookPage() {
 
                 <div className="mt-6 space-y-3 text-sm text-foreground/60">
                   <div className="flex items-center gap-3">
-                    <span className="h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                    <span className="h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
                     Video call (link sent on confirmation)
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                    <span className="h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
                     No pitch. No deck. Just conversation.
                   </div>
                   <div className="flex items-center gap-3">
-                    <span className="h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                    <span className="h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
                     You&apos;ll leave with clarity on the right next step.
                   </div>
                 </div>
@@ -120,7 +120,7 @@ export default function BookPage() {
                   href="https://bit.ly/30minsofnotcontent"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-8 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
+                  className="mt-8 block w-full bg-[#1338BE] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
                   Book a Time →
                 </Link>

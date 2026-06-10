@@ -15,12 +15,12 @@ export function EndCta({ href, children }: EndCtaProps) {
 
   const content = (
     <div className="flex items-center justify-between gap-6 group">
-      <p className="font-mono text-[17px] lg:text-[19px] font-semibold tracking-tight text-[#1549CD] leading-snug">
+      <p className="font-mono text-[17px] lg:text-[19px] font-semibold tracking-tight text-[#1338BE] leading-snug">
         {children}
       </p>
       <span
         aria-hidden
-        className="shrink-0 text-[#1549CD] text-2xl transition-transform duration-200 group-hover:translate-x-1"
+        className="shrink-0 text-[#1338BE] text-2xl transition-transform duration-200 group-hover:translate-x-1"
       >
         →
       </span>
@@ -28,7 +28,7 @@ export function EndCta({ href, children }: EndCtaProps) {
   );
 
   return (
-    <div className="my-14 py-8 border-y-2 border-[#1549CD]/15">
+    <div className="my-14 py-8 border-y-2 border-[#1338BE]/15">
       {isExternal ? (
         <a
           href={href}

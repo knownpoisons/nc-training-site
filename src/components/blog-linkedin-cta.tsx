@@ -11,7 +11,7 @@ export function BlogLinkedInCta() {
           href="https://www.linkedin.com/in/jeremy-somers/recent-activity/all/"
           target="_blank"
           rel="noopener noreferrer"
-          className="group flex items-center justify-between gap-6 p-6 border-2 border-[#1549CD]/15 bg-[#1549CD]/[0.02] transition-colors hover:border-[#1549CD]/40 hover:bg-[#1549CD]/[0.04]"
+          className="group flex items-center justify-between gap-6 p-6 border-2 border-[#1338BE]/15 bg-[#1338BE]/[0.02] transition-colors hover:border-[#1338BE]/40 hover:bg-[#1338BE]/[0.04]"
         >
           <div>
             <p className="font-mono text-[15px] lg:text-[17px] font-medium text-foreground leading-snug">
@@ -23,7 +23,7 @@ export function BlogLinkedInCta() {
           </div>
           <span
             aria-hidden
-            className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] font-semibold text-[#1549CD] transition-transform duration-200 group-hover:translate-x-1"
+            className="shrink-0 font-mono text-[11px] uppercase tracking-[0.15em] font-semibold text-[#1338BE] transition-transform duration-200 group-hover:translate-x-1"
           >
             LinkedIn →
           </span>

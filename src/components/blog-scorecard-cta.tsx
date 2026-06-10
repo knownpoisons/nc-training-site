@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function BlogScorecardCta() {
   return (
-    <section className="py-12 lg:py-16 bg-[#1549CD] text-white">
+    <section className="py-12 lg:py-16 bg-[#1338BE] text-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="text-lg lg:text-xl font-medium tracking-tight">
@@ -15,7 +15,7 @@ export function BlogScorecardCta() {
         </div>
         <Link
           href="/assess"
-          className="shrink-0 bg-white text-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+          className="shrink-0 bg-white text-[#1338BE] px-8 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
         >
           Take the Readiness Scorecard →
         </Link>

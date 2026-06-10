@@ -51,7 +51,7 @@
 
 :root {
   --radius: 0rem;
-  --cobalt: #1549CD;
+  --cobalt: #1338BE;
   --cream: #E8E6E0;
   --background: #E8E6E0;
   --foreground: #000000;
@@ -59,7 +59,7 @@
   --card-foreground: #000000;
   --popover: #ffffff;
   --popover-foreground: #000000;
-  --primary: #1549CD;
+  --primary: #1338BE;
   --primary-foreground: #ffffff;
   --secondary: #f5f5f5;
   --secondary-foreground: #000000;
@@ -310,7 +310,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: #1549CD;
+  background: #1338BE;
   transition: width 0.3s ease;
 }
 .nc-underline-grow:hover::after {
@@ -343,7 +343,7 @@
   top: 0;
   bottom: 0;
   width: 3px;
-  background: linear-gradient(180deg, #1549CD 0%, #1549CD40 100%);
+  background: linear-gradient(180deg, #1338BE 0%, #1338BE40 100%);
 }
 
 /* ═══ OCI-INSPIRED EDITORIAL STYLES ═══ */
@@ -371,7 +371,7 @@
   font-size: 11px;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: #1549CD;
+  color: #1338BE;
   padding-bottom: 16px;
   border-bottom: 1px solid rgba(21, 73, 205, 0.2);
   margin-bottom: 48px;
@@ -450,7 +450,7 @@
   display: block;
   width: 100%;
   padding: 20px;
-  background: #1549CD;
+  background: #1338BE;
   color: #fff;
   text-align: center;
   font-size: 11px;
@@ -473,7 +473,7 @@
 
 /* Blog card alternating styles */
 .oci-blog-card-blue {
-  background: #1549CD;
+  background: #1338BE;
   color: #fff;
   padding: 32px;
   display: flex;
@@ -497,5 +497,5 @@
   transition: border-color 0.2s ease;
 }
 .oci-blog-card-cream:hover {
-  border-color: #1549CD;
+  border-color: #1338BE;
 }

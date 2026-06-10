@@ -29,7 +29,7 @@ export function Header() {
       style={{ top: "var(--announcement-height, 0px)" }}
       className={`fixed z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-[#E8E6E0]/95 backdrop-blur-sm border-b border-[#1549CD]/10"
+          ? "bg-[#E8E6E0]/95 backdrop-blur-sm border-b border-[#1338BE]/10"
           : "bg-transparent border-b border-transparent"
       }`}
     >
@@ -42,7 +42,7 @@ export function Header() {
                 : "/images/logos/brand/NCT-Icon-blueonplatinum.png"
             }
             alt=""
-            className="h-7 w-7 rounded-[2px] shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:ring-[#1549CD]/20"
+            className="h-7 w-7 rounded-[2px] shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:ring-[#1338BE]/20"
           />
           <span
             className={`text-[11px] font-semibold uppercase tracking-[0.15em] transition-colors ${
@@ -62,14 +62,14 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="relative text-[11px] uppercase tracking-[0.15em] text-foreground/50 transition-colors hover:text-foreground after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-[#1549CD] after:transition-all hover:after:w-full"
+              className="relative text-[11px] uppercase tracking-[0.15em] text-foreground/50 transition-colors hover:text-foreground after:absolute after:bottom-[-2px] after:left-0 after:h-px after:w-0 after:bg-[#1338BE] after:transition-all hover:after:w-full"
             >
               {item.name}
             </Link>
           ))}
           <Link
             href="/book"
-            className="ml-2 px-5 py-2 bg-[#1549CD] text-white text-[11px] uppercase tracking-[0.15em] hover:bg-[#0e38a8] transition-colors"
+            className="ml-2 px-5 py-2 bg-[#1338BE] text-white text-[11px] uppercase tracking-[0.15em] hover:bg-[#0e38a8] transition-colors"
           >
             Book a Discovery Call
           </Link>
@@ -84,7 +84,7 @@ export function Header() {
               </svg>
             </button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full border-l border-[#1549CD]/10 bg-[#E8E6E0] pt-16">
+          <SheetContent side="right" className="w-full border-l border-[#1338BE]/10 bg-[#E8E6E0] pt-16">
             <SheetTitle className="sr-only">Navigation</SheetTitle>
             <nav className="flex flex-col gap-6">
               {navigation.map((item) => (
@@ -100,7 +100,7 @@ export function Header() {
               <Link
                 href="/book"
                 onClick={() => setOpen(false)}
-                className="mt-4 block w-full py-4 bg-[#1549CD] text-white text-center text-[11px] uppercase tracking-[0.15em]"
+                className="mt-4 block w-full py-4 bg-[#1338BE] text-white text-center text-[11px] uppercase tracking-[0.15em]"
               >
                 Book a Discovery Call
               </Link>

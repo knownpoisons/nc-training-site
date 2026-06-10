@@ -46,7 +46,7 @@ export function ScorecardNudge() {
     <div className="fixed bottom-6 right-6 z-40 flex items-center gap-2 animate-in slide-in-from-bottom-4 duration-300">
       <Link
         href="/assess"
-        className="flex items-center gap-2 rounded-full bg-[#1549CD] px-5 py-3 text-[11px] uppercase tracking-[0.15em] text-white shadow-lg transition-all hover:bg-[#0e38a8] hover:shadow-xl"
+        className="flex items-center gap-2 rounded-full bg-[#1338BE] px-5 py-3 text-[11px] uppercase tracking-[0.15em] text-white shadow-lg transition-all hover:bg-[#0e38a8] hover:shadow-xl"
       >
         Take the Readiness Scorecard →
       </Link>

@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function NotFound() {
   return (
     <>
-      <section className="relative min-h-[80vh] bg-[#1549CD] text-white overflow-hidden flex items-center">
+      <section className="relative min-h-[80vh] bg-[#1338BE] text-white overflow-hidden flex items-center">
         <div className="oci-grid-lines-light" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
           <div className="grid gap-12 lg:grid-cols-2 items-center">
@@ -24,7 +24,7 @@ export default function NotFound() {
               <div className="mt-10 flex flex-col gap-4 sm:flex-row">
                 <Link
                   href="/"
-                  className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+                  className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
                 >
                   Go Home
                 </Link>

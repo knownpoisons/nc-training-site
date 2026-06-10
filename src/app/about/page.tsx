@@ -78,14 +78,14 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img
             src="/images/training/speaking-wide-4.png"
             alt=""
             className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -194,7 +194,7 @@ export default function AboutPage() {
       </section>
 
       {/* Scorecard callout */}
-      <section className="py-10 bg-[#1549CD] text-white">
+      <section className="py-10 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-lg font-light tracking-tight">
@@ -206,7 +206,7 @@ export default function AboutPage() {
           </div>
           <Link
             href="/assess"
-            className="shrink-0 bg-white text-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+            className="shrink-0 bg-white text-[#1338BE] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
           >
             Take the Readiness Scorecard →
           </Link>
@@ -227,7 +227,7 @@ export default function AboutPage() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group bg-[#E8E6E0] p-8 transition-colors hover:bg-[#1549CD] hover:text-white"
+                className="group bg-[#E8E6E0] p-8 transition-colors hover:bg-[#1338BE] hover:text-white"
               >
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 group-hover:text-white/50">
                   {item.outlet}

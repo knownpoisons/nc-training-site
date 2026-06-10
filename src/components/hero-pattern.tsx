@@ -30,7 +30,7 @@ function GridPattern() {
     <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="hero-grid" width="60" height="60" patternUnits="userSpaceOnUse">
-          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1549CD" strokeWidth="0.5" opacity="0.07" />
+          <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#1338BE" strokeWidth="0.5" opacity="0.07" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#hero-grid)" />
@@ -52,7 +52,7 @@ function DotsPattern() {
     <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="hero-dots" width="32" height="32" patternUnits="userSpaceOnUse">
-          <circle cx="16" cy="16" r="1" fill="#1549CD" opacity="0.08" />
+          <circle cx="16" cy="16" r="1" fill="#1338BE" opacity="0.08" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#hero-dots)" />
@@ -73,7 +73,7 @@ function DiagonalPattern() {
     <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <pattern id="hero-diag" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-          <line x1="0" y1="0" x2="0" y2="40" stroke="#1549CD" strokeWidth="0.5" opacity="0.06" />
+          <line x1="0" y1="0" x2="0" y2="40" stroke="#1338BE" strokeWidth="0.5" opacity="0.06" />
         </pattern>
       </defs>
       <rect width="100%" height="100%" fill="url(#hero-diag)" />
@@ -92,11 +92,11 @@ function DiagonalPattern() {
 function CirclesPattern() {
   return (
     <svg className="h-full w-full" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="650" cy="100" r="200" fill="none" stroke="#1549CD" strokeWidth="0.5" opacity="0.06" />
-      <circle cx="650" cy="100" r="140" fill="none" stroke="#1549CD" strokeWidth="0.5" opacity="0.05" />
-      <circle cx="650" cy="100" r="80" fill="none" stroke="#1549CD" strokeWidth="0.5" opacity="0.04" />
-      <circle cx="100" cy="500" r="120" fill="none" stroke="#1549CD" strokeWidth="0.5" opacity="0.04" />
-      <circle cx="100" cy="500" r="60" fill="none" stroke="#1549CD" strokeWidth="0.5" opacity="0.03" />
+      <circle cx="650" cy="100" r="200" fill="none" stroke="#1338BE" strokeWidth="0.5" opacity="0.06" />
+      <circle cx="650" cy="100" r="140" fill="none" stroke="#1338BE" strokeWidth="0.5" opacity="0.05" />
+      <circle cx="650" cy="100" r="80" fill="none" stroke="#1338BE" strokeWidth="0.5" opacity="0.04" />
+      <circle cx="100" cy="500" r="120" fill="none" stroke="#1338BE" strokeWidth="0.5" opacity="0.04" />
+      <circle cx="100" cy="500" r="60" fill="none" stroke="#1338BE" strokeWidth="0.5" opacity="0.03" />
     </svg>
   );
 }
@@ -104,9 +104,9 @@ function CirclesPattern() {
 function WavesPattern() {
   return (
     <svg className="h-full w-full" viewBox="0 0 1200 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0 400 Q300 350 600 400 T1200 400" fill="none" stroke="#1549CD" strokeWidth="0.8" opacity="0.05" />
-      <path d="M0 420 Q300 370 600 420 T1200 420" fill="none" stroke="#1549CD" strokeWidth="0.8" opacity="0.04" />
-      <path d="M0 440 Q300 390 600 440 T1200 440" fill="none" stroke="#1549CD" strokeWidth="0.8" opacity="0.03" />
+      <path d="M0 400 Q300 350 600 400 T1200 400" fill="none" stroke="#1338BE" strokeWidth="0.8" opacity="0.05" />
+      <path d="M0 420 Q300 370 600 420 T1200 420" fill="none" stroke="#1338BE" strokeWidth="0.8" opacity="0.04" />
+      <path d="M0 440 Q300 390 600 440 T1200 440" fill="none" stroke="#1338BE" strokeWidth="0.8" opacity="0.03" />
     </svg>
   );
 }

@@ -79,7 +79,7 @@ export function ScrollPopup() {
       onClick={dismiss}
     >
       <div
-        className="relative mx-4 max-w-lg w-full bg-white border border-[#1549CD]/20 p-10 lg:p-14 animate-in zoom-in-95 duration-300"
+        className="relative mx-4 max-w-lg w-full bg-white border border-[#1338BE]/20 p-10 lg:p-14 animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -103,7 +103,7 @@ export function ScrollPopup() {
         <Link
           href="/assess"
           onClick={dismiss}
-          className="mt-8 inline-block bg-[#1549CD] text-white px-8 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-[#0e38a8] transition-colors"
+          className="mt-8 inline-block bg-[#1338BE] text-white px-8 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-[#0e38a8] transition-colors"
         >
           Take the Readiness Scorecard →
         </Link>

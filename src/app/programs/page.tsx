@@ -34,14 +34,14 @@ export default function ProgramsPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img
             src="/images/training/speaking-wide-4.png"
             alt=""
             className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -72,12 +72,12 @@ export default function ProgramsPage() {
               <Link
                 key={program.name}
                 href={program.href}
-                className={`group block py-10 px-2 transition-colors hover:bg-[#1549CD]/[0.03] ${
+                className={`group block py-10 px-2 transition-colors hover:bg-[#1338BE]/[0.03] ${
                   i > 0 ? "border-t border-foreground/10" : ""
                 }`}
               >
                 <div className="grid gap-6 lg:grid-cols-[80px_200px_1fr_200px]  lg:items-start">
-                  <span className="text-4xl font-light text-[#1549CD]/30">
+                  <span className="text-4xl font-light text-[#1338BE]/30">
                     {program.n}
                   </span>
                   <div>
@@ -100,7 +100,7 @@ export default function ProgramsPage() {
                     <p className="text-lg font-light tracking-tight">
                       {program.price}
                     </p>
-                    <p className="mt-2 text-[11px] uppercase tracking-[0.15em] text-[#1549CD] opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="mt-2 text-[11px] uppercase tracking-[0.15em] text-[#1338BE] opacity-0 group-hover:opacity-100 transition-opacity">
                       View details →
                     </p>
                   </div>
@@ -132,7 +132,7 @@ export default function ProgramsPage() {
               { label: "Agent Management", description: "Context switching, output evaluation, systematic delegation. Management skills applied to a new kind of direct report." },
             ].map((concept) => (
               <div key={concept.label} className="bg-foreground p-8">
-                <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">{concept.label}</p>
+                <p className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE]">{concept.label}</p>
                 <p className="mt-6 text-sm leading-relaxed text-white/50">{concept.description}</p>
               </div>
             ))}
@@ -141,7 +141,7 @@ export default function ProgramsPage() {
           <div className="mt-10">
             <Link
               href="/book"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Book a Discovery Call
             </Link>
@@ -173,7 +173,7 @@ export default function ProgramsPage() {
       </section>
 
       {/* CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+      <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-2xl">
             Ready to talk?
@@ -185,7 +185,7 @@ export default function ProgramsPage() {
           <div className="mt-10">
             <Link
               href="/book"
-              className="inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Book a Discovery Call
             </Link>

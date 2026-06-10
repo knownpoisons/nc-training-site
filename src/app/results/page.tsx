@@ -57,14 +57,14 @@ export default function CaseStudiesPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img
             src="/images/training/speaking-wide-3.png"
             alt=""
             className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -101,7 +101,7 @@ export default function CaseStudiesPage() {
               { n: "Tens of millions", label: "Projected savings (Maesa, on stage)" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-white/20 pl-6">
-                <p className="text-3xl font-light tracking-tight text-[#1549CD]">
+                <p className="text-3xl font-light tracking-tight text-[#1338BE]">
                   {stat.n}
                 </p>
                 <p className="mt-1 text-sm text-white/50">{stat.label}</p>
@@ -141,7 +141,7 @@ export default function CaseStudiesPage() {
                   </p>
                   <Link
                     href={study.slug}
-                    className="mt-8 inline-block text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD] transition-colors hover:text-[#1549CD]/70"
+                    className="mt-8 inline-block text-[11px] font-medium uppercase tracking-[0.15em] text-[#1338BE] transition-colors hover:text-[#1338BE]/70"
                   >
                     Read full case study →
                   </Link>
@@ -151,8 +151,8 @@ export default function CaseStudiesPage() {
               <div>
                 <div className="grid gap-6 sm:grid-cols-3">
                   {study.stats.map((stat) => (
-                    <div key={stat.label} className="border-l-2 border-[#1549CD] pl-5">
-                      <p className="text-2xl font-light tracking-tight text-[#1549CD]">
+                    <div key={stat.label} className="border-l-2 border-[#1338BE] pl-5">
+                      <p className="text-2xl font-light tracking-tight text-[#1338BE]">
                         {stat.n}
                       </p>
                       <p className="mt-1 text-xs text-foreground/40">
@@ -189,7 +189,7 @@ export default function CaseStudiesPage() {
       </section>
 
       {/* CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+      <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
             Your team could be next.
@@ -201,7 +201,7 @@ export default function CaseStudiesPage() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/assess"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Take the Readiness Scorecard
             </Link>

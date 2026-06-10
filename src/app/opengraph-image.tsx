@@ -76,7 +76,7 @@ export default async function Image() {
                 style={{ display: "flex", flexDirection: "column", gap: 6 }}
               >
                 <span
-                  style={{ fontSize: 40, fontWeight: 300, color: "#1549CD" }}
+                  style={{ fontSize: 40, fontWeight: 300, color: "#1338BE" }}
                 >
                   {stat.n}
                 </span>
@@ -104,7 +104,7 @@ export default async function Image() {
             style={{
               fontSize: 16,
               color: "#fff",
-              background: "#1549CD",
+              background: "#1338BE",
               padding: "10px 24px",
               letterSpacing: "0.08em",
             }}

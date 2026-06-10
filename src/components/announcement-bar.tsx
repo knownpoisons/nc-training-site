@@ -60,14 +60,14 @@ export function AnnouncementBar() {
           <Link
             href="/assess"
             onClick={dismiss}
-            className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] font-medium hover:text-white transition-colors hidden sm:inline"
+            className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE] font-medium hover:text-white transition-colors hidden sm:inline"
           >
             Take the Readiness Scorecard →
           </Link>
           <Link
             href="/assess"
             onClick={dismiss}
-            className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] font-medium hover:text-white transition-colors sm:hidden"
+            className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE] font-medium hover:text-white transition-colors sm:hidden"
           >
             Scorecard →
           </Link>

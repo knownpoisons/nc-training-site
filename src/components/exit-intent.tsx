@@ -78,7 +78,7 @@ export function ExitIntent() {
       onClick={dismiss}
     >
       <div
-        className="relative mx-4 max-w-lg w-full bg-[#1549CD] p-10 lg:p-14 text-white animate-in zoom-in-95 duration-300"
+        className="relative mx-4 max-w-lg w-full bg-[#1338BE] p-10 lg:p-14 text-white animate-in zoom-in-95 duration-300"
         onClick={(e) => e.stopPropagation()}
       >
         <button
@@ -101,7 +101,7 @@ export function ExitIntent() {
         <Link
           href="/assess"
           onClick={dismiss}
-          className="mt-8 inline-block bg-white text-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+          className="mt-8 inline-block bg-white text-[#1338BE] px-8 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
         >
           Take the Readiness Scorecard →
         </Link>

@@ -65,10 +65,10 @@ export default function TransformationPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img src="/images/training/speaking-wide-2.png" alt="" className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -92,7 +92,7 @@ export default function TransformationPage() {
           <div className="mt-8">
             <Link
               href="/book"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Book a Discovery Call
             </Link>
@@ -188,7 +188,7 @@ export default function TransformationPage() {
             </div>
             <Link
               href="/book"
-              className="shrink-0 bg-[#1549CD] px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
+              className="shrink-0 bg-[#1338BE] px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
             >
               Book a Discovery Call
             </Link>
@@ -211,7 +211,7 @@ export default function TransformationPage() {
               <ul className="mt-8 space-y-4">
                 {included.map((item) => (
                   <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/60">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
                     {item}
                   </li>
                 ))}
@@ -244,7 +244,7 @@ export default function TransformationPage() {
                     Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to their own clients.
                   </p>
                 </div>
-                <Link href="/case-studies" className="mt-4 inline-block text-sm text-[#1549CD] hover:underline">
+                <Link href="/case-studies" className="mt-4 inline-block text-sm text-[#1338BE] hover:underline">
                   Read the case studies &rarr;
                 </Link>
               </div>
@@ -326,7 +326,7 @@ export default function TransformationPage() {
       </section>
 
       {/* Final CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+      <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-3xl">
             The teams that move first win.
@@ -336,7 +336,7 @@ export default function TransformationPage() {
           </p>
           <Link
             href="/book"
-            className="mt-10 inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+            className="mt-10 inline-block border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
           >
             Book a Discovery Call
           </Link>

@@ -38,10 +38,10 @@ export default function FoundationsPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img src="/images/training/speaking-wide-4.png" alt="" className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -62,7 +62,7 @@ export default function FoundationsPage() {
           <div className="mt-8 flex flex-wrap items-center gap-6">
             <Link
               href="/book"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Book This Workshop
             </Link>
@@ -94,7 +94,7 @@ export default function FoundationsPage() {
               </p>
             </div>
             <div className="space-y-6">
-              <div className="border-l-2 border-[#1549CD] pl-6">
+              <div className="border-l-2 border-[#1338BE] pl-6">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">Hour 1-2</p>
                 <h3 className="mt-2 text-lg font-light">Framework & Philosophy</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
@@ -102,7 +102,7 @@ export default function FoundationsPage() {
                   Diverge/Converge/Systemize model. The Stop Rule. Tool ecosystem overview.
                 </p>
               </div>
-              <div className="border-l-2 border-[#1549CD] pl-6">
+              <div className="border-l-2 border-[#1338BE] pl-6">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">Hour 3-4</p>
                 <h3 className="mt-2 text-lg font-light">Hands-On Production</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
@@ -218,7 +218,7 @@ export default function FoundationsPage() {
       </section>
 
       {/* CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+      <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-2xl">
             Foundations is the start, not the finish.
@@ -226,7 +226,7 @@ export default function FoundationsPage() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/book"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Book This Workshop
             </Link>

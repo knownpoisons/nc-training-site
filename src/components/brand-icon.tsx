@@ -14,7 +14,7 @@ interface BrandIconProps {
 
 export function BrandIcon({
   icon,
-  color = "#1549CD",
+  color = "#1338BE",
   size = 64,
   className = "",
   showFrame = true,

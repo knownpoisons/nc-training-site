@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 /* Category chip colour — cobalt across the board for visual coherence */
 const categoryChip =
-  "inline-block px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.15em] bg-[#1549CD]/10 text-[#1549CD]";
+  "inline-block px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.15em] bg-[#1338BE]/10 text-[#1338BE]";
 
 export default function BlogPage() {
   const posts = getAllPosts();
@@ -19,7 +19,7 @@ export default function BlogPage() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="oci-grid-lines-light" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <div className="oci-section-label mb-8 border-white/20 text-white/40">
@@ -45,7 +45,7 @@ export default function BlogPage() {
             <Link href={`/blog/${featured.slug}`} className="group block">
               <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                 {/* Cover illustration */}
-                <div className="aspect-[16/9] w-full overflow-hidden border border-foreground/10 bg-[#1549CD]">
+                <div className="aspect-[16/9] w-full overflow-hidden border border-foreground/10 bg-[#1338BE]">
                   <img
                     src={featured.coverImage}
                     alt={featured.title}
@@ -62,13 +62,13 @@ export default function BlogPage() {
                       {formatPostDate(featured.date)} · {getReadingTime(featured.content)} min read
                     </span>
                   </div>
-                  <h2 className="mt-4 text-2xl font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1549CD] lg:text-3xl">
+                  <h2 className="mt-4 text-2xl font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1338BE] lg:text-3xl">
                     {featured.title}
                   </h2>
                   <p className="mt-4 font-sans text-sm leading-relaxed text-foreground/60 line-clamp-3">
                     {featured.description}
                   </p>
-                  <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD]">
+                  <p className="mt-6 text-[11px] font-medium uppercase tracking-[0.15em] text-[#1338BE]">
                     Read article →
                   </p>
                 </div>
@@ -94,7 +94,7 @@ export default function BlogPage() {
                   className="group flex flex-col"
                 >
                   {/* Card cover illustration */}
-                  <div className="aspect-[16/10] w-full overflow-hidden border border-foreground/10 bg-[#1549CD]">
+                  <div className="aspect-[16/10] w-full overflow-hidden border border-foreground/10 bg-[#1338BE]">
                     <img
                       src={post.coverImage}
                       alt={post.title}
@@ -108,7 +108,7 @@ export default function BlogPage() {
                     <div className="flex items-center gap-2">
                       <span className={categoryChip}>{post.category}</span>
                     </div>
-                    <h3 className="mt-3 text-lg font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1549CD]">
+                    <h3 className="mt-3 text-lg font-medium leading-snug tracking-tight transition-colors group-hover:text-[#1338BE]">
                       {post.title}
                     </h3>
                     <p className="mt-2 font-sans text-sm leading-relaxed text-foreground/60 line-clamp-2">

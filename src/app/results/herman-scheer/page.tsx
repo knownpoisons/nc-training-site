@@ -11,7 +11,7 @@ export default function HermanScheerCaseStudy() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="oci-grid-lines-light" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
           <Link
@@ -49,7 +49,7 @@ export default function HermanScheerCaseStudy() {
               { n: "New services", label: "Profitable AI offerings to clients" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-white/20 pl-6">
-                <p className="text-3xl font-light tracking-tight text-[#1549CD]">
+                <p className="text-3xl font-light tracking-tight text-[#1338BE]">
                   {stat.n}
                 </p>
                 <p className="mt-1 text-sm text-white/50">{stat.label}</p>
@@ -135,7 +135,7 @@ export default function HermanScheerCaseStudy() {
 
           {/* Testimonials */}
           <div className="space-y-8">
-            <div className="border-l-2 border-[#1549CD] pl-8">
+            <div className="border-l-2 border-[#1338BE] pl-8">
               <p className="text-lg font-light leading-relaxed italic">
                 &ldquo;We&apos;ve been able to offer new and very profitable
                 services to existing clients and use our skills to package new
@@ -153,7 +153,7 @@ export default function HermanScheerCaseStudy() {
       </section>
 
       {/* Scorecard callout */}
-      <section className="py-10 bg-[#1549CD] text-white">
+      <section className="py-10 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-lg font-light tracking-tight">
@@ -165,7 +165,7 @@ export default function HermanScheerCaseStudy() {
           </div>
           <Link
             href="/assess"
-            className="shrink-0 bg-white text-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+            className="shrink-0 bg-white text-[#1338BE] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
           >
             Take the Readiness Scorecard →
           </Link>
@@ -173,7 +173,7 @@ export default function HermanScheerCaseStudy() {
       </section>
 
       {/* CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+      <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
             Want results like these?
@@ -181,7 +181,7 @@ export default function HermanScheerCaseStudy() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/assess"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Take the Readiness Scorecard
             </Link>

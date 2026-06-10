@@ -37,7 +37,7 @@ export function LoginForm({ clientDisplayName }: Props) {
           <span>[NC]</span>
         </div>
 
-        <h1 className="oci-display-sm text-[#1549CD]">
+        <h1 className="oci-display-sm text-[#1338BE]">
           Private hub. Password required.
         </h1>
 
@@ -53,7 +53,7 @@ export function LoginForm({ clientDisplayName }: Props) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               disabled={pending}
-              className="mt-3 block w-full border border-[#1549CD]/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#1549CD] focus:outline-none focus:ring-1 focus:ring-[#1549CD]"
+              className="mt-3 block w-full border border-[#1338BE]/20 bg-white px-4 py-3 text-base text-foreground focus:border-[#1338BE] focus:outline-none focus:ring-1 focus:ring-[#1338BE]"
             />
           </label>
 

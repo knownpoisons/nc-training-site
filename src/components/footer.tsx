@@ -20,7 +20,7 @@ export function Footer() {
   return (
     <footer>
       {/* Footer content */}
-      <div className="border-t border-[#1549CD]/10 relative oci-grid-lines">
+      <div className="border-t border-[#1338BE]/10 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
           {/* Section label */}
           <div className="oci-section-label mb-12">
@@ -50,7 +50,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD]">
+              <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#1338BE]">
                 Navigate
               </p>
               <div className="mt-4 grid grid-cols-2 gap-x-8 gap-y-3">
@@ -67,7 +67,7 @@ export function Footer() {
             </div>
 
             <div>
-              <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#1549CD]">
+              <p className="text-[11px] font-medium uppercase tracking-[0.15em] text-[#1338BE]">
                 Connect
               </p>
               <ul className="mt-4 space-y-3">

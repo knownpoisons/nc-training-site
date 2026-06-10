@@ -129,7 +129,7 @@ export default function AssessPage() {
   if (step === "landing") {
     return (
       <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
-        <section className="min-h-[calc(100vh-3.5rem)] bg-[#1549CD] text-white flex items-center relative overflow-hidden">
+        <section className="min-h-[calc(100vh-3.5rem)] bg-[#1338BE] text-white flex items-center relative overflow-hidden">
           <div className="oci-grid-lines-light" />
           {/* Subtle exit link — landing only */}
           <Link
@@ -158,7 +158,7 @@ export default function AssessPage() {
             </p>
             <button
               onClick={() => setStep("capture")}
-              className="mt-10 cursor-pointer bg-white text-[#1549CD] px-10 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+              className="mt-10 cursor-pointer bg-white text-[#1338BE] px-10 py-4 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
             >
               Start the Scorecard →
             </button>
@@ -202,7 +202,7 @@ export default function AssessPage() {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="Your first name"
-                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
+                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1338BE] transition-colors"
                 />
               </div>
               <div>
@@ -215,7 +215,7 @@ export default function AssessPage() {
                   value={company}
                   onChange={(e) => setCompany(e.target.value)}
                   placeholder="Your company"
-                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
+                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1338BE] transition-colors"
                 />
               </div>
               <div>
@@ -228,13 +228,13 @@ export default function AssessPage() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="you@company.com"
-                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1549CD] transition-colors"
+                  className="mt-2 w-full border border-foreground/20 bg-transparent px-4 py-3 text-sm outline-none placeholder:text-foreground/20 focus:border-[#1338BE] transition-colors"
                 />
               </div>
               <button
                 type="submit"
                 disabled={!name || !email}
-                className="w-full cursor-pointer bg-[#1549CD] px-8 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8] disabled:opacity-30 disabled:cursor-not-allowed mt-2"
+                className="w-full cursor-pointer bg-[#1338BE] px-8 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8] disabled:opacity-30 disabled:cursor-not-allowed mt-2"
               >
                 Start →
               </button>
@@ -257,11 +257,11 @@ export default function AssessPage() {
       <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
         <div className="fixed left-0 right-0 z-40 h-1 bg-foreground/10" style={{ top: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
           <div
-            className="h-full bg-[#1549CD] transition-all duration-500"
+            className="h-full bg-[#1338BE] transition-all duration-500"
             style={{ width: `${progress}%` }}
           />
         </div>
-        <section className="min-h-screen bg-[#1549CD] text-white flex items-center overflow-hidden relative">
+        <section className="min-h-screen bg-[#1338BE] text-white flex items-center overflow-hidden relative">
           <div className="oci-grid-lines-light" />
           <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
             <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
@@ -275,7 +275,7 @@ export default function AssessPage() {
                 setPendingSection(null);
                 setStep("quiz");
               }}
-              className="mt-10 cursor-pointer border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="mt-10 cursor-pointer border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Continue →
             </button>
@@ -297,7 +297,7 @@ export default function AssessPage() {
         {/* Progress bar */}
         <div className="fixed left-0 right-0 z-40 h-1 bg-foreground/10" style={{ top: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
           <div
-            className="h-full bg-[#1549CD] transition-all duration-500 ease-out"
+            className="h-full bg-[#1338BE] transition-all duration-500 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
@@ -306,10 +306,10 @@ export default function AssessPage() {
           <div className="mx-auto max-w-2xl px-6 lg:px-8">
             {/* Header */}
             <div className="flex items-center justify-between">
-              <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD]">
+              <p className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE]">
                 {q.sectionLabel}
               </p>
-              <p className="text-[11px] text-[#1549CD]">
+              <p className="text-[11px] text-[#1338BE]">
                 {currentQ + 1} of {questions.length} · Total Progress
               </p>
             </div>
@@ -321,7 +321,7 @@ export default function AssessPage() {
                   setAnswers(answers.slice(0, -1));
                   setCurrentQ(currentQ - 1);
                 }}
-                className="mt-4 text-[11px] uppercase tracking-[0.15em] text-foreground/40 hover:text-[#1549CD] transition-colors cursor-pointer flex items-center gap-2"
+                className="mt-4 text-[11px] uppercase tracking-[0.15em] text-foreground/40 hover:text-[#1338BE] transition-colors cursor-pointer flex items-center gap-2"
               >
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M8 3L4 7l4 4" />
@@ -358,19 +358,19 @@ export default function AssessPage() {
                     className={`w-full border text-left px-6 py-4 text-sm leading-relaxed transition-all duration-200 cursor-pointer flex items-start gap-4
                       ${
                         isHighlighted
-                          ? "border-[#1549CD] bg-[#1549CD] text-white"
+                          ? "border-[#1338BE] bg-[#1338BE] text-white"
                           : isSelected
-                          ? "border-[#1549CD] bg-[#1549CD]/5 text-foreground"
+                          ? "border-[#1338BE] bg-[#1338BE]/5 text-foreground"
                           : isFading
                           ? "border-foreground/10 text-foreground/30 cursor-not-allowed"
-                          : "border-foreground/15 hover:border-[#1549CD]/50 text-foreground"
+                          : "border-foreground/15 hover:border-[#1338BE]/50 text-foreground"
                       }`}
                   >
                     {isMulti && (
                       <span
                         className={`mt-0.5 shrink-0 w-4 h-4 border flex items-center justify-center transition-all duration-150 ${
                           isSelected
-                            ? "border-[#1549CD] bg-[#1549CD]"
+                            ? "border-[#1338BE] bg-[#1338BE]"
                             : "border-foreground/30"
                         }`}
                       >
@@ -403,7 +403,7 @@ export default function AssessPage() {
             {isMulti && (
               <div className="mt-8">
                 <button
-                  className="cursor-pointer bg-[#1549CD] px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8] disabled:opacity-30 disabled:cursor-not-allowed"
+                  className="cursor-pointer bg-[#1338BE] px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8] disabled:opacity-30 disabled:cursor-not-allowed"
                   disabled={multiSelections.length === 0}
                   onClick={handleMultiNext}
                 >
@@ -419,7 +419,7 @@ export default function AssessPage() {
                   key={i}
                   className={`h-0.5 flex-1 transition-all duration-300 ${
                     i < currentQ
-                      ? "bg-[#1549CD]"
+                      ? "bg-[#1338BE]"
                       : i === currentQ
                       ? "bg-foreground/30"
                       : "bg-foreground/10"
@@ -458,7 +458,7 @@ export default function AssessPage() {
   return (
     <div className="min-h-screen" style={{ paddingTop: "calc(var(--announcement-height, 0px) + 3.5rem)" }}>
       {/* ── Hero: score + tier ─────────────────────────────────────────────── */}
-      <section className="relative min-h-[70vh] bg-[#1549CD] text-white overflow-hidden flex items-center">
+      <section className="relative min-h-[70vh] bg-[#1338BE] text-white overflow-hidden flex items-center">
         <div className="oci-grid-lines-light" />
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-20 w-full">
           <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
@@ -498,7 +498,7 @@ export default function AssessPage() {
               <div className="mt-10 space-y-5">
                 {tier.whatItMeans.map((w, i) => (
                   <div key={i} className="flex gap-5">
-                    <span className="mt-1 text-2xl font-light text-[#1549CD]/30 shrink-0 w-6">
+                    <span className="mt-1 text-2xl font-light text-[#1338BE]/30 shrink-0 w-6">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <p className="text-sm text-foreground/70 leading-relaxed">{w}</p>
@@ -512,7 +512,7 @@ export default function AssessPage() {
               <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                 Summary
               </p>
-              <p className="mt-4 text-5xl font-light text-[#1549CD]">
+              <p className="mt-4 text-5xl font-light text-[#1338BE]">
                 {result.normalizedScore}
                 <span className="text-foreground/30 text-xl">/100</span>
               </p>
@@ -582,7 +582,7 @@ export default function AssessPage() {
               <p className="mt-6 text-base leading-relaxed text-foreground/70 max-w-2xl">
                 {stack.body}
               </p>
-              <div className="mt-8 border-l-2 border-[#1549CD] pl-6 max-w-2xl">
+              <div className="mt-8 border-l-2 border-[#1338BE] pl-6 max-w-2xl">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 mb-2">
                   Priority
                 </p>
@@ -596,7 +596,7 @@ export default function AssessPage() {
               <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/40">
                 Tools in rotation
               </p>
-              <p className="mt-4 text-5xl font-light text-[#1549CD]">
+              <p className="mt-4 text-5xl font-light text-[#1338BE]">
                 {result.stackCount}
               </p>
               <p className="mt-2 text-[11px] uppercase tracking-[0.2em] font-medium">
@@ -650,7 +650,7 @@ export default function AssessPage() {
                 </p>
                 <Link
                   href="/book"
-                  className="mt-6 block w-full bg-[#1549CD] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
+                  className="mt-6 block w-full bg-[#1338BE] px-8 py-4 text-center text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-[#0e38a8]"
                 >
                   Book a Discovery Call
                 </Link>

@@ -85,11 +85,11 @@ export default function MethodologyPage() {
   return (
     <>
       {/* ═══ HERO — Cobalt 60vh ═══ */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         {/* Hero background image */}
         <div className="absolute inset-0">
           <img src="/images/training/speaking-wide-3.png" alt="" className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         {/* Grid overlay */}
         <div className="absolute inset-0 pointer-events-none">
@@ -122,7 +122,7 @@ export default function MethodologyPage() {
               </p>
               <Link
                 href="/book"
-                className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1549CD] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+                className="inline-flex items-center justify-center h-14 px-10 bg-white text-[#1338BE] text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
               >
                 Book a Discovery Call
               </Link>
@@ -164,65 +164,65 @@ export default function MethodologyPage() {
             <svg viewBox="0 0 960 200" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full hidden sm:block" aria-hidden="true">
               {/* Phase 1: Diverge — explosion */}
               <g>
-                <circle cx="160" cy="100" r="60" fill="#1549CD" opacity="0.04" />
-                <circle cx="160" cy="100" r="40" fill="#1549CD" opacity="0.06" />
-                <circle cx="160" cy="100" r="8" fill="#1549CD" opacity="0.3" />
+                <circle cx="160" cy="100" r="60" fill="#1338BE" opacity="0.04" />
+                <circle cx="160" cy="100" r="40" fill="#1338BE" opacity="0.06" />
+                <circle cx="160" cy="100" r="8" fill="#1338BE" opacity="0.3" />
                 {/* Diverging lines */}
-                <line x1="168" y1="92" x2="220" y2="50" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
-                <line x1="168" y1="96" x2="225" y2="75" stroke="#1549CD" strokeWidth="1" opacity="0.25" />
-                <line x1="168" y1="100" x2="230" y2="100" stroke="#1549CD" strokeWidth="1" opacity="0.3" />
-                <line x1="168" y1="104" x2="225" y2="125" stroke="#1549CD" strokeWidth="1" opacity="0.25" />
-                <line x1="168" y1="108" x2="220" y2="150" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
-                <circle cx="220" cy="50" r="3" fill="#1549CD" opacity="0.15" />
-                <circle cx="225" cy="75" r="3" fill="#1549CD" opacity="0.2" />
-                <circle cx="230" cy="100" r="3" fill="#1549CD" opacity="0.25" />
-                <circle cx="225" cy="125" r="3" fill="#1549CD" opacity="0.2" />
-                <circle cx="220" cy="150" r="3" fill="#1549CD" opacity="0.15" />
-                <text x="160" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.4" letterSpacing="0.15em">DIVERGE</text>
+                <line x1="168" y1="92" x2="220" y2="50" stroke="#1338BE" strokeWidth="1" opacity="0.2" />
+                <line x1="168" y1="96" x2="225" y2="75" stroke="#1338BE" strokeWidth="1" opacity="0.25" />
+                <line x1="168" y1="100" x2="230" y2="100" stroke="#1338BE" strokeWidth="1" opacity="0.3" />
+                <line x1="168" y1="104" x2="225" y2="125" stroke="#1338BE" strokeWidth="1" opacity="0.25" />
+                <line x1="168" y1="108" x2="220" y2="150" stroke="#1338BE" strokeWidth="1" opacity="0.2" />
+                <circle cx="220" cy="50" r="3" fill="#1338BE" opacity="0.15" />
+                <circle cx="225" cy="75" r="3" fill="#1338BE" opacity="0.2" />
+                <circle cx="230" cy="100" r="3" fill="#1338BE" opacity="0.25" />
+                <circle cx="225" cy="125" r="3" fill="#1338BE" opacity="0.2" />
+                <circle cx="220" cy="150" r="3" fill="#1338BE" opacity="0.15" />
+                <text x="160" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1338BE" opacity="0.4" letterSpacing="0.15em">DIVERGE</text>
               </g>
 
               {/* Arrow 1→2 */}
-              <line x1="280" y1="100" x2="370" y2="100" stroke="#1549CD" strokeWidth="1" opacity="0.15" strokeDasharray="4 4" />
-              <polygon points="370,96 380,100 370,104" fill="#1549CD" opacity="0.2" />
+              <line x1="280" y1="100" x2="370" y2="100" stroke="#1338BE" strokeWidth="1" opacity="0.15" strokeDasharray="4 4" />
+              <polygon points="370,96 380,100 370,104" fill="#1338BE" opacity="0.2" />
 
               {/* Phase 2: Converge — funnel */}
               <g>
-                <rect x="420" y="50" width="120" height="100" rx="2" fill="#1549CD" opacity="0.03" />
+                <rect x="420" y="50" width="120" height="100" rx="2" fill="#1338BE" opacity="0.03" />
                 {/* Converging lines */}
-                <line x1="420" y1="55" x2="480" y2="85" stroke="#1549CD" strokeWidth="1" opacity="0.15" />
-                <line x1="420" y1="75" x2="480" y2="90" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
-                <line x1="420" y1="100" x2="480" y2="100" stroke="#1549CD" strokeWidth="1.5" opacity="0.3" />
-                <line x1="420" y1="125" x2="480" y2="110" stroke="#1549CD" strokeWidth="1" opacity="0.2" />
-                <line x1="420" y1="145" x2="480" y2="115" stroke="#1549CD" strokeWidth="1" opacity="0.15" />
+                <line x1="420" y1="55" x2="480" y2="85" stroke="#1338BE" strokeWidth="1" opacity="0.15" />
+                <line x1="420" y1="75" x2="480" y2="90" stroke="#1338BE" strokeWidth="1" opacity="0.2" />
+                <line x1="420" y1="100" x2="480" y2="100" stroke="#1338BE" strokeWidth="1.5" opacity="0.3" />
+                <line x1="420" y1="125" x2="480" y2="110" stroke="#1338BE" strokeWidth="1" opacity="0.2" />
+                <line x1="420" y1="145" x2="480" y2="115" stroke="#1338BE" strokeWidth="1" opacity="0.15" />
                 {/* Output arrow */}
-                <line x1="480" y1="100" x2="540" y2="100" stroke="#1549CD" strokeWidth="2" opacity="0.35" />
-                <circle cx="480" cy="100" r="6" fill="#1549CD" opacity="0.25" />
-                <circle cx="540" cy="100" r="4" fill="#1549CD" opacity="0.35" />
-                <text x="480" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.4" letterSpacing="0.15em">CONVERGE</text>
+                <line x1="480" y1="100" x2="540" y2="100" stroke="#1338BE" strokeWidth="2" opacity="0.35" />
+                <circle cx="480" cy="100" r="6" fill="#1338BE" opacity="0.25" />
+                <circle cx="540" cy="100" r="4" fill="#1338BE" opacity="0.35" />
+                <text x="480" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1338BE" opacity="0.4" letterSpacing="0.15em">CONVERGE</text>
               </g>
 
               {/* Arrow 2→3 */}
-              <line x1="590" y1="100" x2="680" y2="100" stroke="#1549CD" strokeWidth="1" opacity="0.15" strokeDasharray="4 4" />
-              <polygon points="680,96 690,100 680,104" fill="#1549CD" opacity="0.2" />
+              <line x1="590" y1="100" x2="680" y2="100" stroke="#1338BE" strokeWidth="1" opacity="0.15" strokeDasharray="4 4" />
+              <polygon points="680,96 690,100 680,104" fill="#1338BE" opacity="0.2" />
 
               {/* Phase 3: Systemize — structured grid */}
               <g>
-                <rect x="720" y="60" width="80" height="80" rx="2" fill="none" stroke="#1549CD" strokeWidth="1.5" opacity="0.2" />
+                <rect x="720" y="60" width="80" height="80" rx="2" fill="none" stroke="#1338BE" strokeWidth="1.5" opacity="0.2" />
                 {/* Internal grid lines */}
-                <line x1="720" y1="86" x2="800" y2="86" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
-                <line x1="720" y1="114" x2="800" y2="114" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
-                <line x1="747" y1="60" x2="747" y2="140" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
-                <line x1="773" y1="60" x2="773" y2="140" stroke="#1549CD" strokeWidth="0.5" opacity="0.15" />
+                <line x1="720" y1="86" x2="800" y2="86" stroke="#1338BE" strokeWidth="0.5" opacity="0.15" />
+                <line x1="720" y1="114" x2="800" y2="114" stroke="#1338BE" strokeWidth="0.5" opacity="0.15" />
+                <line x1="747" y1="60" x2="747" y2="140" stroke="#1338BE" strokeWidth="0.5" opacity="0.15" />
+                <line x1="773" y1="60" x2="773" y2="140" stroke="#1338BE" strokeWidth="0.5" opacity="0.15" />
                 {/* Filled cells showing system */}
-                <rect x="721" y="61" width="26" height="25" fill="#1549CD" opacity="0.08" />
-                <rect x="748" y="87" width="25" height="27" fill="#1549CD" opacity="0.12" />
-                <rect x="774" y="115" width="25" height="24" fill="#1549CD" opacity="0.16" />
-                <rect x="721" y="87" width="26" height="27" fill="#1549CD" opacity="0.06" />
-                <rect x="774" y="61" width="25" height="25" fill="#1549CD" opacity="0.1" />
+                <rect x="721" y="61" width="26" height="25" fill="#1338BE" opacity="0.08" />
+                <rect x="748" y="87" width="25" height="27" fill="#1338BE" opacity="0.12" />
+                <rect x="774" y="115" width="25" height="24" fill="#1338BE" opacity="0.16" />
+                <rect x="721" y="87" width="26" height="27" fill="#1338BE" opacity="0.06" />
+                <rect x="774" y="61" width="25" height="25" fill="#1338BE" opacity="0.1" />
                 {/* Repeat arrow */}
-                <path d="M810 100 Q 830 100 830 80 Q 830 50 800 50" stroke="#1549CD" strokeWidth="1" opacity="0.2" fill="none" />
-                <polygon points="802,47 798,53 794,47" fill="#1549CD" opacity="0.2" />
-                <text x="760" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1549CD" opacity="0.4" letterSpacing="0.15em">SYSTEMIZE</text>
+                <path d="M810 100 Q 830 100 830 80 Q 830 50 800 50" stroke="#1338BE" strokeWidth="1" opacity="0.2" fill="none" />
+                <polygon points="802,47 798,53 794,47" fill="#1338BE" opacity="0.2" />
+                <text x="760" y="185" textAnchor="middle" fontFamily="monospace" fontSize="9" fill="#1338BE" opacity="0.4" letterSpacing="0.15em">SYSTEMIZE</text>
               </g>
             </svg>
           </Reveal>
@@ -240,7 +240,7 @@ export default function MethodologyPage() {
           </Reveal>
 
           <Reveal delay={50}>
-            <div className="mt-12 relative aspect-[21/9] overflow-hidden bg-[#1549CD]">
+            <div className="mt-12 relative aspect-[21/9] overflow-hidden bg-[#1338BE]">
               <img
                 src="/images/training/speaking-wide-1.png"
                 alt="Live training session — intimate workshop setting"
@@ -268,8 +268,8 @@ export default function MethodologyPage() {
                 </p>
               </Reveal>
               <Reveal delay={250}>
-                <div className="mt-8 border border-[#1549CD]/20 p-6">
-                  <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] mb-2">
+                <div className="mt-8 border border-[#1338BE]/20 p-6">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE] mb-2">
                     The Outcome
                   </p>
                   <p className="text-sm leading-relaxed">
@@ -280,7 +280,7 @@ export default function MethodologyPage() {
             </div>
 
             <Reveal delay={200} direction="right">
-              <div className="border border-[#1549CD]/20 bg-[#1549CD]/[0.02] p-8">
+              <div className="border border-[#1338BE]/20 bg-[#1338BE]/[0.02] p-8">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
                   What Your Team Learns
                 </p>
@@ -290,7 +290,7 @@ export default function MethodologyPage() {
                       key={item}
                       className="flex gap-4 text-sm text-muted-foreground leading-relaxed"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
                       {item}
                     </li>
                   ))}
@@ -302,7 +302,7 @@ export default function MethodologyPage() {
       </section>
 
       {/* ═══ PHASE 02 — CONVERGE (cobalt bg) ═══ */}
-      <section className="py-24 lg:py-36 bg-[#1549CD] text-white relative overflow-hidden">
+      <section className="py-24 lg:py-36 bg-[#1338BE] text-white relative overflow-hidden">
         {/* Grid overlay */}
         <div className="absolute inset-0 pointer-events-none">
           <div className="h-full mx-auto max-w-7xl px-6 lg:px-8 relative">
@@ -400,8 +400,8 @@ export default function MethodologyPage() {
                 </p>
               </Reveal>
               <Reveal delay={250}>
-                <div className="mt-8 border border-[#1549CD]/20 p-6">
-                  <p className="text-[11px] uppercase tracking-[0.15em] text-[#1549CD] mb-2">
+                <div className="mt-8 border border-[#1338BE]/20 p-6">
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-[#1338BE] mb-2">
                     The Outcome
                   </p>
                   <p className="text-sm leading-relaxed">
@@ -412,7 +412,7 @@ export default function MethodologyPage() {
             </div>
 
             <Reveal delay={200} direction="right">
-              <div className="border border-[#1549CD]/20 bg-[#1549CD]/[0.02] p-8">
+              <div className="border border-[#1338BE]/20 bg-[#1338BE]/[0.02] p-8">
                 <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground mb-6">
                   What Your Team Learns
                 </p>
@@ -422,7 +422,7 @@ export default function MethodologyPage() {
                       key={item}
                       className="flex gap-4 text-sm text-muted-foreground leading-relaxed"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1549CD]/40" />
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
                       {item}
                     </li>
                   ))}
@@ -451,7 +451,7 @@ export default function MethodologyPage() {
                 { n: "$280K", label: "Saved on a single product launch" },
               ].map((stat) => (
                 <div key={stat.n}>
-                  <p className="text-4xl lg:text-5xl font-medium tracking-tight text-[#1549CD]">
+                  <p className="text-4xl lg:text-5xl font-medium tracking-tight text-[#1338BE]">
                     <AnimatedCounter value={stat.n} />
                   </p>
                   <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
@@ -491,7 +491,7 @@ export default function MethodologyPage() {
 
           {/* Table header */}
           <Reveal delay={150}>
-            <div className="grid grid-cols-2 border-b border-[#1549CD]/20 pb-3">
+            <div className="grid grid-cols-2 border-b border-[#1338BE]/20 pb-3">
               <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                 Typical AI Training
               </p>
@@ -504,7 +504,7 @@ export default function MethodologyPage() {
           {/* Table rows */}
           {differences.map((diff, i) => (
             <Reveal key={diff.ours} delay={180 + i * 60}>
-              <div className="grid grid-cols-2 border-b border-[#1549CD]/10 py-5">
+              <div className="grid grid-cols-2 border-b border-[#1338BE]/10 py-5">
                 <p className="pr-3 sm:pr-8 text-sm text-muted-foreground line-through decoration-foreground/20">
                   {diff.theirs}
                 </p>

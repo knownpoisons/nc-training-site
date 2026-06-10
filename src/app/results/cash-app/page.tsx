@@ -11,7 +11,7 @@ export default function CashAppCaseStudy() {
   return (
     <>
       {/* Hero — cobalt */}
-      <section className="relative min-h-[60vh] bg-[#1549CD] text-white overflow-hidden flex items-end">
+      <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         {/* Header image — full bleed, faded behind content */}
         <div className="absolute inset-0">
           <img
@@ -19,7 +19,7 @@ export default function CashAppCaseStudy() {
             alt=""
             className="h-full w-full object-cover object-center opacity-[0.15] mix-blend-lighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1549CD] via-[#1549CD]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/40 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -58,7 +58,7 @@ export default function CashAppCaseStudy() {
               { n: "30%", label: "Increase in campaign output" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-white/20 pl-6">
-                <p className="text-3xl font-light tracking-tight text-[#1549CD]">
+                <p className="text-3xl font-light tracking-tight text-[#1338BE]">
                   {stat.n}
                 </p>
                 <p className="mt-1 text-sm text-white/50">{stat.label}</p>
@@ -183,7 +183,7 @@ export default function CashAppCaseStudy() {
           </div>
 
           {/* Testimonial */}
-          <div className="border-l-2 border-[#1549CD] pl-8">
+          <div className="border-l-2 border-[#1338BE] pl-8">
             <p className="text-lg font-light leading-relaxed italic">
               &ldquo;Jeremy&apos;s training was fun and really gave us the
               strategies, frameworks, and tools that we needed to completely
@@ -198,7 +198,7 @@ export default function CashAppCaseStudy() {
       </section>
 
       {/* Scorecard callout */}
-      <section className="py-10 bg-[#1549CD] text-white">
+      <section className="py-10 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
           <div>
             <p className="text-lg font-light tracking-tight">
@@ -210,7 +210,7 @@ export default function CashAppCaseStudy() {
           </div>
           <Link
             href="/assess"
-            className="shrink-0 bg-white text-[#1549CD] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
+            className="shrink-0 bg-white text-[#1338BE] px-8 py-3 text-[11px] uppercase tracking-[0.15em] font-medium hover:bg-white/90 transition-colors"
           >
             Take the Readiness Scorecard →
           </Link>
@@ -218,7 +218,7 @@ export default function CashAppCaseStudy() {
       </section>
 
       {/* CTA — cobalt band */}
-      <section className="py-16 lg:py-24 bg-[#1549CD] text-white">
+      <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
             Want results like these?
@@ -226,7 +226,7 @@ export default function CashAppCaseStudy() {
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/assess"
-              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1549CD]"
+              className="border border-white/30 px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-[#1338BE]"
             >
               Take the Readiness Scorecard
             </Link>
