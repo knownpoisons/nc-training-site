@@ -55,36 +55,85 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Main hero content */}
-        <div className="relative z-20 flex flex-col items-center justify-center min-h-[calc(100vh-120px)] pb-12 lg:pb-16 pt-20 lg:pt-28">
+        {/* Main hero content — compact stack, H1 + CTA always above fold */}
+        <div className="relative z-20 flex flex-col items-center justify-center pb-16 lg:pb-20 pt-16 lg:pt-20">
           <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full text-center">
             {/* Transparent logo — floats on the cobalt with no frame */}
             <Reveal>
               <img
                 src="/images/logos/brand/NCT-Logo-Platinum-Transparent.png"
                 alt="NotContent — AI Creative Training for Creative Teams and Brands"
-                className="mx-auto w-full max-w-[380px] lg:max-w-[480px] h-auto"
+                className="mx-auto w-full max-w-[200px] lg:max-w-[260px] h-auto"
               />
             </Reveal>
 
-            {/* Tagline + value prop */}
+            {/* H1 + subhead + CTA stack */}
             <Reveal delay={200}>
-              <div className="mt-8 lg:mt-10 max-w-2xl mx-auto space-y-5">
-                <div className="flex items-center justify-center gap-3">
-                  <span className="h-px w-10 bg-white/30" />
-                  <p className="text-white/60 text-[11px] uppercase tracking-[0.2em]">
-                    AI Creative Training · Enterprise Teams
-                  </p>
-                  <span className="h-px w-10 bg-white/30" />
-                </div>
-                <p className="text-xl lg:text-2xl text-white/90 leading-snug tracking-tight font-light">
-                  Most creative teams have one or two people who figured out AI on their own. The rest are watching. Every week, that gap gets wider.
+              <div className="mt-7 lg:mt-9 max-w-3xl mx-auto space-y-5">
+                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.05] tracking-tight font-light">
+                  Your team is already using AI.{" "}
+                  <span className="text-white/70">You can&rsquo;t name the tools.</span>
+                </h1>
+                <p className="text-base lg:text-lg text-white/80 leading-snug max-w-2xl mx-auto font-light">
+                  The gap between the people who figured it out and the rest gets wider every week. We close it in eight weeks — one operating model, not a workshop.
                 </p>
+              </div>
+            </Reveal>
+
+            {/* CTA hierarchy: Discovery Call primary, Scorecard demoted to text link */}
+            <Reveal delay={400}>
+              <div className="mt-7 lg:mt-9 flex flex-col items-center gap-3">
+                <Link
+                  href="/book"
+                  className="inline-flex items-center gap-2 bg-white text-[#1549CD] px-10 py-4 text-[12px] uppercase tracking-[0.18em] font-semibold transition-colors hover:bg-white/90"
+                >
+                  Book a Discovery Call →
+                </Link>
+                <Link
+                  href="/assess"
+                  className="text-[11px] uppercase tracking-[0.18em] text-white/60 hover:text-white transition-colors border-b border-white/20 hover:border-white/60 pb-0.5"
+                >
+                  Not ready? Take the 2-minute AI Readiness Scorecard →
+                </Link>
               </div>
             </Reveal>
           </div>
         </div>
 
+      </section>
+
+      {/* ═══ JEREMY — Built by an operator, not a consultant ═══ */}
+      <section className="py-20 lg:py-28 bg-background border-b border-foreground/10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:gap-16 items-center">
+              <div className="shrink-0 mx-auto lg:mx-0">
+                <img
+                  src="/images/jeremy-somers.jpg"
+                  alt="Jeremy Somers — founder, NotContent"
+                  className="w-44 h-44 lg:w-60 lg:h-60 object-cover ring-1 ring-foreground/10"
+                  loading="lazy"
+                />
+              </div>
+              <div>
+                <div className="oci-section-label">
+                  <span>About the trainer</span>
+                  <span>[NC]</span>
+                </div>
+                <h2 className="mt-5 oci-display-sm text-foreground max-w-3xl">
+                  Built by an operator, not a consultant.
+                </h2>
+                <div className="mt-7 max-w-2xl space-y-3 text-base lg:text-lg text-foreground/80 leading-relaxed">
+                  <p>Jeremy Somers spent 15 years directing creative at Spotify, Nike, Pepsi, Samsung, Mercedes-Benz.</p>
+                  <p>He founded the first AI-assisted creative agency in 2022.</p>
+                  <p>
+                    NotContent Training is the operating model that agency runs — the same system behind Cash App&rsquo;s 90% production cut, Maesa&rsquo;s $280K single-launch saving, and Herman Scheer&rsquo;s $4.5M asset shift.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
       </section>
 
       {/* ═══ SCORECARD BAND — Right at the fold ═══ */}
@@ -580,7 +629,7 @@ export default function Home() {
               {
                 name: "Transformation",
                 duration: "8-week program",
-                price: "Starts at $50,000",
+                price: "From $50,000",
                 description:
                   "Full operational transformation. Custom workflows and role-specific training across your entire team. The whole operation changes — not just the individuals in it.",
                 ideal: "Teams going all-in on AI creative",

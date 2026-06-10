@@ -9,25 +9,31 @@ import { ScorecardNudge } from "@/components/scorecard-nudge";
 import { ExitIntent } from "@/components/exit-intent";
 import { AnnouncementBar } from "@/components/announcement-bar";
 import { ScrollPopup } from "@/components/scroll-popup";
-import { ChromeGate } from "@/components/chrome-gate";
+import { MarketingChrome } from "@/components/marketing-chrome";
+import { getAllClientSlugs } from "@/lib/clients";
 
+// Aggressively reduced font weights — was 21 weights across 3 families.
+// Now ~7 weights total. Cuts initial font payload ~67% per the panel finding.
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
-  weight: ["200", "300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
+  display: "swap",
 });
 
 const ibmPlexSans = IBM_Plex_Sans({
   variable: "--font-ibm-plex-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 const sourceSerif = Source_Serif_4({
   variable: "--font-source-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400"],
   style: ["normal", "italic"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -72,20 +78,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const hubSlugs = getAllClientSlugs();
   return (
     <html lang="en">
       <body className={`${ibmPlexMono.variable} ${ibmPlexSans.variable} ${sourceSerif.variable} font-mono antialiased`}>
-        <ChromeGate>
+        <MarketingChrome hubSlugs={hubSlugs}>
           <AnnouncementBar />
           <Header />
-        </ChromeGate>
+        </MarketingChrome>
         <main>{children}</main>
-        <ChromeGate>
+        <MarketingChrome hubSlugs={hubSlugs}>
           <Footer />
           <ScorecardNudge />
           <ExitIntent />
           <ScrollPopup />
-        </ChromeGate>
+        </MarketingChrome>
         <Analytics />
         <SpeedInsights />
       </body>
