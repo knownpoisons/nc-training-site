@@ -158,7 +158,7 @@
   padding-left: 0.25em;
 }
 .nc-blog-body li::marker {
-  color: rgba(21, 73, 205, 0.55);
+  color: rgba(19, 56, 190, 0.55);
 }
 .nc-blog-body li p {
   margin-top: 0.3em;
@@ -178,16 +178,16 @@
 
 /* Links */
 .nc-blog-body a {
-  color: #1549cd;
+  color: #1338BE;
   font-weight: 600;
   text-decoration: underline;
   text-underline-offset: 3px;
-  text-decoration-color: rgba(21, 73, 205, 0.4);
+  text-decoration-color: rgba(19, 56, 190, 0.4);
   text-decoration-thickness: 1px;
   transition: text-decoration-color 0.15s ease;
 }
 .nc-blog-body a:hover {
-  text-decoration-color: #1549cd;
+  text-decoration-color: #1338BE;
 }
 
 /* Blockquote */
@@ -198,7 +198,7 @@
   font-style: italic;
   font-weight: 300;
   color: #000;
-  border-left: 2px solid #1549cd;
+  border-left: 2px solid #1338BE;
   padding-left: 1.5em;
   margin: 1.75em 0;
 }
@@ -214,7 +214,7 @@
 /* HR */
 .nc-blog-body hr {
   border: 0;
-  border-top: 1px solid rgba(21, 73, 205, 0.15);
+  border-top: 1px solid rgba(19, 56, 190, 0.15);
   margin: 2.25em 0;
 }
 
@@ -288,7 +288,7 @@
 }
 .nc-card-hover:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 40px -12px rgba(21, 73, 205, 0.12);
+  box-shadow: 0 12px 40px -12px rgba(19, 56, 190, 0.12);
 }
 
 /* Subtle border glow on hover */
@@ -296,7 +296,7 @@
   transition: box-shadow 0.3s ease;
 }
 .nc-glow-hover:hover {
-  box-shadow: 0 0 0 1px rgba(21, 73, 205, 0.2), 0 8px 30px -8px rgba(21, 73, 205, 0.08);
+  box-shadow: 0 0 0 1px rgba(19, 56, 190, 0.2), 0 8px 30px -8px rgba(19, 56, 190, 0.08);
 }
 
 /* Link underline grow from left */
@@ -373,7 +373,7 @@
   letter-spacing: 0.15em;
   color: #1338BE;
   padding-bottom: 16px;
-  border-bottom: 1px solid rgba(21, 73, 205, 0.2);
+  border-bottom: 1px solid rgba(19, 56, 190, 0.2);
   margin-bottom: 48px;
 }
 
@@ -388,7 +388,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: rgba(21, 73, 205, 0.1);
+  background: rgba(19, 56, 190, 0.1);
   pointer-events: none;
   z-index: 1;
 }
@@ -420,20 +420,20 @@
 
 /* Accordion items */
 .oci-accordion-item {
-  border-top: 1px solid rgba(21, 73, 205, 0.2);
+  border-top: 1px solid rgba(19, 56, 190, 0.2);
   cursor: pointer;
   transition: background 0.2s ease;
 }
 .oci-accordion-item:hover {
-  background: rgba(21, 73, 205, 0.03);
+  background: rgba(19, 56, 190, 0.03);
 }
 .oci-accordion-item:last-child {
-  border-bottom: 1px solid rgba(21, 73, 205, 0.2);
+  border-bottom: 1px solid rgba(19, 56, 190, 0.2);
 }
 
 /* Tilted process cards */
 .oci-card-tilted {
-  border: 1px solid rgba(21, 73, 205, 0.15);
+  border: 1px solid rgba(19, 56, 190, 0.15);
   background: #fff;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -442,7 +442,7 @@
 .oci-card-tilted:nth-child(3) { transform: rotate(-2deg); }
 .oci-card-tilted:hover {
   transform: rotate(0deg) translateY(-4px);
-  box-shadow: 0 12px 40px -12px rgba(21, 73, 205, 0.15);
+  box-shadow: 0 12px 40px -12px rgba(19, 56, 190, 0.15);
 }
 
 /* Full-width blue CTA button */
@@ -468,7 +468,7 @@
 /* Vertical line decorations */
 .oci-vline {
   width: 1px;
-  background: rgba(21, 73, 205, 0.2);
+  background: rgba(19, 56, 190, 0.2);
 }
 
 /* Blog card alternating styles */
@@ -493,9 +493,76 @@
   flex-direction: column;
   justify-content: flex-end;
   min-height: 160px;
-  border: 1px solid rgba(21, 73, 205, 0.1);
+  border: 1px solid rgba(19, 56, 190, 0.1);
   transition: border-color 0.2s ease;
 }
 .oci-blog-card-cream:hover {
   border-color: #1338BE;
 }
+
+/* ─── Hub-only primary CTA: cobalt fill, platinum hover ─── */
+.hub-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: #1338BE;
+  color: #ffffff;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 1px solid #1338BE;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.hub-cta:hover {
+  background: #E8E6E0;
+  color: #1338BE;
+  border-color: #E8E6E0;
+}
+
+.hub-cta-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background: transparent;
+  color: #1338BE;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  border: 1px solid #1338BE;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.hub-cta-outline:hover {
+  background: #E8E6E0;
+  color: #1338BE;
+  border-color: #E8E6E0;
+}
+
+.hub-cta-full {
+  display: block;
+  width: 100%;
+  padding: 1.25rem;
+  background: #1338BE;
+  color: #ffffff;
+  text-align: center;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-family: inherit;
+  border: 1px solid #1338BE;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.hub-cta-full:hover {
+  background: #E8E6E0;
+  color: #1338BE;
+  border-color: #E8E6E0;
+}
+.hub-cta-full:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+

@@ -20,12 +20,12 @@ const programs = [
   },
   {
     n: "02",
-    name: "Transformation",
+    name: "The Operating Model",
     format: "8-week program",
-    price: "Starts at $50,000",
+    price: "From $50,000",
     description:
-      "Full operational transformation. Custom workflows, governance, and role-specific training across your entire team. The whole operation changes.",
-    ideal: "Teams going all-in on AI creative",
+      "An installed AI operating system for your creative team in 8 weeks. Workflows, prompt libraries, quality gates, and the documentation that survives turnover.",
+    ideal: "Teams ready to ship on AI as a system, not a side experiment",
     href: "/programs/transformation",
   },
 ];

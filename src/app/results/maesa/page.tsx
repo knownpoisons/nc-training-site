@@ -26,7 +26,7 @@ export default function MaesaCaseStudy() {
             </p>
             <span className="text-[11px] text-white/30">·</span>
             <p className="text-[11px] uppercase tracking-[0.15em] text-white/40">
-              8-Week Transformation
+              8-Week Operating Model
             </p>
           </div>
           <img src="/images/logos/maesa.png" alt="Maesa" className="mt-4 h-6 brightness-0 invert opacity-80" />

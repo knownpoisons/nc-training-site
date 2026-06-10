@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const footerLinks = [
   { name: "Foundations", href: "/programs/foundations" },
-  { name: "Transformation", href: "/programs/transformation" },
+  { name: "The Operating Model", href: "/programs/transformation" },
   { name: "Methodology", href: "/methodology" },
   { name: "Results", href: "/results" },
   { name: "Blog", href: "/blog" },

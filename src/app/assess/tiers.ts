@@ -42,7 +42,7 @@ export const tierCopy: Record<Tier, TierCopy> = {
     whatItMeans: [
       "You have real capability but no durable system around it.",
       "Governance, IP, and disclosure exposure is growing quietly.",
-      "Transformation-level work is what converts capability into a defensible operation.",
+      "Operating-model work is what converts capability into a defensible operation.",
     ],
   },
   at_frontier: {
@@ -53,7 +53,7 @@ export const tierCopy: Record<Tier, TierCopy> = {
     whatItMeans: [
       "Your advantage is real but not yet defensible without documentation.",
       "The next unlock is operational depth, not more tools.",
-      "Transformation-level engagements typically 2× the impact of early wins.",
+      "Operating-model engagements typically 2× the impact of early wins.",
     ],
   },
 };

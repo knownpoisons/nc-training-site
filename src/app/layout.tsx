@@ -5,10 +5,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
-import { ScorecardNudge } from "@/components/scorecard-nudge";
 import { ExitIntent } from "@/components/exit-intent";
 import { AnnouncementBar } from "@/components/announcement-bar";
-import { ScrollPopup } from "@/components/scroll-popup";
 import { ChromeGate } from "@/components/chrome-gate";
 
 const ibmPlexMono = IBM_Plex_Mono({
@@ -85,9 +83,7 @@ export default function RootLayout({
         <main>{children}</main>
         <ChromeGate>
           <Footer />
-          <ScorecardNudge />
           <ExitIntent />
-          <ScrollPopup />
         </ChromeGate>
         <Analytics />
         <SpeedInsights />

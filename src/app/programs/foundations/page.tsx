@@ -30,7 +30,7 @@ const whoItsFor = [
   {
     title: "Agencies entering the AI conversation",
     description:
-      "Clients are asking about AI capability. This workshop gives your team enough to answer with confidence — and often becomes the starting point for a full Transformation engagement.",
+      "Clients are asking about AI capability. This workshop gives your team enough to answer with confidence — and often becomes the starting point for a full Operating Model engagement.",
   },
 ];
 
@@ -192,7 +192,7 @@ export default function FoundationsPage() {
       <section className="py-6 lg:py-8 border-b border-foreground/10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <p className="text-sm text-foreground/50">
-            $5,000. The average team recoups this in week two of their Transformation.
+            $5,000. The average team recoups this in week two of their Operating Model.
           </p>
         </div>
       </section>
@@ -234,7 +234,7 @@ export default function FoundationsPage() {
               href="/programs/transformation"
               className="px-10 py-4 text-[11px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:text-white"
             >
-              See the Transformation Program →
+              See The Operating Model →
             </Link>
           </div>
         </div>

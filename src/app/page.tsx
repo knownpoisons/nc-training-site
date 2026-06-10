@@ -69,9 +69,9 @@ export default function Home() {
             {/* H1 + subhead + CTA stack */}
             <Reveal delay={200}>
               <div className="mt-7 lg:mt-9 max-w-3xl mx-auto space-y-5">
-                <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-white leading-[1.05] tracking-tight font-light">
+                <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.875rem] xl:text-5xl text-white leading-[1.08] tracking-tight font-normal">
                   Your team is already using AI.{" "}
-                  <span className="text-white/70">You can&rsquo;t name the tools.</span>
+                  <em className="not-italic text-white/70 font-serif italic">You can&rsquo;t name the tools.</em>
                 </h1>
                 <p className="text-base lg:text-lg text-white/80 leading-snug max-w-2xl mx-auto font-light">
                   The gap between the people who figured it out and the rest gets wider every week. We close it in eight weeks — one operating model, not a workshop.
@@ -135,34 +135,29 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ SCORECARD BAND — Right at the fold ═══ */}
-      <section className="py-6 lg:py-8 bg-[#1338BE] text-white border-y-2 border-white/20">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-4">
-            <img
-              src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
-              alt=""
-              className="hidden sm:block shrink-0 h-10 w-10 rounded-[2px] shadow-sm ring-1 ring-white/10"
-            />
+      {/* ═══ SCORECARD BAND — Cream with cobalt left rule (per design system pullquote pattern) ═══ */}
+      <section className="border-b border-foreground/10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <div className="border-l-[3px] border-[#1338BE] pl-6 lg:pl-8 py-6 lg:py-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm text-white/80">
+              <p className="text-sm lg:text-base text-foreground">
                 Most teams think they&apos;re AI-ready. Almost none actually are.
               </p>
-              <p className="text-sm text-white/40">
+              <p className="text-sm text-muted-foreground mt-1">
                 Find out exactly where your team stands — and what to do about it.
               </p>
             </div>
-          </div>
-          <div className="shrink-0 flex flex-col items-end gap-2">
-            <Link
-              href="/assess"
-              className="shrink-0 border border-[#1338BE] bg-[#1338BE] px-8 py-3 text-[11px] uppercase tracking-[0.15em] text-white transition-colors hover:bg-white hover:text-foreground"
-            >
-              Take the AI Readiness Scorecard →
-            </Link>
-            <p className="text-[11px] text-white/40">
-              2 minutes. Free. No pitch.
-            </p>
+            <div className="shrink-0 flex flex-col sm:items-end gap-2">
+              <Link
+                href="/assess"
+                className="shrink-0 border border-[#1338BE] text-[#1338BE] px-7 py-3 text-[11px] uppercase tracking-[0.18em] font-semibold transition-colors hover:bg-[#1338BE] hover:text-white"
+              >
+                Take the AI Readiness Scorecard →
+              </Link>
+              <p className="text-[11px] text-muted-foreground">
+                2 minutes. Free. No pitch.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -226,21 +221,19 @@ export default function Home() {
             </p>
           </Reveal>
 
+          {/* Hairline stat strip — 3 stats, no card fills (per design system) */}
           <Reveal delay={200}>
-            <div className="mt-8 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-6">
+            <div className="mt-8 border-t border-b border-foreground/15 divide-y sm:divide-y-0 sm:divide-x divide-foreground/15 grid grid-cols-1 sm:grid-cols-3">
               {[
                 { value: "$8M+", label: "Combined client savings" },
                 { value: "96%", label: "Average time savings" },
-                { value: "400%", label: "Output increase" },
-                { value: "$280K", label: "Saved on a single launch" },
-                { value: "$3.5M", label: "Year-one savings (Cash App)" },
-                { value: "3", label: "Enterprise teams transformed" },
+                { value: "3", label: "Enterprise teams shipped" },
               ].map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-2xl lg:text-3xl font-medium tracking-tight text-[#1338BE]">
+                <div key={stat.label} className="px-6 py-8 lg:py-10">
+                  <p className="font-serif text-4xl lg:text-5xl tracking-tight text-[#1338BE] font-normal leading-none">
                     <AnimatedCounter value={stat.value} />
                   </p>
-                  <p className="mt-2 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                  <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                     {stat.label}
                   </p>
                 </div>
@@ -248,19 +241,13 @@ export default function Home() {
             </div>
           </Reveal>
 
-          {/* Maesa quote callout */}
+          {/* Maesa pull-quote — editorial pattern (cobalt left rule, cream fill) */}
           <Reveal delay={250}>
-            <div className="relative mt-16 lg:mt-24 bg-[#1338BE] text-white px-8 lg:px-16 py-12 lg:py-16">
-              {/* Corner sticker */}
-              <img
-                src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
-                alt=""
-                className="absolute -top-4 -right-4 hidden sm:block h-16 w-16 rounded-[2px] shadow-lg ring-1 ring-white/20 rotate-3"
-              />
-              <blockquote className="text-xl sm:text-2xl lg:text-3xl font-light leading-snug tracking-tight">
+            <div className="mt-16 lg:mt-24 border-l-[3px] border-[#1338BE] bg-foreground/[0.02] pl-8 lg:pl-12 pr-6 lg:pr-10 py-10 lg:py-14 max-w-4xl">
+              <blockquote className="font-serif text-xl sm:text-2xl lg:text-3xl text-foreground leading-snug tracking-tight font-normal">
                 &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
               </blockquote>
-              <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-white/50">
+              <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
                 — O. Savur, VP Marketing, Maesa · On stage at a national beauty conference
               </p>
             </div>
@@ -270,7 +257,7 @@ export default function Home() {
           <Reveal delay={350}>
             <div className="mt-20 lg:mt-28 pt-12 pb-4 border-t border-foreground/10">
               <p className="text-sm font-medium tracking-tight text-foreground mb-8">
-                Trusted by teams at Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target — and growing.
+                Trusted by teams at Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target.
               </p>
               <div className="overflow-hidden">
                 <div className="animate-marquee-slow flex w-max gap-x-16">

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "AI Creative Transformation | 8-Week Program",
+  title: "The Operating Model | 8-Week Program",
   description:
     "Our flagship 8-week program. Full operational AI transformation for creative teams. Custom workflows, governance, and ongoing support.",
 };
@@ -58,7 +58,7 @@ const included = [
   "AI Governance Policy — built for your team, your clients, your risk profile",
   "Before/after workflow benchmarks so you can show leadership exactly what changed",
   "Ongoing monthly coaching calls",
-  "NotContent AI Creative Transformation Certificate for every participant",
+  "NotContent AI Creative Operating Model Certificate for every participant",
 ];
 
 export default function TransformationPage() {
@@ -77,9 +77,9 @@ export default function TransformationPage() {
             <span>[NC]</span>
           </div>
           <h1 className="oci-display-sm max-w-4xl">
-            AI Creative
+            The Operating
             <br />
-            Transformation.
+            Model.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             You&apos;ve seen what AI does for one person. This is what it does
@@ -87,7 +87,7 @@ export default function TransformationPage() {
             training. Governance policy. Ongoing support.
           </p>
           <p className="mt-4 text-sm font-light tracking-tight text-white/80">
-            Starts at $50,000
+            From $50,000
           </p>
           <div className="mt-8">
             <Link
@@ -181,7 +181,7 @@ export default function TransformationPage() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-2xl font-light tracking-tight">Starts at $50,000</p>
+              <p className="text-2xl font-light tracking-tight">From $50,000</p>
               <p className="mt-2 text-sm text-foreground/60">
                 30 minutes. We&apos;ll tell you straight whether we&apos;re the right fit.
               </p>
@@ -263,7 +263,7 @@ export default function TransformationPage() {
                 <span>[NC.6]</span>
               </div>
               <h2 className="text-3xl lg:text-4xl font-light tracking-tight">
-                Starts at $50,000
+                From $50,000
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
                 Scoped to your team size, structure, and production needs.
@@ -271,7 +271,7 @@ export default function TransformationPage() {
               </p>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
                 This isn&apos;t a course. It&apos;s a bespoke operational
-                engagement.
+                engagement. The price reflects that.
               </p>
             </div>
             <div className="flex flex-col justify-center">
@@ -332,7 +332,7 @@ export default function TransformationPage() {
             The teams that move first win.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            We take on a limited number of Transformation clients each quarter.
+            We take on a limited number of Operating Model clients each quarter.
           </p>
           <Link
             href="/book"

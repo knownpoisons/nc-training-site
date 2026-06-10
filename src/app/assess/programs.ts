@@ -23,12 +23,12 @@ export const programs: Record<Program, ProgramData> = {
     duration: "Half-day · Up to 25 people",
   },
   transformation: {
-    label: "AI Creative Transformation",
+    label: "The Operating Model",
     tagline: "8-week program. Operational change that sticks.",
     detail:
       "In-person 2-day intensive plus weekly sessions. Role-specific tracks for CDs, designers, strategists, and production. Custom workflow buildout, governance policy, and ongoing monthly support. This is what we delivered to Cash App, Maesa, and Herman Scheer.",
     href: "/programs/transformation",
-    pricing: "Starts at $50,000",
+    pricing: "From $50,000",
     duration: "8 weeks + ongoing",
   },
 };
