@@ -1319,14 +1319,16 @@
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     let delivered = 0;
+    let currentFound = false;
 
     segs.forEach((seg, i) => {
       const [y, m, d] = seg.dataset.date.split('-').map(Number);
       const diff = new Date(y, m - 1, d).getTime() - today.getTime();
       if (diff < 0) { seg.classList.add('done'); delivered++; }
-      else if (diff === 0) {
+      else if (!currentFound) {
         seg.classList.add('current');
         if (marks[i]) marks[i].classList.add('is-current');
+        currentFound = true;
       }
     });
 
