@@ -48,9 +48,9 @@ const WORDS = [
 ];
 const MARKS = ["[NC]", "+", "×", "—", "01", "02", "03", "→"];
 
-const COLS = 9;
+const COLS = 7;
 const ROWS = 4;
-export const FRAGMENT_COUNT = COLS * ROWS; // 36 — busy enough to read as "many", calm when gridded
+export const FRAGMENT_COUNT = COLS * ROWS; // 28 — reads as "many" in scatter, calm when gridded
 
 export const FRAGMENTS: Fragment[] = (() => {
   const rand = rng(20260703);

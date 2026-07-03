@@ -155,9 +155,15 @@ function AnimatedStage() {
     <section
       id={STAGE_ID}
       aria-label="The NotContent Method in motion"
-      className="relative h-[300vh] sm:h-[350vh] border-y border-foreground/10"
+      className="relative h-[200vh] sm:h-[250vh] border-y border-foreground/10"
     >
       <div className="sticky top-0 h-screen overflow-hidden bg-background">
+        {/* Scroll-progress rule — telegraphs "this is a timeline, keep going" */}
+        <motion.div
+          style={{ scaleX: scrollYProgress }}
+          className="absolute bottom-0 left-0 right-0 h-px origin-left bg-[#1338BE]/40 z-10"
+          aria-hidden="true"
+        />
         {/* Build-phase documented-grid backdrop */}
         <motion.div
           style={{ opacity: gridOpacity }}

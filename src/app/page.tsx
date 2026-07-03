@@ -47,9 +47,9 @@ export default function Home() {
             {/* H1 + subhead + CTA stack */}
             <Reveal delay={200}>
               <div className="mt-7 lg:mt-9 max-w-3xl mx-auto space-y-5">
-                <h1 className="font-serif text-3xl sm:text-4xl lg:text-[2.875rem] xl:text-5xl text-white leading-[1.08] tracking-tight font-normal">
+                <h1 className="font-editorial text-3xl sm:text-4xl lg:text-[2.875rem] xl:text-5xl text-white leading-[1.08] tracking-tight font-normal">
                   Your most curious people already use AI.{" "}
-                  <em className="not-italic text-white/70 font-serif italic">We bring the whole team with them.</em>
+                  <em className="not-italic text-white/70 font-editorial italic">We bring the whole team with them.</em>
                 </h1>
                 <p className="text-base lg:text-lg text-white/80 leading-snug max-w-2xl mx-auto font-light">
                   Eight weeks. One operating model — installed across your team, not learned at a workshop.
@@ -120,9 +120,9 @@ export default function Home() {
         <div className="mx-auto max-w-5xl px-6 lg:px-8">
           <Reveal>
             <div className="border-l-[3px] border-[#1338BE] pl-8 lg:pl-12">
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] text-foreground leading-[1.1] tracking-tight font-normal">
+              <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] text-foreground leading-[1.1] tracking-tight font-normal">
                 Techniques over{" "}
-                <ItalicWipe className="font-serif italic text-[#1338BE]">tools.</ItalicWipe>
+                <ItalicWipe className="font-editorial italic text-[#1338BE]">tools.</ItalicWipe>
               </h2>
               <p className="mt-6 lg:mt-8 text-base lg:text-lg text-foreground/70 leading-relaxed max-w-2xl">
                 The tools change every week. The techniques don&rsquo;t. We teach the way of working that survives every new release — so the work compounds instead of restarting.
@@ -193,9 +193,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ FLAGSHIP — Scroll-scrubbed Diverge → Converge → Build ═══ */}
-      <DivergeConverge />
-
       {/* ═══ INTRO — Oversized statement + stats + Maesa quote + logos ═══ */}
       <section className="py-32 lg:py-44 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -230,7 +227,7 @@ export default function Home() {
                 { value: "3", label: "Enterprise teams shipped" },
               ].map((stat) => (
                 <div key={stat.label} className="px-6 py-8 lg:py-10">
-                  <p className="font-serif text-4xl lg:text-5xl tracking-tight text-[#1338BE] font-normal leading-none">
+                  <p className="font-editorial text-4xl lg:text-5xl tracking-tight text-[#1338BE] font-normal leading-none">
                     <AnimatedCounter value={stat.value} />
                   </p>
                   <p className="mt-3 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
@@ -244,7 +241,7 @@ export default function Home() {
           {/* Maesa pull-quote — editorial pattern (cobalt left rule, cream fill) */}
           <Reveal delay={250}>
             <div className="mt-16 lg:mt-24 border-l-[3px] border-[#1338BE] bg-foreground/[0.02] pl-8 lg:pl-12 pr-6 lg:pr-10 py-10 lg:py-14 max-w-4xl">
-              <blockquote className="font-serif text-xl sm:text-2xl lg:text-3xl text-foreground leading-snug tracking-tight font-normal">
+              <blockquote className="font-editorial text-xl sm:text-2xl lg:text-3xl text-foreground leading-snug tracking-tight font-normal">
                 &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
               </blockquote>
               <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
@@ -373,6 +370,9 @@ export default function Home() {
 
       {/* ═══ TESTIMONIALS — Editorial quote carousel (client, extracted) ═══ */}
       <TestimonialsSection />
+
+      {/* ═══ FLAGSHIP — Diverge → Converge → Build (after the proof: the method-poem rewards the convinced buyer) ═══ */}
+      <DivergeConverge />
 
       {/* ═══ WHY NOTCONTENT ═══ */}
       <section className="py-32 lg:py-44 bg-foreground text-white">
