@@ -3,6 +3,7 @@ import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon";
 import { TestimonialsSection } from "@/components/home/testimonials";
+import { DivergeConverge } from "@/components/motion/diverge-converge";
 
 const clients = [
   "Adidas",
@@ -186,6 +187,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══ FLAGSHIP — Scroll-scrubbed Diverge → Converge → Build ═══ */}
+      <DivergeConverge />
 
       {/* ═══ INTRO — Oversized statement + stats + Maesa quote + logos ═══ */}
       <section className="py-32 lg:py-44 relative oci-grid-lines">
