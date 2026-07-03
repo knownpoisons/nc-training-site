@@ -81,7 +81,7 @@ export default function AboutPage() {
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img
-            src="/images/training/speaking-wide-4.png"
+            src="/images/training/speaking-wide-4.webp"
             alt=""
             className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten"
           />

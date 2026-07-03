@@ -41,7 +41,7 @@ const phases = [
     track: "Make",
     arcPosition: "1 of 2 in Make",
     icon: "diverge" as const,
-    image: "/images/training/speaking-wide-1.png",
+    image: "/images/training/speaking-wide-1.webp",
     imageAlt: "Live training session — exploration phase, options at scale",
     variant: "default" as const,
     hook: "Volume gets cheap. The work starts where it used to finish.",
@@ -63,7 +63,7 @@ const phases = [
     track: "Make",
     arcPosition: "2 of 2 in Make",
     icon: "converge" as const,
-    image: "/images/training/speaking-wide-2.png",
+    image: "/images/training/speaking-wide-2.webp",
     imageAlt: "Live training session — convergence phase, taste applied to AI output",
     variant: "cobalt" as const,
     hook: "AI work clears the bar. Cost drops; quality doesn't.",
@@ -85,7 +85,7 @@ const phases = [
     track: "Build",
     arcPosition: "1 of 1 in Build",
     icon: "systemize" as const,
-    image: "/images/training/speaking-wide-3.png",
+    image: "/images/training/speaking-wide-3.webp",
     imageAlt: "Build phase — workflows the team owns",
     variant: "culmination" as const,
     hook: "The team doesn't need us anymore. That's the point.",
@@ -176,7 +176,7 @@ export default function MethodologyPage() {
       {/* ═══ HERO — Cobalt 60vh ═══ */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
-          <img src="/images/training/speaking-wide-3.png" alt="" className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten" />
+          <img src="/images/training/speaking-wide-3.webp" alt="" className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="absolute inset-0 pointer-events-none">

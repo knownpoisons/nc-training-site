@@ -32,7 +32,7 @@ export function Footer() {
             <div>
               <div className="flex items-center gap-3">
                 <img
-                  src="/images/logos/brand/NCT-Icon-PlatinumonBlue.png"
+                  src="/images/logos/brand/NCT-Icon-PlatinumonBlue.webp"
                   alt=""
                   className="h-10 w-10 rounded-[2px] shadow-sm ring-1 ring-black/5"
                 />
@@ -91,7 +91,7 @@ export function Footer() {
             <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
               <div className="flex items-center gap-3">
                 <img
-                  src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
+                  src="/images/logos/brand/NCT-Icon-blueonplatinum.webp"
                   alt=""
                   className="h-5 w-5 rounded-[2px] opacity-50"
                 />

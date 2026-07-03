@@ -15,7 +15,7 @@ export default function CashAppCaseStudy() {
         {/* Header image — full bleed, faded behind content */}
         <div className="absolute inset-0">
           <img
-            src="/images/case-studies/cash-app/header.png"
+            src="/images/case-studies/cash-app/header.webp"
             alt=""
             className="h-full w-full object-cover object-center opacity-[0.15] mix-blend-lighten"
           />
@@ -38,7 +38,7 @@ export default function CashAppCaseStudy() {
               8-Week Operating Model
             </p>
           </div>
-          <img src="/images/logos/cashapp.png" alt="Cash App" className="mt-4 h-8 brightness-0 invert opacity-80" />
+          <img src="/images/logos/cashapp.webp" alt="Cash App" className="mt-4 h-8 brightness-0 invert opacity-80" />
           <h1 className="oci-display-sm mt-4">Cash App</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Part of Square and Block. Trained a small internal creative team —
@@ -157,21 +157,21 @@ export default function CashAppCaseStudy() {
             <div className="grid gap-4 sm:grid-cols-3">
               <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
                 <img
-                  src="/images/case-studies/cash-app/campaign-1.png"
+                  src="/images/case-studies/cash-app/campaign-1.webp"
                   alt="Cash App campaign — AI-generated creative"
                   className="h-full w-full object-cover"
                 />
               </div>
               <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
                 <img
-                  src="/images/case-studies/cash-app/campaign-2.png"
+                  src="/images/case-studies/cash-app/campaign-2.webp"
                   alt="Cash App campaign — product visualization"
                   className="h-full w-full object-cover"
                 />
               </div>
               <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
                 <img
-                  src="/images/case-studies/cash-app/campaign-3.png"
+                  src="/images/case-studies/cash-app/campaign-3.webp"
                   alt="Cash App campaign — no hidden fees"
                   className="h-full w-full object-cover"
                 />

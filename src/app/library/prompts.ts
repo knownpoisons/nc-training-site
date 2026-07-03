@@ -362,7 +362,7 @@ Include a copy button on this summary block.
 The same single HTML file, now with three functional tabs. No additional files needed.`,
       },
     ],
-    heroImage: "/images/library/linkedin-prospect-intelligence-sample.png",
+    heroImage: "/images/library/linkedin-prospect-intelligence-sample.webp",
     heroVideo: "/images/library/linkedin-prospect-intelligence-sample-dash.mp4",
     tags: ["sales", "outreach", "linkedin", "dashboard", "multi-phase"],
   },

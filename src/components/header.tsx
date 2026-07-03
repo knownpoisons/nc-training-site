@@ -38,8 +38,8 @@ export function Header() {
           <img
             src={
               scrolled
-                ? "/images/logos/brand/NCT-Icon-PlatinumonBlue.png"
-                : "/images/logos/brand/NCT-Icon-blueonplatinum.png"
+                ? "/images/logos/brand/NCT-Icon-PlatinumonBlue.webp"
+                : "/images/logos/brand/NCT-Icon-blueonplatinum.webp"
             }
             alt=""
             className="h-7 w-7 rounded-[2px] shadow-sm ring-1 ring-black/5 transition-all duration-300 group-hover:ring-[#1338BE]/20"

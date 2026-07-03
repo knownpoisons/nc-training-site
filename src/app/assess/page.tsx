@@ -140,7 +140,7 @@ export default function AssessPage() {
           </Link>
           <div className="relative z-10 mx-auto max-w-2xl px-6 lg:px-8 text-center">
             <img
-              src="/images/logos/brand/NCT-Icon-blueonplatinum.png"
+              src="/images/logos/brand/NCT-Icon-blueonplatinum.webp"
               alt=""
               className="mx-auto h-14 w-14 rounded-[2px] shadow-md ring-1 ring-white/10 mb-8"
             />

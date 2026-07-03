@@ -38,7 +38,7 @@ export default function NotFound() {
             </div>
             <div className="hidden lg:block">
               <img
-                src="/images/404.png"
+                src="/images/404.webp"
                 alt="Jeremy Somers — contact sheet"
                 className="w-full max-w-md mx-auto opacity-80"
               />

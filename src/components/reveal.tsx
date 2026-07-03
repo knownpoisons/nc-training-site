@@ -22,10 +22,18 @@ export function Reveal({
 }: RevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+
+    // Respect prefers-reduced-motion — render fully visible, no transform/fade.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setReduced(true);
+      setVisible(true);
+      return;
+    }
 
     // Immediately check if already in viewport (avoids flash of invisible content)
     const rect = el.getBoundingClientRect();
@@ -59,12 +67,16 @@ export function Reveal({
     <div
       ref={ref}
       className={className}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "translate3d(0, 0, 0)" : transforms[direction],
-        transition: `opacity 0.7s ease-out ${delay}ms, transform 0.7s ease-out ${delay}ms`,
-        willChange: "opacity, transform",
-      }}
+      style={
+        reduced
+          ? undefined
+          : {
+              opacity: visible ? 1 : 0,
+              transform: visible ? "translate3d(0, 0, 0)" : transforms[direction],
+              transition: `opacity 0.7s ease-out ${delay}ms, transform 0.7s ease-out ${delay}ms`,
+              willChange: "opacity, transform",
+            }
+      }
     >
       {children}
     </div>

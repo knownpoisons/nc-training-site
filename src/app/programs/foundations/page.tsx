@@ -40,7 +40,7 @@ export default function FoundationsPage() {
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
-          <img src="/images/training/speaking-wide-4.png" alt="" className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten" />
+          <img src="/images/training/speaking-wide-4.webp" alt="" className="h-full w-full object-cover opacity-[0.12] mix-blend-lighten" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
         </div>
         <div className="oci-grid-lines-light" />

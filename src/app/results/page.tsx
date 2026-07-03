@@ -15,7 +15,7 @@ const caseStudies = [
     headline: "Production time cut to 10%. $3.5M in estimated year-one savings.",
     summary:
       "Part of Square and Block. Trained a small internal creative team — producers, designers, 3D artists. Production-ready by halfway through.",
-    image: "/images/case-studies/cash-app/campaign-1.png",
+    image: "/images/case-studies/cash-app/campaign-1.webp",
     stats: [
       { n: "90%", label: "Reduction in production time" },
       { n: "$3.5M", label: "Estimated year-one savings" },
@@ -60,7 +60,7 @@ export default function CaseStudiesPage() {
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
           <img
-            src="/images/training/speaking-wide-3.png"
+            src="/images/training/speaking-wide-3.webp"
             alt=""
             className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten"
           />
@@ -83,8 +83,8 @@ export default function CaseStudiesPage() {
             programs.
           </p>
           <div className="mt-12 flex items-center gap-6 sm:gap-10 flex-wrap">
-            <img src="/images/logos/cashapp.png" alt="Cash App" className="h-6 opacity-40" />
-            <img src="/images/logos/maesa.png" alt="Maesa" className="h-4 opacity-40" />
+            <img src="/images/logos/cashapp.webp" alt="Cash App" className="h-6 opacity-40" />
+            <img src="/images/logos/maesa.webp" alt="Maesa" className="h-4 opacity-40" />
             <img src="/images/logos/hermanscheer.jpg" alt="Herman Scheer" className="h-5 opacity-40" />
           </div>
         </div>

@@ -1,10 +1,8 @@
-"use client";
-
 import Link from "next/link";
-import { useState } from "react";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon";
+import { TestimonialsSection } from "@/components/home/testimonials";
 
 const clients = [
   "Adidas",
@@ -18,30 +16,7 @@ const clients = [
   "Target",
 ];
 
-const testimonials = [
-  {
-    company: "Cash App",
-    quote:
-      "Jeremy\u2019s training was fun and really gave us the strategies, frameworks, and tools that we needed to completely revolutionize how we produce creative \u2014 both internally for pitching and externally for production.",
-    name: "Jose Diaz",
-    title: "Head of Production, Cash App",
-    context: "Post-training debrief",
-  },
-  {
-    company: "Herman Scheer",
-    quote:
-      "We\u2019ve been able to offer new and very profitable services to existing clients and use our skills to package new offerings to new clients as well. We feel comfortable moving into this new AI-powered world.",
-    name: "Adam",
-    title: "Creative Director, Herman Scheer",
-    context: "Six months post-engagement",
-  },
-];
-
 export default function Home() {
-  const [testimonialIndex, setTestimonialIndex] = useState(0);
-
-  const currentTestimonial = testimonials[testimonialIndex];
-
   return (
     <>
       {/* ═══ SECTION 1: HERO — Full-viewport cobalt with brand logo feature ═══ */}
@@ -60,7 +35,7 @@ export default function Home() {
             {/* Transparent logo — floats on the cobalt with no frame */}
             <Reveal>
               <img
-                src="/images/logos/brand/NCT-Logo-Platinum-Transparent.png"
+                src="/images/logos/brand/NCT-Logo-Platinum-Transparent.webp"
                 alt="NotContent — AI Creative Training for Creative Teams and Brands"
                 className="mx-auto w-full max-w-[200px] lg:max-w-[260px] h-auto"
               />
@@ -181,7 +156,7 @@ export default function Home() {
       {/* ═══ "THIS ISN'T" MANIFESTO ═══ */}
       <section className="py-16 lg:py-24 bg-foreground text-white relative overflow-hidden">
         <img
-          src="/images/illustrations/chaos-dark.png"
+          src="/images/illustrations/chaos-dark.webp"
           alt=""
           className="absolute right-0 top-1/2 -translate-y-1/2 w-[600px] object-contain opacity-25 pointer-events-none hidden lg:block"
           role="presentation"
@@ -387,79 +362,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ TESTIMONIALS — Editorial quote carousel ═══ */}
-      <section className="py-32 lg:py-44 relative oci-grid-lines">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <Reveal>
-            <div className="oci-section-label">
-              <span>Testimonials</span>
-              <span>[NC.2]</span>
-            </div>
-          </Reveal>
-
-          <div className="grid lg:grid-cols-[200px_1fr] gap-12 lg:gap-16 items-start">
-            {/* Left: company name + pagination */}
-            <div>
-              <Reveal delay={100}>
-                <p className="text-2xl font-medium tracking-tight">
-                  {currentTestimonial.company}
-                </p>
-                <div className="mt-6 flex items-center gap-3">
-                  <span className="text-sm text-muted-foreground">
-                    {String(testimonialIndex + 1).padStart(2, "0")}/{String(testimonials.length).padStart(2, "0")}
-                  </span>
-                  <div className="flex flex-col gap-1">
-                    <button
-                      onClick={() =>
-                        setTestimonialIndex(
-                          testimonialIndex > 0 ? testimonialIndex - 1 : testimonials.length - 1
-                        )
-                      }
-                      className="text-[#1338BE] hover:text-[#0e38a8] transition-colors cursor-pointer"
-                      aria-label="Previous testimonial"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M4 10l4-4 4 4" />
-                      </svg>
-                    </button>
-                    <button
-                      onClick={() =>
-                        setTestimonialIndex(
-                          testimonialIndex < testimonials.length - 1 ? testimonialIndex + 1 : 0
-                        )
-                      }
-                      className="text-[#1338BE] hover:text-[#0e38a8] transition-colors cursor-pointer"
-                      aria-label="Next testimonial"
-                    >
-                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5">
-                        <path d="M4 6l4 4 4-4" />
-                      </svg>
-                    </button>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* Right: quote */}
-            <div>
-              <Reveal delay={200}>
-                <blockquote className="text-2xl sm:text-3xl lg:text-4xl font-light leading-snug tracking-tight">
-                  &ldquo;{currentTestimonial.quote}&rdquo;
-                </blockquote>
-                <div className="mt-8 flex items-center gap-4">
-                  <div className="h-px flex-1 bg-foreground/10" />
-                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                    {currentTestimonial.name}, {currentTestimonial.title}
-                  </p>
-                </div>
-                <p className="mt-2 text-right text-[11px] text-muted-foreground/60">
-                  {currentTestimonial.context}
-                </p>
-              </Reveal>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* ═══ TESTIMONIALS — Editorial quote carousel (client, extracted) ═══ */}
+      <TestimonialsSection />
 
       {/* ═══ WHY NOTCONTENT ═══ */}
       <section className="py-32 lg:py-44 bg-foreground text-white">
@@ -468,7 +372,7 @@ export default function Home() {
             <div className="flex items-center justify-between border-b border-white/20 pb-3 mb-0 text-[11px] uppercase tracking-[0.15em] text-white/40">
               <span className="flex items-center gap-2.5">
                 <img
-                  src="/images/logos/brand/NCT-Icon-PlatinumonBlue.png"
+                  src="/images/logos/brand/NCT-Icon-PlatinumonBlue.webp"
                   alt=""
                   className="h-5 w-5 rounded-[2px]"
                 />
@@ -528,7 +432,7 @@ export default function Home() {
         {/* Illustration — right side, behind text */}
         <div className="absolute right-0 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none">
           <img
-            src="/images/illustrations/cloud-cream.png"
+            src="/images/illustrations/cloud-cream.webp"
             alt=""
             className="w-[480px] max-h-[400px] object-contain opacity-[0.15]"
             role="presentation"
