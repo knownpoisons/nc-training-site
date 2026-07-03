@@ -4,6 +4,8 @@ import { AnimatedCounter } from "@/components/animated-counter";
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon";
 import { TestimonialsSection } from "@/components/home/testimonials";
 import { DivergeConverge } from "@/components/motion/diverge-converge";
+import { Magnetic } from "@/components/motion/magnetic";
+import { ItalicWipe } from "@/components/motion/italic-wipe";
 
 const clients = [
   "Adidas",
@@ -58,12 +60,14 @@ export default function Home() {
             {/* CTA hierarchy: Discovery Call primary, Scorecard demoted to text link */}
             <Reveal delay={400}>
               <div className="mt-7 lg:mt-9 flex flex-col items-center gap-3">
-                <Link
-                  href="/book"
-                  className="inline-flex items-center gap-2 bg-white text-[#1338BE] px-10 py-4 text-[12px] uppercase tracking-[0.18em] font-semibold transition-colors hover:bg-white/90"
-                >
-                  Book a Discovery Call →
-                </Link>
+                <Magnetic>
+                  <Link
+                    href="/book"
+                    className="inline-flex items-center gap-2 bg-white text-[#1338BE] px-10 py-4 text-[12px] uppercase tracking-[0.18em] font-semibold transition-colors hover:bg-white/90"
+                  >
+                    Book a Discovery Call →
+                  </Link>
+                </Magnetic>
                 <Link
                   href="/assess"
                   className="text-[11px] uppercase tracking-[0.18em] text-white/60 hover:text-white transition-colors border-b border-white/20 hover:border-white/60 pb-0.5"
@@ -117,7 +121,8 @@ export default function Home() {
           <Reveal>
             <div className="border-l-[3px] border-[#1338BE] pl-8 lg:pl-12">
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl xl:text-[3.5rem] text-foreground leading-[1.1] tracking-tight font-normal">
-                Techniques over <em className="font-serif italic text-[#1338BE]">tools.</em>
+                Techniques over{" "}
+                <ItalicWipe className="font-serif italic text-[#1338BE]">tools.</ItalicWipe>
               </h2>
               <p className="mt-6 lg:mt-8 text-base lg:text-lg text-foreground/70 leading-relaxed max-w-2xl">
                 The tools change every week. The techniques don&rsquo;t. We teach the way of working that survives every new release — so the work compounds instead of restarting.
@@ -456,12 +461,14 @@ export default function Home() {
           </Reveal>
           <Reveal delay={250}>
             <div className="mt-12 flex flex-col gap-4 sm:flex-row sm:gap-6 items-start">
-              <Link
-                href="/book"
-                className="inline-flex items-center gap-2 bg-[#1338BE] text-white px-10 py-4 text-[12px] uppercase tracking-[0.18em] font-semibold transition-colors hover:bg-[#0e2c95]"
-              >
-                Book a Discovery Call →
-              </Link>
+              <Magnetic>
+                <Link
+                  href="/book"
+                  className="inline-flex items-center gap-2 bg-[#1338BE] text-white px-10 py-4 text-[12px] uppercase tracking-[0.18em] font-semibold transition-colors hover:bg-[#0e2c95]"
+                >
+                  Book a Discovery Call →
+                </Link>
+              </Magnetic>
               <Link
                 href="/assess"
                 className="inline-block text-[11px] uppercase tracking-[0.18em] text-foreground/60 hover:text-foreground transition-colors border-b border-foreground/20 hover:border-foreground/60 pb-1 mt-4 sm:mt-3"
