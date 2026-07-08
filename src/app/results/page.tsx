@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CaseStudyVideo } from "@/components/case-study-video";
+import { AmbientVideo } from "@/components/ambient-video";
 
 export const metadata: Metadata = {
   title: "Case Studies | Real Results from AI Creative Training",
@@ -15,7 +17,9 @@ const caseStudies = [
     headline: "Production time cut to 10%. $3.5M in estimated year-one savings.",
     summary:
       "Part of Square and Block. Trained a small internal creative team — producers, designers, 3D artists. Production-ready by halfway through.",
-    image: "/images/case-studies/cash-app/campaign-1.webp",
+    video: "/videos/case-studies/cash-app-main.mp4",
+    poster: "/videos/case-studies/cash-app-main.jpg",
+    orientation: "landscape" as const,
     stats: [
       { n: "90%", label: "Reduction in production time" },
       { n: "$3.5M", label: "Estimated year-one savings" },
@@ -29,7 +33,9 @@ const caseStudies = [
     headline: "New brand launched into every Target store. 3 months instead of 9.",
     summary:
       "Trained two internal teams across a dozen beauty, hair, and fragrance brands. Launched a new brand into every Target store entirely with AI.",
-    image: null as string | null,
+    video: "/videos/case-studies/maesa-main.mp4",
+    poster: "/videos/case-studies/maesa-main.jpg",
+    orientation: "portrait" as const,
     stats: [
       { n: "$280K", label: "Saved on a single brand launch" },
       { n: "3 months", label: "Instead of the usual 9" },
@@ -43,7 +49,9 @@ const caseStudies = [
     headline: "$4.5M in estimated year-one production savings.",
     summary:
       "Big Los Angeles branding and design agency. Trained their entire team from zero to full AI production.",
-    image: null as string | null,
+    video: "/videos/case-studies/herman-scheer-main.mp4",
+    poster: "/videos/case-studies/herman-scheer-main.jpg",
+    orientation: "landscape" as const,
     stats: [
       { n: "$4.5M", label: "Estimated year-one savings" },
       { n: "Zero to full", label: "AI production capability" },
@@ -59,12 +67,12 @@ export default function CaseStudiesPage() {
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">
-          <img
-            src="/images/training/speaking-wide-3.webp"
-            alt=""
-            className="h-full w-full object-cover opacity-[0.1] mix-blend-lighten"
+          <AmbientVideo
+            src="/videos/case-studies/results-hero.mp4"
+            poster="/videos/case-studies/results-hero.jpg"
+            className="h-full w-full object-cover opacity-[0.14] mix-blend-lighten"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/50 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1338BE] via-[#1338BE]/55 to-[#1338BE]/20" />
         </div>
         <div className="oci-grid-lines-light" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 pb-16 w-full">
@@ -83,7 +91,7 @@ export default function CaseStudiesPage() {
             programs.
           </p>
           <div className="mt-12 flex items-center gap-6 sm:gap-10 flex-wrap">
-            <img src="/images/logos/cashapp.png" alt="Cash App" className="h-6 opacity-40" />
+            <img src="/images/logos/cashapp.webp" alt="Cash App" className="h-6 opacity-40" />
             <img src="/images/logos/maesa.webp" alt="Maesa" className="h-4 opacity-40" />
             <img src="/images/logos/hermanscheer.jpg" alt="Herman Scheer" className="h-5 opacity-40" />
           </div>
@@ -111,64 +119,65 @@ export default function CaseStudiesPage() {
         </div>
       </section>
 
-      {/* Case Studies */}
-      {caseStudies.map((study, i) => (
-        <section
-          key={study.client}
-          className="relative py-16 lg:py-24 oci-grid-lines border-b border-foreground/10"
-        >
-          <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-            <div className="oci-section-label mb-12">
-              <span>{study.industry.toUpperCase()}</span>
-              <span>[NC.{i + 1}]</span>
-            </div>
+      {/* Case Studies — video-led, alternating */}
+      {caseStudies.map((study, i) => {
+        const flip = i % 2 === 1;
+        return (
+          <section
+            key={study.client}
+            className="relative py-20 lg:py-28 oci-grid-lines border-b border-foreground/10"
+          >
+            <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
+              <div className="oci-section-label mb-12">
+                <span>{study.industry.toUpperCase()}</span>
+                <span>[NC.{i + 1}]</span>
+              </div>
 
-            <div className="grid gap-12 lg:grid-cols-2">
-              <div className="relative overflow-hidden">
-                {study.image && (
-                  <div className="absolute -inset-6 overflow-hidden">
-                    <img
-                      src={study.image}
-                      alt=""
-                      className="h-full w-full object-cover opacity-[0.07]"
-                    />
-                  </div>
-                )}
-                <div className="relative">
+              <div className="grid gap-10 lg:gap-16 lg:grid-cols-2 lg:items-center">
+                {/* The creative — the work itself */}
+                <div className={flip ? "lg:order-2" : ""}>
+                  <CaseStudyVideo
+                    src={study.video}
+                    poster={study.poster}
+                    orientation={study.orientation}
+                  />
+                </div>
+
+                {/* The story */}
+                <div className={flip ? "lg:order-1" : ""}>
                   <h2 className="oci-display-sm">{study.client}</h2>
-                  <p className="mt-6 text-sm leading-relaxed text-foreground/60">
+                  <p className="mt-5 text-xl lg:text-2xl font-light leading-snug tracking-tight text-foreground">
+                    {study.headline}
+                  </p>
+                  <p className="mt-5 max-w-md text-sm leading-relaxed text-foreground/60">
                     {study.summary}
                   </p>
+
+                  <div className="mt-8 grid grid-cols-3 gap-5">
+                    {study.stats.map((stat) => (
+                      <div key={stat.label} className="border-l-2 border-[#1338BE] pl-4">
+                        <p className="text-xl lg:text-2xl font-light tracking-tight text-[#1338BE] leading-none">
+                          {stat.n}
+                        </p>
+                        <p className="mt-2 text-[11px] leading-tight text-foreground/40">
+                          {stat.label}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+
                   <Link
                     href={study.slug}
-                    className="mt-8 inline-block text-[11px] font-medium uppercase tracking-[0.15em] text-[#1338BE] transition-colors hover:text-[#1338BE]/70"
+                    className="mt-10 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#1338BE] transition-colors hover:text-[#1338BE]/70"
                   >
                     Read full case study →
                   </Link>
                 </div>
               </div>
-
-              <div>
-                <div className="grid gap-6 sm:grid-cols-3">
-                  {study.stats.map((stat) => (
-                    <div key={stat.label} className="border-l-2 border-[#1338BE] pl-5">
-                      <p className="text-2xl font-light tracking-tight text-[#1338BE]">
-                        {stat.n}
-                      </p>
-                      <p className="mt-1 text-xs text-foreground/40">
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-8 text-sm leading-relaxed text-foreground/60">
-                  {study.headline}
-                </p>
-              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        );
+      })}
 
       {/* Scorecard mid-page callout */}
       <section className="py-8 bg-foreground text-white">
