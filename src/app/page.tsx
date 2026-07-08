@@ -3,7 +3,6 @@ import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { BrandIcon, type BrandIconName } from "@/components/brand-icon";
 import { TestimonialsSection } from "@/components/home/testimonials";
-import { DivergeConverge } from "@/components/motion/diverge-converge";
 import { Magnetic } from "@/components/motion/magnetic";
 import { ItalicWipe } from "@/components/motion/italic-wipe";
 
@@ -370,9 +369,6 @@ export default function Home() {
 
       {/* ═══ TESTIMONIALS — Editorial quote carousel (client, extracted) ═══ */}
       <TestimonialsSection />
-
-      {/* ═══ FLAGSHIP — Diverge → Converge → Build (after the proof: the method-poem rewards the convinced buyer) ═══ */}
-      <DivergeConverge />
 
       {/* ═══ WHY NOTCONTENT ═══ */}
       <section className="py-32 lg:py-44 bg-foreground text-white">
