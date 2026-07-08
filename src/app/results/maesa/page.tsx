@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CaseStudyVideo } from "@/components/case-study-video";
 
 export const metadata: Metadata = {
   title: "Maesa Case Study | AI Creative Training Results",
@@ -134,6 +135,28 @@ export default function MaesaCaseStudy() {
                 brand — and are able to launch new brands at scale, fast.
               </p>
             </div>
+          </div>
+
+          {/* THE WORK — video showcase */}
+          <div>
+            <div className="oci-section-label mb-8">
+              <span>THE WORK</span>
+              <span>[NC.4]</span>
+            </div>
+            <CaseStudyVideo
+              src="/videos/case-studies/maesa-main.mp4"
+              poster="/videos/case-studies/maesa-main.jpg"
+              orientation="portrait"
+            />
+            <div className="mt-4">
+              <CaseStudyVideo
+                src="/videos/case-studies/maesa-sub.mp4"
+                poster="/videos/case-studies/maesa-sub.jpg"
+              />
+            </div>
+            <p className="mt-4 text-xs text-foreground/40">
+              A new hair-care brand — concept to Target shelves — produced with the operating model after training.
+            </p>
           </div>
 
           {/* Testimonial */}

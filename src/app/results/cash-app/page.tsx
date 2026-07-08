@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CaseStudyVideo } from "@/components/case-study-video";
 
 export const metadata: Metadata = {
   title: "Cash App Case Study | AI Creative Training Results",
@@ -154,7 +155,13 @@ export default function CashAppCaseStudy() {
               <span>THE WORK</span>
               <span>[NC.4]</span>
             </div>
-            <div className="grid gap-4 sm:grid-cols-3">
+            {/* Main showcase video — the work the team produced with the operating model */}
+            <CaseStudyVideo
+              src="/videos/case-studies/cash-app-main.mp4"
+              poster="/videos/case-studies/cash-app-main.jpg"
+            />
+            {/* Campaign stills */}
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
               <div className="aspect-[4/5] overflow-hidden border border-foreground/10">
                 <img
                   src="/images/case-studies/cash-app/campaign-1.webp"
@@ -177,22 +184,65 @@ export default function CashAppCaseStudy() {
                 />
               </div>
             </div>
+            {/* Secondary video */}
+            <div className="mt-4">
+              <CaseStudyVideo
+                src="/videos/case-studies/cash-app-sub.mp4"
+                poster="/videos/case-studies/cash-app-sub.jpg"
+              />
+            </div>
             <p className="mt-4 text-xs text-foreground/40">
-              Campaign work produced by the Cash App creative team after NotContent training.
+              Campaign work produced by the Cash App creative team with the operating model — weeks after the training.
             </p>
           </div>
 
-          {/* Testimonial */}
-          <div className="border-l-2 border-[#1338BE] pl-8">
-            <p className="text-lg font-light leading-relaxed italic">
-              &ldquo;Jeremy&apos;s training was fun and really gave us the
-              strategies, frameworks, and tools that we needed to completely
-              revolutionize how we produce creative — both internally for
-              pitching and externally for production.&rdquo;
-            </p>
-            <p className="mt-4 text-sm text-foreground/40">
-              — Jose Diaz, Head of Production, Cash App
-            </p>
+          {/* Voices from the team */}
+          <div className="space-y-10">
+            <div className="oci-section-label">
+              <span>Voices from the team</span>
+              <span>[NC.5]</span>
+            </div>
+
+            {/* Lead pull-quote */}
+            <blockquote className="border-l-2 border-[#1338BE] pl-8">
+              <p className="text-xl lg:text-2xl font-light leading-relaxed italic">
+                &ldquo;The energy was genuinely good — Jeremy didn&rsquo;t just
+                read slides, we laughed, got real examples instead of theory, and
+                there was zero consultant nonsense.&rdquo;
+              </p>
+              <footer className="mt-4 text-sm text-foreground/40">
+                — Daniel Belay, Creative, Block
+              </footer>
+            </blockquote>
+
+            {/* Fuller testimonial */}
+            <blockquote className="border-l-2 border-foreground/15 pl-8 space-y-4 text-sm leading-relaxed text-foreground/70 max-w-3xl">
+              <p>
+                &ldquo;Jeremy was an awesome teacher and genuinely helped me level
+                up in a way that really clicked for me as a creative producer. The
+                course gave me a completely new arsenal of tools to add to my
+                toolbox, but more importantly, it reframed how I think about
+                creativity and building.
+              </p>
+              <p>
+                I&rsquo;ve typically been someone who sits a bit more on the
+                sidelines, helping support the creative team and bring ideas to
+                life. But Jeremy made it clear that with the right tools, everyone
+                can be a builder. That shift has been huge. I&rsquo;m already
+                finding myself teaching creatives tips and tricks I learned from
+                him — especially around prompting, briefing, speed, and creative
+                direction.
+              </p>
+              <p>
+                It felt like we leveled up five times over the course of the class.
+                Jeremy made AI feel practical, creative, and approachable, and I
+                walked away feeling way more confident in how I can use it in my
+                day-to-day work.&rdquo;
+              </p>
+              <footer className="text-foreground/40 pt-1">
+                — Matt Van Dzura, Executive Producer, Block
+              </footer>
+            </blockquote>
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { CaseStudyVideo } from "@/components/case-study-video";
 
 export const metadata: Metadata = {
   title: "Herman Scheer Case Study | AI Creative Training Results",
@@ -131,6 +132,28 @@ export default function HermanScheerCaseStudy() {
                 matter of weeks.
               </p>
             </div>
+          </div>
+
+          {/* THE WORK — video showcase */}
+          <div>
+            <div className="oci-section-label mb-8">
+              <span>THE WORK</span>
+              <span>[NC.4]</span>
+            </div>
+            <CaseStudyVideo
+              src="/videos/case-studies/herman-scheer-main.mp4"
+              poster="/videos/case-studies/herman-scheer-main.jpg"
+            />
+            <div className="mt-4">
+              <CaseStudyVideo
+                src="/videos/case-studies/herman-scheer-sub.mp4"
+                poster="/videos/case-studies/herman-scheer-sub.jpg"
+                orientation="portrait"
+              />
+            </div>
+            <p className="mt-4 text-xs text-foreground/40">
+              Campaign work produced by Herman Scheer with the operating model — zero to full AI production in weeks.
+            </p>
           </div>
 
           {/* Testimonials */}
