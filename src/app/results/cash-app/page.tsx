@@ -38,7 +38,7 @@ export default function CashAppCaseStudy() {
               8-Week Operating Model
             </p>
           </div>
-          <img src="/images/logos/cashapp.png" alt="Cash App" className="mt-4 h-8 brightness-0 invert opacity-80" />
+          <img src="/images/logos/cashapp.webp" alt="Cash App" className="mt-4 h-8 brightness-0 invert opacity-80" />
           <h1 className="oci-display-sm mt-4">Cash App</h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Part of Square and Block. Trained a small internal creative team —

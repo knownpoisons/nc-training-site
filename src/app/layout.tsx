@@ -7,11 +7,8 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { ExitIntent } from "@/components/exit-intent";
 import { AnnouncementBar } from "@/components/announcement-bar";
-import { MarketingChrome } from "@/components/marketing-chrome";
-import { getAllClientSlugs } from "@/lib/clients";
+import { ChromeGate } from "@/components/chrome-gate";
 
-// Aggressively reduced font weights — was 21 weights across 3 families.
-// Now ~7 weights total. Cuts initial font payload ~67% per the panel finding.
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
   subsets: ["latin"],
@@ -76,19 +73,18 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const hubSlugs = getAllClientSlugs();
   return (
     <html lang="en">
       <body className={`${ibmPlexMono.variable} ${ibmPlexSans.variable} ${sourceSerif.variable} font-mono antialiased`}>
-        <MarketingChrome hubSlugs={hubSlugs}>
+        <ChromeGate>
           <AnnouncementBar />
           <Header />
-        </MarketingChrome>
+        </ChromeGate>
         <main>{children}</main>
-        <MarketingChrome hubSlugs={hubSlugs}>
+        <ChromeGate>
           <Footer />
           <ExitIntent />
-        </MarketingChrome>
+        </ChromeGate>
         <Analytics />
         <SpeedInsights />
       </body>
