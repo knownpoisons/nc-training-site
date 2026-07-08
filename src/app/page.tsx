@@ -102,10 +102,10 @@ export default function Home() {
                   Built by an operator, not a consultant.
                 </h2>
                 <div className="mt-7 max-w-2xl space-y-3 text-base lg:text-lg text-foreground/80 leading-relaxed">
-                  <p>Jeremy Somers spent 15 years directing creative at Spotify, Nike, Pepsi, Samsung, Mercedes-Benz.</p>
+                  <p>Jeremy Somers spent 15 years directing creative at Spotify, Pepsi, Samsung, Mercedes-Benz, Google and Microsoft.</p>
                   <p>He founded the first AI-assisted creative agency in 2022.</p>
                   <p>
-                    NotContent Training is the operating model that agency runs — the same system behind Cash App&rsquo;s 90% production cut, Maesa&rsquo;s $280K single-launch saving, and Herman Scheer&rsquo;s $4.5M asset shift.
+                    NotContent Training is the operating model that agency runs — the same system behind Cash App&rsquo;s 90% production cut, Maesa&rsquo;s $280K single-launch saving, and Herman Scheer&rsquo;s $4.5M in year-one savings.
                   </p>
                 </div>
               </div>
@@ -222,7 +222,7 @@ export default function Home() {
             <div className="mt-8 border-t border-b border-foreground/15 divide-y sm:divide-y-0 sm:divide-x divide-foreground/15 grid grid-cols-1 sm:grid-cols-3">
               {[
                 { value: "$8M+", label: "Combined client savings" },
-                { value: "96%", label: "Average time savings" },
+                { value: "90%", label: "Avg. production-time reduction" },
                 { value: "3", label: "Enterprise teams shipped" },
               ].map((stat) => (
                 <div key={stat.label} className="px-6 py-8 lg:py-10">
@@ -244,7 +244,7 @@ export default function Home() {
                 &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
               </blockquote>
               <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                — O. Savur, VP Marketing, Maesa · On stage at a national beauty conference
+                — Oshyia Savur, VP Marketing, Maesa · On stage at a national beauty conference
               </p>
             </div>
           </Reveal>
@@ -253,7 +253,7 @@ export default function Home() {
           <Reveal delay={350}>
             <div className="mt-20 lg:mt-28 pt-12 pb-4 border-t border-foreground/10">
               <p className="text-sm font-medium tracking-tight text-foreground mb-8">
-                Trusted by teams at Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target.
+                Creative clients include Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target.
               </p>
               <div className="overflow-hidden">
                 <div className="animate-marquee-slow flex w-max gap-x-16">

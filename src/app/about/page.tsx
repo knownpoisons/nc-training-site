@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "NotContent Training is led by Jeremy Somers. 15+ years as a creative director. Career includes Nike, Apple, Pepsi, Spotify. Founded one of the first AI-assisted creative agencies.",
+    "NotContent Training is led by Jeremy Somers. 15+ years as a creative director. Career includes Spotify, Pepsi, Samsung, Mercedes-Benz, Google and Microsoft. Founded one of the first AI-assisted creative agencies.",
 };
 
 const press = [
@@ -31,13 +31,13 @@ const press = [
 ];
 
 const brandExperience = [
-  "Nike",
-  "Apple",
-  "Pepsi",
   "Spotify",
+  "Pepsi",
+  "Samsung",
   "Mercedes-Benz",
-  "Adidas",
+  "Microsoft",
   "Google",
+  "Adidas",
   "Tommy Hilfiger",
 ];
 
@@ -45,7 +45,7 @@ const differentiators = [
   {
     title: "Fifteen Years Inside the Work",
     description:
-      "Spotify. Nike. Pepsi. Samsung. Mercedes-Benz. Every framework I teach has shipped on a real campaign with a real client and a real deadline. None of it is theory.",
+      "Spotify. Pepsi. Samsung. Mercedes-Benz. Google. Microsoft. Every framework I teach has shipped on a real campaign with a real client and a real deadline. None of it is theory.",
   },
   {
     title: "I Built the Agency First",
@@ -99,7 +99,7 @@ export default function AboutPage() {
             Now we teach it.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            NotContent isn&apos;t a training consultancy that read a book about AI. We built the first AI-assisted creative agency — working with Adidas, Sephora, Google, Meta and more — figuring out how to execute real campaigns for real brands before most agencies knew what Midjourney was.
+            NotContent isn&apos;t a training consultancy that read a book about AI. We built the first AI-assisted creative agency — with creative clients like Adidas, Sephora, Google and Meta — figuring out how to execute real campaigns for real brands before most agencies knew what Midjourney was.
           </p>
         </div>
       </section>
@@ -115,8 +115,8 @@ export default function AboutPage() {
             <div>
               <h2 className="oci-display-sm">Jeremy Somers</h2>
               <p className="mt-6 text-sm leading-relaxed text-foreground/60">
-                Jeremy spent 15 years as a creative director — Nike, Apple,
-                Pepsi, Spotify, Mercedes-Benz — and watched the creative
+                Jeremy spent 15 years as a creative director — Spotify, Pepsi,
+                Samsung, Mercedes-Benz, Google, Microsoft — and watched the creative
                 industry change faster in the last three years than it did in
                 the previous fifteen. So he stopped working for agencies and
                 built one that ran on AI from day one.

@@ -244,7 +244,7 @@ export default function TransformationPage() {
                     Zero to full AI production. $4.5M in estimated year-one savings. Now offering new profitable AI services to their own clients.
                   </p>
                 </div>
-                <Link href="/case-studies" className="mt-4 inline-block text-sm text-[#1338BE] hover:underline">
+                <Link href="/results" className="mt-4 inline-block text-sm text-[#1338BE] hover:underline">
                   Read the case studies &rarr;
                 </Link>
               </div>

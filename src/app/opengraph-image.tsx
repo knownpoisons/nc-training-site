@@ -67,8 +67,8 @@ export default async function Image() {
             }}
           >
             {[
-              { n: "96%", label: "Avg. time savings" },
-              { n: "400%", label: "Output increase" },
+              { n: "90%", label: "Avg. production-time reduction" },
+              { n: "400%+", label: "Output increase" },
               { n: "$280K", label: "Saved on a single launch" },
             ].map((stat) => (
               <div

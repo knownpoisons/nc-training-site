@@ -58,8 +58,8 @@ export default function BookPage() {
                   About Jeremy
                 </p>
                 <p className="text-sm leading-relaxed text-foreground/60">
-                  15+ years as a creative director — Nike, Apple, Pepsi,
-                  Spotify. Founded NotContent as one of the first AI-assisted
+                  15+ years as a creative director — Spotify, Pepsi, Samsung,
+                  Mercedes-Benz, Google, Microsoft. Founded NotContent as one of the first AI-assisted
                   creative agencies. Has trained enterprise teams at Cash App,
                   Herman Scheer, and Maesa. He&apos;s not teaching theory —
                   he&apos;s teaching what he ships.

@@ -83,7 +83,7 @@ export default function CaseStudiesPage() {
             programs.
           </p>
           <div className="mt-12 flex items-center gap-6 sm:gap-10 flex-wrap">
-            <img src="/images/logos/cashapp.webp" alt="Cash App" className="h-6 opacity-40" />
+            <img src="/images/logos/cashapp.png" alt="Cash App" className="h-6 opacity-40" />
             <img src="/images/logos/maesa.webp" alt="Maesa" className="h-4 opacity-40" />
             <img src="/images/logos/hermanscheer.jpg" alt="Herman Scheer" className="h-5 opacity-40" />
           </div>
@@ -97,7 +97,7 @@ export default function CaseStudiesPage() {
             {[
               { n: "$8M+", label: "Combined estimated client savings" },
               { n: "90%", label: "Average reduction in production time" },
-              { n: "3", label: "Enterprise teams transformed" },
+              { n: "3", label: "Enterprise teams shipped" },
               { n: "Tens of millions", label: "Projected savings (Maesa, on stage)" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-white/20 pl-6">
