@@ -94,15 +94,15 @@ function PhaseCaption({
 // ─── Static fallback (reduced-motion / pre-mount / no-JS) ───────────────────
 function StaticSpread() {
   const cols = [
-    { eyebrow: "01 · Diverge", title: "Range", line: "Fifty options at a speed the team has never had. No judgement yet." },
-    { eyebrow: "02 · Converge", title: "Refine", line: "Human taste applied. The cost of the work drops, the quality doesn't." },
-    { eyebrow: "03 · Build", title: "Document", line: "The way of working, written down. A one-off saving made permanent." },
+    { eyebrow: "01 · Today", title: "Everyone solo", line: "A few people flying with AI, the rest guessing. Different tools, no shared method." },
+    { eyebrow: "02 · The method", title: "One way of working", line: "The whole team converges on the same operating system for the work." },
+    { eyebrow: "03 · What you keep", title: "It holds", line: "Documented role by role — the operating model runs without a trainer in the room." },
   ];
   return (
     <div className="mx-auto max-w-[1100px] px-6 lg:px-8 py-24 lg:py-32">
       <p className="text-[11px] uppercase tracking-[0.22em] text-[#1338BE] mb-3">The Method, in motion</p>
       <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-ink font-normal leading-[1.05] max-w-2xl">
-        Fifty options in. <em className="italic text-[#1338BE]">One direction out.</em> Documented.
+        A scattered team in. <em className="italic text-[#1338BE]">One operating model out.</em> Documented.
       </h2>
       <div className="mt-14 grid gap-px bg-foreground/10 border border-foreground/10 sm:grid-cols-3">
         {cols.map((c) => (
@@ -195,27 +195,27 @@ function AnimatedStage() {
             ))}
         </div>
 
-        {/* Phase captions */}
+        {/* Phase captions — the team's transformation */}
         <PhaseCaption
           progress={scrollYProgress}
           range={[0.02, 0.14, 0.28, 0.36]}
-          eyebrow="Phase 01 · Diverge"
-          title="Range first."
-          line="Fifty options at a speed the team has never had. No judgement yet."
+          eyebrow="Most teams today"
+          title="Everyone using AI differently."
+          line="A few people flying, the rest guessing. Different tools, no shared method."
         />
         <PhaseCaption
           progress={scrollYProgress}
           range={[0.4, 0.5, 0.58, 0.66]}
-          eyebrow="Phase 02 · Converge"
-          title="Then taste."
-          line="Human judgement pulls the work to one direction. Cost drops, quality holds."
+          eyebrow="The method"
+          title="One shared way of working."
+          line="The whole team converges on the same operating system for the work."
         />
         <PhaseCaption
           progress={scrollYProgress}
           range={[0.72, 0.84, 0.96, 1]}
-          eyebrow="Phase 03 · Build"
-          title="Documented."
-          line="The way of working, written down — a one-off saving made permanent."
+          eyebrow="What you keep"
+          title="An operating model that holds."
+          line="Documented role by role — it runs without a trainer in the room."
         />
       </div>
     </section>

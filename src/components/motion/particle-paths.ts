@@ -40,13 +40,15 @@ function rng(seed: number) {
   };
 }
 
-// The exploration vocabulary — what a team generates in Diverge.
+// The team, scattered — the roles that make up a creative + media operation.
+// They start apart (everyone using AI differently) and end documented in the
+// operating-model grid.
 const WORDS = [
-  "concept", "route", "angle", "draft", "variant", "headline",
-  "frame", "cut", "take", "option", "motion", "still",
-  "layout", "hook", "line", "board", "look", "pass",
+  "CD", "designer", "strategist", "producer", "copywriter", "art director",
+  "editor", "planner", "account", "motion", "retoucher", "3D",
+  "director", "UX", "photographer", "ACD", "writer", "media",
 ];
-const MARKS = ["[NC]", "+", "×", "—", "01", "02", "03", "→"];
+const MARKS = ["[NC]", "+", "→", "—"];
 
 const COLS = 7;
 const ROWS = 4;
