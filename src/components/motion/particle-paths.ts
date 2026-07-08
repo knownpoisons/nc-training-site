@@ -87,17 +87,29 @@ export const FRAGMENTS: Fragment[] = (() => {
       ex, ey, cx, cy, gx, gy,
       rot: (rand() - 0.5) * 70,
       stagger: rand(),
-      scale: isWord ? 0.9 + rand() * 0.5 : 1,
+      scale: isWord ? 0.82 + rand() * 0.32 : 1,
     });
   }
   return out;
 })();
 
-// Grid cell labels for the Build backdrop (documented-system look).
-export const GRID_CELLS = Array.from({ length: COLS * ROWS }, (_, i) => {
-  const major = Math.floor(i / COLS);
-  const minor = (i % COLS) + 1;
-  return `NC.${major}.${minor}`;
-});
-
-export const GRID_DIMS = { COLS, ROWS };
+// The documented operating model — the clean board that resolves once the
+// scattered team has faded. A readable label per cell: the real components of
+// the system a trained team owns. Decoupled from the fragment grid so every
+// label has room to breathe (5×2, wide cells).
+export const GRID = {
+  cols: 5,
+  rows: 2,
+  cells: [
+    "Brief",
+    "Explore",
+    "Select",
+    "Refine",
+    "Brand check",
+    "Govern",
+    "Prompt library",
+    "Ship",
+    "Onboard",
+    "Review",
+  ],
+};

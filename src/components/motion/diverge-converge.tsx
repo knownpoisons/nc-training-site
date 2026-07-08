@@ -8,7 +8,7 @@ import {
   useReducedMotion,
   type MotionValue,
 } from "motion/react";
-import { FRAGMENTS, GRID_CELLS, GRID_DIMS, type Fragment } from "./particle-paths";
+import { FRAGMENTS, GRID, type Fragment } from "./particle-paths";
 
 type Size = { w: number; h: number };
 
@@ -26,22 +26,26 @@ function FragmentNode({
   size: Size;
 }) {
   const { w, h } = size;
+  // Scatter (diverge) → funnel to the centre column (converge) → hold there and
+  // FADE OUT while the clean documented grid resolves underneath. The words
+  // never persist into the grid, so the ending reads as order, not clutter.
   const pxX = useTransform(
     progress,
-    [0, 0.32, 0.64, 1],
-    [w / 2, (f.ex / 100) * w, (f.cx / 100) * w, (f.gx / 100) * w],
+    [0, 0.32, 0.64, 0.86],
+    [w / 2, (f.ex / 100) * w, (f.cx / 100) * w, (f.cx / 100) * w],
   );
   const pxY = useTransform(
     progress,
-    [0, 0.32, 0.64, 1],
-    [h / 2, (f.ey / 100) * h, (f.cy / 100) * h, (f.gy / 100) * h],
+    [0, 0.32, 0.64, 0.86],
+    [h / 2, (f.ey / 100) * h, (f.cy / 100) * h, (f.cy / 100) * h],
   );
-  const rotate = useTransform(progress, [0, 0.32, 0.64, 1], [0, f.rot, f.rot * 0.25, 0]);
+  const rotate = useTransform(progress, [0, 0.32, 0.64, 0.86], [0, f.rot, f.rot * 0.2, 0]);
   const d = f.stagger * 0.06;
+  // Peak in scatter, dim through converge, gone by ~0.84 so the grid stands alone.
   const opacity = useTransform(
     progress,
-    [0, 0.05 + d, 0.32, 0.5, 0.64, 0.82, 1],
-    [0, 1, 1, 0.5, 0.85, 1, 1],
+    [0, 0.05 + d, 0.32, 0.5, 0.64, 0.74, 0.84],
+    [0, 1, 1, 0.55, 0.8, 0.5, 0],
   );
 
   return (
@@ -96,7 +100,7 @@ function StaticSpread() {
   const cols = [
     { eyebrow: "01 · Today", title: "Everyone solo", line: "A few people flying with AI, the rest guessing. Different tools, no shared method." },
     { eyebrow: "02 · The method", title: "One way of working", line: "The whole team converges on the same operating system for the work." },
-    { eyebrow: "03 · What you keep", title: "It holds", line: "Documented role by role — the operating model runs without a trainer in the room." },
+    { eyebrow: "03 · What you keep", title: "It holds", line: "Every role, every workflow, in one documented system the team owns." },
   ];
   return (
     <div className="mx-auto max-w-[1100px] px-6 lg:px-8 py-24 lg:py-32">
@@ -171,16 +175,22 @@ function AnimatedStage() {
           aria-hidden="true"
         >
           <div
-            className="grid w-[62%] h-[46%] border border-[#1338BE]/15"
+            className="grid w-[80%] max-w-[860px] border border-[#1338BE]/25"
             style={{
-              gridTemplateColumns: `repeat(${GRID_DIMS.COLS}, 1fr)`,
-              gridTemplateRows: `repeat(${GRID_DIMS.ROWS}, 1fr)`,
+              gridTemplateColumns: `repeat(${GRID.cols}, 1fr)`,
+              gridTemplateRows: `repeat(${GRID.rows}, minmax(72px, auto))`,
             }}
           >
-            {GRID_CELLS.map((c, i) => (
-              <div key={i} className="border border-[#1338BE]/10 relative">
-                <span className="absolute top-1 left-1 text-[7px] font-mono text-[#1338BE]/30 tracking-wider">
+            {GRID.cells.map((c, i) => (
+              <div
+                key={i}
+                className="border border-[#1338BE]/12 relative flex items-center justify-center p-3"
+              >
+                <span className="text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-[#1338BE]/70 text-center leading-tight">
                   {c}
+                </span>
+                <span className="absolute top-1.5 left-1.5 text-[7px] font-mono text-[#1338BE]/25 tabular-nums">
+                  {String(i + 1).padStart(2, "0")}
                 </span>
               </div>
             ))}
@@ -215,7 +225,7 @@ function AnimatedStage() {
           range={[0.72, 0.84, 0.96, 1]}
           eyebrow="What you keep"
           title="An operating model that holds."
-          line="Documented role by role — it runs without a trainer in the room."
+          line="Every role, every workflow, in one documented system the team owns."
         />
       </div>
     </section>
