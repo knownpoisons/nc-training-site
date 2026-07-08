@@ -55,7 +55,7 @@ const differentiators = [
   {
     title: "Methodology Over Tools",
     description:
-      "Tools change every six months. Diverge / Converge / Systemize doesn’t. I teach the way of working that survives whatever the platforms do next.",
+      "Tools change every six months. Diverge / Converge / Build doesn’t. I teach the way of working that survives whatever the platforms do next.",
   },
   {
     title: "Direct, Without Apology",

@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 };
 
 const whatYouGet = [
-  "NotContent Methodology overview — Diverge, Converge, Systemize",
+  "NotContent Methodology overview — Diverge, Converge, Build",
   "Live tool demonstrations using your team's actual brand assets",
   "Hands-on exercises — everyone leaves having made something real",
   "The Stop Rule: knowing when to explore vs. when to execute",
@@ -100,7 +100,7 @@ export default function FoundationsPage() {
                 <h3 className="mt-2 text-lg font-light">Framework & Philosophy</h3>
                 <p className="mt-2 text-sm leading-relaxed text-foreground/60">
                   The NotContent Method. Why most teams get AI wrong. The
-                  Diverge/Converge/Systemize model. The Stop Rule. Tool ecosystem overview.
+                  Diverge/Converge/Build model. The Stop Rule. Tool ecosystem overview.
                 </p>
               </div>
               <div className="border-l-2 border-[#1338BE] pl-6">

@@ -342,8 +342,8 @@ export function PartnerPlaybook() {
               repeatable workflow.
             </p>
             <ul className="proof-stats">
-              <li>~90% cut in production time</li>
-              <li>10x output</li>
+              <li>90% cut in production time</li>
+              <li>30% increase in campaign output</li>
               <li>est. $3.5M first-year savings</li>
             </ul>
             <CopyLine
@@ -363,14 +363,15 @@ export function PartnerPlaybook() {
               Every launch needed hero shoots and outside production partners.
             </p>
             <ul className="proof-stats">
-              <li>$280K saved on a single campaign — weeks after the programme finished</li>
+              <li>$280K saved on a single brand launch</li>
+              <li>Three months instead of nine</li>
             </ul>
             <CopyLine
               variant="quote"
-              text={`"Same budget. Ten times the output."`}
+              text={`"Three months instead of nine. $280K saved on one launch."`}
             >
               <p className="proof-line">
-                &ldquo;Same budget. Ten times the output.&rdquo;
+                &ldquo;Three months instead of nine. $280K saved on one launch.&rdquo;
               </p>
             </CopyLine>
           </article>
@@ -381,14 +382,15 @@ export function PartnerPlaybook() {
               Asset volume tied to expensive real-shoot production.
             </p>
             <ul className="proof-stats">
-              <li>$4.5M in assets produced from $500k of real-shoot cost</li>
+              <li>$4.5M in estimated year-one savings</li>
+              <li>Zero to full AI production</li>
             </ul>
             <CopyLine
               variant="quote"
-              text={`"Nine times the work out of the same money."`}
+              text={`"Zero to full AI production — $4.5M in year-one savings."`}
             >
               <p className="proof-line">
-                &ldquo;Nine times the work out of the same money.&rdquo;
+                &ldquo;Zero to full AI production — $4.5M in year-one savings.&rdquo;
               </p>
             </CopyLine>
           </article>

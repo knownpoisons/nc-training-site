@@ -15,7 +15,7 @@ const curriculum = [
       "AI Creative Audit of current workflows and bottlenecks",
       "Tool ecosystem setup and team configuration",
       "Team skill baseline assessment",
-      "NotContent Methodology deep-dive: Diverge / Converge / Systemize",
+      "NotContent Methodology deep-dive: Diverge / Converge / Build",
     ],
   },
   {
@@ -40,7 +40,7 @@ const curriculum = [
   },
   {
     week: "07-08",
-    title: "Systemization & Governance",
+    title: "Build & Governance",
     items: [
       "Building repeatable workflows for your specific operation",
       "AI governance policy — approved tools, data protocols, client disclosure standards",

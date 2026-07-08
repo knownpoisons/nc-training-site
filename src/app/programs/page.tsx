@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Programs",
   description:
-    "Two programs. One methodology — Diverge, Converge, Systemize — scaled to match where your team is now.",
+    "Two programs. One methodology — Diverge, Converge, Build — scaled to match where your team is now.",
 };
 
 const programs = [
@@ -56,7 +56,7 @@ export default function ProgramsPage() {
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Two programs. One methodology — Diverge, Converge,
-            Systemize — scaled to match where your team is now.
+            Build — scaled to match where your team is now.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/60">
             Most teams have a few people dabbling in AI — using different tools, with no shared methodology, and no structured training to bring the team together. Our programs are designed to solve for this. The teams that go through them come together and move at speed into the new world of AI-assisted work.
