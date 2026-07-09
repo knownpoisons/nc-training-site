@@ -366,6 +366,139 @@ The same single HTML file, now with three functional tabs. No additional files n
     heroVideo: "/images/library/linkedin-prospect-intelligence-sample-dash.mp4",
     tags: ["sales", "outreach", "linkedin", "dashboard", "multi-phase"],
   },
+  {
+    slug: "copy-autopsy",
+    number: 2,
+    title: "The Copy Autopsy",
+    eyebrow: "Conversion · Copy",
+    oneLiner:
+      "Eight rewrites. Five judges. Kill the weak ones. Ship what survives.",
+    whatItDoes: `Takes any landing/sales page — URL, draft, or pasted copy — and runs it through a structured teardown. Not a vague "here's some feedback." A diagnosis, eight full rewrites from different strategic angles, a judging panel that scores every version, and a final merged page built from whatever actually earned its place.
+
+The prompt forces the AI to compete against itself. Eight versions means eight different bets on what will convert. The five judges (a skeptical CFO, a founder scrolling at midnight, your biggest competitor, your ideal customer, and a conversion copywriter) score each one. Then it kills the losers and merges the winners into one page you can actually ship.
+
+You end up with a complete landing/sales page — hero through final CTA — built from the strongest headline, the best proof angle, the sharpest differentiation, and the most compelling offer framing across all eight versions. Not the AI's first guess. Its best surviving work.`,
+    whenToUse: [
+      "You have a landing/sales page that's live but underperforming — traffic's coming in, conversions aren't.",
+      "You're about to launch and want to pressure-test the copy before it goes live. Better to kill weak ideas now than after you've spent the ad budget.",
+      "You've been staring at your own page too long and can't tell if it's good or just familiar.",
+      "You want a structured second opinion that's harsher than your team will be. This prompt is built to be blunt.",
+      "You need to differentiate against a specific competitor and want the page reframed around what makes you different, not just what makes you good.",
+    ],
+    whatYoullGet: [
+      "A blunt diagnosis of what's working and what's leaking conversions on your current page.",
+      "Eight complete landing/sales page rewrites — each built around a different strategic angle (pain, outcome, skeptic-proof, founder story, category play, ROI, competitor contrast, direct conversion).",
+      "A scored judging panel — five personas rate every version on clarity, credibility, relevance, differentiation, emotional pull, and conversion potential.",
+      "A kill/keep/merge decision for every version with a full scoreboard.",
+      "One final optimized landing/sales page — hero through CTA — assembled from the winning pieces across all eight versions.",
+    ],
+    quickFire: [
+      "Grab your landing/sales page URL, or copy-paste the full page copy into a doc. Either works.",
+      "Write 2–4 sentences of context: what you sell, who it's for, what the page needs to do. Be specific — \"SaaS for accountants\" beats \"a software product.\"",
+      "Optionally add a competitor URL or name. The prompt uses it to sharpen the differentiation angle. Skip it if you don't have one.",
+      "Paste the prompt into Claude (or your AI of choice). Fill in the three bracketed inputs at the top: your page, your context, and the competitor.",
+      "Let it run through all five steps. Don't interrupt the judging phase — the scores need to land before the merge makes sense.",
+      "Review the final merged page. It's a full structure (hero → problem → solution → proof → CTA) — use it as your next draft or ship it directly.",
+    ],
+    prompt: `You are a senior conversion strategist, landing/sales page teardown expert, and direct-response copywriter.
+
+Analyze and rewrite my landing/sales page eight different ways, then judge every version, kill the weak ones, and merge the strongest ideas into one final page.
+
+## My Input
+
+Landing/sales page:
+[INSERT URL OR COPY]
+
+Context:
+[INSERT 2–4 SENTENCES ABOUT WHAT YOU SELL, WHO IT'S FOR, AND THE MAIN GOAL]
+
+Competitor:
+[INSERT COMPETITOR URL OR NAME — OPTIONAL]
+
+## Step 1: Diagnose the Current Page
+
+Review the page and identify:
+
+* Main promise
+* Target audience
+* Strongest sections
+* Weakest sections
+* Trust gaps
+* Conversion leaks
+* Generic or unclear copy
+
+Be blunt and specific.
+
+## Step 2: Rewrite It Eight Ways
+
+Create eight distinct landing/sales page versions using different strategic angles:
+
+1. Pain-focused
+2. Outcome-focused
+3. Skeptic-proof
+4. Founder-led story
+5. Category differentiation
+6. ROI/business case
+7. Competitor contrast
+8. Simple/direct conversion
+
+For each version, include:
+
+* Headline
+* Subheadline
+* CTA
+* Section flow
+* Key copy
+* Proof or objection-handling angle
+
+## Step 3: Create Five Judges
+
+Create these judges:
+
+1. Skeptical CFO
+2. Founder scrolling at midnight
+3. Biggest competitor: [INSERT COMPETITOR NAME]
+4. Ideal customer
+5. Conversion copywriter
+
+Each judge scores every version from 1–10 based on clarity, credibility, relevance, differentiation, emotional pull, and conversion potential.
+
+## Step 4: Score, Kill, and Merge
+
+Show a scoreboard with:
+
+* Version
+* Judge scores
+* Average score
+* Rank
+* Keep / Kill / Merge decision
+
+Then identify:
+
+* Best headline
+* Best CTA
+* Best offer framing
+* Best proof angle
+* Best emotional hook
+* Best differentiation angle
+* Best section sequence
+
+## Step 5: Final Output
+
+Using the winning pieces, create one final optimized landing/sales page with:
+
+* Hero
+* Problem
+* Solution
+* Differentiation
+* Proof
+* Objection handling
+* FAQ
+* Final CTA
+
+Be candid. Do not protect weak ideas. Prioritize clarity, conversion, and differentiation over cleverness.`,
+    tags: ["conversion", "landing-page", "sales-page", "copywriting", "marketing"],
+  },
 ];
 
 export function getPrompt(slug: string): Prompt | undefined {

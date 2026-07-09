@@ -15,7 +15,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function LibraryIndex() {
   // Newest first
-  const prompts = [...PROMPTS].sort((a, b) => b.number - a.number);
+  const prompts = [...PROMPTS].sort((a, b) => a.number - b.number);
 
   return (
     <div className="library">
