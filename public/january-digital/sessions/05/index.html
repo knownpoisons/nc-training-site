@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Session 04 — Starting the 80: The Master Prompt and Flora — January Digital × NotContent</title>
+<title>Session 05 — Making Stuff: The Product Workflow and the Data Advantage — January Digital × NotContent</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Session 04 — Starting the 80: The Master Prompt and Flora. We crossed over from conversation to making things. Thursday 18 June 2026." />
+<meta name="description" content="Session 05 — Making Stuff: The Product Workflow and the Data Advantage. Hands hit Flora. The four-node workflow, connect vs disconnect, and the data edge only a media agency has. Thursday 25 June 2026." />
 <link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Session 04 — Starting the 80: The Master Prompt and Flora" />
-<meta property="og:description" content="We've been doing the 10. Now we do the 80. The master prompt, Flora as canvas, and the models that make things. Thursday 18 June 2026." />
-<meta property="og:image" content="https://training.notcontent.ai/january-digital/sessions/04/cheatsheet-header.png" />
-<meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/04" />
+<meta property="og:title" content="Session 05 — Making Stuff: The Product Workflow and the Data Advantage" />
+<meta property="og:description" content="Hands hit Flora. The four-node product workflow, connect vs disconnect, and the data edge only a media agency has. Thursday 25 June 2026." />
+<meta property="og:image" content="https://training.notcontent.ai/january-digital/sessions/05/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/05" />
 <meta name="twitter:card" content="summary_large_image" />
 <style>
   :root {
@@ -415,60 +415,24 @@
   }
   .homework + .cheat-kicker { margin-top: 18px; }
 
-  /* ─── Handshake 10-80-10 ─── */
-  .handshake { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 22px; }
-  .hs-step {
-    background: var(--surface);
-    border-radius: 4px;
-    border-top: 3px solid var(--rule);
-    padding: 24px 20px;
-    text-align: center;
-  }
-  .hs-step.mid { background: var(--accent); color: var(--bg); border-top-color: var(--accent); }
-  .hs-step .pct {
-    font-family: var(--serif);
-    font-size: 36px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-    color: var(--accent);
-    margin-bottom: 6px;
-  }
-  .hs-step.mid .pct { color: var(--bg); }
-  .hs-step .who {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--muted);
-    margin-bottom: 12px;
-  }
-  .hs-step.mid .who { color: rgba(229, 228, 226, 0.85); }
-  .hs-step .what {
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--ink);
-  }
-  .hs-step.mid .what { color: rgba(229, 228, 226, 0.9); }
-
-  /* ─── Flora nodes diagram ─── */
-  .node-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 22px 0; }
-  .node-card {
-    padding: 20px 18px;
+  /* ─── Workflow diagram ─── */
+  .workflow-steps { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 22px 0; }
+  .wf-step {
+    padding: 22px 18px;
     background: var(--surface);
     border-radius: 4px;
     border-top: 3px solid var(--accent);
     text-align: center;
+    position: relative;
   }
-  .node-card .key {
+  .wf-step .step-num {
     font-family: var(--sans);
     font-size: 28px;
     font-weight: 700;
     color: var(--accent);
     margin-bottom: 4px;
   }
-  .node-card .node-name {
+  .wf-step .step-name {
     font-family: var(--sans);
     font-size: 10px;
     letter-spacing: 0.22em;
@@ -477,11 +441,68 @@
     color: var(--muted);
     margin-bottom: 8px;
   }
-  .node-card .node-desc {
+  .wf-step .step-desc {
     font-family: var(--sans);
     font-size: 13px;
     line-height: 1.5;
     color: var(--ink);
+  }
+
+  /* ─── Connect vs disconnect ─── */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; }
+  .vs-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .vs-card.active { background: var(--accent); color: var(--bg); border-top-color: var(--bg); }
+  .vs-card .vs-title {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .vs-card.active .vs-title { color: var(--bg); }
+  .vs-card .vs-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .vs-card.active .vs-desc { color: rgba(229, 228, 226, 0.9); }
+
+  /* ─── Data advantage callout ─── */
+  .data-callout {
+    margin: 28px 0;
+    padding: 28px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+  }
+  .data-callout .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(229, 228, 226, 0.8);
+    margin-bottom: 12px;
+  }
+  .data-callout .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--bg);
+    margin-bottom: 10px;
+  }
+  .data-callout .due {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(229, 228, 226, 0.9);
   }
 
   /* ─── Section split ─── */
@@ -497,11 +518,11 @@
     .agenda-item { grid-template-columns: 1fr; gap: 6px; }
     .next-up { grid-template-columns: 1fr; }
     .cheat-list { grid-template-columns: 1fr !important; }
-    .node-grid { grid-template-columns: 1fr 1fr; }
+    .workflow-steps { grid-template-columns: 1fr 1fr; }
+    .vs-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 560px) {
-    .handshake { grid-template-columns: 1fr; }
-    .node-grid { grid-template-columns: 1fr; }
+    .workflow-steps { grid-template-columns: 1fr; }
   }
 
   /* ───────── Motion ───────── */
@@ -632,17 +653,17 @@
 <!-- ─── HERO ─── -->
 <header class="hero">
   <div class="eyebrow">
-    <span><span class="num">04</span> &nbsp;/&nbsp; Phase 01 · Week 04 of 08</span>
+    <span><span class="num">05</span> &nbsp;/&nbsp; Phase 01 · Week 05 of 08</span>
     <span class="pill" id="status-pill">Upcoming</span>
   </div>
   <h1 class="cheat-header">
-    <img src="/january-digital/sessions/04/cheatsheet-header.png" alt="Cheatsheet: Session Four — for creative teams and brands." />
+    <img src="/january-digital/sessions/05/cheatsheet-header.png" alt="Cheatsheet: Session Five — for creative teams and brands." />
   </h1>
-  <p class="hero-lede">We've been doing the 10. This week we crossed over to the 80 — actually making things.</p>
+  <p class="hero-lede">You now make things in minutes. The job is knowing which thing to keep — and why it'll work.</p>
   <div class="meta">
     <div class="item">
       <div class="lbl">Date</div>
-      <div class="val"><s>Thursday, June 18, 2026</s></div>
+      <div class="val"><s>Thursday, June 25, 2026</s></div>
     </div>
     <div class="item">
       <div class="lbl">Time</div>
@@ -667,151 +688,116 @@
 <section class="block">
   <div class="head">
     <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
-    <h2>Starting the 80.</h2>
-    <p class="cheat-note" style="margin-top:14px;">For three weeks the work has been conversation — reading creative, briefing by voice, getting ICC into muscle memory. That's the first 10 of the handshake. This week we crossed over to the 80: actually making things. Same brain, new tool.</p>
+    <h2>Making stuff.</h2>
+    <p class="cheat-note" style="margin-top:14px;">Hands hit Flora this week. The mechanics are genuinely simple: a source image, a product image, a Claude prompt, an image node. Run it, and you get a finished-looking ad. This session was about what happens <em>around</em> that ease — the emotional cost of putting work out, the discipline that protects you from it, and the one thing this team has that no creative studio does: hard data on what actually works.</p>
   </div>
 
   <div class="agenda">
-    <div class="agenda-item"><div class="n">01</div><div class="title">The reframe: "the problem is always me." When the output is bad, the fix is ICC — not telling the machine it's bad.</div></div>
-    <div class="agenda-item"><div class="n">02</div><div class="title">Creative prompting: anchors, iteration, and making Claude interview you when you're stuck.</div></div>
-    <div class="agenda-item"><div class="n">03</div><div class="title">The master prompt. A reusable template that kicks off creative production with ICC built in.</div></div>
-    <div class="agenda-item"><div class="n">04</div><div class="title">Flora — the canvas, not the tool. Nodes, models, and the four-letter workflow (U, T, I, V).</div></div>
-    <div class="agenda-item"><div class="n">05</div><div class="title">Which models to use: Nano Banana 2 and GPT Image 2. Test cheap, finish expensive.</div></div>
+    <div class="agenda-item"><div class="n">01</div><div class="title">Before the tools: handling rejection, holding the brief, and getting comfortable with "no."</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">The four-node product workflow: source image → product image → Claude system prompt → image node.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">Connect vs disconnect: the reference image choice that changes everything.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">The data advantage: feeding client performance data into creative decisions.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">Static to video, CapCut for finishing, and shipping 9:16.</div></div>
   </div>
 </section>
 
-<!-- ─── 02 · THE HANDSHAKE ─── -->
+<!-- ─── 02 · THE WORKFLOW ─── -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">02</span> &nbsp;The handshake <span class="rule"></span></div>
-    <h2>10 / 80 / 10.</h2>
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The framework <span class="rule"></span></div>
+    <h2>The product image workflow.</h2>
   </div>
 
-  <p class="cheat-note" style="margin-bottom:20px;">Three weeks of conversation was the first 10%. This week we entered the 80 — where the machine does the making. The judgment you've been building doesn't get left behind; it's the thing that makes the tool worth having.</p>
+  <p class="cheat-note" style="margin-bottom:20px;">Four nodes on the canvas, in order. The LLM node doesn't make the picture — it writes the instructions that make the picture. That's the part people skip.</p>
 
-  <div class="handshake">
-    <div class="hs-step">
-      <div class="pct">10%</div>
-      <div class="who">You</div>
-      <div class="what">Brief by voice. ICC loaded. The master prompt. Three weeks of this.</div>
+  <div class="workflow-steps">
+    <div class="wf-step">
+      <div class="step-num">1</div>
+      <div class="step-name">Source / Reference</div>
+      <div class="step-desc">Carries the world: mood, lighting, style, energy you want.</div>
     </div>
-    <div class="hs-step mid">
-      <div class="pct">80%</div>
-      <div class="who">The machine</div>
-      <div class="what">Flora, Claude, the models. Making things — now.</div>
+    <div class="wf-step">
+      <div class="step-num">2</div>
+      <div class="step-name">Product Image</div>
+      <div class="step-desc">The thing the ad sells. Logo visible, exact SKU.</div>
     </div>
-    <div class="hs-step">
-      <div class="pct">10%</div>
-      <div class="who">You</div>
-      <div class="what">Review, refine, deliver. Coming soon.</div>
+    <div class="wf-step">
+      <div class="step-num">3</div>
+      <div class="step-name">LLM (Claude)</div>
+      <div class="step-desc">Reads both images and writes a system prompt for the image model.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">4</div>
+      <div class="step-name">Image Node</div>
+      <div class="step-desc">Renders the result. Run a few — two to four, not twenty.</div>
     </div>
   </div>
 
-  <blockquote class="cheat-pull">"<span class="accent">The problem is always me.</span>" When the output is bad, the instinct is to tell the machine it's bad. That does nothing. The fix is to treat it like a teammate who's underbriefed: figure out <em>why</em> it missed, then give it the missing letter.<span class="attr">— Jeremy Somers</span></blockquote>
+  <blockquote class="cheat-pull">"<span class="accent">If it's a maybe, it's a no.</span>" And when it goes from maybe to a no — delete it. What is really good about AI is you can make it again 50 times over. Assets, creative, photography, videos have become fully disposable.<span class="attr">— Jeremy Somers</span></blockquote>
 </section>
 
-<!-- ─── 03 · FROM THE SESSION ─── -->
+<!-- ─── 03 · CONNECT VS DISCONNECT ─── -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">03</span> &nbsp;From the session <span class="rule"></span></div>
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The insight <span class="rule"></span></div>
+    <h2>Connect, or don't.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Whether you wire the reference image into the node or not changes everything:</p>
+
+  <div class="vs-grid">
+    <div class="vs-card">
+      <div class="vs-title">Disconnected</div>
+      <div class="vs-desc">The image model leans on its own training knowledge of the brand. It already knows what Carhartt looks like and how to lay a tee on a pile of logs. Surprisingly capable — but it won't replicate <em>your</em> exact reference.</div>
+    </div>
+    <div class="vs-card active">
+      <div class="vs-title">Connected</div>
+      <div class="vs-desc">The output stays close to the source composition. Use this when you need to land near a specific look. Get the replica, then nudge — "swap the logs for tropical leaves" — so it becomes a remix, not a copy.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull">"Everything we do and everything we're going to do in creativity is <span class="accent">just remixing something else.</span> We are doing this for money — we are not doing this for art."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 04 · DATA ADVANTAGE ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;The strategic edge <span class="rule"></span></div>
+    <h2>You have something no creative shop has.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">You are a <strong>media agency</strong>, not a creative studio — and that means you have hard data on what actually worked. Which format, which environment, which placement drove the click-throughs. That's the bypass from Session 01 in motion.</p>
+
+  <div class="data-callout">
+    <div class="lbl">The move</div>
+    <div class="ask">Pull the client's historical ad performance data and drop it into your Claude project as core context.</div>
+    <div class="due">Don't read it and decipher it yourself — hand it to the machine, tell it what to look for, and let it surface the directions most likely to perform. Feed results back into the next round of creative.</div>
+  </div>
+
+  <blockquote class="cheat-pull">"You have this third part which nobody else has, which I do not have: <span class="accent">you have hard data on what actually works.</span> That's where you have influence over the client and what you make."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 05 · FROM THE SESSION ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;From the session <span class="rule"></span></div>
     <h2>Words worth keeping.</h2>
   </div>
 
   <div class="cards-2col">
     <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">On creative prompting — Luisa Melo</div>
-      <div class="name" style="font-size:19px;line-height:1.35;">"You need to have it think and sit in the seat of a creative director. Because you are not trained creatively, you don't know how to explain aesthetics — so having a reference, having Claude think like a creative director, helps a ton."</div>
+      <div class="lbl">On rejection — Luisa Melo</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"It feels so deeply personal, and it hurts in a way that you don't expect to be connected to your work. It does feel like they're saying your kid is ugly."</div>
     </div>
     <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">On Flora</div>
-      <div class="name" style="font-size:19px;line-height:1.35;">"Flora is not an AI tool. Flora is a canvas that allows us access to tools."</div>
+      <div class="lbl">On clients warming to AI — Luisa Melo</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"At first, the more the creative looks like tiny variations of the stuff they've done for years, the more they're gonna like it."</div>
     </div>
   </div>
 
-  <blockquote class="cheat-pull" style="margin-top:28px;">"Twenty-four seconds instead of two and a half days of shooting, two and a half months of prep, and $250,000 to pay for the shoot — <span class="accent">I think we're pretty good</span> no matter how long these things take."<span class="attr">— Jeremy Somers</span></blockquote>
-</section>
+  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">We are the professionals here.</span> You have come to us."<span class="attr">— Jeremy Somers, on holding the line with clients</span></blockquote>
 
-<!-- ─── 04 · FLŌRA NODES ─── -->
-<section class="block">
-  <div class="head">
-    <div class="eyebrow"><span class="num">04</span> &nbsp;The canvas <span class="rule"></span></div>
-    <h2>Flora — four nodes, that's it.</h2>
-  </div>
-
-  <p class="cheat-note" style="margin-bottom:18px;">Flora is an infinite canvas (think Figma) that calls ~80 image/video/text models through one interface. No separate ChatGPT account, no separate anything. Connect nodes with <strong>+</strong>, run with the <strong>arrow</strong> (set to 5 options per click), and duplicate with <strong>Cmd-D</strong>.</p>
-
-  <div class="node-grid">
-    <div class="node-card">
-      <div class="key">U</div>
-      <div class="node-name">Upload</div>
-      <div class="node-desc">Drag a product image onto the canvas.</div>
-    </div>
-    <div class="node-card">
-      <div class="key">T</div>
-      <div class="node-name">Text / LLM</div>
-      <div class="node-desc">Chat with Claude, GPT, or Gemini for prompting.</div>
-    </div>
-    <div class="node-card">
-      <div class="key">I</div>
-      <div class="node-name">Image</div>
-      <div class="node-desc">Generates images. Paste your Claude output into the prompt box.</div>
-    </div>
-    <div class="node-card">
-      <div class="key">V</div>
-      <div class="node-name">Video</div>
-      <div class="node-desc">Coming in a future session.</div>
-    </div>
-  </div>
-
-  <p class="cheat-note" style="margin-top:12px;"><strong>The honest truth:</strong> most of your work is <em>one image node</em> with a pasted prompt. The big canvas of wired-up nodes is for your eye, not a requirement.</p>
-</section>
-
-<!-- ─── 05 · MODELS ─── -->
-<section class="block">
-  <div class="head">
-    <div class="eyebrow"><span class="num">05</span> &nbsp;Which models to use <span class="rule"></span></div>
-    <h2>Two models. Pin them both.</h2>
-  </div>
-
-  <div class="cards-2col">
-    <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">Default</div>
-      <div class="name">Nano Banana 2 (Google)</div>
-      <div class="desc">The current best. Set as your default in admin. Jeremy's pick when there are people in the shot. Lineage: Nano Banana → Nano Banana Pro → Nano Banana 2.</div>
-    </div>
-    <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">For product</div>
-      <div class="name">GPT Image 2 (OpenAI)</div>
-      <div class="desc">Better for product consistency. No separate ChatGPT account needed — all billed through Flora.</div>
-    </div>
-  </div>
-
-  <p class="cheat-note" style="margin-top:16px;"><strong>Workflow:</strong> run both at <strong>low res / 1K</strong> (faster, cheaper), pick the winner, then regenerate the keeper at <strong>2K</strong> for the finish. Both models pull real-world context natively — they know what a "vintage Porsche" or a brand looks like without you spelling it out.</p>
-</section>
-
-<!-- ─── ★ · LUISA'S TIPS ─── -->
-<section class="block">
-  <div class="head">
-    <div class="eyebrow"><span class="num">★</span> &nbsp;From the team <span class="rule"></span></div>
-    <h2>Luisa's three moves for creative prompting.</h2>
-  </div>
-
-  <p class="cheat-note" style="margin-bottom:18px;">From the team's first live production case — the tips that actually work:</p>
-
-  <div class="cheat-list" style="grid-template-columns:1fr 1fr 1fr;">
-    <div class="cheat-item">
-      <div class="h" style="color:var(--accent);">1. Put Claude in the CD's seat</div>
-      <div class="p">Most of us were never trained to describe an aesthetic. Telling Claude to <em>think like a creative director</em> covers the gap you can't articulate.</div>
-    </div>
-    <div class="cheat-item">
-      <div class="h" style="color:var(--accent);">2. Give it an anchor</div>
-      <div class="p">A reference image, or a described aesthetic. Without an anchor it has nothing to aim taste at.</div>
-    </div>
-    <div class="cheat-item">
-      <div class="h" style="color:var(--accent);">3. Iterate as many times as you need</div>
-      <div class="p">Anchors plus reps. That's the whole game.</div>
-    </div>
-  </div>
+  <blockquote class="cheat-pull" style="margin-top:28px;">"You just have to <span class="accent">fail enough at it</span> that it won't matter. Expect rejection, and then you'll be pleasantly surprised."<span class="attr">— Jeremy Somers</span></blockquote>
 </section>
 
 <!-- ─── 06 · WHAT TO REMEMBER ─── -->
@@ -823,28 +809,28 @@
 
   <div class="cheat-list">
     <div class="cheat-item">
-      <div class="h">The problem is always me.</div>
-      <div class="p">Bad output is an underbriefed teammate, not a broken machine. Find the missing letter — it's almost always context.</div>
+      <div class="h">If it's a maybe, it's a no.</div>
+      <div class="p">The instant a keeper slides to "maybe," delete it. Don't sit with it. Regenerate.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">Context is the one everyone skips.</div>
-      <div class="p">The origin of the idea is context. The brand history is context. Hand it over.</div>
+      <div class="h">Assets are disposable.</div>
+      <div class="p">The keep-everything, <code>V2_final_final</code> era is over. Make it again — it's free-ish and fast.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">Don't hoard files — regenerate.</div>
-      <div class="p">The era of <code>hoodie_flat_lay_V2_final_final.psd</code> is over. Keep a clean workspace; delete what you don't need.</div>
+      <div class="h">Run a few, not twenty.</div>
+      <div class="p">Two to four variants per node. Twenty at once scrambles your brain because they're all good now.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">One node does almost everything.</div>
-      <div class="p">Resist the urge to learn all of Flora. Image node, paste the prompt, run. Do it 25 times and you've got a campaign.</div>
+      <div class="h">The report is everything.</div>
+      <div class="p">You're a media agency. Run all of it through the lens of what the data says actually worked.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">Test cheap, finish expensive.</div>
-      <div class="p">Always start at low / 1K. Only go 2K on the one you love.</div>
+      <div class="h">Name your workflows.</div>
+      <div class="p">Shared workspace = a wall of "untitled." Title everything, drag into your personal folder, delete what you don't need.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">Feedback is data.</div>
-      <div class="p">Accept client feedback async only — written, or a Loom. Screenshot the feedback deck and feed it straight into the image node.</div>
+      <div class="h">Fauna is a how-to, not a chatbot.</div>
+      <div class="p">The in-platform agent knows Flora back to front — ask it how to connect a node, make an animation, anything.</div>
     </div>
   </div>
 </section>
@@ -853,39 +839,27 @@
 <section class="block" id="homework">
   <div class="head">
     <div class="eyebrow"><span class="num">07</span> &nbsp;Homework <span class="rule"></span></div>
-    <h2>Do this before Session 5.</h2>
+    <h2>Two things this week.</h2>
   </div>
 
-  <p class="cheat-note" style="margin-bottom:18px;"><strong>Flora access lands Tuesday June 23.</strong> This is a play-week, not a produce-week. You're not waiting for a live brief to open the tool — open it to mess around, break things, and build the muscle so the tool is invisible by the time real work shows up.</p>
+  <p class="cheat-note" style="margin-bottom:18px;"><strong>Due before Session 06 — Thursday, July 9.</strong> This is still a reps week: you have Flora access now, so the point is volume and exploration, not a polished deliverable.</p>
 
   <div class="homework">
-    <div class="lbl">First · Activate (Monday)</div>
-    <div class="ask">When the invite hits your inbox, activate your account. <strong>Pin Nano Banana 2</strong> (default) and <strong>GPT Image 2</strong> so they're top of the list.</div>
-    <div class="due">Watch one or two Flora tutorials from the playlist (link in Notion). ~3 minutes each — watch at 1.25×.</div>
-  </div>
-
-  <div class="homework">
-    <div class="lbl">1 · Replicate a saved reference</div>
-    <div class="ask">Pull one piece you love from your Instagram saves. Drop an image node, paste a prompt, and try to <strong>recreate that reference</strong> in Flora.</div>
-    <div class="due">Run 5 options. Don't expect it to nail it first try — that's the point.</div>
+    <div class="lbl">1 · Name and tidy your workflows</div>
+    <div class="ask">Go into Flora and <strong>title every workflow</strong> you've made. Drag your projects into your personal folder. Delete what you don't need — assets are disposable.</div>
+    <div class="due">The bar: no untitled projects left by next session.</div>
   </div>
 
   <div class="homework">
-    <div class="lbl">2 · Make 10–15 variations</div>
-    <div class="ask">Take whatever you started and push it. Change one thing at a time. Duplicate the node (<strong>Cmd-D</strong>) and run Nano Banana 2 vs GPT Image 2 on the same prompt.</div>
-    <div class="due">Volume is the lesson. You're after 10–15 variations, not one perfect image.</div>
-  </div>
-
-  <div class="homework">
-    <div class="lbl">3 · Try one video (optional but encouraged)</div>
-    <div class="ask">Drop a video node and make something move. We cover video properly next week — this is just to see it work.</div>
-    <div class="due">If you've got time over the long weekend.</div>
+    <div class="lbl">2 · Find a new Carhartt direction in Flora</div>
+    <div class="ask">Build the four-node product workflow: source reference, Carhartt product, Claude system prompt, image node. Run it both ways — reference connected and disconnected — and feel the difference.</div>
+    <div class="due">Land on a genuinely new creative direction that could realistically work for the brand. On-brand enough that the client would buy it, fresh enough that it isn't the same workwear ad everyone makes.</div>
   </div>
 
   <div class="homework" style="border-left-color:var(--accent);background:rgba(19,56,190,0.07);">
-    <div class="lbl">The deliverable · due Thursday, 25 June</div>
-    <div class="ask">Come to Session 05 having <strong>spent real time in Flora</strong>: one reference replicated, 10–15 variations made, and ideally one video attempted. Bring the messiest, weirdest thing you made.</div>
-    <div class="due">Drop your favourites (or your funniest failures) in <strong>#project-creative-training</strong>. The team that shares reps levels up faster than the team that hides them.</div>
+    <div class="lbl">The deliverable · due Thursday, 9 July</div>
+    <div class="ask">Come to Session 06 with a <strong>clean workspace</strong> (everything named and foldered) and <strong>one Carhartt direction</strong> you built in Flora.</div>
+    <div class="due">Share the Flora link in <strong>#project-creative-training</strong> so the team can clone it. Bring the messy attempts too — the experiments are where the learning is.</div>
   </div>
 </section>
 
@@ -899,9 +873,9 @@
 
   <div class="next-up plain">
     <div>
-      <div class="lbl">Session 05 &nbsp;·&nbsp; Thursday, 25 June 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
-      <div class="title">Making Stuff (and Making It a Team Sport)</div>
-      <div class="date">Hands on Flora. A live Instagram-replication rep, the video node, team workspaces, and accepting client feedback the async way.</div>
+      <div class="lbl">Session 06 &nbsp;·&nbsp; Thursday, 9 July 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
+      <div class="title">The Full Campaign, at Speed</div>
+      <div class="date">Jeremy builds a complete Carhartt campaign live — batch node, multiple SKUs wired to one prompt, hit go once, watch the campaign come to life. Part office hours, part speed-run, built on whatever you bring from this week's exploration.</div>
     </div>
     <a class="btn" href="/january-digital">View all sessions</a>
   </div>
@@ -917,7 +891,7 @@
   <div class="cards-2col">
     <div class="resource-card highlight">
       <div class="lbl">Recording</div>
-      <div class="name">Session 04 video</div>
+      <div class="name">Session 05 video</div>
       <div class="desc">The full session, start to finish. Watch it back any time.</div>
       <a class="link" href="https://drive.google.com/file/d/1iYEwbiB6jOXxOWk6wVK9nu0tTt5n2UpU/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
     </div>
@@ -936,7 +910,7 @@
 </footer>
 
 <script>
-  const SESSION_DATE = "2026-06-18";
+  const SESSION_DATE = "2026-06-25";
   const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
 
   const now = new Date();

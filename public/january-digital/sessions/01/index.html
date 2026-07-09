@@ -712,7 +712,7 @@
 
 <div class="topbar">
   <a class="back" href="/january-digital"><span class="arrow">←</span>Back to hub</a>
-  <div class="progress"><strong>Session 05</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+  <div class="progress"><strong>Session 06</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
 </div>
 
 <!-- ─── HERO ─── -->
@@ -730,7 +730,7 @@
     </div>
     <div class="item">
       <div class="lbl">Time</div>
-      <div class="val">9:30 AM EDT</div>
+      <div class="val">10:00 AM ET</div>
     </div>
     <div class="item">
       <div class="lbl">Length</div>
@@ -929,7 +929,7 @@
 
   <div class="next-up plain">
     <div>
-      <div class="lbl">Session 02 &nbsp;·&nbsp; Thursday, 28 May 2026 &nbsp;·&nbsp; 9:30 AM EDT</div>
+      <div class="lbl">Session 02 &nbsp;·&nbsp; Thursday, 28 May 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
       <div class="title">Inspiration, Curation, and the Creative Idea</div>
       <div class="date">Where creative ideas actually come from. The difference between design and an idea. How to build a reference library that earns its keep.</div>
     </div>
@@ -945,7 +945,7 @@
   // Hero status pill + join button were removed (session is complete).
 
   /*
-    Countdown to the next session — every session starts 9:30 AM EDT (UTC-4).
+    Countdown to the next session — every session starts 10:00 AM ET (UTC-4).
     Programme runs entirely within Daylight Saving, so a fixed -4 offset
     (13:30 UTC) is correct. "Live now" while running, "Programme complete" after.
   */
@@ -954,10 +954,10 @@
     if (!el) return;
     const SESSION_STARTS = [
       '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
-      '2026-06-25', '2026-07-02', '2026-07-09', '2026-07-16'
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
     ].map(d => {
       const [y, m, day] = d.split('-').map(Number);
-      return Date.UTC(y, m - 1, day, 13, 30, 0); // 9:30 AM EDT
+      return Date.UTC(y, m - 1, day, 14, 0, 0); // 10:00 AM ET
     });
     const LIVE_WINDOW_MS = 90 * 60 * 1000;
     const pad = n => String(n).padStart(2, '0');

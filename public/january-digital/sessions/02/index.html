@@ -8,7 +8,7 @@
 <link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
 <meta property="og:type" content="article" />
 <meta property="og:title" content="Session 02 — Inspiration, Curation, and the Creative Idea" />
-<meta property="og:description" content="This week is the eye. Learning to see — before AI helps us shortcut it. Thursday 28 May 2026, 9:30 AM EDT." />
+<meta property="og:description" content="This week is the eye. Learning to see — before AI helps us shortcut it. Thursday 28 May 2026, 10:00 AM ET." />
 <meta property="og:image" content="https://training.notcontent.ai/january-digital/sessions/02/cheatsheet-header.png" />
 <meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/02" />
 <meta name="twitter:card" content="summary_large_image" />
@@ -721,7 +721,7 @@
 
 <div class="topbar">
   <a class="back" href="/january-digital"><span class="arrow">←</span>Back to hub</a>
-  <div class="progress"><strong>Session 05</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 9:30 AM EDT"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+  <div class="progress"><strong>Session 06</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
 </div>
 
 <!-- ─── HERO ─── -->
@@ -741,7 +741,7 @@
     </div>
     <div class="item">
       <div class="lbl">Time</div>
-      <div class="val"><s>9:30 AM EDT</s></div>
+      <div class="val"><s>10:00 AM ET</s></div>
     </div>
     <div class="item">
       <div class="lbl">Length</div>
@@ -859,7 +859,7 @@
 
   <div class="next-up plain">
     <div>
-      <div class="lbl">Session 03 &nbsp;·&nbsp; Thursday, 11 June 2026 &nbsp;·&nbsp; 9:30 AM EDT</div>
+      <div class="lbl">Session 03 &nbsp;·&nbsp; Thursday, 11 June 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
       <div class="title">The Brief on Both Sides of the Table</div>
       <div class="date">What changes when JD becomes the production house. How to receive briefs — and how to teach your clients to write better ones for AI work.</div>
     </div>
@@ -926,7 +926,7 @@
   }
 
   /*
-    Countdown to the next session — every session starts 9:30 AM EDT (UTC-4).
+    Countdown to the next session — every session starts 10:00 AM ET (UTC-4).
     Programme runs entirely within Daylight Saving, so a fixed -4 offset
     (13:30 UTC) is correct. "Live now" while running, "Programme complete" after.
   */
@@ -935,10 +935,10 @@
     if (!el) return;
     const SESSION_STARTS = [
       '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
-      '2026-06-25', '2026-07-02', '2026-07-09', '2026-07-16'
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
     ].map(d => {
       const [y, m, day] = d.split('-').map(Number);
-      return Date.UTC(y, m - 1, day, 13, 30, 0); // 9:30 AM EDT
+      return Date.UTC(y, m - 1, day, 14, 0, 0); // 10:00 AM ET
     });
     const LIVE_WINDOW_MS = 90 * 60 * 1000;
     const pad = n => String(n).padStart(2, '0');
