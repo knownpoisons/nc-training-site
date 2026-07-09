@@ -5,6 +5,7 @@ import { BrandIcon, type BrandIconName } from "@/components/brand-icon";
 import { TestimonialsSection } from "@/components/home/testimonials";
 import { Magnetic } from "@/components/motion/magnetic";
 import { ItalicWipe } from "@/components/motion/italic-wipe";
+import { CaseStudyVideo } from "@/components/case-study-video";
 
 const clients = [
   "Adidas",
@@ -283,7 +284,41 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={100}>
-            <h2 className="oci-display-sm mb-16">Recent Training Results</h2>
+            <h2 className="oci-display-sm mb-12">Recent Training Results</h2>
+          </Reveal>
+
+          {/* Featured case study — the actual work, in motion (subtle: one contained, in-view, muted clip) */}
+          <Reveal delay={150}>
+            <div className="mb-16 grid gap-8 lg:gap-12 lg:grid-cols-[1.3fr_1fr] lg:items-center">
+              <CaseStudyVideo
+                src="/videos/case-studies/cash-app-main.mp4"
+                poster="/videos/case-studies/cash-app-main.jpg"
+                orientation="landscape"
+              />
+              <div>
+                <p className="text-[11px] uppercase tracking-[0.18em] text-[#1338BE] mb-4">
+                  Featured case study · Cash App
+                </p>
+                <p className="text-lg lg:text-xl font-light leading-snug tracking-tight text-foreground max-w-md">
+                  The campaign work the team produced with the operating model —
+                  production time cut to 10%, an estimated $3.5M in year-one savings.
+                </p>
+                <div className="mt-7 flex items-baseline gap-3">
+                  <p className="text-4xl lg:text-5xl font-medium tracking-tight text-[#1338BE] leading-none">
+                    $3.5M
+                  </p>
+                  <p className="text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
+                    Estimated year-one savings
+                  </p>
+                </div>
+                <Link
+                  href="/results/cash-app"
+                  className="mt-8 inline-block text-[11px] font-medium uppercase tracking-[0.18em] text-[#1338BE] hover:text-[#1338BE]/70 transition-colors"
+                >
+                  See the Cash App story →
+                </Link>
+              </div>
+            </div>
           </Reveal>
 
           {/* 3-column grid with vertical dividers */}
