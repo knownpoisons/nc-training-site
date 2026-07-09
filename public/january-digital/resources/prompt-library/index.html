@@ -625,6 +625,7 @@
   <a href="#writing">Writing</a>
   <a href="#productivity">Productivity &amp; Learning</a>
   <a href="#foundations">Foundations</a>
+  <a href="#flora">Flora</a>
 </nav>
 
 <!-- ═══════════════════════════════════════════ -->
@@ -1067,6 +1068,94 @@ The specific change I want this round: <span class="bracket">[tighter / differen
       </div>
     </details>
 
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ─── FLORA ─── -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="block" id="flora">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Flora <span class="rule"></span></div>
+    <h2>System prompts for the canvas.</h2>
+  </div>
+
+  <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:24px;max-width:640px;">Copy-paste these into Flora's text nodes. They turn a flat product image into a scene concept and a finished still into motion — ICC, written tight, aimed at the image and video models.</p>
+
+  <div class="prompt-stack">
+
+    <!-- 13 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">13</span>
+        <div class="info">
+          <div class="title">Image · Flat Lay to Scene Concept</div>
+          <div class="desc">Turn a single flat-lay product image into a photographic scene concept for a Meta ad.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+You are an executive creative director. You'll be given a single flat-lay product image. Write one image prompt that places this exact product into a scene.
+
+<span class="section-label">CONTEXT</span>
+This is <span class="bracket">[product / brand]</span> for a Meta ad. The look is photographic and realistic — on-brand, never stylised or illustrated.
+
+<span class="section-label">CONSTRAINTS</span>
+Keep the product's exact colour, material, shape and proportions. Name one concrete environment with real detail. State the camera angle and the lighting direction. Write it detailed and highly tactile — real surfaces, textures and materials you can almost feel, photographic realism. Output only the prompt: raw prompt text, one paragraph, nothing else.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You have a product flat lay and need a scene concept for a Meta campaign</li>
+          <li>You want the image model to place the product in a realistic environment without losing brand fidelity</li>
+          <li>You're generating multiple concepts by duplicating the chain and changing the environment word</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 14 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">14</span>
+        <div class="info">
+          <div class="title">Video · Still to Motion (Fill the Brackets)</div>
+          <div class="desc">Turn a finished still into a short-form video prompt — static locked camera, product centred.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+You are an executive creative director. You'll be given a finished still image. Take the movement idea in the brackets and write one video prompt.
+
+<span class="section-label">MY MOVEMENT IDEA</span>
+<span class="bracket">[ ]</span>
+
+<span class="section-label">CONTEXT</span>
+This is a product shot for a Meta ad — photographic and realistic, on-brand. The product stays in frame, as centred as possible, from the first second to the last.
+
+<span class="section-label">CONSTRAINTS</span>
+Static locked camera — no camera movement, no zoom. Everything stays completely still except the movement above. If a person appears they're implied, never the hero — a shadow, or a hand or arm that enters and leaves. Write it detailed and tactile, photographic realism. Output only the prompt: raw prompt text, one paragraph, nothing else.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've got a keeper still and want to bring it to life for short-form video</li>
+          <li>Your movement idea is simple — "a hand enters and picks it up" — and you need the model to fill in the cinematic detail</li>
+          <li>You're building the full chain: flat lay → scene concept → still → video</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+
+  <div style="margin-top:24px;padding:22px 24px;background:var(--soft);border-radius:4px;border-left:3px solid var(--accent);">
+    <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px;">Shared workspace</div>
+    <div style="font-family:var(--serif);font-size:19px;line-height:1.25;margin-bottom:8px;">Flora workflow — clone and go</div>
+    <p style="font-family:var(--sans);font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px;">The chain Jeremy demoed in Session 06, ready to clone into your own folder. Open it, hit "Clone project," and start from the Carhartt flat lay.</p>
+    <a style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:1px;" href="[FLORA_WORKFLOW_LINK]" target="_blank" rel="noopener">Open in Flora</a>
   </div>
 </section>
 
