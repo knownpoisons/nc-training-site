@@ -48,11 +48,11 @@ export default function Home() {
             <Reveal delay={200}>
               <div className="mt-7 lg:mt-9 max-w-3xl mx-auto space-y-5">
                 <h1 className="font-editorial text-3xl sm:text-4xl lg:text-[2.875rem] xl:text-5xl text-white leading-[1.08] tracking-tight font-normal">
-                  Your most curious people already use AI.{" "}
-                  <em className="not-italic text-white/70 font-editorial italic">We bring the whole team with them.</em>
+                  Two people on your team got good at AI.{" "}
+                  <em className="not-italic text-white/70 font-editorial italic">The other twelve are watching.</em>
                 </h1>
                 <p className="text-base lg:text-lg text-white/80 leading-snug max-w-2xl mx-auto font-light">
-                  Eight weeks. One operating model — installed across your team, not learned at a workshop.
+                  You&rsquo;ve tried the fix. A half-day workshop, a certificate, a PDF nobody opens again. This is the other thing — eight weeks, one operating model, installed across the whole team.
                 </p>
               </div>
             </Reveal>
@@ -125,7 +125,7 @@ export default function Home() {
                 <ItalicWipe className="font-editorial italic text-[#1338BE]">tools.</ItalicWipe>
               </h2>
               <p className="mt-6 lg:mt-8 text-base lg:text-lg text-foreground/70 leading-relaxed max-w-2xl">
-                The tools change every week. The techniques don&rsquo;t. We teach the way of working that survives every new release — so the work compounds instead of restarting.
+                The tools change every six months. The way of working doesn&rsquo;t. We teach the technique layer that survives every release — so the work compounds instead of restarting each quarter.
               </p>
             </div>
           </Reveal>
@@ -170,18 +170,18 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8 grid gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="space-y-4">
             <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
-              This isn&apos;t Midjourney training.
+              Not a webinar.
             </p>
             <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
-              This isn&apos;t your mom&apos;s ChatGPT workshop.
+              Not tool tutorials.
             </p>
             <p className="text-xl lg:text-2xl font-light text-white/40 line-through decoration-white/20">
-              This isn&apos;t a webinar with a PDF.
+              Not a certification for LinkedIn.
             </p>
           </div>
           <div>
             <p className="text-2xl lg:text-3xl font-light tracking-tight leading-snug">
-              This is operational change. Your whole team. Dangerous with AI — in weeks, not quarters.
+              If a workshop was going to fix this, it already would have. This is the other thing: eight weeks, one hour a week, your whole team — dangerous with AI in weeks, not quarters.
             </p>
             <Link
               href="/blog/ai-training-your-team-doesnt-need"
@@ -198,13 +198,13 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <p className="oci-display-sm text-foreground max-w-5xl">
-              Most creative teams have one or two people who figured out AI. The rest are watching.
+              Every creative team I work with has the same shape. One or two people quietly dangerous with AI. Everyone else experimenting alone.
             </p>
             <p className="mt-8 text-sm leading-relaxed text-muted-foreground max-w-3xl">
-              Every week that gap compounds — in output, in speed, in what leadership sees when they compare your team to the one down the hall.
+              That&rsquo;s not a skills problem. Nobody built a system.
             </p>
             <p className="mt-4 text-sm leading-relaxed text-muted-foreground max-w-3xl">
-              The teams that trained together are already hard to compete with.
+              Every week the gap compounds — in output, in speed, in what leadership sees when they compare your team to the one down the hall.
             </p>
           </Reveal>
 
@@ -245,7 +245,7 @@ export default function Home() {
                 &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
               </blockquote>
               <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                — Oshyia Savur, VP Marketing, Maesa · On stage at a national beauty conference
+                — Oshyia Savur, VP Marketing, Maesa · On stage at a national beauty conference. Unprompted.
               </p>
             </div>
           </Reveal>
@@ -405,6 +405,37 @@ export default function Home() {
       {/* ═══ TESTIMONIALS — Editorial quote carousel (client, extracted) ═══ */}
       <TestimonialsSection />
 
+      {/* ═══ THE METHOD, IN MOTION (static) ═══ */}
+      <section className="py-32 lg:py-44 relative oci-grid-lines border-t border-foreground/10">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+          <Reveal>
+            <h2 className="font-editorial text-3xl sm:text-4xl lg:text-5xl text-foreground leading-[1.12] tracking-tight font-normal max-w-3xl">
+              Fifty options in.{" "}
+              <em className="font-editorial italic text-[#1338BE]">One direction out.</em>{" "}
+              Documented.
+            </h2>
+          </Reveal>
+          <div className="mt-14 grid gap-0 lg:grid-cols-3">
+            {[
+              { n: "01", name: "Diverge", tag: "Range", body: "Fifty options at a speed the team has never had. No judgement yet." },
+              { n: "02", name: "Converge", tag: "Refine", body: "Human taste applied. The cost of the work drops, the quality doesn\u2019t." },
+              { n: "03", name: "Build", tag: "Document", body: "The way of working, written down. A one-off saving made permanent." },
+            ].map((phase, i) => (
+              <Reveal key={phase.n} delay={i * 120}>
+                <div className={"p-8 lg:p-10 " + (i > 0 ? "lg:border-l border-t lg:border-t-0 border-foreground/10" : "")}>
+                  <div className="flex items-baseline gap-3">
+                    <span className="text-sm text-muted-foreground font-light">{phase.n}</span>
+                    <span className="text-[11px] uppercase tracking-[0.18em] text-[#1338BE]">{phase.tag}</span>
+                  </div>
+                  <h3 className="mt-5 text-2xl lg:text-3xl font-medium tracking-tight">{phase.name}</h3>
+                  <p className="mt-4 text-sm leading-relaxed text-muted-foreground">{phase.body}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ WHY NOTCONTENT ═══ */}
       <section className="py-32 lg:py-44 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -443,7 +474,7 @@ export default function Home() {
                   title: "Built on your brief, not a stock playbook.",
                   icon: "fingerprint" as BrandIconName,
                   description:
-                    "Every engagement starts with your brand assets, your workflows, your production needs. By the end, your team owns a system shaped to your operation — not a templated framework.",
+                    "Every engagement starts with your brand assets, your workflows, your production bottlenecks. You end with a system your team owns and runs — not notes from a course.",
                 },
                 {
                   title: "We don’t disappear after week 8.",
@@ -481,13 +512,12 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <p className="oci-display-sm text-foreground max-w-5xl">
-              One third of creative teams are now using AI regularly.
-              Most are stuck experimenting alone.
+              For creative and media teams of 8&ndash;30 with real production volume — and a leadership team that&rsquo;s done experimenting.
             </p>
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 text-xl lg:text-2xl font-light text-foreground/60 max-w-3xl leading-relaxed">
-              Your team&apos;s next 90 days will matter more than the last 18 months.
+              Your team&apos;s next 90 days will matter more than the last 18 months. Twenty minutes. No pitch deck.
             </p>
           </Reveal>
           <Reveal delay={250}>
