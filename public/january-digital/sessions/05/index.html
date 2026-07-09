@@ -505,6 +505,26 @@
     color: rgba(229, 228, 226, 0.9);
   }
 
+  /* ─── Video embed ─── */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-bottom: 28px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
   /* ─── Section split ─── */
   .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
   .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
@@ -888,12 +908,16 @@
     <h2>Take it with you.</h2>
   </div>
 
+  <div class="video-embed">
+    <iframe src="https://drive.google.com/file/d/1mYgWR-PkC0LYx9chIPk69cue3DbrMREg/preview" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
   <div class="cards-2col">
     <div class="resource-card highlight">
       <div class="lbl">Recording</div>
       <div class="name">Session 05 video</div>
       <div class="desc">The full session, start to finish. Watch it back any time.</div>
-      <a class="link" href="https://drive.google.com/file/d/1iYEwbiB6jOXxOWk6wVK9nu0tTt5n2UpU/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+      <a class="link" href="https://drive.google.com/file/d/1mYgWR-PkC0LYx9chIPk69cue3DbrMREg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
     </div>
 
     <div class="resource-card highlight">
