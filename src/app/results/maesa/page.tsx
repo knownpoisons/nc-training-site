@@ -143,6 +143,14 @@ export default function MaesaCaseStudy() {
               <span>THE WORK</span>
               <span>[NC.4]</span>
             </div>
+            {/* Featured brand film */}
+            <CaseStudyVideo
+              src="/videos/case-studies/maesa-brand.mp4"
+              poster="/videos/case-studies/maesa-brand.jpg"
+            />
+            <p className="mt-4 mb-10 text-xs text-foreground/40">
+              Maesa&apos;s brand film.
+            </p>
             <CaseStudyVideo
               src="/videos/case-studies/maesa-main.mp4"
               poster="/videos/case-studies/maesa-main.jpg"
