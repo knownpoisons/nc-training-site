@@ -30,9 +30,9 @@ const caseStudies = [
     client: "Maesa",
     slug: "/results/maesa",
     industry: "Beauty · CPG",
-    headline: "New brand launched into every Target store. 3 months instead of 9.",
+    headline: "A new brand into every Target store. 3 months instead of 9.",
     summary:
-      "Trained two internal teams across a dozen beauty, hair, and fragrance brands. Launched a new brand into every Target store entirely with AI.",
+      "The world's largest mass-beauty incubator — Kristin Ess, Hairitage, Being Frenshe and a dozen more, in Target, Walmart, Ulta and beyond. We trained the two teams behind all of them.",
     video: "/videos/case-studies/maesa-main.mp4",
     poster: "/videos/case-studies/maesa-main.jpg",
     orientation: "portrait" as const,
