@@ -497,6 +497,7 @@ Using the winning pieces, create one final optimized landing/sales page with:
 * Final CTA
 
 Be candid. Do not protect weak ideas. Prioritize clarity, conversion, and differentiation over cleverness.`,
+    heroImage: "/images/library/copy-autopsy-sample.jpg",
     tags: ["conversion", "landing-page", "sales-page", "copywriting", "marketing"],
   },
 ];
