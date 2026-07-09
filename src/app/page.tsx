@@ -38,8 +38,8 @@ const proofCards = [
     category: "Agency",
     name: "Herman Scheer",
     stat: "$4.5M",
-    statLabel: "From a $500K shoot budget",
-    desc: "$4.5M in assets from a $500K shoot budget. Now selling AI services to their own clients.",
+    statLabel: "Estimated year-one savings",
+    desc: "$4.5M in estimated year-one savings. Now selling AI services to their own clients.",
     href: "/results/herman-scheer",
   },
 ];
