@@ -166,8 +166,7 @@ export default function MaesaCaseStudy() {
               dollars in the next year alone.&rdquo;
             </p>
             <p className="mt-4 text-sm text-foreground/40">
-              — Oshyia Savur, VP Marketing, Maesa / On stage at a national
-              beauty conference
+              — Oshyia Savur, VP Marketing, Maesa / On stage at Shoptalk, 2025
             </p>
           </div>
         </div>

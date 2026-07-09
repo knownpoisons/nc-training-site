@@ -144,13 +144,6 @@ export default function HermanScheerCaseStudy() {
               src="/videos/case-studies/herman-scheer-main.mp4"
               poster="/videos/case-studies/herman-scheer-main.jpg"
             />
-            <div className="mt-4">
-              <CaseStudyVideo
-                src="/videos/case-studies/herman-scheer-sub.mp4"
-                poster="/videos/case-studies/herman-scheer-sub.jpg"
-                orientation="portrait"
-              />
-            </div>
             <p className="mt-4 text-xs text-foreground/40">
               Campaign work produced by Herman Scheer with the operating model — zero to full AI production in weeks.
             </p>

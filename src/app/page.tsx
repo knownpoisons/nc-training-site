@@ -245,7 +245,7 @@ export default function Home() {
                 &ldquo;Jeremy and NotContent will save us tens of millions of dollars in the next year alone.&rdquo;
               </blockquote>
               <p className="mt-6 text-[11px] uppercase tracking-[0.15em] text-muted-foreground">
-                — Oshyia Savur, VP Marketing, Maesa · On stage at a national beauty conference. Unprompted.
+                — Oshyia Savur, VP Marketing, Maesa · On stage at Shoptalk, 2025. Unprompted.
               </p>
             </div>
           </Reveal>
