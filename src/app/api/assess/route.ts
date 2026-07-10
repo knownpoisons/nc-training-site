@@ -35,17 +35,19 @@ export async function POST(req: NextRequest) {
       "https://training.notcontent.ai";
 
     // Fire-and-collect all integrations in parallel.
-    const [supabaseRes, beehiivRes, emailRes, slackRes] =
+    const [supabaseRes, beehiivRes, emailRes, adminRes, slackRes] =
       await Promise.allSettled([
         storeInSupabase({ name, email, result, answers }),
         subscribeToBeehiiv({ name, email, result }),
         sendResultEmail({ name, email, result, siteUrl }),
+        notifyAdminByEmail({ name, email, result }),
         notifySlack({ name, email, result }),
       ]);
 
     logSettledResult("supabase", supabaseRes);
     logSettledResult("beehiiv", beehiivRes);
     logSettledResult("resend", emailRes);
+    logSettledResult("admin-email", adminRes);
     logSettledResult("slack", slackRes);
 
     return NextResponse.json({ ok: true });
@@ -179,6 +181,69 @@ async function sendResultEmail(args: {
 
   if (sendRes.error) {
     throw new Error(`resend: ${sendRes.error.message}`);
+  }
+  return { ok: true };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// ADMIN NOTIFICATION — email Jeremy every new lead so he can follow up
+// Reply-To is set to the LEAD so a reply goes straight to the prospect.
+// ═══════════════════════════════════════════════════════════════════════════════
+async function notifyAdminByEmail(args: {
+  name: string;
+  email: string;
+  result: ScoreResult;
+}): Promise<{ ok: boolean; note?: string }> {
+  const { name, email, result } = args;
+  const apiKey = process.env.RESEND_API_KEY;
+  const from = process.env.RESEND_FROM_EMAIL;
+  const to = process.env.LEAD_NOTIFY_EMAIL ?? "getcontent@notcontent.ai";
+
+  if (!apiKey || !from) {
+    return { ok: true, note: "admin_email_skipped_env_missing" };
+  }
+
+  const resend = new Resend(apiKey);
+  const rows: Array<[string, string]> = [
+    ["Name", name || "—"],
+    ["Email", email],
+    ["Score", `${result.normalizedScore}/100`],
+    ["Tier", result.tier],
+    ["Recommended program", result.recommendedProgram],
+    ["Work type", result.workType ?? "—"],
+    ["Tool stack", `${result.stackCount} tools (${result.stackBucket})`],
+    ["Adoption / Readiness / Blockers", `${result.dimensions.adoption} / ${result.dimensions.readiness} / ${result.dimensions.blockers}`],
+  ];
+
+  const textBody =
+    `New AI Readiness Scorecard lead — follow up:\n\n` +
+    rows.map(([k, v]) => `${k}: ${v}`).join("\n") +
+    `\n\nReply to this email to respond directly to ${name || email}.`;
+
+  const htmlBody =
+    `<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:520px">` +
+    `<h2 style="margin:0 0 4px;font-weight:600">New Scorecard lead</h2>` +
+    `<p style="margin:0 0 16px;color:#555">Reply to this email to respond directly to ${name || email}.</p>` +
+    `<table style="border-collapse:collapse;width:100%;font-size:14px">` +
+    rows
+      .map(
+        ([k, v]) =>
+          `<tr><td style="padding:6px 12px 6px 0;color:#888;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:6px 0;font-weight:500">${v}</td></tr>`
+      )
+      .join("") +
+    `</table></div>`;
+
+  const sendRes = await resend.emails.send({
+    from,
+    to,
+    replyTo: email, // reply goes to the prospect, not to Jeremy's own inbox
+    subject: `New lead: ${name || email} — ${result.normalizedScore}/100 (${result.tier})`,
+    html: htmlBody,
+    text: textBody,
+  });
+
+  if (sendRes.error) {
+    throw new Error(`admin_email: ${sendRes.error.message}`);
   }
   return { ok: true };
 }
