@@ -10,7 +10,6 @@ const navigation = [
   { name: "Methodology", href: "/methodology" },
   { name: "Results", href: "/results" },
   { name: "Blog", href: "/blog" },
-  { name: "Readiness Scorecard", href: "/assess" },
 ];
 
 export function Header() {
@@ -69,9 +68,17 @@ export function Header() {
           ))}
           <Link
             href="/book"
-            className="ml-2 px-5 py-2 bg-[#1338BE] text-white text-[11px] uppercase tracking-[0.15em] hover:bg-[#0e38a8] transition-colors"
+            className={`text-[11px] uppercase tracking-[0.15em] transition-colors hover:text-foreground ${
+              scrolled ? "text-foreground/50" : "text-white/70"
+            }`}
           >
-            Book a Discovery Call
+            Book a Call
+          </Link>
+          <Link
+            href="/assess"
+            className="ml-1 px-5 py-2 bg-[#1338BE] text-white text-[11px] uppercase tracking-[0.15em] hover:bg-[#0e38a8] transition-colors"
+          >
+            Take the Scorecard →
           </Link>
         </nav>
 
@@ -98,9 +105,16 @@ export function Header() {
                 </Link>
               ))}
               <Link
-                href="/book"
+                href="/assess"
                 onClick={() => setOpen(false)}
                 className="mt-4 block w-full py-4 bg-[#1338BE] text-white text-center text-[11px] uppercase tracking-[0.15em]"
+              >
+                Take the Readiness Scorecard →
+              </Link>
+              <Link
+                href="/book"
+                onClick={() => setOpen(false)}
+                className="block w-full py-4 text-center text-[11px] uppercase tracking-[0.15em] text-foreground/50"
               >
                 Book a Discovery Call
               </Link>

@@ -134,18 +134,23 @@ export default function CaseStudiesPage() {
               </div>
 
               <div className="grid gap-10 lg:gap-16 lg:grid-cols-2 lg:items-center">
-                {/* The creative — the work itself */}
+                {/* The creative — the work itself, links into the case study */}
                 <div className={flip ? "lg:order-2" : ""}>
                   <CaseStudyVideo
                     src={study.video}
                     poster={study.poster}
                     orientation={study.orientation}
+                    href={study.slug}
                   />
                 </div>
 
                 {/* The story */}
                 <div className={flip ? "lg:order-1" : ""}>
-                  <h2 className="oci-display-sm">{study.client}</h2>
+                  <Link href={study.slug} className="group/title inline-block">
+                    <h2 className="oci-display-sm transition-colors group-hover/title:text-[#1338BE]">
+                      {study.client}
+                    </h2>
+                  </Link>
                   <p className="mt-5 text-xl lg:text-2xl font-light leading-snug tracking-tight text-foreground">
                     {study.headline}
                   </p>
@@ -168,7 +173,7 @@ export default function CaseStudiesPage() {
 
                   <Link
                     href={study.slug}
-                    className="mt-10 inline-flex items-center gap-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#1338BE] transition-colors hover:text-[#1338BE]/70"
+                    className="mt-10 inline-flex items-center gap-2 bg-[#1338BE] px-7 py-4 text-[11px] font-medium uppercase tracking-[0.18em] text-white transition-colors hover:bg-[#0e38a8]"
                   >
                     Read full case study →
                   </Link>
