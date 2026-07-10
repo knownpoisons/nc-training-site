@@ -34,16 +34,19 @@ export async function POST(req: NextRequest) {
       process.env.SITE_URL ??
       "https://training.notcontent.ai";
 
-    // Fire-and-collect all three integrations in parallel.
-    const [supabaseRes, beehiivRes, emailRes] = await Promise.allSettled([
-      storeInSupabase({ name, email, result, answers }),
-      subscribeToBeehiiv({ name, email, result }),
-      sendResultEmail({ name, email, result, siteUrl }),
-    ]);
+    // Fire-and-collect all integrations in parallel.
+    const [supabaseRes, beehiivRes, emailRes, slackRes] =
+      await Promise.allSettled([
+        storeInSupabase({ name, email, result, answers }),
+        subscribeToBeehiiv({ name, email, result }),
+        sendResultEmail({ name, email, result, siteUrl }),
+        notifySlack({ name, email, result }),
+      ]);
 
     logSettledResult("supabase", supabaseRes);
     logSettledResult("beehiiv", beehiivRes);
     logSettledResult("resend", emailRes);
+    logSettledResult("slack", slackRes);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
@@ -176,6 +179,74 @@ async function sendResultEmail(args: {
 
   if (sendRes.error) {
     throw new Error(`resend: ${sendRes.error.message}`);
+  }
+  return { ok: true };
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// SLACK — instant lead ping via Incoming Webhook
+// ═══════════════════════════════════════════════════════════════════════════════
+async function notifySlack(args: {
+  name: string;
+  email: string;
+  result: ScoreResult;
+}): Promise<{ ok: boolean; note?: string }> {
+  const { name, email, result } = args;
+  const webhook = process.env.SLACK_WEBHOOK_URL;
+
+  if (!webhook) {
+    return { ok: true, note: "slack_skipped_env_missing" };
+  }
+
+  const summary = `New Scorecard lead: ${name || email} — ${result.normalizedScore}/100 (${result.tier})`;
+
+  const res = await fetch(webhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: summary, // fallback for notifications/previews
+      blocks: [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "🎯 New AI Readiness Scorecard lead",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            { type: "mrkdwn", text: `*Name:*\n${name || "—"}` },
+            { type: "mrkdwn", text: `*Email:*\n${email}` },
+            { type: "mrkdwn", text: `*Score:*\n${result.normalizedScore}/100` },
+            { type: "mrkdwn", text: `*Tier:*\n${result.tier}` },
+            {
+              type: "mrkdwn",
+              text: `*Stack:*\n${result.stackCount} tools (${result.stackBucket})`,
+            },
+            {
+              type: "mrkdwn",
+              text: `*Recommended:*\n${result.recommendedProgram}`,
+            },
+          ],
+        },
+        {
+          type: "context",
+          elements: [
+            {
+              type: "mrkdwn",
+              text: `Work type: ${result.workType ?? "—"}  ·  via training.notcontent.ai/assess`,
+            },
+          ],
+        },
+      ],
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`slack_${res.status}: ${errText.slice(0, 200)}`);
   }
   return { ok: true };
 }
