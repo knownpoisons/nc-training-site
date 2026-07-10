@@ -24,12 +24,12 @@ export const programs: Record<Program, ProgramData> = {
   },
   transformation: {
     label: "The Operating Model",
-    tagline: "8-week program. Operational change that sticks.",
+    tagline: "8-week program, built bespoke to your team. Operational change that sticks.",
     detail:
-      "In-person 2-day intensive plus weekly sessions. Role-specific tracks for CDs, designers, strategists, and production. Custom workflow buildout, governance policy, and ongoing monthly support. This is what we delivered to Cash App, Maesa, and Herman Scheer.",
+      "Designed around your team — your workflows, your production, your risk profile. In-person 2-day intensive plus weekly sessions, with role-specific tracks for CDs, designers, strategists, and production. Custom workflow buildout, governance policy, and ongoing monthly support. This is what we delivered to Cash App, Maesa, and Herman Scheer.",
     href: "/programs/transformation",
     pricing: "From $50,000",
-    duration: "8 weeks + ongoing",
+    duration: "8 weeks · Bespoke to your team",
   },
 };
 
