@@ -238,8 +238,16 @@ export default function AssessPage() {
               >
                 Start →
               </button>
-              <p className="text-xs text-foreground/40 text-center">
-                No spam. Unsubscribe anytime.
+              <p className="text-xs text-foreground/40 text-center leading-relaxed">
+                We&rsquo;ll email your results and the occasional note on AI
+                training — no spam, unsubscribe anytime. See our{" "}
+                <Link
+                  href="/privacy"
+                  className="underline underline-offset-2 hover:text-foreground/70"
+                >
+                  Privacy Policy
+                </Link>
+                .
               </p>
             </form>
           </div>

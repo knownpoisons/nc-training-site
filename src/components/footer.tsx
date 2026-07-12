@@ -96,12 +96,20 @@ export function Footer() {
                   className="h-5 w-5 rounded-[2px] opacity-50"
                 />
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
-                  &copy; {new Date().getFullYear()} NotContent. All rights reserved.
+                  &copy; {new Date().getFullYear()} We Are Handsome LLC dba NotContent. All rights reserved.
                 </p>
               </div>
-              <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
-                Los Angeles · Hawaii · Sydney
-              </p>
+              <div className="flex items-center gap-6">
+                <Link
+                  href="/privacy"
+                  className="text-[11px] uppercase tracking-[0.15em] text-foreground/40 transition-colors hover:text-foreground"
+                >
+                  Privacy Policy
+                </Link>
+                <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
+                  Los Angeles · Hawaii · Sydney
+                </p>
+              </div>
             </div>
           </div>
         </div>
