@@ -34,16 +34,31 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ challenge: body.challenge });
   }
 
-  // 3) Only handle human messages in the cockpit channel.
+  // 3) Handle human messages. Slack only delivers message.channels events for
+  //    channels the bot has been invited to, so we reply in whatever channel the
+  //    message arrived in (event.channel) rather than gating on SLACK_CHANNEL_ID —
+  //    that env value is only used for the bot's own proactive posts (crons).
   const event = body.event;
-  const { ctx } = getLiveContext();
+  const { ctx, reason } = getLiveContext();
+  console.log(
+    "[cockpit/slack] inbound",
+    JSON.stringify({
+      type: event?.type,
+      subtype: event?.subtype ?? null,
+      channel: event?.channel ?? null,
+      hasText: typeof event?.text === "string",
+      bot: !!event?.bot_id,
+      ctxReady: !!ctx,
+      ctxReason: reason ?? null,
+    })
+  );
   if (
     ctx &&
     event &&
     event.type === "message" &&
     !event.bot_id && // ignore the bot's own posts
     event.subtype === undefined && // ignore edits/joins/etc.
-    event.channel === ctx.channel &&
+    typeof event.channel === "string" &&
     typeof event.text === "string"
   ) {
     const settings = await ctx.store.getSettings();
@@ -67,7 +82,7 @@ export async function POST(req: NextRequest) {
         ctx.store,
         ctx.slack,
         {
-          channel: ctx.channel,
+          channel: event.channel,
           today: day,
           nowIso: now.toISOString(),
           messageTs: event.ts,

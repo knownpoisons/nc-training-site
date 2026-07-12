@@ -20,5 +20,11 @@ export async function GET() {
     message: status.allReady
       ? "All set — the cockpit is fully wired."
       : "Some pieces aren't configured yet. See SETUP.md for each one.",
+    // Channel IDs are not secret (they appear in Slack URLs). Exposed for setup
+    // debugging — a valid one starts with "C".
+    debug: {
+      channelId: process.env.SLACK_CHANNEL_ID ?? null,
+      channelIdLooksValid: /^C[A-Z0-9]{6,}$/.test(process.env.SLACK_CHANNEL_ID ?? ""),
+    },
   });
 }
