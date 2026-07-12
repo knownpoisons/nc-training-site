@@ -6,6 +6,7 @@ import {
   renderScorecardEmailText,
 } from "@/lib/email/scorecard-email";
 import type { ScoreResult } from "@/app/assess/logic";
+import { ingestScorecardCompleter } from "@/cockpit/engine-zero/scorecardIntake";
 
 // Each third-party call is wrapped so one failure doesn't break the others.
 // The user always gets `{ ok: true }` — we never bubble infra errors to them.
@@ -34,16 +35,25 @@ export async function POST(req: NextRequest) {
       process.env.SITE_URL ??
       "https://training.notcontent.ai";
 
-    // Fire-and-collect all three integrations in parallel.
-    const [supabaseRes, beehiivRes, emailRes] = await Promise.allSettled([
+    // Fire-and-collect all integrations in parallel. A completer also enters the
+    // cockpit's reviewed queue as a HOT lead (best-effort — never blocks).
+    const [supabaseRes, beehiivRes, emailRes, cockpitRes] = await Promise.allSettled([
       storeInSupabase({ name, email, result, answers }),
       subscribeToBeehiiv({ name, email, result }),
       sendResultEmail({ name, email, result, siteUrl }),
+      ingestScorecardCompleter({
+        name,
+        email,
+        tier: result.tier,
+        scoreNormalized: result.normalizedScore,
+        workType: result.workType,
+      }),
     ]);
 
     logSettledResult("supabase", supabaseRes);
     logSettledResult("beehiiv", beehiivRes);
     logSettledResult("resend", emailRes);
+    logSettledResult("cockpit", cockpitRes);
 
     return NextResponse.json({ ok: true });
   } catch (err) {
