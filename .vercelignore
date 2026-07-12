@@ -1,0 +1,3 @@
+# Private lead data — needed only for the one-time LOCAL import (Step 6).
+# Must never ship to the deployed site (subscriber emails, LinkedIn export, ~5MB).
+cockpit/Sources of Leads/
