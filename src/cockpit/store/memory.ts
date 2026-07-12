@@ -52,6 +52,7 @@ export class MemoryStore implements CockpitStore {
     nudgeHour: 14,
     timezone: "Pacific/Honolulu",
     streakWeeks: 0,
+    bookingUrl: null,
   };
   private seq = 0;
 
@@ -85,6 +86,7 @@ export class MemoryStore implements CockpitStore {
       openerAngle: p.openerAngle ?? null,
       dealValue: p.dealValue ?? 50000,
       callAt: p.callAt ?? null,
+      callBrief: p.callBrief ?? null,
     };
     this.prospects.set(prospect.id, prospect);
     return prospect;
@@ -443,6 +445,7 @@ export class MemoryStore implements CockpitStore {
       ...(patch.linkedinUrl !== undefined ? { linkedinUrl: patch.linkedinUrl } : {}),
       ...(patch.dealValue !== undefined ? { dealValue: patch.dealValue } : {}),
       ...(patch.callAt !== undefined ? { callAt: patch.callAt } : {}),
+      ...(patch.callBrief !== undefined ? { callBrief: patch.callBrief } : {}),
       ...(patch.track !== undefined ? { track: patch.track } : {}),
       ...(patch.stage !== undefined ? { stage: patch.stage } : {}),
     });

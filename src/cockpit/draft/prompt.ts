@@ -24,6 +24,11 @@ export interface DraftInput {
   dossier?: string | null;
   /** Suggested opener angle from enrichment. */
   openerAngle?: string | null;
+  /** Distilled call brief (what they cared about, objections, next step) —
+   *  fills the [CALL DETAIL] markers in post-call follow-ups. */
+  callBrief?: string | null;
+  /** Jem's booking link — offer it in ask-stage CTAs alongside two times. */
+  bookingUrl?: string | null;
 }
 
 export function buildSystemPrompt(k: Knowledge): string {
@@ -97,6 +102,8 @@ export function buildUserPrompt(input: DraftInput): string {
   if (input.wayIn) lines.push(`• Way in (how they reached Jem): ${input.wayIn}`);
   if (input.dossier) lines.push(`• Dossier (cited research): ${input.dossier}`);
   if (input.openerAngle) lines.push(`• Suggested opener angle: ${input.openerAngle}`);
+  if (input.callBrief) lines.push(`• Call brief (from their last call — use for [CALL DETAIL]): ${input.callBrief}`);
+  if (input.bookingUrl) lines.push(`• Booking link (offer in ask CTAs instead of asking for availability): ${input.bookingUrl}`);
   if (p.notes) lines.push(`• Notes: ${p.notes}`);
   if (input.priorTouches?.length) {
     lines.push("• Prior touches sent:");

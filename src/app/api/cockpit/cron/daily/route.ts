@@ -39,11 +39,29 @@ export async function GET(req: NextRequest) {
       out.resurfaced = revived;
       await ctx.slack.postMessage(
         ctx.channel,
-        `${revived} dormant prospect${revived === 1 ? "" : "s"} resurfaced after 90 days — they're back in the queue for Monday's digest.`
+        `🧟 ${revived} prospect${revived === 1 ? "" : "s"} back from the dead — 90 days rested, queued for Monday's digest.`
       );
     }
   } catch (err) {
     console.error("[cockpit/daily] resurface failed:", err);
+  }
+
+  // ── Every day: yesterday's calls → ask for the Granola transcript (A3) ──────
+  try {
+    const { addDays } = await import("@/cockpit/cadence/dates");
+    const yesterdayCalls = await ctx.store.getCallsForDay(addDays(day, -1));
+    const needing = yesterdayCalls.filter((p) => !p.callBrief);
+    if (needing.length > 0) {
+      const p = needing[0]; // one at a time — the pending state is single-slot
+      await ctx.store.setPending("call_debrief", p.id);
+      await ctx.slack.postMessage(
+        ctx.channel,
+        `How was the call with *${p.name}*? Paste the Granola transcript (or your notes) and I'll mine it — it feeds every follow-up.`
+      );
+      out.debriefPrompt = p.name;
+    }
+  } catch (err) {
+    console.error("[cockpit/daily] debrief prompt failed:", err);
   }
 
   // ── Every day: enrich a small batch of Tier-A queued leads (cited dossiers) ─
@@ -80,7 +98,16 @@ export async function GET(req: NextRequest) {
     const data = await ctx.store.getScoreboardData();
     const programStart =
       data.touches.reduce<string | null>((min, t) => (!min || compareDays(t.dueDate, min) < 0 ? t.dueDate : min), null) ?? day;
-    const sb = computeScoreboard({ ...data, weekStart: mondayOf(day), weekEnd: sundayOf(day), today: day, programStart });
+    const pipeline = await ctx.store.getPipelineValue();
+    const sb = computeScoreboard({
+      ...data,
+      weekStart: mondayOf(day),
+      weekEnd: sundayOf(day),
+      today: day,
+      programStart,
+      weeklyVolume: settings.weeklyVolume,
+      annualTarget: pipeline.target,
+    });
 
     // Streak: ≥80% completion extends it, anything less resets it. Three straight
     // weeks earns the volume question — asked, never auto-raised (F3).

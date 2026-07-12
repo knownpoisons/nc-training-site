@@ -66,3 +66,29 @@ export function makeConversationalResponder(
     return (await model.generate({ system, user: text, attempt: 0, violations: [] })).trim();
   };
 }
+
+/** F2-fun: `roast` — the honesty report with teeth, in Jem's own double-helix voice. */
+export function makeRoaster(
+  store: CockpitStore,
+  model: DraftModel,
+  knowledge: Knowledge
+): () => Promise<string> {
+  return async () => {
+    const [counts, roster] = await Promise.all([store.pipelineCounts(), store.listRoster(40)]);
+    const system = [
+      "You are the GTM Cockpit's roast mode. Jem asked to be roasted about his",
+      "OWN pipeline. Deliver at most 6 short lines: brutal, funny, specific to the",
+      "DATA below — never generic. Use his own voice (self-deprecation and swagger",
+      "in the same breath, Aussie casual, no profanity). Every jab must be true to",
+      "the data. End with ONE genuinely useful next action. Never invent prospects.",
+      "",
+      `Pipeline counts: ${pipelineLine(counts)}.`,
+      "Prospects:",
+      roster.map((r) => `• ${[r.name, r.company].filter(Boolean).join(", ")} — ${r.stage}`).join("\n") || "(empty)",
+      "",
+      "His playbook, for flavour:",
+      knowledge.playbook.slice(0, 3000),
+    ].join("\n");
+    return (await model.generate({ system, user: "Roast my pipeline.", attempt: 0, violations: [] })).trim();
+  };
+}

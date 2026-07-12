@@ -34,6 +34,10 @@ export interface HandleContext {
   /** F2 hook for reply-response drafting. When absent, a pasted reply is stored
    *  but the response draft is a placeholder. */
   draftCtx?: { model: DraftModel; knowledge: Knowledge };
+  /** A1 hook: research a freshly-added prospect (dossier onto the card). */
+  enrich?: (prospect: StoreProspect) => Promise<void>;
+  /** F2-fun hook: the pipeline roast (built in converse.ts). */
+  roast?: () => Promise<string>;
 }
 
 export interface HandleResult {
@@ -65,6 +69,9 @@ export async function handleMessage(
     if (pending.kind === "call_date") {
       return consumeCallDate(store, slack, ctx, pending.prospectId, rawText, brief);
     }
+    if (pending.kind === "call_debrief") {
+      return consumeCallDebrief(store, slack, ctx, pending.prospectId, rawText, brief);
+    }
   } else if (pending && intent.kind !== "conversational") {
     // He moved on to a real command — drop the stale question.
     await store.clearPending();
@@ -94,7 +101,7 @@ export async function handleMessage(
     case "call_booked":
       return handleCallBooked(store, brief, intent.index, confirm);
     case "closed":
-      return handleClosed(store, brief, intent.result, intent.index, confirm);
+      return handleClosed(store, ctx, brief, intent.result, intent.index, confirm);
     case "pause":
       return handlePause(store, intent.name, true, confirm);
     case "unpause":
@@ -118,6 +125,20 @@ export async function handleMessage(
       return handleListNotes(store, ctx, confirm);
     case "show":
       return handleShow(store, intent.name, confirm);
+    case "debrief":
+      return handleDebrief(store, intent.name, confirm);
+    case "roast": {
+      if (ctx.roast) {
+        try {
+          await confirm(await ctx.roast());
+        } catch {
+          await confirm("The roast writer is having a moment. Your pipeline lives another day.");
+        }
+      } else {
+        await confirm("Roasting needs the AI wired — live it works.");
+      }
+      return { intent: "roast", confirmed: true };
+    }
     case "prospect_note":
       return handleProspectNote(store, ctx, intent.name, intent.text, confirm);
     case "set_prospect":
@@ -328,6 +349,78 @@ async function consumeReplyPaste(
   return { intent: "replied", confirmed: true, note: "reply-captured" };
 }
 
+async function handleDebrief(
+  store: CockpitStore,
+  name: string,
+  confirm: (t: string) => Promise<void>
+): Promise<HandleResult> {
+  const p = await store.findProspectByName(name);
+  if (!p) {
+    await confirm(`No prospect matching "${name}".`);
+    return { intent: "debrief", confirmed: true, note: "not-found" };
+  }
+  await store.setPending("call_debrief", p.id);
+  await confirm(`Paste the Granola transcript (or your notes) from the ${p.name} call — I'll mine it for the follow-ups.`);
+  return { intent: "debrief", confirmed: true };
+}
+
+const DISTILL_SYSTEM = [
+  "You distill a sales-call transcript into a compact call brief for a CRM card.",
+  "Return EXACTLY this format, one line each, no preamble:",
+  "CARED: <what they actually cared about>",
+  "OBJECTIONS: <objections raised, or 'none'>",
+  "PERSONAL: <personal details worth remembering, or 'none'>",
+  "NEXT: <the agreed next step, or 'none agreed'>",
+  "READ: <one-line temperature read>",
+  "Be concrete and quote their words where it matters. Never invent.",
+].join("\n");
+
+/** The next message after a debrief prompt — the transcript. Distill and store. */
+async function consumeCallDebrief(
+  store: CockpitStore,
+  slack: SlackClient,
+  ctx: HandleContext,
+  prospectId: string,
+  transcript: string,
+  brief: SavedBrief | null
+): Promise<HandleResult> {
+  const say = async (t: string) => {
+    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, t);
+    else await slack.postMessage(ctx.channel, t);
+  };
+  const p = await store.getProspect(prospectId);
+  if (!p) {
+    await say("Couldn't find that prospect any more — transcript not saved.");
+    return { intent: "debrief", confirmed: true, note: "lost-prospect" };
+  }
+
+  // Full transcript into the event log; the distilled brief onto the card.
+  await store.logEvent(prospectId, "call_debrief", { text: transcript.slice(0, 12000) }, ctx.nowIso);
+
+  let callBrief: string;
+  if (ctx.draftCtx) {
+    try {
+      callBrief = (
+        await ctx.draftCtx.model.generate({
+          system: DISTILL_SYSTEM,
+          user: `Call with ${p.name}${p.company ? ` (${p.company})` : ""}. Transcript/notes:\n\n${transcript.slice(0, 24000)}`,
+          attempt: 0,
+          violations: [],
+        })
+      ).trim();
+    } catch {
+      callBrief = `raw notes (${ctx.today}): ${transcript.slice(0, 600)}`;
+    }
+  } else {
+    callBrief = `raw notes (${ctx.today}): ${transcript.slice(0, 600)}`;
+  }
+
+  await store.updateProspect(prospectId, { callBrief });
+  await store.appendNote(prospectId, `${ctx.today} call debrief captured`);
+  await say(`Mined it. ${p.name}'s card now carries:\n${callBrief}\n\nThe day-2/7/30 follow-ups will write themselves from this.`);
+  return { intent: "debrief", confirmed: true, note: "debrief-captured" };
+}
+
 /** The next message after `call booked N` — the date. Parse, log, schedule follow-ups. */
 async function consumeCallDate(
   store: CockpitStore,
@@ -409,10 +502,23 @@ async function handleAdd(
   if (p.role) bits.push(p.role);
   if (p.company) bits.push(p.company);
   const extras = [intent.email, intent.linkedinUrl].filter(Boolean).join(" · ");
+  const researching = ctx.enrich ? " Researching them now — dossier lands on the card in ~1 min." : "";
   await confirm(
-    `Added *${bits.join(", ")}*${extras ? ` (${extras})` : ""} and scheduled touches for days 1, 4, 12, 21. ` +
-      "Touch 1 is due today — it'll be in tomorrow's brief (or today's if it hasn't posted yet)."
+    `Added *${bits.join(", ")}*${extras ? ` (${extras})` : ""} and scheduled touches for days 1, 4, 12, 21.` +
+      researching +
+      " Touch 1 is due today — it'll be in tomorrow's brief (or today's if it hasn't posted yet)."
   );
+
+  // A1: auto-research so touch 1 personalises itself (hand-adds get the same
+  // treatment as queue leads). Best-effort — a failed lookup never blocks the add.
+  if (ctx.enrich) {
+    try {
+      const fresh = await store.getProspect(p.id);
+      if (fresh) await ctx.enrich(fresh);
+    } catch (err) {
+      console.error("[cockpit] enrich-on-add failed:", err);
+    }
+  }
   return { intent: "add", confirmed: true, note: p.id };
 }
 
@@ -512,8 +618,51 @@ async function handleCallBooked(
   return { intent: "call_booked", confirmed: true };
 }
 
+const WIN_TOASTS = [
+  "The machine hums.",
+  "Taught another one to fish.",
+  "Pixel pushing pays. Again.",
+  "Signed, not demoed — shipped.",
+  "Lock the quote. Prices only go up.",
+];
+
+/** F1 — the Deal Receipt. Wins get a ceremony, not a "Logged." */
+export function renderDealReceipt(args: {
+  dealNumber: number;
+  name: string;
+  company: string | null;
+  value: number;
+  daysToClose: number;
+  lane: string;
+  wonValue: number;
+  target: number;
+}): string {
+  const k = (v: number) => `$${Math.round(v / 1000)}k`;
+  const TICKS = 20;
+  const fill = Math.max(0, Math.min(TICKS, Math.round((args.wonValue / args.target) * TICKS)));
+  const bar = "▮".repeat(fill) + "▯".repeat(TICKS - fill);
+  const toast = WIN_TOASTS[(args.dealNumber - 1) % WIN_TOASTS.length];
+  const who = args.company ? `${args.name} · ${args.company}` : args.name;
+  return [
+    `*${toast}*`,
+    "```",
+    `══════════ DEAL RECEIPT ══════════`,
+    ` No.       ${String(args.dealNumber).padStart(3, "0")}`,
+    ` Client    ${who}`,
+    ` Value     ${k(args.value)}`,
+    ` Door→close ${args.daysToClose} days`,
+    ` Lane      ${args.lane}`,
+    `──────────────────────────────────`,
+    ` ${bar}`,
+    ` ${k(args.wonValue)} of ${k(args.target)}`,
+    `══════════════════════════════════`,
+    "```",
+  ].join("\n");
+}
+
 async function handleClosed(
   store: CockpitStore,
+  ctx: HandleContext,
   brief: SavedBrief | null,
   result: "won" | "lost",
   n: number,
@@ -526,7 +675,27 @@ async function handleClosed(
   }
   const stage = result === "won" ? "WON" : "LOST";
   await store.setStage(a.prospectId, stage);
-  await store.logEvent(a.prospectId, result === "won" ? "closed_won" : "closed_lost", {});
+  await store.logEvent(a.prospectId, result === "won" ? "closed_won" : "closed_lost", {}, ctx.nowIso);
+
+  if (result === "won") {
+    const [p, v] = await Promise.all([store.getProspect(a.prospectId), store.getPipelineValue()]);
+    if (p) {
+      const days = Math.max(0, Math.round((Date.parse(`${ctx.today}T00:00:00Z`) - Date.parse(`${p.addedAt}T00:00:00Z`)) / 86_400_000));
+      await confirm(
+        renderDealReceipt({
+          dealNumber: v.wonCount,
+          name: p.name,
+          company: p.company,
+          value: p.dealValue ?? 50000,
+          daysToClose: days,
+          lane: (p.sources ?? [])[0] ?? p.sourceEngine,
+          wonValue: v.wonValue,
+          target: v.target,
+        })
+      );
+      return { intent: "closed", confirmed: true };
+    }
+  }
   await confirm(`${a.label.split(" · ")[0]} → ${stage}. Logged.`);
   return { intent: "closed", confirmed: true };
 }
@@ -623,9 +792,12 @@ async function handleSet(
   } else if (/^time\s?zone$/.test(field)) {
     patch = { timezone: value };
     readback = `Timezone → ${value}.`;
+  } else if (/^booking(\s+link|\s+url)?$/.test(field)) {
+    patch = { bookingUrl: value };
+    readback = `Booking link → ${value}. Ask-stage drafts will offer it.`;
   }
   if (!patch) {
-    await confirm(`I can set: volume, brief hour, nudge hour, timezone. "${field}" isn't one.`);
+    await confirm(`I can set: volume, brief hour, nudge hour, timezone, booking. "${field}" isn't one.`);
     return { intent: "set", confirmed: true, note: "unknown-field" };
   }
   await store.updateSettings(patch);
@@ -758,7 +930,8 @@ async function handleSettings(
   const s = await store.getSettings();
   await confirm(
     `*Settings*\nWeekly volume: ${s.weeklyVolume}/wk  ·  Brief: ${s.briefHour}:00  ·  ` +
-      `Nudge: ${s.nudgeHour}:00  ·  Timezone: ${s.timezone}  ·  Streak: ${s.streakWeeks}w`
+      `Nudge: ${s.nudgeHour}:00  ·  Timezone: ${s.timezone}  ·  Streak: ${s.streakWeeks}w` +
+      (s.bookingUrl ? `\nBooking: ${s.bookingUrl}` : "")
   );
   return { intent: "settings", confirmed: true };
 }

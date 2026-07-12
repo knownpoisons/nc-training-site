@@ -57,8 +57,12 @@ export async function runMorningBrief(
   const items = await store.listDueItems(today);
   const { actions, overflow } = buildBrief(items);
 
-  // The F1 stakes line + today's call-prep cards.
-  const [stakes, calls] = await Promise.all([store.getPipelineValue(), store.getCallsForDay(today)]);
+  // The F1 stakes line + today's call-prep cards + the booking link for CTAs.
+  const [stakes, calls, settings] = await Promise.all([
+    store.getPipelineValue(),
+    store.getCallsForDay(today),
+    store.getSettings(),
+  ]);
 
   let draftsGenerated = 0;
   let draftsNeedingReview = 0;
@@ -85,6 +89,8 @@ export async function runMorningBrief(
           wayIn: wayIn(item.prospect),
           dossier: item.prospect.dossier ?? null,
           openerAngle: item.prospect.openerAngle ?? null,
+          callBrief: item.prospect.callBrief ?? null,
+          bookingUrl: settings.bookingUrl,
         },
         // Only demand a [PERSONALISE] gap when there's NO material to fill it —
         // with a way-in or dossier, the AI writes the real line (not faking it).
@@ -101,7 +107,7 @@ export async function runMorningBrief(
   const text =
     actions.length === 0
       ? [renderStakes(stakes), renderCallPrep(calls), renderEmptyBrief()].filter(Boolean).join("\n\n")
-      : [renderStakes(stakes), renderCallPrep(calls), renderBrief(actions, overflow)].filter(Boolean).join("\n\n");
+      : [renderStakes(stakes), renderCallPrep(calls), renderBrief(actions, overflow, today)].filter(Boolean).join("\n\n");
   const { ts } = await slack.postMessage(channel, text);
 
   await store.saveBrief({
@@ -132,7 +138,7 @@ export async function runMorningBrief(
   };
 }
 
-export function renderBrief(actions: BuiltAction[], overflow: number): string {
+export function renderBrief(actions: BuiltAction[], overflow: number, day?: Day): string {
   const lines: string[] = [];
   const plural = actions.length === 1 ? "action" : "actions";
   lines.push(`*Morning brief* — ${actions.length} ${plural} today.`);
@@ -153,7 +159,29 @@ export function renderBrief(actions: BuiltAction[], overflow: number): string {
   if (overflow > 0) {
     lines.push(`(${overflow} more due — rolled to tomorrow to keep today at ${actions.length}.)`);
   }
+  lines.push("");
+  lines.push(fortuneFor(day ?? ""));
   return lines.join("\n").trimEnd();
+}
+
+// F5 — the playbook fortune: one line of Jem's own doctrine per brief.
+const PLAYBOOK_FORTUNES = [
+  "Never answer an objection nobody raised.",
+  "Sell speed, output, and money — not AI.",
+  "The follow-up IS the conversion.",
+  "Never a naked \"just checking in\" — every touch carries one new thing.",
+  "If they can't name who signs, they're not a prospect yet.",
+  "One proof story per touch. Rotation, not accumulation.",
+  "Prices only move up — lock it while it's this.",
+  "Drafts that propose times beat drafts that ask for availability.",
+  "Honesty beats are the biggest trust generator.",
+  "The \"which we can't\" clause is load-bearing. Keep it.",
+];
+
+export function fortuneFor(day: string): string {
+  let h = 0;
+  for (const c of day) h = (h * 31 + c.charCodeAt(0)) % 997;
+  return `_${PLAYBOOK_FORTUNES[h % PLAYBOOK_FORTUNES.length]}_`;
 }
 
 /** "Test Rae · touch 1" → "Test Rae" — the name for a `show` hint. */

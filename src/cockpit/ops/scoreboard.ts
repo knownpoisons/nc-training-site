@@ -38,6 +38,10 @@ export interface ScoreboardInput {
   events: SbEvent[]; // ALL events
   prospects: SbProspect[];
   minTouchesForRealData?: number; // default 20
+  /** For the forecast line: adds/week and average deal value. */
+  weeklyVolume?: number; // default 6
+  avgDealValue?: number; // default 50_000
+  annualTarget?: number; // default 700_000
 }
 
 export interface EngineRow {
@@ -66,6 +70,9 @@ export interface Scoreboard {
   honestyLine: string;
   /** Prospects with a touch skipped twice running — named on Fridays (F3 rule). */
   flagged: string[];
+  /** A4 — the funnel math: annualised run-rate at current conversion, and which
+   *  lever moves it most. */
+  forecastLine: string;
 }
 
 const ENGINES: SourceEngine[] = ["partner", "outbound", "alumni", "list", "press"];
@@ -144,6 +151,35 @@ export function computeScoreboard(input: ScoreboardInput): Scoreboard {
       } booked. Real conversion data (${allTimeSent} touches logged).`
     : `Too early for real conversion — ${allTimeSent}/${minReal} touches sent. Running on plan assumptions until then.`;
 
+  // ── A4: funnel math — does the weekly cadence even reach the target? ────────
+  // All-time conversion; plan assumptions below the honesty threshold.
+  const PLAN = { reply: 0.1, call: 0.35, close: 0.25 }; // stated assumptions, not hopes
+  const allReplies = events.filter((e) => e.type === "reply").length;
+  const allCalls = events.filter((e) => e.type === "call_booked").length;
+  const allWins = events.filter((e) => e.type === "closed_won").length;
+  const rReply = usingRealData && allTimeSent > 0 ? allReplies / allTimeSent : PLAN.reply;
+  const rCall = usingRealData && allReplies > 0 ? allCalls / allReplies : PLAN.call;
+  const rClose = usingRealData && allCalls > 0 ? allWins / allCalls : PLAN.close;
+
+  const weekly = input.weeklyVolume ?? 6;
+  const avgDeal = input.avgDealValue ?? 50_000;
+  const target = input.annualTarget ?? 700_000;
+  const annualRunRate = weekly * 52 * rReply * rCall * rClose * avgDeal;
+
+  // The weakest link is the lever: the rate furthest below its plan assumption.
+  const gaps: Array<[string, number]> = [
+    ["reply rate", rReply / PLAN.reply],
+    ["call rate", rCall / PLAN.call],
+    ["close rate", rClose / PLAN.close],
+  ];
+  const lever = gaps.sort((a, b) => a[1] - b[1])[0][0];
+  const k = (n: number) => `$${Math.round(n / 1000)}k`;
+  const basis = usingRealData ? "your real conversion" : "plan assumptions";
+  const forecastLine =
+    annualRunRate >= target
+      ? `At ${basis}, ${weekly}/week runs at ~${k(annualRunRate)}/yr — on pace for ${k(target)}.`
+      : `At ${basis}, ${weekly}/week runs at ~${k(annualRunRate)}/yr vs the ${k(target)} target — the lever is ${lever}${usingRealData ? "" : " (real data from 20 touches)"}.`;
+
   return {
     sent,
     due,
@@ -160,6 +196,7 @@ export function computeScoreboard(input: ScoreboardInput): Scoreboard {
     usingRealData,
     honestyLine,
     flagged,
+    forecastLine,
   };
 }
 
@@ -195,6 +232,7 @@ export function renderScoreboard(s: Scoreboard, weekLabel: string): string {
   if (s.flagged.length) {
     lines.push(`*Avoided twice:* ${s.flagged.join(", ")} — skip or send, but decide.`);
   }
+  lines.push(s.forecastLine);
   lines.push(s.honestyLine);
   return lines.join("\n");
 }

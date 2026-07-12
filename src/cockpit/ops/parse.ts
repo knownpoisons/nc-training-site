@@ -25,6 +25,8 @@ export type Intent =
   | { kind: "note"; text: string }
   | { kind: "notes" }
   | { kind: "show"; name: string }
+  | { kind: "debrief"; name: string }
+  | { kind: "roast" }
   | { kind: "prospect_note"; name: string; text: string }
   | { kind: "set_prospect"; name: string; field: "email" | "linkedin" | "value"; value: string }
   | { kind: "stage_move"; name: string; stage: string }
@@ -152,6 +154,15 @@ export function parseCommand(raw: string): Intent {
     const t = text.replace(/^(note|idea)\s*/i, "").trim();
     if (t) return { kind: "note", text: t };
   }
+
+  // ── post-call transcript intake: "debrief dana" ─────────────────────────────
+  if (/^debrief\b/.test(lower)) {
+    const name = text.replace(/^debrief\s+/i, "").trim();
+    if (name) return { kind: "debrief", name };
+  }
+
+  // ── the roast: brutal pipeline honesty ───────────────────────────────────────
+  if (/^roast\b/.test(lower)) return { kind: "roast" };
 
   // ── show a prospect's full card: "show dana" / "profile dana" / "who is dana" ─
   if (/^(show|profile|who)\b/.test(lower) && !/^show\s+pipeline\b/.test(lower)) {

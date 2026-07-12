@@ -68,6 +68,7 @@ function toProspect(r: any): StoreProspect {
     openerAngle: r.opener_angle ?? null,
     dealValue: r.deal_value != null ? Number(r.deal_value) : 50000,
     callAt: r.call_at ? (r.call_at as string).slice(0, 10) : null,
+    callBrief: r.call_brief ?? null,
   };
 }
 
@@ -159,6 +160,7 @@ export class SupabaseStore implements CockpitStore {
       nudgeHour: data?.nudge_hour ?? 14,
       timezone: data?.timezone ?? "Pacific/Honolulu",
       streakWeeks: data?.streak_weeks ?? 0,
+      bookingUrl: data?.booking_url ?? null,
     };
   }
 
@@ -573,6 +575,7 @@ export class SupabaseStore implements CockpitStore {
     if (patch.linkedinUrl !== undefined) map.linkedin_url = patch.linkedinUrl;
     if (patch.dealValue !== undefined) map.deal_value = patch.dealValue;
     if (patch.callAt !== undefined) map.call_at = patch.callAt;
+    if (patch.callBrief !== undefined) map.call_brief = patch.callBrief;
     if (patch.track !== undefined) map.track = patch.track;
     if (patch.stage !== undefined) map.stage = patch.stage;
     if (!Object.keys(map).length) return;
@@ -647,6 +650,7 @@ export class SupabaseStore implements CockpitStore {
     if (patch.nudgeHour !== undefined) map.nudge_hour = patch.nudgeHour;
     if (patch.timezone !== undefined) map.timezone = patch.timezone;
     if (patch.streakWeeks !== undefined) map.streak_weeks = patch.streakWeeks;
+    if (patch.bookingUrl !== undefined) map.booking_url = patch.bookingUrl;
     const { error } = await this.db.from("cockpit_settings").update(map).eq("id", 1);
     if (error) throw new Error(`updateSettings: ${error.message}`);
     return this.getSettings();

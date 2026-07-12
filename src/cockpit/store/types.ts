@@ -35,6 +35,7 @@ export interface StoreProspect {
   // CRM fields
   dealValue?: number; // defaults to the $50k anchor
   callAt?: Day | null; // booked call date, once logged
+  callBrief?: string | null; // distilled from the pasted call transcript
 }
 
 /** A touch as the store holds it (persisted id included). */
@@ -78,6 +79,7 @@ export interface Settings {
   nudgeHour: number;
   timezone: string;
   streakWeeks: number;
+  bookingUrl: string | null;
 }
 
 export type EventType =
@@ -87,7 +89,8 @@ export type EventType =
   | "closed_lost"
   | "skip"
   | "snooze"
-  | "promote";
+  | "promote"
+  | "call_debrief";
 
 export interface NewProspectInput {
   name: string;
@@ -207,7 +210,7 @@ export interface CockpitStore {
   getPipelineValue(): Promise<PipelineValue>;
 }
 
-export type PendingKind = "reply_paste" | "call_date";
+export type PendingKind = "reply_paste" | "call_date" | "call_debrief";
 export interface PendingState {
   kind: PendingKind;
   prospectId: string;
@@ -218,6 +221,7 @@ export interface ProspectPatch {
   linkedinUrl?: string | null;
   dealValue?: number;
   callAt?: Day | null;
+  callBrief?: string | null;
   track?: Track | null;
   stage?: Stage;
 }

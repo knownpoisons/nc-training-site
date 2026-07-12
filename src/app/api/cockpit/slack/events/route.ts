@@ -3,9 +3,12 @@ import { getSupabaseServer } from "@/lib/supabase";
 import { verifySlackSignature } from "@/cockpit/slack/verify";
 import { getLiveContext, localParts } from "@/cockpit/runtime";
 import { handleMessage } from "@/cockpit/ops/handle";
-import { makeConversationalResponder } from "@/cockpit/ops/converse";
+import { makeConversationalResponder, makeRoaster } from "@/cockpit/ops/converse";
 import { claudeModelFromEnv } from "@/cockpit/draft/model";
 import { loadKnowledge } from "@/cockpit/draft/knowledge";
+import { claudeEnrichmentFromEnv } from "@/cockpit/engine-zero/claudeEnrichment";
+import { enrichLead } from "@/cockpit/engine-zero/enrich";
+import type { MergedLead, LeadSource } from "@/cockpit/engine-zero/types";
 
 // Slack Events API webhook (F4 entry point). Verifies the signature, answers the
 // URL handshake, and routes real channel messages to the command handler.
@@ -96,21 +99,38 @@ export async function POST(req: NextRequest) {
 
         let respondConversational: ((t: string) => Promise<string>) | undefined;
         let draftCtx: { model: NonNullable<ReturnType<typeof claudeModelFromEnv>>; knowledge: ReturnType<typeof loadKnowledge> } | undefined;
+        let roast: (() => Promise<string>) | undefined;
         const model = claudeModelFromEnv();
         if (model) {
           try {
             const knowledge = loadKnowledge();
             respondConversational = makeConversationalResponder(c.store, model, knowledge);
+            roast = makeRoaster(c.store, model, knowledge);
             draftCtx = { model, knowledge };
           } catch (err) {
             console.error("[cockpit/slack] AI wiring unavailable:", err);
           }
         }
 
+        // A1 — research hand-added prospects so touch 1 personalises itself.
+        let enrich: ((p: import("@/cockpit/store/types").StoreProspect) => Promise<void>) | undefined;
+        const provider = claudeEnrichmentFromEnv();
+        if (provider) {
+          enrich = async (p) => {
+            const merged: MergedLead = {
+              name: p.name, email: p.email, company: p.company, role: p.role,
+              linkedinUrl: p.linkedinUrl ?? null, sources: (p.sources ?? []) as LeadSource[],
+              consentLane: p.consentLane ?? "pipeline", engagementRecency: null, sourceDetail: {},
+            };
+            const dossier = await enrichLead(provider, merged);
+            await c.store.setDossier(p.id, dossier.line, dossier.openerAngle);
+          };
+        }
+
         await handleMessage(
           c.store,
           c.slack,
-          { channel, today: day, nowIso: now.toISOString(), messageTs, respondConversational, draftCtx },
+          { channel, today: day, nowIso: now.toISOString(), messageTs, respondConversational, draftCtx, enrich, roast },
           text
         );
       } catch (err) {
