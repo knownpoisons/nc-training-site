@@ -10,13 +10,20 @@ import type { Knowledge } from "./knowledge";
 import type { StoreProspect } from "../store/types";
 
 export interface DraftInput {
-  prospect: Pick<StoreProspect, "name" | "role" | "company" | "notes">;
+  prospect: Pick<StoreProspect, "name" | "role" | "company" | "notes" | "linkedinUrl">;
   touchNumber: number;
   lane: string;
   templateBody: string;
   priorTouches?: string[];
   replyText?: string | null;
   maxWords: number;
+  /** How this lead reached Jem (their signup/list/scorecard) — always true, safe
+   *  to reference for the personal line even with no web research. */
+  wayIn?: string | null;
+  /** Enrichment dossier — cited facts about who they are (may be null / honest-thin). */
+  dossier?: string | null;
+  /** Suggested opener angle from enrichment. */
+  openerAngle?: string | null;
 }
 
 export function buildSystemPrompt(k: Knowledge): string {
@@ -33,9 +40,17 @@ export function buildSystemPrompt(k: Knowledge): string {
     "  client's name.",
     "• Never write: banned sales clichés, tool names or seat costs, unsigned/NDA",
     "  client names (Nike above all), charisma-only lines, or profanity.",
-    "• Keep any [PERSONALISE …] and [BRACKETED] markers as literal gaps — never",
-    "  invent a personal detail you were not given.",
     `• Under ${"120"} words. One CTA. British spelling. Sentence case.`,
+    "",
+    "═══ PERSONALISATION — do the research so Jem doesn't have to ═══",
+    "Fill the opening personal line yourself, from what you're given, in this order:",
+    "1. If a DOSSIER with a cited fact is provided, open with a specific, human line",
+    "   built from it (e.g. their launch, hire, or post). Do NOT leave a gap.",
+    "2. Else, use their WAY IN — how they reached Jem (took the scorecard, signed",
+    "   up to the community, connected on LinkedIn). Always true, always safe.",
+    "3. ONLY if you have neither, keep a literal [PERSONALISE — what to look for]",
+    "   marker as a gap. Never invent a detail. Better an honest gap than a fake fact.",
+    "Never fabricate a campaign, hire, or opinion you weren't given.",
     "",
     "═══ TONE (how Jem wants these to land) ═══",
     "• Warm and human first — a talented mate reaching out, NOT a tech founder",
@@ -78,6 +93,10 @@ export function buildUserPrompt(input: DraftInput): string {
   lines.push(`• Name: ${p.name}`);
   if (p.role) lines.push(`• Role: ${p.role}`);
   if (p.company) lines.push(`• Company: ${p.company}`);
+  if (p.linkedinUrl) lines.push(`• LinkedIn: ${p.linkedinUrl}`);
+  if (input.wayIn) lines.push(`• Way in (how they reached Jem): ${input.wayIn}`);
+  if (input.dossier) lines.push(`• Dossier (cited research): ${input.dossier}`);
+  if (input.openerAngle) lines.push(`• Suggested opener angle: ${input.openerAngle}`);
   if (p.notes) lines.push(`• Notes: ${p.notes}`);
   if (input.priorTouches?.length) {
     lines.push("• Prior touches sent:");

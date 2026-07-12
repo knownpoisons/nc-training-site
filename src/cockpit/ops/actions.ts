@@ -16,9 +16,34 @@ import { placeholderDraft, placeholderReplyDraft } from "./drafts";
 
 export const BRIEF_CAP = 8;
 
+export interface ActionIntel {
+  wayIn: string | null; // how they reached Jem
+  linkedinUrl: string | null;
+  dossier: string | null; // cited research, if enriched
+}
+
 export interface BuiltAction extends BriefActionRef {
   contextLine: string;
   draftText: string;
+  intel: ActionIntel;
+}
+
+const SOURCE_WAY_IN: Record<string, string> = {
+  scorecard: "took the readiness scorecard",
+  community: "signed up to the creative × AI community",
+  linkedin: "a LinkedIn connection",
+  inbox: "past correspondence with Jem",
+  beehiiv: "newsletter subscriber",
+};
+
+/** How this lead arrived — human-readable, always true. Null for hand-added prospects. */
+export function wayIn(p: DueItem["prospect"]): string | null {
+  const src = (p.sources ?? [])[0];
+  return (src && SOURCE_WAY_IN[src]) ?? null;
+}
+
+function intelFor(p: DueItem["prospect"]): ActionIntel {
+  return { wayIn: wayIn(p), linkedinUrl: p.linkedinUrl, dossier: p.dossier ?? null };
 }
 
 export interface BuiltBrief {
@@ -65,6 +90,7 @@ export function buildBrief(items: DueItem[]): BuiltBrief {
         label: `${item.prospect.name} · reply`,
         contextLine: `${item.prospect.name} replied — draft a response and move this forward.`,
         draftText: placeholderReplyDraft(item.prospect),
+        intel: intelFor(item.prospect),
       };
     }
     const touch = item.touch!;
@@ -77,6 +103,7 @@ export function buildBrief(items: DueItem[]): BuiltBrief {
       label: `${item.prospect.name} · touch ${touch.touchNumber}`,
       contextLine: contextForTouch(item),
       draftText: touch.draftText ?? placeholderDraft(item.prospect, touch),
+      intel: intelFor(item.prospect),
     };
   });
 

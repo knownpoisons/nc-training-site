@@ -11,7 +11,7 @@
 import type { Day } from "../cadence/dates";
 import type { CockpitStore, DueItem } from "../store/types";
 import type { SlackClient } from "../slack/types";
-import { buildBrief, type BuiltAction } from "./actions";
+import { buildBrief, wayIn, type BuiltAction } from "./actions";
 import { generateDraft, OUTREACH_MAX_WORDS } from "../draft/engine";
 import { findTemplate, type Lane } from "../draft/templates";
 import type { DraftModel } from "../draft/model";
@@ -78,6 +78,9 @@ export async function runMorningBrief(
           lane,
           templateBody: template?.body ?? a.draftText,
           maxWords: OUTREACH_MAX_WORDS,
+          wayIn: wayIn(item.prospect),
+          dossier: item.prospect.dossier ?? null,
+          openerAngle: item.prospect.openerAngle ?? null,
         },
         template?.requirePersonalise ?? true
       );
@@ -127,6 +130,12 @@ export function renderBrief(actions: BuiltAction[], overflow: number): string {
   for (const a of actions) {
     lines.push(`*${a.n}. ${a.label}*`);
     lines.push(`_${a.contextLine}_`);
+    // Intel block — the context so Jem doesn't have to go research anyone.
+    if (a.intel.wayIn) lines.push(`↳ *Way in:* ${a.intel.wayIn}`);
+    if (a.intel.linkedinUrl) lines.push(`↳ ${a.intel.linkedinUrl}`);
+    if (a.intel.dossier) lines.push(`↳ *Who they are:* ${a.intel.dossier}`);
+    lines.push(`↳ \`show ${firstName(a.label)}\` for the full card`);
+    lines.push("");
     lines.push(a.draftText);
     lines.push("");
   }
@@ -135,6 +144,11 @@ export function renderBrief(actions: BuiltAction[], overflow: number): string {
     lines.push(`(${overflow} more due — rolled to tomorrow to keep today at ${actions.length}.)`);
   }
   return lines.join("\n").trimEnd();
+}
+
+/** "Test Rae · touch 1" → "Test Rae" — the name for a `show` hint. */
+function firstName(label: string): string {
+  return label.split(" · ")[0];
 }
 
 export function renderEmptyBrief(): string {
