@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { verifySlackSignature } from "@/cockpit/slack/verify";
 import { getLiveContext, localParts } from "@/cockpit/runtime";
 import { handleMessage } from "@/cockpit/ops/handle";
@@ -61,41 +61,42 @@ export async function POST(req: NextRequest) {
     typeof event.channel === "string" &&
     typeof event.text === "string"
   ) {
-    const settings = await ctx.store.getSettings();
-    const now = new Date();
-    const { day } = localParts(settings.timezone, now);
-
-    // F5 — wire the conversational responder when the API key + knowledge exist.
-    let respondConversational: ((text: string) => Promise<string>) | undefined;
-    const model = claudeModelFromEnv();
-    if (model) {
+    // Process AFTER responding — Slack requires an ack within 3s, and a cold
+    // serverless start plus DB/AI work can exceed that. after() runs post-response
+    // so Slack never times out and stops delivering.
+    const c = ctx;
+    const channel = event.channel;
+    const text = event.text;
+    const messageTs = event.ts;
+    after(async () => {
       try {
-        respondConversational = makeConversationalResponder(ctx.store, model, loadKnowledge());
-      } catch (err) {
-        console.error("[cockpit/slack] F5 responder unavailable:", err);
-      }
-    }
+        const settings = await c.store.getSettings();
+        const now = new Date();
+        const { day } = localParts(settings.timezone, now);
 
-    // Await so state is written before we ack.
-    try {
-      await handleMessage(
-        ctx.store,
-        ctx.slack,
-        {
-          channel: event.channel,
-          today: day,
-          nowIso: now.toISOString(),
-          messageTs: event.ts,
-          respondConversational,
-        },
-        event.text
-      );
-    } catch (err) {
-      console.error("[cockpit/slack] handle failed:", err);
-    }
+        let respondConversational: ((t: string) => Promise<string>) | undefined;
+        const model = claudeModelFromEnv();
+        if (model) {
+          try {
+            respondConversational = makeConversationalResponder(c.store, model, loadKnowledge());
+          } catch (err) {
+            console.error("[cockpit/slack] F5 responder unavailable:", err);
+          }
+        }
+
+        await handleMessage(
+          c.store,
+          c.slack,
+          { channel, today: day, nowIso: now.toISOString(), messageTs, respondConversational },
+          text
+        );
+      } catch (err) {
+        console.error("[cockpit/slack] handle failed:", err);
+      }
+    });
   }
 
-  // Always 200 quickly so Slack doesn't retry.
+  // Ack Slack immediately (before after() runs) so it never retries or disables.
   return NextResponse.json({ ok: true });
 }
 
