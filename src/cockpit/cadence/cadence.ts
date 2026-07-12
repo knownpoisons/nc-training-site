@@ -23,6 +23,25 @@ export const SKIP_PUSH_DAYS = 2;
 export const DORMANT_DAYS = 90;
 export const CONSECUTIVE_SKIP_FLAG = 2;
 
+/** Post-call follow-up cadence (PLAYBOOK: the follow-up IS the conversion).
+ *  Touch 5 = day+2 value (the Loom), 6 = day+7 made-thing, 7 = day+30 news hook. */
+export const FOLLOWUP_TOUCHES: ReadonlyArray<{ touchNumber: number; offset: number }> = [
+  { touchNumber: 5, offset: 2 },
+  { touchNumber: 6, offset: 7 },
+  { touchNumber: 7, offset: 30 },
+];
+
+/** Build the follow-up schedule from a base day (the call date). */
+export function followUpsFrom(prospectId: string, baseDay: Day): Touch[] {
+  return FOLLOWUP_TOUCHES.map((f) => ({
+    prospectId,
+    touchNumber: f.touchNumber,
+    dueDate: shiftWeekendToMonday(addDays(baseDay, f.offset)),
+    sentAt: null,
+    skippedCount: 0,
+  }));
+}
+
 /**
  * Build the initial 4-touch schedule for a freshly added prospect.
  * Each touch is placed at its offset, then shifted off weekends to Monday.

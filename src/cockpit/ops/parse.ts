@@ -13,7 +13,7 @@ export type Intent =
   | { kind: "snooze"; indices: number[] }
   | { kind: "replied"; index: number }
   | { kind: "rewrite"; index: number; angle: string | null }
-  | { kind: "add"; name: string; role: string | null; company: string | null }
+  | { kind: "add"; name: string; role: string | null; company: string | null; email: string | null; linkedinUrl: string | null }
   | { kind: "call_booked"; index: number }
   | { kind: "closed"; result: "won" | "lost"; index: number }
   | { kind: "pause"; name: string }
@@ -25,6 +25,9 @@ export type Intent =
   | { kind: "note"; text: string }
   | { kind: "notes" }
   | { kind: "show"; name: string }
+  | { kind: "prospect_note"; name: string; text: string }
+  | { kind: "set_prospect"; name: string; field: "email" | "linkedin" | "value"; value: string }
+  | { kind: "stage_move"; name: string; stage: string }
   | { kind: "pipeline" }
   | { kind: "settings" }
   | { kind: "help" }
@@ -77,16 +80,27 @@ export function parseCommand(raw: string): Intent {
     }
   }
 
-  // ── add [name, role, company] — free text after the verb ───────────────────
+  // ── add [name, role, company, email?, linkedin?] — free text after the verb.
+  //    Email/URL parts are recognised anywhere in the comma list. ──────────────
   if (/^add\b/.test(lower)) {
     const payload = text.replace(/^add\s+/i, "").trim();
     const parts = payload.split(",").map((p) => p.trim()).filter(Boolean);
     if (parts.length > 0) {
+      let email: string | null = null;
+      let linkedinUrl: string | null = null;
+      const rest: string[] = [];
+      for (const part of parts) {
+        if (!email && /\S+@\S+\.\S+/.test(part)) email = part;
+        else if (!linkedinUrl && /https?:\/\/|linkedin\.com/i.test(part)) linkedinUrl = part;
+        else rest.push(part);
+      }
       return {
         kind: "add",
-        name: parts[0],
-        role: parts[1] ?? null,
-        company: parts[2] ?? null,
+        name: rest[0] ?? parts[0],
+        role: rest[1] ?? null,
+        company: rest[2] ?? null,
+        email,
+        linkedinUrl,
       };
     }
   }
@@ -106,10 +120,30 @@ export function parseCommand(raw: string): Intent {
   if (/^bin\b/.test(lower)) return { kind: "bin", indices: indices(lower) };
   if (/^hold\b/.test(lower)) return { kind: "hold", indices: indices(lower) };
 
+  // ── prospect edit first: "set dana email x" / "set dana value 80k" ──────────
+  {
+    const m = text.match(/^set\s+(.+)\s+(email|linkedin|value)\s+(\S+)$/i);
+    if (m) return { kind: "set_prospect", name: m[1].trim(), field: m[2].toLowerCase() as "email" | "linkedin" | "value", value: m[3].trim() };
+  }
+
   // ── settings edit: "set brief hour 6", "set volume 8", "set timezone X" ──────
   if (/^set\b/.test(lower)) {
     const m = text.replace(/^set\s+/i, "").match(/^(.+)\s+(\S+)$/);
     if (m) return { kind: "set", field: m[1].trim().toLowerCase(), value: m[2].trim() };
+  }
+
+  // ── prospect context: "note dana: budget approved" (colon = prospect note;
+  //    a URL's "://" doesn't count) ─────────────────────────────────────────────
+  {
+    const m = text.match(/^note\s+([^:]+):(?!\/\/)\s*(.+)$/i);
+    if (m) return { kind: "prospect_note", name: m[1].trim(), text: m[2].trim() };
+  }
+
+  // ── manual stage move: "move dana to proposal" / "stage dana proposal" ──────
+  {
+    const m =
+      text.match(/^move\s+(.+?)\s+(?:to|→)\s+(\w+)$/i) ?? text.match(/^stage\s+(.+?)\s+(\w+)$/i);
+    if (m) return { kind: "stage_move", name: m[1].trim(), stage: m[2].toUpperCase() };
   }
 
   // ── newsletter content inbox ─────────────────────────────────────────────────

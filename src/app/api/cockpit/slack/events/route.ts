@@ -95,19 +95,22 @@ export async function POST(req: NextRequest) {
         const { day } = localParts(settings.timezone, now);
 
         let respondConversational: ((t: string) => Promise<string>) | undefined;
+        let draftCtx: { model: NonNullable<ReturnType<typeof claudeModelFromEnv>>; knowledge: ReturnType<typeof loadKnowledge> } | undefined;
         const model = claudeModelFromEnv();
         if (model) {
           try {
-            respondConversational = makeConversationalResponder(c.store, model, loadKnowledge());
+            const knowledge = loadKnowledge();
+            respondConversational = makeConversationalResponder(c.store, model, knowledge);
+            draftCtx = { model, knowledge };
           } catch (err) {
-            console.error("[cockpit/slack] F5 responder unavailable:", err);
+            console.error("[cockpit/slack] AI wiring unavailable:", err);
           }
         }
 
         await handleMessage(
           c.store,
           c.slack,
-          { channel, today: day, nowIso: now.toISOString(), messageTs, respondConversational },
+          { channel, today: day, nowIso: now.toISOString(), messageTs, respondConversational, draftCtx },
           text
         );
       } catch (err) {

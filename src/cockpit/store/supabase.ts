@@ -9,7 +9,7 @@
 
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { addDays, shiftWeekendToMonday, type Day } from "../cadence/dates";
-import { applySkip, scheduleForProspect } from "../cadence/cadence";
+import { applySkip, followUpsFrom, scheduleForProspect } from "../cadence/cadence";
 import type { Stage } from "../cadence/types";
 import type {
   CockpitStore,
@@ -18,7 +18,11 @@ import type {
   NewLeadInput,
   NewProspectInput,
   NewsletterNote,
+  PendingKind,
+  PendingState,
+  PipelineValue,
   ProspectDetail,
+  ProspectPatch,
   RosterEntry,
   SavedBrief,
   SavedDigest,
@@ -62,6 +66,8 @@ function toProspect(r: any): StoreProspect {
     consentLane: r.consent_lane ?? "pipeline",
     dossier: r.dossier ?? null,
     openerAngle: r.opener_angle ?? null,
+    dealValue: r.deal_value != null ? Number(r.deal_value) : 50000,
+    callAt: r.call_at ? (r.call_at as string).slice(0, 10) : null,
   };
 }
 
@@ -88,7 +94,7 @@ export class SupabaseStore implements CockpitStore {
       .from("cockpit_prospects")
       .select("*")
       .eq("paused", false)
-      .in("stage", ["IN_SEQUENCE", "REPLIED"]);
+      .in("stage", ["IN_SEQUENCE", "REPLIED", "CALL", "PROPOSAL"]);
     if (error) throw new Error(`listDueItems prospects: ${error.message}`);
 
     const items: DueItem[] = [];
@@ -356,9 +362,9 @@ export class SupabaseStore implements CockpitStore {
   // ── Phase 4 ────────────────────────────────────────────────────────────────
   async getScoreboardData(): Promise<ScoreboardData> {
     const [touchesRes, eventsRes, prospectsRes] = await Promise.all([
-      this.db.from("cockpit_touches").select("prospect_id, due_date, sent_at"),
+      this.db.from("cockpit_touches").select("prospect_id, due_date, sent_at, skipped_count"),
       this.db.from("cockpit_events").select("prospect_id, type, created_at"),
-      this.db.from("cockpit_prospects").select("id, source_engine, track"),
+      this.db.from("cockpit_prospects").select("id, name, source_engine, track"),
     ]);
     if (touchesRes.error) throw new Error(`scoreboard touches: ${touchesRes.error.message}`);
     if (eventsRes.error) throw new Error(`scoreboard events: ${eventsRes.error.message}`);
@@ -369,12 +375,14 @@ export class SupabaseStore implements CockpitStore {
         prospectId: t.prospect_id,
         dueDate: (t.due_date as string).slice(0, 10),
         sentAt: t.sent_at ? (t.sent_at as string).slice(0, 10) : null,
+        skippedCount: t.skipped_count ?? 0,
       })),
       events: (eventsRes.data ?? [])
         .filter((e: any) => e.prospect_id && e.created_at)
         .map((e: any) => ({ prospectId: e.prospect_id, type: e.type, at: (e.created_at as string).slice(0, 10) })),
       prospects: (prospectsRes.data ?? []).map((p: any) => ({
         id: p.id,
+        name: p.name,
         sourceEngine: p.source_engine,
         track: p.track ?? null,
       })),
@@ -529,6 +537,107 @@ export class SupabaseStore implements CockpitStore {
       sources: p.sources ?? [],
     }));
     /* eslint-enable @typescript-eslint/no-explicit-any */
+  }
+
+  // ── CRM level-up ────────────────────────────────────────────────────────────
+  async getPending(): Promise<PendingState | null> {
+    const { data, error } = await this.db.from("cockpit_pending").select("*").eq("id", 1).maybeSingle();
+    if (error) throw new Error(`getPending: ${error.message}`);
+    if (!data?.kind || !data?.prospect_id) return null;
+    return { kind: data.kind, prospectId: data.prospect_id };
+  }
+
+  async setPending(kind: PendingKind, prospectId: string): Promise<void> {
+    const { error } = await this.db
+      .from("cockpit_pending")
+      .upsert({ id: 1, kind, prospect_id: prospectId, created_at: new Date().toISOString() });
+    if (error) throw new Error(`setPending: ${error.message}`);
+  }
+
+  async clearPending(): Promise<void> {
+    const { error } = await this.db.from("cockpit_pending").update({ kind: null, prospect_id: null }).eq("id", 1);
+    if (error) throw new Error(`clearPending: ${error.message}`);
+  }
+
+  async appendNote(prospectId: string, line: string): Promise<void> {
+    const p = await this.getProspect(prospectId);
+    if (!p) return;
+    const notes = p.notes ? `${p.notes}\n${line}` : line;
+    const { error } = await this.db.from("cockpit_prospects").update({ notes }).eq("id", prospectId);
+    if (error) throw new Error(`appendNote: ${error.message}`);
+  }
+
+  async updateProspect(prospectId: string, patch: ProspectPatch): Promise<void> {
+    const map: Record<string, unknown> = {};
+    if (patch.email !== undefined) map.email = patch.email;
+    if (patch.linkedinUrl !== undefined) map.linkedin_url = patch.linkedinUrl;
+    if (patch.dealValue !== undefined) map.deal_value = patch.dealValue;
+    if (patch.callAt !== undefined) map.call_at = patch.callAt;
+    if (patch.track !== undefined) map.track = patch.track;
+    if (patch.stage !== undefined) map.stage = patch.stage;
+    if (!Object.keys(map).length) return;
+    const { error } = await this.db.from("cockpit_prospects").update(map).eq("id", prospectId);
+    if (error) throw new Error(`updateProspect: ${error.message}`);
+  }
+
+  async resurfaceDue(today: Day): Promise<number> {
+    const { data, error } = await this.db
+      .from("cockpit_prospects")
+      .select("id, notes")
+      .eq("stage", "DORMANT")
+      .lte("resurface_at", today);
+    if (error) throw new Error(`resurfaceDue: ${error.message}`);
+    for (const r of data ?? []) {
+      const note = `resurfaced ${today} after 90 days dormant`;
+      const notes = r.notes ? `${r.notes}\n${note}` : note;
+      const { error: uErr } = await this.db
+        .from("cockpit_prospects")
+        .update({ stage: "NEW", resurface_at: null, notes })
+        .eq("id", r.id);
+      if (uErr) throw new Error(`resurfaceDue update: ${uErr.message}`);
+    }
+    return (data ?? []).length;
+  }
+
+  async getCallsForDay(day: Day): Promise<StoreProspect[]> {
+    const { data, error } = await this.db.from("cockpit_prospects").select("*").eq("call_at", day);
+    if (error) throw new Error(`getCallsForDay: ${error.message}`);
+    return (data ?? []).map(toProspect);
+  }
+
+  async scheduleFollowUps(prospectId: string, baseDay: Day): Promise<void> {
+    const { data: existing, error: exErr } = await this.db
+      .from("cockpit_touches")
+      .select("touch_number")
+      .eq("prospect_id", prospectId);
+    if (exErr) throw new Error(`scheduleFollowUps: ${exErr.message}`);
+    const have = new Set((existing ?? []).map((t) => t.touch_number));
+    const rows = followUpsFrom(prospectId, baseDay)
+      .filter((t) => !have.has(t.touchNumber))
+      .map((t) => ({ prospect_id: prospectId, touch_number: t.touchNumber, due_date: t.dueDate, channel: "email" }));
+    if (!rows.length) return;
+    const { error } = await this.db.from("cockpit_touches").insert(rows);
+    if (error) throw new Error(`scheduleFollowUps insert: ${error.message}`);
+  }
+
+  async getPipelineValue(): Promise<PipelineValue> {
+    const [{ data: rows, error }, settings] = await Promise.all([
+      this.db.from("cockpit_prospects").select("stage, deal_value").in("stage", ["REPLIED", "CALL", "PROPOSAL", "WON"]),
+      this.getSettingsRow(),
+    ]);
+    if (error) throw new Error(`getPipelineValue: ${error.message}`);
+    let openValue = 0, openCount = 0, wonValue = 0, wonCount = 0;
+    for (const r of rows ?? []) {
+      const v = r.deal_value != null ? Number(r.deal_value) : 50000;
+      if (r.stage === "WON") { wonValue += v; wonCount += 1; }
+      else { openValue += v; openCount += 1; }
+    }
+    return { openValue, openCount, wonValue, wonCount, target: settings.revenueTarget };
+  }
+
+  private async getSettingsRow(): Promise<{ revenueTarget: number }> {
+    const { data } = await this.db.from("cockpit_settings").select("revenue_target").eq("id", 1).maybeSingle();
+    return { revenueTarget: data?.revenue_target != null ? Number(data.revenue_target) : 700000 };
   }
 
   async updateSettings(patch: Partial<Settings>): Promise<Settings> {

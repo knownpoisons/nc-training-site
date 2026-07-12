@@ -9,14 +9,19 @@
 // F5 (conversational) is a stub here — Phase 3 wires it to Claude.
 // ═══════════════════════════════════════════════════════════════════════════════
 
-import { addDays, mondayOf, type Day } from "../cadence/dates";
+import { addDays, mondayOf, parseNaturalDay, type Day } from "../cadence/dates";
 import { DORMANT_DAYS, TOTAL_TOUCHES } from "../cadence/cadence";
-import type { CockpitStore, ProspectDetail, SavedBrief } from "../store/types";
+import type { CockpitStore, ProspectDetail, SavedBrief, StoreProspect } from "../store/types";
 import type { SlackClient } from "../slack/types";
 import { parseCommand, type Intent } from "./parse";
 import { placeholderRewrite } from "./drafts";
 import { promoteLeads, resolveDigest } from "./digest";
 import { clampVolume } from "./governor";
+import { wayIn } from "./actions";
+import { generateDraft, OUTREACH_MAX_WORDS } from "../draft/engine";
+import { findTemplate } from "../draft/templates";
+import type { DraftModel } from "../draft/model";
+import type { Knowledge } from "../draft/knowledge";
 
 export interface HandleContext {
   channel: string;
@@ -26,6 +31,9 @@ export interface HandleContext {
   /** F5 hook. When provided, unmatched messages get a real Claude reply;
    *  when absent (e.g. Phase 2 tests), they get the stub. */
   respondConversational?: (text: string) => Promise<string>;
+  /** F2 hook for reply-response drafting. When absent, a pasted reply is stored
+   *  but the response draft is a placeholder. */
+  draftCtx?: { model: DraftModel; knowledge: Knowledge };
 }
 
 export interface HandleResult {
@@ -45,6 +53,22 @@ export async function handleMessage(
 
   const brief = await store.getBrief(ctx.today);
   const intent = parseCommand(rawText);
+
+  // ── Pending consumption: "replied 3" / "call booked 5" asked a question; the
+  //    NEXT free-text message is the answer. A recognised command escapes it. ──
+  const pending = await store.getPending();
+  if (pending && intent.kind === "conversational") {
+    await store.clearPending();
+    if (pending.kind === "reply_paste") {
+      return consumeReplyPaste(store, slack, ctx, pending.prospectId, rawText, brief);
+    }
+    if (pending.kind === "call_date") {
+      return consumeCallDate(store, slack, ctx, pending.prospectId, rawText, brief);
+    }
+  } else if (pending && intent.kind !== "conversational") {
+    // He moved on to a real command — drop the stale question.
+    await store.clearPending();
+  }
 
   const confirm = async (text: string) => {
     if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, text);
@@ -94,6 +118,12 @@ export async function handleMessage(
       return handleListNotes(store, ctx, confirm);
     case "show":
       return handleShow(store, intent.name, confirm);
+    case "prospect_note":
+      return handleProspectNote(store, ctx, intent.name, intent.text, confirm);
+    case "set_prospect":
+      return handleSetProspect(store, intent.name, intent.field, intent.value, confirm);
+    case "stage_move":
+      return handleStageMove(store, intent.name, intent.stage, confirm);
     case "pipeline":
       return handlePipeline(store, confirm);
     case "settings":
@@ -239,12 +269,100 @@ async function handleReplied(
   }
   await store.setStage(a.prospectId, "REPLIED");
   await store.haltRemainingTouches(a.prospectId);
-  await store.logEvent(a.prospectId, "reply", {});
+  await store.logEvent(a.prospectId, "reply", {}, ctx.nowIso);
+  await store.setPending("reply_paste", a.prospectId);
   await confirm(
     `${a.label.split(" · ")[0]} → REPLIED. Sequence halted. ` +
-      "Paste their reply here and I'll draft a response (drafting lands in Phase 3)."
+      "Paste their reply as your next message and I'll draft the response."
   );
   return { intent: "replied", confirmed: true };
+}
+
+/** The next message after `replied N` — their actual reply. Store it, draft the answer. */
+async function consumeReplyPaste(
+  store: CockpitStore,
+  slack: SlackClient,
+  ctx: HandleContext,
+  prospectId: string,
+  replyText: string,
+  brief: SavedBrief | null
+): Promise<HandleResult> {
+  const say = async (t: string) => {
+    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, t);
+    else await slack.postMessage(ctx.channel, t);
+  };
+  const p = await store.getProspect(prospectId);
+  if (!p) {
+    await say("Couldn't find that prospect any more — reply not saved.");
+    return { intent: "replied", confirmed: true, note: "lost-prospect" };
+  }
+
+  // Store the reply verbatim: event payload + a note on the card.
+  await store.logEvent(prospectId, "reply", { text: replyText }, ctx.nowIso);
+  await store.appendNote(prospectId, `${ctx.today} they replied: "${replyText.slice(0, 300)}"`);
+
+  // Draft the response through the full engine (guards included).
+  if (ctx.draftCtx) {
+    const template = findTemplate("reply", 0);
+    const out = await generateDraft(
+      ctx.draftCtx.model,
+      ctx.draftCtx.knowledge,
+      {
+        prospect: p,
+        touchNumber: 0,
+        lane: "reply",
+        templateBody: template?.body ?? "Respond directly and propose two times.",
+        maxWords: OUTREACH_MAX_WORDS,
+        replyText,
+        wayIn: wayIn(p),
+        dossier: p.dossier ?? null,
+        openerAngle: p.openerAngle ?? null,
+      },
+      false
+    );
+    const flag = out.requiresReview ? "\n⚠️ needs your eyes — couldn't auto-clear." : "";
+    await say(`Got it — saved to ${p.name}'s card. Here's the response draft:\n\n${out.draft}${flag}\n\nSend it your way, then \`done\` isn't needed — just tell me what happens next (\`call booked …\`, \`won …\`).`);
+  } else {
+    await say(`Saved ${p.name}'s reply to their card. (Response drafting needs the AI wired — it'll appear here once live.)`);
+  }
+  return { intent: "replied", confirmed: true, note: "reply-captured" };
+}
+
+/** The next message after `call booked N` — the date. Parse, log, schedule follow-ups. */
+async function consumeCallDate(
+  store: CockpitStore,
+  slack: SlackClient,
+  ctx: HandleContext,
+  prospectId: string,
+  text: string,
+  brief: SavedBrief | null
+): Promise<HandleResult> {
+  const say = async (t: string) => {
+    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, t);
+    else await slack.postMessage(ctx.channel, t);
+  };
+  const day = parseNaturalDay(text, ctx.today);
+  const p = await store.getProspect(prospectId);
+  if (!p) {
+    await say("Couldn't find that prospect any more — date not saved.");
+    return { intent: "call_booked", confirmed: true, note: "lost-prospect" };
+  }
+  if (!day) {
+    // Re-arm so his next message can try again.
+    await store.setPending("call_date", prospectId);
+    await say(`Couldn't read that as a date — try \`2026-07-18\`, \`friday\`, or \`18/7\`.`);
+    return { intent: "call_booked", confirmed: true, note: "bad-date" };
+  }
+  await store.updateProspect(prospectId, { callAt: day });
+  await store.appendNote(prospectId, `${ctx.today} call booked for ${day}`);
+  await store.logEvent(prospectId, "call_booked", { date: day }, ctx.nowIso);
+  // PLAYBOOK follow-up doctrine: day-2 value, day-7 made-thing, day-30 news hook.
+  await store.scheduleFollowUps(prospectId, day);
+  await say(
+    `📞 ${p.name} — call logged for *${day}*. That morning's brief will carry a prep card. ` +
+      `Follow-ups scheduled for day 2, 7 and 30 after the call.`
+  );
+  return { intent: "call_booked", confirmed: true, note: "date-captured" };
 }
 
 async function handleRewrite(
@@ -273,18 +391,108 @@ async function handleAdd(
   intent: Extract<Intent, { kind: "add" }>,
   confirm: (t: string) => Promise<void>
 ): Promise<HandleResult> {
+  // Dedupe first — same person twice makes two sequences, which is worse than a warning.
+  const dupByEmail = intent.email ? await store.findProspectByEmail(intent.email) : null;
+  const dupByName = dupByEmail ?? (await store.findProspectByName(intent.name));
+  if (dupByEmail || (dupByName && dupByName.name.toLowerCase() === intent.name.toLowerCase())) {
+    const d = (dupByEmail ?? dupByName)!;
+    await confirm(`Already tracking *${d.name}* (stage ${d.stage}) — \`show ${d.name}\` for the card. Not added twice.`);
+    return { intent: "add", confirmed: true, note: "duplicate" };
+  }
+
   const p = await store.addProspect(
-    { name: intent.name, role: intent.role, company: intent.company },
+    { name: intent.name, role: intent.role, company: intent.company, email: intent.email },
     ctx.today
   );
+  if (intent.linkedinUrl) await store.updateProspect(p.id, { linkedinUrl: intent.linkedinUrl });
   const bits = [p.name];
   if (p.role) bits.push(p.role);
   if (p.company) bits.push(p.company);
+  const extras = [intent.email, intent.linkedinUrl].filter(Boolean).join(" · ");
   await confirm(
-    `Added *${bits.join(", ")}* and scheduled touches for days 1, 4, 12, 21. ` +
+    `Added *${bits.join(", ")}*${extras ? ` (${extras})` : ""} and scheduled touches for days 1, 4, 12, 21. ` +
       "Touch 1 is due today — it'll be in tomorrow's brief (or today's if it hasn't posted yet)."
   );
   return { intent: "add", confirmed: true, note: p.id };
+}
+
+async function handleProspectNote(
+  store: CockpitStore,
+  ctx: HandleContext,
+  name: string,
+  text: string,
+  confirm: (t: string) => Promise<void>
+): Promise<HandleResult> {
+  const p = await store.findProspectByName(name);
+  if (!p) {
+    await confirm(`No prospect matching "${name}" — note not saved. (Newsletter ideas are \`note <idea>\` without a colon.)`);
+    return { intent: "prospect_note", confirmed: true, note: "not-found" };
+  }
+  await store.appendNote(p.id, `${ctx.today}: ${text}`);
+  await confirm(`Noted on ${p.name}'s card. It'll feed their future drafts.`);
+  return { intent: "prospect_note", confirmed: true };
+}
+
+async function handleSetProspect(
+  store: CockpitStore,
+  name: string,
+  field: "email" | "linkedin" | "value",
+  value: string,
+  confirm: (t: string) => Promise<void>
+): Promise<HandleResult> {
+  const p = await store.findProspectByName(name);
+  if (!p) {
+    await confirm(`No prospect matching "${name}".`);
+    return { intent: "set_prospect", confirmed: true, note: "not-found" };
+  }
+  if (field === "email") {
+    await store.updateProspect(p.id, { email: value });
+    await confirm(`${p.name} — email → ${value}.`);
+  } else if (field === "linkedin") {
+    await store.updateProspect(p.id, { linkedinUrl: value });
+    await confirm(`${p.name} — LinkedIn → ${value}.`);
+  } else {
+    const num = parseMoney(value);
+    if (num == null) {
+      await confirm(`Couldn't read "${value}" as a value — try \`80k\` or \`120000\`.`);
+      return { intent: "set_prospect", confirmed: true, note: "bad-value" };
+    }
+    await store.updateProspect(p.id, { dealValue: num });
+    await confirm(`${p.name} — deal value → $${num.toLocaleString("en-US")}.`);
+  }
+  return { intent: "set_prospect", confirmed: true };
+}
+
+function parseMoney(v: string): number | null {
+  const m = v.toLowerCase().replace(/[$,]/g, "").match(/^(\d+(?:\.\d+)?)(k|m)?$/);
+  if (!m) return null;
+  let n = parseFloat(m[1]);
+  if (m[2] === "k") n *= 1_000;
+  if (m[2] === "m") n *= 1_000_000;
+  return Math.round(n);
+}
+
+const STAGES = ["NEW", "IN_SEQUENCE", "REPLIED", "CALL", "PROPOSAL", "WON", "LOST", "DORMANT"] as const;
+
+async function handleStageMove(
+  store: CockpitStore,
+  name: string,
+  stage: string,
+  confirm: (t: string) => Promise<void>
+): Promise<HandleResult> {
+  const target = STAGES.find((s) => s === stage || s.startsWith(stage));
+  if (!target) {
+    await confirm(`"${stage}" isn't a stage. Stages: ${STAGES.join(", ")}.`);
+    return { intent: "stage_move", confirmed: true, note: "bad-stage" };
+  }
+  const p = await store.findProspectByName(name);
+  if (!p) {
+    await confirm(`No prospect matching "${name}".`);
+    return { intent: "stage_move", confirmed: true, note: "not-found" };
+  }
+  await store.setStage(p.id, target);
+  await confirm(`${p.name} → ${target}.`);
+  return { intent: "stage_move", confirmed: true };
 }
 
 async function handleCallBooked(
@@ -299,8 +507,8 @@ async function handleCallBooked(
     return { intent: "call_booked", confirmed: true, note: "miss" };
   }
   await store.setStage(a.prospectId, "CALL");
-  await store.logEvent(a.prospectId, "call_booked", {});
-  await confirm(`${a.label.split(" · ")[0]} → CALL booked. What date? Reply with it and I'll log it.`);
+  await store.setPending("call_date", a.prospectId);
+  await confirm(`${a.label.split(" · ")[0]} → CALL booked. What date? (\`friday\`, \`18/7\`, or \`2026-07-18\` — I'll log it and schedule the follow-ups.)`);
   return { intent: "call_booked", confirmed: true };
 }
 
@@ -488,7 +696,9 @@ export function renderProfile(d: ProspectDetail): string {
   const bits = [`Stage *${p.stage}*`, `Source ${p.sourceEngine}`];
   if (p.tier) bits.push(`Tier ${p.tier}`);
   if (p.score != null) bits.push(`Score ${Math.round(p.score)}`);
-  if (p.paused) bits.push("⏸ paused");
+  if (p.dealValue) bits.push(`$${Math.round(p.dealValue / 1000)}k`);
+  if (p.callAt) bits.push(`📞 ${p.callAt}`);
+  if (p.paused) bits.push(`⏸ paused — \`resume ${p.name}\``);
   L.push(bits.join("  ·  "));
   if (p.sources && p.sources.length) L.push(`_Found via: ${p.sources.join(" + ")}_`);
   if (p.consentLane === "broadcast_only") L.push("_🔒 broadcast-only — cannot be sequenced_");
@@ -564,6 +774,9 @@ const HELP_TEXT = [
   "`call booked 5` · `won 5` · `lost 5` — move stage",
   "`pause dana` · `resume dana` — pause/resume a prospect",
   "`show dana` — a prospect's full card (touches, history, dossier)",
+  "`note dana: budget approved` — add context to their card",
+  "`set dana email x@y.com` · `set dana value 80k` — edit a prospect",
+  "`move dana to proposal` — manual stage move",
   "`pipeline` — stage counts  ·  `settings` — current settings",
   "ask me anything in plain English about your leads",
 ].join("\n");

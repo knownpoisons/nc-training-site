@@ -15,6 +15,7 @@ export interface SbTouch {
   prospectId: string;
   dueDate: Day;
   sentAt: Day | null;
+  skippedCount?: number;
 }
 export interface SbEvent {
   prospectId: string;
@@ -23,6 +24,7 @@ export interface SbEvent {
 }
 export interface SbProspect {
   id: string;
+  name?: string;
   sourceEngine: SourceEngine;
   track: Track | null;
 }
@@ -62,6 +64,8 @@ export interface Scoreboard {
   allTimeSent: number;
   usingRealData: boolean;
   honestyLine: string;
+  /** Prospects with a touch skipped twice running — named on Fridays (F3 rule). */
+  flagged: string[];
 }
 
 const ENGINES: SourceEngine[] = ["partner", "outbound", "alumni", "list", "press"];
@@ -125,6 +129,12 @@ export function computeScoreboard(input: ScoreboardInput): Scoreboard {
   // honesty
   const allTimeSent = touches.filter((t) => t.sentAt).length;
   const usingRealData = allTimeSent >= minReal;
+
+  // Two consecutive skips on the same prospect → named plainly, no daily nagging.
+  const flaggedIds = new Set(
+    touches.filter((t) => !t.sentAt && (t.skippedCount ?? 0) >= 2).map((t) => t.prospectId)
+  );
+  const flagged = [...flaggedIds].map((id) => byId.get(id)?.name ?? id);
   const replyRate = sent > 0 ? replies / sent : 0;
   const completion = due > 0 ? sent / due : 0;
 
@@ -149,6 +159,7 @@ export function computeScoreboard(input: ScoreboardInput): Scoreboard {
     allTimeSent,
     usingRealData,
     honestyLine,
+    flagged,
   };
 }
 
@@ -181,6 +192,9 @@ export function renderScoreboard(s: Scoreboard, weekLabel: string): string {
   lines.push("");
   const leaderText = s.trackLeader === "tie" ? "level" : `Track ${s.trackLeader} leads`;
   lines.push(`*Day-90 gate:* ${s.day90DaysRemaining} days left — ${leaderText}.`);
+  if (s.flagged.length) {
+    lines.push(`*Avoided twice:* ${s.flagged.join(", ")} — skip or send, but decide.`);
+  }
   lines.push(s.honestyLine);
   return lines.join("\n");
 }

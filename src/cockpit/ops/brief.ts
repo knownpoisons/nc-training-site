@@ -9,7 +9,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import type { Day } from "../cadence/dates";
-import type { CockpitStore, DueItem } from "../store/types";
+import type { CockpitStore, DueItem, PipelineValue, StoreProspect } from "../store/types";
 import type { SlackClient } from "../slack/types";
 import { buildBrief, wayIn, type BuiltAction } from "./actions";
 import { generateDraft, OUTREACH_MAX_WORDS } from "../draft/engine";
@@ -57,6 +57,9 @@ export async function runMorningBrief(
   const items = await store.listDueItems(today);
   const { actions, overflow } = buildBrief(items);
 
+  // The F1 stakes line + today's call-prep cards.
+  const [stakes, calls] = await Promise.all([store.getPipelineValue(), store.getCallsForDay(today)]);
+
   let draftsGenerated = 0;
   let draftsNeedingReview = 0;
   if (draftCtx) {
@@ -67,7 +70,8 @@ export async function runMorningBrief(
       if (a.kind !== "touch" || !a.touchId || a.touchNumber === null) continue;
       const item = byTouchId.get(a.touchId);
       if (!item?.touch) continue;
-      const lane = sourceToLane(item.prospect.sourceEngine);
+      // Touches 5–7 are the post-call follow-up cadence, whatever the source.
+      const lane = a.touchNumber >= 5 ? "followup" : sourceToLane(item.prospect.sourceEngine);
       const template = findTemplate(lane, a.touchNumber);
       const out = await generateDraft(
         draftCtx.model,
@@ -94,7 +98,10 @@ export async function runMorningBrief(
     }
   }
 
-  const text = actions.length === 0 ? renderEmptyBrief() : renderBrief(actions, overflow);
+  const text =
+    actions.length === 0
+      ? [renderStakes(stakes), renderCallPrep(calls), renderEmptyBrief()].filter(Boolean).join("\n\n")
+      : [renderStakes(stakes), renderCallPrep(calls), renderBrief(actions, overflow)].filter(Boolean).join("\n\n");
   const { ts } = await slack.postMessage(channel, text);
 
   await store.saveBrief({
@@ -152,6 +159,29 @@ export function renderBrief(actions: BuiltAction[], overflow: number): string {
 /** "Test Rae · touch 1" → "Test Rae" — the name for a `show` hint. */
 function firstName(label: string): string {
   return label.split(" · ")[0];
+}
+
+/** F1's stakes line: pipeline vs target, plain numbers, no cheerleading. */
+export function renderStakes(v: PipelineValue): string {
+  const k = (n: number) => `$${Math.round(n / 1000)}k`;
+  return (
+    `*${k(v.wonValue)} closed of ${k(v.target)}* · ` +
+    `${k(v.openValue)} in play across ${v.openCount} live conversation${v.openCount === 1 ? "" : "s"}.`
+  );
+}
+
+/** Call-prep card(s) for any call booked today — dossier + history in one glance. */
+export function renderCallPrep(calls: StoreProspect[]): string {
+  if (!calls.length) return "";
+  const blocks = calls.map((p) => {
+    const who = [p.name, p.role, p.company].filter(Boolean).join(" · ");
+    const L = [`📞 *Call today — ${who}*`];
+    if (p.dossier) L.push(`Who they are: ${p.dossier}`);
+    if (p.notes) L.push(`Your notes: ${p.notes.split("\n").slice(-3).join(" · ")}`);
+    L.push(`Prep: \`show ${p.name}\` for the full history. PLAYBOOK: end the call with the next step booked.`);
+    return L.join("\n");
+  });
+  return blocks.join("\n\n");
 }
 
 export function renderEmptyBrief(): string {

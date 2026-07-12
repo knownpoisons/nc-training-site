@@ -4,7 +4,7 @@
 // ═══════════════════════════════════════════════════════════════════════════════
 
 import { compareDays, type Day } from "../cadence/dates";
-import { scheduleForProspect } from "../cadence/cadence";
+import { followUpsFrom, scheduleForProspect } from "../cadence/cadence";
 import type { Stage } from "../cadence/types";
 import type {
   BriefActionKind,
@@ -14,7 +14,11 @@ import type {
   NewLeadInput,
   NewProspectInput,
   NewsletterNote,
+  PendingKind,
+  PendingState,
+  PipelineValue,
   ProspectDetail,
+  ProspectPatch,
   RosterEntry,
   SavedBrief,
   SavedDigest,
@@ -79,6 +83,8 @@ export class MemoryStore implements CockpitStore {
       consentLane: p.consentLane ?? "pipeline",
       dossier: p.dossier ?? null,
       openerAngle: p.openerAngle ?? null,
+      dealValue: p.dealValue ?? 50000,
+      callAt: p.callAt ?? null,
     };
     this.prospects.set(prospect.id, prospect);
     return prospect;
@@ -132,7 +138,8 @@ export class MemoryStore implements CockpitStore {
         continue; // its scheduled touches are halted anyway
       }
 
-      if (prospect.stage !== "IN_SEQUENCE") continue;
+      // IN_SEQUENCE = touches 1–4; CALL/PROPOSAL = post-call follow-ups (5–7).
+      if (!["IN_SEQUENCE", "CALL", "PROPOSAL"].includes(prospect.stage)) continue;
 
       for (const touch of this.allTouchesFor(prospect.id)) {
         if (touch.sentAt || touch.halted) continue;
@@ -302,10 +309,12 @@ export class MemoryStore implements CockpitStore {
         prospectId: t.prospectId,
         dueDate: t.dueDate,
         sentAt: t.sentAt,
+        skippedCount: t.skippedCount,
       })),
       events,
       prospects: [...this.prospects.values()].map((p) => ({
         id: p.id,
+        name: p.name,
         sourceEngine: p.sourceEngine,
         track: p.track,
       })),
@@ -403,5 +412,86 @@ export class MemoryStore implements CockpitStore {
         score: p.score ?? null,
         sources: p.sources ?? [],
       }));
+  }
+
+  // ── CRM level-up ────────────────────────────────────────────────────────────
+  private pending: PendingState | null = null;
+
+  async getPending(): Promise<PendingState | null> {
+    return this.pending ? { ...this.pending } : null;
+  }
+  async setPending(kind: PendingKind, prospectId: string): Promise<void> {
+    this.pending = { kind, prospectId };
+  }
+  async clearPending(): Promise<void> {
+    this.pending = null;
+  }
+
+  async appendNote(prospectId: string, line: string): Promise<void> {
+    const p = this.prospects.get(prospectId);
+    if (!p) return;
+    const notes = p.notes ? `${p.notes}\n${line}` : line;
+    this.prospects.set(prospectId, { ...p, notes });
+  }
+
+  async updateProspect(prospectId: string, patch: ProspectPatch): Promise<void> {
+    const p = this.prospects.get(prospectId);
+    if (!p) return;
+    this.prospects.set(prospectId, {
+      ...p,
+      ...(patch.email !== undefined ? { email: patch.email } : {}),
+      ...(patch.linkedinUrl !== undefined ? { linkedinUrl: patch.linkedinUrl } : {}),
+      ...(patch.dealValue !== undefined ? { dealValue: patch.dealValue } : {}),
+      ...(patch.callAt !== undefined ? { callAt: patch.callAt } : {}),
+      ...(patch.track !== undefined ? { track: patch.track } : {}),
+      ...(patch.stage !== undefined ? { stage: patch.stage } : {}),
+    });
+  }
+
+  async resurfaceDue(today: Day): Promise<number> {
+    let n = 0;
+    for (const p of this.prospects.values()) {
+      if (p.stage === "DORMANT" && p.resurfaceAt && compareDays(p.resurfaceAt, today) <= 0) {
+        // Back to the reviewed queue — Jem re-decides in the Monday digest.
+        this.prospects.set(p.id, { ...p, stage: "NEW", resurfaceAt: null });
+        await this.appendNote(p.id, `resurfaced ${today} after 90 days dormant`);
+        n += 1;
+      }
+    }
+    return n;
+  }
+
+  async getCallsForDay(day: Day): Promise<StoreProspect[]> {
+    return [...this.prospects.values()].filter((p) => p.callAt === day);
+  }
+
+  async scheduleFollowUps(prospectId: string, baseDay: Day): Promise<void> {
+    const existing = new Set(this.allTouchesFor(prospectId).map((t) => t.touchNumber));
+    for (const t of followUpsFrom(prospectId, baseDay)) {
+      if (existing.has(t.touchNumber)) continue; // idempotent
+      const touch: StoreTouch = {
+        id: this.nextId("touch"),
+        prospectId,
+        touchNumber: t.touchNumber,
+        dueDate: t.dueDate,
+        sentAt: null,
+        skippedCount: 0,
+        draftText: null,
+        channel: "email",
+        halted: false,
+      };
+      this.touches.set(touch.id, touch);
+    }
+  }
+
+  async getPipelineValue(): Promise<PipelineValue> {
+    const open = ["REPLIED", "CALL", "PROPOSAL"];
+    let openValue = 0, openCount = 0, wonValue = 0, wonCount = 0;
+    for (const p of this.prospects.values()) {
+      const v = p.dealValue ?? 50000;
+      if (open.includes(p.stage)) { openValue += v; openCount += 1; }
+      if (p.stage === "WON") { wonValue += v; wonCount += 1; }
+    }
+    return { openValue, openCount, wonValue, wonCount, target: 700000 };
   }
 }

@@ -32,6 +32,9 @@ export interface StoreProspect {
   consentLane?: "pipeline" | "broadcast_only";
   dossier?: string | null;
   openerAngle?: string | null;
+  // CRM fields
+  dealValue?: number; // defaults to the $50k anchor
+  callAt?: Day | null; // booked call date, once logged
 }
 
 /** A touch as the store holds it (persisted id included). */
@@ -183,6 +186,48 @@ export interface CockpitStore {
   getProspectDetail(prospectId: string): Promise<ProspectDetail | null>;
   /** A compact snapshot of everyone, for the conversational handler's context. */
   listRoster(limit: number): Promise<RosterEntry[]>;
+
+  // ── CRM level-up ──────────────────────────────────────────────────────────
+  /** What the NEXT message should be consumed as (reply paste / call date). */
+  getPending(): Promise<PendingState | null>;
+  setPending(kind: PendingKind, prospectId: string): Promise<void>;
+  clearPending(): Promise<void>;
+  /** Append a timestamped line to a prospect's notes. */
+  appendNote(prospectId: string, line: string): Promise<void>;
+  /** Patch contact/deal fields on a prospect. */
+  updateProspect(prospectId: string, patch: ProspectPatch): Promise<void>;
+  /** DORMANT prospects whose resurface date has arrived → back to the NEW queue.
+   *  Returns how many were revived. */
+  resurfaceDue(today: Day): Promise<number>;
+  /** Prospects with a booked call on `day` (for the brief's call-prep block). */
+  getCallsForDay(day: Day): Promise<StoreProspect[]>;
+  /** Lay down the post-call follow-up touches (5–7) from a base day. */
+  scheduleFollowUps(prospectId: string, baseDay: Day): Promise<void>;
+  /** Open + closed pipeline value for the stakes line. */
+  getPipelineValue(): Promise<PipelineValue>;
+}
+
+export type PendingKind = "reply_paste" | "call_date";
+export interface PendingState {
+  kind: PendingKind;
+  prospectId: string;
+}
+
+export interface ProspectPatch {
+  email?: string | null;
+  linkedinUrl?: string | null;
+  dealValue?: number;
+  callAt?: Day | null;
+  track?: Track | null;
+  stage?: Stage;
+}
+
+export interface PipelineValue {
+  openValue: number; // Σ deal_value over REPLIED/CALL/PROPOSAL
+  openCount: number;
+  wonValue: number; // Σ deal_value over WON
+  wonCount: number;
+  target: number; // settings.revenue_target
 }
 
 export interface ProspectDetail {
@@ -210,9 +255,9 @@ export interface NewsletterNote {
 
 /** Raw data the scoreboard computation needs (date-only where relevant). */
 export interface ScoreboardData {
-  touches: Array<{ prospectId: string; dueDate: Day; sentAt: Day | null }>;
+  touches: Array<{ prospectId: string; dueDate: Day; sentAt: Day | null; skippedCount: number }>;
   events: Array<{ prospectId: string; type: EventType; at: Day }>;
-  prospects: Array<{ id: string; sourceEngine: SourceEngine; track: Track | null }>;
+  prospects: Array<{ id: string; name: string; sourceEngine: SourceEngine; track: Track | null }>;
 }
 
 export interface DigestActionRef {

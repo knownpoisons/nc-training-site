@@ -79,3 +79,63 @@ export function mondayOf(day: Day): Day {
 export function sundayOf(day: Day): Day {
   return addDays(mondayOf(day), 6);
 }
+
+const WEEKDAYS = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+const MONTHS: Record<string, number> = {
+  jan: 1, feb: 2, mar: 3, apr: 4, may: 5, jun: 6,
+  jul: 7, aug: 8, sep: 9, oct: 10, nov: 11, dec: 12,
+};
+
+/**
+ * Parse a human date reply ("2026-07-18", "18/7", "jul 18", "friday",
+ * "tomorrow", "next tuesday") relative to `today`. Returns null if unparseable.
+ * Resolved weekdays land on the NEXT occurrence (never today/past).
+ */
+export function parseNaturalDay(text: string, today: Day): Day | null {
+  const t = text.trim().toLowerCase();
+
+  // ISO
+  let m = t.match(/\b(\d{4})-(\d{2})-(\d{2})\b/);
+  if (m) return `${m[1]}-${m[2]}-${m[3]}`;
+
+  if (/\btoday\b/.test(t)) return today;
+  if (/\btomorrow\b/.test(t)) return addDays(today, 1);
+
+  // weekday name → next occurrence
+  for (let w = 0; w < 7; w++) {
+    if (new RegExp(`\\b${WEEKDAYS[w]}\\b`).test(t) || new RegExp(`\\b${WEEKDAYS[w].slice(0, 3)}\\b`).test(t)) {
+      let diff = (w - dayOfWeek(today) + 7) % 7;
+      if (diff === 0) diff = 7;
+      if (/\bnext\b/.test(t) && diff <= 3) diff += 7; // "next tue" on a Monday → the week after
+      return addDays(today, diff);
+    }
+  }
+
+  // "jul 18" / "18 jul"
+  m = t.match(/\b([a-z]{3,9})\s+(\d{1,2})\b/) ?? t.match(/\b(\d{1,2})\s+([a-z]{3,9})\b/);
+  if (m) {
+    const [a, b] = [m[1], m[2]];
+    const mon = MONTHS[(isNaN(Number(a)) ? a : b).slice(0, 3)];
+    const dom = Number(isNaN(Number(a)) ? b : a);
+    if (mon && dom >= 1 && dom <= 31) {
+      const year = Number(today.slice(0, 4));
+      let candidate = `${year}-${String(mon).padStart(2, "0")}-${String(dom).padStart(2, "0")}`;
+      if (compareDays(candidate, today) < 0) candidate = `${year + 1}${candidate.slice(4)}`;
+      return candidate;
+    }
+  }
+
+  // "18/7" or "18/7/2026" (day/month — British)
+  m = t.match(/\b(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?\b/);
+  if (m) {
+    const dom = Number(m[1]);
+    const mon = Number(m[2]);
+    if (mon >= 1 && mon <= 12 && dom >= 1 && dom <= 31) {
+      const year = m[3] ? (m[3].length === 2 ? 2000 + Number(m[3]) : Number(m[3])) : Number(today.slice(0, 4));
+      let candidate = `${year}-${String(mon).padStart(2, "0")}-${String(dom).padStart(2, "0")}`;
+      if (!m[3] && compareDays(candidate, today) < 0) candidate = `${year + 1}${candidate.slice(4)}`;
+      return candidate;
+    }
+  }
+  return null;
+}

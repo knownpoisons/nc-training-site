@@ -115,5 +115,11 @@ function contextForTouch(item: DueItem): string {
   const role = item.prospect.role ? `${item.prospect.role}, ` : "";
   const co = item.prospect.company ?? "—";
   const skips = t.skippedCount > 0 ? ` (skipped ${t.skippedCount}×)` : "";
-  return `${role}${co} — touch ${t.touchNumber} of 4${skips}.`;
+  const FOLLOWUP_LABEL: Record<number, string> = {
+    5: "post-call follow-up 1 of 3 (day-2 value)",
+    6: "post-call follow-up 2 of 3 (day-7 made-thing)",
+    7: "post-call follow-up 3 of 3 (day-30 news hook)",
+  };
+  const what = FOLLOWUP_LABEL[t.touchNumber] ?? `touch ${t.touchNumber} of 4`;
+  return `${role}${co} — ${what}${skips}.`;
 }

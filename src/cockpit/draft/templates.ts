@@ -4,7 +4,7 @@
 // via Slack), the store's version wins. Lane + touch number → template body.
 // ═══════════════════════════════════════════════════════════════════════════════
 
-export type Lane = "cold" | "scorecard" | "community" | "inbox" | "engager";
+export type Lane = "cold" | "scorecard" | "community" | "inbox" | "engager" | "followup" | "reply";
 
 export interface TemplateSeed {
   lane: Lane;
@@ -39,6 +39,19 @@ export const TEMPLATE_SEEDS: TemplateSeed[] = [
   // Inbox re-open (1-touch, heavy personalisation)
   { lane: "inbox", touchNumber: 1, requirePersonalise: true, body:
     "[PERSONALISE: reference the actual last exchange]. Wanted to pick the thread back up properly." },
+
+  // Post-call follow-ups (PLAYBOOK doctrine: never a naked check-in — every
+  // touch carries one new thing)
+  { lane: "followup", touchNumber: 5, requirePersonalise: false, body:
+    "Day-2 value touch: reference one specific thing from the call, then give them something useful on it — a quick Loom walkthrough or a concrete pointer. [CALL DETAIL: the thing they cared about]. No ask." },
+  { lane: "followup", touchNumber: 6, requirePersonalise: false, body:
+    "Day-7 made-thing: 'built this thinking about [THEIR THING]' — an asset, not a check-in. One line on what it shows. Soft door to continue." },
+  { lane: "followup", touchNumber: 7, requirePersonalise: false, body:
+    "Day-30 news hook: one relevant shift in the field ([NEWS HOOK]) tied back to their situation. Door open, zero pressure." },
+
+  // Reply response (drafted when a prospect writes back)
+  { lane: "reply", touchNumber: 0, requirePersonalise: false, body:
+    "Respond to their reply directly and briefly. Answer what they actually raised (use the objection doctrine if they raised one). End with the next concrete step — propose two times rather than asking for availability." },
 
   // LinkedIn engager (3-touch)
   { lane: "engager", touchNumber: 1, requirePersonalise: true, body:
