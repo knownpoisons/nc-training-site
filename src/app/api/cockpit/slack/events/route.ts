@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse, after } from "next/server";
+import { getSupabaseServer } from "@/lib/supabase";
 import { verifySlackSignature } from "@/cockpit/slack/verify";
 import { getLiveContext, localParts } from "@/cockpit/runtime";
 import { handleMessage } from "@/cockpit/ops/handle";
@@ -11,17 +12,25 @@ import { loadKnowledge } from "@/cockpit/draft/knowledge";
 // Bot's own messages are ignored to avoid loops.
 export async function POST(req: NextRequest) {
   const rawBody = await req.text();
-  // Log EVERY arrival before any checks — so "Slack never sent it" vs
-  // "sent but rejected" is distinguishable in production logs.
-  console.log(
-    "[cockpit/slack] knock",
-    JSON.stringify({
-      len: rawBody.length,
-      hasSig: !!req.headers.get("x-slack-signature"),
-      ts: req.headers.get("x-slack-request-timestamp"),
-      hint: rawBody.slice(0, 80),
-    })
-  );
+  // Record EVERY arrival before any checks — into the DB (cockpit_intake_log),
+  // so "Slack never sent it" vs "sent but rejected" is verifiable after the
+  // fact without log-streaming coordination. Setup diagnostic; cheap; keep.
+  console.log("[cockpit/slack] knock", rawBody.slice(0, 80));
+  try {
+    const db = getSupabaseServer();
+    if (db) {
+      await db.from("cockpit_intake_log").insert({
+        source: "slack-knock",
+        raw_payload: {
+          len: rawBody.length,
+          hasSig: !!req.headers.get("x-slack-signature"),
+          hint: rawBody.slice(0, 200),
+        },
+      });
+    }
+  } catch (e) {
+    console.error("[cockpit/slack] knock log failed:", e);
+  }
 
   // 1) Verify it really came from Slack.
   const ok = verifySlackSignature({
