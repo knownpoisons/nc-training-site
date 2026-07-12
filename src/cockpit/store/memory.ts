@@ -14,6 +14,8 @@ import type {
   NewLeadInput,
   NewProspectInput,
   NewsletterNote,
+  ProspectDetail,
+  RosterEntry,
   SavedBrief,
   SavedDigest,
   ScoreboardData,
@@ -375,5 +377,31 @@ export class MemoryStore implements CockpitStore {
   async setDossier(prospectId: string, dossier: string, openerAngle: string | null): Promise<void> {
     const p = this.prospects.get(prospectId);
     if (p) this.prospects.set(prospectId, { ...p, dossier, openerAngle });
+  }
+
+  async getProspectDetail(prospectId: string): Promise<ProspectDetail | null> {
+    const prospect = this.prospects.get(prospectId);
+    if (!prospect) return null;
+    const touches = this.allTouchesFor(prospectId).sort((a, b) => a.touchNumber - b.touchNumber);
+    const events = this.events
+      .filter((e) => e.prospectId === prospectId)
+      .map((e) => ({ type: e.type, at: e.at, payload: e.payload }));
+    return { prospect, touches, events };
+  }
+
+  async listRoster(limit: number): Promise<RosterEntry[]> {
+    return [...this.prospects.values()]
+      .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
+      .slice(0, limit)
+      .map((p) => ({
+        id: p.id,
+        name: p.name,
+        company: p.company,
+        role: p.role,
+        stage: p.stage,
+        tier: p.tier ?? null,
+        score: p.score ?? null,
+        sources: p.sources ?? [],
+      }));
   }
 }

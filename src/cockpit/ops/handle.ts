@@ -11,7 +11,7 @@
 
 import { addDays, mondayOf, type Day } from "../cadence/dates";
 import { DORMANT_DAYS, TOTAL_TOUCHES } from "../cadence/cadence";
-import type { CockpitStore, SavedBrief } from "../store/types";
+import type { CockpitStore, ProspectDetail, SavedBrief } from "../store/types";
 import type { SlackClient } from "../slack/types";
 import { parseCommand, type Intent } from "./parse";
 import { placeholderRewrite } from "./drafts";
@@ -92,6 +92,8 @@ export async function handleMessage(
       return handleNote(store, ctx, intent.text, confirm);
     case "notes":
       return handleListNotes(store, ctx, confirm);
+    case "show":
+      return handleShow(store, intent.name, confirm);
     case "pipeline":
       return handlePipeline(store, confirm);
     case "settings":
@@ -456,6 +458,77 @@ async function handleListNotes(
   return { intent: "notes", confirmed: true };
 }
 
+async function handleShow(
+  store: CockpitStore,
+  name: string,
+  confirm: (t: string) => Promise<void>
+): Promise<HandleResult> {
+  const p = await store.findProspectByName(name);
+  if (!p) {
+    await confirm(`No prospect matching "${name}". Try \`pipeline\` to see who's in the system.`);
+    return { intent: "show", confirmed: true, note: "not-found" };
+  }
+  const detail = await store.getProspectDetail(p.id);
+  if (!detail) {
+    await confirm(`Couldn't load ${p.name}'s details.`);
+    return { intent: "show", confirmed: true, note: "no-detail" };
+  }
+  await confirm(renderProfile(detail));
+  return { intent: "show", confirmed: true };
+}
+
+/** The full prospect card — everything the system knows, in one Slack message. */
+export function renderProfile(d: ProspectDetail): string {
+  const p = d.prospect;
+  const L: string[] = [];
+  const header = [p.name, p.role, p.company].filter(Boolean).join(" · ");
+  L.push(`*${header}*`);
+
+  // status line
+  const bits = [`Stage *${p.stage}*`, `Source ${p.sourceEngine}`];
+  if (p.tier) bits.push(`Tier ${p.tier}`);
+  if (p.score != null) bits.push(`Score ${Math.round(p.score)}`);
+  if (p.paused) bits.push("⏸ paused");
+  L.push(bits.join("  ·  "));
+  if (p.sources && p.sources.length) L.push(`_Found via: ${p.sources.join(" + ")}_`);
+  if (p.consentLane === "broadcast_only") L.push("_🔒 broadcast-only — cannot be sequenced_");
+
+  // dossier / opener
+  if (p.dossier) L.push(`\n*Dossier*\n${p.dossier}`);
+  if (p.openerAngle) L.push(`*Opener angle:* ${p.openerAngle}`);
+
+  // links
+  const links: string[] = [];
+  if (p.linkedinUrl) links.push(p.linkedinUrl);
+  if (p.email) links.push(p.email);
+  if (links.length) L.push(links.join(" · "));
+
+  // touches
+  if (d.touches.length) {
+    L.push("\n*Touches*");
+    for (const t of d.touches.sort((a, b) => a.touchNumber - b.touchNumber)) {
+      let state: string;
+      if (t.sentAt) state = `✅ sent ${t.sentAt}`;
+      else if (t.halted) state = "— halted";
+      else state = `⏳ due ${t.dueDate}`;
+      const skips = t.skippedCount > 0 ? ` (skipped ${t.skippedCount}×)` : "";
+      L.push(`  ${t.touchNumber}. ${state}${skips}`);
+    }
+  }
+
+  // events
+  if (d.events.length) {
+    L.push("\n*History*");
+    for (const e of d.events) {
+      const day = /^\d{4}-\d{2}-\d{2}/.test(e.at) ? e.at.slice(0, 10) : "";
+      L.push(`  • ${e.type.replace(/_/g, " ")}${day ? ` — ${day}` : ""}`);
+    }
+  }
+
+  if (p.notes) L.push(`\n*Notes:* ${p.notes}`);
+  return L.join("\n");
+}
+
 async function handlePipeline(
   store: CockpitStore,
   confirm: (t: string) => Promise<void>
@@ -490,5 +563,7 @@ const HELP_TEXT = [
   "`add Dana Lee, Head of Brand, Acme` — new prospect",
   "`call booked 5` · `won 5` · `lost 5` — move stage",
   "`pause dana` · `resume dana` — pause/resume a prospect",
+  "`show dana` — a prospect's full card (touches, history, dossier)",
   "`pipeline` — stage counts  ·  `settings` — current settings",
+  "ask me anything in plain English about your leads",
 ].join("\n");

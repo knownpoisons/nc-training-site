@@ -18,6 +18,8 @@ import type {
   NewLeadInput,
   NewProspectInput,
   NewsletterNote,
+  ProspectDetail,
+  RosterEntry,
   SavedBrief,
   SavedDigest,
   ScoreboardData,
@@ -488,6 +490,45 @@ export class SupabaseStore implements CockpitStore {
       .update({ dossier, opener_angle: openerAngle })
       .eq("id", prospectId);
     if (error) throw new Error(`setDossier: ${error.message}`);
+  }
+
+  async getProspectDetail(prospectId: string): Promise<ProspectDetail | null> {
+    const prospect = await this.getProspect(prospectId);
+    if (!prospect) return null;
+    const [touchesRes, eventsRes] = await Promise.all([
+      this.db.from("cockpit_touches").select("*").eq("prospect_id", prospectId).order("touch_number"),
+      this.db.from("cockpit_events").select("type, created_at, payload").eq("prospect_id", prospectId).order("created_at"),
+    ]);
+    if (touchesRes.error) throw new Error(`getProspectDetail touches: ${touchesRes.error.message}`);
+    if (eventsRes.error) throw new Error(`getProspectDetail events: ${eventsRes.error.message}`);
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    return {
+      prospect,
+      touches: (touchesRes.data ?? []).map(toTouch),
+      events: (eventsRes.data ?? []).map((e: any) => ({ type: e.type, at: e.created_at, payload: e.payload })),
+    };
+    /* eslint-enable @typescript-eslint/no-explicit-any */
+  }
+
+  async listRoster(limit: number): Promise<RosterEntry[]> {
+    const { data, error } = await this.db
+      .from("cockpit_prospects")
+      .select("id, name, company, role, stage, tier, score, sources")
+      .order("score", { ascending: false, nullsFirst: false })
+      .limit(limit);
+    if (error) throw new Error(`listRoster: ${error.message}`);
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    return (data ?? []).map((p: any) => ({
+      id: p.id,
+      name: p.name,
+      company: p.company ?? null,
+      role: p.role ?? null,
+      stage: p.stage,
+      tier: p.tier ?? null,
+      score: p.score ?? null,
+      sources: p.sources ?? [],
+    }));
+    /* eslint-enable @typescript-eslint/no-explicit-any */
   }
 
   async updateSettings(patch: Partial<Settings>): Promise<Settings> {

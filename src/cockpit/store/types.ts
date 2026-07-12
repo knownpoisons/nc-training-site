@@ -177,6 +177,29 @@ export interface CockpitStore {
   getLeadsNeedingEnrichment(limit: number): Promise<StoreProspect[]>;
   /** Save an enrichment dossier + opener angle onto a lead. */
   setDossier(prospectId: string, dossier: string, openerAngle: string | null): Promise<void>;
+
+  // ── Visibility: profiles + roster (F4 `show`, F5 questions) ───────────────
+  /** A prospect with its full touch schedule + event history. */
+  getProspectDetail(prospectId: string): Promise<ProspectDetail | null>;
+  /** A compact snapshot of everyone, for the conversational handler's context. */
+  listRoster(limit: number): Promise<RosterEntry[]>;
+}
+
+export interface ProspectDetail {
+  prospect: StoreProspect;
+  touches: StoreTouch[];
+  events: Array<{ type: EventType; at: string; payload: unknown }>;
+}
+
+export interface RosterEntry {
+  id: string;
+  name: string;
+  company: string | null;
+  role: string | null;
+  stage: Stage;
+  tier: "A" | "B" | "C" | null;
+  score: number | null;
+  sources: string[];
 }
 
 export interface NewsletterNote {

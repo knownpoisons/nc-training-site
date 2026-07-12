@@ -24,6 +24,7 @@ export type Intent =
   | { kind: "set"; field: string; value: string }
   | { kind: "note"; text: string }
   | { kind: "notes" }
+  | { kind: "show"; name: string }
   | { kind: "pipeline" }
   | { kind: "settings" }
   | { kind: "help" }
@@ -116,6 +117,12 @@ export function parseCommand(raw: string): Intent {
   if (/^(note|idea)\b/.test(lower)) {
     const t = text.replace(/^(note|idea)\s*/i, "").trim();
     if (t) return { kind: "note", text: t };
+  }
+
+  // ── show a prospect's full card: "show dana" / "profile dana" / "who is dana" ─
+  if (/^(show|profile|who)\b/.test(lower) && !/^show\s+pipeline\b/.test(lower)) {
+    const name = text.replace(/^(show|profile|who)\s+/i, "").replace(/^is\s+/i, "").trim();
+    if (name) return { kind: "show", name };
   }
 
   // ── standalone words ───────────────────────────────────────────────────────
