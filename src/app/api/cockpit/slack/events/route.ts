@@ -11,6 +11,17 @@ import { loadKnowledge } from "@/cockpit/draft/knowledge";
 // Bot's own messages are ignored to avoid loops.
 export async function POST(req: NextRequest) {
   const rawBody = await req.text();
+  // Log EVERY arrival before any checks — so "Slack never sent it" vs
+  // "sent but rejected" is distinguishable in production logs.
+  console.log(
+    "[cockpit/slack] knock",
+    JSON.stringify({
+      len: rawBody.length,
+      hasSig: !!req.headers.get("x-slack-signature"),
+      ts: req.headers.get("x-slack-request-timestamp"),
+      hint: rawBody.slice(0, 80),
+    })
+  );
 
   // 1) Verify it really came from Slack.
   const ok = verifySlackSignature({
