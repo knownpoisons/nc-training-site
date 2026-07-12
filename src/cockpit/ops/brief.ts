@@ -82,7 +82,10 @@ export async function runMorningBrief(
           dossier: item.prospect.dossier ?? null,
           openerAngle: item.prospect.openerAngle ?? null,
         },
-        template?.requirePersonalise ?? true
+        // Only demand a [PERSONALISE] gap when there's NO material to fill it —
+        // with a way-in or dossier, the AI writes the real line (not faking it).
+        (template?.requirePersonalise ?? true) &&
+          !(wayIn(item.prospect) || item.prospect.dossier)
       );
       a.draftText = out.requiresReview ? `${out.draft}\n⚠️ needs your eyes — couldn't auto-clear.` : out.draft;
       await store.setDraft(a.touchId, out.draft);
