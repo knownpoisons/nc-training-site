@@ -77,9 +77,9 @@ export async function handleMessage(
     await store.clearPending();
   }
 
+  // Reply inline in the channel, right below Jem's message — not in a thread.
   const confirm = async (text: string) => {
-    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, text);
-    else await slack.postMessage(ctx.channel, text);
+    await slack.postMessage(ctx.channel, text);
   };
   const react = async (emoji: string) => {
     if (ctx.messageTs) await slack.addReaction(ctx.channel, ctx.messageTs, emoji);
@@ -309,8 +309,7 @@ async function consumeReplyPaste(
   brief: SavedBrief | null
 ): Promise<HandleResult> {
   const say = async (t: string) => {
-    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, t);
-    else await slack.postMessage(ctx.channel, t);
+    await slack.postMessage(ctx.channel, t);
   };
   const p = await store.getProspect(prospectId);
   if (!p) {
@@ -385,8 +384,7 @@ async function consumeCallDebrief(
   brief: SavedBrief | null
 ): Promise<HandleResult> {
   const say = async (t: string) => {
-    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, t);
-    else await slack.postMessage(ctx.channel, t);
+    await slack.postMessage(ctx.channel, t);
   };
   const p = await store.getProspect(prospectId);
   if (!p) {
@@ -431,8 +429,7 @@ async function consumeCallDate(
   brief: SavedBrief | null
 ): Promise<HandleResult> {
   const say = async (t: string) => {
-    if (brief?.slackTs) await slack.postThreadReply(ctx.channel, brief.slackTs, t);
-    else await slack.postMessage(ctx.channel, t);
+    await slack.postMessage(ctx.channel, t);
   };
   const day = parseNaturalDay(text, ctx.today);
   const p = await store.getProspect(prospectId);
@@ -864,50 +861,68 @@ export function renderProfile(d: ProspectDetail): string {
   const header = [p.name, p.role, p.company].filter(Boolean).join(" · ");
   L.push(`*${header}*`);
 
-  // status line
-  const bits = [`Stage *${p.stage}*`, `Source ${p.sourceEngine}`];
+  // status line — everything at-a-glance
+  const bits = [`Stage *${p.stage}*`];
+  if (p.track) bits.push(`Track ${p.track}`);
   if (p.tier) bits.push(`Tier ${p.tier}`);
   if (p.score != null) bits.push(`Score ${Math.round(p.score)}`);
-  if (p.dealValue) bits.push(`$${Math.round(p.dealValue / 1000)}k`);
-  if (p.callAt) bits.push(`📞 ${p.callAt}`);
+  bits.push(`$${Math.round((p.dealValue ?? 50000) / 1000)}k`);
+  if (p.callAt) bits.push(`📞 call ${p.callAt}`);
   if (p.paused) bits.push(`⏸ paused — \`resume ${p.name}\``);
   L.push(bits.join("  ·  "));
-  if (p.sources && p.sources.length) L.push(`_Found via: ${p.sources.join(" + ")}_`);
-  if (p.consentLane === "broadcast_only") L.push("_🔒 broadcast-only — cannot be sequenced_");
 
-  // dossier / opener
-  if (p.dossier) L.push(`\n*Dossier*\n${p.dossier}`);
+  // provenance
+  const via = (p.sources && p.sources.length ? p.sources.join(" + ") : p.sourceEngine);
+  L.push(`_Found via: ${via}${p.consentLane === "broadcast_only" ? " · 🔒 broadcast-only" : ""} · added ${p.addedAt}${p.resurfaceAt ? ` · resurfaces ${p.resurfaceAt}` : ""}_`);
+
+  // contact details — labelled
+  const contact: string[] = [];
+  if (p.email) contact.push(`✉️ ${p.email}`);
+  if (p.linkedinUrl) contact.push(`🔗 ${p.linkedinUrl}`);
+  if (contact.length) L.push(contact.join("  ·  "));
+
+  // dossier / opener (full, never truncated)
+  if (p.dossier) L.push(`\n*Who they are*\n${p.dossier}`);
   if (p.openerAngle) L.push(`*Opener angle:* ${p.openerAngle}`);
 
-  // links
-  const links: string[] = [];
-  if (p.linkedinUrl) links.push(p.linkedinUrl);
-  if (p.email) links.push(p.email);
-  if (links.length) L.push(links.join(" · "));
+  // distilled call intelligence
+  if (p.callBrief) L.push(`\n*Call brief*\n${p.callBrief}`);
 
   // touches
   if (d.touches.length) {
     L.push("\n*Touches*");
-    for (const t of d.touches.sort((a, b) => a.touchNumber - b.touchNumber)) {
+    for (const t of [...d.touches].sort((a, b) => a.touchNumber - b.touchNumber)) {
       let state: string;
       if (t.sentAt) state = `✅ sent ${t.sentAt}`;
       else if (t.halted) state = "— halted";
       else state = `⏳ due ${t.dueDate}`;
       const skips = t.skippedCount > 0 ? ` (skipped ${t.skippedCount}×)` : "";
-      L.push(`  ${t.touchNumber}. ${state}${skips}`);
+      const label = t.touchNumber >= 5 ? `follow-up ${t.touchNumber - 4}` : `touch ${t.touchNumber}`;
+      L.push(`  ${label}: ${state}${skips}`);
     }
   }
 
-  // events
+  // full history — with the content, not just the label
   if (d.events.length) {
     L.push("\n*History*");
     for (const e of d.events) {
       const day = /^\d{4}-\d{2}-\d{2}/.test(e.at) ? e.at.slice(0, 10) : "";
-      L.push(`  • ${e.type.replace(/_/g, " ")}${day ? ` — ${day}` : ""}`);
+      const pay = (e.payload ?? {}) as { text?: string; date?: string; reason?: string };
+      let detail = "";
+      if (e.type === "reply" && pay.text) detail = ` — “${pay.text.slice(0, 240)}”`;
+      else if (e.type === "call_booked" && pay.date) detail = ` — for ${pay.date}`;
+      else if (e.type === "call_debrief") detail = " — transcript captured";
+      else if (pay.reason) detail = ` — ${pay.reason}`;
+      L.push(`  • ${day || "—"} · ${e.type.replace(/_/g, " ")}${detail}`);
     }
   }
 
-  if (p.notes) L.push(`\n*Notes:* ${p.notes}`);
+  // notes — every appended line, in full
+  if (p.notes) {
+    L.push("\n*Notes*");
+    for (const line of p.notes.split("\n")) L.push(`  · ${line}`);
+  }
+
   return L.join("\n");
 }
 

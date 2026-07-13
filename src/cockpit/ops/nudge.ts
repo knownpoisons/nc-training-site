@@ -37,9 +37,8 @@ export async function runNudge(
     `Highest-value one: *${top.label}*. ` +
     "Reply `done`, `skip`, or `snooze` when you've handled it.";
 
-  // Post in the brief's thread if we have its ts, else top-level.
-  if (brief.slackTs) await slack.postThreadReply(channel, brief.slackTs, text);
-  else await slack.postMessage(channel, text);
+  // Inline in the channel — a nudge should be seen, not tucked in a thread.
+  await slack.postMessage(channel, text);
 
   await store.markNudged(today, nowIso);
   return { fired: true, reason: "sent" };
