@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
   // exist in production (otherwise fs.readFileSync fails on Vercel).
   outputFileTracingIncludes: {
     "/api/cockpit/**": ["./cockpit/knowledge/**"],
+    "/api/deck/**": ["./cockpit/knowledge/**"],
   },
 };
 

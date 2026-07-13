@@ -17,5 +17,6 @@ export function ChromeGate({ children }: Props) {
   if (!pathname) return <>{children}</>;
   if (pathname === "/library" || pathname.startsWith("/library/")) return null;
   if (pathname === "/partners" || pathname.startsWith("/partners/")) return null;
+  if (pathname === "/deck" || pathname.startsWith("/deck/")) return null;
   return <>{children}</>;
 }

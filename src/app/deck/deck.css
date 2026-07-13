@@ -1,0 +1,256 @@
+/* ═══════════════════════════════════════════════════════════════════════════════
+   THE DECK — "Cobalt Paper" design system (handoff spec, executed faithfully).
+   Engineered calm: warm paper field, hairline data cards, one place the light
+   gets in. Radius scale is exactly {4, 12, 24, 999}. State speaks in ink,
+   cobalt, and weight — never green, never red.
+   All classes .dk- prefixed to coexist with the site's Tailwind.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.dk {
+  --ink: #0a0a0b;
+  --canvas: #f6f6f4;
+  --paper: #ffffff;
+  --hairline: #e9e9e7;
+  --text-2: #8a8a85;
+  --cobalt: #1437e8;
+  --cobalt-deep: #0a24b8;
+  --cobalt-glow: #e9edff;
+  --glass-a: #2e5bff;
+  --glass-b: #a9bcff;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.5;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+.dk *, .dk *::before, .dk *::after { box-sizing: border-box; }
+
+/* ── shell ── */
+.dk-shell { display: grid; grid-template-columns: 1fr 360px; min-height: 100vh; }
+.dk-main { padding: 28px 36px 120px; max-width: 1080px; width: 100%; margin: 0 auto; }
+@media (max-width: 1279px) { .dk-shell { grid-template-columns: 1fr; } .dk-rail { display: none; } }
+
+/* ── type ── */
+.dk-title {
+  font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em;
+  line-height: 0.95; font-size: clamp(40px, 6vw, 72px); margin: 6px 0 4px;
+}
+.dk-label {
+  font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+  text-transform: uppercase; color: var(--text-2);
+}
+.dk-sub { color: var(--text-2); font-size: 14px; max-width: 60ch; }
+
+/* ── nav ── */
+.dk-nav { display: flex; align-items: center; gap: 22px; padding: 2px 0 22px; }
+.dk-nav a {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+  color: var(--text-2); text-decoration: none; padding: 6px 0; position: relative;
+  transition: color 0.18s var(--ease);
+}
+.dk-nav a:hover { color: var(--ink); }
+.dk-nav a.on { color: var(--cobalt); }
+.dk-nav a.on::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 2px; background: var(--cobalt);
+}
+.dk-nav .dk-nav-brand { margin-right: auto; font-weight: 600; color: var(--ink); letter-spacing: 0.02em; }
+.dk-nav .dk-nav-brand span { color: var(--text-2); font-weight: 500; }
+
+/* mobile pill bottom-nav — the phone pattern, rebuilt */
+.dk-pill {
+  display: none; position: fixed; left: 50%; transform: translateX(-50%);
+  bottom: 18px; z-index: 50; background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 6px;
+  gap: 2px; box-shadow: 0 10px 30px rgba(10, 10, 11, 0.1);
+}
+.dk-pill a {
+  font-size: 11px; font-weight: 600; letter-spacing: 0.02em; text-transform: uppercase;
+  text-decoration: none; color: var(--text-2); padding: 10px 14px; border-radius: 999px;
+  min-height: 44px; display: grid; place-items: center;
+}
+.dk-pill a.on { background: var(--ink); color: #fff; border-radius: 12px; }
+@media (max-width: 767px) {
+  .dk-pill { display: flex; }
+  .dk-nav a:not(.dk-nav-brand) { display: none; }
+  .dk-main { padding: 20px 16px 140px; }
+}
+
+/* ── glass (the system speaks) — max one stack per screen ── */
+.dk-glasswrap { position: relative; margin: 10px 0 26px; touch-action: pan-y; }
+.dk-glass {
+  position: relative; border-radius: 24px; padding: 28px 30px 24px; color: #fff;
+  background: linear-gradient(135deg, var(--glass-a), var(--glass-b));
+  box-shadow: 0 18px 50px rgba(20, 55, 232, 0.22);
+  min-height: 210px; user-select: none;
+}
+.dk-glass h2 {
+  font-family: var(--serif); font-weight: 400; letter-spacing: -0.02em;
+  line-height: 0.95; font-size: clamp(34px, 4.5vw, 54px); margin: 4px 0 8px; color: var(--ink);
+}
+.dk-glass .dk-label { color: rgba(255, 255, 255, 0.85); }
+.dk-glass p { color: rgba(10, 10, 11, 0.72); font-size: 14px; margin: 0; max-width: 52ch; }
+.dk-glass-rear {
+  position: absolute; inset: 0; border-radius: 24px;
+  background: linear-gradient(135deg, var(--glass-a), var(--glass-b));
+  will-change: transform;
+}
+.dk-dots { display: flex; gap: 6px; position: absolute; top: 30px; right: 30px; }
+.dk-dots i { width: 6px; height: 6px; border-radius: 999px; background: rgba(255,255,255,0.45); transition: background .2s; }
+.dk-dots i.on { background: var(--ink); }
+
+/* ── paper cards (the system reports) ── */
+.dk-card {
+  background: var(--paper); border: 1px solid var(--hairline); border-radius: 20px;
+  padding: 24px; box-shadow: none;
+  transition: transform 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+.dk-card:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(10, 10, 11, 0.06); }
+.dk-cardhead { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.dk-icochip {
+  width: 28px; height: 28px; border-radius: 4px; background: var(--cobalt-glow);
+  color: var(--cobalt); display: grid; place-items: center; font-size: 13px; flex: none;
+}
+
+/* bento grid */
+.dk-bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+.dk-c3 { grid-column: span 3; } .dk-c4 { grid-column: span 4; }
+.dk-c6 { grid-column: span 6; } .dk-c8 { grid-column: span 8; } .dk-c12 { grid-column: span 12; }
+@media (max-width: 1023px) { .dk-c3, .dk-c4 { grid-column: span 6; } .dk-c8, .dk-c6 { grid-column: span 12; } }
+@media (max-width: 640px) { .dk-c3, .dk-c4, .dk-c6 { grid-column: span 12; } }
+
+/* ── numerals: the screenshot detail ── */
+.dk-stat {
+  font-variant-numeric: tabular-nums; font-weight: 500; line-height: 1;
+  font-size: clamp(40px, 5vw, 64px); letter-spacing: -0.03em;
+}
+.dk-stat sup {
+  font-size: 40%; color: var(--text-2); font-weight: 600;
+  position: relative; top: -0.65em; letter-spacing: 0;
+}
+
+/* ── the barcode bar — signature element, appears nowhere as a rounded bar ── */
+.dk-barcode { display: flex; align-items: flex-end; gap: 3px; height: 16px; margin-top: 14px; }
+.dk-barcode i {
+  width: 1.5px; height: 100%; background: var(--hairline);
+  transition: background 0.12s steps(1);
+}
+.dk-barcode i.on { background: var(--cobalt); }
+.dk-barcode i.cur { width: 6px; background: var(--ink); }
+.dk-glass .dk-barcode i { background: rgba(255, 255, 255, 0.35); }
+.dk-glass .dk-barcode i.on { background: #fff; }
+.dk-glass .dk-barcode i.cur { background: var(--ink); }
+
+/* ── hard-edge internals: 4px only ── */
+.dk-chip {
+  display: inline-flex; align-items: center; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.02em; text-transform: uppercase; border-radius: 4px;
+  padding: 3px 8px; background: var(--ink); color: #fff; white-space: nowrap;
+}
+.dk-chip.glow { background: var(--cobalt-glow); color: var(--cobalt-deep); }
+.dk-chip.line { background: transparent; border: 1px solid var(--hairline); color: var(--text-2); }
+.dk-chip.blue { background: var(--cobalt); }
+
+/* ── table ── */
+.dk-tablewrap { overflow-x: auto; }
+.dk-table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.dk-table th {
+  text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.02em;
+  text-transform: uppercase; color: var(--text-2); padding: 10px 12px;
+  border-bottom: 1px solid var(--hairline); cursor: pointer; user-select: none; white-space: nowrap;
+}
+.dk-table th:hover { color: var(--ink); }
+.dk-table td { padding: 12px; border-bottom: 1px solid var(--hairline); vertical-align: middle; white-space: nowrap; }
+.dk-table tr:last-child td { border-bottom: none; }
+.dk-table tbody tr { transition: background 0.15s var(--ease); }
+.dk-table tbody tr:hover { background: #fafaf8; }
+.dk-table tbody tr.sel { background: var(--cobalt-glow); }
+.dk-num { font-variant-numeric: tabular-nums; }
+
+/* ── reveal choreography: title first, alone; cards stagger 40ms ── */
+.dk-reveal { opacity: 0; transform: translateY(12px); transition: opacity 0.4s var(--ease), transform 0.4s var(--ease); transition-delay: calc(var(--i, 0) * 40ms); }
+.dk-reveal.dk-in { opacity: 1; transform: none; }
+
+/* ── assistant rail ── */
+.dk-rail {
+  border-left: 1px solid var(--hairline); background: var(--paper);
+  display: flex; flex-direction: column; height: 100vh; position: sticky; top: 0;
+}
+.dk-rail-head {
+  margin: 16px; border-radius: 12px; padding: 14px 16px; color: #fff;
+  background: linear-gradient(135deg, var(--glass-a), var(--glass-b));
+}
+.dk-rail-head b { font-family: var(--serif); font-weight: 400; font-size: 20px; color: var(--ink); letter-spacing: -0.01em; }
+.dk-rail-head div { font-size: 12px; color: rgba(10, 10, 11, 0.7); }
+.dk-msgs { flex: 1; overflow-y: auto; padding: 0 16px; display: flex; flex-direction: column; gap: 10px; }
+.dk-msg { font-size: 13.5px; padding: 10px 12px; border-radius: 12px; max-width: 92%; white-space: pre-wrap; }
+.dk-msg.me { background: var(--ink); color: #fff; align-self: flex-end; }
+.dk-msg.bot { background: var(--canvas); border: 1px solid var(--hairline); align-self: flex-start; }
+.dk-msg.thinking i { display: inline-block; width: 5px; height: 5px; border-radius: 999px; background: var(--text-2); margin-right: 3px; animation: dk-bob 1s infinite; }
+.dk-msg.thinking i:nth-child(2) { animation-delay: 0.15s; } .dk-msg.thinking i:nth-child(3) { animation-delay: 0.3s; }
+@keyframes dk-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-4px); } }
+.dk-input { display: flex; gap: 8px; padding: 14px 16px; border-top: 1px solid var(--hairline); }
+.dk-input input {
+  flex: 1; font-family: var(--sans); font-size: 13.5px; padding: 11px 14px;
+  border: 1px solid var(--hairline); border-radius: 12px; outline: none; background: var(--canvas);
+}
+.dk-input input:focus { border-color: var(--cobalt); background: #fff; }
+.dk-input button {
+  font-family: var(--sans); font-size: 12px; font-weight: 600; letter-spacing: 0.02em;
+  text-transform: uppercase; background: var(--cobalt); color: #fff; border: none;
+  border-radius: 12px; padding: 0 16px; cursor: pointer; transition: background 0.15s;
+}
+.dk-input button:hover { background: var(--cobalt-deep); }
+.dk-fab {
+  display: none; position: fixed; right: 16px; bottom: 84px; z-index: 60;
+  width: 52px; height: 52px; border-radius: 999px; border: none; cursor: pointer;
+  background: linear-gradient(135deg, var(--glass-a), var(--glass-b)); color: #fff;
+  font-size: 20px; box-shadow: 0 12px 30px rgba(20, 55, 232, 0.35);
+}
+@media (max-width: 1279px) { .dk-fab { display: grid; place-items: center; } }
+.dk-sheet {
+  position: fixed; inset: auto 0 0 0; z-index: 70; background: var(--paper);
+  border-radius: 24px 24px 0 0; border: 1px solid var(--hairline); max-height: 78vh;
+  display: flex; flex-direction: column; box-shadow: 0 -20px 60px rgba(10, 10, 11, 0.18);
+}
+
+/* ── skeletons, never spinners ── */
+.dk-skel { border-radius: 12px; background: linear-gradient(90deg, #efefec 25%, #f7f7f5 50%, #efefec 75%); background-size: 200% 100%; animation: dk-shimmer 1.4s infinite; }
+@keyframes dk-shimmer { to { background-position: -200% 0; } }
+
+/* ── login ── */
+.dk-login { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+.dk-login form { width: min(420px, 100%); }
+.dk-login input {
+  width: 100%; font-family: var(--sans); font-size: 15px; padding: 14px 16px;
+  border: 1px solid var(--hairline); border-radius: 12px; outline: none; margin: 18px 0 10px;
+}
+.dk-login input:focus { border-color: var(--cobalt); }
+.dk-login button {
+  width: 100%; font-family: var(--sans); font-size: 13px; font-weight: 600;
+  letter-spacing: 0.02em; text-transform: uppercase; background: var(--ink); color: #fff;
+  border: none; border-radius: 12px; padding: 14px; cursor: pointer; transition: background 0.15s;
+}
+.dk-login button:hover { background: var(--cobalt); }
+.dk-err { color: var(--ink); font-size: 13px; background: var(--cobalt-glow); border-radius: 4px; padding: 8px 10px; }
+
+/* arrows: ↗ rotates to → on hover */
+.dk-arrow { display: inline-block; transition: transform 0.18s var(--ease); }
+.dk-card:hover .dk-arrow, a:hover .dk-arrow { transform: rotate(45deg); }
+
+/* focus states in cobalt — keyboard reachable */
+.dk a:focus-visible, .dk button:focus-visible, .dk input:focus-visible, .dk [tabindex]:focus-visible {
+  outline: 2px solid var(--cobalt); outline-offset: 2px; border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dk *, .dk *::before, .dk *::after { transition: none !important; animation: none !important; }
+  .dk-reveal { opacity: 1 !important; transform: none !important; }
+}
