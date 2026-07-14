@@ -91,8 +91,8 @@ export default function CashAppCaseStudy() {
                 digital.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                The existing process was too slow to keep up with the
-                pace the business demanded.
+                Every campaign meant pitching for budget, and the pitch process
+                alone was eating the calendar.
               </p>
             </div>
           </div>
@@ -138,13 +138,10 @@ export default function CashAppCaseStudy() {
                 campaigns.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                Estimated increase in campaign capacity: at least
-                30%. Estimated cost savings over year one: in the range of
-                $3.5 million.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                The team now moves faster, pitches stronger, and
-                produces more — without adding headcount.
+                Pitching and securing a campaign budget used to take the full
+                process. Now it takes 10% of that time. Year one, that&rsquo;s
+                an estimated $3.5M — and roughly 30% more campaigns from the
+                same team.
               </p>
             </div>
           </div>
@@ -271,7 +268,7 @@ export default function CashAppCaseStudy() {
       <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
-            Want results like these?
+            Same team. 10% of the time.
           </h2>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link

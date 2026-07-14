@@ -32,7 +32,7 @@ const curriculum = [
     week: "05-06",
     title: "Convergence & Production",
     items: [
-      "Production-grade tools for precision execution",
+      "Finishing tools that hold brand standards at AI speed — the part most teams get wrong.",
       "Brand asset integration into AI scenes",
       "Video transformation and extension workflows",
       "Quality control: maintaining brand standards at AI speed",
@@ -266,6 +266,9 @@ export default function TransformationPage() {
                 From $50,000
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-white/50">
+                Cash App&apos;s version of this returned an estimated $3.5M in year one.
+              </p>
+              <p className="mt-6 text-sm leading-relaxed text-white/50">
                 Scoped to your team size, structure, and production needs.
                 Confirmed on your discovery call with Jeremy.
               </p>
@@ -329,7 +332,7 @@ export default function TransformationPage() {
       <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-3xl">
-            The teams that move first win.
+            Maesa took a brand from brief to every Target store in 3 months. Their old timeline was 9. That&apos;s the operating model working.
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             We take on a limited number of Operating Model clients each quarter.

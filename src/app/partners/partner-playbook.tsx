@@ -231,8 +231,8 @@ export function PartnerPlaybook() {
             title="Mandate. Stack. Brains switched back on"
           >
             <PlayBody
-              say="Three things fix it. A mandate that says it's okay. One simple, shared stack — so nobody's stuck asking 'which tool, which model' every week. And training that switches their brains back on. None of this has been anyone's job yet — and it's the biggest technical and creative shift our industry's ever seen. They need structure and guidance, not more hype."
-              sayDisplay={`"Three things fix it. A mandate that says it’s okay. One simple, shared stack — so nobody’s stuck asking 'which tool, which model' every week. And training that switches their brains back on. None of this has been anyone’s job yet — and it’s the biggest technical and creative shift our industry’s ever seen. They need structure and guidance, not more hype."`}
+              say="Three things fix it. A mandate that says it's okay. One simple, shared stack — so nobody's stuck asking 'which tool, which model' every week. And training that switches their brains back on. None of this has been anyone's job yet. They need structure and guidance, not more hype."
+              sayDisplay={`"Three things fix it. A mandate that says it’s okay. One simple, shared stack — so nobody’s stuck asking 'which tool, which model' every week. And training that switches their brains back on. None of this has been anyone’s job yet. They need structure and guidance, not more hype."`}
               ask="What would change if every person here was at the same standard — not one or two heroes, the whole team?"
               askDisplay={`"What would change if every person here was at the same standard — not one or two heroes, the whole team?"`}
             />
@@ -268,9 +268,9 @@ export function PartnerPlaybook() {
             title="You&rsquo;re going to replace our people."
           >
             <PunchBody
-              punch={`"Nobody gets fired. We strap each person to a rocket so they can drive it — they get from New York to London faster, but they're still flying it. The driver matters more, not less."`}
-              redirect="Which of your people would you most want strapped to it first?"
-              redirectDisplay={`"Which of your people would you most want strapped to it first?"`}
+              punch={`"Nobody gets fired. We put each person in the rocket's seat — they get from New York to London faster, but they're still the ones flying it. The driver matters more, not less."`}
+              redirect="Which of your people would you most want in the seat first?"
+              redirectDisplay={`"Which of your people would you most want in the seat first?"`}
             />
           </AccordionItem>
 

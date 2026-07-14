@@ -22,9 +22,7 @@ export default function BookPage() {
             Let&apos;s talk.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            30 minutes with Jeremy Somers. No pitch deck. No pressure. You
-            describe where your team is, he maps what&apos;s possible and
-            what the right program looks like.
+            30 minutes with Jeremy. You describe your team. He tells you whether you&apos;re a Cash App situation, a Maesa situation — or not ready yet, and he&apos;ll say which.
           </p>
         </div>
       </section>
@@ -42,9 +40,9 @@ export default function BookPage() {
               <div className="space-y-4">
                 {[
                   "Your team's current AI maturity and workflow gaps",
-                  "Where AI would have the highest impact on your output",
+                  "How many people on your team are actually dangerous with AI — and what the other twelve cost you per quarter.",
                   "Which program tier fits your team's needs",
-                  "A rough timeline and next steps",
+                  "Where your production time is going — Cash App's answer was that 90% of it didn't need to.",
                 ].map((item) => (
                   <div key={item} className="flex gap-3 text-sm leading-relaxed text-foreground/60">
                     <span className="mt-1.5 h-1 w-1 shrink-0 bg-[#1338BE]/40" />
@@ -59,8 +57,8 @@ export default function BookPage() {
                 </p>
                 <p className="text-sm leading-relaxed text-foreground/60">
                   15+ years as a creative director — Spotify, Pepsi, Samsung,
-                  Mercedes-Benz, Google, Microsoft. Founded NotContent as one of the first AI-assisted
-                  creative agencies. Has trained enterprise teams at Cash App,
+                  Mercedes-Benz, Google, Microsoft. Founded NotContent as the first AI-assisted
+                  creative agency. Has trained enterprise teams at Cash App,
                   Herman Scheer, and Maesa. He&apos;s not teaching theory —
                   he&apos;s teaching what he ships.
                 </p>
@@ -112,7 +110,7 @@ export default function BookPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className="h-1.5 w-1.5 shrink-0 bg-[#1338BE]/40" />
-                    You&apos;ll leave with clarity on the right next step.
+                    You leave with a recommendation. If we&apos;re not the fix, he&apos;ll tell you that too.
                   </div>
                 </div>
 

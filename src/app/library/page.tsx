@@ -34,8 +34,7 @@ export default function LibraryIndex() {
           Prompts that <span className="accent">ship</span>.
         </h1>
         <p className="sub">
-          Reusable prompts for operators. Each one runs a process, not a guess.
-          Copy. Paste. Build.
+          These are the prompts I&rsquo;m actually running this month. When I stop using one, it comes down.
         </p>
       </section>
 

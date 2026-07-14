@@ -50,16 +50,14 @@ export default function ProgramsPage() {
             <span>[NC]</span>
           </div>
           <h1 className="oci-display-sm max-w-4xl">
-            Find the right format
-            <br />
-            for your team.
+            Two programs. One is a diagnosis. The other is surgery.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
             Two programs. One methodology — Diverge, Converge,
             Build — scaled to match where your team is now.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-white/60">
-            Most teams have a few people dabbling in AI — using different tools, with no shared methodology, and no structured training to bring the team together. Our programs are designed to solve for this. The teams that go through them come together and move at speed into the new world of AI-assisted work.
+            This methodology cut Cash App&apos;s production time 90%, and put a Maesa brand in every Target store in 3 months instead of 9. Both engagements started the same way: a half-day audit.
           </p>
         </div>
       </section>

@@ -20,7 +20,7 @@ export const tierCopy: Record<Tier, TierCopy> = {
     whatItMeans: [
       "You haven't built any workflow debt yet — the ground is clean.",
       "A half-day session can get your whole team to the same baseline.",
-      "Your biggest risk is waiting another six months while competitors pull ahead.",
+      "You're three years into AI whether you've named it or not — your people are already using it on client work.",
     ],
   },
   two_speed: {
@@ -47,13 +47,13 @@ export const tierCopy: Record<Tier, TierCopy> = {
   },
   at_frontier: {
     label: "AT THE FRONTIER",
-    tagline: "Your team is ahead of the curve. Now the question is how to lock it in.",
+    tagline: "Your team is ahead of the curve. Your problem now is that it lives in people's heads.",
     diagnosis:
       "You're in the top decile. Tools, workflows, and a real AI culture are in place. The work to do now is operational: role-specific depth, governance hardening, and a documented methodology that survives team changes. The frontier keeps moving — the teams that stay out front are the ones that turn capability into infrastructure.",
     whatItMeans: [
       "Your advantage is real but not yet defensible without documentation.",
       "The next unlock is operational depth, not more tools.",
-      "Operating-model engagements typically 2× the impact of early wins.",
+      "The teams that document now become the specialists networks hire. The ones that don't get shopped on price.",
     ],
   },
 };

@@ -86,9 +86,8 @@ export default function CaseStudiesPage() {
             after training.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            These aren&apos;t hypothetical projections. These are real outcomes
-            from enterprise creative teams that completed NotContent training
-            programs.
+            Three teams. $8M+ in estimated first-year savings. One of them said
+            &ldquo;tens of millions&rdquo; — on stage, on the record.
           </p>
           <div className="mt-12 flex items-center gap-6 sm:gap-10 flex-wrap">
             <img src="/images/logos/cashapp.webp" alt="Cash App" className="h-6 opacity-40" />
@@ -101,11 +100,10 @@ export default function CaseStudiesPage() {
       {/* Aggregate stats */}
       <section className="py-16 lg:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
             {[
               { n: "$8M+", label: "Combined estimated client savings" },
               { n: "90%", label: "Average reduction in production time" },
-              { n: "3", label: "Enterprise teams shipped" },
               { n: "Tens of millions", label: "Projected savings (Maesa, on stage)" },
             ].map((stat) => (
               <div key={stat.n} className="border-l-2 border-white/20 pl-6">
@@ -206,7 +204,7 @@ export default function CaseStudiesPage() {
       <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
-            Your team could be next.
+            The numbers came from teams like yours.
           </h2>
           <p className="mx-auto mt-6 max-w-md text-sm text-white/60">
             Take the Readiness Scorecard to find out where your team stands — or

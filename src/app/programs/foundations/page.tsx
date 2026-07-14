@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 const whatYouGet = [
   "NotContent Methodology overview — Diverge, Converge, Build",
   "Live tool demonstrations using your team's actual brand assets",
-  "Hands-on exercises — everyone leaves having made something real",
+  "Your team makes real work in the room — with your brand assets, your style guides, your live briefs. Nobody leaves with just notes.",
   "The Stop Rule: knowing when to explore vs. when to execute",
   "AI Ethics & Governance starter kit (approved tools, disclosure standards)",
   "Post-workshop resource pack with prompt templates and workflow guides",
@@ -132,18 +132,9 @@ export default function FoundationsPage() {
               </li>
             ))}
           </ul>
-          <div className="mt-12 grid gap-px bg-white/10 sm:grid-cols-3">
-            {[
-              { title: "In-Person", desc: "We come to your office. Maximum energy, maximum output." },
-              { title: "Virtual", desc: "Zoom + shared workspace. Works well for remote teams." },
-              { title: "Hybrid", desc: "Some in-room, some remote. Works if your tech is solid." },
-            ].map((fmt) => (
-              <div key={fmt.title} className="bg-foreground p-8">
-                <h3 className="text-[11px] uppercase tracking-[0.15em] text-white/80">{fmt.title}</h3>
-                <p className="mt-3 text-sm text-white/50">{fmt.desc}</p>
-              </div>
-            ))}
-          </div>
+          <p className="mt-12 text-sm text-white/50">
+            In your office, on Zoom, or hybrid. In-person moves fastest.
+          </p>
         </div>
       </section>
 
@@ -193,7 +184,7 @@ export default function FoundationsPage() {
       <section className="py-6 lg:py-8 border-b border-foreground/10">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <p className="text-sm text-foreground/50">
-            $5,000. The average team recoups this in week two of their Operating Model.
+            $5,000. Cash App&apos;s engagement started with this exact audit. Year one: $3.5M in savings and a 90% production cut. The audit is where we found the 8 weeks of work.
           </p>
         </div>
       </section>

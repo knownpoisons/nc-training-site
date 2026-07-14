@@ -66,6 +66,17 @@ export default function MaesaCaseStudy() {
       {/* Challenge / Solution / Result */}
       <section className="py-16 lg:py-24 relative oci-grid-lines">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 space-y-16">
+          {/* Testimonial */}
+          <div className="border-l-2 border-[#1338BE] pl-8">
+            <p className="text-lg font-light leading-relaxed italic">
+              &ldquo;Jeremy and NotContent will save us tens of millions of
+              dollars in the next year alone.&rdquo;
+            </p>
+            <p className="mt-4 text-sm text-foreground/40">
+              — Oshyia Savur, VP Marketing, Maesa / On stage at Shoptalk, 2025
+            </p>
+          </div>
+
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <div className="oci-section-label mb-8">
@@ -115,7 +126,7 @@ export default function MaesaCaseStudy() {
                 day one.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                Not a tool demo. A repeatable system for producing identity,
+                A repeatable system for producing identity,
                 packaging and campaigns at the quality Target and Walmart
                 demand. Before the training was finished, they were running it
                 on a live launch.
@@ -140,8 +151,9 @@ export default function MaesaCaseStudy() {
                 entirely on what we taught them.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                The saving on that single launch was about $280,000. Work that
-                used to cost six figures now costs close to nothing.
+                The saving on that single launch was about $280,000 that stayed
+                in the business — and the model is now the default across the
+                portfolio.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 That model is now rolling out across all 12+ brands — the way
@@ -180,17 +192,6 @@ export default function MaesaCaseStudy() {
               A new hair-care brand — concept to Target shelves — produced with the operating model after training.
             </p>
           </div>
-
-          {/* Testimonial */}
-          <div className="border-l-2 border-[#1338BE] pl-8">
-            <p className="text-lg font-light leading-relaxed italic">
-              &ldquo;Jeremy and NotContent will save us tens of millions of
-              dollars in the next year alone.&rdquo;
-            </p>
-            <p className="mt-4 text-sm text-foreground/40">
-              — Oshyia Savur, VP Marketing, Maesa / On stage at Shoptalk, 2025
-            </p>
-          </div>
         </div>
       </section>
 
@@ -218,7 +219,7 @@ export default function MaesaCaseStudy() {
       <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
-            Want results like these?
+            Nine months of work in three.
           </h2>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link

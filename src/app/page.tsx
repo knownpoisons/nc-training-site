@@ -137,11 +137,8 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="border-l-[3px] border-[#1338BE] pl-6 lg:pl-8 py-6 lg:py-7 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm lg:text-base text-foreground">
-                Most teams think they&apos;re AI-ready. Almost none actually are.
-              </p>
               <p className="text-sm text-muted-foreground mt-1">
-                Find out exactly where your team stands — and what to do about it.
+                One or two people quietly dangerous. Everyone else experimenting alone. Find out which twelve you have.
               </p>
             </div>
             <div className="shrink-0 flex flex-col sm:items-end gap-2">
@@ -517,7 +514,7 @@ export default function Home() {
           </Reveal>
           <Reveal delay={150}>
             <p className="mt-8 text-xl lg:text-2xl font-light text-foreground/60 max-w-3xl leading-relaxed">
-              Your team&apos;s next 90 days will matter more than the last 18 months. Twenty minutes. No pitch deck.
+              Cash App was production-ready by week four. Maesa hit every Target store in 3 months, not 9. The gap is now measured in quarters. Thirty minutes. No pitch deck.
             </p>
           </Reveal>
           <Reveal delay={250}>

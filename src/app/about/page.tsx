@@ -94,12 +94,10 @@ export default function AboutPage() {
             <span>[NC]</span>
           </div>
           <h1 className="oci-display-sm max-w-4xl">
-            We&apos;ve done the work.
-            <br />
-            Now we teach it.
+            The training is the agency&apos;s operating model. Cash App cut production 90% with it. Now it&apos;s teachable.
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-relaxed text-white/60">
-            NotContent isn&apos;t a training consultancy that read a book about AI. We built the first AI-assisted creative agency — with creative clients like Adidas, Sephora, Google and Meta — figuring out how to execute real campaigns for real brands before most agencies knew what Midjourney was.
+            NotContent isn&apos;t a training consultancy that read a book about AI. We built the first AI-assisted creative agency — with creative clients like Adidas, Sephora, Google and Meta — figuring out how to execute real campaigns for real brands.
           </p>
         </div>
       </section>
@@ -124,8 +122,7 @@ export default function AboutPage() {
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 NotContent was the first AI-assisted creative agency (launched before ChatGPT, in 2022) —
                 producing real campaigns for real brands before most of the
-                industry caught on. The agency delivers 2× content output in
-                half the time. Work has appeared across 11,473+ retail
+                industry caught on. Herman Scheer went from zero AI production to $4.5M in year-one savings. That&apos;s what &lsquo;trained&rsquo; means here. Work has appeared across 11,473+ retail
                 locations. None of it was possible without figuring out, the
                 hard way, what actually works.
               </p>
@@ -133,7 +130,7 @@ export default function AboutPage() {
                 That operational knowledge — what works at production scale,
                 what doesn&apos;t, and why — is what the training programs are
                 built on. He&apos;s trained enterprise teams at Cash App, Herman
-                Scheer, and Maesa. Not taught slides. Transformed operations.
+                Scheer, and Maesa.
               </p>
             </div>
             <div>

@@ -76,8 +76,7 @@ export default function HermanScheerCaseStudy() {
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
                 Herman Scheer is a major Los Angeles branding and design agency
-                working with CPG brands on campaigns that end up in every
-                supermarket across America. Their clients were asking about AI
+                working with CPG brands. Their clients were asking about AI
                 capability. The agency had zero structured AI processes — no
                 shared methodology, no quality standard, no way to offer AI as
                 a reliable production service.
@@ -102,9 +101,6 @@ export default function HermanScheerCaseStudy() {
                 copy, video, and full campaigns ready to go out into the world
                 for major CPG launches.
               </p>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                Work that can now be seen in every supermarket across America.
-              </p>
             </div>
           </div>
 
@@ -120,16 +116,12 @@ export default function HermanScheerCaseStudy() {
             </div>
             <div className="lg:pt-16">
               <p className="text-sm leading-relaxed text-foreground/60">
-                Herman Scheer now offers new and very profitable AI-powered
-                services to existing clients — and uses their new capability
-                to package offerings for new clients entirely.
+                Their clients were asking about AI before their team could
+                answer. Now the answer is a service line — and an estimated
+                $4.5M in year-one production savings.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-foreground/60">
                 Estimated production cost savings for year one: $4.5 million.
-              </p>
-              <p className="mt-4 text-sm leading-relaxed text-foreground/60">
-                The team went from zero AI capability to full production in a
-                matter of weeks.
               </p>
             </div>
           </div>
@@ -161,7 +153,7 @@ export default function HermanScheerCaseStudy() {
                 creative agencies that are out there.&rdquo;
               </p>
               <p className="mt-4 text-sm text-foreground/40">
-                — Adam, Creative Director, Herman Scheer
+                — Adam Brown, Creative Director, Herman Scheer
               </p>
             </div>
           </div>
@@ -192,7 +184,7 @@ export default function HermanScheerCaseStudy() {
       <section className="py-16 lg:py-24 bg-[#1338BE] text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
           <h2 className="oci-display-sm mx-auto max-w-xl">
-            Want results like these?
+            Your clients are already asking.
           </h2>
           <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
             <Link

@@ -754,7 +754,9 @@ export default function MethodologyPage() {
               <p className="max-w-sm text-sm text-muted-foreground leading-relaxed lg:text-right">
                 The tools change every week. The techniques don&rsquo;t. The
                 Method teaches the way of working that survives every new
-                release — so the work compounds instead of restarting.
+                release. This is the method Cash App ran to cut production time
+                90%, and Maesa ran to put a brand in every Target store in 3
+                months instead of 9.
               </p>
             </div>
           </Reveal>
@@ -800,10 +802,9 @@ export default function MethodologyPage() {
                   <em className="font-editorial italic text-[#1338BE]">See how this runs.</em>
                 </h2>
                 <p className="mt-6 text-sm text-muted-foreground leading-relaxed max-w-md">
-                  Start with a half-day audit of where your team actually
-                  stands — or see the full 8-week build. Either route, the
-                  next step is the same: clear-eyed about the gap, honest
-                  about the work.
+                  Start with the half-day audit, or go straight to the 8-week
+                  build. Both start the same way: we map your real workflow and
+                  tell you what AI can actually take.
                 </p>
               </div>
 
