@@ -500,6 +500,76 @@ Be candid. Do not protect weak ideas. Prioritize clarity, conversion, and differ
     heroImage: "/images/library/copy-autopsy-sample.jpg",
     tags: ["conversion", "landing-page", "sales-page", "copywriting", "marketing"],
   },
+  {
+    slug: "content-taste-audit",
+    number: 3,
+    title: "The Content Taste Audit",
+    eyebrow: "Content · Quality",
+    oneLiner:
+      "Point it at any site. It tells you which copy deserves to exist — and how to sharpen the rest.",
+    whatItDoes: `Turns any website into a ruthless content-taste audit. It judges every page against two gates — would anyone share this, and could only this brand have written it — then hunts the AI slop most copy is drowning in and hands back concrete rewrites in the brand's own voice.
+
+It won't polish a hollow page. If the words are competent but forgettable, it says so and tells you what to go find — the real story, the number, the belief you'll defend — instead of dressing up nothing. Built from the same taste standard we run on this site.`,
+    whenToUse: [
+      "Your copy reads clean but forgettable — technically fine, no teeth. This finds exactly where and why.",
+      "You just AI-drafted a batch of pages or posts and want to catch the slop before it ships.",
+      "You have real proof — numbers, clients, stories — and a nagging feeling the copy isn't using it.",
+      "You're sizing up a competitor's site, or one you're about to rebuild, and want the honest read on what's weak.",
+    ],
+    whatYoullGet: [
+      "A per-page verdict — SHIP / SPAR / REWORK / KILL — with both gate scores.",
+      "Every slop line quoted verbatim and tagged with its pattern.",
+      "Ranked fixes written as actual replacement copy — in the brand's voice, no invented facts.",
+      "The site-wide patterns, and the single highest-impact move to make first.",
+    ],
+    quickFire: [
+      "Paste the prompt into Claude (or your AI of choice).",
+      "Give it the target — a URL if it can browse, or paste the copy page by page.",
+      "Hand it your audience and any proof (real numbers, client names, stories). The more it has, the sharper the onlyness call.",
+      "Read the verdicts. Execute the fixes it can prove; for anything marked SPAR, go get the real story before you touch the words.",
+    ],
+    prompt: `You are a content taste auditor with a design director's eye for words. I'll give you a website (or copy from one). Judge whether the copy deserves to exist, then tell me exactly how to sharpen it. Do not be polite — competent but forgettable is a failing grade.
+
+STEP 0 — SET UP (before auditing). Ask me for, then wait for:
+1. The target — a URL to read (fetch it if you can browse), or copy I'll paste, page by page.
+2. Who it's for — the audience and the brand, plus any voice note or real proof (numbers, client names, stories).
+No voice note? Say voice judgment will be limited, then proceed. Don't audit until you have the target. If I've already given you everything, skip the questions and go.
+
+THE BAR — every page clears TWO gates, not one:
+
+GATE 1 · SHARE TEST — would a smart, busy person forward this with "you need to read this"? People share for exactly five reasons: it made them look smart; it named a feeling they couldn't articulate; it handed them an unfair advantage (a framework, number, or model they can use now); it surprised them; or it told a story they can't stop thinking about. Name which of the five each page goes for — and whether it lands. Hits none of the five and it dies on arrival.
+
+GATE 2 · ONLYNESS TEST — could only this brand have written this? Delete the logo — can you still tell who it is? Could a competitor republish it next week? Is it built on their own proof — a real story, their numbers, a belief they'll defend — or on public knowledge every AI already has? Generic-but-good still FAILS this gate.
+
+FIND THE SLOP — catch and quote every one, verbatim:
+- Generic openings that work on any topic ("In today's fast-paced world…", "It's no secret that…").
+- Hedge-word soup that signals no opinion ("it's important to consider", "there are many factors at play").
+- Summary voice — reads like a summary of other content; evenly-weighted paragraphs that commit to nothing.
+- False contrarianism ("the shift nobody's talking about" — then cites a report talking about it).
+- Listicle blobs — five to seven common-sense "insights", no names, no numbers.
+- Interchangeable lines — swap the logo and they still work.
+- Vague claims sitting next to unused specific proof — the worst tell: real numbers exist and the copy reaches for mush instead.
+- Fabricated or unverifiable stats. Flag any number that can't be sourced.
+
+DON'T POLISH SLOP. If a page passes Gate 1 but fails Gate 2 — or is clean but hollow — the fix is a stronger idea, not better words. Say so, and tell me what to interrogate: What do they believe that smart peers would argue with? What did they watch happen that contradicts the consensus? What number or story is only theirs? Never invent their opinion — propose angles as provocations they have to claim as true.
+
+OUTPUT — for EACH page, in this exact format, compact:
+
+PAGE: <url or name>
+GATE 1 — Share: PASS / BORDERLINE / FAIL — which trigger, plus one sentence
+GATE 2 — Onlyness: PASS / BORDERLINE / FAIL — one sentence on why
+BEST LINES: up to 2 verbatim quotes that actually work
+SLOP: up to 3 verbatim offending lines, each tagged with its pattern
+RANKED FIXES (max 3, highest-impact first): concrete — show the actual rewritten line, in the brand's voice, using only real or provided proof
+VERDICT: SHIP / SPAR (core is weak — go get a real idea) / REWORK / KILL
+
+Then close with:
+SITE-WIDE PATTERNS — the 3 to 5 issues that repeat across pages (duplicate lines, hoarded proof, house tics), ranked by impact.
+THE ONE MOVE — if I only do one thing this week, what is it?
+
+Rules: quote real lines, never paraphrase — "the submit button", not "some elements". Say what's wrong AND why it costs them. Prioritise ruthlessly — if everything's important, nothing is. Don't soften. And never hand me a fabricated fact, number, or client name — if the proof isn't there, tell me to go get it.`,
+    tags: ["content", "copywriting", "audit", "quality", "brand-voice", "marketing"],
+  },
 ];
 
 export function getPrompt(slug: string): Prompt | undefined {
