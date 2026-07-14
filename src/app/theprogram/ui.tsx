@@ -21,15 +21,14 @@ import {
 import {
   BADGE,
   DIAGRAM_LEGEND,
-  FINAL_HINT,
+  GRAPH_CENTER,
   LOADER_STEPS,
   PHASES,
   PRESSER,
   QUOTE_CARDS,
   QUOTES_PUNCHLINE,
-  RECORD_BOOK,
-  type DotType,
   type Phase,
+  type TeamDot,
 } from "./copy";
 
 const clamp01 = (n: number) => Math.max(0, Math.min(1, n));
@@ -553,82 +552,132 @@ export function DropSection({
 
 /* ── 7. Phases — sticky horizontal scrub with popping diagrams ──────────── */
 
-function DiagramDot({ dot, index }: { dot: { x: number; y: number; type: DotType }; index: number }) {
-  const delay = `${index * 28}ms`;
-  if (dot.type === "fix") {
+const COBALT = "#3D63F0";
+
+// One team dot on the convergence graph. Greys are the team at baseline, blues
+// are capabilities landed; a `core` dot is the whole team as one machine on the
+// centre ✕; `ghost` dots mark where the team started (phase four).
+function TeamDotGlyph({ dot, index }: { dot: TeamDot; index: number }) {
+  const delay = `${index * 24}ms`;
+
+  if (dot.kind === "core") {
     return (
       <g className="om-dot om-popped" style={{ animationDelay: delay }}>
-        <line
-          x1={dot.x - 5}
-          y1={dot.y}
-          x2={dot.x + 5}
-          y2={dot.y}
-          stroke="#E8E6E0"
-          strokeWidth="1.4"
-        />
-        <line
-          x1={dot.x}
-          y1={dot.y - 5}
-          x2={dot.x}
-          y2={dot.y + 5}
-          stroke="#E8E6E0"
-          strokeWidth="1.4"
-        />
+        <circle className="om-core-ring" cx={dot.x} cy={dot.y} r={18} fill="none" stroke={COBALT} strokeWidth={1.2} />
+        <circle cx={dot.x} cy={dot.y} r={14} fill={COBALT} />
       </g>
     );
   }
-  const props =
-    dot.type === "explore"
-      ? { fill: "none", stroke: "rgba(232,230,224,0.45)", strokeWidth: 1.2 }
-      : dot.type === "select"
-        ? { fill: "#E8E6E0" }
-        : { fill: "#3D63F0" };
+
+  if (dot.ghost) {
+    return (
+      <circle
+        className="om-dot om-popped"
+        style={{ animationDelay: delay }}
+        cx={dot.x}
+        cy={dot.y}
+        r={4}
+        fill="none"
+        stroke="rgba(232,230,224,0.14)"
+        strokeWidth={1}
+      />
+    );
+  }
+
+  const isBlue = dot.kind === "blue";
   return (
-    <circle
-      className="om-dot om-popped"
-      style={{ animationDelay: delay }}
-      cx={dot.x}
-      cy={dot.y}
-      r={dot.type === "ship" ? 5.5 : 5}
-      {...props}
-    />
+    <>
+      {dot.trail && (
+        <line
+          className="om-trail"
+          x1={dot.x}
+          y1={dot.y}
+          x2={GRAPH_CENTER.x}
+          y2={GRAPH_CENTER.y}
+          stroke={isBlue ? "rgba(61,99,240,0.32)" : "rgba(232,230,224,0.12)"}
+          strokeWidth={0.8}
+          strokeDasharray="2 3"
+        />
+      )}
+      <circle
+        className="om-dot om-popped"
+        style={{ animationDelay: delay }}
+        cx={dot.x}
+        cy={dot.y}
+        r={4.6}
+        fill={isBlue ? COBALT : "rgba(232,230,224,0.42)"}
+      />
+    </>
   );
 }
 
-function LegendGlyph({ type }: { type: DotType }) {
-  if (type === "fix") {
+function LegendGlyph({ kind }: { kind: "grey" | "blue" | "cross" }) {
+  if (kind === "cross") {
     return (
       <svg width="12" height="12" viewBox="0 0 24 24">
-        <line x1="3" y1="12" x2="21" y2="12" stroke="#E8E6E0" strokeWidth="2.5" strokeLinecap="round" />
-        <line x1="12" y1="3" x2="12" y2="21" stroke="#E8E6E0" strokeWidth="2.5" strokeLinecap="round" />
+        <path d="M5 5 L19 19 M19 5 L5 19" stroke="rgba(232,230,224,0.6)" strokeWidth="2.2" />
       </svg>
     );
   }
-  const props =
-    type === "explore"
-      ? { fill: "none", stroke: "rgba(232,230,224,0.5)", strokeWidth: 2.5 }
-      : type === "select"
-        ? { fill: "#E8E6E0" }
-        : { fill: "#3D63F0" };
   return (
     <svg width="12" height="12" viewBox="0 0 24 24">
-      <circle cx="12" cy="12" r="9" {...props} />
+      <circle cx="12" cy="12" r="8" fill={kind === "blue" ? COBALT : "rgba(232,230,224,0.42)"} />
     </svg>
   );
 }
 
-function DiagramFrame() {
+// The scatter-graph frame: x/y axes, week ticks, crosshair + target reticle,
+// and the ✕ at the centre — the operating model everything converges on.
+function GraphFrame() {
+  const cx = GRAPH_CENTER.x;
+  const cy = GRAPH_CENTER.y;
+  const xticks = [
+    { x: 95, label: "02" },
+    { x: 150, label: "04" },
+    { x: 205, label: "06" },
+    { x: 260, label: "08" },
+  ];
   return (
     <>
-      <rect x="1" y="1" width="298" height="278" rx="2" fill="none" stroke="rgba(232,230,224,0.08)" strokeWidth="1" />
-      {/* the ship line — work below it is in market */}
-      <line x1="1" y1="252" x2="299" y2="252" stroke="rgba(232,230,224,0.15)" strokeWidth="1" />
-      <line x1="20" y1="245" x2="20" y2="259" stroke="rgba(232,230,224,0.08)" strokeWidth="1" />
-      <line x1="280" y1="245" x2="280" y2="259" stroke="rgba(232,230,224,0.08)" strokeWidth="1" />
-      {/* the exploration field */}
-      <ellipse cx="150" cy="120" rx="110" ry="80" fill="none" stroke="rgba(232,230,224,0.08)" strokeWidth="1" strokeDasharray="4 3" />
-      {/* the convergence slot */}
-      <rect x="103" y="196" width="94" height="56" fill="none" stroke="rgba(232,230,224,0.15)" strokeWidth="1" />
+      <rect x="1" y="1" width="298" height="278" rx="2" fill="none" stroke="rgba(232,230,224,0.06)" strokeWidth="1" />
+      {/* corner registration ticks */}
+      <path
+        d="M8 1 V8 M1 8 H8 M292 1 V8 M299 8 H292 M8 279 V272 M1 272 H8 M292 279 V272 M299 272 H292"
+        stroke="rgba(232,230,224,0.18)"
+        strokeWidth="1"
+        fill="none"
+      />
+      {/* axes + arrowheads */}
+      <line x1="40" y1="16" x2="40" y2="250" stroke="rgba(232,230,224,0.3)" strokeWidth="1" />
+      <line x1="40" y1="250" x2="294" y2="250" stroke="rgba(232,230,224,0.3)" strokeWidth="1" />
+      <path d="M40 16 l-3 6 M40 16 l3 6" stroke="rgba(232,230,224,0.3)" strokeWidth="1" fill="none" />
+      <path d="M294 250 l-6 -3 M294 250 l-6 3" stroke="rgba(232,230,224,0.3)" strokeWidth="1" fill="none" />
+      {/* x ticks + week labels */}
+      {xticks.map((t) => (
+        <g key={t.x}>
+          <line x1={t.x} y1="250" x2={t.x} y2="255" stroke="rgba(232,230,224,0.25)" strokeWidth="1" />
+          <text x={t.x} y="266" textAnchor="middle" className="om-graph-micro">
+            {t.label}
+          </text>
+        </g>
+      ))}
+      {/* axis titles */}
+      <text x="150" y="277" textAnchor="middle" className="om-graph-axis">
+        CAPABILITY →
+      </text>
+      <text x="13" y={cy} textAnchor="middle" className="om-graph-axis" transform={`rotate(-90 13 ${cy})`}>
+        ALIGNMENT ↑
+      </text>
+      {/* crosshair through the operating model */}
+      <line x1="40" y1={cy} x2="294" y2={cy} stroke="rgba(232,230,224,0.08)" strokeWidth="1" strokeDasharray="3 4" />
+      <line x1={cx} y1="16" x2={cx} y2="250" stroke="rgba(232,230,224,0.08)" strokeWidth="1" strokeDasharray="3 4" />
+      {/* target reticle + the ✕ */}
+      <circle cx={cx} cy={cy} r="26" fill="none" stroke="rgba(232,230,224,0.12)" strokeWidth="1" strokeDasharray="3 4" />
+      <path
+        d={`M${cx - 8} ${cy - 8} L${cx + 8} ${cy + 8} M${cx + 8} ${cy - 8} L${cx - 8} ${cy + 8}`}
+        stroke="rgba(232,230,224,0.55)"
+        strokeWidth="1.6"
+      />
     </>
   );
 }
@@ -709,14 +758,14 @@ function PhasePanel({ phase, dotsVisible }: { phase: Phase; dotsVisible: boolean
       </div>
       <div className="om-diagram-side">
         <svg className="om-diagram-svg" viewBox="0 0 300 280">
-          <DiagramFrame />
+          <GraphFrame />
           {dotsVisible &&
-            phase.dots.map((dot, i) => <DiagramDot key={i} dot={dot} index={i} />)}
+            phase.dots.map((dot, i) => <TeamDotGlyph key={i} dot={dot} index={i} />)}
         </svg>
         <div className="om-diagram-legend">
           {DIAGRAM_LEGEND.map((l) => (
-            <span key={l.type} className="om-legend-item">
-              <LegendGlyph type={l.type} />
+            <span key={l.kind} className="om-legend-item">
+              <LegendGlyph kind={l.kind} />
               {l.label}
             </span>
           ))}
@@ -730,15 +779,7 @@ function PhasePanel({ phase, dotsVisible }: { phase: Phase; dotsVisible: boolean
         <span className="om-panel-numlabel">{phase.numLabel}</span>
         <p className="om-story">
           {phase.story.map((part, i) =>
-            typeof part === "string" ? (
-              part
-            ) : "em" in part ? (
-              <em key={i}>{part.em}</em>
-            ) : (
-              <span key={i} className="om-lorem">
-                {part.lorem}
-              </span>
-            ),
+            typeof part === "string" ? part : <em key={i}>{part.em}</em>,
           )}
         </p>
         <div className="om-trio">
@@ -917,76 +958,6 @@ export function PresserSection() {
           <span>{muted ? PRESSER.soundHint : PRESSER.muteHint}</span>
         </button>
       )}
-    </section>
-  );
-}
-
-/* ── 10. Record book — three names, hover/tap for the numbers ───────────── */
-
-export function RecordBook() {
-  const namesRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
-  const [touch, setTouch] = useState(false);
-  const [open, setOpen] = useState<number | null>(null);
-
-  useEffect(() => {
-    setTouch("ontouchstart" in window);
-    const el = namesRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.3 },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section id="om-final" className="om-final">
-      <div
-        ref={namesRef}
-        className={`om-final-names${visible ? " om-visible" : ""}`}
-      >
-        {RECORD_BOOK.map((entry, i) => (
-          <span key={entry.name} style={{ display: "contents" }}>
-            <span
-              className={`om-final-wrap${open === i ? " om-open" : ""}`}
-              onClick={() => touch && setOpen(open === i ? null : i)}
-            >
-              <span className="om-final-name">{entry.name}</span>
-              <span className="om-final-stats">
-                <span className="om-final-rank">{entry.rank}</span>
-                <span className="om-final-pts">
-                  {entry.stat}
-                  <span>{entry.statUnit}</span>
-                </span>
-                <span className="om-final-detail">
-                  {entry.detail.map((d) => (
-                    <span key={d} style={{ display: "block" }}>
-                      {d}
-                    </span>
-                  ))}
-                </span>
-              </span>
-            </span>
-            {i < RECORD_BOOK.length - 1 && (
-              <span className="om-final-dot" aria-hidden="true">
-                .
-              </span>
-            )}
-          </span>
-        ))}
-      </div>
-      <div className="om-final-hint">
-        {touch ? FINAL_HINT.touch : FINAL_HINT.desktop}
-      </div>
     </section>
   );
 }

@@ -25,7 +25,7 @@ export const HERO = {
 
 export const SCORECARD = {
   league: "Creative Operations · Flagship Engagement",
-  headline: "Average production time for creative output",
+  headline: "Eight sessions. We get you to creative production.",
   leftName: "Before",
   leftScore: "Nine months",
   rightName: "After",
@@ -50,13 +50,13 @@ export const MARQUEE = [
 ] as const;
 
 export const OPENING = {
-  courtLabel: "How week one begins",
+  courtLabel: "The program at a glance.",
   globeSrc: "/images/story/nc-globe.png",
   eyebrow: "Weeks 01–02 · The Audit",
-  word: "Look.",
+  word: "Audit.",
   copy: [
-    "No lecture. No slideware. Week one starts with an audit of how your team actually works — the bottlenecks, the hours, the work that shouldn't take the time it takes. ",
-    { em: "Then we build on what's true." },
+    "No lecture. No slideware. Week one takes the pulse of how your team actually works — the bottlenecks, the hours, the work that shouldn't take the time it does. ",
+    { em: "Then introduces the fundamentals and the plan for the eight weeks." },
   ],
   videoSrc: "/videos/story/nc-story.mp4",
   videoPoster: "/videos/story/nc-story.jpg",
@@ -69,197 +69,191 @@ export const PHASES_HEADING = {
   titleB: "happen",
 };
 
-export type DotType = "explore" | "select" | "ship" | "fix";
+// The diagram is one continuous scatter graph across the four phases: the team
+// starts as scattered dots (greys + a few blues) and, phase by phase, turns
+// cobalt and converges on the ✕ at the centre — the operating model. By phase
+// four they are one large cobalt dot: the team as a single machine.
+export type TeamDotKind = "grey" | "blue" | "core";
+export interface TeamDot {
+  x: number;
+  y: number;
+  kind: TeamDotKind;
+  trail?: boolean; // faint dashed line drawn toward the centre ✕
+  ghost?: boolean; // very faint — "where the team was" (phase four echo)
+}
 
 export interface Phase {
   nav: string;
   ghost: string;
-  eyebrow: string;
-  num: string;
-  numLabel: string;
+  eyebrow: string; // "Phase One" …
+  num: string; // big number — the phase: 01–04
+  numLabel: string; // "Weeks 01–02 · Audit & Foundation"
   title: string;
   accent?: boolean;
-  // story: strings render muted, {em} renders bright, {lorem} renders as a
-  // recognisable placeholder Jem replaces with a real war story from the runs.
-  story: Array<string | { em: string } | { lorem: string }>;
+  story: Array<string | { em: string }>;
   trio: Array<{ val: string; cat: string; accent?: boolean }>;
-  dots: Array<{ x: number; y: number; type: DotType }>;
+  dots: TeamDot[];
 }
 
-// Diagram frame is 300×280 (same viewBox family as the reference). The lower
-// horizontal line at y=252 is the "ship line" — dots below it are in market.
+// Graph viewBox 300×280. Centre ✕ (the operating model) sits at (164, 134).
+export const GRAPH_CENTER = { x: 164, y: 134 };
+
 export const PHASES: Phase[] = [
   {
     nav: "P1",
     ghost: "1",
-    eyebrow: "Weeks 01–02 · Phase One",
-    num: "02",
-    numLabel: "Weeks in · Audit & Foundation",
+    eyebrow: "Phase One",
+    num: "01",
+    numLabel: "Weeks 01–02 · Audit & Foundation",
     title: "Audit & Foundation",
     story: [
-      "Every workflow mapped. Every bottleneck named. The toolkit configured, the team baselined, and the methodology on the table: ",
+      "Key workflows mapped. Big bottlenecks named. The toolkit introduced and configured, the team baselined, and the methodology on the table: ",
       { em: "Diverge. Converge. Build." },
-      " By the end of week two the team knows exactly where the hours go — and which ones we're taking back. ",
-      {
-        lorem:
-          "[JEM: week 1–2 war story from one of the four runs] Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      },
+      " By the end of week two the team knows exactly where we're going and how to start getting there — using AI as a creative partner and sparring machine. These weeks are the foundational theory for everything that comes after. Without them, ",
+      { em: "production is just AI slop." },
     ],
     trio: [
       { val: "Audit", cat: "Workflows mapped" },
       { val: "Toolkit", cat: "Stack configured" },
-      { val: "Baseline", cat: "Skills measured" },
+      { val: "Baseline", cat: "Team measured" },
     ],
+    // scattered wide — mostly grey, a few blues, far from the centre
     dots: [
-      { x: 60, y: 70, type: "explore" },
-      { x: 110, y: 55, type: "explore" },
-      { x: 175, y: 80, type: "explore" },
-      { x: 230, y: 60, type: "explore" },
-      { x: 85, y: 120, type: "fix" },
-      { x: 150, y: 105, type: "fix" },
-      { x: 210, y: 130, type: "fix" },
-      { x: 120, y: 165, type: "fix" },
-      { x: 185, y: 175, type: "explore" },
-      { x: 250, y: 155, type: "fix" },
-      { x: 70, y: 195, type: "explore" },
-      { x: 150, y: 210, type: "select" },
+      { x: 58, y: 40, kind: "grey" },
+      { x: 108, y: 32, kind: "grey" },
+      { x: 168, y: 44, kind: "blue" },
+      { x: 232, y: 36, kind: "grey" },
+      { x: 270, y: 66, kind: "grey" },
+      { x: 60, y: 92, kind: "grey" },
+      { x: 128, y: 84, kind: "blue" },
+      { x: 208, y: 100, kind: "grey" },
+      { x: 272, y: 110, kind: "grey" },
+      { x: 54, y: 150, kind: "grey" },
+      { x: 120, y: 158, kind: "grey" },
+      { x: 196, y: 150, kind: "grey" },
+      { x: 256, y: 168, kind: "blue" },
+      { x: 92, y: 208, kind: "grey" },
+      { x: 170, y: 214, kind: "grey" },
+      { x: 238, y: 206, kind: "grey" },
     ],
   },
   {
     nav: "P2",
     ghost: "2",
-    eyebrow: "Weeks 03–04 · Phase Two",
-    num: "04",
-    numLabel: "Weeks in · Divergence Mastery",
+    eyebrow: "Phase Two",
+    num: "02",
+    numLabel: "Weeks 03–04 · Divergence Mastery",
     title: "Divergence Mastery",
     story: [
-      "This is where output explodes. Advanced Midjourney — style refs, image refs, combinatorial batching. AI as a ",
-      { em: "visual sparring partner" },
-      ", not a slot machine. And the Stop Rule: knowing the exact moment exploration ends and execution begins. ",
-      {
-        lorem:
-          "[JEM: week 3–4 war story] Lorem ipsum dolor sit amet, consectetur adipiscing elit — ut enim ad minim veniam, quis nostrud exercitation ullamco.",
-      },
+      "This is where theory ends and practical begins. We dive into the technical: an introduction to the tools in your stack, AI as a ",
+      { em: "visual sparring partner — not a slot machine" },
+      " — and the Stop Rule: knowing the exact moment exploration ends and execution begins. This is where teams get hands-on and very quickly go from basics to intermediate in whatever tools have been selected for the organisation.",
     ],
     trio: [
-      { val: "Refs", cat: "Style + image control" },
-      { val: "Batching", cat: "Combinatorial output" },
+      { val: "Stack", cat: "Tools introduced" },
+      { val: "Sparring", cat: "Not a slot machine" },
       { val: "Stop Rule", cat: "Explore → execute" },
     ],
+    // drifting inward — about half now cobalt, trails toward the centre
     dots: [
-      { x: 40, y: 50, type: "explore" },
-      { x: 75, y: 85, type: "explore" },
-      { x: 115, y: 45, type: "explore" },
-      { x: 145, y: 90, type: "explore" },
-      { x: 180, y: 55, type: "explore" },
-      { x: 220, y: 85, type: "explore" },
-      { x: 255, y: 50, type: "explore" },
-      { x: 55, y: 130, type: "explore" },
-      { x: 100, y: 145, type: "explore" },
-      { x: 160, y: 130, type: "explore" },
-      { x: 215, y: 145, type: "explore" },
-      { x: 260, y: 125, type: "explore" },
-      { x: 80, y: 185, type: "select" },
-      { x: 140, y: 195, type: "select" },
-      { x: 200, y: 185, type: "select" },
-      { x: 250, y: 200, type: "explore" },
-      { x: 120, y: 225, type: "select" },
-      { x: 175, y: 230, type: "select" },
+      { x: 98, y: 72, kind: "blue", trail: true },
+      { x: 140, y: 62, kind: "grey", trail: true },
+      { x: 190, y: 74, kind: "blue", trail: true },
+      { x: 232, y: 80, kind: "grey", trail: true },
+      { x: 88, y: 112, kind: "blue", trail: true },
+      { x: 132, y: 104, kind: "grey", trail: true },
+      { x: 200, y: 110, kind: "blue", trail: true },
+      { x: 240, y: 120, kind: "grey", trail: true },
+      { x: 104, y: 152, kind: "grey", trail: true },
+      { x: 150, y: 160, kind: "blue", trail: true },
+      { x: 206, y: 152, kind: "grey", trail: true },
+      { x: 244, y: 150, kind: "blue", trail: true },
+      { x: 118, y: 192, kind: "blue", trail: true },
+      { x: 170, y: 198, kind: "grey", trail: true },
+      { x: 220, y: 188, kind: "blue", trail: true },
     ],
   },
   {
     nav: "P3",
     ghost: "3",
-    eyebrow: "Weeks 05–06 · Phase Three",
-    num: "06",
-    numLabel: "Weeks in · Convergence & Production",
+    eyebrow: "Phase Three",
+    num: "03",
+    numLabel: "Weeks 05–06 · Convergence & Production",
     title: "Convergence & Production",
     story: [
-      "Exploration becomes production. Precision tools for execution, your brand assets inside AI scenes, video transformation workflows — and quality control that ",
-      { em: "holds the brand line at AI speed." },
-      " This is the phase where the work starts shipping. ",
-      {
-        lorem:
-          "[JEM: week 5–6 war story] Lorem ipsum dolor sit amet, consectetur adipiscing elit — duis aute irure dolor in reprehenderit in voluptate.",
-      },
+      "Exploration becomes production. Precision tools for execution. Aligning brand assets to AI world-building. An introduction to video and transformation workflows. Quality control. This is the phase where ",
+      { em: "work starts shipping" },
+      " — more intermediate skill sets and technical training combined with the theory from phases one and two. Everything starts coming together: output on-brand, and scalable.",
     ],
     trio: [
-      { val: "Precision", cat: "Production-grade tools" },
-      { val: "Brand", cat: "Assets in every scene" },
-      { val: "QC", cat: "Standards at speed" },
+      { val: "Precision", cat: "Production tools" },
+      { val: "Brand", cat: "World-building" },
+      { val: "QC", cat: "On-brand at scale" },
     ],
+    // tight cluster on the centre — nearly all cobalt now
     dots: [
-      { x: 95, y: 60, type: "explore" },
-      { x: 190, y: 70, type: "explore" },
-      { x: 120, y: 110, type: "select" },
-      { x: 165, y: 100, type: "select" },
-      { x: 145, y: 140, type: "select" },
-      { x: 130, y: 175, type: "select" },
-      { x: 160, y: 180, type: "select" },
-      { x: 110, y: 210, type: "ship" },
-      { x: 145, y: 218, type: "ship" },
-      { x: 180, y: 212, type: "ship" },
-      { x: 125, y: 262, type: "ship" },
-      { x: 160, y: 262, type: "ship" },
-      { x: 195, y: 262, type: "ship" },
+      { x: 132, y: 108, kind: "blue" },
+      { x: 164, y: 100, kind: "blue" },
+      { x: 196, y: 112, kind: "blue" },
+      { x: 120, y: 134, kind: "blue" },
+      { x: 150, y: 128, kind: "blue" },
+      { x: 178, y: 130, kind: "blue" },
+      { x: 206, y: 138, kind: "blue" },
+      { x: 134, y: 158, kind: "blue" },
+      { x: 166, y: 160, kind: "blue" },
+      { x: 198, y: 154, kind: "blue" },
+      { x: 150, y: 146, kind: "grey" },
+      { x: 182, y: 144, kind: "blue" },
+      { x: 146, y: 118, kind: "blue" },
+      { x: 176, y: 170, kind: "blue" },
     ],
   },
   {
     nav: "P4",
     ghost: "4",
-    eyebrow: "Weeks 07–08 · Final Phase",
-    num: "08",
-    numLabel: "Weeks · The model is yours",
+    eyebrow: "Final Phase",
+    num: "04",
+    numLabel: "Weeks 07–08 · Build & Governance",
     title: "Build & Governance",
     accent: true,
     story: [
-      "The part nobody else does. Repeatable workflows built for your specific operation. A governance policy your team actually uses. Role-specific documentation. Onboarding that gets a new hire producing in ",
-      { em: "days, not months." },
-      " We don't teach tools and leave — we hand over an operating model that keeps running after we're gone. ",
-      {
-        lorem:
-          "[JEM: week 7–8 war story] Lorem ipsum dolor sit amet, consectetur adipiscing elit — excepteur sint occaecat cupidatat non proident.",
-      },
+      "The part nobody else does. Repeatable workflows built for your operation, bringing everything together. Mini-sessions on the taxonomy of AI and how to talk about — and sell — it to clients; changes in production, team and agency structure; and how the team's new skills affect the rest of the business. Plus governance, compliance and legal. By the end, the team is ready to ",
+      { em: "produce for clients at scale" },
+      " — if they haven't started already.",
     ],
     trio: [
-      { val: "Workflows", cat: "Built for your setup" },
-      { val: "Governance", cat: "Policy that holds", accent: true },
-      { val: "Onboarding", cat: "Days, not months" },
+      { val: "Repeatable", cat: "Built for you" },
+      { val: "One team", cat: "One machine", accent: true },
+      { val: "Governance", cat: "Compliant & legal" },
     ],
+    // one large cobalt core on the ✕ — the team as a single machine — with
+    // faint ghosts of where they started
     dots: [
-      { x: 60, y: 70, type: "ship" },
-      { x: 110, y: 70, type: "ship" },
-      { x: 160, y: 70, type: "ship" },
-      { x: 210, y: 70, type: "ship" },
-      { x: 60, y: 120, type: "ship" },
-      { x: 110, y: 120, type: "ship" },
-      { x: 160, y: 120, type: "ship" },
-      { x: 210, y: 120, type: "fix" },
-      { x: 60, y: 170, type: "ship" },
-      { x: 110, y: 170, type: "fix" },
-      { x: 160, y: 170, type: "ship" },
-      { x: 210, y: 170, type: "ship" },
-      { x: 85, y: 220, type: "ship" },
-      { x: 135, y: 220, type: "ship" },
-      { x: 185, y: 220, type: "ship" },
-      { x: 110, y: 262, type: "ship" },
-      { x: 160, y: 262, type: "ship" },
-      { x: 210, y: 262, type: "ship" },
+      { x: 58, y: 40, kind: "grey", ghost: true },
+      { x: 232, y: 36, kind: "grey", ghost: true },
+      { x: 270, y: 66, kind: "grey", ghost: true },
+      { x: 60, y: 92, kind: "grey", ghost: true },
+      { x: 272, y: 110, kind: "grey", ghost: true },
+      { x: 54, y: 150, kind: "grey", ghost: true },
+      { x: 256, y: 168, kind: "grey", ghost: true },
+      { x: 92, y: 208, kind: "grey", ghost: true },
+      { x: 238, y: 206, kind: "grey", ghost: true },
+      { x: 170, y: 214, kind: "grey", ghost: true },
+      { x: 164, y: 134, kind: "core" },
     ],
   },
 ];
 
 export const DIAGRAM_LEGEND = [
-  { type: "explore" as const, label: "Exploration" },
-  { type: "select" as const, label: "Selected" },
-  { type: "ship" as const, label: "Shipped" },
-  { type: "fix" as const, label: "Process fixed" },
+  { kind: "grey" as const, label: "Team at baseline" },
+  { kind: "blue" as const, label: "Capability landed" },
+  { kind: "cross" as const, label: "The operating model" },
 ];
 
 export const QUOTES_HEADING = {
-  eyebrow: "Four cohorts · Real people",
-  titleA: "The people who took it ",
-  titleEm: "had things to say.",
+  eyebrow: "Real notes from real agencies and brands",
+  titleA: "The whole room ",
+  titleEm: "had something to say.",
 };
 
 export interface QuoteCard {
@@ -352,50 +346,88 @@ export const QUOTE_CARDS: QuoteCard[] = [
 ];
 
 export const QUOTES_PUNCHLINE = {
-  pre: "Four runs. Same review.",
+  pre: "All in all:",
   main: "It works.",
 };
 
 export const PRESSER = {
-  quote: "“We don't teach tools and leave. We change how the operation runs — then we hand you the keys.”",
+  quote: "“We don't just teach the tools — we change how the operation runs. This is business transformation, not Midjourney training.”",
   attribution: "Jeremy Somers · Founder, NotContent",
   // [JEM: presser footage — 30–60s to camera. Drop the file at
   // public/videos/presser.mp4 and set videoSrc to activate.]
   videoSrc: null as string | null,
-  placeholderImage: "/images/training/speaking-wide-2.webp",
+  placeholderImage: "/images/training/speaking-wide-1.webp",
   placeholderLabel: "[JEM: presser footage · 30–60 seconds to camera · lorem ipsum dolor sit amet]",
   soundHint: "Tap for sound",
   muteHint: "Tap to mute",
 };
 
-export const RECORD_BOOK = [
-  {
-    name: "Herman Scheer",
-    rank: "Agency · Los Angeles",
-    stat: "$4.5M",
-    statUnit: "est. year-one savings",
-    detail: ["Zero to full AI production in weeks", "Now selling AI services to their own clients"],
-  },
-  {
-    name: "Cash App",
-    rank: "Enterprise · Fintech",
-    stat: "90%",
-    statUnit: "production time cut (roughly)",
-    detail: ["Campaign output up roughly 30%", "Estimated $3.5M saved in year one"],
-    highlight: true,
-  },
-  {
-    name: "Maesa",
-    rank: "Brand house · Beauty",
-    stat: "$280k",
-    statUnit: "saved on one launch",
-    detail: ["Nine months down to three months", "The model now across 12+ brands"],
-  },
-] as const;
+// "What else is included" — three columns with hairline icons.
+export type IncludedIcon = "dashboard" | "support" | "clock";
+export const INCLUDED = {
+  eyebrow: "Beyond the eight sessions",
+  title: "What else is included",
+  columns: [
+    {
+      n: "01",
+      icon: "dashboard" as IncludedIcon,
+      title: "Training dashboard",
+      items: [
+        "Your custom plan",
+        "Session wrap-ups",
+        "Tools and prompts",
+        "Recordings and access",
+      ],
+    },
+    {
+      n: "02",
+      icon: "support" as IncludedIcon,
+      title: "Consistent support throughout",
+      items: [
+        "Dedicated team Slack channel",
+        "Direct message line to Jeremy",
+        "24-hour turnaround, questions answered",
+        "Workflow / creative-output reviews",
+      ],
+    },
+    {
+      n: "03",
+      icon: "clock" as IncludedIcon,
+      title: "2× office-hour sessions",
+      note: "Weeks 3 and 7 add a second, non-compulsory open session.",
+      items: [
+        "Q&A",
+        "Showcase work, get feedback",
+        "Ask the questions that feel too small",
+        "Live access to Jeremy",
+      ],
+    },
+  ],
+};
 
-export const FINAL_HINT = {
-  desktop: "Hover over each name for the numbers",
-  touch: "Tap each name for the numbers",
+// The scrolling client marquee — mirrors the home page. Names published on the
+// live site are cleared for public use.
+export const LOGOS = {
+  callout: "Creative clients include Adidas, Google, Cash App, Maesa, Tommy Hilfiger, Target.",
+  names: [
+    "Adidas",
+    "Google",
+    "Tommy Hilfiger",
+    "Cash App",
+    "Fine'ry",
+    "Maesa",
+    "SuperGoop",
+    "Fazit Beauty",
+    "Target",
+  ],
+};
+
+export const FOOTER = {
+  brand: "NotContent · training.notcontent.ai",
+  links: [
+    { label: "The full site", href: "/" },
+    { label: "Case studies", href: "/results" },
+  ],
 };
 
 export const CTA = {

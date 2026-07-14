@@ -1,13 +1,17 @@
 import Link from "next/link";
 import {
   CTA,
+  FOOTER,
   HERO,
+  INCLUDED,
+  LOGOS,
   MARQUEE,
   OPENING,
   PHASES_HEADING,
   QUOTES_HEADING,
   SCORECARD,
   TOPBAR,
+  type IncludedIcon,
 } from "./copy";
 import {
   DropSection,
@@ -16,10 +20,47 @@ import {
   PhasesSection,
   PresserSection,
   QuoteStack,
-  RecordBook,
   Reveal,
   StoryShell,
 } from "./ui";
+
+// Hairline column icons for "What else is included".
+function ColumnIcon({ name }: { name: IncludedIcon }) {
+  const common = {
+    width: 26,
+    height: 26,
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "#3D63F0",
+    strokeWidth: 1.4,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+  if (name === "dashboard") {
+    return (
+      <svg {...common}>
+        <rect x="3" y="3" width="8" height="8" rx="1" />
+        <rect x="13" y="3" width="8" height="8" rx="1" />
+        <rect x="3" y="13" width="8" height="8" rx="1" />
+        <rect x="13" y="13" width="8" height="8" rx="1" />
+      </svg>
+    );
+  }
+  if (name === "support") {
+    return (
+      <svg {...common}>
+        <path d="M3 5h18v11H8l-4 4z" />
+        <path d="M7 9h10 M7 12.5h6" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common}>
+      <circle cx="12" cy="12" r="9" />
+      <path d="M12 7v5l3 2" />
+    </svg>
+  );
+}
 
 export default function StoryPage() {
   return (
@@ -124,11 +165,51 @@ export default function StoryPage() {
         titleEm={QUOTES_HEADING.titleEm}
       />
 
+      {/* what else is included */}
+      <Reveal as="section" className="om-included">
+        <div className="om-included-head">
+          <div className="om-eyebrow">{INCLUDED.eyebrow}</div>
+          <h2 className="om-included-title">{INCLUDED.title}</h2>
+        </div>
+        <div className="om-included-grid">
+          {INCLUDED.columns.map((col) => (
+            <div key={col.n} className="om-included-col">
+              <div className="om-included-top">
+                <span className="om-included-n">{col.n}</span>
+                <ColumnIcon name={col.icon} />
+              </div>
+              <h3 className="om-included-coltitle">{col.title}</h3>
+              {"note" in col && col.note && (
+                <p className="om-included-note">{col.note}</p>
+              )}
+              <ul className="om-included-list">
+                {col.items.map((it) => (
+                  <li key={it}>{it}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </Reveal>
+
       {/* the presser */}
       <PresserSection />
 
-      {/* the record book */}
-      <RecordBook />
+      {/* scrolling client marquee — id om-final keeps the scroll badge's kill logic */}
+      <section id="om-final" className="om-logos">
+        <p className="om-logos-callout">{LOGOS.callout}</p>
+        <div className="om-logos-track" aria-hidden="true">
+          {[0, 1].map((dup) => (
+            <span key={dup} style={{ display: "contents" }}>
+              {LOGOS.names.map((n) => (
+                <span key={`${dup}-${n}`} className="om-logos-name">
+                  {n}
+                </span>
+              ))}
+            </span>
+          ))}
+        </div>
+      </section>
 
       {/* CTA */}
       <Reveal as="section" className="om-cta">
@@ -141,8 +222,14 @@ export default function StoryPage() {
       </Reveal>
 
       <footer className="om-footer">
-        <span>NotContent · training.notcontent.ai</span>
-        <Link href={CTA.secondaryHref}>{CTA.secondary} →</Link>
+        <span className="om-footer-brand">{FOOTER.brand}</span>
+        <div className="om-footer-links">
+          {FOOTER.links.map((l) => (
+            <Link key={l.href} href={l.href} className="om-footer-link">
+              {l.label} →
+            </Link>
+          ))}
+        </div>
       </footer>
     </StoryShell>
   );
