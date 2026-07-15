@@ -89,6 +89,7 @@ export default function StoryPage() {
       <Reveal as="section" className="om-scorecard">
         <div className="om-scorecard-league">{SCORECARD.league}</div>
         <h2 className="om-scorecard-headline">{SCORECARD.headline}</h2>
+        <p className="om-scorecard-framing">{SCORECARD.framing}</p>
         <div className="om-scorecard-row">
           <div className="om-scorecard-team">
             <span className="om-scorecard-team-name">{SCORECARD.leftName}</span>

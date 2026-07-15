@@ -26,6 +26,10 @@ export const HERO = {
 export const SCORECARD = {
   league: "Creative Operations · Flagship Engagement",
   headline: "Eight sessions. We get you to creative production.",
+  // The "what this is" thesis — plants the frame before the phases, so a
+  // skimming creative reads the scroll as amplification, not replacement.
+  framing:
+    "Plainly: this is skill training for the people who already make your best work — eight weeks that hand your team deep, working command of AI, so the minds with the ideas move faster, spend less, and make more of what they imagine.",
   leftName: "Before",
   leftScore: "Nine months",
   rightName: "After",
@@ -147,7 +151,8 @@ export const PHASES: Phase[] = [
     story: [
       "This is where theory ends and practical begins. We dive into the technical: an introduction to the tools in your stack, AI as a ",
       { em: "visual sparring partner — not a slot machine" },
-      " — and the Stop Rule: knowing the exact moment exploration ends and execution begins. This is where teams get hands-on and very quickly go from basics to intermediate in whatever tools have been selected for the organisation.",
+      " — and the Stop Rule: knowing the exact moment exploration ends and execution begins. This is where teams get hands-on and very quickly go from basics to intermediate in whatever tools have been selected for the organisation. And the edge nobody talks about: this industry isn't faith-based — a great idea a client can't see is a dead idea. Teams leave able to show it before a dollar of production is spent. ",
+      { em: "Still not a replacement for the idea — just what's stood between it and the yes." },
     ],
     trio: [
       { val: "Stack", cat: "Tools introduced" },
@@ -183,7 +188,8 @@ export const PHASES: Phase[] = [
     story: [
       "Exploration becomes production. Precision tools for execution. Aligning brand assets to AI world-building. An introduction to video and transformation workflows. Quality control. This is the phase where ",
       { em: "work starts shipping" },
-      " — more intermediate skill sets and technical training combined with the theory from phases one and two. Everything starts coming together: output on-brand, and scalable.",
+      " — more intermediate skill sets and technical training combined with the theory from phases one and two. Everything starts coming together: output on-brand, and scalable. And the ideas that used to die in the trash on budget? They survive — the ambitious ones, the ones a client could never afford, made real for a fraction of the cost. ",
+      { em: "That's the part that still gets us out of bed." },
     ],
     trio: [
       { val: "Precision", cat: "Production tools" },
@@ -219,7 +225,8 @@ export const PHASES: Phase[] = [
     story: [
       "The part nobody else does. Repeatable workflows built for your operation, bringing everything together. Mini-sessions on the taxonomy of AI and how to talk about — and sell — it to clients; changes in production, team and agency structure; and how the team's new skills affect the rest of the business. Plus governance, compliance and legal. By the end, the team is ready to ",
       { em: "produce for clients at scale" },
-      " — if they haven't started already.",
+      " — if they haven't started already. Creative, account, strategy, production — different angles in, one shared picture out. ",
+      { em: "That alignment is half the value on its own." },
     ],
     trio: [
       { val: "Repeatable", cat: "Built for you" },

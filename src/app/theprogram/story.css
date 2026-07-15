@@ -488,6 +488,15 @@
   max-width: 22ch;
   margin: -0.8rem 0 0;
 }
+.om-scorecard-framing {
+  font-family: var(--om-mono);
+  font-size: clamp(0.78rem, 1.05vw, 0.92rem);
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+  color: var(--om-p60);
+  max-width: 60ch;
+  margin: 0.4rem auto 0;
+}
 .om-scorecard-row {
   display: flex;
   align-items: center;
@@ -1136,7 +1145,7 @@
     display: block;
   }
   .om-diagram-svg {
-    max-height: 26vh;
+    max-height: 22vh;
   }
   .om-diagram-legend {
     display: none; /* the dots read on their own at this size — buy back space */
@@ -1145,18 +1154,23 @@
     order: 2;
   }
   .om-panel-num {
-    font-size: clamp(3.5rem, 16vw, 5rem);
+    font-size: clamp(2.8rem, 13vw, 4rem);
+    line-height: 0.9;
   }
   .om-panel-numlabel {
-    font-size: 0.7rem;
-    margin-top: 0.3rem;
-    margin-bottom: 0.8rem;
+    font-size: 0.68rem;
+    margin-top: 0.25rem;
+    margin-bottom: 0.6rem;
   }
   .om-story {
-    font-size: 0.72rem;
-    line-height: 1.55;
-    margin-bottom: 0.7rem;
+    font-size: 0.7rem;
+    line-height: 1.5;
+    margin-bottom: 0.6rem;
     max-width: 100%;
+  }
+  .om-panel-eyebrow,
+  .om-editorial .om-eyebrow {
+    margin-bottom: 0.4rem;
   }
   .om-trio-item {
     padding: 0.5rem 0.8rem 0.5rem 0;
