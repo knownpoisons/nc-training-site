@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 import Image from "next/image";
-import { PROMPTS, getPrompt, getAllPromptSlugs } from "../prompts";
+import { PROMPTS, getPrompt, getAllPromptSlugs, LIBRARY_GATE_ENABLED } from "../prompts";
 import { CopyButton } from "../copy-button";
 import { PhaseTabs } from "../phase-tabs";
 import { LibraryTopbar } from "../topbar";
@@ -78,6 +78,7 @@ export default async function PromptPage({ params }: Props) {
   // Email gate: no access cookie → render the gate, never read/return the
   // prompt body (keeps content out of the response entirely).
   const hasAccess =
+    !LIBRARY_GATE_ENABLED ||
     (await cookies()).get("nc_library_access")?.value === "1";
   if (!hasAccess) return <LibraryGate total={PROMPTS.length} />;
 

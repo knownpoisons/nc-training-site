@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { cookies } from "next/headers";
-import { PROMPTS } from "./prompts";
+import { PROMPTS, LIBRARY_GATE_ENABLED } from "./prompts";
 import { LibraryTopbar } from "./topbar";
 import { LibraryFooter } from "./footer";
 import { LibraryGate } from "./gate";
@@ -18,6 +18,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export default async function LibraryIndex() {
   // Email gate: no access cookie → render the gate, never the prompt list.
   const hasAccess =
+    !LIBRARY_GATE_ENABLED ||
     (await cookies()).get("nc_library_access")?.value === "1";
   if (!hasAccess) return <LibraryGate total={PROMPTS.length} />;
 
