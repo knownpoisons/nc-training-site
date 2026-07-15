@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { LIBRARY_GATE_ENABLED } from "../prompts";
+import { LibraryGate } from "../gate";
 import { LibraryTopbar } from "../topbar";
 import { LibraryFooter } from "../footer";
 import { MovementDiagram } from "../_finder/movement-diagram";
@@ -16,7 +19,13 @@ export const metadata: Metadata = {
   description: `${TOTAL} camera prompts for AI creation — every movement for video and every angle, framing and lens look for stills, each as a reusable scene-agnostic prompt.`,
 };
 
-export default function CameraPromptsChooser() {
+export default async function CameraPromptsChooser() {
+  // Email gate: no access cookie → render the gate, never the collection.
+  const hasAccess =
+    !LIBRARY_GATE_ENABLED ||
+    (await cookies()).get("nc_library_access")?.value === "1";
+  if (!hasAccess) return <LibraryGate total={TOTAL} />;
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",

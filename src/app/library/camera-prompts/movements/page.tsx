@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { LIBRARY_GATE_ENABLED } from "../../prompts";
+import { LibraryGate } from "../../gate";
 import { LibraryTopbar } from "../../topbar";
 import { LibraryFooter } from "../../footer";
 import { Finder } from "../../_finder/finder";
@@ -33,7 +36,13 @@ function discoverVideo(slug: string): { videoSrc?: string; posterSrc?: string } 
   }
 }
 
-export default function CameraMovementsPage() {
+export default async function CameraMovementsPage() {
+  // Email gate: no access cookie → render the gate, never the prompts.
+  const hasAccess =
+    !LIBRARY_GATE_ENABLED ||
+    (await cookies()).get("nc_library_access")?.value === "1";
+  if (!hasAccess) return <LibraryGate total={MOVEMENTS.length} />;
+
   const catLabel = Object.fromEntries(CATEGORIES.map((c) => [c.id, c.label]));
 
   const entries: FinderEntry[] = MOVEMENTS.map((m) => {

@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import fs from "node:fs";
 import path from "node:path";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { LIBRARY_GATE_ENABLED } from "../../prompts";
+import { LibraryGate } from "../../gate";
 import { LibraryTopbar } from "../../topbar";
 import { LibraryFooter } from "../../footer";
 import { Finder } from "../../_finder/finder";
@@ -32,7 +35,13 @@ function discoverImage(slug: string): string | undefined {
   return undefined;
 }
 
-export default function CameraAnglesPage() {
+export default async function CameraAnglesPage() {
+  // Email gate: no access cookie → render the gate, never the prompts.
+  const hasAccess =
+    !LIBRARY_GATE_ENABLED ||
+    (await cookies()).get("nc_library_access")?.value === "1";
+  if (!hasAccess) return <LibraryGate total={ANGLES.length} />;
+
   const catLabel = Object.fromEntries(ANGLE_CATEGORIES.map((c) => [c.id, c.label]));
   const useLabel = Object.fromEntries(USE_CASES.map((u) => [u.id, u.label]));
 
