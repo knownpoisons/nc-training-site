@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PROMPTS } from "./prompts";
+import { COLLECTIONS } from "./collections";
 import { LibraryTopbar } from "./topbar";
 import { LibraryFooter } from "./footer";
 import "./library.css";
@@ -40,6 +41,20 @@ export default function LibraryIndex() {
 
       {/* ─── Prompt list ─────────────────────────────────────────────── */}
       <section className="row-list">
+        {COLLECTIONS.map((c) => (
+          <Link key={c.slug} href={`/library/${c.slug}`} className="row row-collection">
+            <div className="num">{c.count}</div>
+            <div className="body">
+              <h2 className="topic">{c.title}</h2>
+              <div className="summary">{c.oneLiner}</div>
+            </div>
+            <div className="meta">
+              {c.eyebrow}
+              <span className="arrow">⟶</span>
+            </div>
+          </Link>
+        ))}
+
         {prompts.map((p) =>
           p.comingSoon ? (
             // Coming soon — listed but greyed out and not clickable
