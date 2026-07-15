@@ -27,6 +27,7 @@ export interface Prompt {
   phases?: PromptPhase[];          // multi-phase mode (renders as tabs)
   heroImage?: string;              // optional poster / fallback still
   heroVideo?: string;              // optional looping showcase video (mp4 — autoplays muted)
+  comingSoon?: boolean;            // listed greyed-out on the index, detail page 404s until flipped live
   // For future filtering
   tags?: string[];
 }
@@ -571,6 +572,179 @@ Rules: quote real lines, never paraphrase — "the submit button", not "some ele
     heroImage: "/images/library/content-taste-audit-sample.jpg",
     tags: ["content", "copywriting", "audit", "quality", "brand-voice", "marketing"],
   },
+  {
+    slug: "voice-card",
+    number: 4,
+    title: "The Voice Card",
+    eyebrow: "Brand · Voice",
+    oneLiner:
+      "Sit for a 20-minute interrogation. Walk away with a card that makes any AI write like you — and tripwires that catch it drifting.",
+    whatItDoes: `Builds a portable voice card — the one asset every other AI writing task depends on. Not a "brand guidelines" doc nobody opens: a paste-able card that captures your rhythm, vocabulary, stance and banned words, plus a 10-line test suite that catches any future AI draft the moment it stops sounding like you.
+
+The mechanic is calibration duels. You can't describe your own voice accurately — nobody can. So the prompt doesn't ask you to. It studies real pieces you love and hate, then writes the same paragraph two ways and makes you pick. Every pick teaches it something it couldn't get from your description. Five rounds later, the card converges on how you actually write, not how you think you write.`,
+    whenToUse: [
+      "Fifteen people on your team are writing in fifteen accents and every AI draft comes back sounding like a press release.",
+      "You're about to run any serious AI writing workflow — this card is the input that makes the rest work.",
+      "Your AI drafts are technically fine but you rewrite every one anyway, and you can't articulate why.",
+      "You want new hires and freelancers producing on-voice work in week one, not month three.",
+    ],
+    whatYoullGet: [
+      "A paste-able Voice Card: rhythm, sentence habits, vocabulary, stance, punctuation tics, openings and closings.",
+      "A banned-words list — the phrases that instantly make copy not-you.",
+      "A 10-line drift test suite: run any future draft through it and catch the fakes.",
+      "A one-line instruction block for pasting the card at the top of any AI chat.",
+    ],
+    quickFire: [
+      "Gather your raw material FIRST: 5 pieces of writing that sound exactly like you (emails, posts, decks — anything real) and 5 that make you wince. Real pieces, not examples you'd like to be true.",
+      "Paste the prompt into Claude (or your AI of choice) and hand over the writing when it asks.",
+      "Play the duels honestly — pick the version you'd actually send, not the one that sounds impressive.",
+      "Save the final card somewhere the whole team can reach. Paste it at the top of every AI writing chat from now on.",
+    ],
+    prompt: `You are a voice analyst. Your job is to build me a portable VOICE CARD — a compact document that makes any AI write like me — through evidence and forced choices, never through my self-description. People are wrong about their own voice; you will not ask me to describe mine.
+
+STEP 0 — RAW MATERIAL. Ask me for, then wait for:
+1. FIVE real pieces of my writing that sound exactly like me (emails, posts, scripts, decks — real, not aspirational).
+2. FIVE pieces that make me wince — my own drafts gone wrong, AI outputs I rejected, or writing in my niche I'd never publish.
+Do not proceed with fewer than 3 + 3. If I try to describe my voice instead of providing samples, refuse politely and ask for the writing.
+
+STEP 1 — AUTOPSY (silent). Study both piles. For the loved pile, extract: sentence-length pattern and rhythm; how I open and close; vocabulary I reach for; stance (how directly I state opinions, how I handle hedging); punctuation habits; what I never do. For the hated pile, extract the specific tells that make it wrong. Keep this analysis internal — do not show me yet.
+
+STEP 2 — CALIBRATION DUELS. Run exactly 5 rounds. Each round: write ONE short paragraph (60–90 words) on a neutral topic relevant to my field, in two candidate versions, A and B, that differ on ONE dimension you're unsure about (rhythm, directness, warmth, formality, metaphor use…). Ask me to pick A or B — and optionally say why in a few words. Update your model of my voice after every pick. Never reveal what dimension you're testing until after I choose. If my picks contradict the writing samples, the PICKS win — say so and adjust.
+
+STEP 3 — THE VOICE CARD. Output the card in this exact structure, tight enough to paste anywhere:
+
+VOICE CARD — [my name/brand]
+RHYTHM: sentence-length pattern, pacing, paragraph habits
+OPENINGS & CLOSINGS: how I enter and leave a piece
+VOCABULARY: 10–15 words/constructions I actually use
+STANCE: how I state opinions, what I hedge, what I never hedge
+PUNCTUATION & TICS: the mechanical fingerprints
+NEVER: 10 banned words/phrases that instantly make copy not-me (draw these from the hated pile + AI-slop classics)
+IN ONE LINE: my voice summarized in a single sentence
+
+STEP 4 — DRIFT TEST SUITE. Output 10 numbered pass/fail checks — specific to ME, not generic ("Does any sentence exceed X words?", "Does it open with a scene or a thesis, never a definition?", "Ctrl-F these banned words: …"). A future draft that fails 3+ is off-voice and gets rewritten.
+
+STEP 5 — USAGE BLOCK. End with a 2-line instruction I can paste above the card in any AI chat: "Write in this voice. Before returning anything, run it against the drift tests and fix failures silently."
+
+Rules: never flatter my writing; the card must be honest, including weaknesses that ARE the voice. No generic advice. If the samples are too thin to be confident on a dimension, say so and mark that line PROVISIONAL rather than inventing.`,
+    comingSoon: true,
+    tags: ["brand-voice", "writing", "ai-workflow", "content", "team-standards"],
+  },
+  {
+    slug: "case-study-extractor",
+    number: 5,
+    title: "The Case Study Extractor",
+    eyebrow: "Proof · Sales",
+    oneLiner:
+      "Interrogates a finished project until the real numbers and scars fall out — then builds the case study that sells the next one.",
+    whatItDoes: `Every team has finished projects and no case studies. The work shipped, the client was happy, and the proof is rotting in a project folder because writing it up feels like homework. This prompt does the extraction: it interrogates you about one finished project until the numbers, the baseline, the quotes and the almost-failure fall out — then builds the case study.
+
+The mechanic is a hard no-adjectives rule plus a skeptic pass. It refuses "significantly faster" and demands "how many days, down from how many." Then, before anything is final, it re-reads the draft as a procurement director who believes none of it — and every claim either gets a source or gets cut. What survives is proof, not brochure.`,
+    whenToUse: [
+      "You're pitching AI-era work and your proof is 'trust us' — you need the case study before the next RFP, not after.",
+      "A project just wrapped, the details are still fresh, and you have 30 minutes before they evaporate.",
+      "Your existing case studies are adjectives in a trench coat — 'seamless collaboration drove impactful results' — and you know it.",
+      "You need proof lines for a deck or a bio by Thursday, not a 2,000-word write-up someday.",
+    ],
+    whatYoullGet: [
+      "A publishable case study — challenge, work, result — where every claim survived a skeptic pass.",
+      "The real numbers, extracted: baseline, delta, time, cost — or an honest list of which numbers you still need to hunt down.",
+      "A pull-quote kit: 3 proof lines sized for decks, bios, and social.",
+      "A follow-up list: the 2–3 facts or client permissions to chase that would make the study twice as strong.",
+    ],
+    quickFire: [
+      "Pick ONE finished project. Grab whatever artifacts you have — the brief, timelines, invoices, Slack threads, client emails. More raw material = more surviving claims.",
+      "Paste the prompt and answer its questions. When it refuses an adjective, give it the number — or admit you don't have one and let it mark the claim.",
+      "Take the skeptic pass seriously: what gets cut was never going to convince a buyer anyway.",
+      "Before publishing, clear client naming/quotes with the client. The prompt will flag exactly what needs permission.",
+    ],
+    prompt: `You are a case-study extractor. I'm going to tell you about one finished project, and your job is to pull the real proof out of me — numbers, baselines, quotes, scars — then build a case study a skeptical buyer would believe. You are allergic to adjectives.
+
+THE ONE RULE: no unquantified claim survives. When I say "much faster," you ask "how long did it take, and how long did it used to take?" When I say "the client loved it," you ask "what did they actually say or do — verbatim, or what happened next?" If I don't have the number, you mark the claim [UNVERIFIED] and move on. You never decorate a vague claim into a pretty sentence.
+
+STEP 0 — SETUP. Ask me for, then wait for: the project (client, what shipped, when), and any raw material I can paste (brief, timeline, emails, invoices, metrics). If I can't name the client publicly, ask what I CAN say (category, size, market) and use that consistently.
+
+STEP 1 — INTERROGATION. Ask one question at a time, adapt to my answers, and hunt these in order:
+1. THE BASELINE — what did this kind of project cost/take BEFORE (time, money, people)? A result means nothing without the before.
+2. THE DELTA — what actually changed, in numbers: time, cost, output volume, revisions, headcount avoided.
+3. THE MOMENT IT ALMOST FAILED — every real project has one. What went wrong, what did you do? (This is what makes it believable — a story with no scar reads as fiction.)
+4. THE HUMAN PROOF — what did the client say, verbatim? Who said it, what's their title? What did they DO after (rehire, refer, expand scope)?
+5. THE MECHANISM — what specifically did you do differently that caused the result? Not the philosophy: the moves.
+Keep going until you have at least: one baseline, two deltas, one scar, one quote or behavior. If I genuinely lack one, note the gap and continue.
+
+STEP 2 — DRAFT. Write the case study, 400–600 words: CHALLENGE (with baseline) → THE WORK (the mechanism + the scar, told straight) → THE RESULT (deltas, plainly stated, one hedge max per number). My voice: direct, no marketing language, no exclamation marks. Every number appears once — no restating the same result in vaguer words.
+
+STEP 3 — SKEPTIC PASS. Now re-read the draft as a procurement director who believes none of it. For each claim: BELIEVE (has a source/number), CHALLENGE (plausible but unsourced — rewrite it honestly or tag [UNVERIFIED]), or CUT (decorative). Show me the table, then the revised study with challenges resolved.
+
+STEP 4 — THE KIT. Finish with:
+PULL-QUOTE KIT: 3 proof lines built from the strongest surviving claims — one for a deck slide (under 12 words), one for a bio/about page, one for a social post.
+PERMISSIONS: exactly what needs client sign-off before publishing (name, quote, numbers).
+STRENGTHEN: the 2–3 missing facts that would most upgrade this study, and who to ask.
+
+Rules: never invent a number, a quote, or a client reaction — ever. If the extraction reveals the project has no real proof, say so plainly: that's a finding, not a failure. The case study you don't publish is better than the one a buyer catches lying.`,
+    comingSoon: true,
+    tags: ["case-study", "proof", "sales", "agency", "copywriting"],
+  },
+  {
+    slug: "governance-one-pager",
+    number: 6,
+    title: "The Governance One-Pager",
+    eyebrow: "Ops · Risk",
+    oneLiner:
+      "The AI policy your clients keep asking about — drafted, argued, and on one page before Monday.",
+    whatItDoes: `Your clients are starting to ask the question: "What's your AI policy?" Right now the honest answer at most studios is a shrug and a promise. This prompt gets you to a real answer — a one-page working policy in plain language: what you use AI for, what you never use it for, how you disclose, how client work stays protected, and who signs off.
+
+The mechanic is the stress test. A drafted policy is easy; a defensible one isn't. So after drafting, the prompt attacks its own draft from three directions — a nervous client who just read a scary headline, a procurement reviewer with a checklist, and your most senior creative who thinks this is all beneath them — and patches every hole it finds. What survives fits on one page and survives a client meeting.`,
+    whenToUse: [
+      "A client or their procurement team just asked for your AI policy and you have nothing to send.",
+      "Your team is already using AI on client work — unevenly, quietly, with no shared rules — and you'd rather write the policy than have an incident write it for you.",
+      "You're pitching AI-assisted work and need to answer the risk question before it's asked.",
+      "Different people on the team are giving clients different answers about how AI is used. That's how trust dies.",
+    ],
+    whatYoullGet: [
+      "A one-page working AI policy in plain language — not legalese, not a 40-page PDF nobody reads.",
+      "Clear lines: what AI is used for, what it's never used for, disclosure rules, data handling, and the human sign-off gate.",
+      "The stress-test log: the holes the three attackers found and how each was patched.",
+      "A short 'how to talk about it' note — the two-sentence answer for when a client asks in a meeting.",
+    ],
+    quickFire: [
+      "Block 30 minutes. Have in mind: your client roster (who's nervous, who's regulated), the tools your team actually uses, and any existing client contract language about AI.",
+      "Paste the prompt and answer honestly — including the uncomfortable question of what your team is already doing without rules.",
+      "Read the three attacks. The holes they find are the questions clients will ask.",
+      "Have a lawyer glance at the final page before it goes in a contract — this is a working policy, not legal advice. Then put it where the whole team can see it.",
+    ],
+    prompt: `You are helping me draft a working AI governance policy for a creative business — one page, plain language, defensible in a client meeting. Not legalese, not a corporate PDF: the real rules my team will actually follow and my clients will actually believe.
+
+STEP 0 — INTERROGATION. Ask me these, one small batch at a time, and wait for answers:
+1. The business: what we make, team size, and whether clients are brands, agencies, or both.
+2. The client reality: who's nervous about AI, who's asked already, anyone regulated (finance, health, kids) or with contract language about AI?
+3. The tooling truth: which AI tools the team ACTUALLY uses today — including the unofficial ones. (Honesty here is the whole point; the policy has to cover reality, not the org chart's fantasy.)
+4. The lines I already feel: anything I already know we'd never do (e.g. training models on client assets, AI-generating final brand artwork, feeding confidential briefs to consumer tools)?
+5. Disclosure instinct: do I want to proactively tell clients where AI is used, answer honestly when asked, or decide per client?
+
+STEP 1 — DRAFT THE ONE-PAGER. Using my answers, draft the policy with exactly these sections, total under 450 words, plain confident language:
+WHAT WE USE AI FOR — the real use cases, stated without apology.
+WHAT WE NEVER USE AI FOR — the hard lines, specific enough to be checkable.
+YOUR WORK, PROTECTED — where client materials can and cannot go: which tools, what data rules, what never leaves our accounts.
+DISCLOSURE — when and how we tell clients AI touched the work.
+THE HUMAN GATE — who reviews AI-assisted work before it ships, and what they check.
+OWNERSHIP & UPDATES — who owns this policy and how often it's revisited (AI moves quarterly; the policy should too).
+
+STEP 2 — STRESS TEST. Attack your own draft three times, in character, 3–4 hard questions each:
+ATTACK 1 — THE NERVOUS CLIENT: just read a headline about AI leaking data / stealing artists' work. What in this policy fails to reassure them? What question would they ask that it can't answer?
+ATTACK 2 — PROCUREMENT: reviewing this against a vendor checklist. Where is it too vague to verify? What would they demand in writing that's missing?
+ATTACK 3 — THE SENIOR CREATIVE: 25 years of craft, thinks this policy is either bureaucracy or a threat. What would make them ignore it? Where does it accidentally insult the craft?
+For each attack, list the holes found, then PATCH the policy. Show the patch log briefly (hole → fix).
+
+STEP 3 — FINAL OUTPUT. Deliver:
+1. The final one-page policy (post-patches, still under one page).
+2. THE MEETING ANSWER: a two-sentence spoken version for when a client asks "so what's your AI policy?" in a room.
+3. FLAG FOR COUNSEL: 2–3 items a lawyer should look at before this goes into any contract.
+
+Rules: plain language over legal cosplay — "we never upload your unreleased product photos to consumer AI tools" beats "confidential materials are handled in accordance with best practices." Every rule must be checkable by a team member in the moment. If my answers reveal the team is doing something indefensible today, say so directly and make stopping it rule one. This is a working policy, not legal advice — and it should say that on the page.`,
+    comingSoon: true,
+    tags: ["governance", "risk", "policy", "agency", "operations", "client-trust"],
+  },
 ];
 
 export function getPrompt(slug: string): Prompt | undefined {
@@ -578,5 +752,5 @@ export function getPrompt(slug: string): Prompt | undefined {
 }
 
 export function getAllPromptSlugs(): string[] {
-  return PROMPTS.map((p) => p.slug);
+  return PROMPTS.filter((p) => !p.comingSoon).map((p) => p.slug);
 }

@@ -63,7 +63,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const p = getPrompt(slug);
-  if (!p) return { title: "Prompt — NotContent Library" };
+  if (!p || p.comingSoon) return { title: "Prompt — NotContent Library" };
   return {
     title: `${p.title} — NotContent Library`,
     description: p.oneLiner,
@@ -75,7 +75,7 @@ const pad = (n: number) => String(n).padStart(2, "0");
 export default async function PromptPage({ params }: Props) {
   const { slug } = await params;
   const p = getPrompt(slug);
-  if (!p) notFound();
+  if (!p || p.comingSoon) notFound();
 
   return (
     <div className="library">

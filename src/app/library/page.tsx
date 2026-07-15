@@ -40,36 +40,35 @@ export default function LibraryIndex() {
 
       {/* ─── Prompt list ─────────────────────────────────────────────── */}
       <section className="row-list">
-        {prompts.map((p) => (
-          <Link key={p.slug} href={`/library/${p.slug}`} className="row">
-            <div className="num">{pad(p.number)}</div>
-            <div className="body">
-              <h2 className="topic">{p.title}</h2>
-              <div className="summary">{p.oneLiner}</div>
-            </div>
-            <div className="meta">
-              {p.eyebrow}
-              <span className="arrow">⟶</span>
-            </div>
-          </Link>
-        ))}
-
-        {/* Coming-soon ghost row when the library is small */}
-        {prompts.length < 5 && (
-          <div
-            className="row"
-            style={{ opacity: 0.45, cursor: "default", pointerEvents: "none" }}
-          >
-            <div className="num">{pad(PROMPTS.length + 1)}</div>
-            <div className="body">
-              <h2 className="topic">More coming.</h2>
-              <div className="summary">
-                The library grows when Jeremy ships a prompt he&rsquo;s actually using.
-                Drop back in.
+        {prompts.map((p) =>
+          p.comingSoon ? (
+            // Coming soon — listed but greyed out and not clickable
+            <div
+              key={p.slug}
+              className="row"
+              aria-disabled="true"
+              style={{ opacity: 0.4, cursor: "default", pointerEvents: "none" }}
+            >
+              <div className="num">{pad(p.number)}</div>
+              <div className="body">
+                <h2 className="topic">{p.title}</h2>
+                <div className="summary">{p.oneLiner}</div>
               </div>
+              <div className="meta">Coming soon</div>
             </div>
-            <div className="meta">Soon</div>
-          </div>
+          ) : (
+            <Link key={p.slug} href={`/library/${p.slug}`} className="row">
+              <div className="num">{pad(p.number)}</div>
+              <div className="body">
+                <h2 className="topic">{p.title}</h2>
+                <div className="summary">{p.oneLiner}</div>
+              </div>
+              <div className="meta">
+                {p.eyebrow}
+                <span className="arrow">⟶</span>
+              </div>
+            </Link>
+          )
         )}
       </section>
 
