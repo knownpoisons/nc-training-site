@@ -17,7 +17,7 @@ export const COLLECTIONS: Collection[] = [
     title: "The Camera Prompt Finder",
     oneLiner:
       "90 camera prompts — every movement for AI video and every angle, framing and lens look for stills. Search it, filter it, copy the shot, keep your scene.",
-    eyebrow: "Collection · Video + Stills",
+    eyebrow: "Featured",
     count: 90,
   },
 ];
