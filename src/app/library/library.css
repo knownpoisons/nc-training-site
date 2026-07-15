@@ -664,7 +664,7 @@
 }
 .library .gate-form button:disabled { opacity: 0.3; cursor: not-allowed; }
 .library .gate-form button:not(:disabled):hover { opacity: 0.9; }
-.library .gate-err { color: #b3261e; font-size: 13px; margin: 2px 0 0; }
+.library .gate-err { color: #8B0000; font-weight: 600; font-size: 13px; margin: 2px 0 0; }
 .library .gate-optin {
   font-size: 12px;
   color: var(--muted);
