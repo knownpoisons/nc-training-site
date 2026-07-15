@@ -1,11 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { cookies } from "next/headers";
 import Image from "next/image";
 import { PROMPTS, getPrompt, getAllPromptSlugs } from "../prompts";
 import { CopyButton } from "../copy-button";
 import { PhaseTabs } from "../phase-tabs";
 import { LibraryTopbar } from "../topbar";
 import { LibraryFooter } from "../footer";
+import { LibraryGate } from "../gate";
 import "../library.css";
 
 // Parses `[label](url)` markdown-style links inside instruction strings
@@ -73,6 +75,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export default async function PromptPage({ params }: Props) {
+  // Email gate: no access cookie → render the gate, never read/return the
+  // prompt body (keeps content out of the response entirely).
+  const hasAccess =
+    (await cookies()).get("nc_library_access")?.value === "1";
+  if (!hasAccess) return <LibraryGate total={PROMPTS.length} />;
+
   const { slug } = await params;
   const p = getPrompt(slug);
   if (!p || p.comingSoon) notFound();
