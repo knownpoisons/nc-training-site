@@ -386,6 +386,10 @@
   font-size: 15px;
   letter-spacing: 0.1em;
 }
+.library .row-collection .row-cam {
+  display: block;
+  transform: translateY(3px); /* optically align with the title baseline */
+}
 .library .row-collection .body .topic {
   color: var(--bg);
   font-style: italic;

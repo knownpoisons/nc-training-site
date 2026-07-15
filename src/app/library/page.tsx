@@ -51,7 +51,13 @@ export default async function LibraryIndex() {
       <section className="row-list">
         {COLLECTIONS.map((c) => (
           <Link key={c.slug} href={`/library/${c.slug}`} className="row row-collection">
-            <div className="num">{c.count}</div>
+            <div className="num" aria-hidden="true">
+              {/* camera glyph — same language as the finder diagrams */}
+              <svg viewBox="0 0 26 20" width="26" height="20" className="row-cam">
+                <rect x="0.5" y="4.5" width="15" height="11" rx="1.5" fill="currentColor" />
+                <path d="M 17 8.2 L 25.5 4.5 V 15.5 L 17 11.8 Z" fill="currentColor" />
+              </svg>
+            </div>
             <div className="body">
               <h2 className="topic">{c.title}</h2>
               <div className="summary">{c.oneLiner}</div>
