@@ -568,6 +568,7 @@ SITE-WIDE PATTERNS — the 3 to 5 issues that repeat across pages (duplicate lin
 THE ONE MOVE — if I only do one thing this week, what is it?
 
 Rules: quote real lines, never paraphrase — "the submit button", not "some elements". Say what's wrong AND why it costs them. Prioritise ruthlessly — if everything's important, nothing is. Don't soften. And never hand me a fabricated fact, number, or client name — if the proof isn't there, tell me to go get it.`,
+    heroImage: "/images/library/content-taste-audit-sample.jpg",
     tags: ["content", "copywriting", "audit", "quality", "brand-voice", "marketing"],
   },
 ];
