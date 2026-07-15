@@ -749,7 +749,7 @@ Rules: plain language over legal cosplay — "we never upload your unreleased pr
 
 // Master switch for the /library email gate. false = library fully open;
 // flip to true to require the Beehiiv opt-in before any prompt renders.
-export const LIBRARY_GATE_ENABLED = false;
+export const LIBRARY_GATE_ENABLED = true;
 
 export function getPrompt(slug: string): Prompt | undefined {
   return PROMPTS.find((p) => p.slug === slug);

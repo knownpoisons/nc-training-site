@@ -4,27 +4,34 @@ import { useState } from "react";
 import { LibraryTopbar } from "./topbar";
 import { LibraryFooter } from "./footer";
 
-// The access gate. Rendered by library/layout.tsx whenever the visitor has no
+// The access gate. Rendered by the library pages whenever the visitor has no
 // access cookie — so it stands in front of the index AND every direct prompt
-// link. On success the API sets the cookie and we hard-reload; the layout then
+// link. On success the API sets the cookie and we hard-reload; the page then
 // sees the cookie and renders the real library.
+type FieldErrors = { name?: string; email?: string; company?: string; form?: string };
+
 export function LibraryGate({ total }: { total: number }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [company, setCompany] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
-  const [err, setErr] = useState("");
-
-  const nameOk = name.trim().split(/\s+/).filter(Boolean).length >= 2;
-  const emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
-  const companyOk = company.trim().length > 0;
-  const canSubmit = nameOk && emailOk && companyOk && status !== "loading";
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<FieldErrors>({});
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    if (!canSubmit) return;
-    setStatus("loading");
-    setErr("");
+    if (loading) return;
+
+    // Validate on click and SHOW why — never a silently dead button.
+    const errs: FieldErrors = {};
+    if (name.trim().split(/\s+/).filter(Boolean).length < 2)
+      errs.name = "Enter your first and last name.";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim()))
+      errs.email = "Enter a valid email address.";
+    if (!company.trim()) errs.company = "Enter your company.";
+    setErrors(errs);
+    if (Object.keys(errs).length > 0) return;
+
+    setLoading(true);
     try {
       const r = await fetch("/api/library-access", {
         method: "POST",
@@ -37,15 +44,15 @@ export function LibraryGate({ total }: { total: number }) {
       });
       const j = await r.json().catch(() => ({}));
       if (!r.ok || !j.ok) {
-        setStatus("error");
-        setErr("Couldn't open the library. Check your details and try again.");
+        setLoading(false);
+        setErrors({ form: "Couldn't open the library. Please try again." });
         return;
       }
-      // Cookie is set; reload so the gated layout re-renders with access.
+      // Cookie is set; reload so the page re-renders with access.
       window.location.reload();
     } catch {
-      setStatus("error");
-      setErr("Network hiccup. Try again.");
+      setLoading(false);
+      setErrors({ form: "Network hiccup — please try again." });
     }
   }
 
@@ -77,8 +84,9 @@ export function LibraryGate({ total }: { total: number }) {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="First Last"
                 autoComplete="name"
-                required
+                aria-invalid={!!errors.name}
               />
+              {errors.name && <span className="gate-err">{errors.name}</span>}
             </label>
             <label>
               <span>Work email</span>
@@ -88,8 +96,9 @@ export function LibraryGate({ total }: { total: number }) {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@company.com"
                 autoComplete="email"
-                required
+                aria-invalid={!!errors.email}
               />
+              {errors.email && <span className="gate-err">{errors.email}</span>}
             </label>
             <label>
               <span>Company</span>
@@ -99,15 +108,18 @@ export function LibraryGate({ total }: { total: number }) {
                 onChange={(e) => setCompany(e.target.value)}
                 placeholder="Where you work"
                 autoComplete="organization"
-                required
+                aria-invalid={!!errors.company}
               />
+              {errors.company && (
+                <span className="gate-err">{errors.company}</span>
+              )}
             </label>
 
-            <button type="submit" disabled={!canSubmit}>
-              {status === "loading" ? "Opening…" : "Open the library →"}
+            <button type="submit" disabled={loading}>
+              {loading ? "Opening…" : "Open the library →"}
             </button>
 
-            {status === "error" && <p className="gate-err">{err}</p>}
+            {errors.form && <p className="gate-err">{errors.form}</p>}
 
             <p className="gate-optin">
               By continuing you&rsquo;re opting in to the NotContent newsletter
