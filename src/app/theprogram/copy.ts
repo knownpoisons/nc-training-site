@@ -6,16 +6,36 @@
 // Oshyia Savur. Lorem blocks marked [JEM: …] are slots only Jem can fill.
 // ─────────────────────────────────────────────────────────────────────────────
 
+// The load-in intro — Jem's beats. Tells the whole arc before the hero lands:
+// the problem, the intervention, the transformation, the result. `ms` scales to
+// each beat's reading length. Final beat's payoff lands in cobalt.
+// Skippable — any interaction drops straight into the page (see Loader in ui.tsx).
 export const LOADER_STEPS = [
-  { label: "Weeks 01–02 · Audit & Foundation", num: "01" },
-  { label: "Weeks 03–04 · Divergence Mastery", num: "03" },
-  { label: "Weeks 05–06 · Convergence & Production", num: "05" },
-  { label: "Weeks 07–08 · The Operating Model", num: "08", accent: true },
+  {
+    line1: "Every creative team's got one person quietly good at AI.",
+    line2: "No system underneath them. A mess of tools and skills.",
+    ms: 2700,
+  },
+  {
+    line1: "Eight weeks we get everyone on the same page and shipping.",
+    line2: "Production & client work. AI powered.",
+    ms: 2400,
+  },
+  {
+    line1: "Real work gets done by week 6.",
+    line2: "10x the output in 10% of the time.",
+    ms: 2400,
+    accent: true,
+  },
+  // "Ad-hoc AI experimenters walk in / AI Creative Operators walk out" lives in
+  // the hero now — the intro builds to it, so it must not fire here too.
 ] as const;
 
 export const HERO = {
-  eyebrow: "NotContent · The Flagship Program",
-  title: "Eight Weeks",
+  eyebrow: "NotContent · The Flagship Program · Eight Weeks",
+  // The hook. The load-in intro builds to this; it appears nowhere else.
+  titleA: "Ad-hoc AI experimenters walk in.",
+  titleB: "AI Creative Operators walk out.",
   subtitle: "From sporadic knowledge to full production.",
   ghost: "8",
   image: "/images/training/speaking-wide-3.webp",

@@ -84,44 +84,78 @@ export function StoryShell({ children }: { children: ReactNode }) {
 
 function Loader({ onDone }: { onDone: () => void }) {
   const [step, setStep] = useState(0);
-  const [labelVisible, setLabelVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
   const [done, setDone] = useState(false);
+  const finishedRef = useRef(false);
 
-  useEffect(() => {
-    setLabelVisible(true);
-    let i = 0;
-    const interval = setInterval(() => {
-      i++;
-      if (i >= LOADER_STEPS.length) {
-        clearInterval(interval);
-        setTimeout(() => {
-          setDone(true);
-          onDone();
-        }, 900);
-        return;
-      }
-      setLabelVisible(false);
-      setTimeout(() => {
-        setStep(i);
-        setLabelVisible(true);
-      }, 300);
-    }, 1100);
-    return () => clearInterval(interval);
+  const finish = useCallback(() => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    setDone(true);
+    onDone();
   }, [onDone]);
 
+  // Beat chain — each beat holds for its own `ms` (scaled to reading length).
+  useEffect(() => {
+    let cancelled = false;
+    const timers: ReturnType<typeof setTimeout>[] = [];
+    const hold = (i: number) => {
+      if (cancelled) return;
+      timers.push(
+        setTimeout(() => {
+          if (cancelled) return;
+          if (i + 1 >= LOADER_STEPS.length) {
+            timers.push(setTimeout(finish, 700));
+            return;
+          }
+          setVisible(false);
+          timers.push(
+            setTimeout(() => {
+              if (cancelled) return;
+              setStep(i + 1);
+              setVisible(true);
+              hold(i + 1);
+            }, 260),
+          );
+        }, LOADER_STEPS[i]!.ms),
+      );
+    };
+    setVisible(true);
+    hold(0);
+    return () => {
+      cancelled = true;
+      timers.forEach(clearTimeout);
+    };
+  }, [finish]);
+
+  // Never trap anyone in the intro — any interaction drops straight into the page.
+  useEffect(() => {
+    const opts = { passive: true } as const;
+    window.addEventListener("pointerdown", finish);
+    window.addEventListener("keydown", finish);
+    window.addEventListener("wheel", finish, opts);
+    window.addEventListener("touchmove", finish, opts);
+    return () => {
+      window.removeEventListener("pointerdown", finish);
+      window.removeEventListener("keydown", finish);
+      window.removeEventListener("wheel", finish);
+      window.removeEventListener("touchmove", finish);
+    };
+  }, [finish]);
+
   const s = LOADER_STEPS[step]!;
+  const accent = "accent" in s && s.accent;
   return (
     <div className={`om-loader${done ? " om-done" : ""}`} aria-hidden="true">
-      <div className={`om-loader-label${labelVisible ? " om-visible" : ""}`}>
-        {s.label}
+      <div className={`om-loader-line1${visible ? " om-visible" : ""}`}>
+        {s.line1}
       </div>
       <div
-        className={`om-loader-number${
-          "accent" in s && s.accent ? " om-accent" : ""
+        className={`om-loader-line2${visible ? " om-visible" : ""}${
+          accent ? " om-accent" : ""
         }`}
-        style={{ opacity: labelVisible ? 1 : 0 }}
       >
-        {s.num}
+        {s.line2}
       </div>
     </div>
   );

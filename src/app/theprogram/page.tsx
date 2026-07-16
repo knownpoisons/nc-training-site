@@ -77,7 +77,11 @@ export default function StoryPage() {
           {HERO.ghost}
         </div>
         <p className="om-hero-eyebrow">{HERO.eyebrow}</p>
-        <h1 className="om-hero-title">{HERO.title}</h1>
+        <h1 className="om-hero-title">
+          {HERO.titleA}
+          <br />
+          <span className="om-accent">{HERO.titleB}</span>
+        </h1>
         <p className="om-hero-subtitle">{HERO.subtitle}</p>
         <div className="om-hero-figure">
           <GlitchFigure src={HERO.image} alt={HERO.imageAlt} />
