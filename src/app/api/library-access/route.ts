@@ -29,13 +29,16 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Add to the Beehiiv newsletter (this submission IS the opt-in). Best-effort:
-  // if Beehiiv is down we still open the library rather than trap the visitor.
-  try {
-    await subscribeToBeehiiv({ name, email, company });
-  } catch (err) {
-    console.error("[library-access] beehiiv failed:", err);
-  }
+  // Newsletter opt-in + Slack ping, in parallel and best-effort: if either is
+  // down we still open the library rather than trap the visitor at the gate.
+  const [beehiiv, slack] = await Promise.allSettled([
+    subscribeToBeehiiv({ name, email, company }),
+    notifySlack({ name, email, company }),
+  ]);
+  if (beehiiv.status === "rejected")
+    console.error("[library-access] beehiiv failed:", beehiiv.reason);
+  if (slack.status === "rejected")
+    console.error("[library-access] slack failed:", slack.reason);
 
   const res = NextResponse.json({ ok: true });
   res.cookies.set("nc_library_access", "1", {
@@ -46,6 +49,59 @@ export async function POST(req: NextRequest) {
     maxAge: 60 * 60 * 24 * 365, // 1 year
   });
   return res;
+}
+
+// ─── Slack — ping Jeremy on every library signup ─────────────────────────────
+async function notifySlack(args: {
+  name: string;
+  email: string;
+  company: string;
+}): Promise<{ ok: boolean; note?: string }> {
+  const { name, email, company } = args;
+  const webhook = process.env.SLACK_WEBHOOK_URL;
+  if (!webhook) return { ok: true, note: "slack_skipped_env_missing" };
+
+  const res = await fetch(webhook, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      text: `New library signup: ${name} (${company}) — ${email}`,
+      blocks: [
+        {
+          type: "header",
+          text: {
+            type: "plain_text",
+            text: "📚 New Prompt Library signup",
+            emoji: true,
+          },
+        },
+        {
+          type: "section",
+          fields: [
+            { type: "mrkdwn", text: `*Name:*\n${name}` },
+            { type: "mrkdwn", text: `*Email:*\n${email}` },
+            { type: "mrkdwn", text: `*Company:*\n${company}` },
+            { type: "mrkdwn", text: `*Opted in:*\nNotContent newsletter` },
+          ],
+        },
+        {
+          type: "context",
+          elements: [
+            {
+              type: "mrkdwn",
+              text: "via training.notcontent.ai/library — added to Beehiiv",
+            },
+          ],
+        },
+      ],
+    }),
+  });
+
+  if (!res.ok) {
+    const errText = await res.text().catch(() => "");
+    throw new Error(`slack_${res.status}: ${errText.slice(0, 200)}`);
+  }
+  return { ok: true };
 }
 
 async function subscribeToBeehiiv(args: {
