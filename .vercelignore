@@ -1,3 +1,11 @@
 # Private lead data — needed only for the one-time LOCAL import (Step 6).
 # Must never ship to the deployed site (subscriber emails, LinkedIn export, ~5MB).
 cockpit/Sources of Leads/
+
+# Local-only working material. None of it is referenced by the build — the only
+# thing the deploy needs from cockpit/ is knowledge/ (see next.config.ts
+# outputFileTracingIncludes). Keep these off the deploy.
+cockpit/content/
+content/reviews/
+USGOV/
+training-command-centre/

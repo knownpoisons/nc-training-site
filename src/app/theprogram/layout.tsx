@@ -3,14 +3,17 @@ import "./story.css";
 
 // The story page is a public sales asset — indexable, chrome-free, its own
 // type system (Instrument Serif display + DM Mono data).
+// Tab + link-preview lead with the transformation, not the calendar. The root
+// layout appends "| NotContent Training" to `title`.
 export const metadata: Metadata = {
-  title: "Eight Weeks — The Operating Model, told as a story",
+  title: "AI Creative Operators",
   description:
-    "The flagship NotContent program, told the way it actually happens: eight weeks, four phases, run four times — Cash App, Maesa, Herman Scheer. From $50,000.",
+    "Ad-hoc AI experimenters walk in. AI Creative Operators walk out. The flagship NotContent programme for creative teams. From $50,000.",
   openGraph: {
-    title: "Eight Weeks — The Operating Model",
+    // the hook — this is what a prospect sees when the link is shared
+    title: "Ad-hoc AI experimenters walk in. AI Creative Operators walk out.",
     description:
-      "The flagship NotContent program, told the way it actually happens. Eight weeks. Four phases. Run four times.",
+      "The flagship NotContent programme for creative teams — from sporadic knowledge to full production.",
     url: "https://training.notcontent.ai/theprogram",
     type: "website",
   },
