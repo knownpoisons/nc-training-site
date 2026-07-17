@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>How a Round Works — one sheet · January Digital × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg:#E5E4E2; --ink:#0E0E0C; --muted:#5F5F60; --rule:#C2C1BF; --accent:#1338BE;
+    --soft:rgba(19,56,190,0.07); --surface:#EFEEEC;
+    --serif:"Iowan Old Style","Source Serif Pro",Georgia,serif;
+    --sans:-apple-system,"Inter","Helvetica Neue",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:8vh}
+  .topbar{border-bottom:1px solid var(--rule);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .topbar .dot{color:var(--accent);margin:0 .5em}
+  .topbar .tag{color:var(--accent);font-weight:600}
+  .wrap{max-width:760px;margin:0 auto;padding:0 40px}
+  .head{margin:9vh 0 5vh}
+  .head .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .head .eyebrow .num{color:var(--accent);font-weight:600}
+  .head h1{font-family:var(--serif);font-size:clamp(40px,6vw,68px);line-height:.95;font-weight:400;letter-spacing:-.025em}
+  .head .lede{font-family:var(--serif);font-size:clamp(18px,2vw,23px);color:var(--muted);font-style:italic;line-height:1.35;margin-top:18px;max-width:46ch}
+  .usage{margin:0 0 6vh;padding:16px 20px;background:var(--soft);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:13px;line-height:1.6;color:var(--ink)}
+  .usage .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .sheet{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:44px 40px;margin-bottom:5vh}
+  .sheet .brandline{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:16px}
+  .sheet h2{font-family:var(--serif);font-size:clamp(26px,3.2vw,34px);line-height:1.08;font-weight:400;letter-spacing:-.02em;margin-bottom:14px}
+  .sheet .sub{font-size:15.5px;line-height:1.6;color:var(--muted);padding-bottom:26px;border-bottom:1px solid var(--rule)}
+  .rule-item{display:grid;grid-template-columns:38px 1fr;gap:18px;padding:22px 0;border-bottom:1px solid var(--rule)}
+  .rule-item:last-of-type{border-bottom:none}
+  .rule-item .n{font-family:var(--serif);font-size:26px;color:var(--accent);line-height:1}
+  .rule-item h3{font-family:var(--serif);font-size:21px;line-height:1.2;font-weight:400;letter-spacing:-.01em;margin-bottom:8px;color:var(--ink);text-transform:none}
+  .rule-item p{font-size:14.5px;line-height:1.6;color:var(--muted);margin-bottom:8px}
+  .rule-item p:last-child{margin-bottom:0}
+  .rule-item strong{color:var(--ink);font-weight:600}
+  .callout{background:var(--accent);color:var(--bg);border-radius:5px;padding:26px 28px;margin:30px 0 0}
+  .callout .lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(229,228,226,.75);font-weight:700;margin-bottom:10px}
+  .callout .big{font-family:var(--serif);font-size:22px;line-height:1.3;letter-spacing:-.01em}
+  .fields{margin-top:5vh;padding:18px 22px;border:1px dashed var(--rule);border-radius:4px;font-size:13px;color:var(--muted);line-height:1.7}
+  .fields .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;background:var(--soft);color:var(--accent);padding:2px 6px;border-radius:3px;font-size:12.5px}
+  .foot{max-width:760px;margin:8vh auto 0;padding:3vh 40px 0;border-top:1px solid var(--rule);text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:620px){.sheet{padding:30px 24px}.rule-item{grid-template-columns:1fr;gap:6px}}
+  @media print{body{padding:0}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>NotContent <span class="dot">&bull;</span> January Digital</div>
+  <div class="tag">Session 07 · Template 02</div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;/&nbsp; Client-ready template</div>
+    <h1>How a round works.</h1>
+    <p class="lede">The document you send before the work starts. Every rule pre-agreed, while everyone's still excited.</p>
+  </div>
+
+  <div class="usage">
+    <div class="lbl">How to use this</div>
+    Send it at kickoff, not when something's already going wrong. Agreeing to it up front is what turns the uncomfortable moment later into a callback rather than a fight. Note the framing: this is <strong>how the production track works</strong> — not "how we work." You're still their agency, still in the next meeting. The relationship continues; the process inside it gets rules.
+  </div>
+
+  <div class="sheet">
+    <div class="brandline">[BRAND] Creative Production — how a round works</div>
+    <h2>To move at this speed, the process has a shape.</h2>
+    <p class="sub">Here it is up front, so there are no surprises later. Agreeing to this is how you get the volume and the turnaround.</p>
+
+    <div class="rule-item">
+      <div class="n">1</div>
+      <div>
+        <h3>A complete brief before we start</h3>
+        <p>Nothing gets made until the brief, the copy and the assets are confirmed and final. No half-briefs, no "we'll figure out the headline later." The whole model only works — and only stays fast — when the machine isn't waiting on missing pieces. Our brief template takes about an hour.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">2</div>
+      <div>
+        <h3>Round one is yours — go wide</h3>
+        <p>In the first round, change anything. The concept, the background, the cast, the whole world. Be as prescriptive and detailed as you like — <strong>that level of specificity is welcome.</strong> This is your window. Use it.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">3</div>
+      <div>
+        <h3>The creative-control trade</h3>
+        <p>Whatever you specify, we build exactly. Whatever you don't specify, we and the system decide — and then that's decided. If we deliver what you asked for and it's right, we're not pixel-pushing it afterward.</p>
+        <p>If something's genuinely wrong, of course we fix it. That's not what this means.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">4</div>
+      <div>
+        <h3>Then it's locked</h3>
+        <p>After round one, changes are limited to genuine errors: the product's warped, a logo's misspelt. That's it. <strong>This one rule is what keeps the whole thing fast</strong> — and fast is the entire point.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">5</div>
+      <div>
+        <h3>Feedback is asynchronous</h3>
+        <p>Written notes, or a five-minute Loom — not a live call. Two reasons: written feedback goes straight into the system so nothing gets lost or misremembered, and it's on the record, so it isn't up for debate later. Succinct beats a meeting.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">6</div>
+      <div>
+        <h3>Expect a little variance</h3>
+        <p>Every time the work regenerates there's a small natural variance we don't fully control. It's the nature of the tool, not a mistake. You're trading a sliver of that wildness for enormous gains in output, speed and cost — knowingly.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">7</div>
+      <div>
+        <h3>Everyone who approves is named up front</h3>
+        <p>Anyone who needs to sign off — a superior, a brand lead, legal — is on the kickoff, or their feedback doesn't land mid-round. No surprise stakeholder rewriting the work after we're locked. We agree the chain now.</p>
+      </div>
+    </div>
+
+    <div class="rule-item">
+      <div class="n">8</div>
+      <div>
+        <h3>What this covers</h3>
+        <p>This is creative production for <strong>the media we run for you</strong> — the ads, in the channels we manage. Work for your owned social, brand campaigns or anything outside the media plan is a different service with a different scope and price. Happy to have that conversation separately.</p>
+      </div>
+    </div>
+
+    <div class="callout">
+      <div class="lbl">The trade, in one line</div>
+      <div class="big">Give us creative control over what you didn't specify, and you get speed, volume, and creative shaped by what actually performs.</div>
+    </div>
+  </div>
+
+  <div class="fields">
+    <div class="lbl">Fields to fill</div>
+    <code>[BRAND]</code> &nbsp; adjust the examples to the account &nbsp; attach your brief template.
+  </div>
+</div>
+
+<div class="foot">NotContent <span style="color:var(--accent)">&bull;</span> AI Creative Operator Programme <span style="color:var(--accent)">&bull;</span> Session 07</div>
+
+</body>
+</html>

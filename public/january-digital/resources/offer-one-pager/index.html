@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Offer — one page · January Digital × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg:#E5E4E2; --ink:#0E0E0C; --muted:#5F5F60; --rule:#C2C1BF; --accent:#1338BE;
+    --soft:rgba(19,56,190,0.07); --surface:#EFEEEC;
+    --serif:"Iowan Old Style","Source Serif Pro",Georgia,serif;
+    --sans:-apple-system,"Inter","Helvetica Neue",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:8vh}
+  .topbar{border-bottom:1px solid var(--rule);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .topbar .dot{color:var(--accent);margin:0 .5em}
+  .topbar .tag{color:var(--accent);font-weight:600}
+  .wrap{max-width:760px;margin:0 auto;padding:0 40px}
+  .head{margin:9vh 0 5vh}
+  .head .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .head .eyebrow .num{color:var(--accent);font-weight:600}
+  .head h1{font-family:var(--serif);font-size:clamp(40px,6vw,68px);line-height:.95;font-weight:400;letter-spacing:-.025em}
+  .head .lede{font-family:var(--serif);font-size:clamp(18px,2vw,23px);color:var(--muted);font-style:italic;line-height:1.35;margin-top:18px;max-width:46ch}
+  .usage{margin:0 0 6vh;padding:16px 20px;background:var(--soft);border-left:3px solid var(--accent);border-radius:0 4px 4px 0;font-size:13px;line-height:1.6;color:var(--ink)}
+  .usage .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  .sheet{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:44px 40px;margin-bottom:5vh}
+  .sheet .brandline{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:16px}
+  .sheet h2{font-family:var(--serif);font-size:clamp(28px,3.4vw,38px);line-height:1.05;font-weight:400;letter-spacing:-.02em;margin-bottom:14px}
+  .sheet .sub{font-family:var(--serif);font-size:19px;line-height:1.45;color:var(--muted);font-style:italic;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+  h3{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:32px 0 12px}
+  p{font-size:15.5px;line-height:1.65;margin-bottom:12px}
+  ul{list-style:none;margin:0 0 12px}
+  li{font-size:15.5px;line-height:1.6;padding:9px 0 9px 22px;position:relative;border-bottom:1px solid var(--rule)}
+  li:last-child{border-bottom:none}
+  li::before{content:"";position:absolute;left:0;top:17px;width:7px;height:7px;background:var(--accent);border-radius:50%}
+  li strong{font-weight:600}
+  .callout{background:var(--accent);color:var(--bg);border-radius:5px;padding:26px 28px;margin:28px 0}
+  .callout .lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(229,228,226,.75);font-weight:700;margin-bottom:10px}
+  .callout .big{font-family:var(--serif);font-size:22px;line-height:1.3;letter-spacing:-.01em}
+  .callout p{color:rgba(229,228,226,.9);font-size:14.5px;margin:10px 0 0}
+  .handshake{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:18px 0 8px}
+  .hs{background:var(--bg);border-top:3px solid var(--accent);border-radius:4px;padding:16px 14px}
+  .hs .n{font-family:var(--serif);font-size:24px;color:var(--accent);line-height:1}
+  .hs .t{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--muted);margin:6px 0 6px}
+  .hs .d{font-size:12.5px;line-height:1.5;color:var(--ink)}
+  .pull{font-family:var(--serif);font-size:20px;line-height:1.4;font-style:italic;color:var(--muted);border-left:3px solid var(--accent);padding-left:20px;margin:30px 0}
+  .fields{margin-top:5vh;padding:18px 22px;border:1px dashed var(--rule);border-radius:4px;font-size:13px;color:var(--muted);line-height:1.7}
+  .fields .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:8px}
+  code{font-family:ui-monospace,"SF Mono",Menlo,monospace;background:var(--soft);color:var(--accent);padding:2px 6px;border-radius:3px;font-size:12.5px}
+  .foot{max-width:760px;margin:8vh auto 0;padding:3vh 40px 0;border-top:1px solid var(--rule);text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:620px){.handshake{grid-template-columns:1fr}.sheet{padding:30px 24px}}
+  @media print{.usage,.fields{border:1px solid var(--rule)}body{padding:0}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>NotContent <span class="dot">&bull;</span> January Digital</div>
+  <div class="tag">Session 07 · Template 01</div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;/&nbsp; Client-ready template</div>
+    <h1>The offer.<br>One page.</h1>
+    <p class="lede">What January Digital sells now. Fill the brackets, make it theirs, send it.</p>
+  </div>
+
+  <div class="usage">
+    <div class="lbl">How to use this</div>
+    This is the page you hand a client to explain the new creative-production service. Keep it to one page. It sells the shift, the edge and the value — never the tool. Adapt per account.
+  </div>
+
+  <div class="sheet">
+    <div class="brandline">[BRAND] × January Digital — Creative Production</div>
+    <h2>We don't just plan where your creative runs. We make it.</h2>
+    <p class="sub">The same team that knows your media, now making the work that goes on it — stills and motion, on brand, ready to run in the media we manage.</p>
+
+    <h3>What you get</h3>
+    <ul>
+      <li><strong>[N]+ finished concepts</strong> in <strong>[timeframe]</strong> — not decks, not mood boards. The assets themselves, ready to run.</li>
+      <li>Stills and motion, built to spec and to channel.</li>
+      <li>One creative direction, produced across every SKU and format the campaign needs.</li>
+    </ul>
+
+    <h3>Why it's different here</h3>
+    <p>You already trust us with your media. That means we're not guessing what to make — <strong>we know what's performing.</strong> The creative is shaped by your actual numbers: what stops the scroll, what converts.</p>
+    <p>A creative shop can make you something beautiful. We make you something that works, because we can see the scoreboard.</p>
+
+    <h3>How the work gets made</h3>
+    <div class="handshake">
+      <div class="hs"><div class="n">10</div><div class="t">Human in</div><div class="d">Brief, taste, creative direction. The strategy.</div></div>
+      <div class="hs"><div class="n">80</div><div class="t">Production</div><div class="d">Built at machine speed. Where the volume comes from.</div></div>
+      <div class="hs"><div class="n">10</div><div class="t">Human out</div><div class="d">On brand, pixel perfect, checked to the last detail.</div></div>
+    </div>
+    <p>The speed comes from the middle. The quality comes from the two ends. <strong>We're here to protect the edges.</strong></p>
+
+    <div class="callout">
+      <div class="lbl">What you're paying for</div>
+      <div class="big">Not per asset. Not per hour. You're buying the creative system and the speed to market.</div>
+      <p>The ability to get more work, faster, and put it in front of your audience while it still matters. [Pricing is a conversation — see how we scope it together.]</p>
+    </div>
+
+    <p class="pull">"Double the content in half the time" undersells it. In practice it's closer to ten times the content in a tenth of the time — it just didn't have the same ring to it.</p>
+  </div>
+
+  <div class="fields">
+    <div class="lbl">Fields to fill</div>
+    <code>[BRAND]</code> &nbsp; <code>[N]</code> concepts &nbsp; <code>[timeframe]</code> &nbsp; the pricing line — keep it a conversation, never a number on the page.
+  </div>
+</div>
+
+<div class="foot">NotContent <span style="color:var(--accent)">&bull;</span> AI Creative Operator Programme <span style="color:var(--accent)">&bull;</span> Session 07</div>
+
+</body>
+</html>
