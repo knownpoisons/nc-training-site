@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SKYNET × NotContent — Programme Hub</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="An eight-week AI creative training programme for SKYNET — sessions, cheat sheets, and recordings in one place." />
+<link rel="icon" type="image/png" href="/skynet/nct-globe.png" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="SKYNET × NotContent — Programme Hub" />
+<meta property="og:description" content="An eight-week AI creative training programme — sessions, cheat sheets, and recordings in one place." />
+<meta property="og:image" content="https://training.notcontent.ai/skynet/footer-graphic.png" />
+<meta property="og:url" content="https://training.notcontent.ai/skynet" />
+<meta name="twitter:card" content="summary_large_image" />
+<script>document.documentElement.classList.add('nc-js');</script>
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ───────── Top bar ───────── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .brand { font-weight: 500; }
+  .topbar .brand .dot { color: var(--accent); margin: 0 0.5em; }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ───────── Hero ───────── */
+  .hero {
+    max-width: 1100px;
+    margin: 14vh auto 8vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .rule {
+    flex: 1; height: 1px; background: var(--rule); max-width: 380px;
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 9vw, 132px);
+    line-height: 0.92;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); font-style: italic; }
+  .hero .sub {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 30px);
+    color: var(--muted);
+    margin-top: 28px;
+    line-height: 1.3;
+    font-style: italic;
+    max-width: 760px;
+  }
+
+  /* ───────── Stat row ───────── */
+  .stats {
+    max-width: 1100px;
+    margin: 6vh auto 10vh;
+    padding: 32px 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 36px;
+  }
+  .stats .stat .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .stats .stat .val {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1;
+    letter-spacing: -0.01em;
+  }
+  .stats .stat .val .accent { color: var(--accent); }
+  .stats .stat .meta {
+    font-family: var(--sans);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+
+  /* ───────── Section ───────── */
+  section.block {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head {
+    margin-bottom: 36px;
+  }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule {
+    flex: 1; height: 1px; background: var(--rule);
+  }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4.6vw, 56px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+  section.block .head .sub {
+    font-family: var(--serif);
+    font-size: clamp(16px, 1.8vw, 20px);
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.4;
+    font-style: italic;
+    max-width: 720px;
+  }
+
+  /* ───────── Session list ───────── */
+  .sessions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+  .session {
+    display: grid;
+    grid-template-columns: 72px 1fr 180px 180px;
+    align-items: stretch;
+    background: var(--surface);
+    border-radius: 4px;
+    border: 1px solid transparent;
+    overflow: hidden;
+    transition: border-color 0.15s;
+  }
+  .session.today {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .session.today .num { color: rgba(229, 228, 226, 0.5); }
+  .session.today .topic { color: var(--bg); }
+  .session.today .summary { color: rgba(229, 228, 226, 0.8); }
+  .session.today .date .day { color: var(--bg); }
+  .session.today .date .time { color: rgba(229, 228, 226, 0.7); }
+  .session.today .action-cell { color: var(--bg); }
+  .session.today .status-pill {
+    background: var(--bg);
+    color: var(--accent);
+  }
+  .session.today .join-btn {
+    background: var(--bg);
+    color: var(--accent);
+    border-color: var(--bg);
+  }
+  .session.today .join-btn:hover {
+    background: transparent;
+    color: var(--bg);
+    border-color: var(--bg);
+  }
+  .session .num {
+    font-family: var(--serif);
+    font-size: 38px;
+    line-height: 1;
+    color: var(--muted);
+    padding: 22px 0 22px 22px;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+  }
+  .session .body {
+    padding: 20px 24px;
+    border-left: 1px solid var(--rule);
+  }
+  .session.today .body { border-left-color: rgba(229, 228, 226, 0.2); }
+  .session .topic {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+  .session .summary {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .session .date {
+    padding: 20px 24px;
+    border-left: 1px solid var(--rule);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .session.today .date { border-left-color: rgba(229, 228, 226, 0.2); }
+  .session .date .day {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1;
+    letter-spacing: -0.005em;
+  }
+  .session .date .time {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 8px;
+  }
+  .session .action-cell {
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 10px;
+  }
+  .status-pill {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 5px 11px;
+    border-radius: 3px;
+    background: var(--rule);
+    color: var(--ink);
+  }
+  .status-pill.upcoming { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .status-pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); opacity: 0.7; }
+  .status-pill.next { background: var(--accent); color: var(--bg); }
+  .status-pill.complete { background: var(--soft); color: var(--accent); }
+  .status-pill.complete::before { content: "\2713"; margin-right: 5px; font-weight: 700; }
+  /* Completed without a published page yet — stays muted, not clickable */
+  .session.past:not(.complete) { opacity: 0.6; }
+  .session.past:not(.complete) .topic,
+  .session.past:not(.complete) .summary { color: var(--muted); }
+  /* Cobalt keyline frames the card top/sides into the CTA bar below */
+  .session.complete { opacity: 1; border-color: var(--accent); }
+  /* Next session — accent edge + soft tint (full cobalt fill is reserved for live/today) */
+  .session.next {
+    background-image: linear-gradient(var(--soft), var(--soft));
+    background-color: var(--surface);
+    box-shadow: inset 3px 0 0 var(--accent);
+  }
+  /* Completed CTA strip — spans the full card grid */
+  .session-cta {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 24px;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .session-cta .arr {
+    font-size: 15px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .session.clickable:hover .session-cta .arr { transform: translateX(8px); }
+  .session.clickable {
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .session.clickable:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(19, 56, 190, 0.12);
+  }
+  .session.today.clickable:hover {
+    box-shadow: 0 6px 20px rgba(19, 56, 190, 0.32);
+  }
+  /* shine flash on hover — signals the card is clickable */
+  .session.clickable::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.30) 50%, transparent 70%);
+    transform: translateX(-120%);
+    pointer-events: none;
+    z-index: 3;
+  }
+  .session.clickable:hover::after { animation: session-shine 0.7s ease; }
+  @keyframes session-shine { to { transform: translateX(120%); } }
+  /* "open session" hint with long arrow */
+  .session .open-hint {
+    margin-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--bg);
+  }
+  .session .open-hint .arr {
+    font-size: 15px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .session.clickable:hover .open-hint .arr { transform: translateX(8px); }
+  .join-btn {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .join-btn:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .join-btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  /* ───────── Team ───────── */
+  .team {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .person {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .person .name {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.1;
+    margin-bottom: 4px;
+    letter-spacing: -0.01em;
+  }
+  .person .role {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .person .clients {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .person .clients .lbl {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+    display: block;
+  }
+
+  /* ───────── Resources (highlighted cobalt cards — matches session pages) ───────── */
+  .resources {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .resource {
+    padding: 24px 26px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+  }
+  .resource .icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 16px;
+    color: var(--bg);
+  }
+  .resource .icon svg { display: block; width: 100%; height: 100%; }
+  .resource .icon.slack { width: 26px; height: 26px; }
+  .resource .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.8);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource .name {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+    color: var(--bg);
+  }
+  .resource .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: rgba(229, 228, 226, 0.85);
+    line-height: 1.55;
+    margin-bottom: 14px;
+    flex-grow: 1;
+  }
+  .resource a.link,
+  .resource .link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--bg);
+    text-decoration: none;
+    border-bottom: 1px solid var(--bg);
+    padding-bottom: 1px;
+    align-self: flex-start;
+  }
+  .resource a.link:hover,
+  .resource:hover .link { opacity: 0.85; }
+  @media (max-width: 720px) {
+    .resources { grid-template-columns: 1fr; }
+  }
+
+  .hero .hero-logo {
+    display: block;
+    width: 104px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  /* ───────── Through-line ───────── */
+  .throughline {
+    position: relative;
+    overflow: hidden;
+    max-width: 1100px;
+    margin: 4vh auto 8vh;
+    padding: 6vh 40px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  /* Big faded globe watermark, centred behind the quote */
+  .throughline::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 520px;
+    max-width: 68%;
+    aspect-ratio: 1100 / 469;
+    background: url("/skynet/nct-globe-mark.png") no-repeat center / contain;
+    opacity: 0.06;
+    pointer-events: none;
+  }
+  .throughline > * { position: relative; z-index: 1; }
+  .throughline .lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 18px;
+  }
+  .throughline .quote {
+    font-family: var(--serif);
+    font-size: clamp(26px, 3.4vw, 42px);
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    max-width: 920px;
+  }
+  .throughline .quote .accent { color: var(--accent); }
+
+  /* ───────── Footer ───────── */
+  .doc-foot {
+    max-width: 1100px;
+    margin: 8vh auto 4vh;
+    padding: 4vh 40px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+  }
+  .doc-foot .accent { color: var(--accent); }
+  .doc-foot .foot-logo {
+    display: block;
+    width: 200px;
+    max-width: 60%;
+    height: auto;
+    margin: 0 auto 28px;
+  }
+  /* Full-width footer graphic — flush to the bottom of the page */
+  .doc-foot-graphic {
+    margin-top: 10vh;
+    width: 100%;
+    line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  /* Resources section sticker pack (top-right) */
+  .resources-block { position: relative; }
+  .resources-stickers {
+    position: absolute;
+    top: 6vh;
+    right: 40px;
+    width: 400px;
+    max-width: 40%;
+    height: auto;
+    pointer-events: none;
+  }
+  @media (max-width: 900px) {
+    .resources-stickers {
+      position: static;
+      width: 100%;
+      max-width: 380px;
+      margin: 0 0 28px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .session {
+      grid-template-columns: 1fr;
+    }
+    .session .body, .session .date, .session .action-cell {
+      border-left: none;
+      border-top: 1px solid var(--rule);
+    }
+    .session .num { padding: 16px 22px 0; font-size: 28px; }
+  }
+
+  @media print {
+    .topbar { position: static; }
+    section.block, .throughline, .stats { page-break-inside: avoid; }
+  }
+
+  /* ───────── Motion (animate-ui inspired) ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  /* Sleek entrance — staggered fade-up, no markup changes */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, .stats, .throughline, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .stats        { animation-delay: 0.06s; }
+    .throughline  { animation-delay: 0.12s; }
+    section.block { animation-delay: 0.16s; }
+    .sessions .session {
+      animation: nc-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    .sessions .session:nth-child(1) { animation-delay: 0.20s; }
+    .sessions .session:nth-child(2) { animation-delay: 0.25s; }
+    .sessions .session:nth-child(3) { animation-delay: 0.30s; }
+    .sessions .session:nth-child(4) { animation-delay: 0.35s; }
+    .sessions .session:nth-child(5) { animation-delay: 0.40s; }
+    .sessions .session:nth-child(6) { animation-delay: 0.45s; }
+    .sessions .session:nth-child(7) { animation-delay: 0.50s; }
+    .sessions .session:nth-child(8) { animation-delay: 0.55s; }
+  }
+
+  /* Refined spring hover */
+  .session.clickable {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.2s;
+  }
+  .session.clickable:hover { transform: translateY(-3px); }
+  .stat, .person, .resource {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .person:hover, .resource:hover { transform: translateY(-3px); }
+
+  /* ───────── Resource cards — refined hover + click choreography ─────────
+     Layered micro-interactions on top of the base translateY(-3px) lift:
+     deeper lift, cobalt-tinted shadow grows in, icon scales up, link
+     arrow nudges right, focus ring for keyboard nav, and a quick scale
+     dip on :active for tactile feedback. Same ease-out-quint everywhere. */
+  .resource {
+    transition:
+      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  .resource:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px -10px rgba(19, 56, 190, 0.38);
+  }
+  .resource:active {
+    transition-duration: 140ms;
+    transform: translateY(-1px) scale(0.985);
+    box-shadow: 0 4px 14px -10px rgba(19, 56, 190, 0.28);
+  }
+  .resource:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+  .resource .icon {
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .resource:hover .icon {
+    transform: scale(1.06);
+  }
+  .resource .link-arrow {
+    display: inline-block;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .resource:hover .link-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Live clock in the topbar */
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  /* De-crowd the topbar on narrow phones — drop the countdown, keep "Session 01 of 08" */
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* Honour reduced-motion fully */
+  /* ───────── Programme progress (retro) ───────── */
+  .prog {
+    max-width: 1100px;
+    margin: 0 auto 12vh;
+    padding: 0 40px;
+  }
+  .prog-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .prog-lbl, .prog-count {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .prog-count {
+    letter-spacing: 0.16em;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .prog-count strong { color: var(--accent); font-weight: 600; }
+  /* Sunken bevel tray — Win95 loader, our colours */
+  .prog-track {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    padding: 5px;
+    background: var(--bg);
+    border-style: solid;
+    border-width: 2px;
+    border-color: #9d9c9a #ffffff #ffffff #9d9c9a;
+  }
+  .prog-seg {
+    height: 30px;
+    position: relative;
+    overflow: hidden;
+    background: rgba(19, 56, 190, 0.06);
+    box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .prog-seg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.28),
+                inset 0 -3px 0 rgba(0, 0, 0, 0.18);
+    opacity: 0;
+    transform: scaleX(0.35);
+    transform-origin: left center;
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+  .prog.in-view .prog-seg.done::before,
+  .prog.in-view .prog-seg.current::before {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  /* current week blinks like a retro cursor */
+  .prog.in-view .prog-seg.current::before {
+    animation: prog-blink 1.1s steps(1) 1.7s infinite;
+  }
+  @keyframes prog-blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.5; }
+  }
+  /* left-to-right load cascade */
+  .prog-seg:nth-child(1)::before { transition-delay: 0.10s; }
+  .prog-seg:nth-child(2)::before { transition-delay: 0.20s; }
+  .prog-seg:nth-child(3)::before { transition-delay: 0.30s; }
+  .prog-seg:nth-child(4)::before { transition-delay: 0.40s; }
+  .prog-seg:nth-child(5)::before { transition-delay: 0.50s; }
+  .prog-seg:nth-child(6)::before { transition-delay: 0.60s; }
+  .prog-seg:nth-child(7)::before { transition-delay: 0.70s; }
+  .prog-seg:nth-child(8)::before { transition-delay: 0.80s; }
+  /* week marks below the tray */
+  .prog-marks {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+    padding: 0 7px;
+  }
+  .prog-marks span {
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .prog-marks span.is-current { color: var(--accent); }
+  @media (max-width: 640px) {
+    .prog-seg { height: 26px; }
+    .prog-marks span { font-size: 9px; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  /* Globe marks — topbar lockup + footer sign-off */
+  .topbar .brand-globe {
+    display: inline-block;
+    width: 19px;
+    height: 19px;
+    border-radius: 50%;
+    vertical-align: middle;
+    margin: -2px 2px 0;
+  }
+  .doc-foot .foot-globe {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    opacity: 0.85;
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  /* ───────── Resources cards — scroll-triggered cascade ─────────
+     Cards stay hidden until the .resources-block enters viewport.
+     `html.nc-js` gates so no-JS visitors still see the cards. */
+  html.nc-js .resources-block .resource {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  html.nc-js .resources-block.in-view .resource {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  html.nc-js .resources-block.in-view .resource:nth-child(2) { transition-delay: 0.07s; }
+  html.nc-js .resources-block.in-view .resource:nth-child(3) { transition-delay: 0.14s; }
+  html.nc-js .resources-block.in-view .resource:nth-child(4) { transition-delay: 0.21s; }
+  html.nc-js .resources-block.in-view .resource:nth-child(5) { transition-delay: 0.28s; }
+
+  /* ───────── Today session — ambient cream-on-cobalt glow pulse ─────────
+     Loops while a session card has the `.today` class (live state).
+     Subtle box-shadow breath — no transform, doesn't compete with hover. */
+  @keyframes nc-today-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(229, 228, 226, 0); }
+    50%      { box-shadow: 0 0 36px 4px rgba(229, 228, 226, 0.22); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .session.today { animation: nc-today-glow 3s ease-in-out infinite; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/skynet/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">×</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <div class="brand">SKYNET <span class="dot">×</span> <img class="brand-globe" src="/skynet/nct-globe.png" alt="" aria-hidden> NotContent</div>
+  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+</div>
+
+<!-- ═════ HERO ═════ -->
+<header class="hero">
+  <img class="hero-logo" src="/skynet/nct-logo-cobalt.png" alt="NotContent — AI Creative Training" />
+  <div class="eyebrow">
+    <span><span class="num">01</span> &nbsp;/&nbsp; Programme overview</span>
+    <span class="rule"></span>
+  </div>
+  <h1>SKYNET<br>goes <span class="accent">creative</span>.</h1>
+  <p class="sub">Eight weekly sessions. Eleven people. One through-line — by Session 8, every person in this room can take a client brief and produce client-grade creative.</p>
+</header>
+
+<div class="stats">
+  <div class="stat">
+    <div class="lbl">Programme</div>
+    <div class="val">8 weeks</div>
+    <div class="meta">May 21 → July 16, 2026</div>
+  </div>
+  <div class="stat">
+    <div class="lbl">Sessions</div>
+    <div class="val">8 <span class="accent">×</span> 60 min</div>
+    <div class="meta">Plus 2 office hours</div>
+  </div>
+  <div class="stat">
+    <div class="lbl">Team</div>
+    <div class="val">11 people</div>
+    <div class="meta">Across 9 client accounts</div>
+  </div>
+  <div class="stat">
+    <div class="lbl">Cadence</div>
+    <div class="val">Thursdays</div>
+    <div class="meta">10:00 AM ET</div>
+  </div>
+</div>
+
+<!-- ═════ PROGRAMME PROGRESS ═════ -->
+<div class="prog" id="prog">
+  <div class="prog-head">
+    <span class="prog-lbl">Programme progress</span>
+    <span class="prog-count"><strong id="prog-done">00</strong> of 08 weeks delivered</span>
+  </div>
+  <div class="prog-track">
+    <div class="prog-seg" data-date="2026-05-21"></div>
+    <div class="prog-seg" data-date="2026-05-28"></div>
+    <div class="prog-seg" data-date="2026-06-11"></div>
+    <div class="prog-seg" data-date="2026-06-18"></div>
+    <div class="prog-seg" data-date="2026-06-25"></div>
+    <div class="prog-seg" data-date="2026-07-09"></div>
+    <div class="prog-seg" data-date="2026-07-16"></div>
+    <div class="prog-seg" data-date="2026-07-23"></div>
+  </div>
+  <div class="prog-marks">
+    <span>01</span><span>02</span><span>03</span><span>04</span><span>05</span><span>06</span><span>07</span><span>08</span>
+  </div>
+</div>
+
+<!-- ═════ THROUGH-LINE ═════ -->
+<div class="throughline">
+  <div class="lbl">The through-line</div>
+  <p class="quote">Stop treating AI as a silver bullet. Build the systems that survive client chaos. Figure out what <span class="accent">SKYNET</span> does with this that nobody else does.</p>
+</div>
+
+<!-- ═════ SESSIONS ═════ -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The eight sessions <span class="rule"></span></div>
+    <h2>What we cover, week by week.</h2>
+    <p class="sub">Sessions 1 and 8 set and close the frame. Sessions 2 through 7 are the build. Cheat sheets and recordings are published in Slack within 24 hours of each session.</p>
+  </div>
+
+  <div class="sessions">
+
+    <!-- Session 1 — state applied by JS (date-driven) -->
+    <div class="session" data-date="2026-05-21" data-href="/skynet/sessions/01">
+      <div class="num">01</div>
+      <div class="body">
+        <div class="topic">How Creative Actually Works</div>
+        <div class="summary">The strategic frame. The operating discipline. The mental model that runs the whole programme.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, May 21</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill">Today</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 2 -->
+    <div class="session" data-date="2026-05-28" data-href="/skynet/sessions/02">
+      <div class="num">02</div>
+      <div class="body">
+        <div class="topic">Inspiration, Curation, and the Creative Idea</div>
+        <div class="summary">Where creative ideas actually come from. Design vs idea. Building a reference library that earns its keep.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, May 28</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 3 -->
+    <div class="session" data-date="2026-06-11" data-href="/skynet/sessions/03">
+      <div class="num">03</div>
+      <div class="body">
+        <div class="topic">The Brief on Both Sides of the Table</div>
+        <div class="summary">Receiving a brief, writing a brief, briefing AI. Translating vague client direction into production-grade direction.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 11</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 4 -->
+    <div class="session" data-date="2026-06-18" data-href="/skynet/sessions/04">
+      <div class="num">04</div>
+      <div class="body">
+        <div class="topic">The Production Stack</div>
+        <div class="summary">Flora as canvas. Claude as thinking layer. Nano Banana Pro, Veo 3, Seedance for production. Divergence at scale.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 18</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 5 -->
+    <div class="session" data-date="2026-06-25" data-href="/skynet/sessions/05">
+      <div class="num">05</div>
+      <div class="body">
+        <div class="topic">Static to Motion, Concept to Craft</div>
+        <div class="summary">Precision stills and short-form motion. Hybrid model where AI does volume and humans bring taste. Creative from scratch.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, June 25</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 6 -->
+    <div class="session" data-date="2026-07-09" data-href="/skynet/sessions/06">
+      <div class="num">06</div>
+      <div class="body">
+        <div class="topic">The Production House Loop</div>
+        <div class="summary">The production-house revision frame. Translating vague feedback into AI direction. Internal feedback rituals.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, July 9</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 7 -->
+    <div class="session" data-date="2026-07-16" data-href="/skynet/sessions/07">
+      <div class="num">07</div>
+      <div class="body">
+        <div class="topic">The Creative Service Blueprint</div>
+        <div class="summary">What "creative as a service" means at SKYNET. Pricing and scoping. The internal handoff between media, creative, and back.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, July 16</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Session 8 -->
+    <div class="session" data-date="2026-07-23">
+      <div class="num">08</div>
+      <div class="body">
+        <div class="topic">Scaling the System Across the Portfolio</div>
+        <div class="summary">The workflow as an asset. Replication test across a second client. Capacity maths. Each person's 30-day build plan.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, July 23</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═════ Meet link + auto-state injection ═════ -->
+<script>
+  /*
+    Recurring Google Calendar event creates one Meet link reused across all 8 sessions.
+    To change the Meet link, edit this one line and refresh the page.
+  */
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  /*
+    Auto-apply session state (past / today / future) based on the date each card carries.
+    - Today's session: active cobalt "Join meeting" button linking to Meet
+    - Future sessions: greyed, disabled, not clickable
+    - Past sessions: muted, "Session complete" label
+    Works automatically — when you open the hub on May 28, Session 2 lights up.
+  */
+  // Completed sessions get a full-width clickable CTA strip to their resources.
+  function injectCta(card, href) {
+    if (card.querySelector('.session-cta')) return;       // idempotent
+    const a = document.createElement('a');
+    a.className = 'session-cta';
+    a.href = href;
+    a.innerHTML = 'Session Notes, Recording &amp; Resources <span class="arr">⟶</span>';
+    card.appendChild(a);
+  }
+
+  function applyStates() {
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let nextAssigned = false;   // the soonest future row becomes "Next session"
+
+    document.querySelectorAll('.session').forEach(card => {
+      const dateStr = card.dataset.date;
+      if (!dateStr) return;
+
+      const [y, m, d] = dateStr.split('-').map(Number);
+      const sessionDate = new Date(y, m - 1, d);
+      const diff = sessionDate.getTime() - today.getTime();
+
+      card.classList.remove('today', 'past', 'future', 'next', 'upcoming', 'complete');
+      const pill = card.querySelector('.status-pill');
+      const btn = card.querySelector('.join-link');
+      const href = card.dataset.href;
+
+      if (diff === 0) {
+        // Live / today
+        card.classList.add('today');
+        if (pill) { pill.textContent = 'Today'; pill.className = 'status-pill'; }
+        if (btn) {
+          btn.style.display = '';
+          btn.classList.remove('disabled');
+          btn.textContent = 'Join meeting';
+          btn.href = MEET_LINK;
+        }
+      } else if (diff < 0) {
+        // Completed
+        card.classList.add('past');
+        if (href) {
+          card.classList.add('complete');
+          if (pill) { pill.textContent = 'Complete'; pill.className = 'status-pill complete'; }
+          if (btn) btn.style.display = 'none';   // CTA strip replaces the join button
+          injectCta(card, href);
+        } else {
+          // Page not published yet — stays muted, no CTA
+          if (pill) { pill.textContent = 'Complete'; pill.className = 'status-pill past'; }
+          if (btn) {
+            btn.style.display = '';
+            btn.classList.add('disabled');
+            btn.textContent = 'Session complete';
+            btn.href = '#';
+          }
+        }
+      } else {
+        // Future — first encountered (chronological markup order) is "next"
+        card.classList.add('future');
+        if (!nextAssigned) {
+          nextAssigned = true;
+          card.classList.add('next');
+          if (pill) { pill.textContent = 'Next session'; pill.className = 'status-pill next'; }
+        } else {
+          card.classList.add('upcoming');
+          if (pill) { pill.textContent = 'Upcoming'; pill.className = 'status-pill upcoming'; }
+        }
+        if (btn) {
+          btn.style.display = '';
+          btn.classList.add('disabled');
+          btn.textContent = 'Join meeting';
+          btn.href = '#';
+        }
+      }
+    });
+  }
+
+  applyStates();
+
+  /*
+    Make session cards clickable — click anywhere on the card (except the Meet button)
+    opens the session detail page. Set per card via data-href.
+  */
+  document.querySelectorAll('.session').forEach(card => {
+    const href = card.dataset.href;
+    if (!href) return;
+    card.classList.add('clickable');
+    card.addEventListener('click', (e) => {
+      // Let the Meet button and the resources CTA handle their own clicks
+      if (e.target.closest('.join-link, .session-cta')) return;
+      window.location.href = href;
+    });
+  });
+
+  /*
+    Countdown to the next session — every session starts 10:00 AM ET (UTC-4).
+    The programme runs entirely within Daylight Saving (May–Jul 2026), so a
+    fixed -4 offset (13:30 UTC) is correct. Shows "Live now" while a session
+    is running and "Programme complete" once the last one has passed.
+  */
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 14, 0, 0); // 10:00 AM ET
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+
+  /*
+    Programme progress bar — marks each week delivered (past), the current
+    week (today), and upcoming weeks, then loads up when scrolled into view.
+  */
+  (function () {
+    const prog = document.getElementById('prog');
+    if (!prog) return;
+    const segs = prog.querySelectorAll('.prog-seg');
+    const marks = prog.querySelectorAll('.prog-marks span');
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    let delivered = 0;
+    let currentFound = false;
+
+    segs.forEach((seg, i) => {
+      const [y, m, d] = seg.dataset.date.split('-').map(Number);
+      const diff = new Date(y, m - 1, d).getTime() - today.getTime();
+      if (diff < 0) { seg.classList.add('done'); delivered++; }
+      else if (!currentFound) {
+        seg.classList.add('current');
+        if (marks[i]) marks[i].classList.add('is-current');
+        currentFound = true;
+      }
+    });
+
+    const count = document.getElementById('prog-done');
+    if (count) count.textContent = String(delivered).padStart(2, '0');
+
+    // Load up when scrolled into view (fallback: reveal immediately)
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { prog.classList.add('in-view'); obs.disconnect(); }
+        });
+      }, { threshold: 0.25 });
+      io.observe(prog);
+    } else {
+      prog.classList.add('in-view');
+    }
+  })();
+</script>
+
+<!-- ═════ RESOURCES ═════ -->
+<section class="block resources-block">
+  <img class="resources-stickers" src="/skynet/nct-stickers.png" alt="NotContent stickers" />
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>What's around the sessions.</h2>
+    <p class="sub">The work happens in the hour each Thursday.<br>The support happens in between, after, and beyond.</p>
+  </div>
+
+  <div class="resources">
+
+    <div class="resource">
+      <span class="icon slack" aria-hidden="true">
+        <svg viewBox="0 0 122.8 122.8" xmlns="http://www.w3.org/2000/svg">
+          <path d="M25.8 77.6c0 7.1-5.8 12.9-12.9 12.9S0 84.7 0 77.6s5.8-12.9 12.9-12.9h12.9v12.9zm6.5 0c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9v32.3c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V77.6z" fill="#E01E5A"/>
+          <path d="M45.2 25.8c-7.1 0-12.9-5.8-12.9-12.9S38.1 0 45.2 0s12.9 5.8 12.9 12.9v12.9H45.2zm0 6.5c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H12.9C5.8 58.1 0 52.3 0 45.2s5.8-12.9 12.9-12.9h32.3z" fill="#36C5F0"/>
+          <path d="M97 45.2c0-7.1 5.8-12.9 12.9-12.9s12.9 5.8 12.9 12.9-5.8 12.9-12.9 12.9H97V45.2zm-6.5 0c0 7.1-5.8 12.9-12.9 12.9s-12.9-5.8-12.9-12.9V12.9C64.7 5.8 70.5 0 77.6 0s12.9 5.8 12.9 12.9v32.3z" fill="#2EB67D"/>
+          <path d="M77.6 97c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9-12.9-5.8-12.9-12.9V97h12.9zm0-6.5c-7.1 0-12.9-5.8-12.9-12.9s5.8-12.9 12.9-12.9h32.3c7.1 0 12.9 5.8 12.9 12.9s-5.8 12.9-12.9 12.9H77.6z" fill="#ECB22E"/>
+        </svg>
+      </span>
+      <div class="lbl">Slack</div>
+      <div class="name">#project-creative-training</div>
+      <div class="desc">The programme Slack channel, in the SKYNET workspace. Post work in progress, ask questions between sessions, grab recordings, links, and assets. Working-week response from Jeremy.</div>
+    </div>
+
+    <a class="resource" href="/skynet/resources/prompt-library" style="text-decoration:none;color:inherit;">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5L12 2Z"/>
+          <path d="M19.2 4l.5 1.3L21 5.8l-1.3.5L19.2 7.6l-.5-1.3L17.4 5.8l1.3-.5z"/>
+        </svg>
+      </span>
+      <div class="lbl">Library</div>
+      <div class="name">Claude Prompt Library</div>
+      <div class="desc">The starter set of prompts for the programme. Copy, paste, run. Grows as new prompts get tested in the cohort.</div>
+      <span class="link">Open the library <span class="link-arrow">→</span></span>
+    </a>
+
+    <a class="resource" href="/skynet/resources/camera-prompts" style="text-decoration:none;color:inherit;">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="2" y="7" width="13" height="10" rx="1.5"/>
+          <path d="M15 10.5 L22 7.5 V16.5 L15 13.5"/>
+        </svg>
+      </span>
+      <div class="lbl">Finder</div>
+      <div class="name">The Camera Prompt Finder</div>
+      <div class="desc">90 camera prompts for AI creation — every movement for video, every angle and lens look for stills. Search it, filter it, copy the shot, keep your scene.</div>
+      <span class="link">Open the finder <span class="link-arrow">→</span></span>
+    </a>
+
+    <div class="resource">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="9"/>
+          <polyline points="12 7 12 12 15.5 14"/>
+        </svg>
+      </span>
+      <div class="lbl">Drop-in</div>
+      <div class="name">Office hours</div>
+      <div class="desc">Two optional one-hour sessions scheduled around weeks 3 and 6. Drop-in, live work, anything you're stuck on.</div>
+    </div>
+
+    <div class="resource">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="3" y="5" width="18" height="16" rx="2"/>
+          <line x1="3" y1="10" x2="21" y2="10"/>
+          <line x1="8" y1="3" x2="8" y2="7"/>
+          <line x1="16" y1="3" x2="16" y2="7"/>
+        </svg>
+      </span>
+      <div class="lbl">After</div>
+      <div class="name">6 months post-programme</div>
+      <div class="desc">Light advisement from Jeremy after the programme ends — quick monthly check-ins and ad-hoc questions. Through January 2027.</div>
+    </div>
+
+    <a class="resource" href="/skynet/team" style="text-decoration:none;color:inherit;">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="8" r="3.5"/>
+          <circle cx="17" cy="9.5" r="2.5"/>
+          <path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+          <path d="M14 14c1-1 2.3-1.5 3-1.5 2.5 0 4 2 4 4.5"/>
+        </svg>
+      </span>
+      <div class="lbl">The team</div>
+      <div class="name">Meet the cohort</div>
+      <div class="desc">ID cards for the 2026 training cohort. Click to flip.</div>
+      <span class="link">Meet the team <span class="link-arrow">→</span></span>
+    </a>
+
+  </div>
+</section>
+
+<script>
+  /*
+    Resources block — scroll-triggered cascade. Lives here, after the
+    .resources-block markup, so the element is guaranteed parsed when
+    the IIFE runs. Fires .in-view as soon as 5% of the block crosses
+    into the viewport, which kicks the 5 cards' staggered transitions.
+    Fallback: reveal immediately if IntersectionObserver isn't supported.
+  */
+  (function () {
+    const block = document.querySelector('.resources-block');
+    if (!block) return;
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { block.classList.add('in-view'); obs.disconnect(); }
+        });
+      }, { threshold: 0.05, rootMargin: '0px 0px -8% 0px' });
+      io.observe(block);
+    } else {
+      block.classList.add('in-view');
+    }
+  })();
+</script>
+
+<footer class="doc-foot-graphic">
+  <img src="/skynet/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+</body>
+</html>

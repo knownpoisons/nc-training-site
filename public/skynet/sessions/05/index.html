@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session 05 — Making Stuff: The Product Workflow and the Data Advantage — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 05 — Making Stuff: The Product Workflow and the Data Advantage. Hands hit Flora. The four-node workflow, connect vs disconnect, and the data edge only a media agency has. Thursday 25 June 2026." />
+<link rel="icon" type="image/png" href="/skynet/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 05 — Making Stuff: The Product Workflow and the Data Advantage" />
+<meta property="og:description" content="Hands hit Flora. The four-node product workflow, connect vs disconnect, and the data edge only a media agency has. Thursday 25 June 2026." />
+<meta property="og:image" content="https://training.notcontent.ai/skynet/sessions/05/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/skynet/sessions/05" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back { text-decoration: none; color: var(--accent); font-weight: 600; }
+  .topbar .back .arrow { margin-right: 8px; }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 6vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .pill {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+  .hero .eyebrow .pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero .eyebrow .pill.future { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1.cheat-header {
+    margin: 6px auto 0;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .hero h1.cheat-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .hero .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+  }
+  .hero .meta .item .lbl {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .hero .meta .item .val {
+    font-family: var(--serif);
+    font-size: 19px;
+  }
+  .hero .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .btn:hover { background: transparent; color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn.ghost:hover { background: var(--accent); color: var(--bg); }
+  .btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head { margin-bottom: 28px; }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule { flex: 1; height: 1px; background: var(--rule); }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Agenda ─── */
+  .agenda { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .agenda-item .n {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .agenda-item .title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Cards ─── */
+  .cards-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .resource-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .resource-card .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource-card .name {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .resource-card .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .resource-card a.link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+
+  /* ─── Next session ─── */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: rgba(229,228,226,0.85);
+    letter-spacing: 0.05em;
+  }
+  .next-up .btn { background: var(--bg); color: var(--accent); border-color: var(--bg); }
+  .next-up .btn:hover { background: transparent; color: var(--bg); border-color: var(--bg); }
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Homework ─── */
+  .homework {
+    margin: 28px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--accent);
+    background: var(--soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .homework .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .homework .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .homework .due {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Pull quote ─── */
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  .cheat-pull .attr {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+  }
+
+  /* ─── Cheat note / list / sub ─── */
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .cheat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
+  /* ─── Workflow diagram ─── */
+  .workflow-steps { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 22px 0; }
+  .wf-step {
+    padding: 22px 18px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+    text-align: center;
+    position: relative;
+  }
+  .wf-step .step-num {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .wf-step .step-name {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .wf-step .step-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─── Connect vs disconnect ─── */
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 22px 0; }
+  .vs-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .vs-card.active { background: var(--accent); color: var(--bg); border-top-color: var(--bg); }
+  .vs-card .vs-title {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .vs-card.active .vs-title { color: var(--bg); }
+  .vs-card .vs-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .vs-card.active .vs-desc { color: rgba(229, 228, 226, 0.9); }
+
+  /* ─── Data advantage callout ─── */
+  .data-callout {
+    margin: 28px 0;
+    padding: 28px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+  }
+  .data-callout .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(229, 228, 226, 0.8);
+    margin-bottom: 12px;
+  }
+  .data-callout .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--bg);
+    margin-bottom: 10px;
+  }
+  .data-callout .due {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(229, 228, 226, 0.9);
+  }
+
+  /* ─── Video embed ─── */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-bottom: 28px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ─── Section split ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Footer ─── */
+  .doc-foot-graphic { margin-top: 10vh; width: 100%; line-height: 0; }
+  .doc-foot-graphic img { display: block; width: 100%; height: auto; }
+
+  @media (max-width: 760px) {
+    .cards-2col { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 1fr; gap: 6px; }
+    .next-up { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr !important; }
+    .workflow-steps { grid-template-columns: 1fr 1fr; }
+    .vs-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .workflow-steps { grid-template-columns: 1fr; }
+  }
+
+  /* ───────── Motion ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/skynet/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">×</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/skynet"><span class="arrow">←</span>Back to hub</a>
+  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">05</span> &nbsp;/&nbsp; Phase 01 · Week 05 of 08</span>
+    <span class="pill" id="status-pill">Upcoming</span>
+  </div>
+  <h1 class="cheat-header">
+    <img src="/skynet/sessions/05/cheatsheet-header.png" alt="Cheatsheet: Session Five — for creative teams and brands." />
+  </h1>
+  <p class="hero-lede">You now make things in minutes. The job is knowing which thing to keep — and why it'll work.</p>
+  <div class="meta">
+    <div class="item">
+      <div class="lbl">Date</div>
+      <div class="val"><s>Thursday, June 25, 2026</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Time</div>
+      <div class="val"><s>10:00 AM ET</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Length</div>
+      <div class="val"><s>60 minutes</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Format</div>
+      <div class="val"><s>Google Meet</s></div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn join-link" id="join-btn" href="#" target="_blank" rel="noopener">Join meeting</a>
+    <a class="btn ghost" href="/skynet">View all sessions</a>
+  </div>
+</header>
+
+<!-- ─── 01 · WHAT WE COVERED ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
+    <h2>Making stuff.</h2>
+    <p class="cheat-note" style="margin-top:14px;">Hands hit Flora this week. The mechanics are genuinely simple: a source image, a product image, a Claude prompt, an image node. Run it, and you get a finished-looking ad. This session was about what happens <em>around</em> that ease — the emotional cost of putting work out, the discipline that protects you from it, and the one thing this team has that no creative studio does: hard data on what actually works.</p>
+  </div>
+
+  <div class="agenda">
+    <div class="agenda-item"><div class="n">01</div><div class="title">Before the tools: handling rejection, holding the brief, and getting comfortable with "no."</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">The four-node product workflow: source image → product image → Claude system prompt → image node.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">Connect vs disconnect: the reference image choice that changes everything.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">The data advantage: feeding client performance data into creative decisions.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">Static to video, CapCut for finishing, and shipping 9:16.</div></div>
+  </div>
+</section>
+
+<!-- ─── 02 · THE WORKFLOW ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The framework <span class="rule"></span></div>
+    <h2>The product image workflow.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Four nodes on the canvas, in order. The LLM node doesn't make the picture — it writes the instructions that make the picture. That's the part people skip.</p>
+
+  <div class="workflow-steps">
+    <div class="wf-step">
+      <div class="step-num">1</div>
+      <div class="step-name">Source / Reference</div>
+      <div class="step-desc">Carries the world: mood, lighting, style, energy you want.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">2</div>
+      <div class="step-name">Product Image</div>
+      <div class="step-desc">The thing the ad sells. Logo visible, exact SKU.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">3</div>
+      <div class="step-name">LLM (Claude)</div>
+      <div class="step-desc">Reads both images and writes a system prompt for the image model.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">4</div>
+      <div class="step-name">Image Node</div>
+      <div class="step-desc">Renders the result. Run a few — two to four, not twenty.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull">"<span class="accent">If it's a maybe, it's a no.</span>" And when it goes from maybe to a no — delete it. What is really good about AI is you can make it again 50 times over. Assets, creative, photography, videos have become fully disposable.<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 03 · CONNECT VS DISCONNECT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The insight <span class="rule"></span></div>
+    <h2>Connect, or don't.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Whether you wire the reference image into the node or not changes everything:</p>
+
+  <div class="vs-grid">
+    <div class="vs-card">
+      <div class="vs-title">Disconnected</div>
+      <div class="vs-desc">The image model leans on its own training knowledge of the brand. It already knows what Carhartt looks like and how to lay a tee on a pile of logs. Surprisingly capable — but it won't replicate <em>your</em> exact reference.</div>
+    </div>
+    <div class="vs-card active">
+      <div class="vs-title">Connected</div>
+      <div class="vs-desc">The output stays close to the source composition. Use this when you need to land near a specific look. Get the replica, then nudge — "swap the logs for tropical leaves" — so it becomes a remix, not a copy.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull">"Everything we do and everything we're going to do in creativity is <span class="accent">just remixing something else.</span> We are doing this for money — we are not doing this for art."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 04 · DATA ADVANTAGE ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;The strategic edge <span class="rule"></span></div>
+    <h2>You have something no creative shop has.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">You are a <strong>media agency</strong>, not a creative studio — and that means you have hard data on what actually worked. Which format, which environment, which placement drove the click-throughs. That's the bypass from Session 01 in motion.</p>
+
+  <div class="data-callout">
+    <div class="lbl">The move</div>
+    <div class="ask">Pull the client's historical ad performance data and drop it into your Claude project as core context.</div>
+    <div class="due">Don't read it and decipher it yourself — hand it to the machine, tell it what to look for, and let it surface the directions most likely to perform. Feed results back into the next round of creative.</div>
+  </div>
+
+  <blockquote class="cheat-pull">"You have this third part which nobody else has, which I do not have: <span class="accent">you have hard data on what actually works.</span> That's where you have influence over the client and what you make."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 05 · FROM THE SESSION ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;From the session <span class="rule"></span></div>
+    <h2>Words worth keeping.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On rejection — Luisa Melo</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"It feels so deeply personal, and it hurts in a way that you don't expect to be connected to your work. It does feel like they're saying your kid is ugly."</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On clients warming to AI — Luisa Melo</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"At first, the more the creative looks like tiny variations of the stuff they've done for years, the more they're gonna like it."</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">We are the professionals here.</span> You have come to us."<span class="attr">— Jeremy Somers, on holding the line with clients</span></blockquote>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"You just have to <span class="accent">fail enough at it</span> that it won't matter. Expect rejection, and then you'll be pleasantly surprised."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 06 · WHAT TO REMEMBER ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">06</span> &nbsp;What to remember <span class="rule"></span></div>
+    <h2>Keep these close.</h2>
+  </div>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">If it's a maybe, it's a no.</div>
+      <div class="p">The instant a keeper slides to "maybe," delete it. Don't sit with it. Regenerate.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Assets are disposable.</div>
+      <div class="p">The keep-everything, <code>V2_final_final</code> era is over. Make it again — it's free-ish and fast.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Run a few, not twenty.</div>
+      <div class="p">Two to four variants per node. Twenty at once scrambles your brain because they're all good now.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The report is everything.</div>
+      <div class="p">You're a media agency. Run all of it through the lens of what the data says actually worked.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Name your workflows.</div>
+      <div class="p">Shared workspace = a wall of "untitled." Title everything, drag into your personal folder, delete what you don't need.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Fauna is a how-to, not a chatbot.</div>
+      <div class="p">The in-platform agent knows Flora back to front — ask it how to connect a node, make an animation, anything.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 07 · HOMEWORK ─── -->
+<section class="block" id="homework">
+  <div class="head">
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Homework <span class="rule"></span></div>
+    <h2>Two things this week.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;"><strong>Due before Session 06 — Thursday, July 9.</strong> This is still a reps week: you have Flora access now, so the point is volume and exploration, not a polished deliverable.</p>
+
+  <div class="homework">
+    <div class="lbl">1 · Name and tidy your workflows</div>
+    <div class="ask">Go into Flora and <strong>title every workflow</strong> you've made. Drag your projects into your personal folder. Delete what you don't need — assets are disposable.</div>
+    <div class="due">The bar: no untitled projects left by next session.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">2 · Find a new Carhartt direction in Flora</div>
+    <div class="ask">Build the four-node product workflow: source reference, Carhartt product, Claude system prompt, image node. Run it both ways — reference connected and disconnected — and feel the difference.</div>
+    <div class="due">Land on a genuinely new creative direction that could realistically work for the brand. On-brand enough that the client would buy it, fresh enough that it isn't the same workwear ad everyone makes.</div>
+  </div>
+
+  <div class="homework" style="border-left-color:var(--accent);background:rgba(19,56,190,0.07);">
+    <div class="lbl">The deliverable · due Thursday, 9 July</div>
+    <div class="ask">Come to Session 06 with a <strong>clean workspace</strong> (everything named and foldered) and <strong>one Carhartt direction</strong> you built in Flora.</div>
+    <div class="due">Share the Flora link in <strong>#project-creative-training</strong> so the team can clone it. Bring the messy attempts too — the experiments are where the learning is.</div>
+  </div>
+</section>
+
+<div class="cheat-split"><hr></div>
+
+<!-- ─── 08 · COMING NEXT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">08</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
+    <div>
+      <div class="lbl">Session 06 &nbsp;·&nbsp; Thursday, 9 July 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
+      <div class="title">The Production House Loop</div>
+      <div class="date">The production-house revision frame. Translating vague feedback into AI direction. Internal feedback rituals.</div>
+    </div>
+    <a class="btn" href="/skynet">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── 09 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">09</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
+  </div>
+
+  <div class="video-embed">
+    <iframe src="https://drive.google.com/file/d/1mYgWR-PkC0LYx9chIPk69cue3DbrMREg/preview" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <div class="lbl">Recording</div>
+      <div class="name">Session 05 video</div>
+      <div class="desc">The full session, start to finish. Watch it back any time.</div>
+      <a class="link" href="https://drive.google.com/file/d/1mYgWR-PkC0LYx9chIPk69cue3DbrMREg/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+
+    <div class="resource-card highlight">
+      <div class="lbl">On the hub</div>
+      <div class="name">ICC Prompt Library</div>
+      <div class="desc">12 copy-paste ICC prompts by category. Use the master prompt to kick off creative production in Claude before pasting into Flora.</div>
+      <a class="link" href="/skynet/resources/prompt-library" target="_blank" rel="noopener">Open prompt library</a>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-foot-graphic">
+  <img src="/skynet/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  const SESSION_DATE = "2026-06-25";
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const [y, m, d] = SESSION_DATE.split('-').map(Number);
+  const sessionDate = new Date(y, m - 1, d);
+  const diff = sessionDate.getTime() - today.getTime();
+
+  const pill = document.getElementById('status-pill');
+  const btn = document.getElementById('join-btn');
+
+  if (diff === 0) {
+    pill.textContent = 'Today';
+    pill.className = 'pill';
+    btn.href = MEET_LINK;
+    btn.classList.remove('disabled');
+  } else if (diff < 0) {
+    pill.textContent = 'Complete';
+    pill.className = 'pill past';
+    btn.textContent = 'Session complete';
+    btn.classList.add('disabled');
+  } else {
+    pill.textContent = 'Upcoming';
+    pill.className = 'pill future';
+    btn.textContent = 'Join meeting';
+    btn.classList.add('disabled');
+  }
+
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 14, 0, 0);
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>

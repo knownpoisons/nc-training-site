@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session 03 — The Brief on Both Sides of the Table — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 03 — The Brief on Both Sides of the Table. Brief and prompt are the same act. ICC: Instructions, Context, Constraints. Thursday 11 June 2026." />
+<link rel="icon" type="image/png" href="/skynet/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 03 — The Brief on Both Sides of the Table" />
+<meta property="og:description" content="Brief and prompt are the same act. ICC: Instructions, Context, Constraints. Thursday 11 June 2026, 10:00 AM ET." />
+<meta property="og:image" content="https://training.notcontent.ai/skynet/sessions/03/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/skynet/sessions/03" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .topbar .back .arrow {
+    margin-right: 8px;
+  }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 6vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .pill {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+  .hero .eyebrow .pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero .eyebrow .pill.future { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero .hero-logo {
+    display: block;
+    width: 104px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+  .hero h1.cheat-header {
+    margin: 6px auto 0;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .hero h1.cheat-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .hero .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+  }
+  .hero .meta .item .lbl {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .hero .meta .item .val {
+    font-family: var(--serif);
+    font-size: 19px;
+  }
+  .hero .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .btn:hover {
+    background: transparent;
+    color: var(--accent);
+  }
+  .btn.ghost {
+    background: transparent;
+    color: var(--accent);
+  }
+  .btn.ghost:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head {
+    margin-bottom: 28px;
+  }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule {
+    flex: 1; height: 1px; background: var(--rule);
+  }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Agenda list ─── */
+  .agenda {
+    display: grid;
+    grid-template-columns: 1fr;
+    border-top: 1px solid var(--rule);
+  }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .agenda-item .n {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.005em;
+  }
+  .agenda-item .title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Cards ─── */
+  .cards-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .resource-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .resource-card.muted {
+    border-top-color: var(--rule);
+    opacity: 0.7;
+  }
+  .resource-card .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource-card.muted .lbl { color: var(--muted); }
+  .resource-card .name {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .resource-card .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .resource-card a.link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .resource-card.muted .empty {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ─── Next session preview ─── */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: rgba(229,228,226,0.85);
+    letter-spacing: 0.05em;
+  }
+  .next-up .btn {
+    background: var(--bg);
+    color: var(--accent);
+    border-color: var(--bg);
+  }
+  .next-up .btn:hover {
+    background: transparent;
+    color: var(--bg);
+    border-color: var(--bg);
+  }
+
+  /* ─── Highlighted (cobalt) resource cards ─── */
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+  .resource-icon {
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin-bottom: 16px;
+    color: var(--bg);
+  }
+  .resource-icon svg { display: block; width: 100%; height: 100%; }
+  .resource-icon.slack { width: 26px; height: 26px; }
+
+  /* ─── Section split line ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Coming next — neutral (non-cobalt) variant ─── */
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Homework callout ─── */
+  .homework {
+    margin: 28px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--accent);
+    background: var(--soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .homework .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .homework .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .homework .due {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Pull quote ─── */
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  .cheat-pull .attr {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+  }
+
+  /* ─── Cheat note ─── */
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+
+  /* ─── Cheat list (two-up grid) ─── */
+  .cheat-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
+  /* ─── ICC diagram ─── */
+  .icc-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin: 28px 0 10px;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 2px solid var(--accent);
+  }
+  .icc-cell {
+    padding: 22px 20px;
+    text-align: center;
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .icc-cell + .icc-cell { border-left: 1px solid rgba(229,228,226,0.2); }
+  .icc-cell .letter {
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1;
+    font-weight: 400;
+    margin-bottom: 4px;
+  }
+  .icc-cell .word {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(229,228,226,0.85);
+  }
+  .icc-cell .blurb {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: rgba(229,228,226,0.9);
+    margin-top: 10px;
+  }
+  .icc-caption {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  /* ─── Copy-paste block ─── */
+  .copy-block {
+    position: relative;
+    margin: 22px 0;
+    padding: 22px 26px;
+    background: var(--ink);
+    color: var(--bg);
+    border-radius: 4px;
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+  .copy-block .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    background: rgba(229,228,226,0.15);
+    color: var(--bg);
+    border: none;
+    border-radius: 3px;
+    padding: 6px 12px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-block .copy-btn:hover { background: rgba(229,228,226,0.25); }
+
+  /* ─── Footer ─── */
+  .doc-foot {
+    max-width: 880px;
+    margin: 8vh auto 4vh;
+    padding: 4vh 40px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+  }
+  .doc-foot .accent { color: var(--accent); }
+  .doc-foot-graphic {
+    margin-top: 10vh;
+    width: 100%;
+    line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .doc-foot a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 8px;
+  }
+
+  @media (max-width: 760px) {
+    .cards-2col { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 1fr; gap: 6px; }
+    .next-up { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr !important; }
+    .icc-bar { grid-template-columns: 1fr; }
+    .icc-cell + .icc-cell { border-left: none; border-top: 1px solid rgba(229,228,226,0.2); }
+  }
+  @media (max-width: 560px) {
+    .icc-bar { grid-template-columns: 1fr; }
+  }
+
+  /* ───────── Motion ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  .doc-foot .foot-globe {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    opacity: 0.85;
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/skynet/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">×</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/skynet"><span class="arrow">←</span>Back to hub</a>
+  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">03</span> &nbsp;/&nbsp; Phase 01 · Week 03 of 08</span>
+    <span class="pill" id="status-pill">Upcoming</span>
+  </div>
+  <h1 class="cheat-header">
+    <img src="/skynet/sessions/03/cheatsheet-header.png" alt="Cheatsheet: Session Three — for creative teams and brands." />
+  </h1>
+  <p class="hero-lede">This week was the brief. Brief and prompt are the same act — point the skill you already have at the machine.</p>
+  <div class="meta">
+    <div class="item">
+      <div class="lbl">Date</div>
+      <div class="val"><s>Thursday, June 11, 2026</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Time</div>
+      <div class="val"><s>10:00 AM ET</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Length</div>
+      <div class="val"><s>60 minutes</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Format</div>
+      <div class="val"><s>Google Meet</s></div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn join-link" id="join-btn" href="#" target="_blank" rel="noopener">Join meeting</a>
+    <a class="btn ghost" href="/skynet">View all sessions</a>
+  </div>
+</header>
+
+<!-- ─── 01 · WHAT WE COVERED ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
+    <h2>The brief on both sides of the table.</h2>
+    <p class="cheat-note" style="margin-top:14px;">You've been briefing people your whole careers. Now you point that same skill at the machine. Nothing new to learn — just a new direction to aim an old muscle. But when you're producing the asset instead of the recommendation, your tolerance for a vague brief drops to zero.</p>
+  </div>
+
+  <div class="agenda">
+    <div class="agenda-item"><div class="n">01</div><div class="title">The frame — media briefs vs production briefs. Why vagueness is survivable in one and fatal in the other.</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">ICC: Instructions, Context, Constraints. The three-part framework for every prompt and every brief.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">Talk, don't type. Why speaking your ICC unlocks more context than your fingers ever will.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">Force Claude to interview you. The copy-paste block that makes Claude pull ICC out of your head.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">The async creative process. No live presentations, no live feedback — record, brief, deliver.</div></div>
+  </div>
+</section>
+
+<!-- ─── 02 · ICC FRAMEWORK ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The framework <span class="rule"></span></div>
+    <h2>ICC — the one frame for everything.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:8px;">Three letters for everything you ask AI, and every brief you take.</p>
+
+  <div class="icc-bar">
+    <div class="icc-cell">
+      <div class="letter">I</div>
+      <div class="word">Instructions</div>
+      <div class="blurb">The task. The job. The part everyone gets right.</div>
+    </div>
+    <div class="icc-cell">
+      <div class="letter">C</div>
+      <div class="word">Context</div>
+      <div class="blurb">The big one — and the one everyone starves. Who you are, the brand's world, what's worked before. More context = dramatically better output.</div>
+    </div>
+    <div class="icc-cell">
+      <div class="letter">C</div>
+      <div class="word">Constraints</div>
+      <div class="blurb">Tone, ratios, must-haves, what good looks like. Constraints aren't limiting — they get you to the right idea faster.</div>
+    </div>
+  </div>
+  <p class="icc-caption">Constraints come from three places: the <strong>client</strong> (demand them), your <strong>own taste and knowledge</strong>, and <strong>Claude</strong> (who'll pull more out of you).</p>
+
+  <blockquote class="cheat-pull" style="margin-top:32px;">"It's not a trick, it's a framework. <span class="accent">ICC, ICC, ICC.</span> Once we lock this in, the rest of the program gets easier, using AI gets easier, outputs become infinitely better."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 03 · FROM THE SESSION ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;From the session <span class="rule"></span></div>
+    <h2>Words worth keeping.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On the brief</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"The vagueness will kill the job — and kill any margin that we have. We're trying to make a bulletproof system where we go away, make one thing, give it back, they make minor tweaks, and it's done."</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On talking to Claude</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"It doesn't work as a transcribing tool. It works as the ultimate organizer of your brain."</div>
+    </div>
+  </div>
+
+  <div class="cards-2col" style="margin-top:16px;">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On detail — Luisa Melo</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"Over-index on detail, because it's better to not use stuff than to miss stuff out."</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On leadership — Vic Drabicky</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"What they're actually paying you for is leadership to get to the best outcome."</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ★ · TALK DON'T TYPE ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">★</span> &nbsp;Remember this <span class="rule"></span></div>
+    <h2>Talk, don't type.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:22px;">Your fingers can't keep up with your brain. When you type, you're structuring sentences <em>and</em> thoughts <em>and</em> the overall shape all at once, and the thinking backs up behind the typing. Talking to Claude isn't transcription — it's the ultimate organizer of your brain. You talk as fast as you want, double back, change your mind mid-sentence — and it ignores the noise and keeps what matters.</p>
+
+  <div class="cheat-list" style="grid-template-columns:1fr 1fr;">
+    <div class="cheat-item">
+      <div class="h" style="color:var(--accent);">The habit</div>
+      <div class="p">For anything bigger than a one-liner, <em>speak</em> your ICC instead of typing it. AirPods in, phone in pocket, Claude voice mode on, and go for a walk — 10, 20, 60 minutes. The output is in a different league.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h" style="color:var(--accent);">The interview block</div>
+      <div class="p">Even after a good brief, there's more ICC in your head you haven't said. So make Claude pull it out — paste your context, then add the interview prompt below.</div>
+    </div>
+  </div>
+
+  <div class="copy-block" id="interview-block">"Quick context on how we work: we structure everything as ICC — instructions, context, constraints. Interview me to fill those three out. Ask all the questions you need, short multiple choice where you can, a few at a time, and wait for my answers before moving on."<button class="copy-btn" onclick="copyBlock()">Copy</button></div>
+
+  <p class="cheat-note" style="margin-top:16px;">Claude doesn't know "ICC" out of the box — define it once and it adapts instantly. You stay in charge: when you've got enough, say <em>"we're good, let's move on."</em></p>
+</section>
+
+<!-- ─── 04 · WHAT TO REMEMBER ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;What to remember <span class="rule"></span></div>
+    <h2>Keep these close.</h2>
+  </div>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">A vague brief kills the job — and the margin.</div>
+      <div class="p">Rework, again and again, is where the money leaks out. The whole system exists to send work out once and get it back with minor tweaks.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Over-index on detail.</div>
+      <div class="p">Better to collect information you don't use than to discover the gap when the client says "I hate this concept." Get everything you can up front.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Pretend you don't know the client.</div>
+      <div class="p">When you ask for a brief, brief as if you've never worked the account. Lean on what you already know and you'll never be able to work a client you <em>don't</em> know.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Lead, don't serve.</div>
+      <div class="p">Clients don't pay you to ask them what they want — they pay you for the leadership to get to the best outcome. Take the creative direction back.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Don't ask me — ask Claudette.</div>
+      <div class="p">Half of getting good is having the conversation with Claude itself. Ask it how to set up Projects and global instructions for your own context — you walk away with the skill, not just the answer.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Async beats live.</div>
+      <div class="p">Don't take creative feedback live in a room — information gets lost, the client fixates on the wrong thing. Record the briefing, feed it to Claude, deliver when it's done.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 · HOMEWORK ─── -->
+<section class="block" id="homework">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Homework <span class="rule"></span></div>
+    <h2>Do this before Session 4.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;"><strong>Read this — we didn't get to it live.</strong> We ran out of clock before the homework again, so here's the full version. One habit, one share.</p>
+
+  <div class="homework">
+    <div class="lbl">1 · Run ICC by voice before every Claude session</div>
+    <div class="ask">Open the <strong>ICC page on the hub</strong> as your trigger — then turn on the mic and <em>speak</em> your instructions, context, and constraints. Don't type them.</div>
+    <div class="due">For anything bigger than a quick question, go further: AirPods in, phone in pocket, Claude voice mode on, and walk while you brief it. Ten minutes minimum.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">2 · Use the "interview me" block at least once</div>
+    <div class="ask">On one real task this week, paste your context and then add the interview prompt from above. Let Claude pull the ICC out of you.</div>
+    <div class="due">Notice how much was in your head that you hadn't said. Stay in charge — when you've got enough, tell it "we're good, let's move on."</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">3 · Share one win in Slack</div>
+    <div class="ask">Find one prompt or one result that worked and drop it in <strong>#project-creative-training</strong>. Say what you asked and what came back.</div>
+    <div class="due">The team that shares prompts levels up faster than the team that hoards them — when Christina cracks something, everyone gets to adapt it.</div>
+  </div>
+
+  <div class="homework" style="border-left-color:var(--accent);background:rgba(19,56,190,0.07);">
+    <div class="lbl">The deliverable · due Thursday, 18 June</div>
+    <div class="ask">Come to Session 4 having <strong>briefed Claude by voice, with ICC, at least three times</strong> — and with <strong>one prompt or result shared in Slack</strong>.</div>
+    <div class="due">We're bringing in the production tools next week (Flora + the models), and ICC is the on-ramp to all of it. If the habit isn't in, the tools won't land.</div>
+  </div>
+</section>
+
+<div class="cheat-split"><hr></div>
+
+<!-- ─── 06 · COMING NEXT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">06</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
+    <div>
+      <div class="lbl">Session 04 &nbsp;·&nbsp; Thursday, 18 June 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
+      <div class="title">The Production Stack</div>
+      <div class="date">We bring in the tools. Flora as the canvas, the production models, and divergence at scale — generating real directions against the anchor brief. ICC is the on-ramp to all of it.</div>
+    </div>
+    <a class="btn" href="/skynet">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── 07 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <div class="lbl">Recording</div>
+      <div class="name">Session 03 video</div>
+      <div class="desc">The full session, start to finish. Watch it back any time.</div>
+      <a class="link" href="https://drive.google.com/file/d/1PlB-7zHZvhu1BDLvPvtL-C5pWC4TCj6N/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+
+    <div class="resource-card highlight">
+      <div class="lbl">On the hub</div>
+      <div class="name">ICC Prompt Library</div>
+      <div class="desc">12 copy-paste ICC prompts by category — learning, fixing your thinking, email, briefing. Make the ICC page your trigger: open it before every Claude session.</div>
+      <a class="link" href="/skynet/resources/prompt-library" target="_blank" rel="noopener">Open prompt library</a>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-foot-graphic">
+  <img src="/skynet/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  // Auto-update the status pill + join button based on the date
+  const SESSION_DATE = "2026-06-11";
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const [y, m, d] = SESSION_DATE.split('-').map(Number);
+  const sessionDate = new Date(y, m - 1, d);
+  const diff = sessionDate.getTime() - today.getTime();
+
+  const pill = document.getElementById('status-pill');
+  const btn = document.getElementById('join-btn');
+
+  if (diff === 0) {
+    pill.textContent = 'Today';
+    pill.className = 'pill';
+    btn.href = MEET_LINK;
+    btn.classList.remove('disabled');
+  } else if (diff < 0) {
+    pill.textContent = 'Complete';
+    pill.className = 'pill past';
+    btn.textContent = 'Session complete';
+    btn.classList.add('disabled');
+  } else {
+    pill.textContent = 'Upcoming';
+    pill.className = 'pill future';
+    btn.textContent = 'Join meeting';
+    btn.classList.add('disabled');
+  }
+
+  // Copy the interview block
+  function copyBlock() {
+    const el = document.getElementById('interview-block');
+    const text = el.childNodes[0].textContent.trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = el.querySelector('.copy-btn');
+      btn.textContent = 'Copied';
+      setTimeout(() => { btn.textContent = 'Copy'; }, 1800);
+    });
+  }
+
+  // Countdown to next session
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 14, 0, 0);
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>

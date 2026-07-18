@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session 06 — One Flat Lay, Infinite Concepts — and the Protocol That Protects Them — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 06 — One Flat Lay, Infinite Concepts — and the Protocol That Protects Them. Scale is now free. Discipline is what you're selling. Thursday 9 July 2026." />
+<link rel="icon" type="image/png" href="/skynet/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 06 — One Flat Lay, Infinite Concepts — and the Protocol That Protects Them" />
+<meta property="og:description" content="Scale is now free. Discipline is what you're selling. Thursday 9 July 2026." />
+<meta property="og:image" content="https://training.notcontent.ai/skynet/sessions/06/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/skynet/sessions/06" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back { text-decoration: none; color: var(--accent); font-weight: 600; }
+  .topbar .back .arrow { margin-right: 8px; }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 6vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .pill {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+  .hero .eyebrow .pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero .eyebrow .pill.future { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1.cheat-header {
+    margin: 6px auto 0;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .hero h1.cheat-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .hero .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+  }
+  .hero .meta .item .lbl {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .hero .meta .item .val {
+    font-family: var(--serif);
+    font-size: 19px;
+  }
+  .hero .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .btn:hover { background: transparent; color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn.ghost:hover { background: var(--accent); color: var(--bg); }
+  .btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head { margin-bottom: 28px; }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule { flex: 1; height: 1px; background: var(--rule); }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Agenda ─── */
+  .agenda { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .agenda-item .n {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .agenda-item .title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Cards ─── */
+  .cards-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .resource-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .resource-card .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource-card .name {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .resource-card .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .resource-card a.link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+
+  /* ─── Next session ─── */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: rgba(229,228,226,0.85);
+    letter-spacing: 0.05em;
+  }
+  .next-up .btn { background: var(--bg); color: var(--accent); border-color: var(--bg); }
+  .next-up .btn:hover { background: transparent; color: var(--bg); border-color: var(--bg); }
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Homework ─── */
+  .homework {
+    margin: 28px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--accent);
+    background: var(--soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .homework .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .homework .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .homework .due {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Pull quote ─── */
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  .cheat-pull .attr {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+  }
+
+  /* ─── Cheat note / list / sub ─── */
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .cheat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
+  /* ─── Workflow diagram ─── */
+  .workflow-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0; }
+  .wf-step {
+    padding: 22px 18px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+    text-align: center;
+    position: relative;
+  }
+  .wf-step .step-num {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .wf-step .step-name {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .wf-step .step-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─── Data advantage callout ─── */
+  .data-callout {
+    margin: 28px 0;
+    padding: 28px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+  }
+  .data-callout .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(229, 228, 226, 0.8);
+    margin-bottom: 12px;
+  }
+  .data-callout .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--bg);
+    margin-bottom: 10px;
+  }
+  .data-callout .due {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(229, 228, 226, 0.9);
+  }
+
+  /* ─── Video embed ─── */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-bottom: 28px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ─── Section split ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Footer ─── */
+  .doc-foot-graphic { margin-top: 10vh; width: 100%; line-height: 0; }
+  .doc-foot-graphic img { display: block; width: 100%; height: auto; }
+
+  /* ─── Protocol 3-col grid ─── */
+  .cheat-list-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  @media (max-width: 760px) {
+    .cards-2col { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 1fr; gap: 6px; }
+    .next-up { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr !important; }
+    .cheat-list-3col { grid-template-columns: 1fr !important; }
+    .workflow-steps { grid-template-columns: 1fr 1fr; }
+    .vs-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .workflow-steps { grid-template-columns: 1fr; }
+  }
+
+  /* ───────── Motion ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/skynet/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">&times;</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/skynet"><span class="arrow">&larr;</span>Back to hub</a>
+  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;&middot;&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session &hellip;</span></span></span></div>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">06</span> &nbsp;/&nbsp; Phase 01 &middot; Week 06 of 08</span>
+    <span class="pill" id="status-pill">Upcoming</span>
+  </div>
+  <h1 class="cheat-header">
+    <img src="/skynet/sessions/06/cheatsheet-header.png" alt="Cheatsheet: Session Six — for creative teams and brands." />
+  </h1>
+  <p class="hero-lede">Scale is now free. Discipline is what you're selling.</p>
+  <div class="meta">
+    <div class="item">
+      <div class="lbl">Date</div>
+      <div class="val">Thursday, July 9, 2026</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Time</div>
+      <div class="val">10:00 AM ET</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Length</div>
+      <div class="val">60 minutes</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Format</div>
+      <div class="val">Google Meet</div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn join-link" id="join-btn" href="#" target="_blank" rel="noopener">Join meeting</a>
+    <a class="btn ghost" href="/skynet">View all sessions</a>
+  </div>
+</header>
+
+<!-- ─── 01 · WHAT WE COVERED ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
+    <h2>One flat lay, infinite concepts.</h2>
+    <p class="cheat-note" style="margin-top:14px;">Everything in Flora — no matter how tangled the canvas looks — is one of three nodes: text, image, video. Once the chain is built, a whole new concept costs one or two changed words. Ten concepts in twelve minutes. But the economics only hold if the feedback loop stays as fast as the production loop.</p>
+  </div>
+
+  <div class="agenda">
+    <div class="agenda-item"><div class="n">01</div><div class="title">The five-node chain: flat lay &rarr; text prompt &rarr; image &rarr; text prompt &rarr; video. The whole production system.</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">Scaling: duplicate the chain, change one word, new world. Five concepts, not twenty.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">The client feedback protocol: async only, Loom, two rounds, sold before the money.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">Selling the protocol: the scripts, the pitch, and why it's agreed at the very first conversation.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">The cautionary tale: a shadow on a can rim, three hours, four images — and what it costs.</div></div>
+  </div>
+</section>
+
+<!-- ─── 02 · THE WORKFLOW ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The workflow <span class="rule"></span></div>
+    <h2>Flat lay to finished video.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">One chain, five nodes. The LLM writes richer scene language than you would — read it, edit it, then run it.</p>
+
+  <div class="workflow-steps">
+    <div class="wf-step">
+      <div class="step-num">1</div>
+      <div class="step-name">Source Image</div>
+      <div class="step-desc">The client's flat lay. Output only — it feeds everything downstream.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">2</div>
+      <div class="step-name">Text (ICC)</div>
+      <div class="step-desc">System prompt: executive creative director. Scene concept from flat lay.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">3</div>
+      <div class="step-name">Image Node</div>
+      <div class="step-desc">Run it multiple times. Pick the keeper.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">4</div>
+      <div class="step-name">Text #2</div>
+      <div class="step-desc">Video system prompt: still + movement idea &rarr; ready-to-run video prompt.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">5</div>
+      <div class="step-name">Video Node</div>
+      <div class="step-desc">Static locked camera. Product centred, frame one to end.</div>
+    </div>
+  </div>
+
+  <figure style="margin:32px 0 0;text-align:center;">
+    <img src="/skynet/sessions/06/node-chain.jpg" alt="The node chain: upload flat lay → text/LLM ideation → image node → video node" style="width:100%;max-width:680px;border-radius:4px;border:1px solid rgba(19,56,190,0.12);" />
+    <figcaption style="font-family:var(--sans);font-size:11px;color:rgba(19,56,190,0.55);margin-top:8px;letter-spacing:0.02em;">The node chain — four nodes from flat lay to finished video.</figcaption>
+  </figure>
+
+  <figure style="margin:24px 0 0;text-align:center;">
+    <img src="/skynet/sessions/06/flora-workflow.jpg" alt="Flora workspace: Carhartt coral t-shirt flowing through the full five-node chain" style="width:100%;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.15);" />
+    <figcaption style="font-family:var(--sans);font-size:11px;color:rgba(19,56,190,0.55);margin-top:8px;letter-spacing:0.02em;">The chain in Flora — flat lay to scene concept to video, all connected.</figcaption>
+  </figure>
+
+  <blockquote class="cheat-pull">"<span class="accent">The constraints of what we used to be able to produce creatively have flown out the window</span> — because we have one click."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 03 · SCALING ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Scaling <span class="rule"></span></div>
+    <h2>One image becomes twenty.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Select the chain, &#8984;D to duplicate, change one or two words — new world.</p>
+
+  <figure style="margin:0 0 28px;text-align:center;">
+    <img src="/skynet/sessions/06/flora-many-from-one.jpg" alt="One Carhartt flat lay generating a photographic scene concept — t-shirt on a vintage car hood with tools" style="width:100%;max-width:560px;border-radius:4px;box-shadow:0 4px 20px rgba(0,0,0,0.15);" />
+    <figcaption style="font-family:var(--sans);font-size:11px;color:rgba(19,56,190,0.55);margin-top:8px;letter-spacing:0.02em;">One flat lay, one changed word — a new world every time.</figcaption>
+  </figure>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">Present ~5, not 20</div>
+      <div class="p">Paradox of choice: twenty options gets you no decision. Five gets a winner.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">90% finished at concept</div>
+      <div class="p">Clients don't have to imagine anymore — they react. Nitpicking means they've accepted.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Duplicate, don't rebuild</div>
+      <div class="p">&#8984;D duplicates the whole chain. Change the scene word. New concept in seconds.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Download into a folder</div>
+      <div class="p">Good enough for concept stage is the bar. Originals go in a round-one folder — not Downloads.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"Clients don't have an imagination. My entire career we've had to get some sort of imagination out of them. <span class="accent">Now we're at the point where we're giving them close to finished.</span>"<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 04 · THE PROTOCOL ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;The protocol <span class="rule"></span></div>
+    <h2>The client feedback protocol.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">This is the part that keeps the margin.</p>
+
+  <div class="data-callout">
+    <div class="lbl">Non-negotiable</div>
+    <div class="ask">Async only. No live creative reviews.</div>
+    <div class="due">Live calls produce emotional, vague, unrecorded feedback. Async is documented, non-debatable, and feeds straight into Claude for the changes.</div>
+  </div>
+
+  <div class="cheat-list-3col" style="margin-top:24px;">
+    <div class="cheat-item">
+      <div class="h">Loom it</div>
+      <div class="p">The free 5-minute cap forces succinct feedback. Recorded, timestamped, feeds straight into the next iteration.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Two rounds, defined upfront</div>
+      <div class="p">Round 1: anything goes — concept swaps, new worlds. Round 2: refinements only. Agreed before any work starts.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Send the one-sheet</div>
+      <div class="p">What acceptable feedback looks like, delivered with every round of assets.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"You are going to regenerate the entire image. You're gonna lose all the hours of work on product integrity and lighting and brand positioning — <span class="accent">all of it.</span>"<span class="attr">— Luisa Melo (the can-rim shadow)</span></blockquote>
+</section>
+
+<!-- ─── 05 · FROM THE SESSION ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;From the session <span class="rule"></span></div>
+    <h2>Words worth keeping.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On the new economics — Jeremy Somers</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"Even when it's a ton of stuff going on and you're seeing all these connecting spaghetti wires — pretty much everything is one of those three nodes. Every single thing is just text, image or video."</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On feedback — Jeremy Somers</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"We are going to cancel out live-call feedback. Feedback is asynchronous only. Does anyone feel uncomfortable about this already? Good — you should."</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"If they want magic, they're going to have to sit quietly with their hands in their laps and see it happen. &hellip; <span class="accent">Just let us cook.</span> Just let us do the magic."<span class="attr">— Jeremy Somers</span></blockquote>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">We get a bad output — it's always going to be on us,</span> not necessarily on the model."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 06 · WHAT TO REMEMBER ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">06</span> &nbsp;What to remember <span class="rule"></span></div>
+    <h2>Keep these close.</h2>
+  </div>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">Bad output is on us, not the model.</div>
+      <div class="p">Diagnose the prompt, change the word, run again.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Set your default model.</div>
+      <div class="p">Project settings &rarr; preferences &rarr; default model. Don't let a new image node fall back to Flux.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Inputs left, outputs right.</div>
+      <div class="p">Drag a node's plus into empty canvas and Flora tells you what it can become.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Client services is becoming creative services.</div>
+      <div class="p">Different relationship, real boundaries, real financial consequences.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Use render time.</div>
+      <div class="p">While a node generates you can't edit its prompt — so edit the next concept, queue another run.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The pitch writes itself.</div>
+      <div class="p">A crew, a two-day shoot, $200K and three months — or ads in-market in weeks.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 07 · HOMEWORK ─── -->
+<section class="block" id="homework">
+  <div class="head">
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Homework <span class="rule"></span></div>
+    <h2>Run the chain on Carhartt.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;"><strong>Due before Session 07 — Thursday, July 16.</strong> Homework wasn't set live — it lands here with the workflow link. The new system prompts hit the SKYNET dashboard tomorrow morning.</p>
+
+  <div class="homework">
+    <div class="lbl">1 &middot; Check the dashboard</div>
+    <div class="ask">Two new copy-paste system prompts go live tomorrow: <strong>"be my creative partner"</strong> and <strong>"image to video."</strong> Have both handy before you open Flora.</div>
+  </div>
+
+  <div style="margin:28px 0;padding:28px;background:var(--accent);color:var(--bg);border-radius:4px;">
+    <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;font-weight:600;color:rgba(229,228,226,0.8);margin-bottom:12px;">New on the hub</div>
+    <div style="font-family:var(--serif);font-size:22px;line-height:1.25;letter-spacing:-0.01em;color:var(--bg);margin-bottom:10px;">Flora system prompts — ready to copy and paste</div>
+    <p style="font-family:var(--sans);font-size:14px;line-height:1.55;color:rgba(229,228,226,0.9);margin-bottom:16px;">Two new prompts have been added to the prompt library. The first turns a flat-lay product image into a photographic scene concept for a Meta ad — ICC aimed at the image model. The second takes a finished still and a movement idea you fill in (the brackets) and writes a ready-to-run video prompt with a static locked camera. Both output raw prompt text you paste straight into Flora's nodes.</p>
+    <a style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--bg);text-decoration:none;border-bottom:1px solid var(--bg);padding-bottom:1px;" href="/skynet/resources/prompt-library#flora" target="_blank" rel="noopener">Open Flora prompts &rarr;</a>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">2 &middot; Build the chain</div>
+    <div class="ask">Start from a Carhartt flat lay &rarr; text node with ICC system prompt &rarr; image node &rarr; duplicate the chain (&#8984;D) and change one or two words. Get to five distinct scene concepts from the one flat lay.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">3 &middot; Take your best to video</div>
+    <div class="ask">Text node #2 with the video system prompt + your movement idea in the brackets. Static locked camera, product centred, start to finish.</div>
+  </div>
+
+  <div class="homework" style="border-left-color:var(--accent);background:rgba(19,56,190,0.07);">
+    <div class="lbl">The deliverable &middot; due Thursday, 16 July</div>
+    <div class="ask">Five concepts + one video from a single Carhartt flat lay, and your Flora workflow link dropped in <strong>#project-creative-training</strong> so the team can clone it. One line on which concept you'd put in front of the client and why.</div>
+  </div>
+</section>
+
+<div class="cheat-split"><hr></div>
+
+<!-- ─── 08 · COMING NEXT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">08</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
+    <div>
+      <div class="lbl">Session 07 &nbsp;&middot;&nbsp; Thursday, 16 July 2026 &nbsp;&middot;&nbsp; 10:00 AM ET</div>
+      <div class="title">The Client Relationship, Rebuilt for Creative</div>
+      <div class="date">~30 minutes on managing the creative client: the scripts Jeremy actually uses, real stories of holding the boundary, and how to sell the protocol at the very first conversation — plus spotting where AI tries to deceive you.</div>
+    </div>
+    <a class="btn" href="/skynet">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── 09 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">09</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
+  </div>
+
+  <div class="video-embed">
+    <iframe src="https://drive.google.com/file/d/1ydrraW3nVzobn4ExalnmbDNoE9Mlvp05/preview" allow="autoplay" allowfullscreen></iframe>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <div class="lbl">Recording</div>
+      <div class="name">Session 06 video</div>
+      <div class="desc">The full session, start to finish. Watch it back any time.</div>
+      <a class="link" href="https://drive.google.com/file/d/1ydrraW3nVzobn4ExalnmbDNoE9Mlvp05/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+
+    <div class="resource-card highlight">
+      <div class="lbl">On the hub</div>
+      <div class="name">ICC Prompt Library</div>
+      <div class="desc">12 copy-paste ICC prompts by category. Use the master prompt to kick off creative production in Claude before pasting into Flora.</div>
+      <a class="link" href="/skynet/resources/prompt-library" target="_blank" rel="noopener">Open prompt library</a>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-foot-graphic">
+  <img src="/skynet/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  const SESSION_DATE = "2026-07-09";
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const [y, m, d] = SESSION_DATE.split('-').map(Number);
+  const sessionDate = new Date(y, m - 1, d);
+  const diff = sessionDate.getTime() - today.getTime();
+
+  const pill = document.getElementById('status-pill');
+  const btn = document.getElementById('join-btn');
+
+  if (diff === 0) {
+    pill.textContent = 'Today';
+    pill.className = 'pill';
+    btn.href = MEET_LINK;
+    btn.classList.remove('disabled');
+  } else if (diff < 0) {
+    pill.textContent = 'Complete';
+    pill.className = 'pill past';
+    btn.textContent = 'Session complete';
+    btn.classList.add('disabled');
+  } else {
+    pill.textContent = 'Upcoming';
+    pill.className = 'pill future';
+    btn.textContent = 'Join meeting';
+    btn.classList.add('disabled');
+  }
+
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 14, 0, 0);
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>

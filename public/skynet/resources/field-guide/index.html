@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Field Guide — objections &amp; bumps · SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root {
+    --bg:#E5E4E2; --ink:#0E0E0C; --muted:#5F5F60; --rule:#C2C1BF; --accent:#1338BE;
+    --soft:rgba(19,56,190,0.07); --surface:#EFEEEC;
+    --serif:"Iowan Old Style","Source Serif Pro",Georgia,serif;
+    --sans:-apple-system,"Inter","Helvetica Neue",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:8vh}
+  .topbar{border-bottom:1px solid var(--rule);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .topbar .dot{color:var(--accent);margin:0 .5em}
+  .topbar .tag{color:var(--accent);font-weight:600}
+  .wrap{max-width:800px;margin:0 auto;padding:0 40px}
+  .head{margin:9vh 0 4vh}
+  .head .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .head .eyebrow .num{color:var(--accent);font-weight:600}
+  .head h1{font-family:var(--serif);font-size:clamp(40px,6vw,68px);line-height:.95;font-weight:400;letter-spacing:-.025em}
+  .head .lede{font-family:var(--serif);font-size:clamp(18px,2vw,23px);color:var(--muted);font-style:italic;line-height:1.35;margin-top:18px;max-width:48ch}
+  .internal{margin:0 0 6vh;padding:16px 20px;background:var(--bg);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:0 4px 4px 0;font-size:13.5px;line-height:1.6}
+  .internal .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
+  section{padding:5vh 0;border-top:1px solid var(--rule)}
+  section .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  section .eyebrow .num{color:var(--accent);font-weight:600}
+  section h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,42px);line-height:1;font-weight:400;letter-spacing:-.02em;margin-bottom:12px}
+  section .intro{font-size:15.5px;line-height:1.65;color:var(--muted);margin-bottom:24px;max-width:60ch}
+
+  .obj{border-top:1px solid var(--rule);padding:20px 0}
+  .obj:last-of-type{border-bottom:1px solid var(--rule)}
+  .obj .q{font-family:var(--serif);font-size:20px;line-height:1.25;letter-spacing:-.01em;margin-bottom:10px}
+  .obj .q::before{content:"\201C"}
+  .obj .q::after{content:"\201D"}
+  .obj .a{display:grid;grid-template-columns:22px 1fr;gap:12px;align-items:start}
+  .obj .a .arrow{color:var(--accent);font-size:16px;line-height:1.5;font-weight:700}
+  .obj .a .txt{font-size:14.5px;line-height:1.6;color:var(--muted)}
+  .obj .a .txt strong{color:var(--ink);font-weight:600}
+
+  .bumps{counter-reset:bump;list-style:none;margin-top:8px}
+  .bumps li{counter-increment:bump;display:grid;grid-template-columns:34px 1fr;gap:16px;padding:16px 0;border-bottom:1px solid var(--rule);align-items:start}
+  .bumps li::before{content:counter(bump,decimal-leading-zero);font-family:var(--sans);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em;padding-top:3px}
+  .bumps li .b{font-family:var(--serif);font-size:19px;line-height:1.25;letter-spacing:-.01em;margin-bottom:5px}
+  .bumps li .f{font-size:14px;line-height:1.55;color:var(--muted)}
+  .bumps li .f strong{color:var(--accent);font-weight:600}
+
+  .callout{background:var(--accent);color:var(--bg);border-radius:5px;padding:26px 28px;margin:28px 0 0}
+  .callout .lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(229,228,226,.75);font-weight:700;margin-bottom:10px}
+  .callout .big{font-family:var(--serif);font-size:22px;line-height:1.3;letter-spacing:-.01em}
+  .foot{max-width:800px;margin:8vh auto 0;padding:3vh 40px 0;border-top:1px solid var(--rule);text-align:center;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  @media(max-width:620px){.bumps li{grid-template-columns:1fr;gap:4px}.obj .a{grid-template-columns:1fr}.obj .a .arrow{display:none}}
+  @media print{body{padding:0}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div>NotContent <span class="dot">&bull;</span> SKYNET</div>
+  <div class="tag">Session 07 · Doc 04 · Internal</div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;/&nbsp; Internal — team only</div>
+    <h1>The field guide.</h1>
+    <p class="lede">What they'll say, and what'll go wrong. Both are predictable — which is the good news.</p>
+  </div>
+
+  <div class="internal">
+    <div class="lbl">Keep this open</div>
+    Nothing here is theory. Every objection below gets asked, and every bump below gets hit — by everyone, usually in the first month. Having the answer ready is the difference between holding the line and folding on the spot.
+  </div>
+
+  <section>
+    <div class="eyebrow"><span class="num">01</span> &nbsp;Objections</div>
+    <h2>What they'll say.</h2>
+    <p class="intro">Loaded answers. Don't improvise these in the moment — the improvised version is always the one that gives something away.</p>
+
+    <div class="obj">
+      <div class="q">Shouldn't it be cheaper, then?</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">Everywhere else, more and faster costs <strong>more</strong>. Three pairs of shoes in two days versus one pair in a week — you pay more. Happy to charge more if that's the direction. Or: same budget, ten times the output.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">Can we have the files for our socials?</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">That's a different service and a different price. Not a no — a <strong>separate conversation.</strong> This is production for the media we run for you. Book the other one in properly.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">Is this AI? We have a policy on that.</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">It's a creative service. Humans at both ends — brief and direction in, brand check and craft out. The tools in the middle are just fast. <strong>Don't get drawn into a tooling debate</strong> — you're selling the outcome.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">It looks AI.</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">Then it isn't finished. That's the 10% out, and it's on us — <strong>the bad ones never leave the building.</strong> Never argue this one. They're right.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">Can we jump on a call and go through it together?</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">Written or a Loom. A call is how we lose half of what you said. Everything in writing goes straight into the work and nothing gets misremembered.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">We need it tomorrow.</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">That's a <strong>queue jump, not a bigger job.</strong> You're not charging for more work — you're charging because someone else moved down the pipeline.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">Our brand guidelines are really strict.</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">Good — guidelines are context, and context is exactly what makes this work. Send them. Strict brands get <strong>better</strong> results, not worse.</div></div>
+    </div>
+
+    <div class="obj">
+      <div class="q">Why are we paying the same if it takes you less time?</div>
+      <div class="a"><div class="arrow">&rarr;</div><div class="txt">You're not buying hours. You're buying speed to market and the volume that comes with it. <strong>Cost per deliverable is a dead way to price this.</strong></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow"><span class="num">02</span> &nbsp;Bumps</div>
+    <h2>What'll go wrong first.</h2>
+    <p class="intro">Everyone hits these. Knowing they're coming is most of the fix.</p>
+
+    <ol class="bumps">
+      <li><div><div class="b">Your first outputs will disappoint you.</div><div class="f">The problem is the brief. <strong>Always.</strong> Not the model. Change the input, not the tool.</div></div></li>
+      <li><div><div class="b">You'll take the live call "just this once."</div><div class="f">The process dies right there. <strong>Once is the whole thing.</strong> Hold it the first time and you never have to hold it again.</div></div></li>
+      <li><div><div class="b">You'll accept a half-brief to be helpful.</div><div class="f">Then you wait, then you guess, then you blame the tool. <strong>No brief, no start.</strong></div></div></li>
+      <li><div><div class="b">You'll show them twenty.</div><div class="f">Show <strong>three.</strong> Play with fifty in your own canvas. Paradox of choice is real and it will cost you the round.</div></div></li>
+      <li><div><div class="b">You'll undercharge the first one.</div><div class="f">Set your floor <strong>before</strong> the conversation, not during it. You never know if you don't ask.</div></div></li>
+      <li><div><div class="b">Product integrity will drift when you regenerate.</div><div class="f">That's exactly <strong>why one round matters.</strong> Every regeneration risks the thing you already got right.</div></div></li>
+      <li><div><div class="b">You'll burn the good model early.</div><div class="f">Cheap model to lock the prompt. <strong>Then</strong> upgrade for the final render. Don't spend the good credits learning.</div></div></li>
+      <li><div><div class="b">You'll go quiet mid-round.</div><div class="f">Silence gets filled with client anxiety — and anxious clients ask for calls. <strong>A one-line "on track, Thursday" costs nothing.</strong></div></div></li>
+      <li><div><div class="b">Someone will ask for the files.</div><div class="f">Under a compliment, on the spot, you'll say yes. <strong>Have the answer ready before it happens.</strong></div></div></li>
+      <li><div><div class="b">One will come back bad and they'll be annoyed.</div><div class="f">You're their agency — you're in the meeting next Tuesday regardless. Own it fast, fix it, don't get defensive. <strong>The variance was disclosed; the recovery is the relationship.</strong></div></div></li>
+    </ol>
+
+    <div class="callout">
+      <div class="lbl">The one that matters most</div>
+      <div class="big">Every one of these is a first-month problem, not a forever problem. Hold the line early and they stop happening.</div>
+    </div>
+  </section>
+</div>
+
+<div class="foot">NotContent <span style="color:var(--accent)">&bull;</span> AI Creative Operator Programme <span style="color:var(--accent)">&bull;</span> Session 07</div>
+
+</body>
+</html>

@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session 07 — The Client Relationship, Rebuilt for Creative — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 07 — The Client Relationship, Rebuilt for Creative. Four documents that protect the speed. Scripts that hold the line. Thursday 16 July 2026." />
+<link rel="icon" type="image/png" href="/skynet/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 07 — The Client Relationship, Rebuilt for Creative" />
+<meta property="og:description" content="Four documents that protect the speed. Scripts that hold the line. Thursday 16 July 2026." />
+<meta property="og:image" content="https://training.notcontent.ai/skynet/sessions/07/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/skynet/sessions/07" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back { text-decoration: none; color: var(--accent); font-weight: 600; }
+  .topbar .back .arrow { margin-right: 8px; }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 6vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .pill {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+  .hero .eyebrow .pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero .eyebrow .pill.future { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1.cheat-header {
+    margin: 6px auto 0;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .hero h1.cheat-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .hero .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+  }
+  .hero .meta .item .lbl {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .hero .meta .item .val {
+    font-family: var(--serif);
+    font-size: 19px;
+  }
+  .hero .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .btn:hover { background: transparent; color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn.ghost:hover { background: var(--accent); color: var(--bg); }
+  .btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head { margin-bottom: 28px; }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule { flex: 1; height: 1px; background: var(--rule); }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Agenda ─── */
+  .agenda { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .agenda-item .n {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .agenda-item .title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Cards ─── */
+  .cards-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .resource-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .resource-card .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource-card .name {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .resource-card .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .resource-card a.link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+
+  /* ─── Next session ─── */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: rgba(229,228,226,0.85);
+    letter-spacing: 0.05em;
+  }
+  .next-up .btn { background: var(--bg); color: var(--accent); border-color: var(--bg); }
+  .next-up .btn:hover { background: transparent; color: var(--bg); border-color: var(--bg); }
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Homework ─── */
+  .homework {
+    margin: 28px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--accent);
+    background: var(--soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .homework .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .homework .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .homework .due {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Pull quote ─── */
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  .cheat-pull .attr {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+  }
+
+  /* ─── Cheat note / list / sub ─── */
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .cheat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
+  /* ─── Workflow diagram ─── */
+  .workflow-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0; }
+  .wf-step {
+    padding: 22px 18px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+    text-align: center;
+    position: relative;
+  }
+  .wf-step .step-num {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .wf-step .step-name {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .wf-step .step-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─── Data advantage callout ─── */
+  .data-callout {
+    margin: 28px 0;
+    padding: 28px 28px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+  }
+  .data-callout .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: rgba(229, 228, 226, 0.8);
+    margin-bottom: 12px;
+  }
+  .data-callout .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--bg);
+    margin-bottom: 10px;
+  }
+  .data-callout .due {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(229, 228, 226, 0.9);
+  }
+
+  /* ─── Video embed ─── */
+  .video-embed {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    margin-bottom: 28px;
+    border-radius: 4px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  }
+  .video-embed iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+
+  /* ─── Section split ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Footer ─── */
+  .doc-foot-graphic { margin-top: 10vh; width: 100%; line-height: 0; }
+  .doc-foot-graphic img { display: block; width: 100%; height: auto; }
+
+  /* ─── Protocol 3-col grid ─── */
+  .cheat-list-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  @media (max-width: 760px) {
+    .cards-2col { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 1fr; gap: 6px; }
+    .next-up { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr !important; }
+    .cheat-list-3col { grid-template-columns: 1fr !important; }
+    .workflow-steps { grid-template-columns: 1fr 1fr; }
+    .vs-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .workflow-steps { grid-template-columns: 1fr; }
+  }
+
+  /* ───────── Motion ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/skynet/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">&times;</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/skynet"><span class="arrow">&larr;</span>Back to hub</a>
+  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;&middot;&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session &hellip;</span></span></span></div>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">07</span> &nbsp;/&nbsp; Phase 01 &middot; Week 07 of 08</span>
+    <span class="pill" id="status-pill">Upcoming</span>
+  </div>
+  <h1 class="cheat-header">
+    <img src="/skynet/sessions/07/cheatsheet-header.png" alt="Cheatsheet: Session Seven — for creative teams and brands." />
+  </h1>
+  <p class="hero-lede">Four documents that protect the speed. Scripts that hold the line.</p>
+  <div class="meta">
+    <div class="item">
+      <div class="lbl">Date</div>
+      <div class="val">Thursday, July 16, 2026</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Time</div>
+      <div class="val">10:00 AM ET</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Length</div>
+      <div class="val">60 minutes</div>
+    </div>
+    <div class="item">
+      <div class="lbl">Format</div>
+      <div class="val">Google Meet</div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn disabled" id="join-btn" href="#" style="pointer-events:none;">Session complete</a>
+    <a class="btn ghost" href="/skynet">View all sessions</a>
+  </div>
+</header>
+
+<!-- ─── 01 · WHAT WE COVERED ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
+    <h2>The business side of making things.</h2>
+    <p class="cheat-note" style="margin-top:14px;">You can make the work now. This session was about everything around it — how you sell it, how you scope it, how you hold the line when a client pushes back. Four documents left the room: a one-pager that sells the service, a rules sheet that protects the speed, an internal talk track for bringing accounts in, and a field guide for the objections and bumps that hit everyone in the first month.</p>
+  </div>
+
+  <div class="agenda">
+    <div class="agenda-item"><div class="n">01</div><div class="title">The offer one-pager: what SKYNET sells now, on one page, in the client's language.</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">How a round works: the rules of engagement, agreed before the money moves.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">Selling it in: the internal playbook — reframes, pre-frames, and the scripts that hold the line.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">The field guide: every objection they'll raise and every bump you'll hit in month one.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">Camera angles and movements: two reference libraries for directing AI-generated imagery.</div></div>
+  </div>
+</section>
+
+<!-- ─── 02 · THE OFFER ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The offer <span class="rule"></span></div>
+    <h2>What you sell now.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">One page. Fill the brackets, make it theirs, send it. Sells the shift, the edge, and the value — never the tool.</p>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">"We make it"</div>
+      <div class="p">You don't just plan where creative runs. You produce it — stills and motion, on brand, ready to run in the media you manage.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The data edge</div>
+      <div class="p">A creative shop makes something beautiful. You make something that works, because you can see the scoreboard. Same team, same numbers, same channels.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">10 / 80 / 10</div>
+      <div class="p">Human in (brief, taste, direction), production at machine speed, human out (on brand, pixel perfect). The speed comes from the middle. The quality comes from the two ends.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Not per asset, not per hour</div>
+      <div class="p">You're selling the creative system and the speed to market. Pricing is a conversation, not a number on the page.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"Double the content in half the time" undersells it. In practice it's closer to <span class="accent">ten times the content in a tenth of the time</span> — it just didn't have the same ring to it.<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 03 · THE RULES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The rules <span class="rule"></span></div>
+    <h2>How a round works.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Send this before the work starts. Every rule pre-agreed, while everyone's still excited.</p>
+
+  <div class="workflow-steps" style="grid-template-columns:repeat(7, 1fr);">
+    <div class="wf-step">
+      <div class="step-num">1</div>
+      <div class="step-name">Complete Brief</div>
+      <div class="step-desc">Nothing starts without the brief, copy, and assets confirmed and final.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">2</div>
+      <div class="step-name">Round One</div>
+      <div class="step-desc">Go wide. Change anything: concept, background, world. This is the window.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">3</div>
+      <div class="step-name">Creative Control</div>
+      <div class="step-desc">What you specify, we build exactly. What you don't, we decide.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">4</div>
+      <div class="step-name">Then It's Locked</div>
+      <div class="step-desc">After round one: genuine errors only. This rule keeps it fast.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">5</div>
+      <div class="step-name">Async Feedback</div>
+      <div class="step-desc">Written or Loom. No live calls. Nothing lost, nothing debatable.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">6</div>
+      <div class="step-name">Expect Variance</div>
+      <div class="step-desc">5–15% natural variance on regeneration. The trade for the speed.</div>
+    </div>
+    <div class="wf-step">
+      <div class="step-num">7</div>
+      <div class="step-name">Approval Chain</div>
+      <div class="step-desc">Named upfront. No surprise stakeholders mid-round.</div>
+    </div>
+  </div>
+
+  <div class="data-callout">
+    <div class="lbl">The trade, in one line</div>
+    <div class="ask">Give us creative control over what you didn't specify, and you get speed, volume, and creative shaped by what actually performs.</div>
+  </div>
+</section>
+
+<!-- ─── 04 · SELLING IT IN ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Selling it in <span class="rule"></span></div>
+    <h2>The internal playbook.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">How you bring an account you already run into the new process. Not a cold pitch — a warm start.</p>
+
+  <div class="cheat-list-3col">
+    <div class="cheat-item">
+      <div class="h">Stop saying AI</div>
+      <div class="p">This is a creative service. The tools happen to be fast. Nobody ever asked if you used Photoshop.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Proof first, pitch second</div>
+      <div class="p">Improve the creative on an account you already manage, watch what it does, then talk with numbers in your hand.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The pre-frame</div>
+      <div class="p">Tell them upfront: this will feel uncomfortable. They're trading some control for the speed. Say it now; callback later.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Volunteer the limits</div>
+      <div class="p">Name what it can't do before anyone asks. The biggest trust-builder you have.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The boundary</div>
+      <div class="p">You make the ads you run. Anything outside the media plan is a different service with a different price.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The endgame</div>
+      <div class="p">Creative production bundled as a percentage of the media spend. The move only SKYNET can make.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">Proof first. Pitch second.</span> Nobody else in this market can do that — a freelancer needs permission before they can show you anything. You just need a campaign you're already running."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 05 · THE FIELD GUIDE ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;The field guide <span class="rule"></span></div>
+    <h2>What they'll say, and what'll go wrong.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Both are predictable. That's the good news.</p>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">Objections</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"Shouldn't it be cheaper?"</div>
+      <div class="desc" style="margin-bottom:18px;">More and faster costs more everywhere else.</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"Can we have the files?"</div>
+      <div class="desc" style="margin-bottom:18px;">Different service, different price.</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"It looks AI."</div>
+      <div class="desc" style="margin-bottom:18px;">Then it isn't finished. Never argue this one.</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"Can we jump on a call?"</div>
+      <div class="desc" style="margin-bottom:0;">Written or Loom. A call is how you lose half of what they said.</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">First-month bumps</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">Your first outputs will disappoint you</div>
+      <div class="desc" style="margin-bottom:18px;">The brief is the problem. Always.</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">You'll take the live call "just this once"</div>
+      <div class="desc" style="margin-bottom:18px;">Once is the whole thing.</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">You'll show them twenty</div>
+      <div class="desc" style="margin-bottom:18px;">Show three. Paradox of choice costs you the round.</div>
+      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">Someone will ask for the files</div>
+      <div class="desc" style="margin-bottom:0;">Under a compliment. Have the answer ready.</div>
+    </div>
+  </div>
+
+  <div class="data-callout" style="margin-top:28px;">
+    <div class="lbl">The one that matters most</div>
+    <div class="ask">Every one of these is a first-month problem, not a forever problem. Hold the line early and they stop happening.</div>
+  </div>
+</section>
+
+<!-- ─── 06 · WORDS WORTH KEEPING ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">06</span> &nbsp;From the session <span class="rule"></span></div>
+    <h2>Words worth keeping.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On selling the speed — Jeremy Somers</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"We don't just plan where your creative runs. We make it."</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On holding the line — Jeremy Somers</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"This new process is going to feel uncomfortable at some point. I'm telling you now, so when we get to that moment, you'll remember we agreed to it."</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">Volunteering what it can't do is the single biggest trust-builder you have.</span> Don't oversell the machine."<span class="attr">— Jeremy Somers</span></blockquote>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"It's not a no. It's a <span class="accent">different conversation, with a different price.</span>"<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 07 · COMING NEXT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
+    <div>
+      <div class="lbl">Session 08 &nbsp;&middot;&nbsp; Thursday, 23 July 2026 &nbsp;&middot;&nbsp; 10:00 AM ET</div>
+      <div class="title">Scaling the System Across the Portfolio</div>
+      <div class="date">The workflow as an asset — replication test across a second client. Capacity maths — how many accounts one person can run. Each person's 30-day build plan.</div>
+    </div>
+    <a class="btn" href="/skynet">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── 08 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">08</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <div class="lbl">Recording</div>
+      <div class="name">Session 07 video</div>
+      <div class="desc">The full session. Watch it back any time.</div>
+      <a class="link" href="#" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+    <div class="resource-card highlight">
+      <div class="lbl">On the hub</div>
+      <div class="name">ICC Prompt Library</div>
+      <div class="desc">12 copy-paste ICC prompts by category. Use the master prompt to kick off creative production in Claude before pasting into Flora.</div>
+      <a class="link" href="/skynet/resources/prompt-library" target="_blank" rel="noopener">Open prompt library</a>
+    </div>
+  </div>
+
+  <div class="cards-2col" style="margin-top:16px;">
+    <div class="resource-card highlight">
+      <div class="lbl">Template 01</div>
+      <div class="name">The Offer — One Page</div>
+      <div class="desc">Client-ready. Fill the brackets, send it.</div>
+      <a class="link" href="/skynet/resources/offer-one-pager" target="_blank" rel="noopener">Open template</a>
+    </div>
+    <div class="resource-card highlight">
+      <div class="lbl">Template 02</div>
+      <div class="name">How a Round Works</div>
+      <div class="desc">The rules sheet. Send before work starts.</div>
+      <a class="link" href="/skynet/resources/how-a-round-works" target="_blank" rel="noopener">Open template</a>
+    </div>
+  </div>
+
+  <div class="cards-2col" style="margin-top:16px;">
+    <div class="resource-card highlight">
+      <div class="lbl">Internal &middot; Doc 03</div>
+      <div class="name">Selling It In</div>
+      <div class="desc">The talk track — reframes, pre-frames, scripts.</div>
+      <a class="link" href="/skynet/resources/selling-it-in" target="_blank" rel="noopener">Open document</a>
+    </div>
+    <div class="resource-card highlight">
+      <div class="lbl">Internal &middot; Doc 04</div>
+      <div class="name">The Field Guide</div>
+      <div class="desc">Every objection and every first-month bump.</div>
+      <a class="link" href="/skynet/resources/field-guide" target="_blank" rel="noopener">Open document</a>
+    </div>
+  </div>
+
+  <div class="cards-2col" style="margin-top:16px;">
+    <div class="resource-card highlight">
+      <div class="lbl">Reference</div>
+      <div class="name">Camera Angles</div>
+      <div class="desc">Every angle from eye level to worm's-eye, with prompt language.</div>
+      <a class="link" href="/skynet/resources/camera-prompts/angles" target="_blank" rel="noopener">Open reference</a>
+    </div>
+    <div class="resource-card highlight">
+      <div class="lbl">Reference</div>
+      <div class="name">Camera Movements</div>
+      <div class="desc">Dolly, pan, crane, orbit — ready-to-paste movement prompts.</div>
+      <a class="link" href="/skynet/resources/camera-prompts/movements" target="_blank" rel="noopener">Open reference</a>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-foot-graphic">
+  <img src="/skynet/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  const SESSION_DATE = "2026-07-16";
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const [y, m, d] = SESSION_DATE.split('-').map(Number);
+  const sessionDate = new Date(y, m - 1, d);
+  const diff = sessionDate.getTime() - today.getTime();
+
+  const pill = document.getElementById('status-pill');
+  const btn = document.getElementById('join-btn');
+
+  if (diff === 0) {
+    pill.textContent = 'Today';
+    pill.className = 'pill';
+    btn.href = MEET_LINK;
+    btn.classList.remove('disabled');
+  } else if (diff < 0) {
+    pill.textContent = 'Complete';
+    pill.className = 'pill past';
+    btn.textContent = 'Session complete';
+    btn.classList.add('disabled');
+  } else {
+    pill.textContent = 'Upcoming';
+    pill.className = 'pill future';
+    btn.textContent = 'Join meeting';
+    btn.classList.add('disabled');
+  }
+
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 14, 0, 0);
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>
