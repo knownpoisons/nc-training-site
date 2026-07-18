@@ -22,6 +22,7 @@ import { generateDraft, OUTREACH_MAX_WORDS } from "../draft/engine";
 import { findTemplate } from "../draft/templates";
 import type { DraftModel } from "../draft/model";
 import type { Knowledge } from "../draft/knowledge";
+import { DISTILL_SYSTEM } from "./debrief";
 
 export interface HandleContext {
   channel: string;
@@ -362,17 +363,6 @@ async function handleDebrief(
   await confirm(`Paste the Granola transcript (or your notes) from the ${p.name} call — I'll mine it for the follow-ups.`);
   return { intent: "debrief", confirmed: true };
 }
-
-const DISTILL_SYSTEM = [
-  "You distill a sales-call transcript into a compact call brief for a CRM card.",
-  "Return EXACTLY this format, one line each, no preamble:",
-  "CARED: <what they actually cared about>",
-  "OBJECTIONS: <objections raised, or 'none'>",
-  "PERSONAL: <personal details worth remembering, or 'none'>",
-  "NEXT: <the agreed next step, or 'none agreed'>",
-  "READ: <one-line temperature read>",
-  "Be concrete and quote their words where it matters. Never invent.",
-].join("\n");
 
 /** The next message after a debrief prompt — the transcript. Distill and store. */
 async function consumeCallDebrief(

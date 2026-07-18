@@ -184,6 +184,10 @@ export interface CockpitStore {
   /** Save an enrichment dossier + opener angle onto a lead. */
   setDossier(prospectId: string, dossier: string, openerAngle: string | null): Promise<void>;
 
+  // ── Call debriefs (A3 Granola) ─────────────────────────────────────────────
+  /** Prospects whose call happened on/after `sinceDay` but still have no call brief. */
+  prospectsAwaitingDebrief(sinceDay: Day): Promise<StoreProspect[]>;
+
   // ── Visibility: profiles + roster (F4 `show`, F5 questions) ───────────────
   /** A prospect with its full touch schedule + event history. */
   getProspectDetail(prospectId: string): Promise<ProspectDetail | null>;

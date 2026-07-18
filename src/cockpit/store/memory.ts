@@ -468,6 +468,12 @@ export class MemoryStore implements CockpitStore {
     return [...this.prospects.values()].filter((p) => p.callAt === day);
   }
 
+  async prospectsAwaitingDebrief(sinceDay: Day): Promise<StoreProspect[]> {
+    return [...this.prospects.values()].filter(
+      (p) => p.callAt != null && p.callAt >= sinceDay && !p.callBrief
+    );
+  }
+
   async scheduleFollowUps(prospectId: string, baseDay: Day): Promise<void> {
     const existing = new Set(this.allTouchesFor(prospectId).map((t) => t.touchNumber));
     for (const t of followUpsFrom(prospectId, baseDay)) {

@@ -45,3 +45,6 @@ next-env.d.ts
 
 # symlink artifact
 nc-training-site
+
+# cockpit agent handoff scratch (local only)
+.cockpit-scratch/

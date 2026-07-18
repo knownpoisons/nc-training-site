@@ -9,8 +9,8 @@
 
 import type { SourceEngine } from "../cadence/types";
 
-/** The five intake sources (handoff Engine Zero table). */
-export type LeadSource = "scorecard" | "inbox" | "community" | "linkedin" | "beehiiv";
+/** The intake sources (handoff Engine Zero table + the Gmail sent-mail mine). */
+export type LeadSource = "scorecard" | "inbox" | "community" | "linkedin" | "beehiiv" | "gmail_sent";
 
 export type ConsentLane = "pipeline" | "broadcast_only";
 
@@ -49,6 +49,7 @@ export const SOURCE_WARMTH: Record<LeadSource, number> = {
   community: 0.7, // WARM
   linkedin: 0.45, // SLIGHTLY WARM
   beehiiv: 0.15, // BROADCAST
+  gmail_sent: 0.75, // WARM — Jem has written to them directly (2-way history)
 };
 
 // ─── Consent lane per source (hard-coded compliance) ──────────────────────────
@@ -60,6 +61,7 @@ export const SOURCE_CONSENT: Record<LeadSource, ConsentLane> = {
   community: "pipeline",
   linkedin: "pipeline",
   beehiiv: "broadcast_only",
+  gmail_sent: "pipeline",
 };
 
 // ─── Coarse F6 scoreboard engine per source (fine detail lives in `sources`) ──
@@ -69,6 +71,7 @@ export const SOURCE_TO_ENGINE: Record<LeadSource, SourceEngine> = {
   community: "list",
   linkedin: "outbound",
   beehiiv: "list",
+  gmail_sent: "alumni",
 };
 
 /** The stricter of two consent lanes (broadcast_only wins). */

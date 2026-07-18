@@ -502,6 +502,16 @@ export class SupabaseStore implements CockpitStore {
     if (error) throw new Error(`setDossier: ${error.message}`);
   }
 
+  async prospectsAwaitingDebrief(sinceDay: string): Promise<StoreProspect[]> {
+    const { data, error } = await this.db
+      .from("cockpit_prospects")
+      .select("*")
+      .gte("call_at", sinceDay)
+      .is("call_brief", null);
+    if (error) throw new Error(`prospectsAwaitingDebrief: ${error.message}`);
+    return (data ?? []).map(toProspect);
+  }
+
   async getProspectDetail(prospectId: string): Promise<ProspectDetail | null> {
     const prospect = await this.getProspect(prospectId);
     if (!prospect) return null;
