@@ -13,9 +13,14 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic";
 
-export default async function PartnersPage() {
+export default async function PartnersPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ e?: string }>;
+}) {
   if (!(await isPartnerAuthenticated())) {
-    return <PartnerLogin />;
+    const { e } = await searchParams;
+    return <PartnerLogin error={e === "1"} next="/partners" />;
   }
   return <PartnerHub />;
 }

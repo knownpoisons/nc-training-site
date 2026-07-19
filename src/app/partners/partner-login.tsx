@@ -1,31 +1,17 @@
-"use client";
-
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { loginToPartners } from "@/lib/partners-actions";
+import { submitPartnerLogin } from "@/lib/partners-actions";
+import { PartnerLoginSubmit } from "./partner-login-submit";
 
 // ─── Partner login — JD-aesthetic editorial form ──────────────────────────────
-export function PartnerLogin() {
-  const router = useRouter();
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
-  const [pending, start] = useTransition();
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setError(null);
-    start(async () => {
-      const r = await loginToPartners(password);
-      if (r.ok) {
-        router.refresh();
-      } else {
-        setError(r.error ?? "Failed.");
-        setPassword("");
-      }
-    });
-  }
-
+// Server component. Uses a form action (not a programmatic action + refresh) so
+// the auth cookie commits during the redirect navigation and persists on Vercel.
+export function PartnerLogin({
+  error = false,
+  next = "/partners",
+}: {
+  error?: boolean;
+  next?: string;
+}) {
   return (
     <div className="partners">
       {/* Topbar */}
@@ -50,25 +36,19 @@ export function PartnerLogin() {
             and a sample hub. Ask Jem if you don&rsquo;t have it.
           </p>
 
-          <form onSubmit={handleSubmit} className="login-form">
+          <form action={submitPartnerLogin} className="login-form">
+            <input type="hidden" name="next" value={next} />
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              name="password"
               placeholder="Password"
               autoFocus
               required
               className="login-input"
               aria-label="Partner password"
             />
-            <button
-              type="submit"
-              disabled={pending || !password}
-              className="login-submit"
-            >
-              {pending ? "Checking…" : "Sign in →"}
-            </button>
-            {error && <p className="login-error">{error}</p>}
+            <PartnerLoginSubmit />
+            {error && <p className="login-error">Wrong password.</p>}
           </form>
         </div>
       </main>
