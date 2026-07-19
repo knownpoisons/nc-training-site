@@ -20,8 +20,9 @@ export function PartnerPlaybook() {
       <RevealOnScroll />
       {/* ─── Topbar ──────────────────────────────────────────────────── */}
       <div className="topbar">
-        <Link href="/" className="brand">
-          NotContent <span className="dot">·</span> Partner Playbook
+        <Link href="/partners" className="brand">
+          <span aria-hidden="true">←</span> NotContent <span className="dot">·</span>{" "}
+          Partner Playbook
         </Link>
         <span className="counter">
           <strong>Internal</strong> · partner use

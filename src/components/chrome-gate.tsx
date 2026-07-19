@@ -20,5 +20,6 @@ export function ChromeGate({ children }: Props) {
   if (pathname === "/deck" || pathname.startsWith("/deck/")) return null;
   if (pathname === "/theprogram" || pathname.startsWith("/theprogram/")) return null;
   if (pathname === "/january-digital" || pathname.startsWith("/january-digital/")) return null;
+  if (pathname === "/samplehub" || pathname.startsWith("/samplehub/")) return null;
   return <>{children}</>;
 }

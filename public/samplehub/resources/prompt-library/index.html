@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Claude Prompt Library — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="12 starter prompts for media and creative operators learning to prompt Claude well. Research, writing, productivity, and foundations." />
+<link rel="icon" type="image/png" href="/samplehub/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Claude Prompt Library" />
+<meta property="og:description" content="12 starter prompts for media and creative operators learning to prompt Claude well." />
+<meta property="og:image" content="https://training.notcontent.ai/samplehub/footer-graphic.png" />
+<meta property="og:url" content="https://training.notcontent.ai/samplehub/resources/prompt-library" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+    --mono: "SF Mono", "Fira Code", "Fira Mono", "Roboto Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back {
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .topbar .back .arrow { margin-right: 8px; }
+  .topbar .label { font-weight: 600; color: var(--accent); }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 4vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 42ch;
+  }
+  .hero-intro {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-top: 22px;
+    max-width: 640px;
+  }
+
+  /* ─── Category nav ─── */
+  .cat-nav {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 40px 4vh;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .cat-nav a {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    padding: 8px 16px;
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    transition: background 0.15s, color 0.15s;
+  }
+  .cat-nav a:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head { margin-bottom: 28px; }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule { flex: 1; height: 1px; background: var(--rule); }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Prompt cards ─── */
+  .prompt-stack { display: grid; gap: 12px; }
+
+  .prompt-card {
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--rule);
+    overflow: hidden;
+    transition: border-top-color 0.2s;
+  }
+  .prompt-card[open] { border-top-color: var(--accent); }
+
+  .prompt-card summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 22px 24px;
+    display: grid;
+    grid-template-columns: 36px 1fr 20px;
+    align-items: center;
+    gap: 16px;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .prompt-card summary::-webkit-details-marker { display: none; }
+  .prompt-card summary::marker { display: none; content: ""; }
+
+  .prompt-card summary .num {
+    font-family: var(--serif);
+    font-size: 22px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.005em;
+  }
+  .prompt-card summary .info {}
+  .prompt-card summary .title {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-bottom: 4px;
+  }
+  .prompt-card summary .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+    font-style: italic;
+  }
+  .prompt-card summary .chevron {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--muted);
+    flex-shrink: 0;
+  }
+  .prompt-card[open] summary .chevron { transform: rotate(180deg); color: var(--accent); }
+
+  .prompt-body {
+    padding: 0 24px 24px;
+    padding-left: 76px;
+  }
+
+  .template-block {
+    position: relative;
+    background: var(--bg);
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 20px 22px;
+    margin-bottom: 18px;
+  }
+  .template-block pre {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.65;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: var(--ink);
+  }
+  .template-block .bracket {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .copy-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--surface);
+    border: 1px solid var(--accent);
+    border-radius: 3px;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+  }
+  .copy-btn:hover {
+    background: var(--accent);
+    color: var(--bg);
+  }
+  .copy-btn.copied {
+    background: var(--accent);
+    color: var(--bg);
+    pointer-events: none;
+  }
+
+  .use-cases-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .use-cases {
+    list-style: none;
+    display: grid;
+    gap: 8px;
+  }
+  .use-cases li {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+    padding-left: 16px;
+    position: relative;
+  }
+  .use-cases li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 8px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--rule);
+  }
+
+  /* ─── Footer ─── */
+  .doc-foot {
+    max-width: 880px;
+    margin: 8vh auto 4vh;
+    padding: 4vh 40px;
+    text-align: center;
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+  }
+  .doc-foot .accent { color: var(--accent); }
+  .doc-foot .foot-globe {
+    display: block;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 0 auto 16px;
+    opacity: 0.85;
+  }
+  .doc-foot a {
+    color: var(--accent);
+    text-decoration: none;
+    margin: 0 8px;
+  }
+  .doc-foot-graphic {
+    margin-top: 10vh;
+    width: 100%;
+    line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ─── ICC diagram ─── */
+  .icc-section {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 40px 6vh;
+  }
+  .icc-diagram {
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 6px;
+    padding: 56px 40px 48px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .icc-globe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: clamp(220px, 28vw, 340px);
+    height: auto;
+    opacity: 0.08;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .icc-eyebrow {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.6);
+    font-weight: 600;
+    margin-bottom: 16px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 56px);
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--bg);
+    margin-bottom: 8px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-title-full {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.7);
+    font-weight: 500;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 36px;
+    position: relative;
+    z-index: 1;
+  }
+  .icc-node {
+    background: rgba(229, 228, 226, 0.1);
+    border: 1px solid rgba(229, 228, 226, 0.2);
+    border-radius: 6px;
+    padding: 28px 22px 24px;
+    text-align: left;
+    position: relative;
+  }
+  .icc-node .icc-letter {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--bg);
+    margin-bottom: 6px;
+  }
+  .icc-node .icc-label {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.7);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .icc-node .icc-def {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.55;
+    color: rgba(229, 228, 226, 0.9);
+  }
+  .icc-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    color: rgba(229, 228, 226, 0.35);
+  }
+  .icc-arrow svg {
+    width: 28px;
+    height: 28px;
+  }
+  .icc-explainer {
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.65;
+    color: rgba(229, 228, 226, 0.8);
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .template-block pre .section-label {
+    color: var(--accent);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── Category nav ─── */
+  .cat-nav-label {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 40px;
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  @media (max-width: 560px) {
+    .icc-flow { grid-template-columns: 1fr; gap: 12px; }
+    .icc-arrow { transform: rotate(90deg); padding: 4px 0; }
+    .icc-diagram { padding: 40px 24px 36px; }
+  }
+
+  /* ─── Responsive ─── */
+  @media (max-width: 760px) {
+    .prompt-card summary { grid-template-columns: 28px 1fr 20px; gap: 12px; }
+    .prompt-card summary .num { font-size: 18px; }
+    .prompt-body { padding-left: 24px; }
+    .cat-nav { gap: 8px; }
+    .cat-nav a { font-size: 10px; padding: 6px 12px; }
+  }
+
+  /* ─── Motion ─── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+  .prompt-card summary, .copy-btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+
+  /* ─── Loader ─── */
+  .nc-loader {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--ink); text-align: center;
+    opacity: 0; animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative; height: 1.5px; width: 200px; max-width: 56vw;
+    margin: 20px auto 0; background: var(--rule); overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute; inset: 0; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block; width: 64px; height: 64px; margin: 0 auto 24px;
+    border-radius: 50%; box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0); letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/samplehub/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">&times;</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/samplehub"><span class="arrow">&larr;</span>Back to hub</a>
+  <span class="label">Prompt Library</span>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">Resource</span></span>
+  </div>
+  <h1>Claude Prompt<br><span class="accent">Library.</span></h1>
+  <p class="hero-lede">12 starter prompts for media and creative operators learning to prompt Claude well.</p>
+  <p class="hero-intro">These are reference examples &mdash; not scripts to paste daily. Dip in when starting a new conversation or project, internalise the pattern, then adapt for your own work. Every template has <code style="font-family:var(--mono);color:var(--accent);font-size:14px;">[BRACKETS]</code> where your context goes.</p>
+</header>
+
+<!-- ─── ICC EXPLAINER ─── -->
+<div class="icc-section">
+  <div class="icc-diagram">
+    <img class="icc-globe" src="/samplehub/nct-globe.png" alt="" aria-hidden="true" />
+    <div class="icc-eyebrow">The framework</div>
+    <div class="icc-title">I &middot; C &middot; C</div>
+    <div class="icc-title-full">Instructions &middot; Context &middot; Constraints</div>
+    <div class="icc-flow">
+      <div class="icc-node">
+        <div class="icc-letter">I</div>
+        <div class="icc-label">Instructions</div>
+        <div class="icc-def">Define the task and the action you want taken.</div>
+      </div>
+      <div class="icc-arrow"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="14" x2="22" y2="14"/><polyline points="16 8 22 14 16 20"/></svg></div>
+      <div class="icc-node">
+        <div class="icc-letter">C</div>
+        <div class="icc-label">Context</div>
+        <div class="icc-def">Your role, objectives, background, anything relevant to the task.</div>
+      </div>
+      <div class="icc-arrow"><svg viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="14" x2="22" y2="14"/><polyline points="16 8 22 14 16 20"/></svg></div>
+      <div class="icc-node">
+        <div class="icc-letter">C</div>
+        <div class="icc-label">Constraints</div>
+        <div class="icc-def">Rules, style, tone, length, output format.</div>
+      </div>
+    </div>
+    <p class="icc-explainer">Every good prompt has three parts. Most weak prompts are just missing one of them. Instructions tell Claude what to do. Context gives it what it needs to do it well. Constraints shape how the answer comes back. The twelve prompts below all use this structure &mdash; read them as examples of the pattern, not scripts.</p>
+  </div>
+</div>
+
+<!-- ─── Category nav ─── -->
+<div class="cat-nav-label">Jump to category</div>
+<nav class="cat-nav" aria-label="Jump to category">
+  <a href="#research">Research</a>
+  <a href="#writing">Writing</a>
+  <a href="#productivity">Productivity &amp; Learning</a>
+  <a href="#foundations">Foundations</a>
+  <a href="#flora">Flora</a>
+</nav>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ─── RESEARCH ─── -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="block" id="research">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;Research <span class="rule"></span></div>
+    <h2>Ask better questions.</h2>
+  </div>
+
+  <div class="prompt-stack">
+
+    <!-- 1 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">01</span>
+        <div class="info">
+          <div class="title">Tell Me What I Don't Know</div>
+          <div class="desc">Poke holes in a half-formed idea, brief, or strategy. Find what you're missing, overweighting, or don't understand yet.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Tell me everything important that I do not know, am underestimating, or am misunderstanding about this. Find the blindspot.
+
+<span class="section-label">CONTEXT</span>
+Here's the idea, brief, or strategy and what I currently think about it:
+<span class="bracket">[Paste your thinking here]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Be direct. Prioritise what would actually change my decision over what's merely interesting.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've drafted a creative brief and want to stress-test your assumptions before you present it</li>
+          <li>You've got a campaign idea and want to know what you're not seeing about the audience or the insight</li>
+          <li>You're working through a production workflow and want to find the gaps in your logic</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 2 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">02</span>
+        <div class="info">
+          <div class="title">God Mode Research</div>
+          <div class="desc">Understand a topic from every angle. Theory, expert perspectives, history, real-world tradeoffs. Not surface level.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Give me a deep, working understanding of <span class="bracket">[TOPIC]</span> from every angle.
+
+<span class="section-label">CONTEXT</span>
+Why I need it and what I'll use it for:
+<span class="bracket">[Paste here]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Cover: theoretical foundations, expert perspectives and case studies, historical patterns, real-world tradeoffs, common misconceptions, emerging or counterintuitive shifts. Give me a working understanding, not definitions.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You're building a campaign around a trend and need to know it inside-out before the brief</li>
+          <li>You're pitching a strategic idea and need the research behind it</li>
+          <li>You're evaluating a new platform or format and need to understand how it actually works</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 3 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">03</span>
+        <div class="info">
+          <div class="title">10X Learning Speed</div>
+          <div class="desc">Master a skill or tool fast. Core concepts, mental models, common mistakes, and a path to competence.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Build me the fastest path to competence in <span class="bracket">[SKILL/TOOL]</span>.
+
+<span class="section-label">CONTEXT</span>
+Where I'm starting from and why I need this:
+<span class="bracket">[Paste here]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Break it into: core concepts first, the mental models that unlock the rest, the most common mistakes, the 20 percent that gets me 80 percent of the way, quick wins for today, and next-level moves once I've got the basics.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You need to learn a production tool before your next project</li>
+          <li>You're onboarding a new team member and want to speed up their ramp</li>
+          <li>You're deciding whether to build in-house or outsource and need to understand the skill gap</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 4 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">04</span>
+        <div class="info">
+          <div class="title">Second Brain</div>
+          <div class="desc">Turn a pile of notes, research, or ideas into a structure you can actually use.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Organise the information below into something I can reference and act on.
+
+<span class="section-label">CONTEXT</span>
+<span class="bracket">[Paste your notes, research, ideas — brain dump it]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Structure as: core themes, supporting detail under each, actionable takeaways, open questions or gaps, and how the pieces connect. Make it scannable, not just reorganised.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've collected competitor research and audience insight for a brief and need it organised before you brief the team</li>
+          <li>You've got feedback and direction scattered across emails and docs and need it consolidated</li>
+          <li>You're building a reference set for a campaign and need it structured so others can navigate it</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 5 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">05</span>
+        <div class="info">
+          <div class="title">Mental Model Expansion</div>
+          <div class="desc">Understand something through multiple frameworks. Each one reveals a different angle.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Give me the most powerful mental models for understanding <span class="bracket">[TOPIC]</span>.
+
+<span class="section-label">CONTEXT</span>
+What I'm actually trying to figure out:
+<span class="bracket">[Paste here]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+For each model: plain-English definition, how it applies to a real decision, where it breaks down, and one concrete example. I want to think differently, not just know more facts.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You're trying to understand why a campaign didn't land and want frameworks to diagnose it</li>
+          <li>You're building strategy and want to see the problem through more than one lens</li>
+          <li>You're evaluating creative work and want language for why something works, not just whether it does</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ─── WRITING ─── -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="block" id="writing">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;Writing <span class="rule"></span></div>
+    <h2>Say it sharper.</h2>
+  </div>
+
+  <div class="prompt-stack">
+
+    <!-- 6 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">06</span>
+        <div class="info">
+          <div class="title">Message Polisher</div>
+          <div class="desc">Tighten something that isn't landing. Clearer, sharper, same voice.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Rewrite the text below as the sharpest version of what I'm trying to say.
+
+<span class="section-label">CONTEXT</span>
+What I wrote, and who it's for:
+<span class="bracket">[Paste your message, email, brief, or copy]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Clearer, more persuasive, better paced. Keep my voice and personality — don't make it sound like a robot wrote it.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've drafted a client email and it feels off, tighten it before you send</li>
+          <li>You've written a brief that's too long or unclear, compress it without losing meaning</li>
+          <li>You've got social or ad copy that isn't punchy enough</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 7 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">07</span>
+        <div class="info">
+          <div class="title">Perfect Email</div>
+          <div class="desc">Make an email land. No misreads, no extra reads, crisp and clear.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Write me an email about <span class="bracket">[SUBJECT]</span> that's impossible to misunderstand.
+
+<span class="section-label">CONTEXT</span>
+The point I'm making, and what they need to know first:
+<span class="bracket">[Paste here]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Tone: <span class="bracket">[professional / collaborative / direct / warm — or describe it]</span>. Keep it tight. No filler, no burying the ask.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You're sending a brief to the production team and need zero confusion about the ask</li>
+          <li>You're following up on feedback and need to be clear on next steps without sounding defensive</li>
+          <li>You're communicating a decision or change and need it to land without ambiguity</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 8 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">08</span>
+        <div class="info">
+          <div class="title">Ultimate Writing Improvement</div>
+          <div class="desc">A full pass on a piece of writing. Tighter sentences, better flow, stronger rhythm.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Do a full improvement pass on the writing below.
+
+<span class="section-label">CONTEXT</span>
+The piece, and what it's for:
+<span class="bracket">[Paste the full thing]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Tighter sentences, clearer logic, stronger transitions, sharper rhythm, vivid language where it earns it. Keep my meaning and voice intact.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've written a brief or proposal and want a final polish before it ships</li>
+          <li>You've got a pitch script you want tighter and more compelling</li>
+          <li>You're writing a case study and want it readable and persuasive</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ─── PRODUCTIVITY & LEARNING ─── -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="block" id="productivity">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Productivity &amp; Learning <span class="rule"></span></div>
+    <h2>Think clearer, move faster.</h2>
+  </div>
+
+  <div class="prompt-stack">
+
+    <!-- 9 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">09</span>
+        <div class="info">
+          <div class="title">Skill Accelerator</div>
+          <div class="desc">Learn something in a compressed timeframe. Structured plan, daily practice, real progress.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Build me a plan to get proficient at <span class="bracket">[SKILL]</span> in <span class="bracket">[TIMEFRAME]</span>.
+
+<span class="section-label">CONTEXT</span>
+Why I need it, what "proficient" looks like to me, and my real constraints (time per day, tools I have):
+<span class="bracket">[Paste here]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Include daily drills, real projects to test myself on, early quick wins for momentum, weekly check-in questions, and next-level moves. Doable, not theoretical.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've got three weeks to learn a new production tool before a launch</li>
+          <li>You're ramping a junior team member in a specific area</li>
+          <li>You want to pick up a craft skill that keeps coming up in the work</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 10 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">10</span>
+        <div class="info">
+          <div class="title">Fix My Thinking</div>
+          <div class="desc">Find the flawed assumptions, biases, and gaps in how you're reasoning about something.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Analyse my reasoning below and find the flaws.
+
+<span class="section-label">CONTEXT</span>
+How I'm currently thinking about <span class="bracket">[SITUATION/DECISION]</span>:
+<span class="bracket">[Paste your reasoning]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+Identify flawed assumptions, biases that might be distorting it, logic that's missing or doesn't hold, and a clearer way to think about it. Be direct — I'd rather know now.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You're making a call on a campaign direction and want your reasoning checked before you commit</li>
+          <li>You're stuck on a problem and suspect you're framing it wrong</li>
+          <li>You're weighing a decision and want the blindspots surfaced before the meeting</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ─── FOUNDATIONS ─── -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="block" id="foundations">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Foundations <span class="rule"></span></div>
+    <h2>The habits underneath.</h2>
+  </div>
+
+  <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:24px;max-width:640px;">These two are the base habits ICC sits on top of: how to hand Claude your actual material, and how to work with it across rounds instead of one-shotting it.</p>
+
+  <div class="prompt-stack">
+
+    <!-- 11 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">11</span>
+        <div class="info">
+          <div class="title">Load Your Material</div>
+          <div class="desc">The habit that makes everything else work. Give Claude the material before you ask for anything.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Read everything I'm giving you before you do anything. If something's unclear or missing, ask me before you start.
+
+<span class="section-label">CONTEXT</span>
+What I'm working on, plus the actual material:
+<span class="bracket">[Paste or upload your documents, brief, references, notes, examples]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+What good looks like to me — tone, format, anything non-negotiable:
+<span class="bracket">[Paste here]</span></pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You're starting a new project and want to load the brand guide, brief, and references up front</li>
+          <li>You've got a brand document and a reference you saw elsewhere and want both in play</li>
+          <li>You want Claude working from your actual material, not its best guess</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 12 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">12</span>
+        <div class="info">
+          <div class="title">Iteration / Feedback</div>
+          <div class="desc">Prompting isn't one shot. Redirect the output instead of starting over.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+Revise your last output using the feedback below. Show me one version, then we'll refine from there.
+
+<span class="section-label">CONTEXT</span>
+What's working and what isn't:
+Working: <span class="bracket">[what to keep]</span>
+Not working: <span class="bracket">[what's off, and why]</span>
+
+<span class="section-label">CONSTRAINTS</span>
+The specific change I want this round: <span class="bracket">[tighter / different angle / new tone / etc.]</span>. One version, not five.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>Claude's first draft is close but not right, and you want to steer rather than restart</li>
+          <li>You want to explore a different angle without losing what already worked</li>
+          <li>You're building something across a few rounds and want each pass to get sharper</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- ─── FLORA ─── -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="block" id="flora">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Flora <span class="rule"></span></div>
+    <h2>System prompts for the canvas.</h2>
+  </div>
+
+  <p style="font-family:var(--sans);font-size:16px;line-height:1.6;color:var(--muted);margin-bottom:24px;max-width:640px;">Copy-paste these into Flora's text nodes. They turn a flat product image into a scene concept and a finished still into motion — ICC, written tight, aimed at the image and video models.</p>
+
+  <div class="prompt-stack">
+
+    <!-- 13 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">13</span>
+        <div class="info">
+          <div class="title">Image · Flat Lay to Scene Concept</div>
+          <div class="desc">Turn a single flat-lay product image into a photographic scene concept for a Meta ad.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+You are an executive creative director. You'll be given a single flat-lay product image. Write one image prompt that places this exact product into a scene.
+
+<span class="section-label">CONTEXT</span>
+This is <span class="bracket">[product / brand]</span> for a Meta ad. The look is photographic and realistic — on-brand, never stylised or illustrated.
+
+<span class="section-label">CONSTRAINTS</span>
+Keep the product's exact colour, material, shape and proportions. Name one concrete environment with real detail. State the camera angle and the lighting direction. Write it detailed and highly tactile — real surfaces, textures and materials you can almost feel, photographic realism. Output only the prompt: raw prompt text, one paragraph, nothing else.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You have a product flat lay and need a scene concept for a Meta campaign</li>
+          <li>You want the image model to place the product in a realistic environment without losing brand fidelity</li>
+          <li>You're generating multiple concepts by duplicating the chain and changing the environment word</li>
+        </ul>
+      </div>
+    </details>
+
+    <!-- 14 -->
+    <details class="prompt-card">
+      <summary>
+        <span class="num">14</span>
+        <div class="info">
+          <div class="title">Video · Still to Motion (Fill the Brackets)</div>
+          <div class="desc">Turn a finished still into a short-form video prompt — static locked camera, product centred.</div>
+        </div>
+        <svg class="chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 8 10 13 15 8"/></svg>
+      </summary>
+      <div class="prompt-body">
+        <div class="template-block">
+          <button class="copy-btn" aria-label="Copy template">Copy</button>
+          <pre><span class="section-label">INSTRUCTIONS</span>
+You are an executive creative director. You'll be given a finished still image. Take the movement idea in the brackets and write one video prompt.
+
+<span class="section-label">MY MOVEMENT IDEA</span>
+<span class="bracket">[ ]</span>
+
+<span class="section-label">CONTEXT</span>
+This is a product shot for a Meta ad — photographic and realistic, on-brand. The product stays in frame, as centred as possible, from the first second to the last.
+
+<span class="section-label">CONSTRAINTS</span>
+Static locked camera — no camera movement, no zoom. Everything stays completely still except the movement above. If a person appears they're implied, never the hero — a shadow, or a hand or arm that enters and leaves. Write it detailed and tactile, photographic realism. Output only the prompt: raw prompt text, one paragraph, nothing else.</pre>
+        </div>
+        <div class="use-cases-label">Example use cases</div>
+        <ul class="use-cases">
+          <li>You've got a keeper still and want to bring it to life for short-form video</li>
+          <li>Your movement idea is simple — "a hand enters and picks it up" — and you need the model to fill in the cinematic detail</li>
+          <li>You're building the full chain: flat lay → scene concept → still → video</li>
+        </ul>
+      </div>
+    </details>
+
+  </div>
+
+  <div style="margin-top:24px;padding:22px 24px;background:var(--soft);border-radius:4px;border-left:3px solid var(--accent);">
+    <div style="font-family:var(--sans);font-size:10px;letter-spacing:0.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:10px;">Shared workspace</div>
+    <div style="font-family:var(--serif);font-size:19px;line-height:1.25;margin-bottom:8px;">Flora workflow — clone and go</div>
+    <p style="font-family:var(--sans);font-size:13px;color:var(--muted);line-height:1.55;margin-bottom:14px;">The chain Jeremy demoed in Session 06, ready to clone into your own folder. Open it, hit "Clone project," and start from the Carhartt flat lay.</p>
+    <a style="font-family:var(--sans);font-size:11px;letter-spacing:0.18em;text-transform:uppercase;font-weight:600;color:var(--accent);text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:1px;" href="https://app.flora.ai/projects/ns75j5kz841x72dgvq848bq9wd89626r" target="_blank" rel="noopener">Open in Flora</a>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer class="doc-foot">
+  <img class="foot-globe" src="/samplehub/nct-globe.png" alt="" />
+  <span>SKYNET <span class="accent">&times;</span> NotContent</span>
+  <br><br>
+  <a href="/samplehub">Training Hub</a>
+</footer>
+
+<footer class="doc-foot-graphic">
+  <img src="/samplehub/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const pre = this.closest('.template-block').querySelector('pre');
+      const text = pre.textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        this.textContent = 'Copied';
+        this.classList.add('copied');
+        setTimeout(() => {
+          this.textContent = 'Copy';
+          this.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

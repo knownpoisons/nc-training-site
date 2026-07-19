@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { isPartnerAuthenticated } from "@/lib/partners-auth";
 import { PartnerLogin } from "./partner-login";
-import { PartnerPlaybook } from "./partner-playbook";
+import { PartnerHub } from "./partner-hub";
 import "./partners.css";
 
 export const metadata: Metadata = {
-  title: "Partner Playbook — NotContent",
+  title: "Partner Hub — NotContent",
   description:
-    "Internal playbook for NotContent referral partners. Not for public distribution.",
+    "Everything a NotContent referral partner needs, in one place. Not for public distribution.",
   robots: { index: false, follow: false },
 };
 
@@ -17,5 +17,5 @@ export default async function PartnersPage() {
   if (!(await isPartnerAuthenticated())) {
     return <PartnerLogin />;
   }
-  return <PartnerPlaybook />;
+  return <PartnerHub />;
 }

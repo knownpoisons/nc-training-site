@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Session 04 — Starting the 80: The Master Prompt and Flora — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Session 04 — Starting the 80: The Master Prompt and Flora. We crossed over from conversation to making things. Thursday 18 June 2026." />
+<link rel="icon" type="image/png" href="/samplehub/nct-globe.png" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Session 04 — Starting the 80: The Master Prompt and Flora" />
+<meta property="og:description" content="We've been doing the 10. Now we do the 80. The master prompt, Flora as canvas, and the models that make things. Thursday 18 June 2026." />
+<meta property="og:image" content="https://training.notcontent.ai/samplehub/sessions/04/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/samplehub/sessions/04" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --soft: rgba(19, 56, 190, 0.07);
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+  body { padding-bottom: 0; }
+
+  /* ─── Top bar ─── */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: var(--bg);
+    border-bottom: 1px solid var(--rule);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .topbar .back { text-decoration: none; color: var(--accent); font-weight: 600; }
+  .topbar .back .arrow { margin-right: 8px; }
+  .topbar .progress { font-variant-numeric: tabular-nums; }
+  .topbar .progress strong { color: var(--accent); font-weight: 600; }
+
+  /* ─── Hero ─── */
+  .hero {
+    max-width: 880px;
+    margin: 12vh auto 6vh;
+    padding: 0 40px;
+  }
+  .hero .eyebrow {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .hero .eyebrow .num { color: var(--accent); font-weight: 600; }
+  .hero .eyebrow .pill {
+    background: var(--accent);
+    color: var(--bg);
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    font-weight: 600;
+  }
+  .hero .eyebrow .pill.past { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero .eyebrow .pill.future { background: transparent; color: var(--muted); border: 1px solid var(--rule); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(44px, 6.8vw, 88px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -0.025em;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero h1.cheat-header {
+    margin: 6px auto 0;
+    line-height: 0;
+    letter-spacing: 0;
+  }
+  .hero h1.cheat-header img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  .hero-lede {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.35;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 22px;
+    max-width: 38ch;
+  }
+  .hero .meta {
+    margin-top: 28px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    padding-top: 22px;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+  }
+  .hero .meta .item .lbl {
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .hero .meta .item .val {
+    font-family: var(--serif);
+    font-size: 19px;
+  }
+  .hero .actions {
+    margin-top: 32px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 3px;
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+    display: inline-block;
+  }
+  .btn:hover { background: transparent; color: var(--accent); }
+  .btn.ghost { background: transparent; color: var(--accent); }
+  .btn.ghost:hover { background: var(--accent); color: var(--bg); }
+  .btn.disabled {
+    background: transparent;
+    color: var(--muted);
+    border-color: var(--rule);
+    pointer-events: none;
+    opacity: 0.55;
+  }
+
+  /* ─── Section ─── */
+  section.block {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 6vh 40px;
+  }
+  section.block .head { margin-bottom: 28px; }
+  section.block .head .eyebrow {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 12px;
+  }
+  section.block .head .eyebrow .num { color: var(--accent); font-weight: 600; }
+  section.block .head .eyebrow .rule { flex: 1; height: 1px; background: var(--rule); }
+  section.block .head h2 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  /* ─── Agenda ─── */
+  .agenda { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
+  .agenda-item {
+    display: grid;
+    grid-template-columns: 56px 1fr;
+    align-items: baseline;
+    gap: 20px;
+    padding: 18px 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .agenda-item .n {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+  .agenda-item .title {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.2vw, 26px);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+
+  /* ─── Cards ─── */
+  .cards-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .resource-card {
+    padding: 22px 24px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .resource-card .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .resource-card .name {
+    font-family: var(--serif);
+    font-size: 21px;
+    line-height: 1.15;
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .resource-card .desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 14px;
+  }
+  .resource-card a.link {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid var(--accent);
+    padding-bottom: 1px;
+  }
+  .resource-card.highlight {
+    background: var(--accent);
+    color: var(--bg);
+    border-top-color: var(--bg);
+  }
+  .resource-card.highlight .lbl  { color: rgba(229, 228, 226, 0.8); }
+  .resource-card.highlight .name { color: var(--bg); }
+  .resource-card.highlight .desc { color: rgba(229, 228, 226, 0.85); }
+  .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
+  .resource-card.highlight a.link:hover { opacity: 0.8; }
+
+  /* ─── Next session ─── */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .date {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: rgba(229,228,226,0.85);
+    letter-spacing: 0.05em;
+  }
+  .next-up .btn { background: var(--bg); color: var(--accent); border-color: var(--bg); }
+  .next-up .btn:hover { background: transparent; color: var(--bg); border-color: var(--bg); }
+  .next-up.plain {
+    background: var(--surface);
+    color: var(--ink);
+    border: 1px solid var(--rule);
+    margin-top: 0;
+  }
+  .next-up.plain .lbl  { color: var(--muted); }
+  .next-up.plain .date { color: var(--muted); }
+  .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+  .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
+
+  /* ─── Homework ─── */
+  .homework {
+    margin: 28px 0;
+    padding: 24px 28px;
+    border-left: 3px solid var(--accent);
+    background: var(--soft);
+    border-radius: 0 4px 4px 0;
+  }
+  .homework .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .homework .ask {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    margin-bottom: 10px;
+  }
+  .homework .due {
+    font-family: var(--sans);
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── Pull quote ─── */
+  .cheat-pull {
+    font-family: var(--serif);
+    font-size: clamp(20px, 2.4vw, 26px);
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    border-left: 3px solid var(--accent);
+    padding-left: 22px;
+    margin-top: 22px;
+    max-width: 720px;
+  }
+  .cheat-pull .accent { color: var(--accent); }
+  .cheat-pull .attr {
+    display: block;
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    margin-top: 10px;
+    font-style: normal;
+  }
+
+  /* ─── Cheat note / list / sub ─── */
+  .cheat-note {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    max-width: 640px;
+  }
+  .cheat-kicker {
+    font-family: var(--serif);
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-top: 6px;
+  }
+  .cheat-list { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .cheat-item {
+    padding: 20px 22px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+  }
+  .cheat-item .h {
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+  .cheat-item .p {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+  .cheat-sub {
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink);
+    margin-bottom: 20px;
+  }
+  .homework + .cheat-kicker { margin-top: 18px; }
+
+  /* ─── Handshake 10-80-10 ─── */
+  .handshake { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+  .hs-step {
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--rule);
+    padding: 24px 20px;
+    text-align: center;
+  }
+  .hs-step.mid { background: var(--accent); color: var(--bg); border-top-color: var(--accent); }
+  .hs-step .pct {
+    font-family: var(--serif);
+    font-size: 36px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .hs-step.mid .pct { color: var(--bg); }
+  .hs-step .who {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+  .hs-step.mid .who { color: rgba(229, 228, 226, 0.85); }
+  .hs-step .what {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  .hs-step.mid .what { color: rgba(229, 228, 226, 0.9); }
+
+  /* ─── Flora nodes diagram ─── */
+  .node-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 12px; margin: 22px 0; }
+  .node-card {
+    padding: 20px 18px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+    text-align: center;
+  }
+  .node-card .key {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .node-card .node-name {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .node-card .node-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* ─── Section split ─── */
+  .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
+  .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
+
+  /* ─── Footer ─── */
+  .doc-foot-graphic { margin-top: 10vh; width: 100%; line-height: 0; }
+  .doc-foot-graphic img { display: block; width: 100%; height: auto; }
+
+  @media (max-width: 760px) {
+    .cards-2col { grid-template-columns: 1fr; }
+    .agenda-item { grid-template-columns: 1fr; gap: 6px; }
+    .next-up { grid-template-columns: 1fr; }
+    .cheat-list { grid-template-columns: 1fr !important; }
+    .node-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .handshake { grid-template-columns: 1fr; }
+    .node-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ───────── Motion ───────── */
+  @keyframes nc-rise {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes nc-pulse {
+    0%, 100% { opacity: 1;   transform: scale(1); }
+    50%      { opacity: 0.4; transform: scale(0.7); }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .hero, section.block {
+      animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+    section.block:nth-of-type(1) { animation-delay: 0.08s; }
+    section.block:nth-of-type(2) { animation-delay: 0.14s; }
+    section.block:nth-of-type(3) { animation-delay: 0.20s; }
+    section.block:nth-of-type(4) { animation-delay: 0.26s; }
+  }
+  .agenda-item, .btn {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+                background 0.15s, color 0.15s, border-color 0.15s;
+  }
+  .agenda-item:hover { transform: translateX(4px); }
+
+  .topbar .clock {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-variant-numeric: tabular-nums;
+  }
+  .topbar .clock .live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: nc-pulse 1.8s ease-in-out infinite;
+  }
+  .topbar .clock .t { color: var(--accent); font-weight: 600; }
+  @media (max-width: 420px) {
+    .topbar .next-meta { display: none; }
+  }
+
+  /* ───────── Page loader ───────── */
+  .nc-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans);
+    font-size: 12px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink);
+    text-align: center;
+    opacity: 0;
+    animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative;
+    height: 1.5px;
+    width: 200px;
+    max-width: 56vw;
+    margin: 20px auto 0;
+    background: var(--rule);
+    overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute;
+    inset: 0;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 24px;
+    border-radius: 50%;
+    box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin {
+    from { transform: perspective(520px) rotateY(0deg); }
+    to   { transform: perspective(520px) rotateY(360deg); }
+  }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in {
+    from { opacity: 0; transform: translateY(10px); letter-spacing: 0.18em; }
+    to   { opacity: 1; transform: translateY(0);    letter-spacing: 0.28em; }
+  }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/samplehub/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">×</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="topbar">
+  <a class="back" href="/samplehub"><span class="arrow">←</span>Back to hub</a>
+  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+</div>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="eyebrow">
+    <span><span class="num">04</span> &nbsp;/&nbsp; Phase 01 · Week 04 of 08</span>
+    <span class="pill" id="status-pill">Upcoming</span>
+  </div>
+  <h1 class="cheat-header">
+    <img src="/samplehub/sessions/04/cheatsheet-header.png" alt="Cheatsheet: Session Four — for creative teams and brands." />
+  </h1>
+  <p class="hero-lede">We've been doing the 10. This week we crossed over to the 80 — actually making things.</p>
+  <div class="meta">
+    <div class="item">
+      <div class="lbl">Date</div>
+      <div class="val"><s>Thursday, June 18, 2026</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Time</div>
+      <div class="val"><s>10:00 AM ET</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Length</div>
+      <div class="val"><s>60 minutes</s></div>
+    </div>
+    <div class="item">
+      <div class="lbl">Format</div>
+      <div class="val"><s>Google Meet</s></div>
+    </div>
+  </div>
+  <div class="actions">
+    <a class="btn join-link" id="join-btn" href="#" target="_blank" rel="noopener">Join meeting</a>
+    <a class="btn ghost" href="/samplehub">View all sessions</a>
+  </div>
+</header>
+
+<!-- ─── 01 · WHAT WE COVERED ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
+    <h2>Starting the 80.</h2>
+    <p class="cheat-note" style="margin-top:14px;">For three weeks the work has been conversation — reading creative, briefing by voice, getting ICC into muscle memory. That's the first 10 of the handshake. This week we crossed over to the 80: actually making things. Same brain, new tool.</p>
+  </div>
+
+  <div class="agenda">
+    <div class="agenda-item"><div class="n">01</div><div class="title">The reframe: "the problem is always me." When the output is bad, the fix is ICC — not telling the machine it's bad.</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">Creative prompting: anchors, iteration, and making Claude interview you when you're stuck.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">The master prompt. A reusable template that kicks off creative production with ICC built in.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">Flora — the canvas, not the tool. Nodes, models, and the four-letter workflow (U, T, I, V).</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">Which models to use: Nano Banana 2 and GPT Image 2. Test cheap, finish expensive.</div></div>
+  </div>
+</section>
+
+<!-- ─── 02 · THE HANDSHAKE ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The handshake <span class="rule"></span></div>
+    <h2>10 / 80 / 10.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:20px;">Three weeks of conversation was the first 10%. This week we entered the 80 — where the machine does the making. The judgment you've been building doesn't get left behind; it's the thing that makes the tool worth having.</p>
+
+  <div class="handshake">
+    <div class="hs-step">
+      <div class="pct">10%</div>
+      <div class="who">You</div>
+      <div class="what">Brief by voice. ICC loaded. The master prompt. Three weeks of this.</div>
+    </div>
+    <div class="hs-step mid">
+      <div class="pct">80%</div>
+      <div class="who">The machine</div>
+      <div class="what">Flora, Claude, the models. Making things — now.</div>
+    </div>
+    <div class="hs-step">
+      <div class="pct">10%</div>
+      <div class="who">You</div>
+      <div class="what">Review, refine, deliver. Coming soon.</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull">"<span class="accent">The problem is always me.</span>" When the output is bad, the instinct is to tell the machine it's bad. That does nothing. The fix is to treat it like a teammate who's underbriefed: figure out <em>why</em> it missed, then give it the missing letter.<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 03 · FROM THE SESSION ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">03</span> &nbsp;From the session <span class="rule"></span></div>
+    <h2>Words worth keeping.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On creative prompting — Luisa Melo</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"You need to have it think and sit in the seat of a creative director. Because you are not trained creatively, you don't know how to explain aesthetics — so having a reference, having Claude think like a creative director, helps a ton."</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">On Flora</div>
+      <div class="name" style="font-size:19px;line-height:1.35;">"Flora is not an AI tool. Flora is a canvas that allows us access to tools."</div>
+    </div>
+  </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"Twenty-four seconds instead of two and a half days of shooting, two and a half months of prep, and $250,000 to pay for the shoot — <span class="accent">I think we're pretty good</span> no matter how long these things take."<span class="attr">— Jeremy Somers</span></blockquote>
+</section>
+
+<!-- ─── 04 · FLŌRA NODES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">04</span> &nbsp;The canvas <span class="rule"></span></div>
+    <h2>Flora — four nodes, that's it.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;">Flora is an infinite canvas (think Figma) that calls ~80 image/video/text models through one interface. No separate ChatGPT account, no separate anything. Connect nodes with <strong>+</strong>, run with the <strong>arrow</strong> (set to 5 options per click), and duplicate with <strong>Cmd-D</strong>.</p>
+
+  <div class="node-grid">
+    <div class="node-card">
+      <div class="key">U</div>
+      <div class="node-name">Upload</div>
+      <div class="node-desc">Drag a product image onto the canvas.</div>
+    </div>
+    <div class="node-card">
+      <div class="key">T</div>
+      <div class="node-name">Text / LLM</div>
+      <div class="node-desc">Chat with Claude, GPT, or Gemini for prompting.</div>
+    </div>
+    <div class="node-card">
+      <div class="key">I</div>
+      <div class="node-name">Image</div>
+      <div class="node-desc">Generates images. Paste your Claude output into the prompt box.</div>
+    </div>
+    <div class="node-card">
+      <div class="key">V</div>
+      <div class="node-name">Video</div>
+      <div class="node-desc">Coming in a future session.</div>
+    </div>
+  </div>
+
+  <p class="cheat-note" style="margin-top:12px;"><strong>The honest truth:</strong> most of your work is <em>one image node</em> with a pasted prompt. The big canvas of wired-up nodes is for your eye, not a requirement.</p>
+</section>
+
+<!-- ─── 05 · MODELS ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">05</span> &nbsp;Which models to use <span class="rule"></span></div>
+    <h2>Two models. Pin them both.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">Default</div>
+      <div class="name">Nano Banana 2 (Google)</div>
+      <div class="desc">The current best. Set as your default in admin. Jeremy's pick when there are people in the shot. Lineage: Nano Banana → Nano Banana Pro → Nano Banana 2.</div>
+    </div>
+    <div class="resource-card" style="border-top-color:var(--accent);">
+      <div class="lbl">For product</div>
+      <div class="name">GPT Image 2 (OpenAI)</div>
+      <div class="desc">Better for product consistency. No separate ChatGPT account needed — all billed through Flora.</div>
+    </div>
+  </div>
+
+  <p class="cheat-note" style="margin-top:16px;"><strong>Workflow:</strong> run both at <strong>low res / 1K</strong> (faster, cheaper), pick the winner, then regenerate the keeper at <strong>2K</strong> for the finish. Both models pull real-world context natively — they know what a "vintage Porsche" or a brand looks like without you spelling it out.</p>
+</section>
+
+<!-- ─── ★ · LUISA'S TIPS ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">★</span> &nbsp;From the team <span class="rule"></span></div>
+    <h2>Luisa's three moves for creative prompting.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;">From the team's first live production case — the tips that actually work:</p>
+
+  <div class="cheat-list" style="grid-template-columns:1fr 1fr 1fr;">
+    <div class="cheat-item">
+      <div class="h" style="color:var(--accent);">1. Put Claude in the CD's seat</div>
+      <div class="p">Most of us were never trained to describe an aesthetic. Telling Claude to <em>think like a creative director</em> covers the gap you can't articulate.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h" style="color:var(--accent);">2. Give it an anchor</div>
+      <div class="p">A reference image, or a described aesthetic. Without an anchor it has nothing to aim taste at.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h" style="color:var(--accent);">3. Iterate as many times as you need</div>
+      <div class="p">Anchors plus reps. That's the whole game.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 06 · WHAT TO REMEMBER ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">06</span> &nbsp;What to remember <span class="rule"></span></div>
+    <h2>Keep these close.</h2>
+  </div>
+
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">The problem is always me.</div>
+      <div class="p">Bad output is an underbriefed teammate, not a broken machine. Find the missing letter — it's almost always context.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Context is the one everyone skips.</div>
+      <div class="p">The origin of the idea is context. The brand history is context. Hand it over.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Don't hoard files — regenerate.</div>
+      <div class="p">The era of <code>hoodie_flat_lay_V2_final_final.psd</code> is over. Keep a clean workspace; delete what you don't need.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">One node does almost everything.</div>
+      <div class="p">Resist the urge to learn all of Flora. Image node, paste the prompt, run. Do it 25 times and you've got a campaign.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Test cheap, finish expensive.</div>
+      <div class="p">Always start at low / 1K. Only go 2K on the one you love.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Feedback is data.</div>
+      <div class="p">Accept client feedback async only — written, or a Loom. Screenshot the feedback deck and feed it straight into the image node.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 07 · HOMEWORK ─── -->
+<section class="block" id="homework">
+  <div class="head">
+    <div class="eyebrow"><span class="num">07</span> &nbsp;Homework <span class="rule"></span></div>
+    <h2>Do this before Session 5.</h2>
+  </div>
+
+  <p class="cheat-note" style="margin-bottom:18px;"><strong>Flora access lands Tuesday June 23.</strong> This is a play-week, not a produce-week. You're not waiting for a live brief to open the tool — open it to mess around, break things, and build the muscle so the tool is invisible by the time real work shows up.</p>
+
+  <div class="homework">
+    <div class="lbl">First · Activate (Monday)</div>
+    <div class="ask">When the invite hits your inbox, activate your account. <strong>Pin Nano Banana 2</strong> (default) and <strong>GPT Image 2</strong> so they're top of the list.</div>
+    <div class="due">Watch one or two Flora tutorials from the playlist (link in Notion). ~3 minutes each — watch at 1.25×.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">1 · Replicate a saved reference</div>
+    <div class="ask">Pull one piece you love from your Instagram saves. Drop an image node, paste a prompt, and try to <strong>recreate that reference</strong> in Flora.</div>
+    <div class="due">Run 5 options. Don't expect it to nail it first try — that's the point.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">2 · Make 10–15 variations</div>
+    <div class="ask">Take whatever you started and push it. Change one thing at a time. Duplicate the node (<strong>Cmd-D</strong>) and run Nano Banana 2 vs GPT Image 2 on the same prompt.</div>
+    <div class="due">Volume is the lesson. You're after 10–15 variations, not one perfect image.</div>
+  </div>
+
+  <div class="homework">
+    <div class="lbl">3 · Try one video (optional but encouraged)</div>
+    <div class="ask">Drop a video node and make something move. We cover video properly next week — this is just to see it work.</div>
+    <div class="due">If you've got time over the long weekend.</div>
+  </div>
+
+  <div class="homework" style="border-left-color:var(--accent);background:rgba(19,56,190,0.07);">
+    <div class="lbl">The deliverable · due Thursday, 25 June</div>
+    <div class="ask">Come to Session 05 having <strong>spent real time in Flora</strong>: one reference replicated, 10–15 variations made, and ideally one video attempted. Bring the messiest, weirdest thing you made.</div>
+    <div class="due">Drop your favourites (or your funniest failures) in <strong>#project-creative-training</strong>. The team that shares reps levels up faster than the team that hides them.</div>
+  </div>
+</section>
+
+<div class="cheat-split"><hr></div>
+
+<!-- ─── 08 · COMING NEXT ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">08</span> &nbsp;Coming next <span class="rule"></span></div>
+  </div>
+
+  <div class="next-up plain">
+    <div>
+      <div class="lbl">Session 05 &nbsp;·&nbsp; Thursday, 25 June 2026 &nbsp;·&nbsp; 10:00 AM ET</div>
+      <div class="title">Making Stuff (and Making It a Team Sport)</div>
+      <div class="date">Hands on Flora. A live Instagram-replication rep, the video node, team workspaces, and accepting client feedback the async way.</div>
+    </div>
+    <a class="btn" href="/samplehub">View all sessions</a>
+  </div>
+</section>
+
+<!-- ─── 09 · RESOURCES ─── -->
+<section class="block">
+  <div class="head">
+    <div class="eyebrow"><span class="num">09</span> &nbsp;Resources <span class="rule"></span></div>
+    <h2>Take it with you.</h2>
+  </div>
+
+  <div class="cards-2col">
+    <div class="resource-card highlight">
+      <div class="lbl">Recording</div>
+      <div class="name">Session 04 video</div>
+      <div class="desc">The full session, start to finish. Watch it back any time.</div>
+      <a class="link" href="https://drive.google.com/file/d/1iYEwbiB6jOXxOWk6wVK9nu0tTt5n2UpU/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch recording</a>
+    </div>
+
+    <div class="resource-card highlight">
+      <div class="lbl">On the hub</div>
+      <div class="name">ICC Prompt Library</div>
+      <div class="desc">12 copy-paste ICC prompts by category. Use the master prompt to kick off creative production in Claude before pasting into Flora.</div>
+      <a class="link" href="/samplehub/resources/prompt-library" target="_blank" rel="noopener">Open prompt library</a>
+    </div>
+  </div>
+</section>
+
+<footer class="doc-foot-graphic">
+  <img src="/samplehub/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  const SESSION_DATE = "2026-06-18";
+  const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
+
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const [y, m, d] = SESSION_DATE.split('-').map(Number);
+  const sessionDate = new Date(y, m - 1, d);
+  const diff = sessionDate.getTime() - today.getTime();
+
+  const pill = document.getElementById('status-pill');
+  const btn = document.getElementById('join-btn');
+
+  if (diff === 0) {
+    pill.textContent = 'Today';
+    pill.className = 'pill';
+    btn.href = MEET_LINK;
+    btn.classList.remove('disabled');
+  } else if (diff < 0) {
+    pill.textContent = 'Complete';
+    pill.className = 'pill past';
+    btn.textContent = 'Session complete';
+    btn.classList.add('disabled');
+  } else {
+    pill.textContent = 'Upcoming';
+    pill.className = 'pill future';
+    btn.textContent = 'Join meeting';
+    btn.classList.add('disabled');
+  }
+
+  (function () {
+    const el = document.getElementById('nc-clock');
+    if (!el) return;
+    const SESSION_STARTS = [
+      '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+    ].map(d => {
+      const [y, m, day] = d.split('-').map(Number);
+      return Date.UTC(y, m - 1, day, 14, 0, 0);
+    });
+    const LIVE_WINDOW_MS = 90 * 60 * 1000;
+    const pad = n => String(n).padStart(2, '0');
+
+    function tick() {
+      const now = Date.now();
+      let next = null, live = false;
+      for (const start of SESSION_STARTS) {
+        if (now >= start && now < start + LIVE_WINDOW_MS) { live = true; break; }
+        if (now < start) { next = start; break; }
+      }
+      if (live) { el.textContent = 'Live now'; return; }
+      if (next === null) { el.textContent = 'Programme complete'; return; }
+      let s = Math.floor((next - now) / 1000);
+      const days = Math.floor(s / 86400); s -= days * 86400;
+      const h = Math.floor(s / 3600); s -= h * 3600;
+      const m = Math.floor(s / 60); s -= m * 60;
+      el.textContent = 'Next session ' + (days > 0 ? days + 'd ' : '') + pad(h) + ':' + pad(m) + ':' + pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  })();
+</script>
+
+</body>
+</html>

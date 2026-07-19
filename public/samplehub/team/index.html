@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Team — SKYNET × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Meet the SKYNET × NotContent AI creative training cohort." />
+<link rel="icon" type="image/png" href="/samplehub/nct-globe.png" />
+<style>
+  :root {
+    --bg: #E5E4E2;
+    --ink: #0E0E0C;
+    --muted: #5F5F60;
+    --rule: #C2C1BF;
+    --accent: #1338BE;
+    --surface: #EFEEEC;
+    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
+    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background-color: var(--bg);
+    background-image:
+      linear-gradient(rgba(19, 56, 190, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(19, 56, 190, 0.06) 1px, transparent 1px);
+    background-size: 24px 24px;
+    color: var(--ink);
+    font-family: var(--sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── Topbar ─── */
+  .topbar {
+    position: absolute; top: 0; left: 0; right: 0; z-index: 100;
+    padding: 16px 40px; display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: rgba(229,228,226,0.9);
+  }
+  .topbar .back { text-decoration: none; color: #fff; font-weight: 600; }
+  .topbar .back .arrow { margin-right: 8px; }
+  .topbar .label { font-weight: 600; color: #fff; }
+
+  /* ─── Header image ─── */
+  .hero-img {
+    position: relative;
+    width: 100%;
+    line-height: 0;
+    background: var(--accent);
+  }
+  .hero-img img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* ─── Card grid ─── */
+  .cards-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 8vh 40px 12vh;
+  }
+  .cards-section .head {
+    text-align: center;
+    margin-bottom: 6vh;
+  }
+  .cards-section .eyebrow {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.22em;
+    text-transform: uppercase; color: var(--muted); font-weight: 600; margin-bottom: 12px;
+  }
+  .cards-section h2 {
+    font-family: var(--serif);
+    font-size: clamp(32px, 4.5vw, 52px);
+    font-weight: 400; line-height: 1; letter-spacing: -0.025em;
+  }
+  .cards-section h2 .accent { color: var(--accent); }
+
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  /* ─── Individual card (grid — shows back image only) ─── */
+  .id-card {
+    position: relative;
+    width: 260px;
+    flex-shrink: 0;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M13 3c1.1 0 2 .9 2 2v8h0V7c0-1.1.9-2 2-2s2 .9 2 2v7h0V9c0-1.1.9-2 2-2s2 .9 2 2v10c0 0 0 .5 0 1 0 4.4-3.6 8-8 8h-1c-4.4 0-8-3.6-8-8v-5c0-1.1.9-2 2-2s2 .9 2 2v3h0V5c0-1.1.9-2 2-2z' fill='%23000' stroke='%23000' stroke-width='1'/%3E%3Cpath d='M13 4c.55 0 1 .45 1 1v9h2V7c0-.55.45-1 1-1s1 .45 1 1v8h2V9c0-.55.45-1 1-1s1 .45 1 1v10c0 0 0 .5 0 1 0 3.87-3.13 7-7 7h-1c-3.87 0-7-3.13-7-7v-5c0-.55.45-1 1-1s1 .45 1 1v4h2V5c0-.55.45-1 1-1z' fill='%23fff'/%3E%3C/svg%3E") 10 4, grab;
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .id-card img {
+    display: block; width: 100%; height: auto;
+    border-radius: 10px;
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
+    transition: filter 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .id-card:hover {
+    transform: scale(1.05);
+  }
+  .id-card:hover img {
+    filter: drop-shadow(0 14px 28px rgba(19, 56, 190, 0.2));
+  }
+
+  /* ─── Overlay (click to enlarge + flip) ─── */
+  .card-overlay {
+    position: fixed; inset: 0; z-index: 9000;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(14, 14, 12, 0);
+    pointer-events: none;
+    transition: background 0.4s;
+    cursor: pointer;
+  }
+  .card-overlay.active {
+    background: rgba(14, 14, 12, 0.55);
+    pointer-events: auto;
+  }
+  .card-overlay .overlay-card {
+    width: min(400px, 85vw);
+    perspective: 1200px;
+    transition: transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                opacity 0.4s;
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  .card-overlay.active .overlay-card {
+    transform: scale(1);
+    opacity: 1;
+  }
+  .card-overlay.closing .overlay-card {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  .card-overlay .overlay-inner {
+    width: 100%;
+    transform-style: preserve-3d;
+    transform: rotateY(180deg);
+    transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  .card-overlay.show-front .overlay-inner { transform: rotateY(0deg); }
+  .card-overlay .overlay-front,
+  .card-overlay .overlay-back {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    border-radius: 14px; overflow: hidden;
+    box-shadow: 0 24px 60px rgba(0,0,0,0.35);
+  }
+  .card-overlay .overlay-front { position: relative; }
+  .card-overlay .overlay-back {
+    position: absolute; inset: 0;
+    transform: rotateY(180deg);
+    background: var(--accent);
+  }
+  .card-overlay img { display: block; width: 100%; height: auto; }
+
+  /* ─── Head trainer call-out ─── */
+  .id-card.head-trainer {
+    width: 280px;
+    flex-basis: 100%;
+    max-width: 280px;
+  }
+
+  /* ─── Footer ─── */
+  .doc-foot-graphic {
+    width: 100%; line-height: 0;
+  }
+  .doc-foot-graphic img {
+    display: block; width: 100%; height: auto;
+  }
+
+  /* ─── Loader ─── */
+  .nc-loader {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--bg);
+    animation: nc-loader-out 0.55s cubic-bezier(0.65, 0, 0.35, 1) 1.15s forwards;
+  }
+  .nc-loader-mark {
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.28em;
+    text-transform: uppercase; color: var(--ink); text-align: center;
+    opacity: 0; animation: nc-mark-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  }
+  .nc-loader-mark .x { color: var(--accent); margin: 0 0.5em; }
+  .nc-loader-rule {
+    position: relative; height: 1.5px; width: 200px; max-width: 56vw;
+    margin: 20px auto 0; background: var(--rule); overflow: hidden;
+  }
+  .nc-loader-rule span {
+    position: absolute; inset: 0; background: var(--accent);
+    transform: scaleX(0); transform-origin: left;
+    animation: nc-rule-draw 0.95s cubic-bezier(0.65, 0, 0.35, 1) 0.3s forwards;
+  }
+  .nc-loader-globe {
+    display: block; width: 64px; height: 64px; margin: 0 auto 24px;
+    border-radius: 50%; box-shadow: 0 6px 22px rgba(19, 56, 190, 0.28);
+    animation: nc-globe-spin 3s linear infinite;
+  }
+  @keyframes nc-globe-spin { from { transform: perspective(520px) rotateY(0deg); } to { transform: perspective(520px) rotateY(360deg); } }
+  @keyframes nc-loader-out { to { opacity: 0; visibility: hidden; } }
+  @keyframes nc-mark-in { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes nc-rule-draw { to { transform: scaleX(1); } }
+  @media (prefers-reduced-motion: reduce) {
+    .nc-loader { display: none; }
+    *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  @media (max-width: 600px) {
+    .card-grid { gap: 20px; }
+    .id-card { width: calc(50% - 10px); }
+    .cards-section { padding: 6vh 20px 10vh; }
+    .id-card.head-trainer { width: 240px; max-width: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="nc-loader" aria-hidden="true">
+  <div>
+    <img class="nc-loader-globe" src="/samplehub/nct-globe.png" alt="" />
+    <div class="nc-loader-mark">SKYNET <span class="x">&times;</span> NotContent</div>
+    <div class="nc-loader-rule"><span></span></div>
+  </div>
+</div>
+
+<div class="hero-img">
+  <div class="topbar">
+    <a class="back" href="/samplehub"><span class="arrow">&larr;</span>Back to hub</a>
+    <span class="label">The Team</span>
+  </div>
+  <img src="/samplehub/team/header.png" alt="NotContent — SKYNET Training ID Cards" />
+</div>
+
+<div class="cards-section">
+  <div class="head">
+    <div class="eyebrow">Cohort 2026</div>
+    <h2>Meet the <span class="accent">team.</span></h2>
+  </div>
+
+  <div class="card-grid">
+
+    <div class="id-card head-trainer" style="transform: rotate(0deg);" data-front="/samplehub/team/id-jeremy-trainer.png" data-back="/samplehub/team/id-jeremy-trainer-back.png">
+      <img src="/samplehub/team/id-jeremy-trainer-back.png" alt="Jeremy — Head Trainer" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(2deg);" data-front="/samplehub/team/id-salome.png" data-back="/samplehub/team/id-salome-back.png">
+      <img src="/samplehub/team/id-salome-back.png" alt="Salome" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(-1.5deg);" data-front="/samplehub/team/id-vic.png" data-back="/samplehub/team/id-vic-back.png">
+      <img src="/samplehub/team/id-vic-back.png" alt="Vic" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(3deg);" data-front="/samplehub/team/id-christina.png" data-back="/samplehub/team/id-christina-back.png">
+      <img src="/samplehub/team/id-christina-back.png" alt="Christina" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(-2deg);" data-front="/samplehub/team/id-jared.png" data-back="/samplehub/team/id-jared-back.png">
+      <img src="/samplehub/team/id-jared-back.png" alt="Jared" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(1deg);" data-front="/samplehub/team/id-jeremy.png" data-back="/samplehub/team/id-jeremy-back.png">
+      <img src="/samplehub/team/id-jeremy-back.png" alt="Jeremy" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(-2.5deg);" data-front="/samplehub/team/id-justin.png" data-back="/samplehub/team/id-justin-back.png">
+      <img src="/samplehub/team/id-justin-back.png" alt="Justin" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(2.5deg);" data-front="/samplehub/team/id-luisa.png" data-back="/samplehub/team/id-luisa-back.png">
+      <img src="/samplehub/team/id-luisa-back.png" alt="Luisa" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(-1deg);" data-front="/samplehub/team/id-omama.png" data-back="/samplehub/team/id-omama-back.png">
+      <img src="/samplehub/team/id-omama-back.png" alt="Omama" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(3.5deg);" data-front="/samplehub/team/id-addison.png" data-back="/samplehub/team/id-addison-back.png">
+      <img src="/samplehub/team/id-addison-back.png" alt="Addison" />
+    </div>
+
+    <div class="id-card" style="transform: rotate(-3.5deg);" data-front="/samplehub/team/id-chris.png" data-back="/samplehub/team/id-chris-back.png">
+      <img src="/samplehub/team/id-chris-back.png" alt="Chris" />
+    </div>
+
+  </div>
+</div>
+
+<!-- Overlay for enlarged card view -->
+<div class="card-overlay" id="card-overlay">
+  <div class="overlay-card">
+    <div class="overlay-inner">
+      <div class="overlay-front"><img id="overlay-front-img" src="" alt="" /></div>
+      <div class="overlay-back"><img id="overlay-back-img" src="" alt="" /></div>
+    </div>
+  </div>
+</div>
+
+<footer class="doc-foot-graphic">
+  <img src="/samplehub/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+<script>
+  const overlay = document.getElementById('card-overlay');
+  const frontImg = document.getElementById('overlay-front-img');
+  const backImg = document.getElementById('overlay-back-img');
+  let closing = false;
+
+  document.querySelectorAll('.id-card').forEach(card => {
+    card.addEventListener('click', () => {
+      if (closing) return;
+      overlay.classList.remove('show-front', 'closing', 'active');
+      frontImg.src = card.dataset.front;
+      backImg.src = card.dataset.back;
+      const img = new Image();
+      img.src = card.dataset.front;
+      img.onload = show;
+      img.onerror = show;
+      if (img.complete) show();
+      function show() {
+        img.onload = img.onerror = null;
+        overlay.classList.add('active');
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            overlay.classList.add('show-front');
+          });
+        });
+      }
+    });
+  });
+
+  function closeOverlay() {
+    if (closing || !overlay.classList.contains('active')) return;
+    closing = true;
+    overlay.classList.remove('show-front');
+    overlay.classList.add('closing');
+    setTimeout(() => {
+      overlay.classList.remove('active', 'closing');
+      closing = false;
+    }, 700);
+  }
+
+  overlay.addEventListener('click', closeOverlay);
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeOverlay();
+  });
+</script>
+
+</body>
+</html>

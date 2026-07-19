@@ -31,7 +31,7 @@ export function PartnerLogin() {
       {/* Topbar */}
       <div className="topbar">
         <Link href="/" className="brand">
-          NotContent <span className="dot">·</span> Partner Playbook
+          NotContent <span className="dot">·</span> Partner Hub
         </Link>
         <span className="counter">
           <strong>Internal</strong> · partner use
@@ -46,8 +46,8 @@ export function PartnerLogin() {
             Howdy, <span className="login-title-accent">partner</span>.
           </h1>
           <p className="login-body">
-            Drop the partner password to come in. Ask Jem if you don&rsquo;t have
-            it.
+            Drop the partner password to open your kit — the site, the playbook,
+            and a sample hub. Ask Jem if you don&rsquo;t have it.
           </p>
 
           <form onSubmit={handleSubmit} className="login-form">

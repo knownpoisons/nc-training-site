@@ -981,3 +981,218 @@
   outline: 2px solid var(--accent);
   outline-offset: 3px;
 }
+
+/* ═══════════ Partner Hub — the launcher (one card + detail per section) ═══════ */
+.partners .hub-list {
+  max-width: 1100px;
+  margin: 2vh auto 12vh;
+  padding: 0 40px;
+}
+
+/* Visually-hidden text (e.g. "opens in a new tab") for screen readers */
+.partners .hub-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+.partners .hub-list .hub-card:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.partners .hub-card {
+  display: grid;
+  grid-template-columns: minmax(200px, 300px) minmax(0, 1.05fr) minmax(0, 1fr);
+  align-items: stretch;
+  border-bottom: 1px solid var(--rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.25s ease;
+}
+.partners .hub-card:hover { background: var(--soft); }
+
+/* Art panel — brand-tone block + ghosted serif numeral. Swap for an <img> later. */
+.partners .hub-art {
+  position: relative;
+  overflow: hidden;
+  min-height: 210px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+.partners .hub-art--cobalt { background: var(--accent); color: #fff; }
+.partners .hub-art--platinum {
+  background: var(--surface);
+  color: var(--accent);
+  border-right: 1px solid var(--rule);
+}
+.partners .hub-art--ink { background: var(--ink); color: #fff; }
+.partners .hub-art-num {
+  position: absolute;
+  z-index: -1;
+  font-family: var(--serif);
+  font-size: clamp(120px, 16vw, 210px);
+  line-height: 1;
+  font-weight: 400;
+  opacity: 0.16;
+  letter-spacing: -0.03em;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.partners .hub-card:hover .hub-art-num { transform: scale(1.06); }
+/* Cobalt-at-16%-over-cream washes out; give the platinum numeral more presence
+   so the watermark reads at comparable strength across all three tones. */
+.partners .hub-art--platinum .hub-art-num { opacity: 0.3; }
+.partners .hub-art-tag {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.partners .hub-main {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+}
+.partners .hub-eyebrow {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+}
+.partners .hub-title {
+  font-family: var(--serif);
+  font-size: clamp(28px, 3.6vw, 50px);
+  line-height: 0.98;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  color: var(--ink);
+  margin: 0;
+}
+
+.partners .hub-detail {
+  padding: 40px 40px 40px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 18px;
+}
+.partners .hub-desc {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(16px, 1.5vw, 19px);
+  line-height: 1.45;
+  color: var(--muted);
+  margin: 0;
+  max-width: 420px;
+}
+.partners .hub-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+.partners .hub-items li {
+  position: relative;
+  padding-left: 20px;
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 1.3;
+  font-weight: 500;
+  color: var(--ink);
+}
+.partners .hub-items li::before {
+  content: "—";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+.partners .hub-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 4px;
+  background: none;
+  padding: 0;
+  font-family: var(--sans);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+}
+.partners .hub-arrow {
+  display: inline-block;
+  transition: transform 0.2s ease;
+}
+.partners .hub-card:hover .hub-arrow { transform: translateX(4px); }
+
+/* Tablet — art spans the full card height on the left; title + detail stack in
+   the right column sharing one left edge (no mid-row float, no offset).
+   Explicit rows so the art reliably spans both rows (grid-row:1/-1 collapses
+   with implicit rows). */
+@media (max-width: 900px) {
+  .partners .hub-card {
+    grid-template-columns: 190px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  .partners .hub-art { grid-column: 1; grid-row: 1 / 3; }
+  .partners .hub-main {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 30px 30px 10px;
+    justify-content: flex-end;
+  }
+  .partners .hub-detail {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 0 30px 34px;
+  }
+}
+
+/* Mobile — single column, art on top. Resets the tablet grid placement so its
+   explicit rows/columns don't leak in and force a phantom second column. */
+@media (max-width: 640px) {
+  .partners .hub-list { padding: 0 20px; margin-bottom: 7vh; }
+  .partners .hub-card {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .partners .hub-art {
+    grid-column: 1;
+    grid-row: auto;
+    min-height: 0;
+    aspect-ratio: 16 / 7;
+  }
+  .partners .hub-art--platinum { border-right: none; border-bottom: 1px solid var(--rule); }
+  .partners .hub-art-num { font-size: clamp(80px, 30vw, 150px); }
+  .partners .hub-main {
+    grid-column: 1;
+    grid-row: auto;
+    justify-content: center;
+    padding: 22px 20px 10px;
+  }
+  .partners .hub-detail {
+    grid-column: 1;
+    grid-row: auto;
+    padding: 0 20px 26px;
+  }
+  .partners .hub-desc { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partners .hub-art-num,
+  .partners .hub-arrow { transition: none; }
+}
