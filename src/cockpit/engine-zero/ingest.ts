@@ -41,6 +41,41 @@ function toLeadInput(lead: MergedLead, today: Day): NewLeadInput {
 }
 
 /**
+ * Bulk sibling of `ingest()` for large one-off loads (the source-file import,
+ * the Gmail mine). Identical dedupe/scoring/consent rules and the same stage-NEW
+ * guarantee — the only difference is shape: one query for existing emails and
+ * chunked inserts, instead of two round-trips per lead. Thousands of rows finish
+ * in seconds rather than timing out.
+ */
+export async function ingestBulk(
+  store: CockpitStore,
+  rawLeads: RawLead[],
+  today: Day
+): Promise<IngestResult> {
+  const mergedLeads = dedupe(rawLeads);
+  const result: IngestResult = {
+    received: rawLeads.length,
+    merged: mergedLeads.length,
+    created: 0,
+    byTier: { A: 0, B: 0, C: 0 },
+    byConsent: { pipeline: 0, broadcast_only: 0 },
+  };
+
+  const existing = await store.listExistingEmails();
+  const toCreate: NewLeadInput[] = [];
+  for (const lead of mergedLeads) {
+    if (lead.email && existing.has(lead.email.trim().toLowerCase())) continue;
+    const input = toLeadInput(lead, today);
+    toCreate.push(input);
+    result.byTier[input.tier] += 1;
+    result.byConsent[input.consentLane] += 1;
+  }
+
+  result.created = await store.createLeads(toCreate, today);
+  return result;
+}
+
+/**
  * Ingest a batch of RawLeads (from any mix of importers). Dedupes within the
  * batch, then persists each as a queued lead. Cross-batch dedupe against leads
  * already in the store is best-effort on email.

@@ -19,9 +19,13 @@ function dayOfWeek(day: string): number {
   return new Date(`${day}T00:00:00Z`).getUTCDay();
 }
 
+/** Imported contacts with no name at all get this placeholder — expected, not broken. */
+const KNOWN_PLACEHOLDERS = new Set(["(unknown)"]);
+
 /** A name that's obviously garbage from a malformed `add` (the "[ jane, ecd]" class). */
 function looksMalformed(name: string): boolean {
   const n = name.trim();
+  if (KNOWN_PLACEHOLDERS.has(n.toLowerCase())) return false;
   if (n.length < 2) return true;
   if (/^[[({].*[\])}]?$/.test(n)) return true; // wrapped in brackets/parens
   if (/^[,;:]/.test(n) || /[,;:]$/.test(n)) return true; // leading/trailing punctuation

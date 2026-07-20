@@ -10,7 +10,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { CockpitStore } from "../store/types";
 import type { Day } from "../cadence/dates";
-import { ingest, type IngestResult } from "./ingest";
+import { ingestBulk, type IngestResult } from "./ingest";
 import { parseBeehiivCsv, parseCommunityCsv, parseLinkedInConnections } from "./parse";
 import type { RawLead } from "./types";
 
@@ -56,6 +56,6 @@ export async function importSources(
   paths: ImportPaths = defaultImportPaths()
 ): Promise<{ counts: Record<string, number>; ingest: IngestResult }> {
   const { leads, counts } = readRawLeads(paths);
-  const result = await ingest(store, leads, today);
+  const result = await ingestBulk(store, leads, today);
   return { counts, ingest: result };
 }

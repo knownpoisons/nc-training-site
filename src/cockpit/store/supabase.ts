@@ -270,6 +270,54 @@ export class SupabaseStore implements CockpitStore {
     return toProspect(data);
   }
 
+  async listExistingEmails(): Promise<Set<string>> {
+    // Paginated: PostgREST caps a single response, and this table gets large.
+    const out = new Set<string>();
+    const PAGE = 1000;
+    for (let from = 0; ; from += PAGE) {
+      const { data, error } = await this.db
+        .from("cockpit_prospects")
+        .select("email")
+        .not("email", "is", null)
+        .range(from, from + PAGE - 1);
+      if (error) throw new Error(`listExistingEmails: ${error.message}`);
+      for (const r of data ?? []) {
+        const e = (r as { email: string | null }).email;
+        if (e) out.add(e.trim().toLowerCase());
+      }
+      if (!data || data.length < PAGE) break;
+    }
+    return out;
+  }
+
+  async createLeads(inputs: NewLeadInput[], addedAt: Day): Promise<number> {
+    if (inputs.length === 0) return 0;
+    const rows = inputs.map((input) => ({
+      name: input.name ?? "(unknown)",
+      email: input.email,
+      company: input.company,
+      role: input.role,
+      linkedin_url: input.linkedinUrl,
+      source_engine: input.sourceEngine,
+      stage: "NEW" as const, // queued — never sequenced until promoted (F11)
+      added_at: addedAt,
+      sources: input.sources,
+      consent_lane: input.consentLane,
+      score: input.score,
+      tier: input.tier,
+      source_detail: input.sourceDetail,
+    }));
+
+    let written = 0;
+    const CHUNK = 500;
+    for (let i = 0; i < rows.length; i += CHUNK) {
+      const { error } = await this.db.from("cockpit_prospects").insert(rows.slice(i, i + CHUNK));
+      if (error) throw new Error(`createLeads: ${error.message}`);
+      written += Math.min(CHUNK, rows.length - i);
+    }
+    return written;
+  }
+
   async findProspectByEmail(email: string): Promise<StoreProspect | null> {
     const { data, error } = await this.db
       .from("cockpit_prospects")
@@ -393,10 +441,13 @@ export class SupabaseStore implements CockpitStore {
   }
 
   async getQueuedLeads(limit: number): Promise<StoreProspect[]> {
+    // Consent rule: newsletter/list contacts are broadcast_only and must never
+    // be offered up for a 1:1 sequence — so they never reach the digest.
     const { data, error } = await this.db
       .from("cockpit_prospects")
       .select("*")
       .eq("stage", "NEW")
+      .or("consent_lane.is.null,consent_lane.eq.pipeline")
       .order("score", { ascending: false, nullsFirst: false })
       .limit(limit);
     if (error) throw new Error(`getQueuedLeads: ${error.message}`);

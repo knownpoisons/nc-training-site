@@ -79,6 +79,8 @@ export function resolveDigest(digest: SavedDigest | null, n: number): string | n
 export interface PromotionSummary {
   promotedThisWeek: string[];
   deferred: Array<{ label: string; date: Day }>;
+  /** Refused because they're broadcast_only (newsletter/list consent). */
+  blocked?: string[];
 }
 
 /**
@@ -100,8 +102,18 @@ export async function promoteLeads(
   for (let i = 0; i < prospectIds.length; i++) {
     const id = prospectIds[i];
     const date = dates[i];
-    await store.promoteLead(id, date, reason);
     const p = await store.getProspect(id);
+
+    // Consent rule, enforced in code: someone who only ever agreed to a
+    // newsletter cannot be dropped into a 1:1 outreach sequence. They shouldn't
+    // reach the digest at all — this is the second lock on the same door.
+    if (p?.consentLane === "broadcast_only") {
+      summary.blocked = summary.blocked ?? [];
+      summary.blocked.push(p.name);
+      continue;
+    }
+
+    await store.promoteLead(id, date, reason);
     const label = p?.name ?? id;
     if (date === today) summary.promotedThisWeek.push(label);
     else summary.deferred.push({ label, date });

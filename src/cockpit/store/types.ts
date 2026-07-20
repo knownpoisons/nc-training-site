@@ -147,6 +147,11 @@ export interface CockpitStore {
   createLead(input: NewLeadInput, addedAt: Day): Promise<StoreProspect>;
   /** Find a lead by email (dedupe against existing DB records on ingest). */
   findProspectByEmail(email: string): Promise<StoreProspect | null>;
+  /** Every email already in the store, lowercased — one round-trip so a bulk
+   *  import can dedupe in memory instead of querying per lead. */
+  listExistingEmails(): Promise<Set<string>>;
+  /** Insert many queued leads at once. Returns how many rows were written. */
+  createLeads(inputs: NewLeadInput[], addedAt: Day): Promise<number>;
   markTouchSent(touchId: string, sentAt: Day): Promise<void>;
   skipTouch(touchId: string): Promise<StoreTouch>;
   snoozeTouch(touchId: string): Promise<StoreTouch>;

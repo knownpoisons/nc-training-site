@@ -242,6 +242,19 @@ export class MemoryStore implements CockpitStore {
     return null;
   }
 
+  async listExistingEmails(): Promise<Set<string>> {
+    const out = new Set<string>();
+    for (const p of this.prospects.values()) {
+      if (p.email) out.add(p.email.trim().toLowerCase());
+    }
+    return out;
+  }
+
+  async createLeads(inputs: NewLeadInput[], addedAt: Day): Promise<number> {
+    for (const input of inputs) await this.createLead(input, addedAt);
+    return inputs.length;
+  }
+
   async markTouchSent(touchId: string, sentAt: Day): Promise<void> {
     this.setTouch(touchId, { sentAt });
   }
@@ -324,8 +337,9 @@ export class MemoryStore implements CockpitStore {
   }
 
   async getQueuedLeads(limit: number): Promise<StoreProspect[]> {
+    // Consent rule: broadcast_only contacts never reach the promotion digest.
     return [...this.prospects.values()]
-      .filter((p) => p.stage === "NEW")
+      .filter((p) => p.stage === "NEW" && p.consentLane !== "broadcast_only")
       .sort((a, b) => (b.score ?? 0) - (a.score ?? 0))
       .slice(0, limit);
   }

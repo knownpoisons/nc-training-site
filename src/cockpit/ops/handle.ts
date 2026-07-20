@@ -734,6 +734,12 @@ async function handlePromote(
     const d = summary.deferred.map((x) => `${x.label} → week of ${x.date}`).join("; ");
     parts.push(`Over the ${settings.weeklyVolume}/week cap, so staggered: ${d}.`);
   }
+  if (summary.blocked?.length) {
+    parts.push(
+      `🔒 Left alone: ${summary.blocked.join(", ")} — they only ever opted into the newsletter, ` +
+        `so they can't go into outreach. They'll still get the newsletter.`
+    );
+  }
   if (misses.length) parts.push(`No lead ${misses.join(", ")} in the digest.`);
   await confirm(parts.join(" "));
   return { intent: "promote", confirmed: true };
