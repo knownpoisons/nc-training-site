@@ -13,15 +13,21 @@ export function placeholderDraft(prospect: StoreProspect, touch: StoreTouch): st
   const who = prospect.name + (prospect.company ? `, ${prospect.company}` : "");
   return (
     `[PERSONALISE — one line proving you looked at ${who}]. ` +
-    `Placeholder body for touch ${touch.touchNumber} — real copy arrives in Phase 3. ` +
-    `One CTA goes here.`
+    `Draft for touch ${touch.touchNumber} couldn't be written just now — ` +
+    `write it yourself, or say \`rewrite ${touch.touchNumber}\` to try again.`
   );
 }
 
-export function placeholderReplyDraft(prospect: StoreProspect): string {
+/**
+ * A reply can't be answered until we know what they said — so the brief asks for
+ * it rather than inventing one. `replied N` + the pasted message returns a real
+ * drafted response immediately.
+ */
+export function replyPrompt(prospect: StoreProspect, actionNumber?: number): string {
+  const cmd = actionNumber ? `replied ${actionNumber}` : "replied <number>";
   return (
-    `[Draft response to ${prospect.name}'s reply — real copy arrives in Phase 3.] ` +
-    `Paste their message and I'll draft the answer.`
+    `${prospect.name} is waiting on you. Say \`${cmd}\` and paste what they wrote — ` +
+    `I'll draft the answer in your voice.`
   );
 }
 

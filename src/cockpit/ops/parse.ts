@@ -35,9 +35,41 @@ export type Intent =
   | { kind: "help" }
   | { kind: "conversational"; text: string };
 
+/** Nothing Jem numbers goes above 10 (brief caps at 8, digest at 10). So a
+ *  bigger number is never one action — it's digits he ran together. */
+const MAX_SINGLE_ACTION = 10;
+
+/**
+ * Action numbers, forgiving of how people actually type:
+ *   "done 1 2 3"  → [1,2,3]      "done 1,2"  → [1,2]
+ *   "done 1-3"    → [1,2,3]      "done 123"  → [1,2,3]
+ * A run of digits that can't be a real action number is split apart.
+ */
 function indices(s: string): number[] {
-  const nums = s.match(/\d+/g);
-  return nums ? nums.map(Number) : [];
+  // Ranges first: "1-5" becomes "1 2 3 4 5" before token scanning.
+  const expanded = s.replace(/(\d+)\s*[-–—]\s*(\d+)/g, (whole, a: string, b: string) => {
+    const lo = Number(a);
+    const hi = Number(b);
+    if (lo >= 1 && hi >= lo && hi - lo <= 20) {
+      const span: number[] = [];
+      for (let i = lo; i <= hi; i++) span.push(i);
+      return ` ${span.join(" ")} `;
+    }
+    return whole;
+  });
+
+  const out: number[] = [];
+  for (const tok of expanded.match(/\d+/g) ?? []) {
+    const n = Number(tok);
+    // "123" can't be one action → he meant 1, 2 and 3. (A 0 anywhere, e.g.
+    // "10", means it's a genuine number, so leave those alone.)
+    if (tok.length > 1 && n > MAX_SINGLE_ACTION && /^[1-9]+$/.test(tok)) {
+      for (const digit of tok) out.push(Number(digit));
+    } else {
+      out.push(n);
+    }
+  }
+  return [...new Set(out)];
 }
 
 function firstIndex(s: string): number | null {

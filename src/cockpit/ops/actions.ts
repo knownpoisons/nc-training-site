@@ -12,7 +12,7 @@
 
 import { compareDays } from "../cadence/dates";
 import type { BriefActionRef, DueItem } from "../store/types";
-import { placeholderDraft, placeholderReplyDraft } from "./drafts";
+import { placeholderDraft, replyPrompt } from "./drafts";
 
 export const BRIEF_CAP = 8;
 
@@ -89,7 +89,7 @@ export function buildBrief(items: DueItem[]): BuiltBrief {
         touchNumber: null,
         label: `${item.prospect.name} · reply`,
         contextLine: `${item.prospect.name} replied — draft a response and move this forward.`,
-        draftText: placeholderReplyDraft(item.prospect),
+        draftText: replyPrompt(item.prospect, n),
         intel: intelFor(item.prospect),
       };
     }
