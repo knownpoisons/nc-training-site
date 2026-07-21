@@ -30,9 +30,32 @@
    a colour or a size.
    ═══════════════════════════════════════════════════════════════════════════ */
 
-import Link from "next/link";
-import type { ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 import "@/styles/ds.css";
+
+/* ───────── Link primitive ─────────
+   The system is deliberately framework-agnostic: links render a plain <a>, so
+   these components work anywhere React does (including Claude Design). Inside
+   a Next app, pass `linkComponent={Link}` to opt into client-side routing. */
+type LinkComponent = ElementType;
+
+function A({
+  href,
+  className,
+  children,
+  linkComponent: L = "a",
+}: {
+  href: string;
+  className?: string;
+  children: ReactNode;
+  linkComponent?: LinkComponent;
+}) {
+  return (
+    <L href={href} className={className}>
+      {children}
+    </L>
+  );
+}
 
 /* ───────── Page: the ground every NotContent surface sits on ───────── */
 export function Page({
@@ -57,9 +80,9 @@ export function Topbar({
 }) {
   return (
     <div className="nc-topbar">
-      <Link href={href} className="nc-brand">
+      <A href={href} className="nc-brand">
         {brand}
-      </Link>
+      </A>
       {meta ? <div className="nc-topbar-meta">{meta}</div> : null}
     </div>
   );
@@ -201,9 +224,9 @@ export function Row({
     );
   }
   return (
-    <Link href={href} className={cls}>
+    <A href={href} className={cls}>
       {inner}
-    </Link>
+    </A>
   );
 }
 
@@ -235,9 +258,9 @@ export function Button({
 
   if (href) {
     return (
-      <Link href={href} className={cls}>
+      <A href={href} className={cls}>
         {children}
-      </Link>
+      </A>
     );
   }
   return (
@@ -265,9 +288,9 @@ export function InlineLink({
     );
   }
   return (
-    <Link href={href} className="nc-link">
+    <A href={href} className="nc-link">
       {children}
-    </Link>
+    </A>
   );
 }
 
