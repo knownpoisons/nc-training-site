@@ -1,0 +1,46 @@
+{
+  "projectId": "5e38ff23-246e-4272-b5bd-c6e6c7fee5c7",
+  "shape": "package",
+  "pkg": "nc-training-site",
+  "globalName": "NotContentDS",
+  "srcDir": "src/components/ds",
+  "tsconfig": "tsconfig.json",
+  "cssEntry": ".design-sync/shipped.css",
+  "runtimeFontPrefixes": [
+    "Iowan",
+    "Cooper Hewitt",
+    "Source Serif",
+    "Inter",
+    "Helvetica",
+    "IBM Plex",
+    "Georgia",
+    "Menlo"
+  ],
+  "componentSrcMap": {
+    "Page": "src/components/ds/index.tsx",
+    "Topbar": "src/components/ds/index.tsx",
+    "Accent": "src/components/ds/index.tsx",
+    "Eyebrow": "src/components/ds/index.tsx",
+    "Hero": "src/components/ds/index.tsx",
+    "SectionHead": "src/components/ds/index.tsx",
+    "Section": "src/components/ds/index.tsx",
+    "RowList": "src/components/ds/index.tsx",
+    "Row": "src/components/ds/index.tsx",
+    "Button": "src/components/ds/index.tsx",
+    "InlineLink": "src/components/ds/index.tsx",
+    "Footer": "src/components/ds/index.tsx"
+  },
+  "buildCmd": "cat src/styles/tokens.css src/styles/ds.css > .design-sync/shipped.css",
+  "overrides": {
+    "Accent": {
+      "cardMode": "column"
+    },
+    "Hero": {
+      "cardMode": "column"
+    },
+    "Row": {
+      "cardMode": "column"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
