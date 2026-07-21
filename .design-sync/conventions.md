@@ -46,6 +46,11 @@ hard-coded hex or px. Real names, all defined in the shipped stylesheet:
 | Type scale | `--nc-size-display` `--nc-size-h1` `--nc-size-h2` `--nc-size-lead` `--nc-size-body` `--nc-size-small` `--nc-size-label` `--nc-size-micro` |
 | Type detail | `--nc-leading-display` `--nc-leading-head` `--nc-leading-body` `--nc-track-display` `--nc-track-head` `--nc-track-label` `--nc-track-eyebrow` |
 | Layout | `--nc-measure` (1100px) `--nc-gutter` `--nc-gutter-sm` `--nc-radius` (0 — the brand is square) |
+| Spacing (8pt) | `--nc-space-4` `-8` `-16` `-24` `-32` `-40` `-48` `-64` `-80` `-96` |
+| Grid | `--nc-grid-columns` (12) `--nc-grid-margin` (64px) `--nc-grid-gutter` (24px) |
+| Containers | `--nc-container-desktop` (1280) `--nc-container-tablet` (768) `--nc-container-mobile` (375) |
+| Radius scale | `--nc-radius-sm` `-md` `-lg` `-full` — see the square-corners rule below |
+| Icons | `--nc-icon-stroke` (2px) `--nc-icon-stroke-lg` (2.5px) |
 | Motion | `--nc-ease` `--nc-dur-fast` `--nc-dur-base` `--nc-dur-slow` |
 
 ```jsx
@@ -67,7 +72,18 @@ A small set of classes is also available when composing outside the components:
 - **One featured row.** `<Row featured>` is a solid cobalt block; use it for a
   single item. Several featured rows kill the effect. `<Row quiet>` is the
   greyed, non-interactive "coming soon" state.
-- **Square corners.** `--nc-radius` is `0`. Don't add border-radius.
+- **Square corners by default.** `--nc-radius` is `0` — editorial surfaces
+  (heroes, rows, sections, buttons) are square. The `--nc-radius-sm/md/lg/full`
+  scale exists for programme and application surfaces only: badges, chips,
+  stickers, avatars. When in doubt, square.
+- **Spacing is an 8pt system.** Use the `--nc-space-*` steps rather than
+  arbitrary px. `--nc-space-64` is the standard page margin.
+- **Icons** are line icons in cobalt: 2px stroke (`--nc-icon-stroke`) at 24px,
+  2.5px at larger sizes, rounded caps and joins. Keep them simple and universally
+  recognisable; don't fill them.
+- **Imagery** is authentic and human-centred — real people, real work. Apply a
+  subtle blue overlay or duotone for brand consistency; avoid over-saturated
+  colour that competes with cobalt, and leave generous space for type.
 - Numbers (`n`, `eyebrowNum`) are zero-padded strings: `"01"`, not `1`.
 
 ## Where the truth lives

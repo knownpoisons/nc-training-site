@@ -65,6 +65,43 @@
   --nc-gutter-sm: 20px;
   --nc-radius: 0;                    /* the brand is square-cornered */
 
+  /* ───────── Secondary palette (brand board 03) ─────────
+     Additive only — the locked cobalt and platinum above are unchanged. */
+  --nc-sky: #d6e2ff;                 /* Sky Blue — tints, quiet fills */
+  --nc-cool-gray: #6b6f76;           /* Cool Gray — secondary UI text */
+
+  /* ───────── Spacing scale (brand board 04 — 8pt system) ───────── */
+  --nc-space-4: 4px;
+  --nc-space-8: 8px;
+  --nc-space-16: 16px;
+  --nc-space-24: 24px;
+  --nc-space-32: 32px;
+  --nc-space-40: 40px;
+  --nc-space-48: 48px;
+  --nc-space-64: 64px;
+  --nc-space-80: 80px;
+  --nc-space-96: 96px;
+
+  /* ───────── Grid + containers (brand board 04) ───────── */
+  --nc-grid-columns: 12;
+  --nc-grid-margin: 64px;
+  --nc-grid-gutter: 24px;
+  --nc-container-desktop: 1280px;
+  --nc-container-tablet: 768px;
+  --nc-container-mobile: 375px;
+
+  /* ───────── Radius scale (brand board 04) ─────────
+     NOTE: --nc-radius stays 0 — editorial surfaces are square by default.
+     These exist for programme/application surfaces (badges, cards, chips). */
+  --nc-radius-sm: 4px;
+  --nc-radius-md: 8px;
+  --nc-radius-lg: 16px;
+  --nc-radius-full: 9999px;
+
+  /* ───────── Iconography (brand board 06) ───────── */
+  --nc-icon-stroke: 2px;             /* 24px icons; 2.5px at larger sizes */
+  --nc-icon-stroke-lg: 2.5px;
+
   /* ───────── Motion ───────── */
   --nc-ease: cubic-bezier(0.22, 1, 0.36, 1);
   --nc-dur-fast: 120ms;
