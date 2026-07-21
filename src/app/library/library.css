@@ -3,15 +3,17 @@
    ───────────────────────────────────────────────────────────────────────── */
 
 .library {
-  --bg: #E5E4E2;
-  --ink: #0E0E0C;
-  --muted: #5F5F60;
-  --rule: #C2C1BF;
-  --accent: #1338BE;
-  --soft: rgba(19, 56, 190, 0.07);
-  --surface: #EFEEEC;
-  --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
-  --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  /* Aliased to the brand tokens in src/styles/tokens.css — same values,
+     single source. Don't hard-code colours here; change the token. */
+  --bg: var(--nc-platinum);
+  --ink: var(--nc-ink);
+  --muted: var(--nc-muted);
+  --rule: var(--nc-rule);
+  --accent: var(--nc-cobalt);
+  --soft: var(--nc-cobalt-soft);
+  --surface: var(--nc-surface);
+  --serif: var(--nc-serif);
+  --sans: var(--nc-sans);
 
   background: var(--bg);
   color: var(--ink);

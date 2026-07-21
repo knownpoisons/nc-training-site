@@ -1,0 +1,81 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   NOTCONTENT DESIGN TOKENS — the single source of truth.
+
+   Every colour, typeface, size and motion curve in the brand lives here and
+   nowhere else. If you want to change the brand, change this file.
+
+   Naming: all tokens are prefixed --nc- so they can never collide with a
+   page-level variable. Existing stylesheets alias their local names to these
+   (e.g. `--accent: var(--nc-cobalt)`), which is how we consolidate without
+   changing a single pixel.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ───────── Brand ───────── */
+  --nc-cobalt: #1338be;              /* the one true cobalt */
+  --nc-cobalt-deep: #0f2da0;         /* pressed / hover on solid cobalt */
+  --nc-cobalt-soft: rgba(19, 56, 190, 0.07);   /* row hover, tint blocks */
+  --nc-cobalt-soft-hover: rgba(19, 56, 190, 0.12);
+  --nc-hot: #c03a1f;                 /* secondary accent — use sparingly */
+  --nc-hot-soft: rgba(192, 58, 31, 0.08);
+
+  /* ───────── Neutrals ───────── */
+  --nc-ink: #0e0e0c;                 /* body text, headlines */
+  --nc-platinum: #e5e4e2;            /* editorial page ground */
+  --nc-cream: #e8e6e0;               /* marketing page ground */
+  --nc-surface: #efeeec;             /* raised card on the ground */
+  --nc-muted: #5f5f60;               /* secondary text */
+  --nc-rule: #c2c1bf;                /* hairlines, dividers */
+  --nc-white: #ffffff;
+  --nc-danger: #8b0000;              /* form errors */
+
+  /* ───────── Type families ───────── */
+  --nc-serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia,
+    serif;
+  --nc-sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+  --nc-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+
+  /* ───────── Type scale (fluid) ─────────
+     display → the one big statement per page
+     h1      → section heads
+     h2      → row / card titles
+     lead    → italic serif standfirst
+     body    → running prose                                              */
+  --nc-size-display: clamp(40px, 8.5vw, 124px);
+  --nc-size-h1: clamp(38px, 6vw, 76px);
+  --nc-size-h2: clamp(22px, 2.6vw, 32px);
+  --nc-size-lead: clamp(20px, 2.2vw, 28px);
+  --nc-size-body: 18px;
+  --nc-size-small: 15px;
+  --nc-size-label: 12px;
+  --nc-size-micro: 11px;
+
+  /* ───────── Type detail ───────── */
+  --nc-leading-display: 0.92;
+  --nc-leading-head: 0.95;
+  --nc-leading-body: 1.55;
+  --nc-track-display: -0.025em;
+  --nc-track-head: -0.022em;
+  --nc-track-label: 0.2em;           /* uppercase micro-labels */
+  --nc-track-eyebrow: 0.22em;
+
+  /* ───────── Layout ───────── */
+  --nc-measure: 1100px;              /* max content width */
+  --nc-gutter: 40px;
+  --nc-gutter-sm: 20px;
+  --nc-radius: 0;                    /* the brand is square-cornered */
+
+  /* ───────── Motion ───────── */
+  --nc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --nc-dur-fast: 120ms;
+  --nc-dur-base: 200ms;
+  --nc-dur-slow: 420ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --nc-dur-fast: 0ms;
+    --nc-dur-base: 0ms;
+    --nc-dur-slow: 0ms;
+  }
+}

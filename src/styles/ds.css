@@ -1,0 +1,284 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   NOTCONTENT DESIGN SYSTEM — component styles.
+
+   The editorial language (extracted from the library / JD hub) expressed as
+   reusable, prefixed classes. Every value here comes from tokens.css — there
+   are no hard-coded colours or sizes in this file, on purpose.
+
+   Consumed by the React components in src/components/ds/. You shouldn't need
+   to write these class names by hand; use the components.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ───────── Page ground ───────── */
+.nc {
+  background: var(--nc-platinum);
+  color: var(--nc-ink);
+  font-family: var(--nc-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+.nc-shell {
+  max-width: var(--nc-measure);
+  margin: 0 auto;
+  padding: 0 var(--nc-gutter);
+}
+
+/* ───────── Topbar ───────── */
+.nc-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--nc-platinum);
+  border-bottom: 1px solid var(--nc-rule);
+  padding: 16px var(--nc-gutter);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--nc-size-label);
+  letter-spacing: var(--nc-track-label);
+  text-transform: uppercase;
+  color: var(--nc-muted);
+}
+.nc-topbar a { color: inherit; text-decoration: none; }
+.nc-topbar .nc-brand {
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+}
+.nc-topbar .nc-brand .nc-dot { color: var(--nc-cobalt); margin: 0 0.2em; }
+.nc-topbar-meta { display: flex; align-items: center; gap: 24px; }
+
+/* ───────── Eyebrow ───────── */
+.nc-eyebrow {
+  font-size: var(--nc-size-label);
+  letter-spacing: var(--nc-track-eyebrow);
+  text-transform: uppercase;
+  color: var(--nc-muted);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+.nc-eyebrow .nc-num { color: var(--nc-cobalt); font-weight: 600; }
+.nc-eyebrow .nc-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--nc-rule);
+  max-width: 380px;
+}
+
+/* ───────── Hero ───────── */
+.nc-hero {
+  max-width: var(--nc-measure);
+  margin: 12vh auto 6vh;
+  padding: 0 var(--nc-gutter);
+}
+.nc-hero h1 {
+  font-family: var(--nc-serif);
+  font-size: var(--nc-size-display);
+  line-height: var(--nc-leading-display);
+  font-weight: 400;
+  letter-spacing: var(--nc-track-display);
+  color: var(--nc-ink);
+  margin: 0;
+}
+.nc-accent { color: var(--nc-cobalt); font-style: italic; }
+.nc-hero .nc-sub {
+  font-family: var(--nc-serif);
+  font-size: var(--nc-size-lead);
+  color: var(--nc-muted);
+  margin-top: 28px;
+  line-height: 1.3;
+  font-style: italic;
+  max-width: 760px;
+}
+
+/* ───────── Section head ───────── */
+.nc-section { max-width: var(--nc-measure); margin: 0 auto 8vh; padding: 0 var(--nc-gutter); }
+.nc-hed {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 32px;
+  row-gap: 18px;
+  align-items: end;
+  margin-bottom: 32px;
+}
+.nc-hed .nc-num {
+  grid-row: 1;
+  grid-column: 1;
+  font-family: var(--nc-sans);
+  font-size: 13px;
+  letter-spacing: var(--nc-track-eyebrow);
+  font-weight: 600;
+  color: var(--nc-cobalt);
+  font-variant-numeric: tabular-nums;
+  padding-bottom: 8px;
+}
+.nc-hed h2 {
+  grid-row: 1;
+  grid-column: 2;
+  font-family: var(--nc-serif);
+  font-size: var(--nc-size-h1);
+  line-height: var(--nc-leading-head);
+  font-weight: 400;
+  letter-spacing: var(--nc-track-head);
+  color: var(--nc-ink);
+  margin: 0;
+}
+.nc-hed .nc-rule {
+  grid-row: 2;
+  grid-column: 1 / -1;
+  height: 1px;
+  background: var(--nc-rule);
+  margin-top: 2px;
+}
+
+/* ───────── Prose ───────── */
+.nc-prose p {
+  font-size: var(--nc-size-body);
+  line-height: var(--nc-leading-body);
+  color: var(--nc-ink);
+  margin: 0 0 18px;
+  max-width: 720px;
+}
+.nc-prose p.nc-muted { color: var(--nc-muted); }
+
+/* ───────── Rows (index list) ───────── */
+.nc-rows { max-width: var(--nc-measure); margin: 0 auto 8vh; padding: 0 var(--nc-gutter); }
+.nc-row {
+  display: grid;
+  grid-template-columns: 70px 1fr auto;
+  gap: 28px;
+  align-items: baseline;
+  padding: 28px 0;
+  border-top: 1px solid var(--nc-rule);
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--nc-dur-fast);
+}
+.nc-row:last-child { border-bottom: 1px solid var(--nc-rule); }
+.nc-row:hover { background: var(--nc-cobalt-soft); }
+.nc-row .nc-num {
+  font-family: var(--nc-sans);
+  font-size: var(--nc-size-label);
+  letter-spacing: var(--nc-track-label);
+  font-weight: 600;
+  color: var(--nc-cobalt);
+  font-variant-numeric: tabular-nums;
+}
+.nc-row .nc-topic {
+  font-family: var(--nc-serif);
+  font-size: var(--nc-size-h2);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--nc-ink);
+  margin: 0 0 8px;
+}
+.nc-row .nc-summary {
+  font-size: var(--nc-size-small);
+  line-height: 1.5;
+  color: var(--nc-muted);
+  max-width: 600px;
+}
+.nc-row .nc-meta {
+  font-size: var(--nc-size-micro);
+  letter-spacing: var(--nc-track-label);
+  text-transform: uppercase;
+  color: var(--nc-muted);
+  white-space: nowrap;
+}
+.nc-row .nc-arrow {
+  display: inline-block;
+  margin-left: 12px;
+  color: var(--nc-cobalt);
+  transition: transform var(--nc-dur-base);
+}
+.nc-row:hover .nc-arrow { transform: translateX(8px); }
+
+/* Featured row — solid cobalt block */
+.nc-row-featured {
+  background: var(--nc-cobalt);
+  border: none;
+  padding: 28px;
+  margin-bottom: 4px;
+  transition: background var(--nc-dur-fast);
+}
+.nc-row-featured:hover { background: var(--nc-cobalt-deep); }
+.nc-row-featured .nc-num { color: var(--nc-platinum); font-size: 15px; letter-spacing: 0.1em; }
+.nc-row-featured .nc-topic { color: var(--nc-platinum); font-style: italic; }
+.nc-row-featured .nc-summary { color: var(--nc-platinum); opacity: 0.78; }
+.nc-row-featured .nc-meta { color: var(--nc-platinum); opacity: 0.9; }
+.nc-row-featured .nc-arrow { color: var(--nc-platinum); }
+
+/* Disabled / coming-soon row */
+.nc-row-quiet { opacity: 0.4; pointer-events: none; cursor: default; }
+
+/* ───────── Button ───────── */
+.nc-btn {
+  font-family: var(--nc-sans);
+  font-size: var(--nc-size-micro);
+  letter-spacing: var(--nc-track-label);
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--nc-cobalt);
+  background: transparent;
+  border: 1px solid var(--nc-cobalt);
+  border-radius: var(--nc-radius);
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background var(--nc-dur-fast), color var(--nc-dur-fast);
+  font-variant-numeric: tabular-nums;
+  display: inline-block;
+  text-decoration: none;
+}
+.nc-btn:hover { background: var(--nc-cobalt); color: var(--nc-platinum); }
+.nc-btn-solid { background: var(--nc-cobalt); color: var(--nc-platinum); }
+.nc-btn-solid:hover { background: var(--nc-cobalt-deep); color: var(--nc-platinum); }
+.nc-btn-lg { font-size: var(--nc-size-label); padding: 14px 28px; }
+.nc-btn:disabled { opacity: 0.45; cursor: default; }
+
+/* ───────── Links ───────── */
+.nc-link {
+  color: var(--nc-cobalt);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 1px;
+  transition: opacity var(--nc-dur-fast);
+  font-weight: 500;
+}
+.nc-link:hover { opacity: 0.7; }
+
+/* ───────── Footer ───────── */
+.nc-foot {
+  max-width: var(--nc-measure);
+  margin: 0 auto;
+  padding: 32px var(--nc-gutter) 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--nc-rule);
+  font-size: var(--nc-size-micro);
+  letter-spacing: var(--nc-track-label);
+  text-transform: uppercase;
+  color: var(--nc-muted);
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.nc-foot a { color: var(--nc-muted); text-decoration: none; }
+.nc-foot a:hover { color: var(--nc-cobalt); }
+
+/* ───────── Responsive ───────── */
+@media (max-width: 640px) {
+  .nc-shell, .nc-hero, .nc-section, .nc-rows { padding: 0 var(--nc-gutter-sm); }
+  .nc-topbar { padding: 14px var(--nc-gutter-sm); font-size: 10px; letter-spacing: 0.18em; }
+  .nc-topbar-meta { gap: 12px; }
+  .nc-hero { margin: 6vh auto 4vh; }
+  .nc-row { grid-template-columns: 56px 1fr; gap: 16px; padding: 22px 0; }
+  .nc-row .nc-meta { grid-column: 2; }
+  .nc-row-featured { padding: 22px 18px; }
+  .nc-foot { padding: 24px var(--nc-gutter-sm) 40px; font-size: 10px; }
+}
