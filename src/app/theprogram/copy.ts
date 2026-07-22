@@ -74,13 +74,14 @@ export const MARQUEE = [
 ] as const;
 
 export const OPENING = {
-  courtLabel: "The program at a glance.",
+  courtLabel: "The program works.",
   globeSrc: "/images/story/nc-globe.png",
-  eyebrow: "Weeks 01–02 · The Audit",
-  word: "Audit.",
+  eyebrow: "Real Brands, Real Work.",
+  word: "Truly.",
   copy: [
-    "No lecture. No slideware. Week one takes the pulse of how your team actually works — the bottlenecks, the hours, the work that shouldn't take the time it does. ",
-    { em: "Then introduces the fundamentals and the plan for the eight weeks." },
+    { em: "Creative at Speed." },
+    " You've already seen our clients' work — it's in every Target, CVS, Sephora, Urban Outfitters, Walmart and ULTA in the world. ",
+    { em: "We don't talk AI Creative — we just talk Creative." },
   ],
   videoSrc: "/videos/story/nc-story.mp4",
   videoPoster: "/videos/story/nc-story.jpg",
