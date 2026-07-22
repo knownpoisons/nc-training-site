@@ -82,8 +82,30 @@ export default function Home() {
       </section>
 
       {/* ═══ JEREMY — Built by an operator, not a consultant ═══ */}
-      <section className="py-20 lg:py-28 bg-background border-b border-foreground/10">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <section className="relative overflow-hidden py-20 lg:py-28 bg-background border-b border-foreground/10">
+        {/* Case-study film, full-bleed and faded behind the copy */}
+        <video
+          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-25 motion-reduce:hidden"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          poster="/videos/story/nc-story.jpg"
+          aria-hidden
+        >
+          <source src="/videos/story/nc-story-bg.mp4" type="video/mp4" />
+        </video>
+        {/* Cream scrim — keeps the headline and body fully legible over the film */}
+        <div
+          className="pointer-events-none absolute inset-0 z-[1]"
+          aria-hidden
+          style={{
+            background:
+              "linear-gradient(90deg, rgba(232,230,224,0.94) 0%, rgba(232,230,224,0.78) 45%, rgba(232,230,224,0.92) 100%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <div className="grid gap-10 lg:grid-cols-[auto_1fr] lg:gap-16 items-center">
               <div className="shrink-0 mx-auto lg:mx-0">
