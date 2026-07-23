@@ -1,25 +1,25 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
-// Beehiiv "Camp30 Waitlist" embed. The loader renders the form adjacent to its
-// own <script> tag, so we inject that script INTO this container on mount —
-// React strips raw <script> from JSX, and next/script wouldn't keep it in
-// place. This guarantees the form appears exactly here.
-const FORM_ID = "244ebc68-bf10-4fab-b101-c6f3d6ce5838";
+// Beehiiv "Camp30 Waitlist" form, embedded as a direct iframe.
+//
+// We deliberately do NOT use beehiiv's loader.js script: that loader relies on
+// document.currentScript + a DOMContentLoaded handshake to find and size the
+// form, both of which break when the script is injected after hydration from a
+// client component (currentScript is null for dynamically-inserted scripts, and
+// DOMContentLoaded has long since fired). The result was a blank slot.
+//
+// The form's own endpoint renders the real, working form and sets
+// `content-security-policy: frame-ancestors *`, so a plain cross-origin iframe
+// is both permitted and deterministic — no script, no timing race.
+const FORM_URL =
+  "https://subscribe-forms.beehiiv.com/244ebc68-bf10-4fab-b101-c6f3d6ce5838";
 
 export function Camp30Form() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || el.querySelector("script")) return; // guard against double-mount
-    const s = document.createElement("script");
-    s.src = "https://subscribe-forms.beehiiv.com/v3/loader.js";
-    s.async = true;
-    s.setAttribute("data-beehiiv-form", FORM_ID);
-    el.appendChild(s);
-  }, []);
-
-  return <div className="bh-embed" ref={ref} />;
+  return (
+    <iframe
+      className="bh-embed"
+      src={FORM_URL}
+      title="Camp30 Waitlist — subscribe"
+      loading="lazy"
+      scrolling="no"
+    />
+  );
 }

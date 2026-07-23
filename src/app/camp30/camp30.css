@@ -50,9 +50,13 @@
   margin: 0 0 36px;
 }
 .camp30 .bh-embed {
+  display: block;
+  width: 100%;
   max-width: 380px;
+  height: 280px; /* fits the single-field form + success state; no internal scroll */
   margin: 0 auto;
-  min-height: 120px; /* reserve space so the layout doesn't jump when the form mounts */
+  border: 0;
+  color-scheme: light; /* keep the beehiiv form on its own light theme */
 }
 .camp30 .fine {
   margin-top: 16px;
