@@ -1,0 +1,119 @@
+/* Camp30 waitlist — a focused, chrome-free landing.
+   Built on the NotContent design tokens (src/styles/tokens.css) so it stays
+   in lockstep with the brand: platinum ground, cream card, Iowan serif,
+   cobalt accent, square corners. */
+
+.camp30 {
+  background: var(--nc-platinum);
+  color: var(--nc-ink);
+  font-family: var(--nc-sans);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.camp30 .wrap {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 80px 24px 96px;
+  text-align: center;
+}
+.camp30 .card {
+  background: var(--nc-surface);
+  border: 1px solid var(--nc-ink);
+  border-radius: var(--nc-radius);
+  padding: 48px 40px;
+}
+.camp30 .patch {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  margin: 0 auto 32px;
+  display: block;
+}
+.camp30 h1 {
+  font-family: var(--nc-serif);
+  font-size: 34px;
+  line-height: 1.2;
+  color: var(--nc-ink);
+  margin: 0 0 16px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+.camp30 h1 em {
+  color: var(--nc-cobalt);
+  font-style: normal;
+}
+.camp30 .lede {
+  font-size: 17px;
+  line-height: 1.6;
+  color: var(--nc-muted);
+  margin: 0 0 36px;
+}
+.camp30 .bh-embed {
+  max-width: 380px;
+  margin: 0 auto;
+  min-height: 120px; /* reserve space so the layout doesn't jump when the form mounts */
+}
+.camp30 .fine {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--nc-muted);
+  line-height: 1.5;
+}
+.camp30 footer {
+  margin-top: 40px;
+  font-size: 13px;
+  color: var(--nc-muted);
+}
+.camp30 footer a {
+  color: var(--nc-muted);
+}
+.camp30 footer a:hover {
+  color: var(--nc-cobalt);
+}
+
+/* Typographic hero — shown until camp30-patch.jpg is added to
+   public/images/camp30/. Reads as intentional, not broken. Swaps to the real
+   patch automatically the moment the file exists in the repo. */
+.camp30 .patch-fallback {
+  max-width: 420px;
+  margin: 0 auto 32px;
+  border: 1px solid var(--nc-ink);
+  padding: 44px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  background: var(--nc-platinum);
+}
+.camp30 .pf-mark {
+  font-family: var(--nc-serif);
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--nc-ink);
+}
+.camp30 .pf-mark em {
+  color: var(--nc-cobalt);
+  font-style: normal;
+}
+.camp30 .pf-sub {
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--nc-muted);
+}
+.camp30 .pf-by {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--nc-muted);
+  opacity: 0.75;
+}
+
+@media (max-width: 560px) {
+  .camp30 .wrap { padding: 48px 16px 72px; }
+  .camp30 .card { padding: 36px 22px; }
+  .camp30 h1 { font-size: 28px; }
+  .camp30 .pf-mark { font-size: 48px; }
+}
