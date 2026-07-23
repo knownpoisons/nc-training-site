@@ -53,7 +53,7 @@
   display: block;
   width: 100%;
   max-width: 380px;
-  height: 280px; /* fits the single-field form + success state; no internal scroll */
+  height: 440px; /* fits First Name + email + submit button + success state */
   margin: 0 auto;
   border: 0;
   color-scheme: light; /* keep the beehiiv form on its own light theme */
