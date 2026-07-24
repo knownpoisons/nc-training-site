@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Session 07 — The Client Relationship, Rebuilt for Creative — January Digital × NotContent</title>
+<title>Session 08 — Scaling the System Across the Portfolio — January Digital × NotContent</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Session 07 — The Client Relationship, Rebuilt for Creative. Four documents that protect the speed. Scripts that hold the line. Thursday 16 July 2026." />
+<meta name="description" content="Session 08 — Scaling the System Across the Portfolio. Carhartt results: +50% conversion, +50% ROAS, top 2 Meta spenders. The 30-day plan. Thursday 23 July 2026." />
 <link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
 <meta property="og:type" content="article" />
-<meta property="og:title" content="Session 07 — The Client Relationship, Rebuilt for Creative" />
-<meta property="og:description" content="Four documents that protect the speed. Scripts that hold the line. Thursday 16 July 2026." />
-<meta property="og:image" content="https://training.notcontent.ai/january-digital/sessions/07/cheatsheet-header.png" />
-<meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/07" />
+<meta property="og:title" content="Session 08 — Scaling the System Across the Portfolio" />
+<meta property="og:description" content="Carhartt results: +50% conversion, +50% ROAS, top 2 Meta spenders. The 30-day plan. Thursday 23 July 2026." />
+<meta property="og:image" content="https://training.notcontent.ai/january-digital/sessions/08/cheatsheet-header.png" />
+<meta property="og:url" content="https://training.notcontent.ai/january-digital/sessions/08" />
 <meta name="twitter:card" content="summary_large_image" />
 <style>
   :root {
@@ -35,7 +35,7 @@
   }
   body { padding-bottom: 0; }
 
-  /* ─── Top bar ─── */
+  /* --- Top bar --- */
   .topbar {
     position: sticky;
     top: 0;
@@ -57,7 +57,7 @@
   .topbar .progress { font-variant-numeric: tabular-nums; }
   .topbar .progress strong { color: var(--accent); font-weight: 600; }
 
-  /* ─── Hero ─── */
+  /* --- Hero --- */
   .hero {
     max-width: 880px;
     margin: 12vh auto 6vh;
@@ -166,7 +166,7 @@
     opacity: 0.55;
   }
 
-  /* ─── Section ─── */
+  /* --- Section --- */
   section.block {
     max-width: 880px;
     margin: 0 auto;
@@ -194,7 +194,7 @@
     letter-spacing: -0.02em;
   }
 
-  /* ─── Agenda ─── */
+  /* --- Agenda --- */
   .agenda { display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--rule); }
   .agenda-item {
     display: grid;
@@ -217,7 +217,7 @@
     letter-spacing: -0.01em;
   }
 
-  /* ─── Cards ─── */
+  /* --- Cards --- */
   .cards-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
   .resource-card {
     padding: 22px 24px;
@@ -270,7 +270,7 @@
   .resource-card.highlight a.link { color: var(--bg); border-bottom-color: var(--bg); }
   .resource-card.highlight a.link:hover { opacity: 0.8; }
 
-  /* ─── Next session ─── */
+  /* --- Next session / bonus callout --- */
   .next-up {
     margin-top: 6vh;
     background: var(--accent);
@@ -317,7 +317,7 @@
   .next-up.plain .btn  { background: var(--accent); color: var(--bg); border-color: var(--accent); }
   .next-up.plain .btn:hover { background: transparent; color: var(--accent); border-color: var(--accent); }
 
-  /* ─── Homework ─── */
+  /* --- Homework --- */
   .homework {
     margin: 28px 0;
     padding: 24px 28px;
@@ -348,7 +348,7 @@
     letter-spacing: 0.05em;
   }
 
-  /* ─── Pull quote ─── */
+  /* --- Pull quote --- */
   .cheat-pull {
     font-family: var(--serif);
     font-size: clamp(20px, 2.4vw, 26px);
@@ -370,7 +370,7 @@
     font-style: normal;
   }
 
-  /* ─── Cheat note / list / sub ─── */
+  /* --- Cheat note / list / sub --- */
   .cheat-note {
     font-family: var(--sans);
     font-size: 16px;
@@ -406,49 +406,8 @@
     line-height: 1.55;
     color: var(--muted);
   }
-  .cheat-sub {
-    font-family: var(--sans);
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--ink);
-    margin-bottom: 20px;
-  }
-  .homework + .cheat-kicker { margin-top: 18px; }
 
-  /* ─── Workflow diagram ─── */
-  .workflow-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin: 22px 0; }
-  .wf-step {
-    padding: 22px 18px;
-    background: var(--surface);
-    border-radius: 4px;
-    border-top: 3px solid var(--accent);
-    text-align: center;
-    position: relative;
-  }
-  .wf-step .step-num {
-    font-family: var(--sans);
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--accent);
-    margin-bottom: 4px;
-  }
-  .wf-step .step-name {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    font-weight: 600;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
-  .wf-step .step-desc {
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--ink);
-  }
-
-  /* ─── Data advantage callout ─── */
+  /* --- Data advantage callout --- */
   .data-callout {
     margin: 28px 0;
     padding: 28px 28px;
@@ -480,7 +439,7 @@
     color: rgba(229, 228, 226, 0.9);
   }
 
-  /* ─── Video embed ─── */
+  /* --- Video embed --- */
   .video-embed {
     position: relative;
     width: 100%;
@@ -500,31 +459,87 @@
     border: none;
   }
 
-  /* ─── Section split ─── */
+  /* --- Stats row --- */
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin: 28px 0;
+  }
+  .stat-card {
+    padding: 24px 22px;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    text-align: center;
+  }
+  .stat-card .val {
+    font-family: var(--serif);
+    font-size: 38px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .stat-card .lbl {
+    font-family: var(--sans);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(229, 228, 226, 0.8);
+    font-weight: 600;
+  }
+
+  /* --- Workflow steps --- */
+  .workflow-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0; }
+  .wf-step {
+    padding: 22px 18px;
+    background: var(--surface);
+    border-radius: 4px;
+    border-top: 3px solid var(--accent);
+    text-align: center;
+    position: relative;
+  }
+  .wf-step .step-num {
+    font-family: var(--sans);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+  .wf-step .step-name {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+  .wf-step .step-desc {
+    font-family: var(--sans);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+
+  /* --- Section split --- */
   .cheat-split { max-width: 880px; margin: 0 auto; padding: 0 40px; }
   .cheat-split hr { border: none; border-top: 1px solid var(--rule); margin: 0; }
 
-  /* ─── Footer ─── */
+  /* --- Footer --- */
   .doc-foot-graphic { margin-top: 10vh; width: 100%; line-height: 0; }
   .doc-foot-graphic img { display: block; width: 100%; height: auto; }
-
-  /* ─── Protocol 3-col grid ─── */
-  .cheat-list-3col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
 
   @media (max-width: 760px) {
     .cards-2col { grid-template-columns: 1fr; }
     .agenda-item { grid-template-columns: 1fr; gap: 6px; }
     .next-up { grid-template-columns: 1fr; }
     .cheat-list { grid-template-columns: 1fr !important; }
-    .cheat-list-3col { grid-template-columns: 1fr !important; }
-    .workflow-steps { grid-template-columns: 1fr 1fr; }
-    .vs-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 560px) {
     .workflow-steps { grid-template-columns: 1fr; }
+    .stat-row { grid-template-columns: 1fr; }
   }
 
-  /* ───────── Motion ───────── */
+  /* --- Motion --- */
   @keyframes nc-rise {
     from { opacity: 0; transform: translateY(18px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -565,7 +580,7 @@
     .topbar .next-meta { display: none; }
   }
 
-  /* ───────── Page loader ───────── */
+  /* --- Page loader --- */
   .nc-loader {
     position: fixed;
     inset: 0;
@@ -649,20 +664,20 @@
   <div class="progress"><strong>Session 08</strong> of 08<span class="next-meta"> &nbsp;&middot;&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session &hellip;</span></span></span></div>
 </div>
 
-<!-- ─── HERO ─── -->
+<!-- --- HERO --- -->
 <header class="hero">
   <div class="eyebrow">
-    <span><span class="num">07</span> &nbsp;/&nbsp; Phase 01 &middot; Week 07 of 08</span>
+    <span><span class="num">08</span> &nbsp;/&nbsp; Phase 01 &middot; Week 08 of 08</span>
     <span class="pill" id="status-pill">Upcoming</span>
   </div>
   <h1 class="cheat-header">
-    <img src="/january-digital/sessions/07/cheatsheet-header.png" alt="Cheatsheet: Session Seven — for creative teams and brands." />
+    <img src="/january-digital/sessions/08/cheatsheet-header.png" alt="Cheatsheet: Session Eight — for creative teams and brands." />
   </h1>
-  <p class="hero-lede">Four documents that protect the speed. Scripts that hold the line.</p>
+  <p class="hero-lede">The system works. The numbers prove it. Now scale it across the portfolio.</p>
   <div class="meta">
     <div class="item">
       <div class="lbl">Date</div>
-      <div class="val">Thursday, July 16, 2026</div>
+      <div class="val">Thursday, July 23, 2026</div>
     </div>
     <div class="item">
       <div class="lbl">Time</div>
@@ -683,226 +698,212 @@
   </div>
 </header>
 
-<!-- ─── 01 · WHAT WE COVERED ─── -->
+<!-- --- 01 - WHAT WE COVERED --- -->
 <section class="block">
   <div class="head">
     <div class="eyebrow"><span class="num">01</span> &nbsp;What we covered <span class="rule"></span></div>
-    <h2>The business side of making things.</h2>
-    <p class="cheat-note" style="margin-top:14px;">You can make the work now. This session was about everything around it — how you sell it, how you scope it, how you hold the line when a client pushes back. Four documents left the room: a one-pager that sells the service, a rules sheet that protects the speed, an internal talk track for bringing accounts in, and a field guide for the objections and bumps that hit everyone in the first month.</p>
+    <h2>The proof, the loop, and the plan.</h2>
+    <p class="cheat-note" style="margin-top:14px;">Carhartt came back with real numbers. The system that the programme built over eight weeks delivered a 50% lift in conversion and ROAS, and the assets immediately became the top two spenders on Meta. This session was about what happens next: the repeatable loop, the 30-day plan, and the homework that puts real work in front of a real client.</p>
   </div>
 
   <div class="agenda">
-    <div class="agenda-item"><div class="n">01</div><div class="title">The offer one-pager: what January Digital sells now, on one page, in the client's language.</div></div>
-    <div class="agenda-item"><div class="n">02</div><div class="title">How a round works: the rules of engagement, agreed before the money moves.</div></div>
-    <div class="agenda-item"><div class="n">03</div><div class="title">Selling it in: the internal playbook — reframes, pre-frames, and the scripts that hold the line.</div></div>
-    <div class="agenda-item"><div class="n">04</div><div class="title">The field guide: every objection they'll raise and every bump you'll hit in month one.</div></div>
-    <div class="agenda-item"><div class="n">05</div><div class="title">Camera angles and movements: two reference libraries for directing AI-generated imagery.</div></div>
+    <div class="agenda-item"><div class="n">01</div><div class="title">The Carhartt results: +50% conversion, +50% ROAS, top 2 Meta spenders.</div></div>
+    <div class="agenda-item"><div class="n">02</div><div class="title">The three-move loop: media data, creative, market, repeat.</div></div>
+    <div class="agenda-item"><div class="n">03</div><div class="title">Claude as a workflow engine: filling gaps, not replacing software.</div></div>
+    <div class="agenda-item"><div class="n">04</div><div class="title">Sharing workflows: clone, strip, share across the team.</div></div>
+    <div class="agenda-item"><div class="n">05</div><div class="title">The 30-day plan: one client, one job, ship in week one.</div></div>
+    <div class="agenda-item"><div class="n">06</div><div class="title">Homework: 4 Carhartt video assets + Q&A question for the final session.</div></div>
   </div>
 </section>
 
-<!-- ─── 02 · THE OFFER ─── -->
+<!-- --- 02 - THE RESULTS --- -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">02</span> &nbsp;The offer <span class="rule"></span></div>
-    <h2>What you sell now.</h2>
+    <div class="eyebrow"><span class="num">02</span> &nbsp;The results <span class="rule"></span></div>
+    <h2>Carhartt proved it.</h2>
   </div>
 
-  <p class="cheat-note" style="margin-bottom:20px;">One page. Fill the brackets, make it theirs, send it. Sells the shift, the edge, and the value — never the tool.</p>
+  <p class="cheat-note" style="margin-bottom:24px;">~60 assets. ~15&ndash;20 distinct concepts. Built from flat-lay product shots with simple contextual additions. The numbers came back and changed the conversation.</p>
 
-  <div class="cheat-list">
-    <div class="cheat-item">
-      <div class="h">"We make it"</div>
-      <div class="p">You don't just plan where creative runs. You produce it — stills and motion, on brand, ready to run in the media you manage.</div>
+  <div class="stat-row">
+    <div class="stat-card">
+      <div class="val">+50%</div>
+      <div class="lbl">Conversion rate</div>
     </div>
-    <div class="cheat-item">
-      <div class="h">The data edge</div>
-      <div class="p">A creative shop makes something beautiful. You make something that works, because you can see the scoreboard. Same team, same numbers, same channels.</div>
+    <div class="stat-card">
+      <div class="val">+50%</div>
+      <div class="lbl">ROAS</div>
     </div>
-    <div class="cheat-item">
-      <div class="h">10 / 80 / 10</div>
-      <div class="p">Human in (brief, taste, direction), production at machine speed, human out (on brand, pixel perfect). The speed comes from the middle. The quality comes from the two ends.</div>
-    </div>
-    <div class="cheat-item">
-      <div class="h">Not per asset, not per hour</div>
-      <div class="p">You're selling the creative system and the speed to market. Pricing is a conversation, not a number on the page.</div>
+    <div class="stat-card">
+      <div class="val">Top 2</div>
+      <div class="lbl">Meta spenders</div>
     </div>
   </div>
 
-  <blockquote class="cheat-pull" style="margin-top:28px;">"Double the content in half the time" undersells it. In practice it's closer to <span class="accent">ten times the content in a tenth of the time</span> — it just didn't have the same ring to it.<span class="attr">— Jeremy Somers</span></blockquote>
+  <blockquote class="cheat-pull">"We saw conversion rates go up about 50%, ROAS went up about 50%. But probably more importantly with Meta is <span class="accent">these immediately took off to the top two spenders</span> &mdash; which to me means it's a new pocket of finding an audience because of the diversified creative."<span class="attr">&mdash; Jared</span></blockquote>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"If we remove the six and the zero from this page, we'd still be like, okay, it worked. That's not nothing. You run that at scale, and that's dollars. <span class="accent">But this is insane.</span> This whole thing that we've been going through over the last eight weeks, it has already proven and has already worked."<span class="attr">&mdash; Jeremy Somers</span></blockquote>
+
+  <div class="data-callout" style="margin-top:28px;">
+    <div class="lbl">The best-performing insight</div>
+    <div class="ask">A wrench in a flat lay. Simple contextual placement, not elaborate creative direction. 4 new Carhartt briefs already in the pipeline off the back of these results.</div>
+  </div>
 </section>
 
-<!-- ─── 03 · THE RULES ─── -->
+<!-- --- 03 - THE REPEATABLE SYSTEM --- -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">03</span> &nbsp;The rules <span class="rule"></span></div>
-    <h2>How a round works.</h2>
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The system <span class="rule"></span></div>
+    <h2>Three moves, on repeat.</h2>
   </div>
 
-  <p class="cheat-note" style="margin-bottom:20px;">Send this before the work starts. Every rule pre-agreed, while everyone's still excited.</p>
+  <p class="cheat-note" style="margin-bottom:20px;">The whole business model in three moves. Clone the shape, swap the contents. The second run is always faster because the system already exists.</p>
 
-  <div class="workflow-steps" style="grid-template-columns:repeat(7, 1fr);">
+  <div class="workflow-steps">
     <div class="wf-step">
       <div class="step-num">1</div>
-      <div class="step-name">Complete Brief</div>
-      <div class="step-desc">Nothing starts without the brief, copy, and assets confirmed and final.</div>
+      <div class="step-name">Media Data</div>
+      <div class="step-desc">Pull what's actually performing from the channels you manage.</div>
     </div>
     <div class="wf-step">
       <div class="step-num">2</div>
-      <div class="step-name">Round One</div>
-      <div class="step-desc">Go wide. Change anything: concept, background, world. This is the window.</div>
+      <div class="step-name">Creative</div>
+      <div class="step-desc">Make the work, shaped by the data, at machine speed.</div>
     </div>
     <div class="wf-step">
       <div class="step-num">3</div>
-      <div class="step-name">Creative Control</div>
-      <div class="step-desc">What you specify, we build exactly. What you don't, we decide.</div>
-    </div>
-    <div class="wf-step">
-      <div class="step-num">4</div>
-      <div class="step-name">Then It's Locked</div>
-      <div class="step-desc">After round one: genuine errors only. This rule keeps it fast.</div>
-    </div>
-    <div class="wf-step">
-      <div class="step-num">5</div>
-      <div class="step-name">Async Feedback</div>
-      <div class="step-desc">Written or Loom. No live calls. Nothing lost, nothing debatable.</div>
-    </div>
-    <div class="wf-step">
-      <div class="step-num">6</div>
-      <div class="step-name">Expect Variance</div>
-      <div class="step-desc">5–15% natural variance on regeneration. The trade for the speed.</div>
-    </div>
-    <div class="wf-step">
-      <div class="step-num">7</div>
-      <div class="step-name">Approval Chain</div>
-      <div class="step-desc">Named upfront. No surprise stakeholders mid-round.</div>
+      <div class="step-name">Market</div>
+      <div class="step-desc">Ship it, read the numbers, feed them back into move one.</div>
     </div>
   </div>
 
-  <div class="data-callout">
-    <div class="lbl">The trade, in one line</div>
-    <div class="ask">Give us creative control over what you didn't specify, and you get speed, volume, and creative shaped by what actually performs.</div>
+  <div class="cheat-list" style="margin-top:24px;">
+    <div class="cheat-item">
+      <div class="h">Clone, don't rebuild</div>
+      <div class="p">Duplicate the Carhartt Flora workflow for each new client. The shape is built. Swap the contents and run.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">No silos</div>
+      <div class="p">Anyone can open a colleague's Flora workflow and continue. Skills are non-siloed now.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Strip and share</div>
+      <div class="p">When a Claude workflow works, remove the client info and export a reusable prompt. The team levels up together.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">The second run is faster</div>
+      <div class="p">Everything hard about Carhartt is done. The next client inherits the chain, the prompts, the feedback loop.</div>
+    </div>
   </div>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"I am not the creative genius that sometimes I claim to be. <span class="accent">I just added a wrench.</span> What's my wrench for Supergoop? What would Jeremy do? Do that and you start to flex those muscles."<span class="attr">&mdash; Jeremy Somers</span></blockquote>
 </section>
 
-<!-- ─── 04 · SELLING IT IN ─── -->
+<!-- --- 04 - CLAUDE AS WORKFLOW ENGINE --- -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">04</span> &nbsp;Selling it in <span class="rule"></span></div>
-    <h2>The internal playbook.</h2>
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Claude workflows <span class="rule"></span></div>
+    <h2>Fill gaps, don't replace software.</h2>
   </div>
 
-  <p class="cheat-note" style="margin-bottom:20px;">How you bring an account you already run into the new process. Not a cold pitch — a warm start.</p>
+  <p class="cheat-note" style="margin-bottom:20px;">The single best prompt you can use: <em>"What information or context would make this better?"</em> Let the model tell you what it needs. Drill through four context layers &mdash; agency, client, campaign, SKU.</p>
 
-  <div class="cheat-list-3col">
+  <div class="cheat-list">
     <div class="cheat-item">
-      <div class="h">Stop saying AI</div>
-      <div class="p">This is a creative service. The tools happen to be fast. Nobody ever asked if you used Photoshop.</div>
+      <div class="h">Agency level</div>
+      <div class="p">Who you are, what you do, how you work. The identity context that shapes every output.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">Proof first, pitch second</div>
-      <div class="p">Improve the creative on an account you already manage, watch what it does, then talk with numbers in your hand.</div>
+      <div class="h">Client level</div>
+      <div class="p">Brand, category, audience, tone. The guardrails that keep creative on-brand.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">The pre-frame</div>
-      <div class="p">Tell them upfront: this will feel uncomfortable. They're trading some control for the speed. Say it now; callback later.</div>
+      <div class="h">Campaign level</div>
+      <div class="p">Objective, channels, formats, timing. The brief that shapes the brief.</div>
     </div>
     <div class="cheat-item">
-      <div class="h">Volunteer the limits</div>
-      <div class="p">Name what it can't do before anyone asks. The biggest trust-builder you have.</div>
-    </div>
-    <div class="cheat-item">
-      <div class="h">The boundary</div>
-      <div class="p">You make the ads you run. Anything outside the media plan is a different service with a different price.</div>
-    </div>
-    <div class="cheat-item">
-      <div class="h">The endgame</div>
-      <div class="p">Creative production bundled as a percentage of the media spend. The move only JD can make.</div>
+      <div class="h">SKU level</div>
+      <div class="p">The specific product, its features, its flat lay. The detail that makes the output real.</div>
     </div>
   </div>
 
-  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">Proof first. Pitch second.</span> Nobody else in this market can do that — a freelancer needs permission before they can show you anything. You just need a campaign you're already running."<span class="attr">— Jeremy Somers</span></blockquote>
+  <blockquote class="cheat-pull" style="margin-top:28px;">"It's not about what am I making. <span class="accent">It's problem solving.</span> I had a gap between the information I had and what actually needed to be done. So I built a tool that filled the gap. And this whole thing took me 15 minutes."<span class="attr">&mdash; Jeremy Somers</span></blockquote>
 </section>
 
-<!-- ─── 05 · THE FIELD GUIDE ─── -->
+<!-- --- 05 - THE 30-DAY PLAN --- -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">05</span> &nbsp;The field guide <span class="rule"></span></div>
-    <h2>What they'll say, and what'll go wrong.</h2>
+    <div class="eyebrow"><span class="num">05</span> &nbsp;The 30-day plan <span class="rule"></span></div>
+    <h2>One client. One job. Ship in week one.</h2>
   </div>
 
-  <p class="cheat-note" style="margin-bottom:20px;">Both are predictable. That's the good news.</p>
+  <p class="cheat-note" style="margin-bottom:20px;">Each person picks one client account to apply the process to first. The training gave you the tools. The 30-day plan gives you the deadline.</p>
 
-  <div class="cards-2col">
-    <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">Objections</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"Shouldn't it be cheaper?"</div>
-      <div class="desc" style="margin-bottom:18px;">More and faster costs more everywhere else.</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"Can we have the files?"</div>
-      <div class="desc" style="margin-bottom:18px;">Different service, different price.</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"It looks AI."</div>
-      <div class="desc" style="margin-bottom:18px;">Then it isn't finished. Never argue this one.</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">"Can we jump on a call?"</div>
-      <div class="desc" style="margin-bottom:0;">Written or Loom. A call is how you lose half of what they said.</div>
+  <div class="cheat-list">
+    <div class="cheat-item">
+      <div class="h">Which client</div>
+      <div class="p">The account where you know the creative could be better and you already have the data.</div>
     </div>
-    <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">First-month bumps</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">Your first outputs will disappoint you</div>
-      <div class="desc" style="margin-bottom:18px;">The brief is the problem. Always.</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">You'll take the live call "just this once"</div>
-      <div class="desc" style="margin-bottom:18px;">Once is the whole thing.</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">You'll show them twenty</div>
-      <div class="desc" style="margin-bottom:18px;">Show three. Paradox of choice costs you the round.</div>
-      <div class="name" style="font-size:19px;line-height:1.35;margin-bottom:16px;">Someone will ask for the files</div>
-      <div class="desc" style="margin-bottom:0;">Under a compliment. Have the answer ready.</div>
+    <div class="cheat-item">
+      <div class="h">First job</div>
+      <div class="p">The campaign, the brief, the target. Be specific &mdash; specificity beats ambiguity.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Proof of concept</div>
+      <div class="p">Use the Carhartt data when pitching internally or to clients. The numbers are the pitch.</div>
+    </div>
+    <div class="cheat-item">
+      <div class="h">Momentum</div>
+      <div class="p">The system and templates exist to prevent stalling. The risk isn't capability; it's losing the thread.</div>
     </div>
   </div>
 
-  <div class="data-callout" style="margin-top:28px;">
-    <div class="lbl">The one that matters most</div>
-    <div class="ask">Every one of these is a first-month problem, not a forever problem. Hold the line early and they stop happening.</div>
-  </div>
+  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">Specificity beats ambiguity.</span> You don't say 'I think I might do Supergoop, I'll just wait until something comes in.' No &mdash; you go out and you get that sunscreen project and you tell them what they're going to do."<span class="attr">&mdash; Jeremy Somers</span></blockquote>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"You guys will lose momentum quickly. And what ends up happening is then Luisa has to do pretty much everything. And <span class="accent">collectively we love her too much</span> to let her do everything and do our jobs too."<span class="attr">&mdash; Jeremy Somers</span></blockquote>
 </section>
 
-<!-- ─── 06 · WORDS WORTH KEEPING ─── -->
+<!-- --- 06 - HOMEWORK --- -->
 <section class="block">
   <div class="head">
-    <div class="eyebrow"><span class="num">06</span> &nbsp;From the session <span class="rule"></span></div>
-    <h2>Words worth keeping.</h2>
+    <div class="eyebrow"><span class="num">06</span> &nbsp;The homework <span class="rule"></span></div>
+    <h2>Real work, real client, real deadline.</h2>
   </div>
 
-  <div class="cards-2col">
-    <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">On selling the speed — Jeremy Somers</div>
-      <div class="name" style="font-size:19px;line-height:1.35;">"We don't just plan where your creative runs. We make it."</div>
-    </div>
-    <div class="resource-card" style="border-top-color:var(--accent);">
-      <div class="lbl">On holding the line — Jeremy Somers</div>
-      <div class="name" style="font-size:19px;line-height:1.35;">"This new process is going to feel uncomfortable at some point. I'm telling you now, so when we get to that moment, you'll remember we agreed to it."</div>
-    </div>
+  <div class="homework">
+    <div class="lbl">Assignment 1 &middot; Due Monday July 28 / Hard limit Tuesday July 29 12pm ET</div>
+    <div class="ask">4 Carhartt video assets &mdash; 9:16, minimum 6 seconds each. Build stills for start and end frames first, then generate video. Must look photorealistic.</div>
+    <div class="due">All team members create the same 4 SKUs. Best version of each ships to the client. Luisa will share specs, flat lays, and composition direction in Slack.</div>
   </div>
 
-  <blockquote class="cheat-pull" style="margin-top:28px;">"<span class="accent">Volunteering what it can't do is the single biggest trust-builder you have.</span> Don't oversell the machine."<span class="attr">— Jeremy Somers</span></blockquote>
+  <div class="homework">
+    <div class="lbl">Assignment 2 &middot; Due Monday afternoon</div>
+    <div class="ask">1 Q&A question for the final session.</div>
+    <div class="due">Submit via the Slack form. Anything covered in training &mdash; technical, creative, or client approach. Applies to everyone including async viewers.</div>
+  </div>
 
-  <blockquote class="cheat-pull" style="margin-top:28px;">"It's not a no. It's a <span class="accent">different conversation, with a different price.</span>"<span class="attr">— Jeremy Somers</span></blockquote>
+  <blockquote class="cheat-pull" style="margin-top:28px;">"My best advice to you guys on video is that <span class="accent">it works off of stills.</span> If you make the stills first &mdash; your start frame and end frame &mdash; that will be a much easier video product."<span class="attr">&mdash; Luisa</span></blockquote>
+
+  <blockquote class="cheat-pull" style="margin-top:28px;">"We have our first assignment. It is Carhartt again, so you've already done some practice. <span class="accent">It is not 2,450-plus assets &mdash; it is only four.</span> They have told us exactly what they want. All you have to do is prompt it."<span class="attr">&mdash; Luisa</span></blockquote>
 </section>
 
-<!-- ─── 07 · COMING NEXT ─── -->
+<!-- --- 07 - BONUS SESSION --- -->
 <section class="block">
   <div class="head">
     <div class="eyebrow"><span class="num">07</span> &nbsp;Coming next <span class="rule"></span></div>
   </div>
 
-  <div class="next-up plain">
+  <div class="next-up">
     <div>
-      <div class="lbl">Session 08 &nbsp;&middot;&nbsp; Thursday, 23 July 2026 &nbsp;&middot;&nbsp; 10:00 AM ET</div>
-      <div class="title">Scaling the System Across the Portfolio</div>
-      <div class="date">The workflow as an asset — replication test across a second client. Capacity maths — how many accounts one person can run. Each person's 30-day build plan.</div>
+      <div class="lbl">Bonus Session &nbsp;&middot;&nbsp; Thursday, 30 July 2026 &nbsp;&middot;&nbsp; 10:00 AM ET</div>
+      <div class="title">Q&A + Bonus Claude Techniques</div>
+      <div class="date">Two halves: your submitted questions answered live, plus additional Claude techniques not covered in the syllabus. Last mandated session &mdash; attendance required.</div>
     </div>
     <a class="btn" href="/january-digital">View all sessions</a>
   </div>
 </section>
 
-<!-- ─── 08 · RESOURCES ─── -->
+<!-- --- 08 - RESOURCES --- -->
 <section class="block">
   <div class="head">
     <div class="eyebrow"><span class="num">08</span> &nbsp;Resources <span class="rule"></span></div>
@@ -912,7 +913,7 @@
   <div class="cards-2col">
     <div class="resource-card highlight">
       <div class="lbl">Recording</div>
-      <div class="name">Session 07 video</div>
+      <div class="name">Session 08 video</div>
       <div class="desc">The full session. Watch it back any time.</div>
       <a class="link" href="#" target="_blank" rel="noopener noreferrer">Watch recording</a>
     </div>
@@ -926,36 +927,6 @@
 
   <div class="cards-2col" style="margin-top:16px;">
     <div class="resource-card highlight">
-      <div class="lbl">Template 01</div>
-      <div class="name">The Offer — One Page</div>
-      <div class="desc">Client-ready. Fill the brackets, send it.</div>
-      <a class="link" href="/january-digital/resources/offer-one-pager" target="_blank" rel="noopener">Open template</a>
-    </div>
-    <div class="resource-card highlight">
-      <div class="lbl">Template 02</div>
-      <div class="name">How a Round Works</div>
-      <div class="desc">The rules sheet. Send before work starts.</div>
-      <a class="link" href="/january-digital/resources/how-a-round-works" target="_blank" rel="noopener">Open template</a>
-    </div>
-  </div>
-
-  <div class="cards-2col" style="margin-top:16px;">
-    <div class="resource-card highlight">
-      <div class="lbl">Internal &middot; Doc 03</div>
-      <div class="name">Selling It In</div>
-      <div class="desc">The talk track — reframes, pre-frames, scripts.</div>
-      <a class="link" href="/january-digital/resources/selling-it-in" target="_blank" rel="noopener">Open document</a>
-    </div>
-    <div class="resource-card highlight">
-      <div class="lbl">Internal &middot; Doc 04</div>
-      <div class="name">The Field Guide</div>
-      <div class="desc">Every objection and every first-month bump.</div>
-      <a class="link" href="/january-digital/resources/field-guide" target="_blank" rel="noopener">Open document</a>
-    </div>
-  </div>
-
-  <div class="cards-2col" style="margin-top:16px;">
-    <div class="resource-card highlight">
       <div class="lbl">Reference</div>
       <div class="name">Camera Angles</div>
       <div class="desc">Every angle from eye level to worm's-eye, with prompt language.</div>
@@ -964,18 +935,33 @@
     <div class="resource-card highlight">
       <div class="lbl">Reference</div>
       <div class="name">Camera Movements</div>
-      <div class="desc">Dolly, pan, crane, orbit — ready-to-paste movement prompts.</div>
+      <div class="desc">Dolly, pan, crane, orbit &mdash; ready-to-paste movement prompts.</div>
       <a class="link" href="/january-digital/resources/camera-prompts/movements" target="_blank" rel="noopener">Open reference</a>
+    </div>
+  </div>
+
+  <div class="cards-2col" style="margin-top:16px;">
+    <div class="resource-card highlight">
+      <div class="lbl">Session 07 doc</div>
+      <div class="name">The Offer &mdash; One Page</div>
+      <div class="desc">Client-ready. Fill the brackets, send it.</div>
+      <a class="link" href="/january-digital/resources/offer-one-pager" target="_blank" rel="noopener">Open template</a>
+    </div>
+    <div class="resource-card highlight">
+      <div class="lbl">Session 07 doc</div>
+      <div class="name">How a Round Works</div>
+      <div class="desc">The rules sheet. Send before work starts.</div>
+      <a class="link" href="/january-digital/resources/how-a-round-works" target="_blank" rel="noopener">Open template</a>
     </div>
   </div>
 </section>
 
 <footer class="doc-foot-graphic">
-  <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+  <img src="/january-digital/footer-graphic.png" alt="NotContent &mdash; AI Creative Training for Creative Teams and Brands" />
 </footer>
 
 <script>
-  const SESSION_DATE = "2026-07-16";
+  const SESSION_DATE = "2026-07-23";
   const MEET_LINK = "https://meet.google.com/wqi-pvcy-hvp";
 
   const now = new Date();

@@ -647,6 +647,7 @@
     .sessions .session:nth-child(6) { animation-delay: 0.45s; }
     .sessions .session:nth-child(7) { animation-delay: 0.50s; }
     .sessions .session:nth-child(8) { animation-delay: 0.55s; }
+    .sessions .session:nth-child(9) { animation-delay: 0.60s; }
   }
 
   /* Refined spring hover */
@@ -947,7 +948,7 @@
 
 <div class="topbar">
   <div class="brand">January Digital <span class="dot">×</span> <img class="brand-globe" src="/january-digital/nct-globe.png" alt="" aria-hidden> NotContent</div>
-  <div class="progress"><strong>Session 07</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
+  <div class="progress"><strong>Session 08</strong> of 08<span class="next-meta"> &nbsp;·&nbsp; <span class="clock" title="All sessions: Thursdays, 10:00 AM ET"><span class="live-dot"></span><span class="t" id="nc-clock">Next session …</span></span></span></div>
 </div>
 
 <!-- ═════ HERO ═════ -->
@@ -1141,7 +1142,7 @@
     </div>
 
     <!-- Session 8 -->
-    <div class="session" data-date="2026-07-23">
+    <div class="session" data-date="2026-07-23" data-href="/january-digital/sessions/08">
       <div class="num">08</div>
       <div class="body">
         <div class="topic">Scaling the System Across the Portfolio</div>
@@ -1153,6 +1154,23 @@
       </div>
       <div class="action-cell">
         <span class="status-pill upcoming">Upcoming</span>
+        <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
+      </div>
+    </div>
+
+    <!-- Bonus Session -->
+    <div class="session" data-date="2026-07-30">
+      <div class="num" style="font-size:22px;color:var(--accent);">+</div>
+      <div class="body">
+        <div class="topic">Q&A + Bonus Claude Techniques</div>
+        <div class="summary">Your submitted questions answered live, plus additional Claude techniques not covered in the syllabus. Last mandated session.</div>
+      </div>
+      <div class="date">
+        <div class="day">Thu, July 30</div>
+        <div class="time">10:00 AM ET · 60 min</div>
+      </div>
+      <div class="action-cell">
+        <span class="status-pill upcoming">Bonus</span>
         <a class="join-btn join-link" href="#" target="_blank" rel="noopener">Join meeting</a>
       </div>
     </div>
@@ -1280,7 +1298,8 @@
     if (!el) return;
     const SESSION_STARTS = [
       '2026-05-21', '2026-05-28', '2026-06-11', '2026-06-18',
-      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23'
+      '2026-06-25', '2026-07-09', '2026-07-16', '2026-07-23',
+      '2026-07-30'
     ].map(d => {
       const [y, m, day] = d.split('-').map(Number);
       return Date.UTC(y, m - 1, day, 14, 0, 0); // 10:00 AM ET
