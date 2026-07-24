@@ -56,10 +56,13 @@ const q2: Question = {
   text: "How is that showing up day to day?",
   kind: "single",
   options: [
-    { label: "It isn't yet — we're getting ahead of it", points: 15, dimension: "adoption" },
-    { label: "One or two people carry the AI work, everyone else waits", points: 5, dimension: "adoption" },
-    { label: "Output quality varies depending on who made it", points: 8, dimension: "adoption" },
-    { label: "We're losing pitches or timelines to faster-moving teams", points: 3, dimension: "adoption" },
+    // Weighted by urgency, not comfort: a team already losing work is the
+    // hottest lead in the funnel, so it scores highest. "Not showing up yet"
+    // is the coolest — real interest, no forcing function.
+    { label: "It isn't yet — we're getting ahead of it", points: 4, dimension: "adoption" },
+    { label: "One or two people carry the AI work, everyone else waits", points: 10, dimension: "adoption" },
+    { label: "Output quality varies depending on who made it", points: 12, dimension: "adoption" },
+    { label: "We're losing pitches or timelines to faster-moving teams", points: 15, dimension: "adoption" },
   ],
 };
 
@@ -172,11 +175,15 @@ const q9: Question = {
   text: "What's the biggest thing getting in the way of AI adoption right now? Select all that apply.",
   kind: "multi",
   options: [
-    { label: "No shared methodology — everyone doing their own thing", points: 0, dimension: "blockers" },
-    { label: "Skills gap — people don't know how to use the tools well", points: 3, dimension: "blockers" },
+    // Weighted by how well the blocker matches what we actually sell. "No
+    // shared methodology" is the core thesis, so it leads. "No clear mandate"
+    // is the one genuinely bad signal — nobody holds the budget. Max sum is
+    // still 16, so DIMENSION_MAX.blockers and RAW_MAX are unchanged.
+    { label: "No shared methodology — everyone doing their own thing", points: 5, dimension: "blockers" },
+    { label: "Skills gap — people don't know how to use the tools well", points: 2, dimension: "blockers" },
     { label: "Governance concerns — data security, IP rights, client disclosure", points: 5, dimension: "blockers" },
-    { label: "No clear mandate — leadership hasn't fully committed", points: 3, dimension: "blockers" },
-    { label: "Time — hard to learn properly alongside existing workload", points: 5, dimension: "blockers" },
+    { label: "No clear mandate — leadership hasn't fully committed", points: 1, dimension: "blockers" },
+    { label: "Time — hard to learn properly alongside existing workload", points: 3, dimension: "blockers" },
   ],
 };
 

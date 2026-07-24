@@ -6,6 +6,13 @@ import {
   renderScorecardEmailText,
 } from "@/lib/email/scorecard-email";
 import type { ScoreResult } from "@/app/assess/logic";
+import { DIMENSION_MAX, RAW_MAX } from "@/app/assess/questions";
+import { programs } from "@/app/assess/programs";
+import {
+  buildTranscript,
+  renderTranscript,
+  writeLeadBrief,
+} from "@/lib/scorecard-brief";
 import { ingestScorecardCompleter } from "@/cockpit/engine-zero/scorecardIntake";
 
 // Each third-party call is wrapped so one failure doesn't break the others.
@@ -13,6 +20,7 @@ import { ingestScorecardCompleter } from "@/cockpit/engine-zero/scorecardIntake"
 
 interface RequestBody {
   name: string;
+  company?: string;
   email: string;
   result: ScoreResult;
   answers: unknown; // raw AnswerRecord[] for Supabase JSONB
@@ -21,7 +29,7 @@ interface RequestBody {
 export async function POST(req: NextRequest) {
   try {
     const body = (await req.json()) as RequestBody;
-    const { name, email, result, answers } = body;
+    const { name, company, email, result, answers } = body;
 
     if (!email || !result) {
       return NextResponse.json(
@@ -42,8 +50,8 @@ export async function POST(req: NextRequest) {
         storeInSupabase({ name, email, result, answers }),
         subscribeToBeehiiv({ name, email, result }),
         sendResultEmail({ name, email, result, siteUrl }),
-        notifyAdminByEmail({ name, email, result }),
-        notifySlack({ name, email, result }),
+        notifyAdminByEmail({ name, company, email, result }),
+        notifySlack({ name, company, email, result, answers }),
         ingestScorecardCompleter({
           name,
           email,
@@ -201,10 +209,11 @@ async function sendResultEmail(args: {
 // ═══════════════════════════════════════════════════════════════════════════════
 async function notifyAdminByEmail(args: {
   name: string;
+  company?: string;
   email: string;
   result: ScoreResult;
 }): Promise<{ ok: boolean; note?: string }> {
-  const { name, email, result } = args;
+  const { name, company, email, result } = args;
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL;
   const to = process.env.LEAD_NOTIFY_EMAIL ?? "getcontent@notcontent.ai";
@@ -216,6 +225,7 @@ async function notifyAdminByEmail(args: {
   const resend = new Resend(apiKey);
   const rows: Array<[string, string]> = [
     ["Name", name || "—"],
+    ["Company", company || "—"],
     ["Email", email],
     ["Score", `${result.normalizedScore}/100`],
     ["Tier", result.tier],
@@ -261,61 +271,120 @@ async function notifyAdminByEmail(args: {
 // ═══════════════════════════════════════════════════════════════════════════════
 // SLACK — instant lead ping via Incoming Webhook
 // ═══════════════════════════════════════════════════════════════════════════════
+/** Slack section blocks cap at 3000 chars — split long text across blocks. */
+function chunkForSlack(text: string, limit = 2800): string[] {
+  if (text.length <= limit) return [text];
+  const chunks: string[] = [];
+  let current = "";
+  for (const para of text.split("\n\n")) {
+    if (current && current.length + para.length + 2 > limit) {
+      chunks.push(current);
+      current = para;
+    } else {
+      current = current ? `${current}\n\n${para}` : para;
+    }
+  }
+  if (current) chunks.push(current);
+  return chunks;
+}
+
 async function notifySlack(args: {
   name: string;
+  company?: string;
   email: string;
   result: ScoreResult;
+  answers: unknown;
 }): Promise<{ ok: boolean; note?: string }> {
-  const { name, email, result } = args;
+  const { name, company, email, result, answers } = args;
   const webhook = process.env.SLACK_WEBHOOK_URL;
 
   if (!webhook) {
     return { ok: true, note: "slack_skipped_env_missing" };
   }
 
-  const summary = `New Scorecard lead: ${name || email} — ${result.normalizedScore}/100 (${result.tier})`;
+  const transcript = buildTranscript(answers);
+  const brief = await writeLeadBrief({
+    name,
+    company,
+    email,
+    result,
+    transcript,
+  });
+
+  const who = [name || email, company].filter(Boolean).join(" · ");
+  const summary = `New Scorecard lead: ${who} — ${result.normalizedScore}/100 (${result.tierLabel})`;
+  const program = programs[result.recommendedProgram];
+
+  const blocks: unknown[] = [
+    {
+      type: "header",
+      text: {
+        type: "plain_text",
+        text: `🎯 ${result.normalizedScore}/100 — ${result.tierLabel}`,
+        emoji: true,
+      },
+    },
+    {
+      type: "section",
+      fields: [
+        { type: "mrkdwn", text: `*Name:*\n${name || "—"}` },
+        { type: "mrkdwn", text: `*Company:*\n${company || "—"}` },
+        { type: "mrkdwn", text: `*Email:*\n<mailto:${email}|${email}>` },
+        {
+          type: "mrkdwn",
+          text: `*Score:*\n${result.normalizedScore}/100 (raw ${result.rawScore}/${RAW_MAX})`,
+        },
+        { type: "mrkdwn", text: `*Tier:*\n${result.tierLabel}` },
+        {
+          type: "mrkdwn",
+          text: `*Stack:*\n${result.stackCount} tools · Bucket ${result.stackBucket} (${result.stackBucket === "A" ? "light" : "deep"})`,
+        },
+        { type: "mrkdwn", text: `*Work type:*\n${result.workType ?? "—"}` },
+        {
+          type: "mrkdwn",
+          text: `*Routes to:*\n${program.label} — ${program.pricing}`,
+        },
+        {
+          type: "mrkdwn",
+          text:
+            `*Sub-scores:*\n` +
+            `Adoption ${result.dimensions.adoption}/${DIMENSION_MAX.adoption} · ` +
+            `Intent ${result.dimensions.readiness}/${DIMENSION_MAX.readiness} · ` +
+            `Budget ${result.dimensions.blockers}/${DIMENSION_MAX.blockers}`,
+        },
+      ],
+    },
+    { type: "divider" },
+    ...chunkForSlack(brief).map((text) => ({
+      type: "section",
+      text: { type: "mrkdwn", text },
+    })),
+    { type: "divider" },
+    {
+      type: "section",
+      text: { type: "mrkdwn", text: "*📋 What they actually answered*" },
+    },
+    ...chunkForSlack(renderTranscript(transcript)).map((text) => ({
+      type: "section",
+      text: { type: "mrkdwn", text },
+    })),
+    {
+      type: "context",
+      elements: [
+        {
+          type: "mrkdwn",
+          text: `via training.notcontent.ai/assess  ·  reply straight to <mailto:${email}|${email}>`,
+        },
+      ],
+    },
+  ];
 
   const res = await fetch(webhook, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       text: summary, // fallback for notifications/previews
-      blocks: [
-        {
-          type: "header",
-          text: {
-            type: "plain_text",
-            text: "🎯 New AI Readiness Scorecard lead",
-            emoji: true,
-          },
-        },
-        {
-          type: "section",
-          fields: [
-            { type: "mrkdwn", text: `*Name:*\n${name || "—"}` },
-            { type: "mrkdwn", text: `*Email:*\n${email}` },
-            { type: "mrkdwn", text: `*Score:*\n${result.normalizedScore}/100` },
-            { type: "mrkdwn", text: `*Tier:*\n${result.tier}` },
-            {
-              type: "mrkdwn",
-              text: `*Stack:*\n${result.stackCount} tools (${result.stackBucket})`,
-            },
-            {
-              type: "mrkdwn",
-              text: `*Recommended:*\n${result.recommendedProgram}`,
-            },
-          ],
-        },
-        {
-          type: "context",
-          elements: [
-            {
-              type: "mrkdwn",
-              text: `Work type: ${result.workType ?? "—"}  ·  via training.notcontent.ai/assess`,
-            },
-          ],
-        },
-      ],
+      blocks,
     }),
   });
 
