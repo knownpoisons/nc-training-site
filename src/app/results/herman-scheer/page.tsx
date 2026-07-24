@@ -40,6 +40,28 @@ export default function HermanScheerCaseStudy() {
         </div>
       </section>
 
+      {/* CEO pull quote */}
+      <section className="py-16 lg:py-24 relative oci-grid-lines">
+        <div className="mx-auto max-w-4xl px-6 lg:px-8">
+          <p className="text-[#1338BE] text-6xl leading-none font-light">
+            &ldquo;
+          </p>
+          <blockquote className="-mt-4 text-2xl sm:text-3xl lg:text-[2.5rem] font-light leading-[1.25] tracking-tight text-foreground">
+            Jeremy taught our group to fish. In the deep, murky, ever-changing
+            seas of generative AI, Jeremy has provided guidance and solutions
+            for our creative challenges that have fundamentally changed how we
+            deliver value and world-class creative to our partners. And made it
+            fun to boot.
+          </blockquote>
+          <div className="mt-10 flex items-center gap-4">
+            <div className="h-px w-12 bg-[#1338BE]" />
+            <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/50">
+              John Scheer, CEO, Herman Scheer
+            </p>
+          </div>
+        </div>
+      </section>
+
       {/* Stats */}
       <section className="py-16 lg:py-24 bg-foreground text-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">

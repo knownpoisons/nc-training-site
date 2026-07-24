@@ -15,10 +15,18 @@ const testimonials = [
   {
     company: "Herman Scheer",
     quote:
-      "We’ve been able to offer new and very profitable services to existing clients and use our skills to package new offerings to new clients as well. We feel comfortable moving into this new AI-powered world.",
-    name: "Adam",
-    title: "Creative Director, Herman Scheer",
-    context: "Six months post-engagement",
+      "Jeremy taught our group to fish. In the deep, murky, ever-changing seas of generative AI, Jeremy has provided guidance and solutions for our creative challenges that have fundamentally changed how we deliver value and world-class creative to our partners. And made it fun to boot.",
+    name: "John Scheer",
+    title: "CEO, Herman Scheer",
+    context: "On the 8-week engagement",
+  },
+  {
+    company: "HP",
+    quote:
+      "Jeremy Somers is one of the most capable AI practitioners I know, and one of the most generous. He doesn’t guard his best ideas; he shares them freely, and that generosity has directly shaped my business. Using tools Jeremy shared, I landed my first client and became far more confident using AI to deliver better results.",
+    name: "Mike Gonzales",
+    title: "Chief of Staff, HP",
+    context: "On learning from Jeremy",
   },
 ];
 
