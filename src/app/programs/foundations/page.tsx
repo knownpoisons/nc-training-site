@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "AI Audit Workshop | Half-Day Audit Session",
   description:
-    "A half-day audit of your team's current AI state. What's working, what's blocking, where the next 8 weeks of work should focus. Up to 25 people. From $5,000.",
+    "A half-day audit of your team's current AI state. What's working, what's blocking, where the next 8 weeks of work should focus. From $5,000.",
 };
 
 const whatYouGet = [
@@ -68,7 +68,7 @@ export default function FoundationsPage() {
               Book the Audit
             </Link>
             <p className="text-sm text-white/40">
-              $5,000 flat · Up to 25 people · Half-day
+              $5,000 flat · Half-day
             </p>
           </div>
         </div>

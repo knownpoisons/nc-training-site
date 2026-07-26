@@ -531,7 +531,7 @@ export default function Home() {
         <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
           <Reveal>
             <p className="oci-display-sm text-foreground max-w-5xl">
-              For creative and media teams of 8&ndash;30 with real production volume — and a leadership team that&rsquo;s done experimenting.
+              For creative teams with real production volume — and a leadership team that&rsquo;s done experimenting.
             </p>
           </Reveal>
           <Reveal delay={150}>

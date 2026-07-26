@@ -20,7 +20,7 @@ export const programs: Record<Program, ProgramData> = {
       "A half-day audit of your team's current AI state. Honest about where you are. Your whole team in the room. The audit becomes the brief for an Operating Model engagement when the gaps are bigger than a workshop can close.",
     href: "/programs/foundations",
     pricing: "$5,000",
-    duration: "Half-day · Up to 25 people",
+    duration: "Half-day",
   },
   transformation: {
     label: "The Operating Model",
