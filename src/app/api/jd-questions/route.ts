@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const SLACK_CHANNEL = "C0B4L4CU7PA"; // #project-creative-training
-
 export async function POST(req: NextRequest) {
   try {
     const { name, question } = (await req.json()) as {
@@ -16,22 +14,18 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const token = process.env.SLACK_BOT_TOKEN;
-    if (!token) {
+    const webhook = process.env.SLACK_WEBHOOK_URL;
+    if (!webhook) {
       return NextResponse.json(
         { ok: false, error: "Slack not configured." },
         { status: 500 }
       );
     }
 
-    const slackRes = await fetch("https://slack.com/api/chat.postMessage", {
+    const res = await fetch(webhook, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        channel: SLACK_CHANNEL,
         text: `*Q&A question from ${name.trim()}:*\n\n${question.trim()}`,
         blocks: [
           {
@@ -62,10 +56,9 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    const slackData = await slackRes.json();
-
-    if (!slackData.ok) {
-      console.error("Slack error:", slackData.error);
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      console.error("Slack webhook error:", res.status, errText);
       return NextResponse.json(
         { ok: false, error: "Failed to submit." },
         { status: 500 }
