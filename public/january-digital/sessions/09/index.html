@@ -166,6 +166,48 @@
     opacity: 0.55;
   }
 
+  /* --- Full-width callout --- */
+  .next-up {
+    margin-top: 6vh;
+    background: var(--accent);
+    color: var(--bg);
+    border-radius: 4px;
+    padding: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 24px;
+  }
+  .next-up .lbl {
+    font-family: var(--sans);
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(229,228,226,0.75);
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+  .next-up .title {
+    font-family: var(--serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.05;
+    letter-spacing: -0.015em;
+    margin-bottom: 6px;
+  }
+  .next-up .sub {
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(229,228,226,0.85);
+    max-width: 480px;
+  }
+  .next-up .btn { background: var(--bg); color: var(--accent); border-color: var(--bg); }
+  .next-up .btn:hover { background: transparent; color: var(--bg); border-color: var(--bg); }
+  @media (max-width: 600px) {
+    .next-up { grid-template-columns: 1fr; text-align: center; }
+    .next-up .sub { max-width: 100%; }
+  }
+
   /* --- Section --- */
   section.block {
     max-width: 880px;
@@ -854,6 +896,18 @@
     <div class="lbl">Ongoing</div>
     <div class="ask">No formal homework. The programme is complete.</div>
     <div class="due">Ongoing recommendations: use the Expert Panel on your next piece of work, try Fluid Voice for dictation, and set up Claude connectors for your workflow.</div>
+  </div>
+</section>
+
+<!-- --- CLAUDE, NOW CALLOUT --- -->
+<section class="block">
+  <div class="next-up">
+    <div>
+      <div class="lbl">New on the hub</div>
+      <div class="title">Claude, Now</div>
+      <div class="sub">The advanced kit &mdash; the Panel, the Scorer, connectors, memory, and the skills system. Everything from this session and beyond, ready to use.</div>
+    </div>
+    <a class="btn" href="/january-digital/resources/claude-now">Open Claude, Now &rarr;</a>
   </div>
 </section>
 
