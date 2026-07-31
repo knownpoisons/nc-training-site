@@ -934,9 +934,36 @@
       transition-duration: 0.001ms !important;
     }
   }
+  /* --- Confetti celebration overlay --- */
+  .confetti-layer {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.2;
+    overflow: hidden;
+  }
+  .confetti-piece {
+    position: absolute;
+    top: -20px;
+    will-change: transform;
+    animation: confetti-fall linear infinite;
+  }
+  @keyframes confetti-fall {
+    0%   { transform: translateY(-20px) rotate(0deg); }
+    100% { transform: translateY(calc(100vh + 40px)) rotate(var(--spin)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .confetti-layer { display: none; }
+  }
+
+  /* Ensure all content sits above confetti */
+  .topbar, .hero, .sessions, .resources, footer, section { position: relative; z-index: 1; }
 </style>
 </head>
 <body>
+<div class="confetti-layer" id="confetti" aria-hidden="true"></div>
 
 <div class="nc-loader" aria-hidden="true">
   <div>
@@ -1491,5 +1518,22 @@
   <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
 </footer>
 
+<script>
+(function(){
+  var c=document.getElementById('confetti');if(!c)return;
+  var colors=['#E84D4D','#1338BE','#2EAD4B','#D4A017','#9B59B6','#E8833A'];
+  var shapes=['diamond','square','rect'];
+  for(var i=0;i<45;i++){
+    var el=document.createElement('div');
+    el.className='confetti-piece';
+    var s=shapes[Math.floor(Math.random()*shapes.length)];
+    var col=colors[Math.floor(Math.random()*colors.length)];
+    var size=s==='rect'?{w:3+Math.random()*4,h:8+Math.random()*6}:{w:6+Math.random()*5,h:6+Math.random()*5};
+    var rot=s==='diamond'?'rotate(45deg)':'';
+    el.style.cssText='width:'+size.w+'px;height:'+size.h+'px;background:'+col+';left:'+Math.random()*100+'%;animation-duration:'+(4+Math.random()*6)+'s;animation-delay:'+(-Math.random()*10)+'s;border-radius:'+(s==='square'?'1px':'0')+';transform:'+rot+';--spin:'+(360+Math.random()*360)+'deg;';
+    c.appendChild(el);
+  }
+})();
+</script>
 </body>
 </html>
