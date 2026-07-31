@@ -2,350 +2,260 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Claude, Now — January Digital × NotContent</title>
+<title>Claude, Now — the advanced kit · January Digital × NotContent</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="The advanced Claude kit — the Panel, the Scorer, connectors, memory, and the skills system." />
+<meta name="description" content="The Session 09 kit — the Panel, the Scorer, connectors, memory, and voice. Every prompt, copy-paste ready." />
 <link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
 <style>
   :root {
-    --bg: #E5E4E2;
-    --ink: #0E0E0C;
-    --muted: #5F5F60;
-    --rule: #C2C1BF;
-    --accent: #1338BE;
-    --soft: rgba(19, 56, 190, 0.07);
-    --surface: #EFEEEC;
-    --serif: "Iowan Old Style", "Cooper Hewitt", "Source Serif Pro", Georgia, serif;
-    --sans: -apple-system, "Inter", "Helvetica Neue", system-ui, sans-serif;
+    --bg:#E5E4E2; --ink:#0E0E0C; --muted:#5F5F60; --rule:#C2C1BF; --accent:#1338BE;
+    --soft:rgba(19,56,190,0.07); --surface:#EFEEEC;
+    --serif:"Iowan Old Style","Source Serif Pro",Georgia,serif;
+    --sans:-apple-system,"Inter","Helvetica Neue",system-ui,sans-serif;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: var(--sans);
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    min-height: 100vh;
-  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:0}
+  .topbar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--rule);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .topbar a{color:var(--accent);text-decoration:none;font-weight:600}
+  .topbar .dot{color:var(--accent);margin:0 .5em}
+  .wrap{max-width:780px;margin:0 auto;padding:0 40px}
+  .head{margin:10vh 0 4vh}
+  .head .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .head .eyebrow .num{color:var(--accent);font-weight:600}
+  .head h1{font-family:var(--serif);font-size:clamp(42px,6.4vw,74px);line-height:.95;font-weight:400;letter-spacing:-.025em}
+  .head h1 .accent{color:var(--accent)}
+  .head .lede{font-family:var(--serif);font-size:clamp(18px,2vw,23px);color:var(--muted);font-style:italic;line-height:1.35;margin-top:18px;max-width:48ch}
+  .internal{margin:0 0 4vh;padding:16px 20px;background:var(--bg);border:1px solid var(--accent);border-left:4px solid var(--accent);border-radius:0 4px 4px 0;font-size:13.5px;line-height:1.6}
+  .internal .lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:6px}
 
-  .topbar {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background: var(--bg);
-    border-bottom: 1px solid var(--rule);
-    padding: 16px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-  }
-  .topbar .back { text-decoration: none; color: var(--accent); font-weight: 600; }
-  .topbar .back .arrow { margin-right: 8px; }
+  .feature{background:var(--accent);color:var(--bg);border-radius:6px;padding:32px;margin:0 0 6vh;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px}
+  .feature .lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(229,228,226,.75);font-weight:700;margin-bottom:8px}
+  .feature .t{font-family:var(--serif);font-size:clamp(24px,3vw,32px);line-height:1.05;letter-spacing:-.015em;margin-bottom:8px}
+  .feature .d{font-size:13.5px;color:rgba(229,228,226,.85);line-height:1.55;max-width:52ch}
+  .feature a.btn{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;padding:12px 22px;border-radius:3px;background:var(--bg);color:var(--accent);border:1px solid var(--bg);text-decoration:none;white-space:nowrap;transition:background .15s,color .15s}
+  .feature a.btn:hover{background:transparent;color:var(--bg)}
 
-  .wrap {
-    max-width: 720px;
-    margin: 10vh auto 8vh;
-    padding: 0 40px;
-  }
+  section{padding:5vh 0;border-top:1px solid var(--rule)}
+  section .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  section .eyebrow .num{color:var(--accent);font-weight:600}
+  section h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,44px);line-height:1;font-weight:400;letter-spacing:-.02em;margin-bottom:8px}
+  section .tagline{font-family:var(--serif);font-size:19px;font-style:italic;color:var(--muted);margin-bottom:22px}
+  p{font-size:15.5px;line-height:1.65;margin-bottom:14px}
+  strong{font-weight:600}
+  em{font-style:italic}
 
-  .eyebrow {
-    font-family: var(--sans);
-    font-size: 12px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 18px;
-  }
-  .eyebrow .num { color: var(--accent); font-weight: 600; }
+  h3{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:28px 0 12px}
+  .script{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:13px;line-height:1.7;background:#FBFBFA;border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:4px;padding:18px 20px;margin:12px 0 8px;white-space:pre-wrap;user-select:all;-webkit-user-select:all}
+  .copyhint{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:20px}
 
-  h1 {
-    font-family: var(--serif);
-    font-size: clamp(40px, 5.5vw, 64px);
-    line-height: 0.95;
-    font-weight: 400;
-    letter-spacing: -0.025em;
-    margin-bottom: 18px;
-  }
-  h1 .accent { color: var(--accent); }
+  .tiein{background:var(--surface);border-radius:4px;padding:18px 22px;border-top:3px solid var(--accent);margin:18px 0;font-size:14px;line-height:1.6}
+  .tiein .h{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:8px}
 
-  .lede {
-    font-family: var(--serif);
-    font-size: clamp(18px, 2vw, 22px);
-    line-height: 1.35;
-    color: var(--muted);
-    font-style: italic;
-    margin-bottom: 48px;
-    max-width: 540px;
-  }
+  .bookends{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1.4vw;align-items:stretch;margin:22px 0}
+  .be{background:var(--surface);border-top:3px solid var(--accent);border-radius:4px;padding:20px 22px}
+  .be .k{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:8px}
+  .be .t{font-family:var(--serif);font-size:20px;line-height:1.2;margin-bottom:6px}
+  .be .d{font-size:13px;line-height:1.5;color:var(--muted)}
+  .be-arrow{display:flex;align-items:center;color:var(--accent);font-size:20px;font-weight:700}
 
-  .pull {
-    font-family: var(--serif);
-    font-size: clamp(20px, 2.5vw, 26px);
-    line-height: 1.35;
-    border-left: 3px solid var(--accent);
-    padding: 14px 0 14px 24px;
-    margin: 48px 0;
-    color: var(--ink);
-  }
-  .pull .attr {
-    display: block;
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-top: 10px;
-    font-style: normal;
-  }
-
-  h2 {
-    font-family: var(--serif);
-    font-size: clamp(26px, 3.5vw, 36px);
-    font-weight: 400;
-    letter-spacing: -0.015em;
-    margin: 56px 0 18px;
-    line-height: 1.05;
-  }
-
-  h3 {
-    font-family: var(--sans);
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin: 32px 0 12px;
-  }
-
-  p, li {
-    font-family: var(--serif);
-    font-size: 17px;
-    line-height: 1.6;
-    color: var(--ink);
-  }
-  p + p { margin-top: 14px; }
-  ul { list-style: none; margin: 12px 0; }
-  ul li { padding-left: 18px; position: relative; margin-bottom: 8px; }
-  ul li::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 10px;
-    width: 6px;
-    height: 6px;
-    background: var(--accent);
-    border-radius: 1px;
-    transform: rotate(45deg);
-  }
-
-  .card-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-    margin: 20px 0;
-  }
-  @media (max-width: 560px) { .card-grid { grid-template-columns: 1fr; } }
-
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 20px 22px;
-  }
-  .card .role {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 6px;
-  }
-  .card .name {
-    font-family: var(--serif);
-    font-size: 18px;
-    margin-bottom: 6px;
-  }
-  .card .desc {
-    font-family: var(--sans);
-    font-size: 13px;
-    line-height: 1.5;
-    color: var(--muted);
-  }
-
-  .prompt-block {
-    background: var(--surface);
-    border: 1px solid var(--rule);
-    border-radius: 4px;
-    padding: 22px 24px;
-    margin: 20px 0;
-  }
-  .prompt-block .label {
-    font-family: var(--sans);
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--accent);
-    font-weight: 600;
-    margin-bottom: 10px;
-  }
-  .prompt-block p {
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.6;
-    color: var(--ink);
-  }
-
-  .divider {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin: 48px 0;
-  }
-
-  .doc-foot-graphic { margin-top: 10vh; width: 100%; line-height: 0; }
-  .doc-foot-graphic img { display: block; width: 100%; height: auto; }
-
-  @keyframes nc-rise {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @media (prefers-reduced-motion: no-preference) {
-    .wrap { animation: nc-rise 0.75s cubic-bezier(0.16, 1, 0.3, 1) both; }
-  }
+  .sessq{font-family:var(--serif);font-size:clamp(18px,2vw,22px);line-height:1.4;letter-spacing:-.01em;border-left:3px solid var(--accent);padding:4px 0 4px 22px;margin:22px 0 6px;font-style:italic}
+  .sessq .attr{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.1em;color:var(--muted);margin-top:8px;font-style:normal}
+  .doc-foot-graphic{margin-top:10vh;width:100%;line-height:0}
+  .doc-foot-graphic img{display:block;width:100%;height:auto}
+  @media(max-width:620px){.bookends{grid-template-columns:1fr}.be-arrow{display:none}.feature{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 
 <div class="topbar">
-  <a class="back" href="/january-digital"><span class="arrow">&larr;</span>Back to hub</a>
-  <span>Claude, Now</span>
+  <a href="/january-digital">&larr;&nbsp; Back to hub</a>
+  <div>NotContent <span class="dot">&bull;</span> January Digital <span class="dot">&bull;</span> Resources</div>
 </div>
 
 <div class="wrap">
-  <div class="eyebrow"><span class="num">+</span> &nbsp;Advanced kit</div>
-  <h1>Claude, <span class="accent">Now.</span></h1>
-  <p class="lede">The Panel, the Scorer, connectors, memory, and the skills system. Everything from the bonus session and beyond &mdash; ready to use.</p>
-
-  <!-- ═══════════════════════════════════════════ -->
-  <h2>The Expert Panel</h2>
-  <p>Before your work goes to a real creative director, a real client, or a real customer &mdash; run it past five AI experts who have no bad days, no politics, and no shortage of time.</p>
-
-  <div class="card-grid">
-    <div class="card">
-      <div class="role">01</div>
-      <div class="name">Performance Marketer</div>
-      <div class="desc">Does it stop the scroll? Will it convert? Judges the work purely on attention and action.</div>
-    </div>
-    <div class="card">
-      <div class="role">02</div>
-      <div class="name">Creative Director</div>
-      <div class="desc">Is the idea original? Is it on brand? Would it win the room?</div>
-    </div>
-    <div class="card">
-      <div class="role">03</div>
-      <div class="name">Brand Guardian</div>
-      <div class="desc">What will the client never sign off on? Catches the things you stop seeing after hour three.</div>
-    </div>
-    <div class="card">
-      <div class="role">04</div>
-      <div class="name">Skeptical Client</div>
-      <div class="desc">The hardest internal critic. If the panel can survive this one, the real client call is easy.</div>
-    </div>
-    <div class="card">
-      <div class="role">05</div>
-      <div class="name">The Customer</div>
-      <div class="desc">Doesn't owe you anything. Doesn't care about your process. Would they stop, look, and act?</div>
-    </div>
+  <div class="head">
+    <div class="eyebrow"><span class="num">09</span> &nbsp;/&nbsp; The advanced kit</div>
+    <h1>Claude, <span class="accent">now.</span></h1>
+    <p class="lede">Everything from the bonus session — the Panel, the Scorer, connectors, memory, voice, and the skills system. Every prompt on this page is copy-paste ready. Tap a block to select it all.</p>
   </div>
 
-  <div class="prompt-block">
-    <div class="label">Master prompt &mdash; The Panel</div>
-    <p>Spin up a panel of five experts for this work: a performance marketer who only cares about stopping the scroll, a creative director who only cares about originality and brand, a brand guardian who knows what the client will never sign off on, a skeptical client, and the end customer who owes us nothing. Run [this folder / this work / this campaign] past all five. Come back with a synthesized report &mdash; actionable to-do&rsquo;s, not 19 pages. Tell me where each expert agrees and where they disagree.</p>
+  <div class="internal">
+    <div class="lbl">Before you start</div>
+    A couple of these need features enabled on JD's enterprise plan (connectors and skills especially). If something on this page isn't in your Claude, it's one conversation with your admin — not a missing product.
   </div>
 
-  <div class="pull">&ldquo;You will feel so much more confident and get much better at setting feedback if you run this process and then do your own round of revisions before you send it to them.&rdquo;<span class="attr">&mdash; Jeremy, Session 09</span></div>
-
-  <hr class="divider">
-
-  <!-- ═══════════════════════════════════════════ -->
-  <h2>The Scorer</h2>
-  <p>Layer this on top of the Panel. Don&rsquo;t just get opinions &mdash; get numbers, rankings, and the exact change prompts to fix what&rsquo;s weak.</p>
-
-  <ul>
-    <li>Score against the top 20 metrics from the brief</li>
-    <li>Average scores, rank every element highest to lowest</li>
-    <li>Explain why each score landed where it did</li>
-    <li>Generate the change prompts so you can paste them straight into Flora</li>
-  </ul>
-
-  <div class="prompt-block">
-    <div class="label">Master prompt &mdash; The Scorer</div>
-    <p>Take [this folder / this work] and the brief I gave you. Score and rank every element against the top 20 metrics this work should be measured on &mdash; all referenced from the brief. Average the scores. Tell me which got the highest and why, which got the lowest and why, and then give me every change I need to make to get each element as close to 100 out of 100 as possible. Then write me the Flora change prompts so I can act on them immediately.</p>
+  <div class="feature">
+    <div>
+      <div class="lbl">The big one · sub-page</div>
+      <div class="t">Skills — ask for the document, it arrives as JD.</div>
+      <div class="d">Templates that load themselves and come out as finished files. The full guide: how skills work, the working JD skill to install today, and the prompt that builds your next one from any template.</div>
+    </div>
+    <a class="btn" href="/january-digital/resources/claude-now/skills">Open the skills guide &rarr;</a>
   </div>
 
-  <div class="pull">&ldquo;The quality of your work is defined by the quality of the questions that you ask your Claudette.&rdquo;<span class="attr">&mdash; Jeremy, Session 09</span></div>
+  <!-- ─── THE PANEL ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">01</span> &nbsp;Master prompt one</div>
+    <h2>The Panel.</h2>
+    <div class="tagline">A room full of experts, on tap. The human 10% <em>in</em>.</div>
 
-  <hr class="divider">
+    <p>Ask Claude one question and you get one answer — the safe, averaged one. So don't ask one voice. Convene a <strong>panel</strong> of experts, the same ones every time, and let them fight over what you're building. Then make them finish the job: the panel agrees a ranking system, scores every element, delivers the findings — and the chair wraps it into a report. <strong>What everyone agrees you should do from here, where they split, and the red flags.</strong> Not five opinions — a decision.</p>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <h2>Connectors</h2>
-  <p>Claude is already connected to your Slack, Drive, Dropbox, and email. Now tell it what to do when things land there.</p>
+    <div class="tiein">
+      <div class="h">When to reach for it</div>
+      Pressure-testing a concept before it goes near a client · breaking open a stuck idea · getting a caption or hook reframed five ways · sanity-checking a pitch for the hole you can't see.
+    </div>
 
-  <ul>
-    <li>Client feedback arrives &mdash; Claude synthesizes it, compares against the brief, and tells you what to do</li>
-    <li>A Granola transcript drops &mdash; Claude extracts the action items before you&rsquo;ve finished your coffee</li>
-    <li>A brief changes in Drive &mdash; Claude flags what moved and what it means for your current work</li>
-  </ul>
+    <h3>The master prompt</h3>
+    <div class="script">You are a standing panel of five experts reviewing something I'm building. Each of you reviews it from your own corner, in your own voice, and then hands it back to me reframed the way YOU would do it. You are allowed — encouraged — to disagree with each other. Generic praise is useless to me; be specific and be honest.
 
-  <div class="prompt-block">
-    <div class="label">Master prompt &mdash; Connectors</div>
-    <p>You&rsquo;re connected to my Slack, Drive, and email. Every time I receive client feedback on [this project], go read it, compare it against the brief I gave you, synthesize what changed, tell me where we went right and wrong, and give me a prioritized list of what to do next. Don&rsquo;t wait for me to ask &mdash; just do it.</p>
-  </div>
+THE PANEL
+- The Performance Marketer — only cares whether it stops the scroll and converts. Ruthless about the first second.
+- The Creative Director — only cares about the idea. Will kill anything that's just a nice-looking asset with no thought behind it.
+- The Brand Guardian — knows the guidelines cold and knows exactly what the client will never sign off.
+- The Sceptical Client — busy, a little threatened, looking for the reason to say no.
+- The Customer — the actual person being sold to. Owes you nothing. Would scroll straight past unless something earns the stop.
 
-  <hr class="divider">
+RUN IT IN FOUR STAGES, in this order:
 
-  <!-- ═══════════════════════════════════════════ -->
-  <h2>Skills</h2>
-  <p>A skill is a reusable instruction set that Claude follows every time you trigger it. Build them once, use them forever.</p>
+STAGE 1 — THE PANEL SPEAKS
+For each panellist, in turn:
+1. THE READ — their honest first reaction, one or two lines.
+2. THE PROBLEM — the single biggest thing they'd change, and why.
+3. THE REFRAME — how they'd do it instead. Show it, don't just describe it.
 
-  <h3>What to build first</h3>
-  <ul>
-    <li><strong>Branded documents</strong> &mdash; PPTs, reports, spreadsheets that always come out JD-branded, correctly formatted, in seconds</li>
-    <li><strong>Brief intake</strong> &mdash; take a raw client brief and produce a structured creative brief with all the fields your team needs</li>
-    <li><strong>Campaign QA</strong> &mdash; run the Panel + Scorer as a single skill before anything ships to client</li>
-    <li><strong>Post-call processing</strong> &mdash; Granola transcript in, action items + follow-up draft out</li>
-  </ul>
+STAGE 2 — THE RANKING
+The panel now sets up a ranking system together:
+- Break what I gave you into its distinct elements (the concepts, the sections, the lines — whatever the natural units are, name them).
+- Agree 3–5 criteria that fit what this thing has to do.
+- Each panellist scores every element against every criterion, 1–5, from their own corner. No inflation — a 5 is rare.
+- Combine into one ranking table, best to worst, with each panellist's scores visible so I can see WHO rated WHAT.
 
-  <hr class="divider">
+STAGE 3 — THE FINDINGS
+Deliver the findings plainly: which elements won and why, which lost and why, and where the panel genuinely split — with the reason for the split, not just the fact of it.
 
-  <!-- ═══════════════════════════════════════════ -->
-  <h2>Memory</h2>
-  <p>Claude remembers what you tell it to. Brand guidelines, client preferences, your workflow quirks, the feedback pattern from a specific stakeholder. It builds up over time and makes every conversation smarter than the last.</p>
+STAGE 4 — THE CHAIR'S REPORT
+Wrap it up as the chair. This is the part I act on:
+- DO FROM HERE — what everyone agrees should be done, as a numbered list, in order.
+- THE SPLITS — where the panel disagrees, and which way you'd lean as chair, with the reason.
+- RED FLAGS — anything that could embarrass us or get rejected: brand risk, claim risk, an AI tell, a client-will-never-sign-off problem. Even small ones.
+- WORTH KNOWING — anything extra the panel spotted along the way that didn't fit above.
+- THE ONE MOVE — the single highest-leverage change to make right now.
 
-  <ul>
-    <li>Tell it your brand voice, client&rsquo;s no-go zones, and approval patterns</li>
-    <li>It carries this across every conversation &mdash; no re-briefing</li>
-    <li>Update or correct it any time: &ldquo;forget that, the client changed their mind&rdquo;</li>
-  </ul>
+HERE'S WHAT I'M BUILDING:
+[ paste your concept / caption / pitch / brief — or several options, numbered ]</div>
+    <p class="copyhint">Swap the five voices per brand — a beauty client's panel isn't a workwear client's panel. Build it once, keep it under the keyboard.</p>
+    <blockquote class="sessq">"You will feel so much more confident — and get much better at setting feedback — if you run this process and then do your own round of revisions before you send it to them."<span class="attr">— Jeremy, Session 09</span></blockquote>
+  </section>
 
-  <hr class="divider">
+  <!-- ─── THE SCORER ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">02</span> &nbsp;Master prompt two</div>
+    <h2>The Scorer.</h2>
+    <div class="tagline">Nothing leaves the building unscored. The human 10% <em>out</em>.</div>
 
-  <!-- ═══════════════════════════════════════════ -->
-  <h2>The rule</h2>
+    <p>You've made twenty concepts. Which two go to the client? Not by eye at 6pm with your own bias baked in. A <strong>scorer</strong> — a second pass whose only job is to grade and rank what you made against the brief. The criteria are your constraints: the C in ICC becomes the rubric. And when the client asks &ldquo;why these two?&rdquo;, you're not saying &ldquo;we liked them&rdquo; — it's scored against their own brief.</p>
 
-  <div class="pull" style="margin-top:18px;">&ldquo;Don&rsquo;t ever accept the first thing that she brings back to you. Assume that you didn&rsquo;t ask the right amount of information.&rdquo;<span class="attr">&mdash; Jeremy, Session 09</span></div>
+    <h3>The master prompt</h3>
+    <div class="script">You are a scorer. Your only job is to score and rank what I give you against the brief. You are not here to be encouraging or to hedge. You are here to tell me which ones are actually good, which ones only look good, and why. A top score is rare — do not inflate.
 
-  <p style="margin-top:24px;">The quality of your Claude output &mdash; and thereby your entire work that comes out of you &mdash; is dictated by the questions you ask. Push it to think laterally. Give it references. Ask it to suggest ideas and then let your brain riff on them. Never settle for the first answer.</p>
+THE BRIEF / THE CRITERIA
+[ paste the brief, or list 4–6 criteria. For ads, usually:
+  on-brief · on-brand · stops the scroll · one clear idea · would convert · no AI tells ]
 
+WHAT TO DO
+1. Score each option against each criterion, 1–5, with a one-line reason for each score.
+2. Total and rank them, best to worst, in a clean table.
+3. Name the top two, and in one line each say what earned them the spot.
+4. Flag the traps — anything that looks strong but misses the brief. Say what it's missing.
+5. Name the single most common weakness across the whole set, so I know what to fix next round.
+6. Then write me the Flora change prompts — the exact edits that would take each weak element as close to top marks as possible, ready to paste straight into the canvas.
+
+If none of them are good enough to ship, say so plainly and tell me why.
+
+HERE ARE THE OUTPUTS:
+[ paste them, numbered ]</div>
+    <p class="copyhint">Feed it the real brief — the better the criteria, the sharper the scoring. First job: run it on your own competition entries and see if it agrees with the room.</p>
+    <blockquote class="sessq">"The quality of your work is defined by the quality of the questions that you ask your Claudette."<span class="attr">— Jeremy, Session 09</span></blockquote>
+
+    <div class="tiein">
+      <div class="h">Panel vs Scorer — which one when</div>
+      The <strong>Panel</strong> ranks from five human corners <em>before you build</em> — perspectives in. The <strong>Scorer</strong> grades coldly against the brief <em>before it ships</em> — compliance out. Chain them for the full loop: Panel breaks the idea open, the machine produces at volume, the Scorer picks the winners.
+    </div>
+
+    <div class="bookends">
+      <div class="be"><div class="k">10% in</div><div class="t">The Panel</div><div class="d">Sharpen the idea before you build.</div></div>
+      <div class="be-arrow">&rarr;</div>
+      <div class="be"><div class="k">80% middle</div><div class="t">The machine</div><div class="d">Generate at speed and volume.</div></div>
+      <div class="be-arrow">&rarr;</div>
+      <div class="be"><div class="k">10% out</div><div class="t">The Scorer</div><div class="d">Rank against the brief. Pick the two.</div></div>
+    </div>
+  </section>
+
+  <!-- ─── CONNECTORS ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">03</span> &nbsp;The pipeline</div>
+    <h2>Connectors — feedback reads itself.</h2>
+    <div class="tagline">The Session 6 rule, with the manual step removed.</div>
+
+    <p>The rule was: feedback goes to Claude to decipher <em>before</em> you read or watch it. The weak point was the copy-paste — on a busy Tuesday, you'd skip it. <strong>Connectors remove the step.</strong> Claude connects to Drive and Slack and reads the client's comments at the source. The rule becomes the default instead of a discipline.</p>
+
+    <h3>The decode prompt</h3>
+    <div class="script">Read the client feedback on [document name] in my Google Drive.
+
+Then give me:
+1. WHAT THEY ACTUALLY WANT — the real asks, decoded, stripped of politeness and vagueness.
+2. IN-SCOPE vs OUT — which asks are round-one changes vs genuine errors vs new requests that sit outside the agreed round (per our process rules).
+3. THE CANVAS LIST — the changes as concrete prompt edits, ready to feed into Flora.
+4. THE REPLY — a short, warm draft back to the client confirming what we're doing and (politely) what sits outside this round.</div>
+    <p class="copyhint">Point 2 holds the boundary for you — it applies the round rules to every piece of feedback automatically.</p>
+  </section>
+
+  <!-- ─── PAST CHATS ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">04</span> &nbsp;Memory</div>
+    <h2>Past chats — the scars layer builds itself.</h2>
+    <div class="tagline">The fifth layer everyone skips, maintained for free.</div>
+
+    <p>Claude can now search your past conversations and remember context across a project. The scars layer — what we tried, what broke, what we decided and why — stops depending on anyone's discipline. It accumulates just by you working.</p>
+
+    <h3>The two prompts</h3>
+    <div class="script">What did we decide about [the thing] — and why? Search our past chats on this.</div>
+    <div class="script">Before I start this brief: search our past conversations on [brand] and give me the scars — what we tried that didn't work, what the client rejected, and any rules we set. I don't want to repeat a mistake we've already paid for.</div>
+    <p class="copyhint">Make the second one a habit at the top of every new brief. Thirty seconds — the difference between a team that learns and a team that re-learns.</p>
+  </section>
+
+  <!-- ─── VOICE ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">05</span> &nbsp;On the move</div>
+    <h2>Voice — walk the brief.</h2>
+    <div class="tagline">The Session 3 technique, untethered from the desk.</div>
+
+    <p>Voice mode on the phone is good enough to do real work now. AirPods in, leave the screen, and <em>talk</em> the brief through — what the client said, what's bothering you, what the idea might be. Claude asks back, pushes, structures. By the time you're back at the desk, the thinking's done.</p>
+
+    <h3>Say this to open</h3>
+    <div class="script">I'm going to talk through a brief out loud while I walk — messy, unstructured, thinking as I go. Your job: ask me the questions that sharpen it, challenge anything vague, and at the end give me back a structured brief in our format — role, task, context, tone, reference, deliverable, refinement. Don't let me get away with "good vibes" as a direction.</div>
+    <p class="copyhint">Best for the brief you're avoiding. Twenty minutes of walking beats ninety at the desk.</p>
+  </section>
+
+  <!-- ─── THE POINT ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">06</span> &nbsp;The point</div>
+    <h2>All of it feeds the loop.</h2>
+    <p>The programme built you a loop — data in, creative out, results back. These remove the manual labour around it: <strong>skills</strong> produce the documents, <strong>connectors</strong> carry the feedback, <strong>memory</strong> keeps the scars, <strong>voice</strong> does the thinking on the move, and the <strong>Panel and Scorer</strong> guard the two ends. The loop is the advantage. This makes the loop cheaper to run.</p>
+  </section>
+
+  <!-- ─── THE RULE ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">07</span> &nbsp;The rule</div>
+    <h2>Never settle for the first answer.</h2>
+    <blockquote class="sessq">"Don't ever accept the first thing that she brings back to you. Assume that you didn't ask the right amount of information."<span class="attr">— Jeremy, Session 09</span></blockquote>
+    <p>The quality of your Claude output — and everything that comes out of you on the back of it — is dictated by the questions you ask. Push it to think laterally. Give it references. Ask it to suggest ideas and let your brain riff on them. The prompts on this page are starting positions, not finish lines.</p>
+  </section>
 </div>
 
 <footer class="doc-foot-graphic">
-  <img src="/january-digital/footer-graphic.png" alt="NotContent &mdash; AI Creative Training for Creative Teams and Brands" />
+  <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
 </footer>
 
 </body>

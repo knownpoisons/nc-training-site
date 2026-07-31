@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Skills — ask for the document, it arrives as JD · January Digital × NotContent</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="The full skills guide — how to turn JD's documents into templates Claude fills automatically, with a working skill to install today." />
+<link rel="icon" type="image/png" href="/january-digital/nct-globe.png" />
+<style>
+  :root {
+    --bg:#E5E4E2; --ink:#0E0E0C; --muted:#5F5F60; --rule:#C2C1BF; --accent:#1338BE;
+    --soft:rgba(19,56,190,0.07); --surface:#EFEEEC;
+    --serif:"Iowan Old Style","Source Serif Pro",Georgia,serif;
+    --sans:-apple-system,"Inter","Helvetica Neue",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;padding-bottom:0}
+  .topbar{position:sticky;top:0;z-index:100;background:var(--bg);border-bottom:1px solid var(--rule);padding:16px 40px;display:flex;justify-content:space-between;align-items:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+  .topbar a{color:var(--accent);text-decoration:none;font-weight:600}
+  .topbar .dot{color:var(--accent);margin:0 .5em}
+  .wrap{max-width:780px;margin:0 auto;padding:0 40px}
+  .head{margin:10vh 0 4vh}
+  .head .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:14px}
+  .head .eyebrow .num{color:var(--accent);font-weight:600}
+  .head h1{font-family:var(--serif);font-size:clamp(38px,5.6vw,64px);line-height:.98;font-weight:400;letter-spacing:-.025em}
+  .head h1 .accent{color:var(--accent)}
+  .head .lede{font-family:var(--serif);font-size:clamp(18px,2vw,23px);color:var(--muted);font-style:italic;line-height:1.35;margin-top:18px;max-width:48ch}
+
+  section{padding:5vh 0;border-top:1px solid var(--rule)}
+  section .eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  section .eyebrow .num{color:var(--accent);font-weight:600}
+  section h2{font-family:var(--serif);font-size:clamp(28px,3.6vw,44px);line-height:1;font-weight:400;letter-spacing:-.02em;margin-bottom:8px}
+  section .tagline{font-family:var(--serif);font-size:19px;font-style:italic;color:var(--muted);margin-bottom:22px}
+  p{font-size:15.5px;line-height:1.65;margin-bottom:14px}
+  strong{font-weight:600}
+  em{font-style:italic}
+
+  h3{font-family:var(--sans);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:700;margin:28px 0 12px}
+  .script{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.7;background:#FBFBFA;border:1px solid var(--rule);border-left:3px solid var(--accent);border-radius:4px;padding:18px 20px;margin:12px 0 8px;white-space:pre-wrap;user-select:all;-webkit-user-select:all}
+  .copyhint{font-size:11px;color:var(--muted);font-style:italic;margin-bottom:20px}
+
+  .steps{list-style:none;counter-reset:s;margin:14px 0}
+  .steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--rule);align-items:start}
+  .steps li::before{content:counter(s,decimal-leading-zero);font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.08em;padding-top:4px}
+  .steps li .t{font-family:var(--serif);font-size:18px;line-height:1.3;margin-bottom:4px}
+  .steps li .d{font-size:13.5px;line-height:1.55;color:var(--muted)}
+
+  .tiein{background:var(--surface);border-radius:4px;padding:18px 22px;border-top:3px solid var(--accent);margin:18px 0;font-size:14px;line-height:1.6}
+  .tiein .h{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--accent);margin-bottom:8px}
+
+  .callout{background:var(--accent);color:var(--bg);border-radius:5px;padding:26px 28px;margin:24px 0}
+  .callout .lbl{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(229,228,226,.75);font-weight:700;margin-bottom:10px}
+  .callout .big{font-family:var(--serif);font-size:22px;line-height:1.3;letter-spacing:-.01em}
+  .callout p{color:rgba(229,228,226,.9);font-size:14.5px;margin:10px 0 0}
+
+  .vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+  .vs-card{background:var(--surface);border-radius:4px;padding:20px 22px;border-top:3px solid var(--muted)}
+  .vs-card.good{border-top-color:var(--accent)}
+  .vs-card .h{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--muted);margin-bottom:12px}
+  .vs-card.good .h{color:var(--accent)}
+  .vs-card .t{font-family:var(--serif);font-size:16px;line-height:1.45}
+
+  .stopbox{background:var(--ink);color:var(--bg);border-radius:6px;padding:30px 32px;margin:24px 0}
+  .stopbox .stoplbl{display:inline-block;font-size:11px;letter-spacing:.3em;text-transform:uppercase;font-weight:700;color:var(--ink);background:var(--bg);padding:6px 14px;border-radius:3px;margin-bottom:16px}
+  .stopbox h4{font-family:var(--serif);font-size:clamp(20px,2.4vw,26px);line-height:1.2;letter-spacing:-.015em;font-weight:400;margin-bottom:12px;color:var(--bg)}
+  .stopbox p{color:rgba(229,228,226,.88);font-size:14.5px;line-height:1.65;margin-bottom:12px}
+  .stopbox p strong{color:var(--bg)}
+  .stopbox .mini{font-family:ui-monospace,"SF Mono",Menlo,monospace;font-size:12.5px;line-height:1.7;background:rgba(229,228,226,.08);border:1px solid rgba(229,228,226,.25);border-left:3px solid var(--bg);border-radius:4px;padding:14px 18px;margin:14px 0;white-space:pre-wrap;color:var(--bg);user-select:all;-webkit-user-select:all}
+  .stopbox .rulebar{margin-top:16px;padding-top:14px;border-top:1px solid rgba(229,228,226,.3);font-family:var(--serif);font-size:17px;font-style:italic;color:var(--bg)}
+  .doc-foot-graphic{margin-top:10vh;width:100%;line-height:0}
+  .doc-foot-graphic img{display:block;width:100%;height:auto}
+  @media(max-width:620px){.vs-grid{grid-template-columns:1fr}.steps li{grid-template-columns:1fr;gap:4px}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="/january-digital/resources/claude-now">&larr;&nbsp; Back to Claude, Now</a>
+  <div>NotContent <span class="dot">&bull;</span> January Digital <span class="dot">&bull;</span> Resources</div>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <div class="eyebrow"><span class="num">09</span> &nbsp;/&nbsp; Skills — the full guide</div>
+    <h1>Ask for the document.<br><span class="accent">It arrives as JD.</span></h1>
+    <p class="lede">How to turn every recurring JD document into a template Claude fills automatically — with a working skill to install today.</p>
+  </div>
+
+  <!-- ─── WHAT A SKILL IS ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">01</span> &nbsp;The idea</div>
+    <h2>Templates that load themselves.</h2>
+    <p>Everyone has done this: you ask Claude for a document — a review, a report, a one-pager — and what comes back is <em>right</em> but it isn't <em>yours</em>. Wrong layout, wrong structure, and you spend the next hour reformatting. Some of you have handed Claude an old deck and said &ldquo;update this&rdquo; — and watched it mangle the thing.</p>
+    <p>A <strong>skill</strong> solves it. A skill is a folder Claude carries with it: instructions, plus — the part that matters — <em>your actual template files</em>. Not a description of your deck. The deck. It loads <strong>itself</strong> whenever it's relevant: nothing to paste, nothing to remember. And the output isn't text to go and format — it's <strong>the finished file</strong>. The deck as a .pptx. The doc as a .docx. The sheet as a .xlsx.</p>
+    <div class="tiein">
+      <div class="h">Ties to Session 8</div>
+      A skill is the five-layer client project made automatic. One skill per document type, one per brand — and &ldquo;creative review for [brand]&rdquo; comes out finished, with the brand's guardrails already applied. That's not a prompt any more. That's a system.
+    </div>
+  </section>
+
+  <!-- ─── INSTALL THE FIRST ONE ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">02</span> &nbsp;Start here</div>
+    <h2>Install the one we built you.</h2>
+    <div class="tagline">The Session 7 offer one-pager, as a working skill. Ten minutes, start to finish.</div>
+    <ol class="steps">
+      <li><div><div class="t">Make the folder.</div><div class="d">On your machine, create a folder called <strong>jd-offer-one-pager</strong>.</div></div></li>
+      <li><div><div class="t">Add the skill file.</div><div class="d">Copy the full SKILL.md below into a file named <strong>SKILL.md</strong> inside that folder. (The name and the .md matter.)</div></div></li>
+      <li><div><div class="t">Zip the folder.</div><div class="d">Right-click the folder → compress. You upload the zip, not the bare file.</div></div></li>
+      <li><div><div class="t">Upload it.</div><div class="d">Claude → Settings → Capabilities → Skills → upload. If your menu looks different, search &ldquo;skills&rdquo; in settings.</div></div></li>
+      <li><div><div class="t">Test it.</div><div class="d">New chat: <em>&ldquo;Write the offer one-pager for [your brand] — 15 concepts, two weeks.&rdquo;</em> Watch it arrive in the Session 7 format, as a finished file.</div></div></li>
+    </ol>
+
+    <h3>The skill file · SKILL.md — copy all of it</h3>
+    <div class="script">---
+name: jd-offer-one-pager
+description: Produces the January Digital creative-production offer one-pager for a named client brand, in JD's exact Session 7 format. Use whenever someone asks for "the offer one-pager", "the offer doc", or a client-facing page explaining JD's creative production service for a specific brand.
+---
+
+# JD Offer One-Pager
+
+## When to use this skill
+
+Any request for the creative-production offer document for a client — e.g. "write the offer one-pager for [brand]". If the person names a brand, produce the document. If they don't, ask which brand before producing anything.
+
+## What this document is
+
+The one-page, client-facing explanation of January Digital's creative production service. It is sent to a client at the start of the conversation. It sells the shift, the edge, and the value — never the tool.
+
+## Hard rules — never break these
+
+- Never use the words: AI, artificial intelligence, machine learning, generative, synergy, leverage, unlock, journey, deep dive, ecosystem, robust, holistic, empower, scalable.
+- Never put a price, rate, or number of dollars on the page. Pricing is a conversation. The pricing line always stays as a pointer to that conversation.
+- Never promise creative for channels JD does not run. The scope is always "ready to run in the media we manage."
+- No emojis. No exclamation marks. British spelling throughout.
+- One page. If content grows beyond one page, cut — do not shrink the type.
+
+## Structure — fixed, in this order
+
+1. Brandline: [BRAND] × January Digital — Creative Production
+2. Headline: "We don't just plan where your creative runs. We make it." (May be lightly adapted to the brand, but keep the two-sentence plan/make contrast.)
+3. Sub-line: one sentence — same team that knows the media, now making the work; stills and motion; on brand; ready to run in the media we manage.
+4. What you get: three bullets — [N]+ finished concepts in [timeframe]; stills and motion built to spec and channel; one creative direction produced across every SKU and format the campaign needs.
+5. Why it's different here: the data edge. They already trust JD with their media, so JD knows what's performing — the creative is built from the client's own numbers. A creative shop makes something beautiful; JD makes something that works, because JD can see the scoreboard.
+6. How the work gets made: the 10 / 80 / 10 — talented humans in (brief, taste, direction); production in the middle at speed (where the volume comes from); talented humans out (on brand, pixel perfect). Close with: "The speed comes from the middle. The quality comes from the two ends. We're here to protect the edges."
+7. What you're paying for: not per asset, not per hour — the creative system and the speed to market. End with the pricing pointer: "[Pricing is a conversation — see how we scope it together.]"
+
+## What to fill per use
+
+- [BRAND] — the client brand name, used in the brandline and adapted naturally into the copy.
+- [N] — number of concepts. If not given, ask. Never invent a number.
+- [timeframe] — delivery window. If not given, ask.
+- Adapt the examples and channel references to the brand's world (workwear ≠ beauty ≠ footwear), but keep the structure and rules fixed.
+
+## Inputs to request if missing
+
+Ask for, in one short question: the brand, the concept count, the timeframe, and anything specific the account lead wants emphasised. Do not produce the document with placeholder brackets left in unless the person explicitly asks for the template version.
+
+## Output
+
+Produce the finished document as a downloadable file in the format requested — default to a clean, single-page document (.docx) if no format is named. Title the file [BRAND]_JD_creative_production_offer.</div>
+    <p class="copyhint">Tap to select all. Once it's installed, pull it apart — this file is also the reference for how to write your own.</p>
+  </section>
+
+  <div class="stopbox">
+    <div class="stoplbl">Stop</div>
+    <h4>Before you build another skill — read this.</h4>
+    <p>The starter skill carries the <strong>structure</strong>, the <strong>voice</strong>, and the <strong>behaviour</strong> of the document. It does not carry the <strong>visual identity</strong> — there's no template file in the folder yet, so the output comes back correctly built but wearing generic clothes. Right words, wrong letterhead.</p>
+    <p>The fix is one file. Put your <em>real branded document</em> in the folder next to the SKILL.md:</p>
+    <div class="mini">jd-offer-one-pager/
+  SKILL.md          the rules
+  template.docx     your actual branded document — logo, fonts, colours, layout</div>
+    <p>Then add this line to the SKILL.md, under Hard rules:</p>
+    <div class="mini">- Always start from template.docx. Fill the content into the existing structure only. Never alter the styles, fonts, colours, logo placement, headers or footers.</div>
+    <p>Re-zip, re-upload, re-test. Now the output arrives in JD's clothes, every time — and the same move works for decks: your real .pptx with the master slides, filled, not redrawn.</p>
+    <div class="rulebar">The rule: a skill isn't finished until it carries a real template file. Structure without the brand is half a skill.</div>
+  </div>
+
+  <!-- ─── BUILD YOUR NEXT ONE ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">03</span> &nbsp;Then</div>
+    <h2>Build your next one from a real template.</h2>
+    <div class="tagline">Don't write the skill by hand — have Claude build it from the document you already use.</div>
+
+    <p>Pick the document you make most often — the creative review, the weekly report, whatever eats your Tuesday. Attach the best recent example of it, and use this:</p>
+
+    <h3>The build prompt</h3>
+    <div class="script">I want to turn a document template into a Claude skill so that whenever I ask for this document type, you produce it in exactly this format as a finished file.
+
+Here's the template: [attach your deck / doc / sheet]
+
+Build me the skill:
+1. Write the SKILL.md — a clear name and description (the description decides when the skill triggers, so include the phrases people would actually say when asking for this document).
+2. Define what stays FIXED: layout, structure, section order, tone, the rules that never bend.
+3. Define what gets FILLED per use: the variables, and what to ask me for if I haven't provided them.
+4. Include our hard rules: no "AI", no banned corporate words, British spelling, no emojis, no exclamation marks.
+5. Package it as a folder I can zip and install, and tell me exactly how.
+6. Then give me one test request to run, and tell me what a correct result looks like.</div>
+    <p class="copyhint">The description is the trigger — spend your effort there. If the skill doesn't fire, the description didn't contain the words you said.</p>
+
+    <h3>What makes a skill hold — the four rules</h3>
+    <div class="vs-grid">
+      <div class="vs-card good"><div class="h">Do</div><div class="t">One skill per document type. Sharp trigger phrases in the description. Hard rules written as never/always. Test with three different brands before you trust it.</div></div>
+      <div class="vs-card"><div class="h">Don't</div><div class="t">One mega-skill for everything (it stops triggering reliably). Vague descriptions (&ldquo;helps with documents&rdquo;). Rules as suggestions (&ldquo;try to keep it short&rdquo;). Shipping the first output untested.</div></div>
+    </div>
+  </section>
+
+  <!-- ─── THE SYSTEM ─── -->
+  <section>
+    <div class="eyebrow"><span class="num">04</span> &nbsp;The system</div>
+    <h2>One per document. One per brand.</h2>
+    <p>Where this goes: a skill for every recurring JD document — the creative review, the client report, the offer docs. And a skill for every <strong>brand</strong> — the five-layer stack loading itself: guidelines, data rules, the never-sign-offs. Then &ldquo;creative review for [brand], here's the data&rdquo; comes out finished, formatted, and guardrailed — from anyone on the team, on their first week or their fifth year.</p>
+    <div class="callout">
+      <div class="lbl">Where to start</div>
+      <div class="big">Install the offer skill today. Build your second skill this week from the document you make most often.</div>
+      <p>Everything else follows from feeling the first one work. Bring what breaks to the Slack — we rise together.</p>
+    </div>
+  </section>
+</div>
+
+<footer class="doc-foot-graphic">
+  <img src="/january-digital/footer-graphic.png" alt="NotContent — AI Creative Training for Creative Teams and Brands" />
+</footer>
+
+</body>
+</html>
