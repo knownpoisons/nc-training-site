@@ -50,13 +50,40 @@ export default async function LibraryIndex() {
       {/* ─── Prompt list ─────────────────────────────────────────────── */}
       <section className="row-list">
         {COLLECTIONS.map((c) => (
-          <Link key={c.slug} href={`/library/${c.slug}`} className="row row-collection">
+          <Link
+            key={c.slug}
+            href={`/library/${c.slug}`}
+            className={`row${c.featured ? " row-collection" : ""}`}
+          >
             <div className="num" aria-hidden="true">
-              {/* camera glyph — same language as the finder diagrams */}
-              <svg viewBox="0 0 26 20" width="26" height="20" className="row-cam">
-                <rect x="0.5" y="4.5" width="15" height="11" rx="1.5" fill="currentColor" />
-                <path d="M 17 8.2 L 25.5 4.5 V 15.5 L 17 11.8 Z" fill="currentColor" />
-              </svg>
+              {c.glyph === "camera" ? (
+                /* camera glyph — same language as the finder diagrams */
+                <svg viewBox="0 0 26 20" width="26" height="20" className="row-cam">
+                  <rect x="0.5" y="4.5" width="15" height="11" rx="1.5" fill="currentColor" />
+                  <path d="M 17 8.2 L 25.5 4.5 V 15.5 L 17 11.8 Z" fill="currentColor" />
+                </svg>
+              ) : (
+                /* vault glyph — a strongroom door, hairline like the diagrams */
+                <svg viewBox="0 0 24 20" width="24" height="20" className="row-cam">
+                  <rect
+                    x="0.75"
+                    y="0.75"
+                    width="22.5"
+                    height="18.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <circle cx="12" cy="10" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
+                  <circle cx="12" cy="10" r="1.6" fill="currentColor" />
+                  <path
+                    d="M12 3.6V5 M12 15v1.4 M5.4 10H6.8 M17.2 10h1.4"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              )}
             </div>
             <div className="body">
               <h2 className="topic">{c.title}</h2>

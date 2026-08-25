@@ -8,9 +8,11 @@ interface Props {
   total: number;
   /** Optional: prompt title for the share sheet (detail page only). */
   shareTitle?: string;
+  /** What the counter is counting. Defaults to "prompt". */
+  noun?: string;
 }
 
-export function LibraryTopbar({ currentNumber, total, shareTitle }: Props) {
+export function LibraryTopbar({ currentNumber, total, shareTitle, noun = "prompt" }: Props) {
   const pad = (n: number) => String(n).padStart(2, "0");
   return (
     <div className="topbar">
@@ -21,11 +23,14 @@ export function LibraryTopbar({ currentNumber, total, shareTitle }: Props) {
         <div className="counter">
           {currentNumber != null ? (
             <>
-              <strong>Prompt {pad(currentNumber)}</strong> of {pad(total)}
+              <strong>
+                {noun.charAt(0).toUpperCase() + noun.slice(1)} {pad(currentNumber)}
+              </strong>{" "}
+              of {pad(total)}
             </>
           ) : (
             <>
-              <strong>{pad(total)}</strong> {total === 1 ? "prompt" : "prompts"}
+              <strong>{pad(total)}</strong> {total === 1 ? noun : `${noun}s`}
             </>
           )}
         </div>
