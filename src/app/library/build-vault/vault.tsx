@@ -221,31 +221,45 @@ export function Vault() {
               data-slug={r.slug}
               style={{ animationDelay: `${Math.min(i, 12) * 40}ms` }}
             >
-              <div className="vt-head">
-                <span className="vt-domain">{r.domain}</span>
-                <span className={`vt-cost vt-cost-${r.cost.toLowerCase().replace(/\s+/g, "-")}`}>
-                  {r.cost}
-                </span>
+              <div className="vt-shot">
+                {/* Captured at 1440x900 and stored locally — never hotlinked, so
+                    a redesign upstream can't silently change the card. */}
+                <img
+                  src={`/images/library/build-vault/${r.slug}.webp`}
+                  alt={`${r.name} homepage`}
+                  width={1200}
+                  height={750}
+                  /* first rows eager so the grid never opens on blank cards;
+                     the rest lazy — 19 shots at ~35kb each is a cheap page */
+                  loading={i < 6 ? "eager" : "lazy"}
+                  decoding="async"
+                />
               </div>
-              <h3>
-                {r.name}
-                <span className="vt-arrow" aria-hidden="true">
-                  ↗
-                </span>
-              </h3>
-              <p className="vt-what">{r.what}</p>
-              <p className="vt-use">
-                <span className="vt-use-label">Reach for it when</span> {r.use}
-              </p>
-              <div className="vt-tags">
-                {r.tags.map((t) => (
-                  <span key={t} className="vt-tag">
-                    {t}
+              <div className="vt-body">
+                <div className="vt-head">
+                  <span className="vt-domain">{r.domain}</span>
+                  <span className={`vt-cost vt-cost-${r.cost.toLowerCase().replace(/\s+/g, "-")}`}>
+                    {r.cost}
                   </span>
-                ))}
-                {r.inStack && (
-                  <span className="vt-tag vt-tag-stack">◈ in our stack</span>
-                )}
+                </div>
+                <h3>
+                  {r.name}
+                  <span className="vt-arrow" aria-hidden="true">
+                    ↗
+                  </span>
+                </h3>
+                <p className="vt-what">{r.what}</p>
+                <p className="vt-use">
+                  <span className="vt-use-label">Reach for it when</span> {r.use}
+                </p>
+                <div className="vt-tags">
+                  {r.tags.map((t) => (
+                    <span key={t} className="vt-tag">
+                      {t}
+                    </span>
+                  ))}
+                  {r.inStack && <span className="vt-tag vt-tag-stack">◈ in our stack</span>}
+                </div>
               </div>
             </a>
           ))}

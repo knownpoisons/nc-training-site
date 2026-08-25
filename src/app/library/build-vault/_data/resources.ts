@@ -9,6 +9,13 @@
 //      "free" link that wants a card.
 //   4. `inStack` marks the ones already used on a NotContent build. Don't set it
 //      unless it's true.
+//   5. Every entry needs a screenshot at public/images/library/build-vault/<slug>.webp
+//      (1200x750, captured at 1440x900). Regenerate rather than hotlink.
+//
+// Culled 2026-08-25 by a three-lens panel — curation vs scale, craft and
+// reputation, fit and redundancy for this studio. 47 in, 19 out the other side.
+// The full cut list with reasons is at the foot of this file: restoring one is
+// a copy-paste, so nothing is lost, but read the reason before you do.
 // No dollar figures or percentages anywhere in this file — same PROOF rule as
 // every other public page.
 
@@ -29,6 +36,8 @@ export interface Resource {
   cost: "Free" | "Open source" | "Freemium" | "Paid";
   /** already used on a NotContent build */
   inStack?: boolean;
+  /** panel scores out of 5 — curation, craft, fit — and the total out of 15 */
+  panel: { curation: number; craft: number; fit: number };
 }
 
 export const VAULT_CATEGORIES: { id: VaultCategory; label: string; blurb: string }[] = [
@@ -36,42 +45,29 @@ export const VAULT_CATEGORIES: { id: VaultCategory; label: string; blurb: string
     id: "copy-paste",
     label: "Copy & paste",
     blurb:
-      "Visual libraries where you pick the effect, copy the code and paste it into the project. Hover states, text reveals, animated sections.",
+      "Pick the effect, copy the code, paste it in. Every generic shimmer-and-beam component library was cut — what's left is technique, not somebody else's house style.",
   },
   {
     id: "motion",
     label: "Motion & scroll",
     blurb:
-      "The engines underneath. Scroll-linked animation, smooth scroll, timelines — what the copy-paste libraries are built on.",
+      "The engines underneath. Scroll-linked animation, smooth scroll, timelines — five tools, no overlap, each the best at one job.",
   },
   {
     id: "inspiration",
     label: "Inspiration",
     blurb:
-      "Hard-curated galleries. Not endless feeds — places where somebody with taste already threw out the mediocre nine-tenths.",
+      "Four galleries, not fourteen. Every open-submission archive with six figures of screens was cut — these are the ones where somebody with taste threw out the mediocre nine-tenths first.",
   },
   {
     id: "assets",
     label: "Generators & assets",
     blurb:
-      "Make the raw material: backgrounds, loaders, canvas effects, icons, exportable motion files.",
+      "Make the raw material. Icon dumps and blob generators were cut; these three each do something you cannot hand-code in five minutes.",
   },
 ];
 
 export const RESOURCES: Resource[] = [
-  // ── Copy & paste ───────────────────────────────────────────────────────────
-  {
-    slug: "21st-dev",
-    name: "21st.dev",
-    url: "https://21st.dev/",
-    domain: "21st.dev",
-    category: "copy-paste",
-    what: "A community registry of React and Tailwind components — thousands of blocks, sections and shadcn themes published by design engineers.",
-    use: "When you want a whole section — hero, pricing, marquee — that already moves. Copy the code, or hand the ready-made prompt to Claude Code and let it install the component itself.",
-    tags: ["react", "tailwind", "sections", "ai-install"],
-    cost: "Freemium",
-    inStack: true,
-  },
   {
     slug: "react-bits",
     name: "React Bits",
@@ -82,62 +78,7 @@ export const RESOURCES: Resource[] = [
     use: "First stop for a text reveal or a moving background. The four-flavour thing means it drops into any project without a rewrite.",
     tags: ["react", "text effects", "backgrounds", "copy-paste"],
     cost: "Open source",
-  },
-  {
-    slug: "magic-ui",
-    name: "Magic UI",
-    url: "https://magicui.design/",
-    domain: "magicui.design",
-    category: "copy-paste",
-    what: "Over 150 free, open-source animated components and effects built with React, TypeScript, Tailwind and Motion.",
-    use: "The polish layer on a landing page — marquees, number tickers, shimmer buttons, reveal-on-scroll cards. Paid templates exist; the components don't need them.",
-    tags: ["react", "tailwind", "motion", "landing pages"],
-    cost: "Open source",
-  },
-  {
-    slug: "aceternity-ui",
-    name: "Aceternity UI",
-    url: "https://ui.aceternity.com/",
-    domain: "ui.aceternity.com",
-    category: "copy-paste",
-    what: "Around 200 production-ready components, blocks and templates in React, Tailwind and Motion — the loud end of the spectrum.",
-    use: "Scroll-linked heroes, sticky reveals, 3D cards. Use one per page, not six: it has a strong house style and it shows when you lean on it.",
-    tags: ["react", "scroll", "hero", "3d"],
-    cost: "Freemium",
-  },
-  {
-    slug: "animate-ui",
-    name: "Animate UI",
-    url: "https://animate-ui.com/",
-    domain: "animate-ui.com",
-    category: "copy-paste",
-    what: "A fully animated open-source component set — React, TypeScript, Tailwind and Motion — installed through the shadcn CLI, then yours to edit.",
-    use: "When you want the animation baked into a real component (a tab, a counter, a loader) rather than bolted on afterwards.",
-    tags: ["react", "shadcn", "motion", "loaders"],
-    cost: "Open source",
-    inStack: true,
-  },
-  {
-    slug: "uiverse",
-    name: "Uiverse",
-    url: "https://uiverse.io/",
-    domain: "uiverse.io",
-    category: "copy-paste",
-    what: "Thousands of community-made CSS and Tailwind elements — buttons, toggles, loaders, cards — with the hover state already built in.",
-    use: "When you need one very good button and refuse to add a dependency for it. Pure CSS, MIT, no framework.",
-    tags: ["css", "buttons", "hover", "no-dependency"],
-    cost: "Free",
-  },
-  {
-    slug: "hover-dev",
-    name: "Hover.dev",
-    url: "https://www.hover.dev/",
-    domain: "hover.dev",
-    category: "copy-paste",
-    what: "Animated React, Tailwind and Framer Motion components and templates, organised around what things do under the cursor.",
-    use: "Hover behaviour specifically — what a card, link or nav item should do when the mouse arrives. Some free, the rest behind a subscription.",
-    tags: ["hover", "react", "framer motion", "micro-interaction"],
-    cost: "Freemium",
+    panel: { curation: 4, craft: 3, fit: 3 },
   },
   {
     slug: "animista",
@@ -149,6 +90,7 @@ export const RESOURCES: Resource[] = [
     use: "The fastest route to a hand-rolled @keyframes block with zero libraries. Free for commercial work.",
     tags: ["css", "keyframes", "generator", "no-dependency"],
     cost: "Free",
+    panel: { curation: 4, craft: 3, fit: 4 },
   },
   {
     slug: "motion-primitives",
@@ -160,17 +102,7 @@ export const RESOURCES: Resource[] = [
     use: "When you want the motion, not somebody else's idea of what the component should look like.",
     tags: ["react", "motion", "primitives", "transitions"],
     cost: "Open source",
-  },
-  {
-    slug: "cuicui",
-    name: "cuicui",
-    url: "https://cuicui.day/",
-    domain: "cuicui.day",
-    category: "copy-paste",
-    what: "An open-source React and Tailwind component library with a deep hover-and-animation section alongside the ordinary UI parts.",
-    use: "The middle ground: less shouty than Aceternity, more designed than raw CSS. Good for interior pages.",
-    tags: ["react", "tailwind", "hover", "open source"],
-    cost: "Open source",
+    panel: { curation: 4, craft: 4, fit: 2 },
   },
   {
     slug: "build-ui-recipes",
@@ -182,6 +114,7 @@ export const RESOURCES: Resource[] = [
     use: "When an interaction won't behave — layout animation, drag, shared elements between pages. This explains why, not just what to paste.",
     tags: ["react", "motion", "tutorial", "layout animation"],
     cost: "Free",
+    panel: { curation: 5, craft: 4, fit: 5 },
   },
   {
     slug: "codrops",
@@ -193,6 +126,7 @@ export const RESOURCES: Resource[] = [
     use: "When the brief is something nobody else on the internet has. Start here, then simplify it until it ships.",
     tags: ["demos", "scroll", "page transitions", "experimental"],
     cost: "Free",
+    panel: { curation: 4, craft: 5, fit: 5 },
   },
   {
     slug: "arlan-vault",
@@ -205,6 +139,7 @@ export const RESOURCES: Resource[] = [
     tags: ["effects", "typography", "gradients", "mit"],
     cost: "Free",
     inStack: true,
+    panel: { curation: 5, craft: 4, fit: 3 },
   },
   {
     slug: "pqoqubbw-icons",
@@ -216,21 +151,8 @@ export const RESOURCES: Resource[] = [
     use: "The cheapest upgrade on a page: icons that animate on hover instead of sitting there.",
     tags: ["icons", "hover", "react", "motion"],
     cost: "Open source",
+    panel: { curation: 5, craft: 4, fit: 4 },
   },
-  {
-    slug: "motionsites-ai",
-    name: "MotionSites AI",
-    url: "https://motionsites.ai/",
-    domain: "motionsites.ai",
-    category: "copy-paste",
-    what: "Pre-written prompts for animated website sections, aimed at Claude, Lovable and Bolt rather than at a component library.",
-    use: "When the build is AI-first: you want the prompt that produces the section, not the code for it. Free tier, paid for the full set.",
-    tags: ["prompts", "ai build", "sections"],
-    cost: "Freemium",
-    inStack: true,
-  },
-
-  // ── Motion & scroll ────────────────────────────────────────────────────────
   {
     slug: "motion-dev",
     name: "Motion",
@@ -242,6 +164,7 @@ export const RESOURCES: Resource[] = [
     tags: ["react", "engine", "springs", "framer motion"],
     cost: "Open source",
     inStack: true,
+    panel: { curation: 5, craft: 5, fit: 5 },
   },
   {
     slug: "gsap-scroll",
@@ -253,6 +176,7 @@ export const RESOURCES: Resource[] = [
     use: "Pinned sections, horizontal scroll, scrub-through storytelling. When the scroll IS the interface, this is the one.",
     tags: ["scroll", "pinning", "scrub", "engine"],
     cost: "Free",
+    panel: { curation: 5, craft: 5, fit: 5 },
   },
   {
     slug: "scroll-driven-animations",
@@ -264,6 +188,7 @@ export const RESOURCES: Resource[] = [
     use: "Try this BEFORE reaching for a library. Modern browsers can scrub an animation to scroll in pure CSS, which is lighter and survives every framework change.",
     tags: ["css", "scroll", "no-js", "learning"],
     cost: "Free",
+    panel: { curation: 5, craft: 4, fit: 5 },
   },
   {
     slug: "lenis",
@@ -275,17 +200,7 @@ export const RESOURCES: Resource[] = [
     use: "The smoothness under most of the sites worth copying. Pairs with GSAP or with CSS scroll-driven animation; keep an eye on reduced-motion users.",
     tags: ["smooth scroll", "lightweight", "open source"],
     cost: "Open source",
-  },
-  {
-    slug: "animate-css",
-    name: "Animate.css",
-    url: "https://animate.style/",
-    domain: "animate.style",
-    category: "motion",
-    what: "The classic drop-in CSS animation library — add a class, get the animation.",
-    use: "Prototypes and quick wins. Not a house style, but it settles an argument in thirty seconds.",
-    tags: ["css", "classes", "quick"],
-    cost: "Open source",
+    panel: { curation: 5, craft: 5, fit: 4 },
   },
   {
     slug: "anime-js",
@@ -297,42 +212,20 @@ export const RESOURCES: Resource[] = [
     use: "Framework-free work — a static page, an embed, an HTML email preview — where React isn't in the room.",
     tags: ["javascript", "svg", "timeline", "no-framework"],
     cost: "Open source",
+    panel: { curation: 4, craft: 4, fit: 2 },
   },
-  {
-    slug: "rombo-tailwind",
-    name: "Rombo — Tailwind Motion",
-    url: "https://rombo.co/tailwind/",
-    domain: "rombo.co",
-    category: "motion",
-    what: "A Tailwind plugin that turns animation into utility classes, so motion lives in the markup with the rest of the styling.",
-    use: "Tailwind projects where you want a fade-up or a pop without writing keyframes or importing an engine.",
-    tags: ["tailwind", "utility classes", "plugin"],
-    cost: "Free",
-  },
-  {
-    slug: "css-animation-rocks",
-    name: "CSS Animation Rocks",
-    url: "https://cssanimation.rocks/",
-    domain: "cssanimation.rocks",
-    category: "motion",
-    what: "Articles, tips and a course on CSS animation from someone who has been writing about it for years.",
-    use: "Understanding easing, timing and why an animation feels cheap. The theory that stops everything looking like a template.",
-    tags: ["learning", "css", "easing"],
-    cost: "Free",
-  },
-
-  // ── Inspiration ────────────────────────────────────────────────────────────
   {
     slug: "inspora",
     name: "Inspora",
     url: "https://www.inspora.design/",
     domain: "inspora.design",
     category: "inspiration",
-    what: "A tightly curated design inspiration gallery — picked, not aggregated.",
-    use: "The morning scroll when you want the bar raised rather than a thousand options.",
-    tags: ["curated", "web design", "gallery"],
+    what: "A feed of interaction and motion shots — individual UI moments (a slider, a card reveal, a keyboard) rather than whole websites, each credited to its maker.",
+    use: "Micro-interaction reference: you know the section works and you're looking for what the one moving part should do. Different job from the site galleries above.",
+    tags: ["micro-interaction", "motion", "ui", "feed"],
     cost: "Free",
     inStack: true,
+    panel: { curation: 3, craft: 2, fit: 1 },
   },
   {
     slug: "awwwards",
@@ -344,6 +237,7 @@ export const RESOURCES: Resource[] = [
     use: "Filter by TECHNOLOGY. It's the fastest way to see what a specific library can actually do in the wild before you commit to it.",
     tags: ["gallery", "filters", "technology", "animation"],
     cost: "Freemium",
+    panel: { curation: 2, craft: 4, fit: 4 },
   },
   {
     slug: "recent-design",
@@ -355,6 +249,7 @@ export const RESOURCES: Resource[] = [
     use: "Where the genuinely new interaction ideas surface first.",
     tags: ["curated", "gallery", "web design"],
     cost: "Free",
+    panel: { curation: 4, craft: 5, fit: 3 },
   },
   {
     slug: "siteinspire",
@@ -366,141 +261,7 @@ export const RESOURCES: Resource[] = [
     use: "Style-led searching: 'show me typographic and minimal' gets you there in two clicks.",
     tags: ["gallery", "style filters", "minimal"],
     cost: "Free",
-  },
-  {
-    slug: "land-book",
-    name: "Land-book",
-    url: "https://land-book.com/",
-    domain: "land-book.com",
-    category: "inspiration",
-    what: "A landing-page gallery filterable by style, industry, type and colour.",
-    use: "Closest match to what we actually build — pages that have to sell something. Good for structure, not just looks.",
-    tags: ["landing pages", "gallery", "colour filter"],
-    cost: "Freemium",
-  },
-  {
-    slug: "refero",
-    name: "Refero",
-    url: "https://refero.design/",
-    domain: "refero.design",
-    category: "inspiration",
-    what: "Searchable real product UI — screens and flows from live apps and sites.",
-    use: "When the thing you're designing is a screen or a flow, not a landing page. Search by element and see how grown-up products handle it.",
-    tags: ["ui", "flows", "product", "searchable"],
-    cost: "Freemium",
-  },
-  {
-    slug: "lapa-ninja",
-    name: "Lapa Ninja",
-    url: "https://lapa.ninja/",
-    domain: "lapa.ninja",
-    category: "inspiration",
-    what: "A landing-page gallery with free UI kits, books and design resources attached.",
-    use: "Cheap and cheerful reference plus takeaway assets in the same visit.",
-    tags: ["landing pages", "ui kits", "free resources"],
-    cost: "Free",
-  },
-  {
-    slug: "httpster",
-    name: "Httpster",
-    url: "https://httpster.net/",
-    domain: "httpster.net",
-    category: "inspiration",
-    what: "Thousands of sites with a bias to typographic, minimal and brutalist work.",
-    use: "The antidote to awards-bait. Rawer, more web-native, closer to the editorial end we build in.",
-    tags: ["brutalist", "typographic", "gallery"],
-    cost: "Free",
-  },
-  {
-    slug: "minimal-gallery",
-    name: "Minimal Gallery",
-    url: "https://minimal.gallery/",
-    domain: "minimal.gallery",
-    category: "inspiration",
-    what: "Hand-picked minimal sites, running since 2013, sorted by portfolio, agency, commerce and startup.",
-    use: "When the brief is restraint and you need to prove that less still sells.",
-    tags: ["minimal", "curated", "gallery"],
-    cost: "Free",
-  },
-  {
-    slug: "one-page-love",
-    name: "One Page Love",
-    url: "https://onepagelove.com/",
-    domain: "onepagelove.com",
-    category: "inspiration",
-    what: "One-page websites only — a gallery, plus templates and teardown write-ups.",
-    use: "Directly relevant: our scroll stories are one-pagers. This is a library of how other people paced theirs.",
-    tags: ["one page", "scroll story", "gallery"],
-    cost: "Free",
-  },
-  {
-    slug: "curated-design",
-    name: "Curated.design",
-    url: "https://curated.design/",
-    domain: "curated.design",
-    category: "inspiration",
-    what: "Hand-curated live sites filtered by category and style; the paid tier adds a library of individual sections.",
-    use: "Section-level reference — 'show me twenty good testimonial blocks' — rather than whole-site vibes.",
-    tags: ["curated", "sections", "gallery"],
-    cost: "Freemium",
-  },
-  {
-    slug: "navbar-gallery",
-    name: "Navbar Gallery",
-    url: "https://www.navbar.gallery/",
-    domain: "navbar.gallery",
-    category: "inspiration",
-    what: "A gallery of nothing but navigation, sortable by type and style.",
-    use: "Navigation is where most sites go wrong and where most galleries stop showing you detail. This one only shows the detail.",
-    tags: ["navigation", "component", "gallery"],
-    cost: "Free",
-  },
-  {
-    slug: "footer-design",
-    name: "Footer.design",
-    url: "https://www.footer.design/",
-    domain: "footer.design",
-    category: "inspiration",
-    what: "A gallery of nothing but footers, sorted by type and style.",
-    use: "The last thing anyone designs and the easiest place to look unfinished. Steal a structure here.",
-    tags: ["footer", "component", "gallery"],
-    cost: "Free",
-  },
-  {
-    slug: "mobbin",
-    name: "Mobbin",
-    url: "https://mobbin.com/",
-    domain: "mobbin.com",
-    category: "inspiration",
-    what: "Screens and full user flows captured from real apps and web products.",
-    use: "Pattern reference rather than visual reference: how does a good product actually sequence onboarding, upgrade, empty states.",
-    tags: ["flows", "patterns", "product", "mobile"],
-    cost: "Freemium",
-  },
-  {
-    slug: "cosmos",
-    name: "Cosmos",
-    url: "https://www.cosmos.so/",
-    domain: "cosmos.so",
-    category: "inspiration",
-    what: "Visual bookmarking and mood boarding, built for people with taste rather than for a recommendation algorithm.",
-    use: "Where you keep what you found. Board per project, drag things in, share the board instead of a wall of links.",
-    tags: ["mood board", "bookmarking", "collect"],
-    cost: "Freemium",
-  },
-
-  // ── Generators & assets ────────────────────────────────────────────────────
-  {
-    slug: "haikei",
-    name: "Haikei",
-    url: "https://haikei.app/",
-    domain: "haikei.app",
-    category: "assets",
-    what: "An SVG background generator — blobs, waves, layered peaks, grids, low-poly scenes — exported as SVG or PNG, no signup.",
-    use: "Background shapes in a hurry. Worth knowing the terms don't spell out an explicit licence for generated output, so keep it to decorative backgrounds, not the logo.",
-    tags: ["svg", "backgrounds", "generator"],
-    cost: "Free",
-    inStack: true,
+    panel: { curation: 2, craft: 5, fit: 4 },
   },
   {
     slug: "fffuel",
@@ -512,18 +273,7 @@ export const RESOURCES: Resource[] = [
     use: "Grain and gradient meshes especially. The noise texture that stops a flat page looking cheap.",
     tags: ["svg", "gradients", "noise", "patterns"],
     cost: "Free",
-  },
-  {
-    slug: "loading-io",
-    name: "loading.io",
-    url: "https://loading.io/",
-    domain: "loading.io",
-    category: "assets",
-    what: "Loaders, spinners, progress indicators and animated backgrounds, exportable as SVG, CSS, GIF or video.",
-    use: "Loading states and celebratory backgrounds — confetti, particles — when you want the motion without writing the physics.",
-    tags: ["loaders", "spinners", "backgrounds", "confetti"],
-    cost: "Freemium",
-    inStack: true,
+    panel: { curation: 4, craft: 3, fit: 4 },
   },
   {
     slug: "canvas-ui",
@@ -536,6 +286,7 @@ export const RESOURCES: Resource[] = [
     tags: ["webgl", "canvas", "effects", "open source"],
     cost: "Open source",
     inStack: true,
+    panel: { curation: 5, craft: 3, fit: 2 },
   },
   {
     slug: "rive",
@@ -547,52 +298,42 @@ export const RESOURCES: Resource[] = [
     use: "When the animation needs to react, not just play. A designer builds it; the developer wires up two lines.",
     tags: ["interactive", "vector", "state machine"],
     cost: "Freemium",
-  },
-  {
-    slug: "lottiefiles",
-    name: "LottieFiles",
-    url: "https://lottiefiles.com/",
-    domain: "lottiefiles.com",
-    category: "assets",
-    what: "Designer-made motion delivered as JSON with a web player, plus a large library of ready animations.",
-    use: "Illustrated motion — an empty state, a success tick, a small mascot — without video weight.",
-    tags: ["lottie", "json", "illustration", "player"],
-    cost: "Freemium",
-  },
-  {
-    slug: "svgator",
-    name: "SVGator",
-    url: "https://www.svgator.com/",
-    domain: "svgator.com",
-    category: "assets",
-    what: "A timeline UI for animating SVGs, exporting to CSS, SMIL or JavaScript.",
-    use: "Animating an existing logo or diagram by hand, without writing keyframes for every path.",
-    tags: ["svg", "timeline", "no-code", "export"],
-    cost: "Freemium",
-  },
-  {
-    slug: "svgrepo",
-    name: "SVG Repo",
-    url: "https://www.svgrepo.com/",
-    domain: "svgrepo.com",
-    category: "assets",
-    what: "A very large searchable bank of open-licensed SVG icons and vectors, with the licence shown per set.",
-    use: "One missing icon at 2am. Check the licence line before shipping it into client work.",
-    tags: ["icons", "svg", "open licence"],
-    cost: "Free",
-  },
-  {
-    slug: "toools-design",
-    name: "Toools.design",
-    url: "https://www.toools.design/",
-    domain: "toools.design",
-    category: "assets",
-    what: "A big, well-kept directory of design resources — thousands of tools, sorted and maintained.",
-    use: "The meta-index. When nothing in this vault fits, start here rather than in a search engine.",
-    tags: ["directory", "tools", "resources"],
-    cost: "Free",
-    inStack: true,
+    panel: { curation: 4, craft: 5, fit: 3 },
   },
 ];
 
 export const VAULT_TOTAL = RESOURCES.length;
+
+// ─── The cut list (2026-08-25) ────────────────────────────────────────────────
+// 28 entries the panel removed, with the reason each one lost. Kept here so the
+// argument survives: if you want one back, copy its row from git history — but
+// read the reason first. (◈ = one Jem had sent or we'd used before.)
+//
+//  ◈ 21st.dev          12,000+ open-submission components — the "10,000 options" rule kills it
+//    Magic UI          the AI-startup landing-page house style; React Bits covers the same ground
+//    Aceternity UI     the single biggest source of the identikit spotlight-and-beam look
+//  ◈ Animate UI        third clone of Magic UI / Aceternity; nothing React Bits doesn't have
+//    Uiverse           4,400+ open community submissions, neon kitsch, no curation
+//    Hover.dev         paid Tailwind/Framer packs; Build UI teaches the same techniques free
+//    cuicui            the author now calls it "the experiment" and maintains a different library
+//  ◈ MotionSites AI    prompt packs that produce the exact generic page we never ship
+//    Animate.css       2011-era bounce presets; Animista generates bespoke keyframes instead
+//    Rombo Tailwind    a fourth route to a fade we already have three ways to do
+//    CSS Animation Rocks  dormant blog, long superseded by Codrops
+//    Land-book         large open-submission SaaS gallery; wrong genre, wrong altitude
+//    Refero            142,000+ screens — a database, not curation, and app UI at that
+//    Lapa Ninja        7,300+ landing pages padded with freebie bait
+//    Httpster          3,100 sites with no curation edge over SiteInspire
+//    Minimal Gallery   duplicates SiteInspire's remit with a smaller, staler pool
+//    One Page Love     9,000+ sites and a template shop attached
+//    Curated.design    aggregator funnelling to a subscription; adds nothing to Awwwards + SiteInspire
+//    Navbar Gallery    single-component screenshot dump; you'd open it twice a year
+//    Footer.design     same one-note premise as Navbar Gallery
+//    Mobbin            621,000 screens — a research database, and mobile product UI not web craft
+//    Cosmos            a place to save links, which is this vault's own job
+//  ◈ Haikei            blob-and-wave backgrounds are the 2021 SaaS look we avoid
+//  ◈ loading.io        spinner mill, and the house rule is skeletons not spinners
+//    LottieFiles       800,000+ marketplace animations we have no pipeline for
+//    SVGator           GUI SVG animation; Rive does it better and we hand-code the rest
+//    SVG Repo          ~460,000 community vectors; lucide-react already ships in this repo
+//  ◈ Toools.design     a directory of directories — the definition of a bookmark never opened
