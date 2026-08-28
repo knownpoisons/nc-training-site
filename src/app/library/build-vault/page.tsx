@@ -55,10 +55,10 @@ export default async function BuildVaultPage() {
           Places to <span className="accent">steal</span> from.
         </h1>
         <p className="sub">
-          Motion, hover, scroll and taste. Forty-seven candidates went in; a three-lens panel —
-          curation against scale, craft and reputation, fit for the way we actually build — cut
-          twenty-eight of them. These nineteen survived. Each one says what it is and when to reach
-          for it instead of the others.
+          Motion, hover, scroll and taste. Sixty-three candidates have gone in across two rounds;
+          a three-lens panel — curation against scale, craft and reputation, fit for the way we
+          actually build — cut thirty-five of them. These twenty-eight survived. Each one says what
+          it is and when to reach for it instead of the others.
         </p>
         <p className="vt-note">
           <strong>How to use it with an AI build:</strong> don&rsquo;t paste the code first. Send
@@ -79,8 +79,9 @@ export default async function BuildVaultPage() {
               <strong>{c.label}</strong>
             </span>
           ))}
-          . Anything marked <span style={{ whiteSpace: "nowrap" }}>◈ in our stack</span> has already
-          been used on a NotContent build. Nothing here has ten thousand options in it — every
+          . A <span style={{ whiteSpace: "nowrap" }}>◈</span> badge means the entry was vouched for
+          rather than found by searching — your own link, one a designer you trust sent over, or a
+          package already running in this repo. Nothing here has ten thousand options in it: every
           open-submission archive, every identikit component kit and every directory of directories
           was cut on purpose.
         </p>

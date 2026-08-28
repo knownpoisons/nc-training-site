@@ -7,8 +7,11 @@
 //      others. If you can't write a distinct `use`, the entry doesn't earn a row.
 //   3. `cost` is honest about the paywall — nothing is more annoying than a
 //      "free" link that wants a card.
-//   4. `inStack` marks the ones already used on a NotContent build. Don't set it
-//      unless it's true.
+//   4. `origin` records provenance, and only one of three things is true:
+//      "stack" = the package or asset is genuinely in this repo already;
+//      "yours" = Jem sent the link himself;
+//      "peers" = it came from a designer he trusts. Leave it unset for anything
+//      found by search — that is the honest default, and most entries are.
 //   5. Every entry needs a screenshot at public/images/library/build-vault/<slug>.webp
 //      (1200x750, captured at 1440x900). Regenerate rather than hotlink.
 //
@@ -19,7 +22,7 @@
 // No dollar figures or percentages anywhere in this file — same PROOF rule as
 // every other public page.
 
-export type VaultCategory = "copy-paste" | "motion" | "inspiration" | "assets";
+export type VaultCategory = "copy-paste" | "motion" | "inspiration" | "assets" | "reference";
 
 export interface Resource {
   slug: string;
@@ -34,8 +37,8 @@ export interface Resource {
   use: string;
   tags: string[];
   cost: "Free" | "Open source" | "Freemium" | "Paid";
-  /** already used on a NotContent build */
-  inStack?: boolean;
+  /** where it came from: in this repo already, Jem's own link, or a designer's pick */
+  origin?: "stack" | "yours" | "peers";
   /** panel scores out of 5 — curation, craft, fit — and the total out of 15 */
   panel: { curation: number; craft: number; fit: number };
 }
@@ -45,7 +48,7 @@ export const VAULT_CATEGORIES: { id: VaultCategory; label: string; blurb: string
     id: "copy-paste",
     label: "Copy & paste",
     blurb:
-      "Pick the effect, copy the code, paste it in. Every generic shimmer-and-beam component library was cut — what's left is technique, not somebody else's house style.",
+      "Pick the effect, copy the code, paste it in. Every generic shimmer-and-beam component library was cut — what is left is technique, not somebody else's house style.",
   },
   {
     id: "motion",
@@ -57,13 +60,19 @@ export const VAULT_CATEGORIES: { id: VaultCategory; label: string; blurb: string
     id: "inspiration",
     label: "Inspiration",
     blurb:
-      "Four galleries, not fourteen. Every open-submission archive with six figures of screens was cut — these are the ones where somebody with taste threw out the mediocre nine-tenths first.",
+      "Seven places to look, out of the dozens that exist. Every open-submission archive with six figures of screens was cut — what survived is filed by the thing you are actually building, not by brand.",
   },
   {
     id: "assets",
     label: "Generators & assets",
     blurb:
-      "Make the raw material. Icon dumps and blob generators were cut; these three each do something you cannot hand-code in five minutes.",
+      "Make the raw material. Icon dumps and blob generators were cut; each of these does something you could not hand-code in five minutes.",
+  },
+  {
+    id: "reference",
+    label: "Reference",
+    blurb:
+      "The long reads. Not galleries to skim — two people taking interaction apart and explaining why it feels right, with the code to prove it. Read these when you can tell something is wrong and cannot say why.",
   },
 ];
 
@@ -138,7 +147,7 @@ export const RESOURCES: Resource[] = [
     use: "Small, weird, high-taste effects you won't find in a component library. Everything is free to lift.",
     tags: ["effects", "typography", "gradients", "mit"],
     cost: "Free",
-    inStack: true,
+    origin: "yours",
     panel: { curation: 5, craft: 4, fit: 3 },
   },
   {
@@ -163,7 +172,7 @@ export const RESOURCES: Resource[] = [
     use: "The default engine for anything React. Springs, gestures, layout animation, exit animations.",
     tags: ["react", "engine", "springs", "framer motion"],
     cost: "Open source",
-    inStack: true,
+    origin: "stack",
     panel: { curation: 5, craft: 5, fit: 5 },
   },
   {
@@ -224,7 +233,7 @@ export const RESOURCES: Resource[] = [
     use: "Micro-interaction reference: you know the section works and you're looking for what the one moving part should do. Different job from the site galleries above.",
     tags: ["micro-interaction", "motion", "ui", "feed"],
     cost: "Free",
-    inStack: true,
+    origin: "yours",
     panel: { curation: 3, craft: 2, fit: 1 },
   },
   {
@@ -285,7 +294,7 @@ export const RESOURCES: Resource[] = [
     use: "One hero moment that makes a page feel built rather than assembled. Expensive to run, so use it once and watch the frame rate.",
     tags: ["webgl", "canvas", "effects", "open source"],
     cost: "Open source",
-    inStack: true,
+    origin: "yours",
     panel: { curation: 5, craft: 3, fit: 2 },
   },
   {
@@ -299,6 +308,123 @@ export const RESOURCES: Resource[] = [
     tags: ["interactive", "vector", "state machine"],
     cost: "Freemium",
     panel: { curation: 4, craft: 5, fit: 3 },
+  },
+  {
+    slug: "details-so",
+    name: "Details",
+    url: "https://www.details.so/inspo",
+    domain: "details.so",
+    category: "inspiration",
+    what: "Interaction captures from shipped sites, filed by the exact detail — hero, navigation, scroll animation, page transition, footer — so you browse the behaviour rather than the brand.",
+    use: "You already know the section works and you want to see how twenty good sites handled that one moment. Sharper than a whole-site gallery when the question is small.",
+    tags: ["interaction", "scroll", "transitions", "gallery"],
+    cost: "Freemium",
+    origin: "peers",
+    panel: { curation: 4, craft: 4, fit: 4 },
+  },
+  {
+    slug: "sixty-fps",
+    name: "60fps",
+    url: "https://60fps.design/",
+    domain: "60fps.design",
+    category: "inspiration",
+    what: "A motion gallery of clips captured at native frame rate from real shipped products, tagged by what the motion does and broken down storyboard-style.",
+    use: "Deciding how a thing should move rather than how it should look — the only entry here indexed by behaviour instead of aesthetic.",
+    tags: ["motion", "gallery", "ui", "reference"],
+    cost: "Freemium",
+    origin: "peers",
+    panel: { curation: 4, craft: 4, fit: 4 },
+  },
+  {
+    slug: "khagwal-interactions",
+    name: "Nitish Khagwal — Interactions",
+    url: "https://khagwal.com/interactions/",
+    domain: "khagwal.com",
+    category: "inspiration",
+    what: "One designer's own collection of micro-interactions — built rather than collected, which is rarer than it sounds.",
+    use: "A short, personal read when the big galleries have gone stale. Smallest thing on this shelf and the most opinionated.",
+    tags: ["micro-interaction", "personal", "ui"],
+    cost: "Free",
+    origin: "peers",
+    panel: { curation: 4, craft: 3, fit: 3 },
+  },
+  {
+    slug: "super-hover",
+    name: "Super Hover",
+    url: "https://super-hover.danielpetho.com",
+    domain: "super-hover.danielpetho.com",
+    category: "copy-paste",
+    what: "A tiny React hook that keeps hover states honest while the page is scrolling. The pointer is not moving, so the browser never fires the event, and the card under your cursor goes dead — this fixes precisely that.",
+    use: "Any scroll-story page with hoverable cards. It is the bug you would otherwise spend an afternoon failing to reproduce.",
+    tags: ["react", "hover", "scroll", "hook"],
+    cost: "Open source",
+    origin: "peers",
+    panel: { curation: 5, craft: 4, fit: 4 },
+  },
+  {
+    slug: "fancy-components",
+    name: "Fancy Components",
+    url: "https://www.fancycomponents.dev",
+    domain: "fancycomponents.dev",
+    category: "copy-paste",
+    what: "Text effects, marquees, image trails and physics-driven interactions from the same author as Super Hover — each one a primitive rather than a finished section.",
+    use: "You want one specific effect — letters that scatter, a trail that follows the cursor — and you will re-dress it in our own type and colours.",
+    tags: ["react", "text-effects", "interaction", "motion"],
+    cost: "Open source",
+    origin: "peers",
+    panel: { curation: 5, craft: 4, fit: 3 },
+  },
+  {
+    slug: "thinking-orbs",
+    name: "Thinking Orbs",
+    url: "https://orbs.jakubantalik.com/",
+    domain: "orbs.jakubantalik.com",
+    category: "copy-paste",
+    what: "Nine hand-tuned states of one animated orb, shipped as a package — idle, listening, thinking, answering.",
+    use: "An AI product needs a thinking state that is not a spinner. Deliberately narrow: ignore it for anything else.",
+    tags: ["ai", "canvas", "loading-state", "react"],
+    cost: "Open source",
+    origin: "peers",
+    panel: { curation: 5, craft: 4, fit: 2 },
+  },
+  {
+    slug: "dither-garden",
+    name: "Dither Garden",
+    url: "https://www.dithergarden.com",
+    domain: "dithergarden.com",
+    category: "assets",
+    what: "Upload an image and it dithers — Floyd-Steinberg, Atkinson, Bayer, blue-noise, ASCII, fifteen algorithms with colour modes and a download at the end.",
+    use: "Turning a photograph into ink so it sits inside a hairline, mono-type page instead of fighting it.",
+    tags: ["dither", "texture", "image", "generator"],
+    cost: "Free",
+    origin: "peers",
+    panel: { curation: 5, craft: 3, fit: 4 },
+  },
+  {
+    slug: "devouring-details",
+    name: "Devouring Details",
+    url: "https://devouringdetails.com/",
+    domain: "devouringdetails.com",
+    category: "reference",
+    what: "Rauno Freiberg's book on interaction craft — why a gesture feels right, taken apart chapter by chapter with live examples you can poke at.",
+    use: "Not somewhere to grab code. The thing you read when you can tell an interaction is wrong and cannot say why. Highest-scoring entry in the vault, and the only one that costs real money.",
+    tags: ["craft", "interaction", "book", "long-read"],
+    cost: "Paid",
+    origin: "peers",
+    panel: { curation: 5, craft: 5, fit: 4 },
+  },
+  {
+    slug: "maxime-heckel",
+    name: "Maxime Heckel",
+    url: "https://maximeheckel.com/",
+    domain: "maximeheckel.com",
+    category: "reference",
+    what: "Deep, interactive essays on shaders, WebGL and React motion, with playgrounds you can drag while you read.",
+    use: "Going one level below the libraries — when the effect you want does not exist yet and you need to understand the maths behind it.",
+    tags: ["shaders", "webgl", "react", "long-read"],
+    cost: "Free",
+    origin: "peers",
+    panel: { curation: 5, craft: 5, fit: 4 },
   },
 ];
 
@@ -337,3 +463,18 @@ export const VAULT_TOTAL = RESOURCES.length;
 //    SVGator           GUI SVG animation; Rive does it better and we hand-code the rest
 //    SVG Repo          ~460,000 community vectors; lucide-react already ships in this repo
 //  ◈ Toools.design     a directory of directories — the definition of a bookmark never opened
+//
+// Second round, 2026-08-25 — 16 more, sent by designers Jem trusts. Nine went
+// in; these seven did not. The vouch was real signal, not a free pass.
+//
+//  ◈ Framer University   Framer-builder assets — unusable in a hand-coded Next.js page
+//  ◈ Andrew Hedges       personal experiments frozen around 2015, several self-labelled outdated
+//  ◈ The Component Gallery  a fine design-system naming index, but it answers a question a solo
+//                        studio hand-writing editorial CSS never asks
+//  ◈ Navbar Gallery      re-judged with the vouch attached and cut again: ~570 static screenshots,
+//                        open submission, no motion — Details covers navbars with the behaviour shown
+//  ◈ Supahero            hero screenshots, absorbed into another product and now an upsell
+//  ◈ ThreeUI             well-authored, but it is a 3D-glow component kit — the same rule that cut
+//                        Aceternity and Magic UI applies here, closest call of the round
+//  ◈ Alex Barashkov text animations  a single post, not a resource; the durable artefact is the
+//                        pixel-point/animate-text repo, which is worth vaulting if he wants it

@@ -17,6 +17,13 @@ import {
 // forces a deferred Suspense boundary and pops the list in late. Reading
 // location.search after hydration keeps the page fully static.
 
+/** What the ◈ badge says, depending on where the entry came from. */
+const ORIGIN_LABEL: Record<NonNullable<Resource["origin"]>, string> = {
+  stack: "◈ already in this repo",
+  yours: "◈ your own link",
+  peers: "◈ a designer you trust sent this",
+};
+
 export function Vault() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState<VaultCategory | null>(null);
@@ -60,7 +67,7 @@ export function Vault() {
           .includes(q)
       );
     }
-    if (stackOnly) list = list.filter((r) => r.inStack);
+    if (stackOnly) list = list.filter((r) => r.origin);
     return list;
   }, [q, stackOnly]);
 
@@ -199,10 +206,10 @@ export function Vault() {
             className="cm-chip vt-chip-stack"
             aria-pressed={stackOnly}
             onClick={() => setStackOnly((s) => !s)}
-            title="Only the ones already used on a NotContent build"
+            title="Only the ones that came from you, from a designer you trust, or are already in the repo — the rest I found by searching"
           >
-            ◈ In our stack{" "}
-            <span className="cm-chip-n">{RESOURCES.filter((r) => r.inStack).length}</span>
+            ◈ Vouched for{" "}
+            <span className="cm-chip-n">{RESOURCES.filter((r) => r.origin).length}</span>
           </button>
         </div>
       </div>
@@ -258,7 +265,9 @@ export function Vault() {
                       {t}
                     </span>
                   ))}
-                  {r.inStack && <span className="vt-tag vt-tag-stack">◈ in our stack</span>}
+                  {r.origin && (
+                    <span className="vt-tag vt-tag-stack">{ORIGIN_LABEL[r.origin]}</span>
+                  )}
                 </div>
               </div>
             </a>
