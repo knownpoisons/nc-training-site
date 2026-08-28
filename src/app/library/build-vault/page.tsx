@@ -57,8 +57,14 @@ export default async function BuildVaultPage() {
         <p className="sub">
           Motion, hover, scroll and taste. Sixty-three candidates have gone in across two rounds;
           a three-lens panel — curation against scale, craft and reputation, fit for the way we
-          actually build — cut thirty-five of them. These twenty-eight survived. Each one says what
-          it is and when to reach for it instead of the others.
+          actually build — cut thirty-five of them. These twenty-eight survived.
+        </p>
+        <p className="sub sub-second">
+          Two ways in. The shelves sort by what you walk away with — code to paste, an engine to
+          wire up, work to look at, an asset to make, something to read. The words under the search
+          box are the jobs you actually arrive with: click one and it searches across every shelf,
+          because a gallery of scroll examples and a scroll library are not the same thing even
+          though you wanted both.
         </p>
         <p className="vt-note">
           <strong>How to use it with an AI build:</strong> don&rsquo;t paste the code first. Send

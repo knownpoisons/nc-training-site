@@ -191,8 +191,55 @@
   border-color: var(--accent);
   background: var(--soft);
 }
-.library .cm-chip.vt-chip-stack { color: var(--accent); opacity: 0.85; }
-.library .cm-chip.vt-chip-stack[aria-pressed="true"] { opacity: 1; }
+/* Second hero paragraph: the how-it-is-organised note. Quieter than the first
+   so the pair reads as statement then instruction. */
+.library .hero .sub.sub-second {
+  font-size: clamp(14px, 1.35vw, 17px);
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+/* The job line — reads as a sentence, behaves as a search. Deliberately NOT
+   styled as chips: chips would read as a second filter axis. */
+.library .vt-jobs {
+  font-family: var(--sans);
+  font-size: 13px;
+  line-height: 2.1;
+  color: var(--muted);
+  margin: 14px 0 0;
+  max-width: 78ch;
+}
+.library .vt-jobs-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 12px;
+}
+.library .vt-job {
+  font: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  color: var(--ink);
+  cursor: pointer;
+  border-bottom: 1px solid var(--rule);
+  transition: color 160ms, border-color 160ms;
+}
+.library .vt-job:hover { color: var(--accent); border-color: var(--accent); }
+.library .vt-job:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.library .vt-job-on {
+  color: var(--accent);
+  border-color: var(--accent);
+  font-weight: 600;
+}
+
+/* a job word on a card that matches the current search */
+.library .vt-tag-hit {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--soft);
+}
 
 /* how-to-use note under the hero */
 .library .vt-note {
@@ -211,6 +258,8 @@
   .library .vt { padding: 0 20px; }
   .library .vt-grid { grid-template-columns: 1fr; gap: 18px; padding-top: 24px; margin-top: 24px; }
   .library .vt-body { padding: 20px 18px; }
+  .library .vt-jobs { line-height: 2.3; }
+  .library .vt-jobs-label { display: block; margin: 0 0 2px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .library .vt-card { opacity: 1; }

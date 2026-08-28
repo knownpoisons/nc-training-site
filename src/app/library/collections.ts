@@ -30,7 +30,7 @@ export const COLLECTIONS: Collection[] = [
     slug: "build-vault",
     title: "The Build Vault",
     oneLiner:
-      "Twenty-eight places worth stealing from — copy-paste code, motion and scroll engines, curated inspiration, generators, and the two long reads. Sixty-three went in; a three-lens panel cut thirty-five. What each one is, and when to reach for it.",
+      "Twenty-eight places worth stealing from, shelved by what you walk away with — code to paste, an engine to wire up, work to look at, an asset to make, something to read. Or arrive with the job: scroll, hover, text in motion, page transitions.",
     eyebrow: "Resources",
     count: 28,
     glyph: "vault",

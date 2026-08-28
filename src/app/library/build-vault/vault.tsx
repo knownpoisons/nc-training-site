@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import {
   RESOURCES,
   VAULT_CATEGORIES,
+  VAULT_JOBS,
   type Resource,
   type VaultCategory,
 } from "./_data/resources";
@@ -27,15 +28,23 @@ const ORIGIN_LABEL: Record<NonNullable<Resource["origin"]>, string> = {
 export function Vault() {
   const [query, setQuery] = useState("");
   const [cat, setCat] = useState<VaultCategory | null>(null);
-  const [stackOnly, setStackOnly] = useState(false);
 
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
     const q = sp.get("q");
     if (q) setQuery(q);
-    const c = sp.get("cat") as VaultCategory | null;
+    // Old links used the previous supply-side shelf names; map them forward
+    // rather than silently dropping the filter.
+    const LEGACY: Record<string, VaultCategory> = {
+      "copy-paste": "paste",
+      motion: "wire",
+      inspiration: "see",
+      assets: "make",
+      reference: "understand",
+    };
+    const raw = sp.get("cat");
+    const c = (raw && (LEGACY[raw] ?? raw)) as VaultCategory | null;
     if (c && VAULT_CATEGORIES.some((x) => x.id === c)) setCat(c);
-    if (sp.get("stack") === "1") setStackOnly(true);
   }, []);
 
   const firstSync = useRef(true);
@@ -47,13 +56,12 @@ export function Vault() {
     const sp = new URLSearchParams(window.location.search);
     sp.delete("q");
     sp.delete("cat");
-    sp.delete("stack");
+    sp.delete("stack"); // retired filter — strip it from any old link
     if (query) sp.set("q", query);
     if (cat) sp.set("cat", cat);
-    if (stackOnly) sp.set("stack", "1");
     const qs = sp.toString();
     window.history.replaceState(null, "", qs ? `?${qs}` : window.location.pathname);
-  }, [query, cat, stackOnly]);
+  }, [query, cat]);
 
   const q = query.trim().toLowerCase();
 
@@ -62,14 +70,13 @@ export function Vault() {
     let list: Resource[] = RESOURCES;
     if (q) {
       list = list.filter((r) =>
-        (r.name + " " + r.domain + " " + r.what + " " + r.use + " " + r.tags.join(" "))
+        (r.name + " " + r.domain + " " + r.what + " " + r.use + " " + r.jobs.join(" ") + " " + r.tech.join(" "))
           .toLowerCase()
           .includes(q)
       );
     }
-    if (stackOnly) list = list.filter((r) => r.origin);
     return list;
-  }, [q, stackOnly]);
+  }, [q]);
 
   const visible = useMemo(
     () => (cat ? searched.filter((r) => r.category === cat) : searched),
@@ -102,7 +109,7 @@ export function Vault() {
   // state simply wedges at the base value.
   const gridRef = useRef<HTMLDivElement>(null);
   const [revealed, setRevealed] = useState<Set<string>>(() => new Set());
-  const filterKey = `${cat ?? "all"}:${q}:${stackOnly ? 1 : 0}`;
+  const filterKey = `${cat ?? "all"}:${q}`;
 
   useEffect(() => setRevealed(new Set()), [filterKey]);
 
@@ -181,7 +188,29 @@ export function Vault() {
           </span>
         </div>
 
-        <div className="cm-chips" role="group" aria-label="Filter by category">
+        {/* The job line. These write into the search box rather than adding a
+            second filter axis — one search slot means one job at a time, which
+            is what keeps this a page and not a filter matrix. */}
+        <p className="vt-jobs">
+          <span className="vt-jobs-label">Arrived with a job?</span>
+          {VAULT_JOBS.map((j, i) => (
+            <span key={j}>
+              {i > 0 && <span aria-hidden="true"> · </span>}
+              <button
+                type="button"
+                className={`vt-job${q === j ? " vt-job-on" : ""}`}
+                onClick={() => {
+                  setCat(null);
+                  setQuery(q === j ? "" : j);
+                }}
+              >
+                {j}
+              </button>
+            </span>
+          ))}
+        </p>
+
+        <div className="cm-chips" role="group" aria-label="Filter by what you walk away with">
           <button
             type="button"
             className="cm-chip"
@@ -201,16 +230,6 @@ export function Vault() {
               {c.label} <span className="cm-chip-n">{counts[c.id] ?? 0}</span>
             </button>
           ))}
-          <button
-            type="button"
-            className="cm-chip vt-chip-stack"
-            aria-pressed={stackOnly}
-            onClick={() => setStackOnly((s) => !s)}
-            title="Only the ones that came from you, from a designer you trust, or are already in the repo — the rest I found by searching"
-          >
-            ◈ Vouched for{" "}
-            <span className="cm-chip-n">{RESOURCES.filter((r) => r.origin).length}</span>
-          </button>
         </div>
       </div>
 
@@ -260,8 +279,8 @@ export function Vault() {
                   <span className="vt-use-label">Reach for it when</span> {r.use}
                 </p>
                 <div className="vt-tags">
-                  {r.tags.map((t) => (
-                    <span key={t} className="vt-tag">
+                  {r.jobs.map((t) => (
+                    <span key={t} className={`vt-tag${q && t.includes(q) ? " vt-tag-hit" : ""}`}>
                       {t}
                     </span>
                   ))}
@@ -281,7 +300,6 @@ export function Vault() {
             onClick={() => {
               setQuery("");
               setCat(null);
-              setStackOnly(false);
             }}
           >
             Show everything
