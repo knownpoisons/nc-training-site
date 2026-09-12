@@ -55,9 +55,10 @@ export default async function BuildVaultPage() {
           Places to <span className="accent">steal</span> from.
         </h1>
         <p className="sub">
-          Motion, hover, scroll and taste. Sixty-three candidates have gone in across two rounds;
-          a three-lens panel — curation against scale, craft and reputation, fit for the way we
-          actually build — cut thirty-five of them. These twenty-eight survived.
+          Motion, hover, scroll and taste. Seventy-one candidates have gone in across three rounds
+          and a three-lens panel has cut fifty-six of them — including nine it had previously let
+          through. Fifteen is the ceiling now, so nothing new gets added here: it has to displace
+          something.
         </p>
         <p className="sub sub-second">
           Two ways in. The shelves sort by what you walk away with — code to paste, an engine to
@@ -86,10 +87,11 @@ export default async function BuildVaultPage() {
             </span>
           ))}
           . A <span style={{ whiteSpace: "nowrap" }}>◈</span> badge means the entry was vouched for
-          rather than found by searching — your own link, one a designer you trust sent over, or a
-          package already running in this repo. Nothing here has ten thousand options in it: every
-          open-submission archive, every identikit component kit and every directory of directories
-          was cut on purpose.
+          rather than found by searching — a link a designer you trust sent over, or a package
+          already running in this repo. Nothing here has ten thousand options in it: every
+          open-submission archive, every identikit component kit and, in the last round, every
+          catalogue of ready-made effects was cut on purpose. Prebuilt components are where the
+          generated look comes from.
         </p>
       </section>
 

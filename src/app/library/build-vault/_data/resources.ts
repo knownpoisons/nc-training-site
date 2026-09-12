@@ -35,8 +35,10 @@ export type VaultCategory = "paste" | "wire" | "see" | "make" | "understand";
  * The job vocabulary — the words people actually arrive with. Rendered under
  * the search box and on every card; clicking one searches for it rather than
  * opening a second filter axis, so the page never becomes a matrix. Capped, and
- * no word may have fewer than three entries: a filter with one member is a dead
- * end that teaches people the filter is broken.
+ * a word must serve at least two entries — the one exception being a job
+ * nothing else in the vault does at all ("whole pages", which only Recent
+ * serves). A filter with one arbitrary member is a dead end; a filter that is
+ * the only door to a job is not.
  */
 export const VAULT_JOBS = [
   "scroll",
@@ -46,7 +48,6 @@ export const VAULT_JOBS = [
   "micro-interactions",
   "texture",
   "backgrounds",
-  "3D & WebGL",
   "layout animation",
   "whole pages",
 ] as const;
@@ -84,81 +85,29 @@ export const VAULT_CATEGORIES: { id: VaultCategory; label: string; blurb: string
     id: "wire",
     label: "Wire it up",
     blurb:
-      "The engines you choose between before you build. Five tools, no overlap, each the best at one job — and the native CSS option sits here on purpose, so you consider it before reaching for a library.",
+      "The engines you choose between before you build. Four tools, no overlap, each the best at one job — and the native CSS option sits here on purpose, so you consider it before reaching for a library.",
   },
   {
     id: "see",
     label: "See it done",
     blurb:
-      "Other people's shipped work, for deciding what the thing should do before you build it. Every open-submission archive with six figures of screens was cut; these are filed by the moment you are actually building.",
+      "Two galleries. One for the whole page, one filed by the exact detail — hero, nav, transition, footer. Every open-submission archive went, and so did the three merely-good galleries that were losing to these two.",
   },
   {
     id: "make",
     label: "Make the asset",
     blurb:
-      "Tools that hand you a file rather than a snippet — a texture, a dithered image, an animation rigged to respond. Each does something you could not hand-code in five minutes.",
+      "Tools that hand you a file rather than a snippet. Both make texture — grain, noise, pattern, ink — because texture is the one raw material this house style actually consumes.",
   },
   {
     id: "understand",
     label: "Understand it",
     blurb:
-      "The long reads. Not somewhere to grab code — the places that take an interaction apart and explain why it feels right. Read these when you can tell something is wrong and cannot say why.",
+      "The long reads, and now the largest shelf in the vault — which is the whole argument. Nobody who reads these three ships a page that looks generated. Read them when you can tell something is wrong and cannot say why.",
   },
 ];
 
 export const RESOURCES: Resource[] = [
-  {
-    slug: "react-bits",
-    name: "React Bits",
-    url: "https://reactbits.dev/",
-    domain: "reactbits.dev",
-    category: "paste",
-    what: "Around 165 animated React components — text effects, animated backgrounds, small UI pieces — each shipped in four flavours: JavaScript or TypeScript, plain CSS or Tailwind.",
-    use: "First stop for a text reveal or a moving background. The four-flavour thing means it drops into any project without a rewrite.",
-    jobs: ["text in motion", "backgrounds"],
-    tech: ["react", "typescript", "tailwind", "css", "components"],
-    cost: "Open source",
-    panel: { curation: 4, craft: 3, fit: 3 },
-  },
-  {
-    slug: "animista",
-    name: "Animista",
-    url: "https://animista.net/",
-    domain: "animista.net",
-    category: "paste",
-    what: "A playground of ready CSS animations — pick one, tune the duration, delay, easing and direction on the page, copy the keyframes out.",
-    use: "The fastest route to a hand-rolled @keyframes block with zero libraries. Free for commercial work.",
-    jobs: ["text in motion", "micro-interactions"],
-    tech: ["css", "keyframes", "generator", "no-framework"],
-    cost: "Free",
-    panel: { curation: 4, craft: 3, fit: 4 },
-  },
-  {
-    slug: "motion-primitives",
-    name: "Motion Primitives",
-    url: "https://motion-primitives.com/",
-    domain: "motion-primitives.com",
-    category: "paste",
-    what: "Small, composable Motion-for-React primitives — text effects, transitions, cursors, dialogs — rather than fully designed components.",
-    use: "When you want the motion, not somebody else's idea of what the component should look like.",
-    jobs: ["text in motion", "page transitions"],
-    tech: ["react", "motion", "primitives"],
-    cost: "Open source",
-    panel: { curation: 4, craft: 4, fit: 2 },
-  },
-  {
-    slug: "build-ui-recipes",
-    name: "Build UI — Recipes",
-    url: "https://buildui.com/recipes",
-    domain: "buildui.com",
-    category: "understand",
-    what: "Worked recipes for the genuinely hard React and Motion interactions, with live code and the reasoning written out beside it.",
-    use: "When an interaction won't behave — layout animation, drag, shared elements between pages. This explains why, not just what to paste.",
-    jobs: ["layout animation", "page transitions", "micro-interactions"],
-    tech: ["react", "motion", "tutorial", "layout animation"],
-    cost: "Free",
-    panel: { curation: 5, craft: 4, fit: 5 },
-  },
   {
     slug: "codrops",
     name: "Codrops",
@@ -167,23 +116,23 @@ export const RESOURCES: Resource[] = [
     category: "paste",
     what: "The long-running demo lab: scroll rigs, grid reveals, page transitions, type experiments — every demo downloadable with its source.",
     use: "When the brief is something nobody else on the internet has. Start here, then simplify it until it ships.",
-    jobs: ["scroll", "page transitions", "text in motion"],
+    jobs: ["scroll", "page transitions", "text in motion", "backgrounds"],
     tech: ["demos", "experimental", "source included"],
     cost: "Free",
     panel: { curation: 4, craft: 5, fit: 5 },
   },
   {
-    slug: "arlan-vault",
-    name: "Arlan's Vault",
-    url: "https://www.arlan.me/vault",
-    domain: "arlan.me",
+    slug: "fancy-components",
+    name: "Fancy Components",
+    url: "https://www.fancycomponents.dev",
+    domain: "fancycomponents.dev",
     category: "paste",
-    what: "One designer's private vault gone public — arcade pixel, chromatic glow, gradient and typographic effects, each demoed live and released under MIT.",
-    use: "Small, weird, high-taste effects you won't find in a component library. Everything is free to lift.",
-    jobs: ["text in motion", "texture"],
-    tech: ["css", "mit", "effects", "typography"],
-    cost: "Free",
-    origin: "yours",
+    what: "Text effects, marquees, image trails and physics-driven interactions from the same author as Super Hover — each one a primitive rather than a finished section.",
+    use: "You want one specific effect — letters that scatter, a trail that follows the cursor — and you will re-dress it in our own type and colours.",
+    jobs: ["text in motion", "hover", "micro-interactions"],
+    tech: ["react", "motion", "open source"],
+    cost: "Open source",
+    origin: "peers",
     panel: { curation: 5, craft: 4, fit: 3 },
   },
   {
@@ -200,6 +149,20 @@ export const RESOURCES: Resource[] = [
     panel: { curation: 5, craft: 4, fit: 4 },
   },
   {
+    slug: "super-hover",
+    name: "Super Hover",
+    url: "https://super-hover.danielpetho.com",
+    domain: "super-hover.danielpetho.com",
+    category: "paste",
+    what: "A tiny React hook that keeps hover states honest while the page is scrolling. The pointer is not moving, so the browser never fires the event, and the card under your cursor goes dead — this fixes precisely that.",
+    use: "Any scroll-story page with hoverable cards. It is the bug you would otherwise spend an afternoon failing to reproduce.",
+    jobs: ["hover", "scroll"],
+    tech: ["react", "hook", "open source"],
+    cost: "Open source",
+    origin: "peers",
+    panel: { curation: 5, craft: 4, fit: 4 },
+  },
+  {
     slug: "motion-dev",
     name: "Motion",
     url: "https://motion.dev/",
@@ -207,7 +170,7 @@ export const RESOURCES: Resource[] = [
     category: "wire",
     what: "The animation engine that grew out of Framer Motion — for React and for plain JavaScript, with hardware-accelerated animations and a proper spring model.",
     use: "The default engine for anything React. Springs, gestures, layout animation, exit animations.",
-    jobs: ["layout animation", "page transitions"],
+    jobs: ["layout animation", "page transitions", "text in motion"],
     tech: ["react", "javascript", "springs", "engine", "framer motion"],
     cost: "Open source",
     origin: "stack",
@@ -227,19 +190,6 @@ export const RESOURCES: Resource[] = [
     panel: { curation: 5, craft: 5, fit: 5 },
   },
   {
-    slug: "scroll-driven-animations",
-    name: "Scroll-Driven Animations",
-    url: "https://scroll-driven-animations.style/",
-    domain: "scroll-driven-animations.style",
-    category: "wire",
-    what: "Bramus's demo bank for native CSS scroll-driven animations — no JavaScript at all — plus tools, a DevTools debugger and a free video course.",
-    use: "Try this BEFORE reaching for a library. Modern browsers can scrub an animation to scroll in pure CSS, which is lighter and survives every framework change.",
-    jobs: ["scroll"],
-    tech: ["css", "no-js", "learning", "devtools"],
-    cost: "Free",
-    panel: { curation: 5, craft: 4, fit: 5 },
-  },
-  {
     slug: "lenis",
     name: "Lenis",
     url: "https://lenis.dev/",
@@ -253,44 +203,17 @@ export const RESOURCES: Resource[] = [
     panel: { curation: 5, craft: 5, fit: 4 },
   },
   {
-    slug: "anime-js",
-    name: "Anime.js",
-    url: "https://animejs.com/",
-    domain: "animejs.com",
+    slug: "scroll-driven-animations",
+    name: "Scroll-Driven Animations",
+    url: "https://scroll-driven-animations.style/",
+    domain: "scroll-driven-animations.style",
     category: "wire",
-    what: "A small, fast JavaScript animation engine for the DOM, SVG and canvas, with a real timeline.",
-    use: "Framework-free work — a static page, an embed, an HTML email preview — where React isn't in the room.",
-    jobs: ["layout animation", "text in motion"],
-    tech: ["javascript", "svg", "timeline", "no-framework"],
-    cost: "Open source",
-    panel: { curation: 4, craft: 4, fit: 2 },
-  },
-  {
-    slug: "inspora",
-    name: "Inspora",
-    url: "https://www.inspora.design/",
-    domain: "inspora.design",
-    category: "see",
-    what: "A feed of interaction and motion shots — individual UI moments (a slider, a card reveal, a keyboard) rather than whole websites, each credited to its maker.",
-    use: "Micro-interaction reference: you know the section works and you're looking for what the one moving part should do. Different job from the site galleries above.",
-    jobs: ["micro-interactions", "hover"],
-    tech: ["gallery", "feed", "ui"],
+    what: "Bramus's demo bank for native CSS scroll-driven animations — no JavaScript at all — plus tools, a DevTools debugger and a free video course.",
+    use: "Try this BEFORE reaching for a library. Modern browsers can scrub an animation to scroll in pure CSS, which is lighter and survives every framework change.",
+    jobs: ["scroll"],
+    tech: ["css", "no-js", "learning", "devtools"],
     cost: "Free",
-    origin: "yours",
-    panel: { curation: 3, craft: 2, fit: 1 },
-  },
-  {
-    slug: "awwwards",
-    name: "Awwwards — Sites",
-    url: "https://www.awwwards.com/websites/",
-    domain: "awwwards.com",
-    category: "see",
-    what: "The big directory, filterable by award, category, tag (animation, typography, 3D), technology (React, GSAP, WebGL), country and typeface.",
-    use: "Filter by TECHNOLOGY. It's the fastest way to see what a specific library can actually do in the wild before you commit to it.",
-    jobs: ["whole pages", "scroll", "3D & WebGL"],
-    tech: ["gallery", "filters", "technology", "react", "gsap"],
-    cost: "Freemium",
-    panel: { curation: 2, craft: 4, fit: 4 },
+    panel: { curation: 5, craft: 4, fit: 5 },
   },
   {
     slug: "recent-design",
@@ -303,59 +226,6 @@ export const RESOURCES: Resource[] = [
     jobs: ["whole pages"],
     tech: ["gallery", "curated", "web design"],
     cost: "Free",
-    panel: { curation: 4, craft: 5, fit: 3 },
-  },
-  {
-    slug: "siteinspire",
-    name: "SiteInspire",
-    url: "https://www.siteinspire.com/",
-    domain: "siteinspire.com",
-    category: "see",
-    what: "A long-running showcase filtered by style (typographic, minimal, grid), by type (portfolio, agency, commerce) and by subject.",
-    use: "Style-led searching: 'show me typographic and minimal' gets you there in two clicks.",
-    jobs: ["whole pages"],
-    tech: ["gallery", "style filters", "minimal", "typographic"],
-    cost: "Free",
-    panel: { curation: 2, craft: 5, fit: 4 },
-  },
-  {
-    slug: "fffuel",
-    name: "fffuel",
-    url: "https://www.fffuel.co/",
-    domain: "fffuel.co",
-    category: "make",
-    what: "A set of free SVG generators — gradients, patterns, textures, noise, blobs, shapes — plus colour tools and converters.",
-    use: "Grain and gradient meshes especially. The noise texture that stops a flat page looking cheap.",
-    jobs: ["texture", "backgrounds"],
-    tech: ["svg", "generator", "noise", "gradients", "patterns"],
-    cost: "Free",
-    panel: { curation: 4, craft: 3, fit: 4 },
-  },
-  {
-    slug: "canvas-ui",
-    name: "Canvas UI",
-    url: "https://canvasui.dev/",
-    domain: "canvasui.dev",
-    category: "paste",
-    what: "Around 40 WebGL canvas effects — glass, liquid, particles, ASCII, distortion — applied over live HTML, framework-agnostic and open source.",
-    use: "One hero moment that makes a page feel built rather than assembled. Expensive to run, so use it once and watch the frame rate.",
-    jobs: ["3D & WebGL", "texture", "backgrounds"],
-    tech: ["webgl", "canvas", "open source", "no-framework"],
-    cost: "Open source",
-    origin: "yours",
-    panel: { curation: 5, craft: 3, fit: 2 },
-  },
-  {
-    slug: "rive",
-    name: "Rive",
-    url: "https://rive.app/",
-    domain: "rive.app",
-    category: "make",
-    what: "Interactive vector animation with state machines — an animation that responds to hover, scroll and clicks — exported behind a tiny web runtime.",
-    use: "When the animation needs to react, not just play. A designer builds it; the developer wires up two lines.",
-    jobs: ["micro-interactions"],
-    tech: ["vector", "state machine", "runtime", "interactive"],
-    cost: "Freemium",
     panel: { curation: 4, craft: 5, fit: 3 },
   },
   {
@@ -373,74 +243,17 @@ export const RESOURCES: Resource[] = [
     panel: { curation: 4, craft: 4, fit: 4 },
   },
   {
-    slug: "sixty-fps",
-    name: "60fps",
-    url: "https://60fps.design/",
-    domain: "60fps.design",
-    category: "see",
-    what: "A motion gallery of clips captured at native frame rate from real shipped products, tagged by what the motion does and broken down storyboard-style.",
-    use: "Deciding how a thing should move rather than how it should look — the only entry here indexed by behaviour instead of aesthetic.",
-    jobs: ["micro-interactions", "page transitions"],
-    tech: ["gallery", "motion", "reference"],
-    cost: "Freemium",
-    origin: "peers",
-    panel: { curation: 4, craft: 4, fit: 4 },
-  },
-  {
-    slug: "khagwal-interactions",
-    name: "Nitish Khagwal — Interactions",
-    url: "https://khagwal.com/interactions/",
-    domain: "khagwal.com",
-    category: "see",
-    what: "One designer's own collection of micro-interactions — built rather than collected, which is rarer than it sounds.",
-    use: "A short, personal read when the big galleries have gone stale. Smallest thing on this shelf and the most opinionated.",
-    jobs: ["micro-interactions", "hover"],
-    tech: ["personal", "ui"],
+    slug: "fffuel",
+    name: "fffuel",
+    url: "https://www.fffuel.co/",
+    domain: "fffuel.co",
+    category: "make",
+    what: "A set of free SVG generators — gradients, patterns, textures, noise, blobs, shapes — plus colour tools and converters.",
+    use: "Grain and gradient meshes especially. The noise texture that stops a flat page looking cheap.",
+    jobs: ["texture", "backgrounds"],
+    tech: ["svg", "generator", "noise", "gradients", "patterns"],
     cost: "Free",
-    origin: "peers",
-    panel: { curation: 4, craft: 3, fit: 3 },
-  },
-  {
-    slug: "super-hover",
-    name: "Super Hover",
-    url: "https://super-hover.danielpetho.com",
-    domain: "super-hover.danielpetho.com",
-    category: "paste",
-    what: "A tiny React hook that keeps hover states honest while the page is scrolling. The pointer is not moving, so the browser never fires the event, and the card under your cursor goes dead — this fixes precisely that.",
-    use: "Any scroll-story page with hoverable cards. It is the bug you would otherwise spend an afternoon failing to reproduce.",
-    jobs: ["hover", "scroll"],
-    tech: ["react", "hook", "open source"],
-    cost: "Open source",
-    origin: "peers",
-    panel: { curation: 5, craft: 4, fit: 4 },
-  },
-  {
-    slug: "fancy-components",
-    name: "Fancy Components",
-    url: "https://www.fancycomponents.dev",
-    domain: "fancycomponents.dev",
-    category: "paste",
-    what: "Text effects, marquees, image trails and physics-driven interactions from the same author as Super Hover — each one a primitive rather than a finished section.",
-    use: "You want one specific effect — letters that scatter, a trail that follows the cursor — and you will re-dress it in our own type and colours.",
-    jobs: ["text in motion", "hover", "micro-interactions"],
-    tech: ["react", "motion", "open source"],
-    cost: "Open source",
-    origin: "peers",
-    panel: { curation: 5, craft: 4, fit: 3 },
-  },
-  {
-    slug: "thinking-orbs",
-    name: "Thinking Orbs",
-    url: "https://orbs.jakubantalik.com/",
-    domain: "orbs.jakubantalik.com",
-    category: "paste",
-    what: "Nine hand-tuned states of one animated orb, shipped as a package — idle, listening, thinking, answering.",
-    use: "An AI product needs a thinking state that is not a spinner. Deliberately narrow: ignore it for anything else.",
-    jobs: ["micro-interactions"],
-    tech: ["react", "canvas", "ai", "loading state", "npm"],
-    cost: "Open source",
-    origin: "peers",
-    panel: { curation: 5, craft: 4, fit: 2 },
+    panel: { curation: 4, craft: 3, fit: 4 },
   },
   {
     slug: "dither-garden",
@@ -478,11 +291,24 @@ export const RESOURCES: Resource[] = [
     category: "understand",
     what: "Deep, interactive essays on shaders, WebGL and React motion, with playgrounds you can drag while you read.",
     use: "Going one level below the libraries — when the effect you want does not exist yet and you need to understand the maths behind it.",
-    jobs: ["3D & WebGL", "texture"],
+    jobs: ["texture", "backgrounds"],
     tech: ["shaders", "webgl", "react", "long-read"],
     cost: "Free",
     origin: "peers",
     panel: { curation: 5, craft: 5, fit: 4 },
+  },
+  {
+    slug: "build-ui-recipes",
+    name: "Build UI — Recipes",
+    url: "https://buildui.com/recipes",
+    domain: "buildui.com",
+    category: "understand",
+    what: "Worked recipes for the genuinely hard React and Motion interactions, with live code and the reasoning written out beside it.",
+    use: "When an interaction won't behave — layout animation, drag, shared elements between pages. This explains why, not just what to paste.",
+    jobs: ["layout animation", "page transitions", "micro-interactions"],
+    tech: ["react", "motion", "tutorial", "layout animation"],
+    cost: "Free",
+    panel: { curation: 5, craft: 4, fit: 5 },
   },
 ];
 
@@ -536,3 +362,36 @@ export const VAULT_TOTAL = RESOURCES.length;
 //                        Aceternity and Magic UI applies here, closest call of the round
 //  ◈ Alex Barashkov text animations  a single post, not a resource; the durable artefact is the
 //                        pixel-point/animate-text repo, which is worth vaulting if he wants it
+//
+// Third round, 2026-09-12 — the hard cap. Jem set a ceiling of fifteen and said
+// new things must displace, not accumulate. 28 went in, 15 came out. A three-lens
+// panel (craft and durability · fit and displacement · the sceptic) voted every
+// entry; the eleven unanimous keeps plus four majority keeps are what remain.
+//
+// The thirteen incumbents cut:
+//    React Bits · Animista · Motion Primitives · Arlan's Vault ◈ · Thinking Orbs ◈
+//                        the paste-in genre, cut as a bloc — a studio that hand-writes CSS does
+//                        not need 165 prebuilt effects, and Codrops teaches the same tricks with
+//                        the reasoning attached
+//    Canvas UI ◈         WebGL glass and liquid: the gradient-and-glow look this studio refuses
+//    Anime.js            a second animation engine when Motion is already the dependency
+//    Awwwards · SiteInspire   directories, both scored 2/5 on curation — the failure mode two
+//                        earlier rounds already ruled on
+//    60fps ◈ · Nitish Khagwal ◈   both lose to Details, which files by the exact detail
+//    Inspora ◈           6/15, the weakest entry the vault ever carried
+//    Rive                a whole authoring tool and runtime to learn, for output the story pages
+//                        have never needed
+//
+// And the eight challengers from the Vibe Coder Toolkit, none admitted:
+//    Skiper UI           shadcn-only install, $129 and $549 tiers the toolkit under-reported,
+//                        and it sells recreations of other products' interactions — openly
+//                        modelled on Devouring Details, which is already here
+//    Limora AI · Logiaweb   both are the toolkit author's own properties, listed inside his own
+//                        curation without disclosure
+//    Liveline · Bklit    charting libraries; the vault has no plot-a-series job
+//    KokonutUI           liquid glass and shimmer — Aceternity and Magic UI under a new name
+//    NameThatUI · Agentation   genuinely good, and out of scope: they answer "how do I drive my
+//                        agent", not "how should this move". Admit them and the membership rule
+//                        silently becomes "useful to someone building with AI", which is an
+//                        unbounded set — a directory, which is what this vault refuses to be.
+//                        If they earn a home it is a separate list with its own remit.
