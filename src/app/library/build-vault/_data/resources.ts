@@ -395,3 +395,16 @@ export const VAULT_TOTAL = RESOURCES.length;
 //                        silently becomes "useful to someone building with AI", which is an
 //                        unbounded set — a directory, which is what this vault refuses to be.
 //                        If they earn a home it is a separate list with its own remit.
+//
+// Watchlist, 2026-09-21 — React Bits · Micro (reactbits.dev/c/micro), Jem's find.
+// Unanimous OUT *for now*, not a rejection. Thirty-three tactile controls (hold
+// button, squish switch, swipe row) by David Haz, with real keyboard and reduced-
+// motion work. It is not the effects catalogue we cut. But it launched on
+// 2026-09-18 and was still changing daily at review. Admitting it three days in
+// would read as reversing the React Bits cut for novelty. Re-review around
+// December 2026. It gets in if (1) the 33 have been refined rather than just added
+// to, (2) it is still free, and (3) Hold Button, Scrub Field and Glide Select re-
+// dressed in cobalt/platinum with glow={false} read as restrained controls. If it
+// passes, it swaps one-for-one with Fancy Components (same job, same shelf). All
+// three judges named that swap. Notes for the card: MIT + Commons Clause licence,
+// icons from Hugeicons rather than lucide, link the /c/micro page, not the home.
