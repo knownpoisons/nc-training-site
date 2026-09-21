@@ -408,3 +408,13 @@ export const VAULT_TOTAL = RESOURCES.length;
 // passes, it swaps one-for-one with Fancy Components (same job, same shelf). All
 // three judges named that swap. Notes for the card: MIT + Commons Clause licence,
 // icons from Hugeicons rather than lucide, link the /c/micro page, not the home.
+//
+// Cut, 2026-09-21 — Spotted in Prod (spottedinprod.com), Jem's find. Unanimous OUT.
+// Well made and genuinely curated: ~400+ hand-picked clips from shipped iOS
+// apps, filed by pattern, gesture and category, scrubbable frame by frame,
+// updated daily. But it is iOS only and part of it sits behind a paid
+// membership. It is the same thing as 60fps and Mobbin on a platform we don't
+// build for, and it loses to Details for the same reason 60fps did: Details
+// files shipped WEB interactions. Revisit only if it adds a real web section
+// filed the same way (it would then challenge Details), or if the studio ever
+// builds a native iOS app (it would go straight in).
