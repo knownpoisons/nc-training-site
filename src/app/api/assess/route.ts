@@ -50,7 +50,7 @@ export async function POST(req: NextRequest) {
         storeInSupabase({ name, email, result, answers }),
         subscribeToBeehiiv({ name, email, result }),
         sendResultEmail({ name, email, result, siteUrl }),
-        notifyAdminByEmail({ name, company, email, result }),
+        notifyAdminByEmail({ name, company, email, result, answers }),
         notifySlack({ name, company, email, result, answers }),
         ingestScorecardCompleter({
           name,
@@ -212,8 +212,9 @@ async function notifyAdminByEmail(args: {
   company?: string;
   email: string;
   result: ScoreResult;
+  answers: unknown;
 }): Promise<{ ok: boolean; note?: string }> {
-  const { name, company, email, result } = args;
+  const { name, company, email, result, answers } = args;
   const apiKey = process.env.RESEND_API_KEY;
   const from = process.env.RESEND_FROM_EMAIL;
   const to = process.env.LEAD_NOTIFY_EMAIL ?? "getcontent@notcontent.ai";
@@ -227,21 +228,36 @@ async function notifyAdminByEmail(args: {
     ["Name", name || "—"],
     ["Company", company || "—"],
     ["Email", email],
-    ["Score", `${result.normalizedScore}/100`],
-    ["Tier", result.tier],
+    ["Score", `${result.normalizedScore}/100 (raw ${result.rawScore}/${RAW_MAX})`],
+    ["Tier", result.tierLabel],
     ["Recommended program", result.recommendedProgram],
     ["Work type", result.workType ?? "—"],
-    ["Tool stack", `${result.stackCount} tools (${result.stackBucket})`],
-    ["Adoption / Readiness / Blockers", `${result.dimensions.adoption} / ${result.dimensions.readiness} / ${result.dimensions.blockers}`],
+    ["Tool stack", `${result.stackCount} tools · Bucket ${result.stackBucket}`],
+    [
+      "Sub-scores",
+      `Adoption ${result.dimensions.adoption}/${DIMENSION_MAX.adoption} · ` +
+        `Buying intent ${result.dimensions.readiness}/${DIMENSION_MAX.readiness} · ` +
+        `Budget & blockers ${result.dimensions.blockers}/${DIMENSION_MAX.blockers}`,
+    ],
   ];
+
+  // Full question-by-question transcript — same builder the Slack ping uses.
+  const transcript = buildTranscript(answers);
 
   const textBody =
     `New AI Readiness Scorecard lead — follow up:\n\n` +
     rows.map(([k, v]) => `${k}: ${v}`).join("\n") +
+    `\n\n— THEIR ANSWERS —\n\n` +
+    transcript
+      .map((t) => {
+        const pts = t.points === null ? "" : `  (${t.points} pts)`;
+        return `Q${t.id}. ${t.question}\n   ${t.answer}${pts}`;
+      })
+      .join("\n\n") +
     `\n\nReply to this email to respond directly to ${name || email}.`;
 
   const htmlBody =
-    `<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:520px">` +
+    `<div style="font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;max-width:560px">` +
     `<h2 style="margin:0 0 4px;font-weight:600">New Scorecard lead</h2>` +
     `<p style="margin:0 0 16px;color:#555">Reply to this email to respond directly to ${name || email}.</p>` +
     `<table style="border-collapse:collapse;width:100%;font-size:14px">` +
@@ -251,7 +267,22 @@ async function notifyAdminByEmail(args: {
           `<tr><td style="padding:6px 12px 6px 0;color:#888;white-space:nowrap;vertical-align:top">${k}</td><td style="padding:6px 0;font-weight:500">${v}</td></tr>`
       )
       .join("") +
-    `</table></div>`;
+    `</table>` +
+    `<h3 style="margin:24px 0 8px;font-weight:600;font-size:15px">Their answers</h3>` +
+    `<div style="font-size:14px">` +
+    transcript
+      .map(
+        (t) =>
+          `<div style="margin:0 0 14px">` +
+          `<div style="color:#888">Q${t.id}. ${t.question}</div>` +
+          `<div style="font-weight:500">${t.answer}` +
+          (t.points === null
+            ? ""
+            : ` <span style="color:#888;font-weight:400">(${t.points} pts)</span>`) +
+          `</div></div>`
+      )
+      .join("") +
+    `</div></div>`;
 
   const sendRes = await resend.emails.send({
     from,
