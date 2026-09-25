@@ -47,7 +47,7 @@ export default function JanuaryDigitalCaseStudy() {
             &ldquo;
           </p>
           <blockquote className="-mt-4 text-2xl sm:text-3xl lg:text-[2.5rem] font-light leading-[1.25] tracking-tight text-foreground">
-            We saw conversion rates go up about 50%, ROAS went up about 50%.
+            We saw ad conversion go up about 50%, ROAS went up about 50%.
             More importantly, these immediately took off to the top two spenders
             on Meta — a new pocket of audience, opened up by the diversified
             creative.
@@ -55,7 +55,7 @@ export default function JanuaryDigitalCaseStudy() {
           <div className="mt-10 flex items-center gap-4">
             <div className="h-px w-12 bg-[#1338BE]" />
             <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/50">
-              Jared, January Digital
+              Jeremy Ekes, January Digital
             </p>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function JanuaryDigitalCaseStudy() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-8 sm:grid-cols-3">
             {[
-              { n: "+50%", label: "Lift in conversion rate (Meta)" },
+              { n: "+50%", label: "Lift in ad conversion (Meta)" },
               { n: "+50%", label: "Improvement in ROAS" },
               {
                 n: "Top 2",
@@ -174,7 +174,7 @@ export default function JanuaryDigitalCaseStudy() {
               <p className="text-sm leading-relaxed text-foreground/60">
                 Roughly 60 diversified assets — built from flat-lay product
                 shots with one piece of contextual detail — went live on Meta
-                and lifted both conversion rate and ROAS by about 50%. Within
+                and lifted both ad conversion and ROAS by about 50%. Within
                 days they were the account&apos;s top two spenders. The
                 best-performing addition wasn&apos;t a stroke of genius: it was a
                 wrench, placed next to the workwear.
