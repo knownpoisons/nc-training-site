@@ -418,3 +418,16 @@ export const VAULT_TOTAL = RESOURCES.length;
 // files shipped WEB interactions. Revisit only if it adds a real web section
 // filed the same way (it would then challenge Details), or if the studio ever
 // builds a native iOS app (it would go straight in).
+//
+// Not here, 2026-10-08 — Prompt Motion (prompt-motion.com), Jem's find. All three
+// judges: good, but wrong shelf — it is a prompt collection, not a web-craft
+// resource. ~230 code-rendered motion videos made with Opus 5.5, each with the
+// full prompt, the model and the iteration count, curated by one person with an
+// open submit. What it hands you is an MP4, and every vault entry hands you
+// something that ends up inside a page. Same line that kept NameThatUI and
+// Agentation out. Two caveats on its own terms: the "Skill" filter is 4 of 230
+// entries and shells out to strangers' repos, and nearly every entry is dated
+// inside one week after the Opus 5.5 launch. If it belongs anywhere it is a
+// sibling of the Camera Prompt Finder, not a Build Vault slot. It would become a
+// vault candidate only with a section whose output is shippable page code
+// (a scroll rig, a hover rig) published with the source rather than a video.
