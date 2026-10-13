@@ -1,0 +1,278 @@
+/* ─── Motion with Claude ───────────────────────────────────────────────────────
+   A reading page, not a finder: no search, no filters, no screenshots. Half the
+   sources are long-form posts and a paper, so the cards are typographic and the
+   kits lead. All `.mk-` prefixed; tokens inherit from library.css.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.library .mk-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 6vh;
+}
+
+.library .mk-h2 {
+  font-family: var(--serif);
+  font-size: clamp(26px, 3vw, 38px);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin: 0 0 14px;
+  padding-top: 34px;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+}
+.library .mk-h2-n {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.library .mk-lede {
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 72ch;
+  margin: 0 0 34px;
+}
+
+/* ── kits ───────────────────────────────────────────────────────────────── */
+.library .mk-kits {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 22px;
+}
+
+.library .mk-kit {
+  border: 1px solid var(--rule);
+  background: var(--surface);
+  padding: 24px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.library .mk-kit-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.library .mk-kit-n {
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.library .mk-kit h3 {
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0 0 6px;
+  color: var(--ink);
+}
+.library .mk-file {
+  font-family: var(--mono, var(--sans));
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 2px 7px;
+}
+
+.library .mk-when,
+.library .mk-why,
+.library .mk-what,
+.library .mk-take,
+.library .mk-watch {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.65;
+  margin: 0;
+  color: var(--ink);
+}
+.library .mk-why,
+.library .mk-when {
+  color: var(--muted);
+}
+
+.library .mk-label {
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--accent);
+  margin-right: 8px;
+}
+.library .mk-label-good { color: var(--accent); }
+.library .mk-label-warn { color: var(--muted); }
+
+.library .mk-details {
+  margin-top: auto;
+  padding-top: 14px;
+}
+.library .mk-details summary {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px 0;
+  border-top: 1px solid var(--rule);
+  list-style: none;
+}
+.library .mk-details summary::-webkit-details-marker { display: none; }
+.library .mk-details summary::before {
+  content: "+ ";
+  color: var(--accent);
+}
+.library .mk-details[open] summary::before { content: "− "; }
+.library .mk-details summary:hover { color: var(--accent); }
+
+.library .mk-pre {
+  font-family: var(--mono, ui-monospace, monospace);
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  padding: 16px;
+  margin: 12px 0 0;
+  max-height: 420px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ── sources ────────────────────────────────────────────────────────────── */
+.library .mk-sources {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* library.css numbers every `ol li` with a counter for instruction lists; this
+   list carries its own numbers in .mk-source-n, so suppress the inherited one. */
+.library .section ol.mk-sources > li::before { content: none; }
+.library .section ol.mk-sources > li {
+  padding: 26px 0;
+  border-bottom: 0;
+  position: static;
+}
+.library .section ol.mk-sources > li:first-child { border-top: 1px solid var(--rule); }
+
+.library .mk-source {
+  border-top: 1px solid var(--rule);
+  padding: 26px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.library .mk-source:last-child { border-bottom: 1px solid var(--rule); }
+
+.library .mk-source-head {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.library .mk-source-n {
+  font-family: var(--sans);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  font-weight: 600;
+}
+.library .mk-source-id { flex: 1; min-width: 240px; }
+.library .mk-source-id a {
+  font-family: var(--serif);
+  font-size: clamp(21px, 2.1vw, 26px);
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1.15;
+}
+.library .mk-source-id a:hover { color: var(--accent); }
+.library .mk-arrow {
+  color: var(--accent);
+  font-size: 0.6em;
+  margin-left: 0.45em;
+  display: inline-block;
+  transition: transform 200ms;
+}
+.library .mk-source-id a:hover .mk-arrow { transform: translate(3px, -3px); }
+.library .mk-byline {
+  display: block;
+  font-family: var(--sans);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.library .mk-source-tags {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.library .mk-kind,
+.library .mk-cost {
+  font-family: var(--sans);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+  border: 1px solid var(--rule);
+  padding: 3px 7px;
+  white-space: nowrap;
+}
+.library .mk-cost-free,
+.library .mk-cost-open-source {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.library .mk-what { color: var(--ink); max-width: 76ch; }
+.library .mk-take,
+.library .mk-watch { color: var(--muted); max-width: 76ch; }
+.library .mk-take { color: var(--ink); }
+
+/* ── foot ───────────────────────────────────────────────────────────────── */
+.library .mk-foot {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px 8vh;
+}
+.library .mk-foot .muted {
+  font-family: var(--sans);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 72ch;
+  border-left: 2px solid var(--accent);
+  padding-left: 16px;
+  margin: 0 0 14px;
+}
+.library .mk-foot a { color: var(--accent); }
+
+@media (max-width: 700px) {
+  .library .mk-section,
+  .library .mk-foot { padding-left: 20px; padding-right: 20px; }
+  .library .mk-kits { grid-template-columns: 1fr; gap: 16px; }
+  .library .mk-kit { padding: 20px 18px 16px; }
+  .library .mk-kit-head { flex-direction: column; gap: 12px; }
+  .library .mk-pre { font-size: 11px; max-height: 320px; }
+}

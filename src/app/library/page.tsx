@@ -56,7 +56,27 @@ export default async function LibraryIndex() {
             className={`row${c.featured ? " row-collection" : ""}`}
           >
             <div className="num" aria-hidden="true">
-              {c.glyph === "camera" ? (
+              {c.glyph === "film" ? (
+                /* film glyph — a frame with sprocket holes, hairline like the diagrams */
+                <svg viewBox="0 0 24 20" width="24" height="20" className="row-cam">
+                  <rect
+                    x="0.75"
+                    y="2.75"
+                    width="22.5"
+                    height="14.5"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                  <path d="M5.5 2.75v14.5 M18.5 2.75v14.5" stroke="currentColor" strokeWidth="1.5" />
+                  <rect x="2.4" y="5.4" width="1.6" height="1.8" fill="currentColor" />
+                  <rect x="2.4" y="9.1" width="1.6" height="1.8" fill="currentColor" />
+                  <rect x="2.4" y="12.8" width="1.6" height="1.8" fill="currentColor" />
+                  <rect x="20" y="5.4" width="1.6" height="1.8" fill="currentColor" />
+                  <rect x="20" y="9.1" width="1.6" height="1.8" fill="currentColor" />
+                  <rect x="20" y="12.8" width="1.6" height="1.8" fill="currentColor" />
+                </svg>
+              ) : c.glyph === "camera" ? (
                 /* camera glyph — same language as the finder diagrams */
                 <svg viewBox="0 0 26 20" width="26" height="20" className="row-cam">
                   <rect x="0.5" y="4.5" width="15" height="11" rx="1.5" fill="currentColor" />

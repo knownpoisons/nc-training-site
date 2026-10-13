@@ -10,7 +10,7 @@ export interface Collection {
   eyebrow: string;
   count: number;
   /** which hairline glyph the index row uses */
-  glyph: "camera" | "vault";
+  glyph: "camera" | "vault" | "film";
   /** cobalt block treatment on the index (one at a time — it's the hero row) */
   featured?: boolean;
 }
@@ -34,5 +34,14 @@ export const COLLECTIONS: Collection[] = [
     eyebrow: "Resources",
     count: 15,
     glyph: "vault",
+  },
+  {
+    slug: "motion-with-claude",
+    title: "Motion with Claude",
+    oneLiner:
+      "Four copy-paste markdown kits for directing Claude to make video and animation — the rules, the brief, the review loop and the numbers — plus the six sources they came from, each with what to take and what to ignore.",
+    eyebrow: "New",
+    count: 4,
+    glyph: "film",
   },
 ];
