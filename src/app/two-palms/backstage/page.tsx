@@ -3,7 +3,6 @@ import { readChecklist, readIntake } from "../_lib/actions";
 import { hubConfigured, isAdminAuthed } from "../_lib/auth";
 import { getSupabaseServer } from "@/lib/supabase";
 import { Reveal } from "../_ui/bits";
-import { Jenga } from "../_hairline";
 import { Checklist, Lock } from "../_ui/gates";
 import { BackstageTabs } from "./tabs";
 
@@ -28,7 +27,6 @@ export default async function Page() {
             <h1 className="tp-h1"><span className="tp-outline">The</span> Backstage.</h1>
             <p className="tp-lede" style={{ marginTop: 18 }}>What has to happen before the team walks in, who&rsquo;s doing it, and what the intake is telling us. Ticks save for everyone with this password.</p>
           </Reveal>
-          <Jenga />
         </div>
         <div className="tp-wrap">
           <Reveal delay={120}>

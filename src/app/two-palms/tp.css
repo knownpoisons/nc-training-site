@@ -429,3 +429,7 @@
 .tp-steps li[data-done="true"] .tp-h3 { color: var(--tp-mute); text-decoration: line-through; }
 .tp-pills { max-width: 600px; }
 @media (prefers-reduced-motion: reduce) { .tp-next-dot { animation: none; } }
+
+/* ── The mark (1:1) ─────────────────────────────────────────────────────────── */
+.tp-mark { display: block; width: 100%; height: auto; cursor: crosshair; }
+.tp-mark path { transform-box: view-box; }

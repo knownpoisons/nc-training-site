@@ -128,7 +128,7 @@ export function ProgrammePage({ p }: { p: Programme }) {
                 <h2 className="tp-h2"><span className="tp-outline">The</span> sessions</h2>
                 <Sketch mark="arrow-down" width={28} color="var(--tp-orange)" delay={500} />
               </div>
-              <Jenga />
+              {comingSoon ? null : <Jenga />}
             </div>
           </Reveal>
           {comingSoon ? (

@@ -2,7 +2,6 @@ import Link from "next/link";
 import { PROMPTS, SETUP_STEPS } from "../_data/hub";
 import { CopyButton, Reveal, Underline } from "../_ui/bits";
 import { SetupSteps } from "./steps";
-import { Jenga } from "../_hairline";
 
 export const metadata = { title: "Setup" };
 
@@ -19,7 +18,6 @@ export default function Page() {
               Start clean. Claude finds your context in Drive, Slack and your client projects, so nothing old needs importing. Eight steps. Do them in order.
             </p>
           </Reveal>
-          <Jenga />
         </div>
       </section>
 

@@ -6,15 +6,16 @@
 
 import { Loupe, Riffle } from "@lucasmarkes/hairline/react";
 import { Figure, type CustomFigure } from "./figure";
-import { badge as badgeFigure } from "./badge";
+import { Mark } from "../_ui/mark";
+
+/** The Two Palms mark, 1:1 from the .ai file, swaying in the pointer's wind. */
+export function Badge({ tone = "black", className = "" }: { tone?: "black" | "orange" | "white"; play?: boolean; intensity?: number; className?: string }) {
+  return <Mark tone={tone} className={className} />;
+}
 import { jenga as jengaFigure } from "./jenga";
 
-const badge = badgeFigure as unknown as CustomFigure;
 const jenga = jengaFigure as unknown as CustomFigure;
 
-export function Badge({ play = false, intensity = 0.5, className = "", onRead }: { play?: boolean; intensity?: number; className?: string; onRead?: (t: string) => void }) {
-  return <Figure figure={badge} play={play} intensity={intensity} className={className} label="The Two Palms mark: two palms that bend away from the pointer." onRead={onRead} />;
-}
 
 /** The headline figure on every page: a Jenga tower whose blocks slide out under the pointer. */
 export function Jenga({ play = false, intensity = 0.6, className = "" }: { play?: boolean; intensity?: number; className?: string }) {
