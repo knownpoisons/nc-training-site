@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PROMPTS, type Programme, type Session } from "../_data/hub";
 import { CopyButton, LocalTime, Reveal, Sketch } from "./bits";
+import { HeadMark } from "../_hairline";
 
 function SessionCard({ s, live }: { s: Session; live: boolean }) {
   const dim = s.status === "upcoming" && !live;
@@ -110,9 +111,12 @@ export function ProgrammePage({ p }: { p: Programme }) {
       <section className="tp-section">
         <div className="tp-wrap">
           <Reveal>
-            <div style={{ display: "flex", alignItems: "flex-end", gap: 16, flexWrap: "wrap", marginBottom: 20 }}>
-              <h2 className="tp-h2"><span className="tp-outline">The</span> sessions</h2>
-              <Sketch mark="arrow-down" width={28} color="var(--tp-orange)" delay={500} />
+            <div className="tp-headrow">
+              <div style={{ display: "flex", alignItems: "flex-end", gap: 16, flexWrap: "wrap" }}>
+                <h2 className="tp-h2"><span className="tp-outline">The</span> sessions</h2>
+                <Sketch mark="arrow-down" width={28} color="var(--tp-orange)" delay={500} />
+              </div>
+              <HeadMark mark={comingSoon ? "loupe" : "terrain"} />
             </div>
           </Reveal>
           {comingSoon ? (

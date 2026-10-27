@@ -3,6 +3,7 @@ import { readChecklist, readIntake } from "../_lib/actions";
 import { hubConfigured, isAdminAuthed } from "../_lib/auth";
 import { getSupabaseServer } from "@/lib/supabase";
 import { Reveal } from "../_ui/bits";
+import { HeadMark } from "../_hairline";
 import { Checklist, Lock } from "../_ui/gates";
 import { BackstageTabs } from "./tabs";
 
@@ -21,12 +22,15 @@ export default async function Page() {
   return (
     <>
       <section className="tp-hero" style={{ paddingBottom: 24 }}>
-        <div className="tp-wrap">
+        <div className="tp-wrap tp-headrow">
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />Backstage · leadership only</div>
             <h1 className="tp-h1"><span className="tp-outline">The</span> Backstage.</h1>
             <p className="tp-lede" style={{ marginTop: 18 }}>What has to happen before the team walks in, who&rsquo;s doing it, and what the intake is telling us. Ticks save for everyone with this password.</p>
           </Reveal>
+          <HeadMark mark="lockers" />
+        </div>
+        <div className="tp-wrap">
           <Reveal delay={120}>
             <div className="tp-stat-strip">
               <div className="tp-stat"><div className="tp-stat-n">{String(intake.length).padStart(2, "0")}</div><div className="tp-stat-l">intake forms in</div></div>

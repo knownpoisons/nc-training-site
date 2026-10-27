@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PROMPTS, SETUP_STEPS } from "../_data/hub";
 import { CopyButton, Reveal, Sketch, Underline } from "../_ui/bits";
+import { HeadMark } from "../_hairline";
 
 export const metadata = { title: "Setup" };
 
@@ -9,7 +10,7 @@ export default function Page() {
   return (
     <>
       <section className="tp-hero" style={{ paddingBottom: 24 }}>
-        <div className="tp-wrap">
+        <div className="tp-wrap tp-headrow">
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />Setup · about 40 minutes, once</div>
             <h1 className="tp-h1"><span className="tp-outline">Fresh account,</span><br />done <Underline delay={600}>right</Underline>.</h1>
@@ -17,6 +18,7 @@ export default function Page() {
               Start clean. Claude finds your context in Drive, Slack and your client projects, so nothing old needs importing. Eight steps. Do them in order.
             </p>
           </Reveal>
+          <HeadMark mark="keyboard" />
         </div>
       </section>
 

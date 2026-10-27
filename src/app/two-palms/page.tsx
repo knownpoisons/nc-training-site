@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CREATIVE, FOUNDATIONS, HUB, PROMPTS } from "./_data/hub";
 import { Circled, Countdown, CopyButton, LocalTime, Reveal, Sketch, Underline } from "./_ui/bits";
+import { Badge, HeadMark } from "./_hairline";
 
 const Arrow = () => (
   <svg className="tp-card-arrow" viewBox="0 0 34 34" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <>
       <section className="tp-hero">
-        <div className="tp-wrap">
+        <div className="tp-wrap tp-split" style={{ alignItems: "center" }}>
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 18 }}><span className="tp-dot" />Two Palms x NotContent · 2026 to 2027</div>
             <h1 className="tp-h1">
@@ -26,6 +27,11 @@ export default function Home() {
               Two programmes, one hub. Foundations for everyone, the Creative Programme for the makers. Sessions, recordings, prompts and the rules, all here. Nothing lives in Slack.
             </p>
           </Reveal>
+          <Reveal delay={100}>
+            <div className="tp-hero-badge"><Badge play intensity={0.6} /><div className="tp-read" style={{ textAlign: "right", marginTop: 6 }}>Move over the palms</div></div>
+          </Reveal>
+        </div>
+        <div className="tp-wrap">
           <Reveal delay={150}>
             <div className="tp-stat-strip">
               <div className="tp-stat"><div className="tp-stat-n">02</div><div className="tp-stat-l">programmes</div></div>
@@ -88,10 +94,15 @@ export default function Home() {
       <section className="tp-section">
         <div className="tp-wrap">
           <Reveal>
-            <div className="tp-eyebrow"><span className="tp-dot" />The two programmes</div>
-            <h2 className="tp-h2" style={{ marginTop: 10, marginBottom: 28 }}>
-              <span className="tp-outline">Everyone</span> learns the base.<br />The makers go <Circled delay={600}>further</Circled>.
-            </h2>
+            <div className="tp-headrow">
+              <div>
+                <div className="tp-eyebrow"><span className="tp-dot" />The two programmes</div>
+                <h2 className="tp-h2" style={{ marginTop: 10 }}>
+                  <span className="tp-outline">Everyone</span> learns the base.<br />The makers go <Circled delay={600}>further</Circled>.
+                </h2>
+              </div>
+              <HeadMark mark="hub" />
+            </div>
           </Reveal>
           <div className="tp-grid tp-grid-2">
             {[FOUNDATIONS, CREATIVE].map((p, i) => (

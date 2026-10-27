@@ -1,5 +1,6 @@
 import { PROMPTS } from "../_data/hub";
 import { Reveal, Sketch } from "../_ui/bits";
+import { HeadMark } from "../_hairline";
 import { PromptTabs } from "./tabs";
 
 export const metadata = { title: "Prompt library" };
@@ -9,7 +10,7 @@ export default function Page() {
   return (
     <>
       <section className="tp-hero" style={{ paddingBottom: 24 }}>
-        <div className="tp-wrap">
+        <div className="tp-wrap tp-headrow">
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />Prompt library · {PROMPTS.length} and growing</div>
             <h1 className="tp-h1"><span className="tp-outline">Good prompts</span><br />to steal.</h1>
@@ -18,6 +19,7 @@ export default function Page() {
             </p>
             <div style={{ marginTop: 12 }}><Sketch mark="bubble" width={56} color="var(--tp-orange)" delay={500} /></div>
           </Reveal>
+          <HeadMark mark="riffle" />
         </div>
       </section>
       <section className="tp-section" style={{ paddingTop: 16 }}>

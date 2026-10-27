@@ -4,6 +4,7 @@ import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { adminLogin, submitIntake, teamLogin, type IntakeAnswers } from "../_lib/actions";
 import { Sketch, Underline } from "./bits";
+import { Badge } from "../_hairline";
 
 // ─── Lock screens ───────────────────────────────────────────────────────────────
 export function Lock({ kind, configured }: { kind: "team" | "admin"; configured: boolean }) {
@@ -14,7 +15,8 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
   const isAdmin = kind === "admin";
   return (
     <div className="tp-lock">
-      <div className="tp-palms" />
+      <div className="tp-lock-grid">
+      <div className="tp-lock-badge"><Badge play intensity={0.6} /></div>
       <div className="tp-lock-card tp-stack" style={{ "--tp-stack": "22px" } as React.CSSProperties}>
         <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -52,6 +54,7 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
             <Sketch mark="arrow" width={64} color="var(--tp-orange)" delay={900} />
           </div>
         </form>
+      </div>
       </div>
     </div>
   );

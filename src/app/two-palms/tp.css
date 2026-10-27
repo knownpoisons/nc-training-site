@@ -349,3 +349,23 @@
   .tp-input-needed::before { animation: none; }
   .tp-slide-enter { animation: none; }
 }
+
+/* ── Hairline figures (lucasmarkes/hairline), themed to Two Palms ─────────── */
+.tp-root, .tp-hl {
+  --hairline-plate: #ffffff;
+  --hairline-hi: #ce6240;
+  --hairline-edge: #131313;
+  --hairline-mid: #8f8f8f;
+  --hairline-lo: #d6d6d6;
+  --hairline-stroke: 1;
+}
+.tp-section-tint .tp-figure, .tp-section-tint .tp-headmark, .tp-card-tint .tp-figure, .tp-card-tint .tp-headmark { --hairline-plate: #f5f5f1; }
+.tp-card-black .tp-figure, .tp-card-black .tp-headmark { --hairline-plate: #000000; --hairline-hi: #bfff00; --hairline-edge: #ffffff; --hairline-mid: #7a7a7a; --hairline-lo: #3a3a3a; }
+.tp-figure { display: block; width: 100%; aspect-ratio: 5 / 4; }
+.tp-headmark { width: clamp(150px, 20vw, 240px); flex: 0 0 auto; }
+.tp-headrow { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 20px; }
+.tp-hero-badge { width: min(100%, 440px); margin-left: auto; }
+.tp-lock-badge { width: min(100%, 360px); }
+.tp-lock-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(24px, 5vw, 72px); align-items: center; width: min(100%, 1040px); position: relative; z-index: 1; }
+@media (max-width: 820px) { .tp-lock-grid { grid-template-columns: 1fr; } .tp-lock-badge { width: min(100%, 300px); margin: 0 auto; } }
+.tp-read { font-family: var(--tp-display); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.7rem; color: var(--tp-mute); }

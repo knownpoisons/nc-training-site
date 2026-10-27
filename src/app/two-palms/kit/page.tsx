@@ -1,5 +1,6 @@
 import { CLAUDE_BOARD, CREATIVE_BOARD, GLOSSARY, MENTAL_MODELS, POLICY_ONE_PAGER, RULES, TOOL_REGISTER } from "../_data/hub";
 import { Circled, CopyButton, Reveal, Sketch } from "../_ui/bits";
+import { HeadMark } from "../_hairline";
 import { KitTabs } from "./tabs";
 
 export const metadata = { title: "The Kit" };
@@ -13,12 +14,13 @@ export default function Page() {
   return (
     <>
       <section className="tp-hero" style={{ paddingBottom: 24 }}>
-        <div className="tp-wrap">
+        <div className="tp-wrap tp-headrow">
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />The Kit · rules, models, words</div>
             <h1 className="tp-h1"><span className="tp-outline">The</span> Kit.</h1>
             <p className="tp-lede" style={{ marginTop: 18 }}>The policy on one page. Which model for which job. The mental models we keep coming back to. And the words, explained once.</p>
           </Reveal>
+          <HeadMark mark="vault" />
         </div>
       </section>
 
