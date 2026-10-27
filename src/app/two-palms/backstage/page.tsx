@@ -4,6 +4,7 @@ import { hubConfigured, isAdminAuthed } from "../_lib/auth";
 import { getSupabaseServer } from "@/lib/supabase";
 import { Reveal } from "../_ui/bits";
 import { Checklist, Lock } from "../_ui/gates";
+import Link from "next/link";
 import { BackstageTabs } from "./tabs";
 
 export const metadata = { title: "Backstage" };
@@ -26,6 +27,7 @@ export default async function Page() {
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />Backstage · leadership only</div>
             <h1 className="tp-h1"><span className="tp-outline">The</span> Backstage.</h1>
             <p className="tp-lede" style={{ marginTop: 18 }}>What has to happen before the team walks in, who&rsquo;s doing it, and what the intake is telling us. Ticks save for everyone with this password.</p>
+            <Link href="/two-palms/backstage/big-5" className="tp-b5-link"><b>The Big 5</b><span>Five jobs, who owns them, what&rsquo;s due next</span><i>Open →</i></Link>
           </Reveal>
         </div>
         <div className="tp-wrap">
