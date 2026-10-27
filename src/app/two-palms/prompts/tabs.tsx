@@ -14,7 +14,7 @@ export function PromptTabs({ tabs, prompts }: { tabs: string[]; prompts: Prompt[
                 <div><h3 className="tp-h3">{p.title}</h3><div className="tp-prompt-when">{p.when}</div></div>
                 <CopyButton text={p.body} />
               </div>
-              <pre>{p.body}</pre>
+              <div className={p.body.length > 900 ? "tp-prompt-scroll" : undefined}><pre>{p.body}</pre></div>
             </div>
           ))}
         </div>

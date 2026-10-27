@@ -3,7 +3,7 @@ import { readChecklist, readIntake } from "../_lib/actions";
 import { hubConfigured, isAdminAuthed } from "../_lib/auth";
 import { getSupabaseServer } from "@/lib/supabase";
 import { Reveal } from "../_ui/bits";
-import { HeadMark } from "../_hairline";
+import { Jenga } from "../_hairline";
 import { Checklist, Lock } from "../_ui/gates";
 import { BackstageTabs } from "./tabs";
 
@@ -28,13 +28,13 @@ export default async function Page() {
             <h1 className="tp-h1"><span className="tp-outline">The</span> Backstage.</h1>
             <p className="tp-lede" style={{ marginTop: 18 }}>What has to happen before the team walks in, who&rsquo;s doing it, and what the intake is telling us. Ticks save for everyone with this password.</p>
           </Reveal>
-          <HeadMark mark="lockers" />
+          <Jenga />
         </div>
         <div className="tp-wrap">
           <Reveal delay={120}>
             <div className="tp-stat-strip">
               <div className="tp-stat"><div className="tp-stat-n">{String(intake.length).padStart(2, "0")}</div><div className="tp-stat-l">intake forms in</div></div>
-              <div className="tp-stat"><div className="tp-stat-n">{avg}</div><div className="tp-stat-l">average confidence, out of 5</div></div>
+              <div className="tp-stat"><div className="tp-stat-n">{intake.length ? avg : "–"}</div><div className="tp-stat-l">{intake.length ? "average confidence, out of 5" : "confidence shows once forms are in"}</div></div>
               <div className="tp-stat"><div className="tp-stat-n">{String(MICKY_CHECKLIST.filter((i) => state.find((s) => s.id === i.id)?.done).length).padStart(2, "0")} <span className="tp-outline" style={{ fontSize: "0.6em" }}>/ {String(MICKY_CHECKLIST.length).padStart(2, "0")}</span></div><div className="tp-stat-l">of Micky&rsquo;s list done</div></div>
             </div>
           </Reveal>
@@ -62,7 +62,7 @@ export default async function Page() {
                 <h2 className="tp-h2" style={{ marginBottom: 6 }}><span className="tp-outline">The</span> intake.</h2>
                 <p className="tp-small tp-mute" style={{ marginBottom: 20 }}>Every answer, newest first. Names live here and nowhere else on the hub.</p>
                 {byEntity.length ? <div className="tp-chip-row" style={{ marginBottom: 18 }}>{byEntity.map(([e, n]) => <span key={e} className="tp-chip">{e} · {n}</span>)}</div> : null}
-                {!persisted ? <p className="tp-note">No database connected, so intake answers are only in the server log. Run migration 008 in Supabase.</p> : null}
+                {!persisted ? <p className="tp-note">Answers aren&rsquo;t being stored right now. Tell Jem.</p> : null}
                 {intake.length === 0 ? <p className="tp-mute">Nothing in yet.</p> : (
                   <div className="tp-stack">
                     {intake.map((r) => (

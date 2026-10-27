@@ -82,7 +82,7 @@ export const FOUNDATIONS: Programme = {
       durationMinutes: 60,
       status: "upcoming",
       meetUrl: null,
-      homework: "Have a play before Monday. No homework. Just get curious: ask Claude what it can do for your job.",
+      homework: "Before Monday: the eight setup steps (Setup page, about 40 minutes). That is the only homework. Then have a play: ask Claude what it can do for your job.",
       prompts: ["onboarding"],
     },
     { number: 2, title: null, phase: "Phase 02", startsAt: `2026-11-10T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
@@ -278,7 +278,7 @@ THE 10 RULES
 7. No fake proof. Never invent reviews, comments, results or user content and present them as real.
 8. Be open. Tell clients when AI plays a real part in their work, and label it for the public when people wouldn't otherwise know.
 9. Freelancers play by the same rules, and declare their AI use with every deliverable.
-10. Speak up fast. Something gone wrong? Tell Micky the same day. Honest mistakes reported quickly are fixable.
+10. Speak up fast. Something gone wrong? Tell Micky (Operations Manager, the policy owner) the same day. Honest mistakes reported quickly are fixable.
 
 TRAFFIC LIGHTS
 Green, go ahead: public info, your own drafts, general research, non-sensitive internal stuff.
@@ -303,12 +303,12 @@ export const RULES = [
   { n: "02", t: "You own what goes out", d: "Read it, checked it, stand behind it." },
   { n: "03", t: "Check every fact", d: "Names, numbers, dates, quotes, links." },
   { n: "04", t: "Protect what isn't ours", d: "Only what the task needs. Traffic lights." },
-  { n: "05", t: "Know the client's AI level", d: "0 none, 1 assist, 2 create. Unknown means 1." },
+  { n: "05", t: "Know the client's AI level", d: "Set by the account lead, written in the brief. Unknown means level 1." },
   { n: "06", t: "No fake people, no fake voices", d: "Written consent or it doesn't happen." },
   { n: "07", t: "No fake proof", d: "No invented reviews, comments or results." },
   { n: "08", t: "Be open", d: "Tell clients. Label it for the public." },
   { n: "09", t: "Freelancers, same rules", d: "And they declare AI use per deliverable." },
-  { n: "10", t: "Speak up fast", d: "Tell Micky the same day." },
+  { n: "10", t: "Speak up fast", d: "Tell Micky, ops manager and policy owner, the same day." },
 ];
 
 export const MENTAL_MODELS = [
@@ -342,10 +342,10 @@ export const GLOSSARY: { term: string; d: string }[] = [
 ];
 
 export const SETUP_STEPS = [
-  { n: "01", t: "Accept the invite", d: "It's in your Two Palms inbox from Fri 30 Oct. Accept it on your Two Palms email.", who: "You", mins: "2" },
-  { n: "02", t: "Run the onboarding prompt", d: "Open a new chat, paste the first prompt from the library, answer its questions one at a time.", who: "You", mins: "10" },
+  { n: "01", t: "Accept the invite", d: "It lands in your Two Palms inbox on Fri 30 Oct. Nothing to do before then. Accept it on your Two Palms email.", who: "You", mins: "2" },
+  { n: "02", t: "Run the onboarding prompt", d: "Open a new chat, paste the prompt shown on this page (it is also the first one in the library), and answer its questions one at a time.", who: "You", mins: "10" },
   { n: "03", t: "Paste your preferences", d: "Take the preferences block it gives you and paste it into Settings > General > Personal preferences.", who: "You", mins: "2" },
-  { n: "04", t: "Join your client projects", d: "Ask your account lead to add you to the shared project for each client you work on.", who: "You + account lead", mins: "5" },
+  { n: "04", t: "Join your client projects", d: "Each client has one shared project, set up by that client's account lead. If that is you, set it up; if not, ask them to add you.", who: "You + account lead", mins: "5" },
   { n: "05", t: "Sign in to your connectors", d: "Settings > Connectors: sign in to Drive, Gmail, Calendar, Slack and Granola. Claude only sees what you can see.", who: "You", mins: "5" },
   { n: "06", t: "Talk, don't type", d: "Turn on dictation (Mac: press the microphone key, or install a free dictation app). Say your next prompt out loud.", who: "You", mins: "3" },
   { n: "07", t: "Do one real thing", d: "Pick the starter task the onboarding prompt gave you. Ten minutes. See something useful today.", who: "You", mins: "10" },

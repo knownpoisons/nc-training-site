@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { PROMPTS, type Programme, type Session } from "../_data/hub";
 import { CopyButton, LocalTime, Reveal, Sketch } from "./bits";
-import { HeadMark } from "../_hairline";
+import { ComingSoonMark, Jenga } from "../_hairline";
 
 function SessionCard({ s, live }: { s: Session; live: boolean }) {
   const dim = s.status === "upcoming" && !live;
@@ -24,7 +24,7 @@ function SessionCard({ s, live }: { s: Session; live: boolean }) {
           <div className="tp-session-body">
             <div className="tp-session-live">
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-                {s.meetUrl ? <a className="tp-btn tp-btn-orange" href={s.meetUrl} target="_blank" rel="noreferrer">Join on Meet</a> : <span className="tp-btn" aria-disabled="true" style={{ opacity: 0.5 }}>Meet link coming</span>}
+                {s.meetUrl ? <a className="tp-btn tp-btn-orange" href={s.meetUrl} target="_blank" rel="noreferrer">Join on Meet</a> : <span className="tp-inert">Meet link: here and in #ai-training by Fri</span>}
                 <span className="tp-small tp-mute">Cameras on. Phones away. Slack closed.</span>
               </div>
               {s.homework ? (
@@ -66,19 +66,30 @@ export function ProgrammePage({ p }: { p: Programme }) {
   const delivered = p.sessions.filter((s) => s.status === "delivered").length;
   const comingSoon = p.status === "coming_soon";
   return (
-    <>
+    <div className={comingSoon ? "tp-dimwrap" : undefined}>
+      {comingSoon ? (
+        <div className="tp-soon" role="status">
+          <div>
+            <div className="tp-eyebrow" style={{ color: "#a9a9a9" }}><span className="tp-dot" />Programme 02</div>
+            <h2 className="tp-h2" style={{ marginTop: 8 }}><span className="tp-outline">Coming</span> soon.</h2>
+            <p className="tp-small" style={{ marginTop: 10, color: "#ddd" }}>{p.startsLabel}. Once everyone has the base. Dates, cohorts and the first session land here.</p>
+          </div>
+          <ComingSoonMark />
+        </div>
+      ) : null}
+    <div className={comingSoon ? "tp-dim" : undefined} aria-hidden={comingSoon || undefined}>
       <section className="tp-hero" style={{ paddingBottom: 24 }}>
         <div className="tp-wrap">
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}>
               <span className="tp-dot" />{comingSoon ? "Programme 02" : "Programme 01"} · {p.startsLabel}
             </div>
-            <h1 className="tp-h1"><span className="tp-outline">{p.name.split(" ")[0]}</span>{p.name.includes(" ") ? ` ${p.name.split(" ").slice(1).join(" ")}` : ""}</h1>
+            <h1 className="tp-h1">{p.name.includes(" ") ? <>{p.name.split(" ")[0]} <span className="tp-outline">{p.name.split(" ").slice(1).join(" ")}</span></> : p.name}</h1>
             <p className="tp-hand tp-orange" style={{ marginTop: 14, fontSize: "1.8rem" }}>{p.tagline}</p>
             <p className="tp-lede" style={{ marginTop: 16 }}>{p.shape}</p>
             <p className="tp-small tp-mute" style={{ marginTop: 8 }}>{p.who}</p>
           </Reveal>
-          {!comingSoon ? (
+          {!comingSoon && delivered > 0 ? (
             <Reveal delay={120}>
               <div className="tp-stat-strip">
                 <div className="tp-stat"><div className="tp-stat-n">{String(delivered).padStart(2, "0")} <span className="tp-outline" style={{ fontSize: "0.6em" }}>/ {String(p.sessions.length).padStart(2, "0")}</span></div><div className="tp-stat-l">sessions delivered</div></div>
@@ -108,6 +119,7 @@ export function ProgrammePage({ p }: { p: Programme }) {
         </div>
       </section>
 
+      {comingSoon ? null : (
       <section className="tp-section">
         <div className="tp-wrap">
           <Reveal>
@@ -116,7 +128,7 @@ export function ProgrammePage({ p }: { p: Programme }) {
                 <h2 className="tp-h2"><span className="tp-outline">The</span> sessions</h2>
                 <Sketch mark="arrow-down" width={28} color="var(--tp-orange)" delay={500} />
               </div>
-              <HeadMark mark={comingSoon ? "loupe" : "terrain"} />
+              <Jenga />
             </div>
           </Reveal>
           {comingSoon ? (
@@ -127,9 +139,20 @@ export function ProgrammePage({ p }: { p: Programme }) {
             </div>
           ) : (
             <ul style={{ listStyle: "none", margin: 0, padding: 0 }}>
-              {p.sessions.map((s, i) => <SessionCard key={s.number} s={s} live={i === nextIdx} />)}
+              {p.sessions.filter((s) => s.title || s.status === "delivered").map((s) => <SessionCard key={s.number} s={s} live={p.sessions.indexOf(s) === nextIdx} />)}
             </ul>
           )}
+          {p.sessions.some((s) => !s.title && s.status === "upcoming") ? (
+            <div className="tp-card tp-card-tint" style={{ marginTop: 20 }}>
+              <div className="tp-eyebrow"><span className="tp-dot" />Sessions {String(p.sessions.find((s) => !s.title)!.number).padStart(2, "0")} to {String(p.sessions.length).padStart(2, "0")}</div>
+              <p className="tp-small" style={{ marginTop: 6 }}>Same time each week. Titles land after session 01. Dates to be confirmed by Two Palms.</p>
+              <div className="tp-sessions-compact">
+                {p.sessions.filter((s) => !s.title && s.status === "upcoming").map((s) => (
+                  <span key={s.number} className="tp-chip">{String(s.number).padStart(2, "0")} · {s.startsAt ? new Intl.DateTimeFormat("en-AU", { timeZone: "Australia/Sydney", weekday: "short", day: "numeric", month: "short" }).format(new Date(s.startsAt)) : "date coming"}</span>
+                ))}
+              </div>
+            </div>
+          ) : null}
           {p.officeHours.length ? (
             <div className="tp-grid tp-grid-2" style={{ marginTop: 28 }}>
               {p.officeHours.map((o) => (
@@ -143,6 +166,8 @@ export function ProgrammePage({ p }: { p: Programme }) {
           ) : null}
         </div>
       </section>
-    </>
+      )}
+    </div>
+    </div>
   );
 }

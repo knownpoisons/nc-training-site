@@ -4,6 +4,7 @@ import "./tp.css";
 import { hubConfigured, isIntakeDone, isTeamAuthed } from "./_lib/auth";
 import { Intake, Lock } from "./_ui/gates";
 import { Footer, Header } from "./_ui/shell";
+import { FOUNDATIONS } from "./_data/hub";
 
 // Self-hosted (Fontsource builds of the Google Fonts), so the hub never calls Google.
 const koulen = localFont({ src: "./_fonts/koulen-latin-400-normal.woff2", weight: "400", variable: "--font-tp-koulen", display: "swap" });
@@ -36,9 +37,11 @@ export default async function TwoPalmsLayout({ children }: { children: React.Rea
   if (!intake) {
     return <div className={`tp-root ${fonts}`}><Intake /></div>;
   }
+  const nxt = FOUNDATIONS.sessions.find((s) => s.status === "upcoming" && s.startsAt);
+  const next = nxt ? { iso: nxt.startsAt!, title: `Foundations ${String(nxt.number).padStart(2, "0")}`, href: "/two-palms/foundations" } : null;
   return (
     <div className={`tp-root ${fonts}`}>
-      <Header />
+      <Header next={next} />
       <main>{children}</main>
       <Footer />
     </div>

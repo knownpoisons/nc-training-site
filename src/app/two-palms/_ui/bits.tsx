@@ -98,24 +98,6 @@ function fmt(d: Date, tz: string | undefined, opts: Intl.DateTimeFormatOptions) 
   return new Intl.DateTimeFormat("en-AU", { ...opts, timeZone: tz }).format(d);
 }
 
-export function Clocks() {
-  const [now, setNow] = useState<Date | null>(null);
-  useEffect(() => { setNow(new Date()); const t = setInterval(() => setNow(new Date()), 15000); return () => clearInterval(t); }, []);
-  const tz = typeof Intl !== "undefined" ? Intl.DateTimeFormat().resolvedOptions().timeZone : undefined;
-  const isSyd = tz === "Australia/Sydney" || tz === "Australia/Melbourne";
-  const isMuc = tz === "Europe/Berlin";
-  const t = (z?: string) => (now ? fmt(now, z, { hour: "2-digit", minute: "2-digit", hour12: false }) : "--:--");
-  return (
-    <div className="tp-clocks" aria-label="Office clocks">
-      <div className={`tp-clock ${isSyd ? "tp-clock-you" : ""}`}><span className="tp-clock-city">Sydney</span><span className="tp-clock-time">{t("Australia/Sydney")}</span></div>
-      <div className={`tp-clock ${isMuc ? "tp-clock-you" : ""}`}><span className="tp-clock-city">Munich</span><span className="tp-clock-time">{t("Europe/Berlin")}</span></div>
-      {!isSyd && !isMuc && tz ? (
-        <div className="tp-clock tp-clock-you"><span className="tp-clock-city">You</span><span className="tp-clock-time">{t(tz)}</span></div>
-      ) : null}
-    </div>
-  );
-}
-
 /** A session time shown in the viewer's own zone, with the two office times. */
 export function LocalTime({ iso, provisional = false }: { iso: string; provisional?: boolean }) {
   const [tz, setTz] = useState<string | null>(null);

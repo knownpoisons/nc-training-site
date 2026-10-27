@@ -1,6 +1,6 @@
 import { CLAUDE_BOARD, CREATIVE_BOARD, GLOSSARY, MENTAL_MODELS, POLICY_ONE_PAGER, RULES, TOOL_REGISTER } from "../_data/hub";
 import { Circled, CopyButton, Reveal, Sketch } from "../_ui/bits";
-import { HeadMark } from "../_hairline";
+import { Jenga } from "../_hairline";
 import { KitTabs } from "./tabs";
 
 export const metadata = { title: "The Kit" };
@@ -20,7 +20,7 @@ export default function Page() {
             <h1 className="tp-h1"><span className="tp-outline">The</span> Kit.</h1>
             <p className="tp-lede" style={{ marginTop: 18 }}>The policy on one page. Which model for which job. The mental models we keep coming back to. And the words, explained once.</p>
           </Reveal>
-          <HeadMark mark="vault" />
+          <Jenga />
         </div>
       </section>
 
@@ -49,7 +49,18 @@ export default function Page() {
                         <div><h3 className="tp-h3">AI policy, the short version</h3><div className="tp-prompt-when">The one page everyone reads. Full policy in Drive, and inside Claude as a skill.</div></div>
                         <CopyButton text={POLICY_ONE_PAGER} />
                       </div>
-                      <pre style={{ maxHeight: 520 }}>{POLICY_ONE_PAGER}</pre>
+                      <div className="tp-prompt-scroll"><pre style={{ maxHeight: 520 }}>{POLICY_ONE_PAGER}</pre></div>
+                    </div>
+                  </Reveal>
+                  <Reveal delay={250}>
+                    <div className="tp-card">
+                      <div className="tp-eyebrow"><span className="tp-dot" />Client AI levels · set by the account lead, written in the brief</div>
+                      <dl className="tp-gloss" style={{ marginTop: 6 }}>
+                        <div><dt>0 · No AI</dt><dd>No AI at any stage, including note-takers and drafting.</dd></div>
+                        <div><dt>1 · Assist</dt><dd>AI helps you work. Anything it drafts is rewritten and checked by a person before the client sees it. No AI images, video, voice or music in final work. A client brief can go in, Claude only, minimum needed.</dd></div>
+                        <div><dt>2 · Create</dt><dd>AI-made images, video, voice or copy can appear in final work, with client approval and agreed labelling.</dd></div>
+                      </dl>
+                      <p className="tp-small tp-mute" style={{ marginTop: 10 }}>Don&rsquo;t know the level? Treat it as 1 and ask the account lead before client material goes in.</p>
                     </div>
                   </Reveal>
                   <Reveal delay={300}>

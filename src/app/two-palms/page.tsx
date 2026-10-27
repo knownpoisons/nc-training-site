@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { CREATIVE, FOUNDATIONS, HUB, PROMPTS } from "./_data/hub";
 import { Circled, Countdown, CopyButton, LocalTime, Reveal, Sketch, Underline } from "./_ui/bits";
-import { Badge, HeadMark } from "./_hairline";
+import { Badge, Jenga } from "./_hairline";
 
 const Arrow = () => (
   <svg className="tp-card-arrow" viewBox="0 0 34 34" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -20,15 +20,15 @@ export default function Home() {
             <div className="tp-eyebrow" style={{ marginBottom: 18 }}><span className="tp-dot" />Two Palms x NotContent · 2026 to 2027</div>
             <h1 className="tp-h1">
               <span className="tp-outline">One agency.</span><br />
-              One way of <Underline delay={700}>working</Underline><br />
-              <span className="tp-outline">with</span> AI.
+              <span className="tp-outline">One way of</span><br />
+              <Underline delay={700}>working</Underline> with AI.
             </h1>
             <p className="tp-lede tp-hero-sub">
               Two programmes, one hub. Foundations for everyone, the Creative Programme for the makers. Sessions, recordings, prompts and the rules, all here. Nothing lives in Slack.
             </p>
           </Reveal>
           <Reveal delay={100}>
-            <div className="tp-hero-badge"><Badge play intensity={0.6} /><div className="tp-read" style={{ textAlign: "right", marginTop: 6 }}>Move over the palms</div></div>
+            <div className="tp-hero-badge"><Badge play intensity={0.6} /></div>
           </Reveal>
         </div>
         <div className="tp-wrap">
@@ -43,40 +43,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* This week */}
+      {/* Do this first, then the next session */}
       <section className="tp-section tp-section-tint" style={{ paddingTop: 48 }}>
         <div className="tp-wrap tp-split">
           <Reveal>
-            <div className="tp-card tp-card-black" style={{ minHeight: 280 }}>
-              <div className="tp-eyebrow" style={{ color: "#a9a9a9" }}><span className="tp-dot" />Next up</div>
-              {next ? (
-                <>
-                  <h2 className="tp-h2" style={{ marginTop: 6 }}>
-                    <span className="tp-outline">Foundations</span> Session {String(next.number).padStart(2, "0")}
-                  </h2>
-                  {next.title ? <p className="tp-lede" style={{ marginTop: 10, color: "#ddd" }}>{next.title}</p> : null}
-                  <p style={{ marginTop: 14, color: "#ddd" }}><LocalTime iso={next.startsAt!} provisional={next.provisional} /></p>
-                  <div style={{ marginTop: 22 }}><Countdown iso={next.startsAt!} label="Counting down" /></div>
-                  <div style={{ marginTop: 24, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                    {next.meetUrl ? <a className="tp-btn tp-btn-orange" href={next.meetUrl} target="_blank" rel="noreferrer">Join the session</a> : <span className="tp-lime-chip">Meet link lands here</span>}
-                    <Link className="tp-btn tp-btn-ghost" style={{ borderColor: "#fff", color: "#fff" }} href="/two-palms/foundations">The programme</Link>
-                  </div>
-                </>
-              ) : (
-                <h2 className="tp-h2" style={{ marginTop: 6 }}>Dates coming</h2>
-              )}
+            <div className="tp-card tp-card-black" style={{ minHeight: 300 }}>
+              <div className="tp-eyebrow" style={{ color: "#a9a9a9" }}><span className="tp-dot" />Do this first</div>
+              <h2 className="tp-h2" style={{ marginTop: 6 }}><span className="tp-outline">Set up</span> your Claude account.</h2>
+              <p style={{ marginTop: 14, color: "#ddd", maxWidth: "48ch" }}>Invites land Fri 30 Oct. Then: paste the onboarding prompt into your first chat and answer its questions (ten minutes), and work through the eight setup steps before Monday (about 40 minutes all in). That is the only homework before session 1.</p>
+              <div style={{ marginTop: 22, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                <CopyButton text={onboarding.body} label="Copy the prompt" />
+                <Link className="tp-btn tp-btn-orange" href="/two-palms/setup">The eight steps</Link>
+              </div>
             </div>
           </Reveal>
           <div className="tp-stack" style={{ "--tp-stack": "16px" } as React.CSSProperties}>
             <Reveal delay={100}>
               <div className="tp-card tp-card-hover">
-                <div className="tp-eyebrow"><span className="tp-dot" />Do this first</div>
-                <h3 className="tp-h3">Set up your Claude account</h3>
-                <p className="tp-small" style={{ marginTop: 8 }}>Ten minutes. Paste the onboarding prompt into your first chat and answer its questions. Then you&rsquo;re set for your role and your clients.</p>
-                <div style={{ display: "flex", gap: 10, marginTop: 14, flexWrap: "wrap" }}>
-                  <CopyButton text={onboarding.body} label="Copy the prompt" />
-                  <Link className="tp-copy" href="/two-palms/setup">The full setup</Link>
-                </div>
+                <div className="tp-eyebrow"><span className="tp-dot" />Then · next session</div>
+                {next ? (
+                  <>
+                    <h3 className="tp-h3">Foundations {String(next.number).padStart(2, "0")}{next.title ? `: ${next.title}` : ""}</h3>
+                    <p className="tp-small" style={{ marginTop: 8 }}><LocalTime iso={next.startsAt!} provisional={next.provisional} /></p>
+                    <div style={{ marginTop: 14 }}><Countdown iso={next.startsAt!} label="Counting down" /></div>
+                    <div style={{ marginTop: 16, display: "flex", gap: 10, flexWrap: "wrap" }}>
+                      {next.meetUrl ? <a className="tp-btn tp-btn-sm" href={next.meetUrl} target="_blank" rel="noreferrer">Join the session</a> : <span className="tp-inert">Meet link: here and in #ai-training by Fri</span>}
+                      <Link className="tp-copy" href="/two-palms/foundations">The programme</Link>
+                    </div>
+                  </>
+                ) : <h3 className="tp-h3">Dates coming</h3>}
               </div>
             </Reveal>
             <Reveal delay={200}>
@@ -101,7 +96,7 @@ export default function Home() {
                   <span className="tp-outline">Everyone</span> learns the base.<br />The makers go <Circled delay={600}>further</Circled>.
                 </h2>
               </div>
-              <HeadMark mark="hub" />
+              <Jenga />
             </div>
           </Reveal>
           <div className="tp-grid tp-grid-2">

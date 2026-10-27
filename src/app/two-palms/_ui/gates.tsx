@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { adminLogin, submitIntake, teamLogin, type IntakeAnswers } from "../_lib/actions";
-import { Sketch, Underline } from "./bits";
+import { Underline } from "./bits";
 import { Badge } from "../_hairline";
 
 // ─── Lock screens ───────────────────────────────────────────────────────────────
@@ -27,7 +27,7 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
           {isAdmin ? <><span className="tp-outline">The</span> Backstage</> : <><span className="tp-outline">Two Palms</span> AI Hub</>}
         </h1>
         <p className="tp-lede">
-          {isAdmin ? "Leadership only. The checklist, the roster and the intake answers." : <>Everything from the training, in one place. <Underline delay={400}>Team password</Underline> is in the pinned post in #ai-training.</>}
+          {isAdmin ? "Leadership only. The checklist, the roster and the intake answers." : <>Everything from the training, in one place. <Underline delay={400}>Team password</Underline> is in the pinned post in #ai-training. Leadership: the Backstage door is inside, last in the menu.</>}
         </p>
         {!configured ? (
           <p className="tp-note">This door has no password set yet. Set {isAdmin ? "TP_HUB_ADMIN_PASSWORD" : "TP_HUB_PASSWORD"} in Vercel and redeploy.</p>
@@ -51,7 +51,6 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
           {err ? <p className="tp-err">{err}</p> : null}
           <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 14 }}>
             <button className="tp-btn tp-btn-orange" disabled={pending || !pw}>{pending ? "Checking" : "Let me in"}</button>
-            <Sketch mark="arrow" width={64} color="var(--tp-orange)" delay={900} />
           </div>
         </form>
       </div>
@@ -122,7 +121,7 @@ export function Intake() {
       <div className="tp-intake-body">
         <div key={q.id} className="tp-intake-q tp-slide-enter">
           {i === 0 ? (
-            <p className="tp-hand tp-orange" style={{ marginBottom: 14 }}>Before you come in: eleven quick questions. About three minutes.</p>
+            <p className="tp-eyebrow" style={{ marginBottom: 14 }}><span className="tp-dot" />Before you come in: eleven quick questions, about three minutes</p>
           ) : null}
           <h2 className="tp-h2">{q.q}</h2>
           {q.sub ? <p className="tp-lede tp-mute" style={{ marginBottom: 18 }}>{q.sub}</p> : null}
@@ -180,7 +179,7 @@ export function Checklist({ items, state, persisted }: { items: CheckItem[]; sta
         <span className="tp-eyebrow">{done} / {items.length} done</span>
         <input className="tp-input" style={{ maxWidth: 200, padding: "8px 12px", fontSize: "0.95rem" }} placeholder="Ticking as…" value={who} onChange={(e) => setWho(e.target.value)} />
       </div>
-      {!persisted ? <p className="tp-note">Ticks aren&rsquo;t saving yet: run migration 008 in Supabase. Until then they reset on reload.</p> : null}
+      {!persisted ? <p className="tp-note">Ticks aren&rsquo;t being saved right now. Tell Jem.</p> : null}
       {groups.map((g) => (
         <div key={g}>
           <div className="tp-eyebrow" style={{ marginTop: 10 }}><span className="tp-dot" />{g}</div>
