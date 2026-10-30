@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./tp.css";
-import { hubConfigured, isIntakeDone, isTeamAuthed } from "./_lib/auth";
-import { Intake, Lock } from "./_ui/gates";
+import { hubConfigured, isTeamAuthed } from "./_lib/auth";
+import { Lock } from "./_ui/gates";
 import { Footer, Header } from "./_ui/shell";
 import { FOUNDATIONS } from "./_data/hub";
 
@@ -33,10 +33,7 @@ export default async function TwoPalmsLayout({ children }: { children: React.Rea
   if (!authed) {
     return <div className={`tp-root ${fonts}`}><Lock kind="team" configured={cfg.team} /></div>;
   }
-  const intake = await isIntakeDone();
-  if (!intake) {
-    return <div className={`tp-root ${fonts}`}><Intake /></div>;
-  }
+  // The intake is no longer a gate: it lives at /two-palms/intake and is shared after Session 1.
   const nxt = FOUNDATIONS.sessions.find((s) => s.status === "upcoming" && s.startsAt);
   const next = nxt ? { iso: nxt.startsAt!, title: `Foundations ${String(nxt.number).padStart(2, "0")}`, href: "/two-palms/foundations" } : null;
   return (

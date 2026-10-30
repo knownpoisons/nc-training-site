@@ -1,5 +1,5 @@
 import { LEADERSHIP_CHECKLIST, MICKY_CHECKLIST } from "../_data/hub";
-import { readChecklist, readIntake } from "../_lib/actions";
+import { readChecklist } from "../_lib/actions";
 import { hubConfigured, isAdminAuthed } from "../_lib/auth";
 import { getSupabaseServer } from "@/lib/supabase";
 import { Reveal } from "../_ui/bits";
@@ -15,9 +15,9 @@ export default async function Page() {
     return <Lock kind="admin" configured={cfg.admin} />;
   }
   const persisted = !!getSupabaseServer();
-  const [state, intake] = await Promise.all([readChecklist(), readIntake()]);
-  const avg = intake.length ? (intake.reduce((a, r) => a + (r.confidence || 0), 0) / intake.length).toFixed(1) : "–";
-  const byEntity = Object.entries(intake.reduce<Record<string, number>>((m, r) => { m[r.entity || "?"] = (m[r.entity || "?"] ?? 0) + 1; return m; }, {}));
+  const sb = getSupabaseServer();
+  const [state, countRes] = await Promise.all([readChecklist(), sb ? sb.from("tp_intake_v2").select("id", { count: "exact", head: true }) : Promise.resolve({ count: 0 })]);
+  const intakeCount = (countRes as { count: number | null }).count ?? 0;
 
   return (
     <>
@@ -33,8 +33,7 @@ export default async function Page() {
         <div className="tp-wrap">
           <Reveal delay={120}>
             <div className="tp-stat-strip">
-              <div className="tp-stat"><div className="tp-stat-n">{String(intake.length).padStart(2, "0")}</div><div className="tp-stat-l">intake forms in</div></div>
-              <div className="tp-stat"><div className="tp-stat-n">{intake.length ? avg : "–"}</div><div className="tp-stat-l">{intake.length ? "average confidence, out of 5" : "confidence shows once forms are in"}</div></div>
+              <div className="tp-stat"><div className="tp-stat-n">{String(intakeCount).padStart(2, "0")}</div><div className="tp-stat-l">intake forms in</div></div>
               <div className="tp-stat"><div className="tp-stat-n">{String(MICKY_CHECKLIST.filter((i) => state.find((s) => s.id === i.id)?.done).length).padStart(2, "0")} <span className="tp-outline" style={{ fontSize: "0.6em" }}>/ {String(MICKY_CHECKLIST.length).padStart(2, "0")}</span></div><div className="tp-stat-l">of Micky&rsquo;s list done</div></div>
             </div>
           </Reveal>
@@ -60,32 +59,10 @@ export default async function Page() {
             intake={
               <div>
                 <h2 className="tp-h2" style={{ marginBottom: 6 }}><span className="tp-outline">The</span> intake.</h2>
-                <p className="tp-small tp-mute" style={{ marginBottom: 20 }}>Every answer, newest first. Names live here and nowhere else on the hub.</p>
-                {byEntity.length ? <div className="tp-chip-row" style={{ marginBottom: 18 }}>{byEntity.map(([e, n]) => <span key={e} className="tp-chip">{e} · {n}</span>)}</div> : null}
+                <p className="tp-small tp-mute" style={{ marginBottom: 20 }}>The AI Foundations intake is shared with the team after Session 1, to fill in before Session 2. Answers go to Jem only; he&rsquo;ll share the overall picture.</p>
                 {!persisted ? <p className="tp-note">Answers aren&rsquo;t being stored right now. Tell Jem.</p> : null}
-                {intake.length === 0 ? <p className="tp-mute">Nothing in yet.</p> : (
-                  <div className="tp-stack">
-                    {intake.map((r) => (
-                      <div key={r.id} className="tp-card">
-                        <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-                          <strong>{r.name || "No name"}</strong>
-                          <span className="tp-chip">{r.entity}</span>
-                          <span className="tp-chip">{r.role}</span>
-                          <span className="tp-chip tp-chip-orange">confidence {r.confidence}/5</span>
-                          <span className="tp-small tp-mute" style={{ marginLeft: "auto" }}>{new Date(r.created_at).toLocaleDateString("en-AU", { day: "numeric", month: "short" })}</span>
-                        </div>
-                        <dl className="tp-gloss" style={{ marginTop: 10 }}>
-                          <div><dt>Clients</dt><dd>{r.clients}</dd></div>
-                          <div><dt>AI today</dt><dd>{r.ai_today} · {(r.tools ?? []).join(", ")}</dd></div>
-                          <div><dt>Eats the week</dt><dd>{r.time_wasters}</dd></div>
-                          <div><dt>Worked</dt><dd>{r.one_win}</dd></div>
-                          <div><dt>Didn&rsquo;t</dt><dd>{r.one_fail}</dd></div>
-                          <div><dt>Wants</dt><dd>{r.want}</dd></div>
-                        </dl>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="tp-stat-strip"><div className="tp-stat"><div className="tp-stat-n">{String(intakeCount).padStart(2, "0")}</div><div className="tp-stat-l">forms in so far</div></div></div>
+                <p className="tp-small" style={{ marginTop: 16 }}>Link for the team: <Link href="/two-palms/intake">/two-palms/intake</Link></p>
               </div>
             }
           />

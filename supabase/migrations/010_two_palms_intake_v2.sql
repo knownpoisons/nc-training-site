@@ -1,0 +1,46 @@
+-- Two Palms AI Foundations intake v2 (30 Oct 2026). Answers are for Jem only.
+-- Service-role only: RLS on, no policies, so nothing reads it except the server.
+-- Run once in the Supabase SQL editor.
+
+create table if not exists tp_intake_v2 (
+  id bigserial primary key,
+  created_at timestamptz not null default now(),
+  name text,
+  role text,
+  role_other text,
+  week text,
+  based text,
+  based_other text,
+  h_email_slack text,
+  h_meetings text,
+  h_scoping text,
+  h_pm text,
+  h_timesheets text,
+  h_reporting text,
+  h_budgets text,
+  h_research text,
+  h_decks text,
+  h_writing text,
+  never_again text,
+  interruptions text,
+  success text,
+  ai_stage text,
+  ai_freq text,
+  tools text[] default '{}',
+  tools_other text,
+  c_prompt int,
+  c_check int,
+  c_docs int,
+  c_workspace int,
+  c_client_data int,
+  ai_fail text,
+  ai_win text,
+  feeling text,
+  feeling_why text,
+  rules_clarity int,
+  claude_account text,
+  device text,
+  can_install text,
+  anything_else text
+);
+alter table tp_intake_v2 enable row level security;
