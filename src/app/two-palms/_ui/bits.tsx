@@ -77,12 +77,12 @@ export function Circled({ children, delay = 0 }: { children: ReactNode; delay?: 
 }
 
 // ─── Copy button ────────────────────────────────────────────────────────────────
-export function CopyButton({ text, label = "Copy" }: { text: string; label?: string }) {
+export function CopyButton({ text, label = "Copy", className = "tp-copy" }: { text: string; label?: string; className?: string }) {
   const [done, setDone] = useState(false);
   return (
     <button
       type="button"
-      className="tp-copy"
+      className={className}
       data-done={done ? "true" : "false"}
       onClick={async () => {
         try { await navigator.clipboard.writeText(text); setDone(true); setTimeout(() => setDone(false), 1800); } catch { /* no clipboard */ }

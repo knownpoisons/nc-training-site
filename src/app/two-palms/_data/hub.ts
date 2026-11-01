@@ -1,3 +1,5 @@
+import { FC, sessionTitle } from "./foundations";
+
 // ═══════════════════════════════════════════════════════════════════════════════
 // TWO PALMS HUB — all content lives here. Edit this file, push, it's live.
 // Times are stored as ISO with the Sydney offset; the page localises them to
@@ -54,50 +56,48 @@ export const HUB = {
 };
 
 // ─── Foundations ────────────────────────────────────────────────────────────────
-// Session 1 is set (invite note, 27 Oct). Sessions 2 to 8 follow the plan of
-// Tuesdays from 10 Nov at the same time; marked provisional until Two Palms
-// confirms the calendar. Nothing ships to the team as a date until it's firm.
-const SYD = "+11:00";
+// Every word of Foundations comes from foundations-hub-content.json (see
+// foundations.ts). Paste an updated JSON over that file and the overview, the
+// session pages, the schedule, the form and the countdowns all follow.
+export { FC as FOUNDATIONS_CONTENT, SESSIONS as FOUNDATIONS_SESSIONS } from "./foundations";
 
 export const FOUNDATIONS: Programme = {
   slug: "foundations",
-  name: "Foundations",
-  tagline: "How Two Palms works with Claude.",
+  name: FC.programme.name,
+  tagline: FC.programme.through_line,
   status: "live",
-  startsLabel: "Starts Mon 2 Nov",
+  startsLabel: `Starts ${FC.sessions[0]?.when.date.replace(/ \d{4}$/, "") ?? ""}`,
   who: "Everyone. Sydney, Munich, Only Sports, Forward.",
-  shape: "Eight sessions, one hour each, about a week apart. Homework in between. Two office hours.",
-  phases: [
-    { label: "Meet the junior", weeks: "Session 1", blurb: "What Claude is for at Two Palms, the house rules, and the one habit that changes everything: talk, don't type." },
-    { label: "Onboard the junior", weeks: "Sessions 2 to 4", blurb: "Projects, Drive, Slack and Granola connected. Claude knows your clients the way you do." },
-    { label: "Build your own tools", weeks: "Sessions 5 to 8", blurb: "The three questions: most time-consuming, most costly, most annoying. Then you build the fix." },
-    { label: "The production line", weeks: "After", blurb: "Monthly check-ins, office hours, and the hub keeps growing." },
-  ],
-  sessions: [
-    {
-      number: 1,
-      title: "Meet the junior",
-      phase: "Phase 01",
-      startsAt: `2026-11-02T17:30:00${SYD}`,
-      durationMinutes: 60,
-      status: "upcoming",
-      meetUrl: null,
-      homework: "Before Monday: the eight setup steps (Setup page, about 40 minutes). That is the only homework. Then have a play: ask Claude what it can do for your job.",
-      prompts: ["onboarding"],
-    },
-    { number: 2, title: null, phase: "Phase 02", startsAt: `2026-11-10T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-    { number: 3, title: null, phase: "Phase 02", startsAt: `2026-11-17T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-    { number: 4, title: null, phase: "Phase 02", startsAt: `2026-11-24T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-    { number: 5, title: null, phase: "Phase 03", startsAt: `2026-12-01T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-    { number: 6, title: null, phase: "Phase 03", startsAt: `2026-12-08T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-    { number: 7, title: null, phase: "Phase 03", startsAt: `2026-12-15T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-    { number: 8, title: null, phase: "Phase 03", startsAt: `2026-12-22T17:30:00${SYD}`, durationMinutes: 60, status: "upcoming", provisional: true },
-  ],
-  officeHours: [
-    { label: "Office hours 01", startsAt: `2026-11-26T17:00:00${SYD}`, provisional: true },
-    { label: "Office hours 02", startsAt: `2026-12-17T17:00:00${SYD}`, provisional: true },
-  ],
+  shape: FC.programme.summary,
+  phases: FC.programme.phases.map((ph) => ({
+    label: ph.name,
+    weeks: ph.sessions.length > 1 ? `Sessions ${ph.sessions[0]} to ${ph.sessions[ph.sessions.length - 1]}` : `Session ${ph.sessions[0]}`,
+    blurb: ph.sessions.map((n) => FC.sessions.find((s) => s.n === n)).filter(Boolean).map((s) => sessionTitle(s!)).join(", "),
+  })),
+  sessions: FC.sessions.map((s): Session => ({
+    number: s.n,
+    title: sessionTitle(s),
+    phase: s.phase,
+    startsAt: s.when.start_iso,
+    durationMinutes: s.when.duration_min,
+    status: s.status === "delivered" ? "delivered" : "upcoming",
+    recordingUrl: s.recording_url,
+    wrapNotes: s.wrap_notes,
+  })),
+  officeHours: FC.office_hours.map((o) => ({ label: o.label, startsAt: null, provisional: true })),
 };
+
+// ─── Approved team-built tools ───────────────────────────────────────────────────
+// Opens after Session 6. Add one entry per approved tool; newest last.
+export interface ApprovedTool {
+  name: string;
+  what: string; // what it does
+  forRole: string; // who it's for: a role, never a person
+  how: string; // how to use it
+  addedOn: string; // "Tue 8 Dec"
+  href?: string;
+}
+export const TOOLS: ApprovedTool[] = [];
 
 export const CREATIVE: Programme = {
   slug: "creative",
@@ -151,7 +151,7 @@ D. The Two Palms house rules, in 5 lines:
 - Client work lives in that client's shared project; start a new chat whenever you like, Claude can find past chats and Drive
 - Check the client's AI level before you start, and check every fact, name and number before anything leaves the building
 - Passwords, bank details and anything a client has said not to share never go in
-- Not sure? Ask Claude to check it against the Two Palms AI policy, then ask Micky
+- Not sure? Ask Claude to check it against the Two Palms AI policy, then ask the Operations Manager
 
 Don't put any client confidential details into my personal preferences.`,
   },
@@ -278,7 +278,7 @@ THE 10 RULES
 7. No fake proof. Never invent reviews, comments, results or user content and present them as real.
 8. Be open. Tell clients when AI plays a real part in their work, and label it for the public when people wouldn't otherwise know.
 9. Freelancers play by the same rules, and declare their AI use with every deliverable.
-10. Speak up fast. Something gone wrong? Tell Micky (Operations Manager, the policy owner) the same day. Honest mistakes reported quickly are fixable.
+10. Speak up fast. Something gone wrong? Tell the Operations Manager (the policy owner) the same day. Honest mistakes reported quickly are fixable.
 
 TRAFFIC LIGHTS
 Green, go ahead: public info, your own drafts, general research, non-sensitive internal stuff.
@@ -296,7 +296,7 @@ AGENTS AND AUTOMATIONS
 Anything that runs on its own (scheduled tasks, Slack bots, reply assistants) can draft, sort and remind. A person sends, posts or approves.
 
 NOT SURE?
-Ask Claude to check it against the Two Palms AI policy. Then ask Micky. Full policy: in Drive, and inside Claude as a skill.`;
+Ask Claude to check it against the Two Palms AI policy. Then ask the Operations Manager. Full policy: in Drive, and inside Claude as a skill.`;
 
 export const RULES = [
   { n: "01", t: "Two Palms accounts only", d: "Never a personal account for work." },
@@ -308,7 +308,7 @@ export const RULES = [
   { n: "07", t: "No fake proof", d: "No invented reviews, comments or results." },
   { n: "08", t: "Be open", d: "Tell clients. Label it for the public." },
   { n: "09", t: "Freelancers, same rules", d: "And they declare AI use per deliverable." },
-  { n: "10", t: "Speak up fast", d: "Tell Micky, ops manager and policy owner, the same day." },
+  { n: "10", t: "Speak up fast", d: "Tell the Operations Manager, the policy owner, the same day." },
 ];
 
 export const MENTAL_MODELS = [
@@ -338,7 +338,7 @@ export const GLOSSARY: { term: string; d: string }[] = [
   { term: "Agent", d: "Claude running on its own for a while: reading, deciding, doing steps. It can draft and remind. A person sends." },
   { term: "Claude Code", d: "Claude that works inside files and software rather than a chat window. For building tools. Not needed for Foundations." },
   { term: "MCP", d: "The plumbing standard connectors are built on. You'll hear it. You don't need to touch it." },
-  { term: "API", d: "A way for one piece of software to talk to another. An API key is the password for that. Keys live with Micky, never in a chat." },
+  { term: "API", d: "A way for one piece of software to talk to another. An API key is the password for that. Keys live with the Operations Manager, never in a chat." },
 ];
 
 export const SETUP_STEPS = [

@@ -1,161 +1,137 @@
 import Link from "next/link";
-import { CREATIVE, FOUNDATIONS, HUB, PROMPTS } from "./_data/hub";
-import { Circled, Countdown, CopyButton, LocalTime, Reveal, Sketch, Underline } from "./_ui/bits";
-import { Badge, Jenga } from "./_hairline";
+import { FC, SESSIONS, TOOLS_OPENS_ISO, nextEvent, sessionHref, sessionTitle, toolsAreOpen, twoZones } from "./_data/foundations";
+import { PROMPTS, RULES, SETUP_STEPS } from "./_data/hub";
+import { CopyButton } from "./_ui/bits";
+import { SetupMeter } from "./_ui/b-client";
+import { Bento, IconArrow, IconClock, IconHash, IconLock, Lab, PageTitle, Tile, Win } from "./_ui/b";
+import { NextUpTile, TmpTile } from "./_ui/b-parts";
 
-const Arrow = () => (
-  <svg className="tp-card-arrow" viewBox="0 0 34 34" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-    <path d="M6 28 C 12 16, 18 10, 28 6" /><path d="M18 5 L 28 6 L 27 16" />
-  </svg>
-);
+const strip = (d: string) => d.replace(/ \d{4}$/, "");
 
 export default function Home() {
-  const next = FOUNDATIONS.sessions.find((s) => s.status === "upcoming" && s.startsAt) ?? null;
+  const now = new Date();
   const onboarding = PROMPTS.find((p) => p.id === "onboarding")!;
+  // Feature the next session (Session 1 until it has run), preview the one after.
+  const nxt = nextEvent(now);
+  const featIdx = Math.max(0, SESSIONS.findIndex((s) => new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000 > now.getTime()));
+  const feat = SESSIONS[featIdx] ?? SESSIONS[0];
+  const after = SESSIONS[featIdx + 1] ?? null;
+  const rest = SESSIONS.filter((s) => s !== feat && s !== after);
+  const toolsOpen = toolsAreOpen(now);
+  const tz = twoZones(feat.when.start_iso);
+  const nextIsFeat = nxt?.start_iso === feat.when.start_iso;
+
   return (
     <>
-      <section className="tp-hero">
-        <div className="tp-wrap tp-split" style={{ alignItems: "center" }}>
-          <Reveal>
-            <div className="tp-eyebrow" style={{ marginBottom: 18 }}><span className="tp-dot" />Two Palms x NotContent · 2026 to 2027</div>
-            <h1 className="tp-h1">
-              <span className="tp-outline">One agency.</span><br />
-              <span className="tp-outline">One way of</span><br />
-              <Underline delay={700}>working</Underline> with AI.
-            </h1>
-            <p className="tp-lede tp-hero-sub">
-              Two programmes, one hub. Foundations for everyone, the Creative Programme for the makers. Sessions, recordings, prompts and the rules, all here. Nothing lives in Slack.
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <div className="tp-hero-badge"><Badge play intensity={0.6} /></div>
-          </Reveal>
-        </div>
-        <div className="tp-wrap">
-          <Reveal delay={150}>
-            <div className="tp-stat-strip">
-              <div className="tp-stat"><div className="tp-stat-n">02</div><div className="tp-stat-l">programmes</div></div>
-              <div className="tp-stat"><div className="tp-stat-n">08 <span className="tp-outline" style={{ fontSize: "0.6em" }}>+ 01</span></div><div className="tp-stat-l">Foundations sessions, plus kickoff for Creative</div></div>
-              <div className="tp-stat"><div className="tp-stat-n">04</div><div className="tp-stat-l">{HUB.entities.join(" · ")}</div></div>
-              <div className="tp-stat"><div className="tp-stat-n">10 <span className="tp-outline" style={{ fontSize: "0.6em" }}>/ 80 / 10</span></div><div className="tp-stat-l">human brief, AI execution, human QA</div></div>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Do this first, then the next session */}
-      <section className="tp-section tp-section-tint" style={{ paddingTop: 48 }}>
-        <div className="tp-wrap tp-split">
-          <Reveal>
-            <div className="tp-card tp-card-black" style={{ minHeight: 300 }}>
-              <div className="tp-eyebrow" style={{ color: "#a9a9a9" }}><span className="tp-dot" />Do this first</div>
-              <h2 className="tp-h2" style={{ marginTop: 6 }}><span className="tp-outline">Set up</span> your Claude account.</h2>
-              <p style={{ marginTop: 14, color: "#ddd", maxWidth: "48ch" }}>Invites land Fri 30 Oct. Then: paste the onboarding prompt into your first chat and answer its questions (ten minutes), and work through the eight setup steps before Monday (about 40 minutes all in). That is the only homework before session 1.</p>
-              <div style={{ marginTop: 22, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                <CopyButton text={onboarding.body} label="Copy the prompt" />
-                <Link className="tp-btn tp-btn-orange" href="/two-palms/setup">The eight steps</Link>
+      <PageTitle title={FC.programme.hub_name} lede="Where Two Palms learns to work with AI. Sessions, homework, prompts and the rules, all here." right={<span className="lab-x">{FC.programme.through_line}</span>} />
+      <Bento kind="home">
+        {/* Set up Claude */}
+        <Tile span={2} hue="mustard" label="Set up Claude">
+          <Lab l="Before we begin" r="About 40 min" />
+          <div className="split">
+            <div className="split-c">
+              <h2 className="tt">Set up your Claude account</h2>
+              <p className="tp">Accept your invite, paste the onboarding prompt into your first chat and answer its questions (ten minutes), then work through the eight steps.</p>
+              <SetupMeter total={SETUP_STEPS.length} />
+              <div className="acts">
+                <CopyButton text={onboarding.body} label="Copy the prompt" className="btn btn--pri" />
+                <Link className="btn btn--sec" href="/two-palms/setup">See the 8 steps</Link>
               </div>
             </div>
-          </Reveal>
-          <div className="tp-stack" style={{ "--tp-stack": "16px" } as React.CSSProperties}>
-            <Reveal delay={100}>
-              <div className="tp-card tp-card-hover">
-                <div className="tp-eyebrow"><span className="tp-dot" />Then · next session</div>
-                {next ? (
-                  <>
-                    <h3 className="tp-h3">Foundations {String(next.number).padStart(2, "0")}{next.title ? `: ${next.title}` : ""}</h3>
-                    <p className="tp-small" style={{ marginTop: 8 }}><LocalTime iso={next.startsAt!} provisional={next.provisional} /></p>
-                    <div style={{ marginTop: 14 }}><Countdown iso={next.startsAt!} label="Counting down" /></div>
-                    <div style={{ marginTop: 16, display: "flex", gap: 10, flexWrap: "wrap" }}>
-                      {next.meetUrl ? <a className="tp-btn tp-btn-sm" href={next.meetUrl} target="_blank" rel="noreferrer">Join the session</a> : <span className="tp-inert">Meet link: here and in #ai-training by Fri</span>}
-                      <Link className="tp-copy" href="/two-palms/foundations">The programme</Link>
-                    </div>
-                  </>
-                ) : <h3 className="tp-h3">Dates coming</h3>}
-              </div>
-            </Reveal>
-            <Reveal delay={200}>
-              <div className="tp-card tp-card-pina">
-                <div className="tp-eyebrow"><span className="tp-dot" />{HUB.spotlight.eyebrow}</div>
-                <h3 className="tp-h3">{HUB.spotlight.headline}</h3>
-                <p className="tp-small" style={{ marginTop: 8 }}>{HUB.spotlight.body}</p>
-              </div>
-            </Reveal>
+            <Win src="/two-palms/img/l/setup.jpg" w={520} h={520} />
           </div>
-        </div>
-      </section>
+        </Tile>
 
-      {/* Programmes */}
-      <section className="tp-section">
-        <div className="tp-wrap">
-          <Reveal>
-            <div className="tp-headrow">
-              <div>
-                <div className="tp-eyebrow"><span className="tp-dot" />The two programmes</div>
-                <h2 className="tp-h2" style={{ marginTop: 10 }}>
-                  <span className="tp-outline">Everyone</span> learns the base.<br />The makers go <Circled delay={600}>further</Circled>.
-                </h2>
-              </div>
-              <Jenga />
-            </div>
-          </Reveal>
-          <div className="tp-grid tp-grid-2">
-            {[FOUNDATIONS, CREATIVE].map((p, i) => (
-              <Reveal key={p.slug} delay={i * 120}>
-                <Link href={`/two-palms/${p.slug}`} className={`tp-card tp-card-link ${p.status === "live" ? "" : "tp-card-tint"}`} style={{ display: "block", minHeight: 260 }}>
-                  <Arrow />
-                  <div className="tp-eyebrow">{p.status === "live" ? <span className="tp-lime-chip">Live</span> : <span className="tp-chip">Coming soon</span>}</div>
-                  <h3 className="tp-h2" style={{ marginTop: 14 }}>{p.name}</h3>
-                  <p className="tp-hand tp-orange" style={{ marginTop: 6 }}>{p.tagline}</p>
-                  <p className="tp-small" style={{ marginTop: 14 }}>{p.who}</p>
-                  <p className="tp-small tp-mute" style={{ marginTop: 6 }}>{p.startsLabel}</p>
-                </Link>
-              </Reveal>
+        <NextUpTile now={now} />
+
+        <TmpTile now={now} compact />
+
+        {/* AI Foundations module */}
+        <Tile span={2} hue="mustard" label={FC.programme.name}>
+          <Lab l={FC.programme.name} sub={`${SESSIONS.length} one-hour sessions`} r={<Link className="lnk" href="/two-palms/foundations#schedule">See the schedule <IconArrow /></Link>} />
+          <div className="fo">
+            <Link className="fo-feat" href={sessionHref(feat)}>
+              <span className="fo-top"><span>S{feat.number}</span><span className={nextIsFeat ? "hot" : "w"}>{nextIsFeat ? "Next" : feat.phase}</span></span>
+              <span className="fo-b">
+                <Win src={`/two-palms/img/session-${feat.number}.jpg`} w={76} h={76} />
+                <span>
+                  <span className="tt" style={{ display: "block" }}>Session {feat.n}: {sessionTitle(feat)}</span>
+                  <span className="tp" style={{ display: "block" }}>{feat.line}</span>
+                  <span className="fo-when" style={{ display: "block" }}>{tz.sydneyDay} · {tz.sydney} Sydney · {tz.munich} Munich</span>
+                </span>
+              </span>
+            </Link>
+            {after ? (
+              <Link className="fo-next" href={sessionHref(after)}>
+                <span className="fo-top"><span className="w">After that</span><span>S{after.number}</span></span>
+                <span className="fo-b">
+                  <Win src={`/two-palms/img/session-${after.number}.jpg`} w={52} h={52} wait />
+                  <span>
+                    <span className="tt" style={{ display: "block", fontSize: 18 }}>Session {after.n}: {sessionTitle(after)}</span>
+                    <span className="fo-when" style={{ display: "block", color: "var(--text-2)" }}>{strip(after.when.date)} · {twoZones(after.when.start_iso).sydney} Sydney</span>
+                  </span>
+                </span>
+              </Link>
+            ) : null}
+          </div>
+          <ol className="b-strip" aria-label="The other sessions">
+            {rest.map((s) => (
+              <li key={s.n}><Link className="cell" href={sessionHref(s)}><span className="cell-k">S{s.number}</span><span className="cell-n">{sessionTitle(s)}</span></Link></li>
             ))}
-          </div>
-        </div>
-      </section>
+          </ol>
+        </Tile>
 
-      {/* Stance */}
-      <section className="tp-section tp-section-tint">
-        <div className="tp-wrap tp-split">
-          <Reveal>
-            <div className="tp-eyebrow"><span className="tp-dot" />The stance</div>
-            <h2 className="tp-h2" style={{ marginTop: 10 }}>
-              AI <span className="tp-outline">amplifies</span> production.<br />It doesn&rsquo;t replace the shoot.
-            </h2>
-          </Reveal>
-          <Reveal delay={150}>
-            <div className="tp-callout">
-              <div className="tp-eyebrow">10 / 80 / 10</div>
-              <p>{HUB.tenEightyTen} Clients only ever see the middle. We sell the two tens.</p>
-              <p className="tp-hand tp-orange">Same budget, ten times the content, a tenth of the time.</p>
+        <Tile hue="sky" href="/two-palms/prompts" label="Prompt library">
+          <Lab l="Prompt library" r={`${PROMPTS.length} prompts`} />
+          <div className="area-b">
+            <div className="area-c"><h3 className="tt">Good prompts to steal</h3><p className="tp">Every one has a copy button.</p></div>
+            <Win src="/two-palms/img/prompts.jpg" w={64} h={48} className="win--area" />
+          </div>
+        </Tile>
+
+        <Tile hue="blush" href="/two-palms/kit" label="Rules for use">
+          <Lab l="Rules + Kit" r={`${RULES.length} rules`} />
+          <div className="area-b">
+            <div className="area-c"><h3 className="tt">Rules for use</h3><p className="tp">The policy on one page, the model board and the words.</p></div>
+            <Win src="/two-palms/img/rules.jpg" w={64} h={48} className="win--area" />
+          </div>
+        </Tile>
+
+        <Tile hue="bone" href="/two-palms/tools" label="Approved team-built tools">
+          <Lab icon={toolsOpen ? undefined : <IconLock />} l="Approved tools" r={toolsOpen ? "Open" : "After S06"} />
+          <div className="area-b">
+            <div className="area-c">
+              <h3 className="tt">{FC.pages_to_add.approved_tools.label}</h3>
+              <p className="tp">{toolsOpen ? "The best of what the team has built." : `Opens after Session 6, ${twoZones(TOOLS_OPENS_ISO).sydneyDay}.`}</p>
             </div>
-            <div style={{ marginTop: 16 }}><Sketch mark="zigzag" width={180} color="var(--tp-orange)" /></div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Quick links */}
-      <section className="tp-section">
-        <div className="tp-wrap">
-          <div className="tp-grid tp-grid-3">
-            {[
-              { href: "/two-palms/prompts", t: "Prompt library", d: "Good prompts to steal. Every one has a copy button." },
-              { href: "/two-palms/kit", t: "The Kit", d: "The policy on one page, the ten rules, which model for what, and the glossary." },
-              { href: "/two-palms/setup", t: "Setup", d: "Fresh account, done right. Eight steps, about 40 minutes." },
-            ].map((c, i) => (
-              <Reveal key={c.href} delay={i * 100}>
-                <Link href={c.href} className="tp-card tp-card-link" style={{ display: "block" }}>
-                  <Arrow />
-                  <h3 className="tp-h3">{c.t}</h3>
-                  <p className="tp-small" style={{ marginTop: 8 }}>{c.d}</p>
-                </Link>
-              </Reveal>
-            ))}
+            <Win src="/two-palms/img/showcase.jpg" w={64} h={48} wait={!toolsOpen} className="win--area" />
           </div>
-        </div>
-      </section>
+        </Tile>
+
+        <Tile hue="sky" label="Slack">
+          <Lab icon={<IconHash />} l="Slack" r="Link to confirm" />
+          <div className="area-b">
+            <div className="area-c"><h3 className="tt">#ai-training</h3><p className="tp">Meant to be loud. Post what you make, half-finished included.</p></div>
+          </div>
+        </Tile>
+
+        <Tile hue="bone" label="Office hours">
+          <Lab icon={<IconClock />} l="Office hours" r="To confirm" />
+          <ul className="b-rows" style={{ marginTop: 10 }}>
+            {FC.office_hours.map((o) => (
+              <li key={o.n}><div className="row"><span className="row-c"><span className="row-t">{o.label}</span><span className="row-s">{o.format}</span></span><span className="row-st">{o.date.replace(/\s*\(to confirm\)/i, "")}<br />to confirm</span></div></li>
+            ))}
+          </ul>
+        </Tile>
+
+        <Tile hue="ember" href="/two-palms/creative" label="Creative Programme">
+          <Lab l="Coming soon" r="Part two" />
+          <div className="area-b">
+            <div className="area-c"><h3 className="tt">Creative Programme</h3><p className="tp">AI production, the Two Palms way. Once everyone has the base.</p></div>
+            <Win src="/two-palms/img/creative.jpg" w={64} h={48} wait className="win--area" />
+          </div>
+        </Tile>
+      </Bento>
     </>
   );
 }

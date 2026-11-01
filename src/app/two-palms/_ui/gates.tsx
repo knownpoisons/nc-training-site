@@ -3,8 +3,6 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { adminLogin, submitIntake, teamLogin, type IntakeAnswers } from "../_lib/actions";
-import { Underline } from "./bits";
-import { Badge } from "../_hairline";
 
 // ─── Lock screens ───────────────────────────────────────────────────────────────
 export function Lock({ kind, configured }: { kind: "team" | "admin"; configured: boolean }) {
@@ -14,47 +12,48 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
   const [pending, start] = useTransition();
   const isAdmin = kind === "admin";
   return (
-    <div className="tp-lock">
-      <div className="tp-lock-grid">
-      <div className="tp-lock-badge"><Badge play intensity={0.6} /></div>
-      <div className="tp-lock-card tp-stack" style={{ "--tp-stack": "22px" } as React.CSSProperties}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/two-palms/wordmark-black.png" alt="Two Palms" style={{ height: 16, width: "auto" }} />
-          <span className="tp-hand tp-orange" style={{ fontSize: "1.2rem" }}>x NotContent</span>
+    <div className="tpb-lock">
+      <section className="t tpb-lock-card" aria-labelledby="tpb-lock-h">
+        <div className="lab">
+          <span className="lab-l">{isAdmin ? "Backstage" : "Two Palms AI Hub"}</span>
+          <span className="lab-r">{isAdmin ? "Admin" : "Team"}</span>
         </div>
-        <h1 className="tp-h1">
-          {isAdmin ? <><span className="tp-outline">The</span> Backstage</> : <><span className="tp-outline">Two Palms</span> AI Hub</>}
-        </h1>
-        <p className="tp-lede">
-          {isAdmin ? "Leadership only. The checklist, the roster and the intake answers." : <>Everything from the training, in one place. <Underline delay={400}>Team password</Underline> is in the pinned post in #ai-training. Leadership: the Backstage door is inside, last in the menu.</>}
-        </p>
-        {!configured ? (
-          <p className="tp-note">This door has no password set yet. Set {isAdmin ? "TP_HUB_ADMIN_PASSWORD" : "TP_HUB_PASSWORD"} in Vercel and redeploy.</p>
-        ) : null}
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            setErr(null);
-            const v = pw;
-            start(async () => {
-              const r = isAdmin ? await adminLogin(v) : await teamLogin(v);
-              if (r.ok) router.refresh();
-              else { setErr("Wrong password. Try again, or ask Micky."); setPw(""); }
-            });
-          }}
-        >
-          <label className="tp-field">
-            <span style={{ position: "absolute", left: -9999 }}>Password</span>
-            <input className="tp-input tp-input-xl" type="password" autoComplete="current-password" placeholder="Password" value={pw} onChange={(e) => setPw(e.target.value)} autoFocus />
-          </label>
-          {err ? <p className="tp-err">{err}</p> : null}
-          <div style={{ marginTop: 18, display: "flex", alignItems: "center", gap: 14 }}>
-            <button className="tp-btn tp-btn-orange" disabled={pending || !pw}>{pending ? "Checking" : "Let me in"}</button>
+        <div className="tpb-lock-b">
+          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/two-palms/mark-black.png" alt="" width={32} height={32} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/two-palms/wordmark-black.png" alt="Two Palms" style={{ height: 10, width: "auto" }} />
           </div>
-        </form>
-      </div>
-      </div>
+          <h1 id="tpb-lock-h" className="tt-lg" style={{ marginTop: 22 }}>{isAdmin ? "Backstage" : "Two Palms AI Hub"}</h1>
+          <p className="tp" style={{ marginTop: 8 }}>
+            {isAdmin ? "Leadership and the trainer only. The checklist, the roster and the form answers." : "Everything from the training, in one place. The team password is in the pinned post in #ai-training."}
+          </p>
+          {!configured ? (
+            <p className="note">This door has no password set yet. Set {isAdmin ? "TP_HUB_ADMIN_PASSWORD" : "TP_HUB_PASSWORD"} in Vercel and redeploy.</p>
+          ) : null}
+          <form
+            style={{ marginTop: 22 }}
+            onSubmit={(e) => {
+              e.preventDefault();
+              setErr(null);
+              const v = pw;
+              start(async () => {
+                const r = isAdmin ? await adminLogin(v) : await teamLogin(v);
+                if (r.ok) router.refresh();
+                else { setErr("Wrong password. Try again, or ask in #ai-training."); setPw(""); }
+              });
+            }}
+          >
+            <label className="sr" htmlFor={`tpb-pw-${kind}`}>Password</label>
+            <input id={`tpb-pw-${kind}`} className="fld" type="password" autoComplete="current-password" placeholder="Password" value={pw} onChange={(e) => setPw(e.target.value)} autoFocus />
+            {err ? <p className="err" role="alert">{err}</p> : null}
+            <div className="acts">
+              <button className="btn btn--pri" disabled={pending || !pw}>{pending ? "Checking" : "Let me in"}</button>
+            </div>
+          </form>
+        </div>
+      </section>
     </div>
   );
 }
@@ -106,7 +105,7 @@ export function Intake() {
     start(async () => {
       const r = await submitIntake(a);
       if (r.ok) router.refresh();
-      else setErr("That didn't save. Try once more, or tell Micky.");
+      else setErr("That didn't save. Try once more, or ask in #ai-training.");
     });
   };
 

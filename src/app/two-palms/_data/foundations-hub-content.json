@@ -1,0 +1,830 @@
+{
+  "programme": {
+    "name": "AI Foundations",
+    "hub_name": "Two Palms AI Hub",
+    "through_line": "You direct. It makes.",
+    "summary": "Eight one-hour sessions that take everyone from \"what is this?\" to building their own tools and skills, and sharing them with the team. It's about getting your real work done faster, not creative work.",
+    "outcomes": [
+      "Everyone using Claude on their real work, every day",
+      "Time back on the admin that eats your week",
+      "Everyone able to build their own small tools and repeatable skills",
+      "The best of them shared across the whole team",
+      "Enjoying the work more"
+    ],
+    "phases": [
+      {
+        "name": "Learn it",
+        "sessions": [
+          1
+        ]
+      },
+      {
+        "name": "Use it",
+        "sessions": [
+          2,
+          3,
+          4
+        ]
+      },
+      {
+        "name": "Build it",
+        "sessions": [
+          5,
+          6,
+          7
+        ]
+      },
+      {
+        "name": "Run it",
+        "sessions": [
+          8
+        ]
+      }
+    ],
+    "slot": "Session 1 on Mon 2 Nov, then Tuesdays. 5:30pm Sydney · 7:30am Munich. 60 minutes. Every session recorded.",
+    "timezones": [
+      "Sydney",
+      "Munich"
+    ],
+    "rules_of_engagement": [
+      "Cameras on.",
+      "Phones away, as close to airplane mode as you can get. Slack and email closed.",
+      "Expect to be called on at random to share a win, so have one ready.",
+      "Miss a session? Watch the recording (1.25x is fine) before the next one.",
+      "Homework is light: one small thing a week. The only thing you hand in is the Time · Money · Pain form.",
+      "The Slack channel is meant to be loud. Post what you make, half-finished included. Everyone's at a different level, so nothing is embarrassing. We only rise together when we can all see what everyone is doing.",
+      "Stuck? Ask your Claude first. Then the channel. Then Jem."
+    ],
+    "every_session": [
+      "Recording, one-page cheat sheet, wrap notes, homework and links on the session page",
+      "Fridays: a \"show what you made\" thread in the channel, plus the hub spotlight",
+      "Two or three people share a win from their week",
+      "The strongest users help out in Slack and at office hours"
+    ],
+    "big5_note": "Not on the team side of the hub. The Big 5 ops projects run separately with their owners (Backstage only)."
+  },
+  "pre_brief": {
+    "label": "AI Foundations · Pre-brief",
+    "date": "Mon 2 Nov 2026",
+    "start_iso": "2026-11-02T13:00:00+11:00",
+    "duration_min": 15,
+    "where": "Monday WIP, Sydney",
+    "local": {
+      "sydney": "1:00pm",
+      "munich": "3:00am (watch the recording)",
+      "phuket": "9:00am"
+    },
+    "line": "The rules of engagement, and what this is all for.",
+    "cover": [
+      "Why this matters: for most of the room, the most important training of their careers",
+      "What the programme is: eight sessions, two office hours",
+      "What good looks like by Christmas",
+      "Rules of engagement, and what's expected of you"
+    ],
+    "munich_note": "It's 3am in Munich, so watch the recording before Session 1, or Jem recaps it in the first two minutes."
+  },
+  "office_hours": [
+    {
+      "n": 1,
+      "label": "Office hours 1",
+      "date": "around Thu 26 Nov (to confirm)",
+      "duration_min": 45,
+      "format": "Drop in. Bring what's stuck."
+    },
+    {
+      "n": 2,
+      "label": "Office hours 2",
+      "date": "around Thu 17 Dec (to confirm)",
+      "duration_min": 45,
+      "format": "Drop in. Bring what's stuck."
+    }
+  ],
+  "sessions": [
+    {
+      "n": 1,
+      "key": "shift",
+      "name": "SHIFT",
+      "phase": "Learn it",
+      "when": {
+        "date": "Mon 2 Nov 2026",
+        "start_iso": "2026-11-02T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "What's changing, and why this matters.",
+      "goal": "Understand what AI actually is, drop the fear, and pick up the three habits that carry the whole programme.",
+      "cover": [
+        "Who Jem is, and why he's here",
+        "What AI actually is, in plain words: what it's brilliant at and where it trips up",
+        "The Four Barriers: not technical, changes too fast, too many tools, can't keep up. And how we get past each one",
+        "You direct. It makes. The 10/80/10 way of working",
+        "Ask your Claude, not me",
+        "Talk, don't type",
+        "Time · Money · Pain: the three processes you'd most like gone"
+      ],
+      "homework": [
+        {
+          "type": "submit",
+          "text": "Fill in the Time · Money · Pain form here in the hub by Fri 6 Nov. Your most time-consuming, most expensive and most annoying process, and roughly how many hours a week each takes. It's the only homework you hand in."
+        },
+        {
+          "type": "do",
+          "text": "Accept your Claude invite and run the onboarding prompt (10 minutes)."
+        },
+        {
+          "type": "do",
+          "text": "Install Fluid Voice (Mac) or use your computer's built-in dictation, and talk to Claude for 10 minutes about your job."
+        }
+      ],
+      "slack": "Post one thing Claude said about your job that surprised you.",
+      "slides": [
+        "The quote (Jem to choose)",
+        "Four Barriers",
+        "You direct. It makes. (10/80/10)",
+        "Ask your Claude, not me",
+        "Time · Money · Pain"
+      ],
+      "ros": [
+        [
+          "0-2",
+          "Open on the quote: why this is the most important training of your career"
+        ],
+        [
+          "2-12",
+          "Who Jem is: creative first, brands, four years of AI on real client work"
+        ],
+        [
+          "12-22",
+          "What AI is: LLMs in plain words, strengths, where it trips up, most tools are wrappers"
+        ],
+        [
+          "22-32",
+          "Four Barriers, and how the programme removes each"
+        ],
+        [
+          "32-37",
+          "You direct. It makes. 10/80/10"
+        ],
+        [
+          "37-45",
+          "Ask your Claude, not me. Talk, don't type (Fluid Voice)"
+        ],
+        [
+          "45-55",
+          "Time · Money · Pain, introduce the hub form"
+        ],
+        [
+          "55-60",
+          "Homework, Slack, see you Tue 10 Nov"
+        ]
+      ],
+      "notes": "No demo.",
+      "number": "01",
+      "label": "AI Foundations Training · Session 1: Shift",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 2,
+      "key": "brief",
+      "name": "BRIEF",
+      "phase": "Use it",
+      "when": {
+        "date": "Tue 10 Nov 2026",
+        "start_iso": "2026-11-10T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "Find your way around Claude, and brief it like a pro.",
+      "goal": "Get around Claude with confidence and brief it properly.",
+      "cover": [
+        "A walk around Claude: chat, Cowork and Code, and when you'd use each",
+        "Projects: set one up, add instructions and Drive docs",
+        "Connectors: sign in to the ones your admin has switched on, and turn them on in a chat",
+        "Your personal preferences",
+        "The words you need: model, prompt, context, project, artifact, MD file, skill, connector (MCP), API, agent, scheduled task",
+        "ICC: Instructions, Context, Constraints",
+        "Give it the problem, not your solution. Ask for the answer in the shape you want",
+        "The \"interview me\" prompt",
+        "What's possible: real things built at Two Palms this month"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Take one real task and brief it three times with ICC, out loud."
+        },
+        {
+          "type": "do",
+          "text": "Use the \"interview me\" prompt once."
+        },
+        {
+          "type": "share",
+          "text": "Post your before and after in the channel."
+        }
+      ],
+      "slack": "Show your worst brief and your best one for the same task.",
+      "slides": [
+        "Chat vs Cowork vs Code",
+        "Definitions",
+        "ICC"
+      ],
+      "ros": [
+        [
+          "0-15",
+          "Claude walkaround: chat/Cowork vs Code, projects, connectors (admin adds once, each person signs in, toggle per chat), preferences"
+        ],
+        [
+          "15-20",
+          "Recap and first Time · Money · Pain patterns, anonymised"
+        ],
+        [
+          "20-30",
+          "Definitions (glossary in Kit)"
+        ],
+        [
+          "30-45",
+          "ICC, problem not solution, answer in your shape, interview me"
+        ],
+        [
+          "45-55",
+          "What's possible: setup pack from a call transcript, the hub, Notchy; preview the deck in the Two Palms template (they make it in MAKE)"
+        ],
+        [
+          "55-60",
+          "Homework"
+        ]
+      ],
+      "notes": "",
+      "number": "02",
+      "label": "AI Foundations Training · Session 2: Brief",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 3,
+      "key": "context",
+      "name": "CONTEXT",
+      "phase": "Use it",
+      "when": {
+        "date": "Tue 17 Nov 2026",
+        "start_iso": "2026-11-17T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "Teach Claude who you are, so you stop re-explaining.",
+      "goal": "Claude knows who you are, how you work and which client you're on.",
+      "cover": [
+        "Projects matter, chats don't. Start a new chat every time",
+        "Your client's shared project, and how to use it",
+        "Build your me.md and voice.md, saved in your own Drive folder",
+        "What an MD file is, and why every AI can read it",
+        "What goes in, and what never does: the traffic lights and client AI levels",
+        "Who needs to know, and when? Ask the project, not a colleague"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Finish your me.md and voice.md."
+        },
+        {
+          "type": "do",
+          "text": "Ask your client project three questions you'd normally ask a colleague."
+        },
+        {
+          "type": "share",
+          "text": "Post the most useful answer."
+        }
+      ],
+      "slack": "Which question did your project answer that you'd normally have asked a colleague?",
+      "slides": [
+        "Projects matter, chats don't",
+        "me.md and voice.md",
+        "Traffic lights"
+      ],
+      "ros": [
+        [
+          "0-5",
+          "Recap, best before/afters"
+        ],
+        [
+          "5-15",
+          "Projects not chats, new chat each time, join your client project"
+        ],
+        [
+          "15-35",
+          "Build me.md and voice.md live, personal Drive folder, linked from preferences; what MD is"
+        ],
+        [
+          "35-47",
+          "Traffic lights and client AI levels; Claude sees what your Drive sees"
+        ],
+        [
+          "47-55",
+          "Who needs to know, and when"
+        ],
+        [
+          "55-60",
+          "Homework"
+        ]
+      ],
+      "notes": "Needs client projects set up by account leads (target Fri 13 Nov) and Drive folders locked first.",
+      "number": "03",
+      "label": "AI Foundations Training · Session 3: Context",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 4,
+      "key": "connect",
+      "name": "CONNECT",
+      "phase": "Use it",
+      "when": {
+        "date": "Tue 24 Nov 2026",
+        "start_iso": "2026-11-24T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "Plug Claude into the tools you already live in.",
+      "goal": "Information moves between your tools without you moving it.",
+      "cover": [
+        "Most admin is moving information from one place to another",
+        "Map one of your Time · Money · Pain processes",
+        "Connectors live: Slack, Gmail, Calendar, Drive, Granola",
+        "From meeting notes to actions to drafted messages",
+        "Ask three levels higher",
+        "When it breaks: who to ask, in what order"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Run one connected workflow on your real week."
+        },
+        {
+          "type": "share",
+          "text": "Post what it saved you."
+        }
+      ],
+      "slack": "What did you stop doing by hand this week?",
+      "slides": [
+        "Transfer of information",
+        "Three levels higher"
+      ],
+      "ros": [
+        [
+          "0-5",
+          "Recap"
+        ],
+        [
+          "5-15",
+          "Transfer of information; map one TMP process"
+        ],
+        [
+          "15-40",
+          "Connectors live (Productive if available); Granola to actions to Slack drafts; weekly summary"
+        ],
+        [
+          "40-50",
+          "Three levels higher"
+        ],
+        [
+          "50-55",
+          "When it breaks: ask Claude, the channel, then Jem"
+        ],
+        [
+          "55-60",
+          "Homework, office hours this week"
+        ]
+      ],
+      "notes": "",
+      "number": "04",
+      "label": "AI Foundations Training · Session 4: Connect",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 5,
+      "key": "make",
+      "name": "MAKE",
+      "phase": "Build it",
+      "when": {
+        "date": "Tue 1 Dec 2026",
+        "start_iso": "2026-12-01T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "Build a tool for your own week. Use it. Bin it.",
+      "goal": "Everyone makes a disposable tool for their own work, and a deck in the Two Palms template.",
+      "cover": [
+        "Artifacts: tools you make in chat (a page, checklist, tracker, calculator)",
+        "Presets, not software. Make it, use it, bin it",
+        "Make-a-thon: build a tool from your Time · Money · Pain answer",
+        "A deck in the Two Palms template, with the images in it",
+        "Where images come from, and the rules for using them"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Use your tool three times this week."
+        },
+        {
+          "type": "share",
+          "text": "Post a 30-second screen recording of it."
+        }
+      ],
+      "slack": "Show the tool. What would you change?",
+      "slides": [
+        "Make it, use it, bin it",
+        "Provenance"
+      ],
+      "ros": [
+        [
+          "0-5",
+          "Recap"
+        ],
+        [
+          "5-15",
+          "Artifacts"
+        ],
+        [
+          "15-40",
+          "Make-a-thon; role examples: AM client recap page, ops self-checking checklist, editor licensing tracker"
+        ],
+        [
+          "40-50",
+          "The deck in the Two Palms template with images (needs the image connector)"
+        ],
+        [
+          "50-55",
+          "Provenance: image rules, client AI levels for visuals, keep the receipts"
+        ],
+        [
+          "55-60",
+          "Homework"
+        ]
+      ],
+      "notes": "Deck images depend on the OpenAI image connector being live.",
+      "number": "05",
+      "label": "AI Foundations Training · Session 5: Make",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 6,
+      "key": "share",
+      "name": "SHARE",
+      "phase": "Build it",
+      "when": {
+        "date": "Tue 8 Dec 2026",
+        "start_iso": "2026-12-08T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "Turn your best tricks into team skills.",
+      "goal": "Personal tricks become team skills, with one version of each.",
+      "cover": [
+        "When to make a skill: done it twice, takes 20 minutes, or you keep asking the same question",
+        "Build a skill live",
+        "Post the idea before you build. If it exists, join it",
+        "Nominate your skill for the whole team",
+        "Approved team-built tools: where the best ones live"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Finish your skill."
+        },
+        {
+          "type": "share",
+          "text": "Nominate it in the channel, or back someone else's."
+        }
+      ],
+      "slack": "Nominate a skill for the whole team, yours or someone else's.",
+      "slides": [
+        "When to make a skill",
+        "One version only"
+      ],
+      "ros": [
+        [
+          "0-5",
+          "Recap, best tools from Slack"
+        ],
+        [
+          "5-15",
+          "When to make a skill"
+        ],
+        [
+          "15-40",
+          "Build a skill live"
+        ],
+        [
+          "40-52",
+          "Sharing: post first, join if it exists, nominate; Jem/Micky publish org-wide; hub Approved team-built tools page"
+        ],
+        [
+          "52-60",
+          "Homework"
+        ]
+      ],
+      "notes": "",
+      "number": "06",
+      "label": "AI Foundations Training · Session 6: Share",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 7,
+      "key": "show",
+      "name": "SHOW",
+      "phase": "Build it",
+      "when": {
+        "date": "Tue 15 Dec 2026",
+        "start_iso": "2026-12-15T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "See what the team built. Steal the best of it.",
+      "goal": "The team sees what the team has built, and the best of it gets promoted.",
+      "cover": [
+        "Show and tell: three people, five minutes each",
+        "Make it better with the Expert Panel and Scorer prompts",
+        "Which tools join the approved list"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Note one thing you check every single day. RUN automates it."
+        }
+      ],
+      "slack": "Whose tool are you stealing?",
+      "slides": [
+        "The spotlight",
+        "Expert Panel and Scorer"
+      ],
+      "ros": [
+        [
+          "0-5",
+          "Recap"
+        ],
+        [
+          "5-25",
+          "Show and tell, 3 x 5 min, picked from Slack"
+        ],
+        [
+          "25-45",
+          "Expert Panel and Scorer, fix the weakest part"
+        ],
+        [
+          "45-55",
+          "Promotions to the approved list"
+        ],
+        [
+          "55-60",
+          "Homework, set up for RUN"
+        ]
+      ],
+      "notes": "",
+      "number": "07",
+      "label": "AI Foundations Training · Session 7: Show",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    },
+    {
+      "n": 8,
+      "key": "run",
+      "name": "RUN",
+      "phase": "Run it",
+      "when": {
+        "date": "Tue 22 Dec 2026",
+        "start_iso": "2026-12-22T17:30:00+11:00",
+        "duration_min": 60,
+        "local": {
+          "sydney": "5:30pm",
+          "munich": "7:30am",
+          "phuket": "1:30pm"
+        }
+      },
+      "line": "Let work arrive without you asking for it.",
+      "goal": "Everyone has something running for them, and we measure what's changed.",
+      "cover": [
+        "Scheduled tasks and agents: they draft, sort and remind. A person sends",
+        "Set up your own daily briefing",
+        "Time · Money · Pain, again: what's changed since week one",
+        "What's next in 2027"
+      ],
+      "homework": [
+        {
+          "type": "do",
+          "text": "Keep your daily briefing running over the break."
+        },
+        {
+          "type": "share",
+          "text": "Post one thing it caught."
+        }
+      ],
+      "slack": "What did your briefing catch that you would have missed?",
+      "slides": [
+        "A person sends",
+        "Before and after",
+        "2027"
+      ],
+      "ros": [
+        [
+          "0-5",
+          "Recap"
+        ],
+        [
+          "5-15",
+          "Scheduled tasks and agents; a person sends"
+        ],
+        [
+          "15-40",
+          "Everyone sets up a daily briefing live"
+        ],
+        [
+          "40-50",
+          "Re-ask TMP hours vs week one"
+        ],
+        [
+          "50-60",
+          "2027: Creative programme, office hours, what continues"
+        ]
+      ],
+      "notes": "Week of the 23 Dec break; attendance may be thin.",
+      "number": "08",
+      "label": "AI Foundations Training · Session 8: Run",
+      "status": "upcoming",
+      "recording_url": null,
+      "cheat_sheet": null,
+      "wrap_notes": null
+    }
+  ],
+  "forms": {
+    "time_money_pain": {
+      "label": "Time · Money · Pain",
+      "opens": "after Session 1, Mon 2 Nov",
+      "due": "Fri 6 Nov 2026",
+      "reask": "Session 8, Tue 22 Dec",
+      "storage": "admin only (Backstage), never shown on the team side with names",
+      "intro": "Three processes from your job. The one that takes the most time, the one that costs the most, and the one that annoys you most. It takes about 5 minutes and it shapes every session from here.",
+      "questions": [
+        {
+          "id": "role",
+          "q": "Which best describes your role?",
+          "type": "choice",
+          "options": [
+            "Account / client services",
+            "Strategy",
+            "Creative",
+            "Content, social and community",
+            "Production, video and editing",
+            "Project management / operations",
+            "Finance / admin",
+            "Leadership",
+            "Other"
+          ]
+        },
+        {
+          "id": "office",
+          "q": "Where are you based?",
+          "type": "choice",
+          "options": [
+            "Sydney",
+            "Munich",
+            "Elsewhere"
+          ]
+        },
+        {
+          "id": "time",
+          "q": "TIME: the process that takes up the most of your time. What is it?",
+          "type": "text"
+        },
+        {
+          "id": "time_hours",
+          "q": "Roughly how many hours a week?",
+          "type": "choice",
+          "options": [
+            "Under 1",
+            "1 to 3",
+            "3 to 5",
+            "5 to 10",
+            "10+"
+          ]
+        },
+        {
+          "id": "money",
+          "q": "MONEY: the process that costs Two Palms the most (time billed, errors, rework, missed revenue). What is it?",
+          "type": "text"
+        },
+        {
+          "id": "money_hours",
+          "q": "Roughly how many hours a week?",
+          "type": "choice",
+          "options": [
+            "Under 1",
+            "1 to 3",
+            "3 to 5",
+            "5 to 10",
+            "10+"
+          ]
+        },
+        {
+          "id": "pain",
+          "q": "PAIN: the process that annoys you most. What is it?",
+          "type": "text"
+        },
+        {
+          "id": "pain_hours",
+          "q": "Roughly how many hours a week?",
+          "type": "choice",
+          "options": [
+            "Under 1",
+            "1 to 3",
+            "3 to 5",
+            "5 to 10",
+            "10+"
+          ]
+        },
+        {
+          "id": "tools",
+          "q": "Which tools do these live in? (Slack, Gmail, Drive, Sheets, Productive, Monday, Notion, other)",
+          "type": "text",
+          "optional": true
+        },
+        {
+          "id": "dream",
+          "q": "If Claude could take one of these off your plate tomorrow, which one?",
+          "type": "choice",
+          "options": [
+            "Time",
+            "Money",
+            "Pain"
+          ]
+        }
+      ]
+    }
+  },
+  "pages_to_add": {
+    "approved_tools": {
+      "label": "Approved team-built tools",
+      "empty_state": "Nothing here yet. From Session 6, the best skills and tools the team builds land here, one version of each.",
+      "fields": [
+        "name",
+        "what it does",
+        "who it's for (role, not person)",
+        "how to use it",
+        "added on"
+      ]
+    }
+  },
+  "open_items": [
+    "Opening quote for Session 1 (Jem to choose)",
+    "Office hours exact dates and times",
+    "Image connector live by Tue 1 Dec (deck in MAKE)",
+    "Freelancers in or out",
+    "Client projects set up by account leads by Fri 13 Nov",
+    "Drive folders locked before Drive connects",
+    "#ai-training Slack link"
+  ]
+}
