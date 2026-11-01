@@ -514,3 +514,16 @@
   .tpb .fo--big .fo-b .win { width: 96px; height: 96px; }
   .tpb .b-strip--thumbs .win--cell { display: none; }
 }
+
+/* ─── Header A: Two Palms burnt orange bar, everything white, the next-up pill reversed out ─── */
+.tpb-top { --hb: #c4572c; border-bottom: 0; }
+.tpb-top::before { background: var(--hb); -webkit-backdrop-filter: none; backdrop-filter: none; }
+.tpb-top .tpb-lockup, .tpb-top .tpb-hubname, .tpb-top .tpb-menu-btn, .tpb-top .tpb-zone .city, .tpb-top .tpb-zone time, .tpb-top .tpb-zone.is-own .city, .tpb-top .tpb-sky, .tpb-top .tpb-zone.is-own .tpb-sky, .tpb-bar svg { color: #fff; }
+.tpb-top .tpb-hubname::before { background: rgba(255, 255, 255, .45); }
+.tpb-bar img { filter: brightness(0) invert(1); }
+.tpb-bar img.tpb-mark { filter: invert(1); }
+.tpb-top .tpb-menu-btn:hover, .tpb-top .tpb-menu-btn[aria-expanded=true] { background: rgba(255, 255, 255, .14); }
+.tpb-top .tpb-join { background: #fff; color: #b8441f; border-color: #fff; font-weight: 500; }
+.tpb-top .tpb-join .dot { background: #b8441f; }
+.tpb-top .tpb-join:hover { background: #fdf3ee; border-color: #fff; }
+.tpb-bar :focus-visible { outline-color: #fff; }
