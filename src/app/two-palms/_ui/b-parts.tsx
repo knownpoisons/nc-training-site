@@ -8,21 +8,31 @@ import { IconArrow, IconLock, Lab, Tile, Win } from "./b";
 
 const strip = (d: string) => d.replace(/ \d{4}$/, "");
 
-export function NextUpTile({ now, span }: { now: Date; span?: 2 }) {
+export function NextUpTile({ now, span, print, style }: { now: Date; span?: 2; print?: boolean; style?: React.CSSProperties }) {
   const ev = countEvents();
   const n = nextEvent(now);
   const fb: CountEvent | null = n ? ev.find((e) => e.start_iso === n.start_iso) ?? null : null;
+  const acts = (
+    <div className="acts">
+      {fb?.href ? <Link className="btn btn--pri" href={fb.href}>{n?.kind === "prebrief" ? "What it covers" : "Open the session"}</Link> : null}
+      <Link className="btn btn--sec" href="/two-palms/foundations#schedule">Full schedule</Link>
+    </div>
+  );
   return (
-    <Tile hue="orange" next span={span} label="Next up">
+    <Tile hue="orange" next span={span} label="Next up" style={style}>
       <Lab l={<><i className="dot dot--live" aria-hidden="true" />Next up</>} r="Sydney · Munich" />
-      <div className="t-body">
-        <NextUpBody events={ev} fallback={fb} />
-        {n?.kind === "prebrief" ? <p className="note">{FC.pre_brief.where}. {FC.pre_brief.munich_note}</p> : null}
-        <div className="acts">
-          {fb?.href ? <Link className="btn btn--pri" href={fb.href}>{n?.kind === "prebrief" ? "What it covers" : "Open the session"}</Link> : null}
-          <Link className="btn btn--sec" href="/two-palms/foundations#schedule">Full schedule</Link>
+      {print ? (
+        <div className="split split--big">
+          <div className="split-c"><NextUpBody events={ev} fallback={fb} />{acts}</div>
+          <Win src="/two-palms/img/h/session.jpg" w={800} h={600} eager />
         </div>
-      </div>
+      ) : (
+        <div className="t-body">
+          <NextUpBody events={ev} fallback={fb} />
+          {n?.kind === "prebrief" ? <p className="note">{FC.pre_brief.where}. {FC.pre_brief.munich_note}</p> : null}
+          {acts}
+        </div>
+      )}
     </Tile>
   );
 }

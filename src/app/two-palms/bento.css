@@ -10,7 +10,7 @@
    ===================================================================================== */
 
 .tpb {
-  --ground: #efe9df; --card: #fcfaf6; --well: #f4efe7;
+  --ground: #efe9df; --card: #f8f4ed; --well: #f4efe7;
   --text: #1b1714; --text-2: #5f554c; --rule: #ddd5ca; --rule-2: #c9bfb2;
   --k0: rgba(27, 23, 20, .34);
   --accent: #d2552f; --hot: #b8441f; --ok: #2f8a4a;
@@ -466,3 +466,51 @@
 /* Slack channel link */
 .tt-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
 .tt-link:hover { text-decoration-thickness: 2px; }
+
+/* =================== round 2: bolder module labels, photo-led Home =================== */
+.tpb { --fs-tt: clamp(20px, .3vw + 16.5px, 22px); }
+.tpb .lab { font-size: 12px; font-weight: 650; letter-spacing: .08em; color: var(--text); }
+.tpb .lab-l { color: var(--text); }
+.tpb .lab-r { font-size: 11.5px; }
+
+/* Home spans and order per breakpoint (set per tile as --c4/--c3/--c2/--o3) */
+.tpb .tpb-bento--home { gap: 10px; }
+.tpb .tpb-bento--home > .t { grid-column: span var(--c4, 1); container-type: inline-size; }
+@media (max-width: 1099px) { .tpb .tpb-bento--home > .t { grid-column: span var(--c3, 1); order: var(--o3, 0); } }
+@media (max-width: 899px) { .tpb .tpb-bento--home > .t { grid-column: span var(--c2, 1); order: 0; } }
+@media (max-width: 599px) { .tpb .tpb-bento--home > .t { grid-column: auto; } }
+
+/* the big split: words left, a real print right */
+.tpb .split--big { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 22px; }
+.tpb .split--big > .win { min-height: 250px; }
+
+/* print tiles */
+.tpb .pt { flex: 1; display: flex; flex-direction: column; gap: 14px; padding-top: 14px; min-height: 0; }
+.tpb .pt-img { width: 100%; aspect-ratio: 4 / 3; }
+.tpb .pt-c { display: flex; flex-direction: column; margin-top: auto; }
+.tpb .pt-c .tp { margin-top: 4px; }
+.tpb .pt-c .tp .mono { font-size: 12.5px; color: var(--text); }
+@container (min-width: 520px) {
+  .tpb .pt { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 22px; }
+  .tpb .pt-img { order: 2; aspect-ratio: auto; min-height: 220px; height: 100%; }
+  .tpb .pt-img > img { position: absolute; inset: 0; }
+  .tpb .pt-c { margin-top: 0; justify-content: flex-end; }
+}
+.tpb .oh { margin: 12px 0 0; padding: 0; list-style: none; }
+.tpb .oh li { display: flex; gap: 10px; padding: 7px 0; border-top: 1px solid var(--rule); font-size: 12.5px; color: var(--text); }
+.tpb .oh li span { color: var(--text-2); min-width: 30px; }
+
+/* the Foundations module, with its disks */
+.tpb .fo--big .fo-b { grid-template-columns: 132px minmax(0, 1fr); gap: 18px; }
+.tpb .fo--big .fo-b .win { width: 132px; height: 132px; }
+.tpb .fo--big .fo-next .fo-b { grid-template-columns: 76px minmax(0, 1fr); }
+.tpb .fo--big .fo-next .fo-b .win { width: 76px; height: 76px; }
+.tpb .b-strip--thumbs .cell-row { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+.tpb .win--cell { width: 34px; height: 34px; }
+@media (max-width: 599px) {
+  .tpb .split--big { grid-template-columns: 1fr; }
+  .tpb .split--big > .win { min-height: 0; aspect-ratio: 4 / 3; }
+  .tpb .fo--big .fo-b { grid-template-columns: 96px minmax(0, 1fr); }
+  .tpb .fo--big .fo-b .win { width: 96px; height: 96px; }
+  .tpb .b-strip--thumbs .win--cell { display: none; }
+}

@@ -15,18 +15,40 @@ export function Lab({ l, sub, r, hot, icon, bare }: { l: ReactNode; sub?: ReactN
   );
 }
 
-export function Tile({ children, span, hue, href, className = "", next, id, label }: { children: ReactNode; span?: 2 | 3 | "F"; hue?: Hue; href?: string; className?: string; next?: boolean; id?: string; label?: string }) {
+export function Tile({ children, span, hue, href, ext, className = "", next, id, label, style }: { children: ReactNode; span?: 2 | 3 | "F"; hue?: Hue; href?: string; ext?: boolean; className?: string; next?: boolean; id?: string; label?: string; style?: React.CSSProperties }) {
   const cls = `t${span ? ` s${span}` : ""}${next ? " t--next" : ""} ${className}`.trim();
-  if (href) return <Link href={href} className={cls} data-hue={hue} id={id} aria-label={label}>{children}</Link>;
-  return <section className={cls} data-hue={hue} id={id} aria-label={label}>{children}</section>;
+  if (href && ext) return <a href={href} target="_blank" rel="noreferrer" className={cls} data-hue={hue} id={id} aria-label={label} style={style}>{children}</a>;
+  if (href) return <Link href={href} className={cls} data-hue={hue} id={id} aria-label={label} style={style}>{children}</Link>;
+  return <section className={cls} data-hue={hue} id={id} aria-label={label} style={style}>{children}</section>;
 }
 
-export function Win({ src, w, h, wait, className = "", style }: { src: string; w: number; h: number; wait?: boolean; className?: string; style?: React.CSSProperties }) {
+export function Win({ src, w, h, wait, eager, className = "", style }: { src: string; w: number; h: number; wait?: boolean; eager?: boolean; className?: string; style?: React.CSSProperties }) {
   return (
     <span className={`win${wait ? " is-wait" : ""} ${className}`.trim()} style={style}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={src} alt="" width={w} height={h} loading="lazy" decoding="async" />
+      <img src={src} alt="" width={w} height={h} loading={eager ? "eager" : "lazy"} fetchPriority={eager ? "high" : undefined} decoding="async" />
     </span>
+  );
+}
+
+/** A tile carried by its photo: label line, a framed print, then a title and one short line.
+ *  Stacks in narrow tiles; sits side by side once the tile is wide (container query). */
+export function PrintTile({ lab, title, line, img, w, h, wait, eager, href, ext, hue, label, style, className = "", children, next }: {
+  lab: ReactNode; title: ReactNode; line?: ReactNode; img: string; w: number; h: number; wait?: boolean; eager?: boolean;
+  href?: string; ext?: boolean; hue?: Hue; label?: string; style?: React.CSSProperties; className?: string; children?: ReactNode; next?: boolean;
+}) {
+  return (
+    <Tile href={href} ext={ext} hue={hue} label={label} style={style} className={`t--print ${className}`} next={next}>
+      {lab}
+      <div className="pt">
+        <Win src={img} w={w} h={h} wait={wait} eager={eager} className="pt-img" />
+        <div className="pt-c">
+          <h3 className="tt">{title}</h3>
+          {line ? <p className="tp">{line}</p> : null}
+          {children}
+        </div>
+      </div>
+    </Tile>
   );
 }
 

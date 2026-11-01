@@ -1,13 +1,15 @@
-import { HUB } from "@/app/two-palms/_data/hub";
 import Link from "next/link";
-import { FC, SESSIONS, TOOLS_OPENS_ISO, nextEvent, sessionHref, sessionTitle, toolsAreOpen, twoZones } from "./_data/foundations";
-import { PROMPTS, RULES, SETUP_STEPS } from "./_data/hub";
+import type { CSSProperties } from "react";
+import { FC, SESSIONS, nextEvent, sessionHref, sessionTitle, tmpIsOpen, toolsAreOpen, twoZones } from "./_data/foundations";
+import { HUB, PROMPTS, RULES, SETUP_STEPS } from "./_data/hub";
 import { CopyButton } from "./_ui/bits";
 import { SetupMeter } from "./_ui/b-client";
-import { Bento, IconArrow, IconClock, IconHash, IconLock, Lab, PageTitle, Tile, Win } from "./_ui/b";
-import { NextUpTile, TmpTile } from "./_ui/b-parts";
+import { Bento, IconArrow, IconClock, IconHash, IconLock, Lab, PageTitle, PrintTile, Tile, Win } from "./_ui/b";
+import { NextUpTile } from "./_ui/b-parts";
 
 const strip = (d: string) => d.replace(/ \d{4}$/, "");
+/** Column span at 4 / 3 / 2 columns, and order at 3 columns (no row ever ends with a lone tile). */
+const g = (c4: number, c3: number, c2: number, o3: number) => ({ "--c4": c4, "--c3": c3, "--c2": c2, "--o3": o3 }) as CSSProperties;
 
 export default function Home() {
   const now = new Date();
@@ -19,42 +21,42 @@ export default function Home() {
   const after = SESSIONS[featIdx + 1] ?? null;
   const rest = SESSIONS.filter((s) => s !== feat && s !== after);
   const toolsOpen = toolsAreOpen(now);
+  const tmpOpen = tmpIsOpen(now);
   const tz = twoZones(feat.when.start_iso);
   const nextIsFeat = nxt?.start_iso === feat.when.start_iso;
+  const tmp = FC.forms.time_money_pain;
 
   return (
     <>
-      <PageTitle title={FC.programme.hub_name} lede="Where Two Palms learns to work with AI. Sessions, homework, prompts and the rules, all here." right={<span className="lab-x">{FC.programme.through_line}</span>} />
+      <PageTitle title={FC.programme.hub_name} lede="Where Two Palms learns to work with AI." right={<span className="lab-x">{FC.programme.through_line}</span>} />
       <Bento kind="home">
-        {/* Set up Claude */}
-        <Tile span={2} hue="mustard" label="Set up Claude">
+        {/* Row 1: set up, then what's next */}
+        <Tile hue="mustard" label="Set up Claude" style={g(2, 2, 2, 1)}>
           <Lab l="Before we begin" r="About 40 min" />
-          <div className="split">
+          <div className="split split--big">
             <div className="split-c">
               <h2 className="tt">Set up your Claude account</h2>
-              <p className="tp">Accept your invite, paste the onboarding prompt into your first chat and answer its questions (ten minutes), then work through the eight steps.</p>
+              <p className="tp">The onboarding prompt, then eight steps.</p>
               <SetupMeter total={SETUP_STEPS.length} />
               <div className="acts">
                 <CopyButton text={onboarding.body} label="Copy the prompt" className="btn btn--pri" />
-                <Link className="btn btn--sec" href="/two-palms/setup">See the 8 steps</Link>
+                <Link className="btn btn--sec" href="/two-palms/setup">The 8 steps</Link>
               </div>
             </div>
-            <Win src="/two-palms/img/l/setup.jpg" w={520} h={520} />
+            <Win src="/two-palms/img/h/setup.jpg" w={800} h={600} eager />
           </div>
         </Tile>
 
-        <NextUpTile now={now} />
+        <NextUpTile now={now} print style={g(2, 2, 2, 3)} />
 
-        <TmpTile now={now} compact />
-
-        {/* AI Foundations module */}
-        <Tile span={2} hue="mustard" label={FC.programme.name}>
-          <Lab l={FC.programme.name} sub={`${SESSIONS.length} one-hour sessions`} r={<Link className="lnk" href="/two-palms/foundations#schedule">See the schedule <IconArrow /></Link>} />
-          <div className="fo">
+        {/* Row 2: the programme */}
+        <Tile hue="mustard" label={FC.programme.name} style={g(3, 3, 2, 5)}>
+          <Lab l={FC.programme.name} sub={`${SESSIONS.length} sessions`} r={<Link className="lnk" href="/two-palms/foundations#schedule">The schedule <IconArrow /></Link>} />
+          <div className="fo fo--big">
             <Link className="fo-feat" href={sessionHref(feat)}>
               <span className="fo-top"><span>S{feat.number}</span><span className={nextIsFeat ? "hot" : "w"}>{nextIsFeat ? "Next" : feat.phase}</span></span>
               <span className="fo-b">
-                <Win src={`/two-palms/img/session-${feat.number}.jpg`} w={76} h={76} />
+                <Win src={`/two-palms/img/l/session-${feat.number}.jpg`} w={720} h={720} />
                 <span>
                   <span className="tt" style={{ display: "block" }}>Session {feat.n}: {sessionTitle(feat)}</span>
                   <span className="tp" style={{ display: "block" }}>{feat.line}</span>
@@ -66,72 +68,79 @@ export default function Home() {
               <Link className="fo-next" href={sessionHref(after)}>
                 <span className="fo-top"><span className="w">After that</span><span>S{after.number}</span></span>
                 <span className="fo-b">
-                  <Win src={`/two-palms/img/session-${after.number}.jpg`} w={52} h={52} wait />
+                  <Win src={`/two-palms/img/session-${after.number}.jpg`} w={240} h={240} wait />
                   <span>
-                    <span className="tt" style={{ display: "block", fontSize: 18 }}>Session {after.n}: {sessionTitle(after)}</span>
+                    <span className="tt" style={{ display: "block" }}>{sessionTitle(after)}</span>
                     <span className="fo-when" style={{ display: "block", color: "var(--text-2)" }}>{strip(after.when.date)} · {twoZones(after.when.start_iso).sydney} Sydney</span>
                   </span>
                 </span>
               </Link>
             ) : null}
           </div>
-          <ol className="b-strip" aria-label="The other sessions">
+          <ol className="b-strip b-strip--thumbs" aria-label="The other sessions">
             {rest.map((s) => (
-              <li key={s.n}><Link className="cell" href={sessionHref(s)}><span className="cell-k">S{s.number}</span><span className="cell-n">{sessionTitle(s)}</span></Link></li>
+              <li key={s.n}>
+                <Link className="cell" href={sessionHref(s)}>
+                  <span className="cell-k">S{s.number}</span>
+                  <span className="cell-row"><Win src={`/two-palms/img/session-${s.number}.jpg`} w={240} h={240} wait className="win--cell" /><span className="cell-n">{sessionTitle(s)}</span></span>
+                </Link>
+              </li>
             ))}
           </ol>
         </Tile>
 
-        <Tile hue="sky" href="/two-palms/prompts" label="Prompt library">
-          <Lab l="Prompt library" r={`${PROMPTS.length} prompts`} />
-          <div className="area-b">
-            <div className="area-c"><h3 className="tt">Good prompts to steal</h3><p className="tp">Every one has a copy button.</p></div>
-            <Win src="/two-palms/img/prompts.jpg" w={64} h={48} className="win--area" />
-          </div>
-        </Tile>
+        <PrintTile
+          style={g(1, 1, 1, 2)} hue="ember" label={tmp.label}
+          href={tmpOpen ? "/two-palms/time-money-pain" : undefined}
+          lab={<Lab icon={tmpOpen ? undefined : <IconLock />} l="Time · Money · Pain" r={tmpOpen ? `Due ${strip(tmp.due)}` : "After S01"} hot={tmpOpen} />}
+          img="/two-palms/img/h/notebook.jpg" w={640} h={640} wait={!tmpOpen}
+          title={tmpOpen ? "Your three processes" : "Opens after Session 1"}
+          line={<span className="mono">{tmpOpen ? `Due ${strip(tmp.due)} · about 5 min` : `Due ${strip(tmp.due)}`}</span>}
+        />
 
-        <Tile hue="blush" href="/two-palms/kit" label="Rules for use">
-          <Lab l="Rules + Kit" r={`${RULES.length} rules`} />
-          <div className="area-b">
-            <div className="area-c"><h3 className="tt">Rules for use</h3><p className="tp">The policy on one page, the model board and the words.</p></div>
-            <Win src="/two-palms/img/rules.jpg" w={64} h={48} className="win--area" />
-          </div>
-        </Tile>
+        {/* Row 3: the kit */}
+        <PrintTile
+          style={g(1, 1, 1, 4)} hue="sky" href="/two-palms/prompts" label="Prompt library"
+          lab={<Lab l="Prompt library" r={`${PROMPTS.length} prompts`} />}
+          img="/two-palms/img/h/prompts.jpg" w={640} h={480}
+          title="Good prompts to steal" line="Every one has a copy button."
+        />
+        <PrintTile
+          style={g(1, 1, 1, 6)} hue="blush" href="/two-palms/kit" label="Rules for use"
+          lab={<Lab l="Rules + Kit" r={`${RULES.length} rules`} />}
+          img="/two-palms/img/h/rules.jpg" w={640} h={480}
+          title="Rules for use" line="The policy on one page."
+        />
+        <PrintTile
+          style={g(1, 1, 1, 7)} hue="bone" href="/two-palms/tools" label="Approved team-built tools"
+          lab={<Lab icon={toolsOpen ? undefined : <IconLock />} l="Approved tools" r={toolsOpen ? "Open" : "After S06"} />}
+          img="/two-palms/img/h/showcase.jpg" w={640} h={480} wait={!toolsOpen}
+          title="Team-built tools" line={toolsOpen ? "The best of what the team built." : "Opens after Session 6."}
+        />
+        <PrintTile
+          style={g(1, 1, 1, 8)} hue="sky" href={HUB.slackUrl} ext label="#ai-training on Slack"
+          lab={<Lab icon={<IconHash />} l="Slack" r="Open now" />}
+          img="/two-palms/img/h/spotlight.jpg" w={640} h={480}
+          title="#ai-training" line="Post what you make."
+        />
 
-        <Tile hue="bone" href="/two-palms/tools" label="Approved team-built tools">
-          <Lab icon={toolsOpen ? undefined : <IconLock />} l="Approved tools" r={toolsOpen ? "Open" : "After S06"} />
-          <div className="area-b">
-            <div className="area-c">
-              <h3 className="tt">{FC.pages_to_add.approved_tools.label}</h3>
-              <p className="tp">{toolsOpen ? "The best of what the team has built." : `Opens after Session 6, ${twoZones(TOOLS_OPENS_ISO).sydneyDay}.`}</p>
-            </div>
-            <Win src="/two-palms/img/showcase.jpg" w={64} h={48} wait={!toolsOpen} className="win--area" />
-          </div>
-        </Tile>
-
-        <Tile hue="sky" label="Slack">
-          <Lab icon={<IconHash />} l="Slack" r="Open now" />
-          <div className="area-b">
-            <div className="area-c"><h3 className="tt"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></h3><p className="tp">Meant to be loud. Post what you make, half-finished included.</p></div>
-          </div>
-        </Tile>
-
-        <Tile hue="bone" label="Office hours">
-          <Lab icon={<IconClock />} l="Office hours" r="To confirm" />
-          <ul className="b-rows" style={{ marginTop: 10 }}>
-            {FC.office_hours.map((o) => (
-              <li key={o.n}><div className="row"><span className="row-c"><span className="row-t">{o.label}</span><span className="row-s">{o.format}</span></span><span className="row-st">{o.date.replace(/\s*\(to confirm\)/i, "")}<br />to confirm</span></div></li>
-            ))}
+        {/* Row 4 */}
+        <PrintTile
+          style={g(2, 2, 1, 9)} hue="bone" label="Office hours"
+          lab={<Lab icon={<IconClock />} l="Office hours" r="To confirm" />}
+          img="/two-palms/img/h/office-hours.jpg" w={720} h={540}
+          title="Bring a real job" line="Drop in. Bring what's stuck."
+        >
+          <ul className="oh">
+            {FC.office_hours.map((o) => <li key={o.n} className="mono"><span>OH{o.n}</span>{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "~")} · to confirm</li>)}
           </ul>
-        </Tile>
-
-        <Tile hue="ember" href="/two-palms/creative" label="Creative Programme">
-          <Lab l="Coming soon" r="Part two" />
-          <div className="area-b">
-            <div className="area-c"><h3 className="tt">Creative Programme</h3><p className="tp">AI production, the Two Palms way. Once everyone has the base.</p></div>
-            <Win src="/two-palms/img/creative.jpg" w={64} h={48} wait className="win--area" />
-          </div>
-        </Tile>
+        </PrintTile>
+        <PrintTile
+          style={g(2, 1, 2, 10)} hue="ember" href="/two-palms/creative" label="Creative Programme"
+          lab={<Lab l="Coming soon" r="Part two" />}
+          img="/two-palms/img/h/creative.jpg" w={800} h={600} wait
+          title="Creative Programme" line="AI production, after Foundations."
+        />
       </Bento>
     </>
   );
