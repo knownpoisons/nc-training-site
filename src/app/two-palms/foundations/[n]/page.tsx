@@ -1,3 +1,4 @@
+import { HUB } from "@/app/two-palms/_data/hub";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
@@ -52,7 +53,7 @@ export default async function Page({ params }: Params) {
             <p className="mono" style={{ fontSize: 12.5 }}>{z.sydneyDay}</p>
             <div className="lockup-t" style={{ marginTop: 8 }}><span className="big mono">{z.sydney}</span><span className="lab-x">Sydney</span></div>
             <div className="lockup-t" style={{ marginTop: 8 }}><span className="mono" style={{ fontSize: 20, fontWeight: 300 }}>{z.munich}</span><span className="lab-x">Munich{z.munichDay !== z.sydneyDay ? ` · ${z.munichDay}` : ""}</span></div>
-            <p className="note">Google Meet. The link is in #ai-training. Recorded.</p>
+            <p className="note">Google Meet. The link is in <a href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a>. Recorded.</p>
           </div>
         </Tile>
 
@@ -90,9 +91,9 @@ export default async function Page({ params }: Params) {
         </Tile>
 
         <Tile hue="sky" label="Slack prompt">
-          <Lab icon={<IconHash />} l="In the channel" r="Link to confirm" />
+          <Lab icon={<IconHash />} l="In the channel" r="Open now" />
           <div className="t-body">
-            <p className="lab-x">#ai-training</p>
+            <p className="lab-x"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></p>
             <p className="tt" style={{ marginTop: 8 }}>{s.slack}</p>
           </div>
         </Tile>

@@ -1,3 +1,4 @@
+import { HUB } from "@/app/two-palms/_data/hub";
 import Link from "next/link";
 import { FC, SESSIONS, TOOLS_OPENS_ISO, nextEvent, sessionHref, sessionTitle, toolsAreOpen, twoZones } from "./_data/foundations";
 import { PROMPTS, RULES, SETUP_STEPS } from "./_data/hub";
@@ -109,9 +110,9 @@ export default function Home() {
         </Tile>
 
         <Tile hue="sky" label="Slack">
-          <Lab icon={<IconHash />} l="Slack" r="Link to confirm" />
+          <Lab icon={<IconHash />} l="Slack" r="Open now" />
           <div className="area-b">
-            <div className="area-c"><h3 className="tt">#ai-training</h3><p className="tp">Meant to be loud. Post what you make, half-finished included.</p></div>
+            <div className="area-c"><h3 className="tt"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></h3><p className="tp">Meant to be loud. Post what you make, half-finished included.</p></div>
           </div>
         </Tile>
 

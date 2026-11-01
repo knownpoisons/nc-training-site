@@ -462,3 +462,7 @@
   .tpb-ptitle { flex-direction: column; align-items: flex-start; gap: 6px; }
 }
 @media (pointer: coarse), (max-width: 599px) { .tpb .phases ul a { min-height: 44px; } }
+
+/* Slack channel link */
+.tt-link { color: inherit; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+.tt-link:hover { text-decoration-thickness: 2px; }

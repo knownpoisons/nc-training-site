@@ -1,3 +1,4 @@
+import { HUB } from "@/app/two-palms/_data/hub";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import Link from "next/link";
@@ -64,7 +65,7 @@ export default async function TwoPalmsLayout({ children }: { children: React.Rea
       <footer className="tpb-foot">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="tpb-arch" src="/two-palms/arch-black.png" alt="Two Palms" width={84} height={36} />
-        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><IconHash />Questions? Ask in #ai-training</span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}><IconHash />Questions? Ask in <a href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></span>
         <Link className="lnk" href="/two-palms/backstage">Backstage, admin <IconArrow /></Link>
       </footer>
     </div>

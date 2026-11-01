@@ -1,3 +1,4 @@
+import { HUB } from "@/app/two-palms/_data/hub";
 import Link from "next/link";
 import { FC, SESSIONS, countEvents, scheduleEvents, sessionHref, sessionTitle, twoZones } from "../_data/foundations";
 import { IsNextMark } from "../_ui/b-client";
@@ -122,9 +123,9 @@ export default function Page() {
           </ul>
         </Tile>
         <Tile hue="sky" label="Slack">
-          <Lab icon={<IconHash />} l="Slack" r="Link to confirm" />
+          <Lab icon={<IconHash />} l="Slack" r="Open now" />
           <div className="t-body">
-            <h3 className="tt">#ai-training</h3>
+            <h3 className="tt"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></h3>
             <p className="tp">Post what you make, half-finished included. Stuck? Ask your Claude first, then the channel, then Jem.</p>
             <p className="note">Office hours: {FC.office_hours.map((o) => o.date).join(" and ")}.</p>
           </div>

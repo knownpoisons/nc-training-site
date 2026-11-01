@@ -44,6 +44,7 @@ export const HUB = {
   name: "Two Palms AI Hub",
   url: "https://training.notcontent.ai/two-palms",
   slackChannel: "#ai-training",
+  slackUrl: "https://twopalmsmedia.slack.com/archives/C0CD6JZPVJ8",
   stance: "AI amplifies production. It doesn't replace the shoot.",
   tenEightyTen:
     "10% human brief, 80% AI execution, 10% human QA. The value lives in the two tens.",
