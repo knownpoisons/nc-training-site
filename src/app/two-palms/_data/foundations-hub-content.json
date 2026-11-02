@@ -133,11 +133,11 @@
         },
         {
           "type": "do",
-          "text": "Accept your Claude invite and run the onboarding prompt (10 minutes)."
+          "text": "Work through the Set up Claude page before Tue 10 Nov (about 40 minutes, once): accept your invite, run the onboarding prompt, and move across anything worth keeping with the Moving work prompts."
         },
         {
           "type": "do",
-          "text": "Install Fluid Voice (Mac) or use your computer's built-in dictation, and talk to Claude for 10 minutes about your job."
+          "text": "Install Fluid Voice (free, Mac: fluidvoice.com) or use your computer's built-in dictation (Windows: Win + H), and talk to Claude for 10 minutes about your job."
         }
       ],
       "slack": "Post one thing Claude said about your job that surprised you.",
@@ -187,8 +187,8 @@
       "label": "AI Foundations Training · Session 1: Shift",
       "status": "upcoming",
       "recording_url": null,
-      "cheat_sheet": null,
-      "wrap_notes": null
+      "cheat_sheet": "THE ONE IDEA\nYou direct. It makes. You write the brief (10%), AI does the making (80%), you check it (10%). The craft stays yours.\n\nWHAT AI IS\nA very well-read assistant that predicts the next word. Brilliant at drafts, options, summaries and structure. Trips up on facts, numbers and anything it can't see. Always check what it gives you.\n\nTHE FOUR BARRIERS, AND THE WAY PAST\n\"I'm not technical\": you don't need to be. You talk to it in plain English.\n\"It changes too fast\" and \"too many tools\": we use one tool, Claude, and go deep.\n\"I can't keep up\": you don't need to. Keep using it and the hub keeps you current.\n\nHABIT 1 · ASK YOUR CLAUDE, NOT ME\nStuck? Ask Claude first. Then #ai-training. Then Jem.\n\nHABIT 2 · TALK, DON'T TYPE\nFluid Voice (free, Mac): fluidvoice.com\nWindows: Win + H for built-in dictation.\nOpen office: headphones with a mic, so it only hears you.\n\nNOT SURE IF SOMETHING CAN GO IN?\nCheck the AI policy page. Still unsure, especially with client material: ask Ed or Jem before you paste it in.\n\nTHIS WEEK\n1. Time · Money · Pain form, by Fri 6 Nov. The only thing you hand in.\n2. Set up Claude page, about 40 minutes, before Tue 10 Nov.\n3. Talk to Claude for 10 minutes about your job.\n4. Post one thing it said that surprised you in #ai-training.",
+      "wrap_notes": "Good first one. Questions from the room:\n\nVoice in an open office? Headphones with a mic. It stops the dictation picking up everyone around you.\n\nWhat do I bring over from my personal AI accounts? Only live work you still need, using the Moving work prompts. Your client context comes in through the company Claude, not from old chats.\n\nWhat about clients with strict confidentiality? Check before anything goes in. Ed is confirming the rules per client, and Session 2 opens with the AI policy, line by line.\n\nWin already: one of the team had Claude build an After Effects set-up for a CCTV overlay. That's the shape of it: you know what you want, it does the making.\n\nNext: Session 2 · Brief, Tue 10 Nov."
     },
     {
       "n": 2,
