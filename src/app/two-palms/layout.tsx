@@ -67,7 +67,7 @@ export default async function TwoPalmsLayout({ children }: { children: React.Rea
   const sessions: MenuSession[] = SESSIONS.map((s) => ({ href: sessionHref(s), label: `${s.n}. ${sessionTitle(s)}`, when: s.when.date.replace(/ \d{4}$/, "") }));
   return (
     <div className={`tp-root tpb ${fonts}`}>
-      <Header events={countEvents()} areas={areas} sessions={sessions} />
+      <Header events={countEvents().filter((e) => new Date(e.start_iso).getTime() + e.duration_min * 60000 > now.getTime())} areas={areas} sessions={sessions} />
       <main id="main" tabIndex={-1} style={{ outline: "none" }}>{children}</main>
       <footer className="tpb-foot">
         {/* eslint-disable-next-line @next/next/no-img-element */}

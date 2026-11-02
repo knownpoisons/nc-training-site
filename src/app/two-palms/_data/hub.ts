@@ -144,12 +144,12 @@ First, interview me. Ask one question at a time and wait for my answer:
 6. One thing I've already tried with AI that worked, and one that didn't
 
 Then give me four things:
-A. My personal preferences, written as a block I can paste into Settings > General > personal preferences. Include my role, my clients, how I like answers, and "keep it short unless I ask for more".
+A. My personal preferences, written as a block I can paste into Settings > Your Claude > Instructions. Include my role, my clients, how I like answers, and "keep it short unless I ask for more".
 B. Which shared client projects I should ask my account lead to add me to, based on my clients.
 C. One starter task I can do in the next 10 minutes, using one of my 3 time-wasters, so I see something useful today.
 D. The Two Palms house rules, in 5 lines:
 - Work stuff only in this Two Palms account, never a personal one
-- Client work lives in that client's shared project; start a new chat whenever you like, Claude can find past chats and Drive
+- Client work lives in that client's shared project; start a new chat whenever you like: Claude can search your past chats, and your Drive once the Drive connector is on
 - Check the client's AI level before you start, and check every fact, name and number before anything leaves the building
 - Passwords, bank details and anything a client has said not to share never go in
 - Not sure? Ask Claude to check it against the Two Palms AI policy, then ask the Operations Manager
@@ -312,7 +312,7 @@ export const MENTAL_MODELS = [
 export const GLOSSARY: { term: string; d: string }[] = [
   { term: "Chat", d: "A single conversation. Start a new one whenever you like. Claude can look back at old ones." },
   { term: "Project", d: "A folder of chats with shared files and instructions. One per client. The thing that matters more than any chat." },
-  { term: "Personal preferences", d: "A note Claude reads before every chat: who you are, how you like answers. Set once in Settings." },
+  { term: "Personal preferences", d: "A note Claude reads before every chat: who you are, how you like answers. Set once in Settings > Your Claude > Instructions." },
   { term: "Skill", d: "A set of instructions Claude loads when a task calls for it. The AI policy is one. Shared across the whole team." },
   { term: "Connector", d: "A link from Claude to a tool you already use: Drive, Gmail, Calendar, Slack, Granola. Claude only sees what you can see." },
   { term: "Model", d: "The brain behind the chat. Haiku is fast, Sonnet is the default, Opus is the heavy one. See the model board." },
@@ -330,10 +330,10 @@ export const GLOSSARY: { term: string; d: string }[] = [
 export const SETUP_STEPS = [
   { n: "01", t: "Accept the invite", d: "It lands in your Two Palms inbox on Fri 30 Oct. Nothing to do before then. Accept it on your Two Palms email.", who: "You", mins: "2" },
   { n: "02", t: "Run the onboarding prompt", d: "Open a new chat, paste the prompt shown on this page (it is also the first one in the library), and answer its questions one at a time.", who: "You", mins: "10" },
-  { n: "03", t: "Paste your preferences", d: "Take the preferences block it gives you and paste it into Settings > General > Personal preferences.", who: "You", mins: "2" },
-  { n: "04", t: "Join your client projects", d: "Each client has one shared project, set up by that client's account lead. If that is you, set it up; if not, ask them to add you.", who: "You + account lead", mins: "5" },
-  { n: "05", t: "Sign in to your connectors", d: "Settings > Connectors: sign in to Drive, Gmail, Calendar, Slack and Granola. Claude only sees what you can see.", who: "You", mins: "5" },
-  { n: "06", t: "Talk, don't type", d: "Turn on dictation (Mac: press the microphone key, or install a free dictation app). Say your next prompt out loud.", who: "You", mins: "3" },
+  { n: "03", t: "Paste your preferences", d: "Take the preferences block it gives you. Click your initials (bottom left) > Settings > Your Claude, and paste it into Instructions.", who: "You", mins: "2" },
+  { n: "04", t: "Join your client projects", d: "Each client has one shared project, set up by that client's account lead. If that is you, set it up and share it with the team ('Can edit' for anyone who adds files). If not, ask them to add you.", who: "You + account lead", mins: "5" },
+  { n: "05", t: "Sign in to your connectors", d: "Go to Customize > Connectors and click Connect for Drive, Gmail, Calendar, Slack and Granola, signing in with your Two Palms account. If you see Request instead of Connect, say so in #ai-training. In a chat, switch them on under + > Connectors. Claude only sees what you can see.", who: "You", mins: "5" },
+  { n: "06", t: "Talk, don't type", d: "Install Fluid Voice (free, fluidvoice.com, needs macOS 15 or later) and set a hotkey. Or use the Mac's own: System Settings > Keyboard > Dictation, then the microphone key. Say your next prompt out loud.", who: "You", mins: "3" },
   { n: "07", t: "Do one real thing", d: "Pick the starter task the onboarding prompt gave you. Ten minutes. See something useful today.", who: "You", mins: "10" },
   { n: "08", t: "Finish anything on the shared ChatGPT", d: "Shared logins switch off Fri 6 Nov. Anything worth keeping: use the Moving work prompts.", who: "You", mins: "varies" },
 ];
@@ -351,7 +351,7 @@ export interface CheckItem {
 export const MICKY_CHECKLIST: CheckItem[] = [
   { id: "owner", group: "Claude Team", t: "Make Jem an Owner (Micky stays Primary Owner)", owner: "Micky", due: "Before invites" },
   { id: "policy-switches", group: "Claude Team", t: "Organization settings > Policy: turn on cloud code execution and file creation, Skills, and chat search", owner: "Micky", due: "Before invites" },
-  { id: "connectors", group: "Claude Team", t: "Connectors for everyone: Google Drive, Gmail, Calendar, Slack, Granola", d: "Check the Google Workspace admin console allows Claude, or the Google ones won't sign in. Productive: park if not in the directory.", owner: "Jem + Micky", due: "Before invites" },
+  { id: "connectors", group: "Claude Team", t: "Connectors for everyone: Google Drive, Gmail, Calendar, Slack, Granola", d: "Owner adds each one under Organisation settings > Connectors, or staff only see Request. Slack also needs the Claude app approved in the Slack workspace. Check the Google Workspace admin console allows Claude, or the Google ones won't sign in. Productive: park if not in the directory.", owner: "Jem + Micky", due: "Before invites" },
   { id: "policy-skill", group: "Claude Team", t: "Upload the AI policy skill (Plugins and skills > Upload)", owner: "Jem", due: "Before invites" },
   { id: "privacy", group: "Claude Team", t: "Walk through data and privacy settings together (export, retention, memory)", d: "Micky needs this for the policy's monitoring line.", owner: "Jem + Micky", due: "Before invites" },
   { id: "projects", group: "Claude Team", t: "One shared project per client, set up by the account lead, key Drive docs added", owner: "Account leads", due: "Week 1" },
