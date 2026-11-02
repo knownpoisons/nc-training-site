@@ -100,7 +100,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
         {s.recording_url ? (
           <a className="wp-res-c is-rec" href={s.recording_url} target="_blank" rel="noreferrer">
             <Win src="/two-palms/img/h/recording.jpg" w={480} h={300} className="wp-res-img" />
-            <span className="wp-res-b"><span className="wp-k">Recording</span><span className="wp-res-t">Session {s.n} video <IconArrow /></span><span className="wp-res-d">The full session. Watch it at 1.25×.</span></span>
+            <span className="wp-res-b"><span className="wp-k">Recording</span><span className="wp-res-t">Session {s.n} video <IconArrow /></span><span className="wp-res-d">The full session. Watch it at&nbsp;1.25×.</span></span>
           </a>
         ) : null}
         <a className="wp-res-c is-slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
@@ -113,7 +113,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
 
   const comingNext = next && nz ? (
     <Link className="wp-next" href={sessionHref(next)}>
-      <span><span className="wp-k">Coming next</span><span className="wp-when">{strip(next.when.date)} · {nz.sydney} Sydney · {nz.munich} Munich</span><span className="wp-next-t">Session {next.n}: {sessionTitle(next)}</span><span className="wp-res-d">{next.line}</span></span>
+      <span><span className="wp-k">Coming next</span><span className="wp-when"><span>{strip(next.when.date)}</span> · <span>{nz.sydney} Sydney</span> · <span>{nz.munich} Munich</span></span><span className="wp-next-t">Session {next.n}: {sessionTitle(next)}</span><span className="wp-res-d">{next.line}</span></span>
       <span className="btn btn--pri">See session {next.n} <IconArrow /></span>
     </Link>
   ) : null;

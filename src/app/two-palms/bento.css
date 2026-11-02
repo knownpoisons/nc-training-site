@@ -1155,3 +1155,4 @@
   .tpb .wp-next { margin-top: 56px; }
 }
 .tpb .wp-date { white-space: nowrap; }
+.tpb .wp-when > span { white-space: nowrap; }
