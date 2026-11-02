@@ -46,7 +46,8 @@ export default async function Page({ params, searchParams }: Params) {
     const due = s.homework.find((h) => h.type === "submit")?.short?.match(/by (.+)$/)?.[1];
     const sec = (l: string) => l; // section index numbers removed (design pass, 2 Nov)
     const wv = (await searchParams)?.wrap; // preview: ?wrap=a|b|c (JD structure)
-    if (wv === "a" || wv === "b" || wv === "c") return <Wrap s={s} next={next} v={wv} />;
+    // Approved 2 Nov: version A (JD cheat sheet). ?wrap=old shows the previous bento wrap for comparison.
+    if (wv !== "old") return <Wrap s={s} next={next} v={wv === "b" || wv === "c" ? wv : "a"} />;
     return (
       <>
         <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<span className="lab-x">{s.phase}</span>} />
