@@ -6,9 +6,10 @@ import { isAdminAuthed } from "../../_lib/auth";
 import { SESSIONS, countEvents, presenterFor, sessionByParam, sessionHref, sessionTitle, teamSession, twoZones, type PresenterContent, type TeamSession } from "../../_data/foundations";
 import { AdminUnlock, IsNextMark } from "../../_ui/b-client";
 import { VideoEmbed } from "../../_ui/video-embed";
+import { Wrap } from "../../_ui/wrap";
 import { Bento, IconArrow, IconHash, Lab, PageTitle, Tile, Win } from "../../_ui/b";
 
-type Params = { params: Promise<{ n: string }> };
+type Params = { params: Promise<{ n: string }>; searchParams?: Promise<{ wrap?: string }> };
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const s = sessionByParam((await params).n);
@@ -19,7 +20,7 @@ const strip = (d: string) => d.replace(/ \d{4}$/, "");
 const isUrl = (v: string) => /^https?:\/\//i.test(v);
 const HW_LABEL: Record<string, string> = { submit: "Hand in", do: "Do", share: "Share" };
 
-export default async function Page({ params }: Params) {
+export default async function Page({ params, searchParams }: Params) {
   const p = (await params).n;
   const full = sessionByParam(p);
   if (!full) notFound();
@@ -44,6 +45,8 @@ export default async function Page({ params }: Params) {
     const nz = next ? twoZones(next.when.start_iso) : null;
     const due = s.homework.find((h) => h.type === "submit")?.short?.match(/by (.+)$/)?.[1];
     const sec = (l: string) => l; // section index numbers removed (design pass, 2 Nov)
+    const wv = (await searchParams)?.wrap; // preview: ?wrap=a|b|c (JD structure)
+    if (wv === "a" || wv === "b" || wv === "c") return <Wrap s={s} next={next} v={wv} />;
     return (
       <>
         <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<span className="lab-x">{s.phase}</span>} />
