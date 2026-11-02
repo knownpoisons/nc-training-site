@@ -1130,3 +1130,28 @@
 .tpb .wp-cover-img img { object-position: 62% 50%; }
 .tpb .wp--c .wp-idea { grid-template-columns: 1fr; }
 .tpb .wp--c .wp-tag { display: table; margin: 6px 0 0; }
+/* Session wrap-up: design-panel fixes (2 Nov night) */
+.tpb .wp-back { max-width: var(--col); }
+.tpb .wp-k, .tpb .wp-meta dt, .tpb .wp-who, .tpb .wp-hw-head { letter-spacing: .06em; }
+.tpb .wp-hw-head span { white-space: nowrap; }
+.tpb .wp-hw .btn--hot { background: var(--hot); border-color: var(--hot); color: #fff; }
+.tpb .wp-hw .btn--hot:hover { background: #9e3a1a; border-color: #9e3a1a; }
+.tpb .wp-hw-list .btn { min-width: 172px; flex: none; }
+.tpb .wp-tag { display: block; margin: 0 0 4px; padding: 0; background: none; color: var(--hot); border-radius: 0; vertical-align: baseline; }
+.tpb .wp-date { font: 400 .82em/1 var(--f-mono); letter-spacing: 0; }
+.tpb .wp-meta div:last-child dd { font-family: var(--f-sans); }
+.tpb .wp-when { font: 400 13px/1.4 var(--f-mono); color: var(--text-2); }
+.tpb .wp-next { margin-top: 72px; }
+.tpb .wp-cards b, .tpb .wp-res-t, .tpb .wp-hw-t { font-size: 22px; }
+.tpb .wp-res-t { display: inline-flex; align-items: center; gap: 8px; }
+.tpb .wp-res-t .ic { width: 16px; height: 16px; }
+.tpb .wp-prose p, .tpb .wp-intro { font-size: 15px; }
+@media (max-width: 699px) {
+  .tpb .wp-hw-list .btn { width: 100%; }
+  .tpb .wp-hw-t { font-size: 19px; }
+  .tpb .wp-split-c { display: grid; grid-template-columns: 72px 1fr; column-gap: 14px; }
+  .tpb .wp-split-c b { grid-row: span 2; font-size: 36px; }
+  .tpb .wp-idea-img { aspect-ratio: 4 / 3; }
+  .tpb .wp-next { margin-top: 56px; }
+}
+.tpb .wp-date { white-space: nowrap; }

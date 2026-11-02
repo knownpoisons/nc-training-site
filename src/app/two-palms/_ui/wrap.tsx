@@ -4,9 +4,15 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 import { HUB } from "../_data/hub";
 import { sessionHref, sessionTitle, twoZones, type FSession, type TeamSession } from "../_data/foundations";
-import { IconArrow, IconHash, Win } from "./b";
+import { IconArrow, Win } from "./b";
 
 const strip = (d: string) => d.replace(/ \d{4}$/, "");
+const DAYS: Record<string, string> = { Mon: "Monday", Tue: "Tuesday", Wed: "Wednesday", Thu: "Thursday", Fri: "Friday" };
+/** Dates inside homework lines set in mono: "…, by Fri 6 Nov" */
+function withDates(t: string): ReactNode {
+  const m = t.match(/^(.*?)((?:by|before) )((?:Mon|Tue|Wed|Thu|Fri|Sat|Sun) \d{1,2} \w{3})(.*)$/);
+  return m ? <>{m[1]}{m[2]}<span className="wp-date">{m[3]}</span>{m[4]}</> : t;
+}
 
 function Sec({ k, h, children, id }: { k: string; h?: string; children: ReactNode; id?: string }) {
   return (
@@ -21,15 +27,14 @@ function Sec({ k, h, children, id }: { k: string; h?: string; children: ReactNod
 export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v: "a" | "b" | "c" }) {
   const r = s.recap!;
   const nz = next ? twoZones(next.when.start_iso) : null;
-  const due = s.homework.find((h) => h.type === "submit")?.short?.match(/by (.+)$/)?.[1];
 
   const title = (
     <header className="wp-title">
-      <p className="wp-k">Session {s.n} · {s.phase} · wrap-up</p>
+      <p className="wp-k">Session {s.n} · Wrap-up</p>
       <h1 className="wp-h1">{s.title}</h1>
       <p className="wp-goal">{r.goal}</p>
       <dl className="wp-meta">
-        <div><dt>Ran</dt><dd>{strip(s.date)}</dd></div>
+        <div><dt>Date</dt><dd>{strip(s.date)}</dd></div>
         <div><dt>Length</dt><dd>{s.duration_min} min</dd></div>
         <div><dt>Format</dt><dd>Google Meet</dd></div>
       </dl>
@@ -38,14 +43,14 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
 
   const homework = (
     <section className="wp-hw" aria-label="Homework">
-      <div className="wp-hw-head"><span>Homework for Session {s.n + 1}</span>{due ? <span>Due {due}</span> : null}</div>
+      <div className="wp-hw-head"><span>Homework for Session {s.n + 1}</span></div>
       <ul className="wp-hw-list">
         {s.homework.map((h) => {
           const ext = h.cta && /^https?:/.test(h.cta.href);
           const cls = `btn ${h.type === "submit" ? "btn--hot" : "btn--sec"}`;
           return (
             <li key={h.text}>
-              <span className="wp-hw-t">{h.short ?? h.text}{h.type === "submit" ? <em className="wp-tag">Hand in</em> : null}</span>
+              <span className="wp-hw-t">{h.type === "submit" ? <em className="wp-tag">Hand in</em> : null}{withDates(h.short ?? h.text)}</span>
               {h.cta ? (ext
                 ? <a className={cls} href={h.cta.href} target="_blank" rel="noreferrer">{h.cta.label} <IconArrow /></a>
                 : <Link className={cls} href={h.cta.href}>{h.cta.label} <IconArrow /></Link>) : null}
@@ -57,7 +62,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
   );
 
   const covered = (
-    <Sec k="What we covered" h="The hour, in eight beats.">
+    <Sec k="What we covered" h={`${DAYS[s.date.slice(0, 3)] ?? "The"}'s session.`}>
       <ol className="wp-list">{r.agenda.map((c) => <li key={c}>{c}</li>)}</ol>
     </Sec>
   );
@@ -95,12 +100,12 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
         {s.recording_url ? (
           <a className="wp-res-c is-rec" href={s.recording_url} target="_blank" rel="noreferrer">
             <Win src="/two-palms/img/h/recording.jpg" w={480} h={300} className="wp-res-img" />
-            <span className="wp-res-b"><span className="wp-k">Recording · {s.duration_min} min</span><span className="wp-res-t">Session {s.n} video</span><span className="wp-res-d">The full session. Watch it at 1.25x.</span></span>
+            <span className="wp-res-b"><span className="wp-k">Recording</span><span className="wp-res-t">Session {s.n} video <IconArrow /></span><span className="wp-res-d">The full session. Watch it at 1.25×.</span></span>
           </a>
         ) : null}
         <a className="wp-res-c is-slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
           <Win src="/two-palms/img/h/spotlight.jpg" w={480} h={300} className="wp-res-img" />
-          <span className="wp-res-b"><span className="wp-k"><IconHash /> Slack</span><span className="wp-res-t">#ai-training</span><span className="wp-res-d">{s.slack}</span></span>
+          <span className="wp-res-b"><span className="wp-k">Slack</span><span className="wp-res-t">#ai-training <IconArrow /></span><span className="wp-res-d">{s.slack}</span></span>
         </a>
       </div>
     </Sec>
@@ -108,7 +113,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
 
   const comingNext = next && nz ? (
     <Link className="wp-next" href={sessionHref(next)}>
-      <span><span className="wp-k">Coming next · {strip(next.when.date)} · {nz.sydney} Sydney · {nz.munich} Munich</span><span className="wp-next-t">Session {next.n}: {sessionTitle(next)}</span><span className="wp-res-d">{next.line}</span></span>
+      <span><span className="wp-k">Coming next</span><span className="wp-when">{strip(next.when.date)} · {nz.sydney} Sydney · {nz.munich} Munich</span><span className="wp-next-t">Session {next.n}: {sessionTitle(next)}</span><span className="wp-res-d">{next.line}</span></span>
       <span className="btn btn--pri">See session {next.n} <IconArrow /></span>
     </Link>
   ) : null;
@@ -127,8 +132,8 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
           </aside>
           <div className="wp-main">
             {covered}{bigIdea}{framework}
-            {cards("What to remember", "Four things to keep.", r.remember)}
-            {cards("Helpful hints", "Small habits, big gains.", r.hints)}
+            {cards("What to remember", "Worth remembering.", r.remember)}
+            {cards("Helpful hints", "Habits that help.", r.hints)}
             {takeIt}{comingNext}
           </div>
         </div>
@@ -160,8 +165,8 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
           </div>
         ) : (
           <>
-            {cards("What to remember", "Four things to keep.", r.remember)}
-            {cards("Helpful hints", "Small habits, big gains.", r.hints)}
+            {cards("What to remember", "Worth remembering.", r.remember)}
+            {cards("Helpful hints", "Habits that help.", r.hints)}
           </>
         )}
         {takeIt}{comingNext}
