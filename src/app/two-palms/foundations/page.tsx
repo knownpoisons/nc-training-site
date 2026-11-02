@@ -2,8 +2,9 @@ import { HUB, PROMPTS } from "@/app/two-palms/_data/hub";
 import Link from "next/link";
 import { FC, SESSIONS, sessionHref, sessionTitle } from "../_data/foundations";
 import { POLICY_META } from "../_data/policy";
-import { Bento, IconArrow, IconHash, PageTitle, Tile } from "../_ui/b";
-import { LocalWhen } from "../_ui/local-when";
+import { Bento, IconArrow, IconHash, PageTitle, Tile, Win } from "../_ui/b";
+import { LocalTime } from "../_ui/local-time";
+import { SessionFig } from "../_ui/session-figs";
 
 export const metadata = { title: "AI Foundations" };
 
@@ -23,7 +24,9 @@ function Sec({ n, eyebrow, title, lede }: { n: string; eyebrow: string; title: s
   );
 }
 
-export default function Page() {
+export default async function Page({ searchParams }: { searchParams: Promise<{ v?: string }> }) {
+  const vq = (await searchParams).v;
+  const V = vq === "b" || vq === "c" ? vq : "a";
   const now = new Date().getTime();
   const P = FC.programme;
   const end = (s: (typeof SESSIONS)[number]) => new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000;
@@ -103,46 +106,112 @@ export default function Page() {
         </details>
 
         {/* ── 02 · The sessions ── */}
-        <Sec n="02" eyebrow="The eight sessions" title="What we cover, week by week." lede="Times show in your own timezone. Every session is recorded, and the wrap-up lands on its page." />
+        <Sec n="02" eyebrow="The eight sessions" title="What we cover, week by week." lede={undefined} />
+        <p className="sF fx-lede fx-lede--row">Tuesdays at <b><LocalTime iso={(nextS ?? first).when.start_iso} /></b>, your time. 60 minutes, recorded. The wrap-up lands on each session&apos;s page.</p>
 
-        <div className="sF fx-list" id="schedule">
-          {SESSIONS.map((s, i) => {
-            const st = i < doneN ? "done" : s === nextS ? "next" : "up";
-            return (
-              <div key={s.n} className={`fx-row is-${st}`}>
-                <Link href={sessionHref(s)} className="fx-row-main">
+        {V === "a" ? (
+          <div className="sF fx-list fx-list--a" id="schedule">
+            {SESSIONS.map((s, i) => {
+              const st = i < doneN ? "done" : s === nextS ? "next" : "up";
+              const photo = st !== "up";
+              return (
+                <div key={s.n} className={`fx-row is-${st}`}>
+                  <Link href={sessionHref(s)} className="fx-row-main fx-row-main--a">
+                    <span className={`fx-plate${photo ? " has-photo" : ""}`}>
+                      {photo ? <Win src={`/two-palms/img/l/session-${s.number}.jpg`} w={240} h={240} className="fx-plate-img" /> : null}
+                      <SessionFig n={s.n} play={st === "next"} />
+                    </span>
+                    <span className="fx-num">{s.number}</span>
+                    <span className="fx-row-c"><span className="fx-row-t">{sessionTitle(s)}</span><span className="fx-row-l">{s.line}</span></span>
+                    <span className="lw"><span className="lw-d">{s.when.date.replace(/ \d{4}$/, "")}</span></span>
+                    {st === "up" ? <span /> : <span className="fx-st">{st === "done" ? "✓ Done" : "Next"}</span>}
+                  </Link>
+                  {st === "done" ? <Link href={sessionHref(s)} className="fx-bar">Wrap-up, recording &amp; homework <IconArrow /></Link>
+                    : st === "next" ? <a href={joinHref} target="_blank" rel="noreferrer" className="fx-bar fx-bar--join">{P.meet_url ? "Join session" : "Join session · link in #ai-training"} <IconArrow /></a> : null}
+                </div>
+              );
+            })}
+            {FC.office_hours.map((o) => (
+              <div key={o.n} className="fx-row is-oh">
+                <div className="fx-row-main fx-row-main--a">
+                  <span className="fx-plate"><SessionFig n="oh" /></span>
+                  <span className="fx-num fx-num--oh">+</span>
+                  <span className="fx-row-c"><span className="fx-row-t">{o.label}</span><span className="fx-row-l">{o.format}</span></span>
+                  <span className="lw"><span className="lw-d">{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "~")}</span></span>
+                  <span className="fx-st">To confirm</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : V === "b" ? (
+          <div className="sF fx-list fx-list--b" id="schedule">
+            {SESSIONS.map((s, i) => {
+              const st = i < doneN ? "done" : s === nextS ? "next" : "up";
+              if (st === "next") return (
+                <div key={s.n} className="fx-feat">
+                  <Win src={`/two-palms/img/l/session-${s.number}.jpg`} w={720} h={720} className="fx-feat-img" />
+                  <div className="fx-feat-fig"><SessionFig n={s.n} play /></div>
+                  <div className="fx-feat-c">
+                    <p className="fx-eye"><span className="mono">Next · {s.number}</span> / {s.when.date.replace(/ \d{4}$/, "")}</p>
+                    <h3 className="fx-feat-t">{sessionTitle(s)}</h3>
+                    <p className="fx-row-l">{s.line}</p>
+                    <div className="acts">
+                      <a href={joinHref} target="_blank" rel="noreferrer" className="btn btn--hot">{P.meet_url ? "Join session" : "Join link in #ai-training"} <IconArrow /></a>
+                      <Link href={sessionHref(s)} className="btn btn--sec">What we&apos;ll cover</Link>
+                    </div>
+                  </div>
+                </div>
+              );
+              return (
+                <Link key={s.n} href={sessionHref(s)} className={`fx-line is-${st}`}>
+                  <span className="fx-line-fig">{st === "done" ? <Win src={`/two-palms/img/l/session-${s.number}.jpg`} w={120} h={120} className="fx-line-img" /> : <SessionFig n={s.n} />}</span>
                   <span className="fx-num">{s.number}</span>
-                  <span className="fx-row-c">
-                    <span className="fx-row-t">{sessionTitle(s)}</span>
-                    <span className="fx-row-l">{s.line}</span>
-                  </span>
-                  <LocalWhen iso={s.when.start_iso} mins={s.when.duration_min} />
-                  <span className="fx-st">{st === "done" ? "✓ Done" : st === "next" ? "Next" : "Upcoming"}</span>
+                  <span className="fx-row-t">{sessionTitle(s)}</span>
+                  <span className="fx-row-l fx-line-l">{s.line}</span>
+                  <span className="lw-d">{s.when.date.replace(/ \d{4}$/, "")}</span>
+                  <span className="fx-line-st">{st === "done" ? "✓ Wrap-up" : ""}</span>
                 </Link>
-                {st === "done" ? (
-                  <Link href={sessionHref(s)} className="fx-bar">Wrap-up, recording &amp; homework <IconArrow /></Link>
-                ) : st === "next" ? (
-                  <a href={joinHref} target="_blank" rel="noreferrer" className="fx-bar fx-bar--join">{P.meet_url ? "Join session" : "Join session · link in #ai-training"} <IconArrow /></a>
-                ) : null}
-              </div>
-            );
-          })}
-          {FC.office_hours.map((o) => (
-            <div key={o.n} className="fx-row is-oh">
-              <div className="fx-row-main">
+              );
+            })}
+            {FC.office_hours.map((o) => (
+              <div key={o.n} className="fx-line is-oh">
+                <span className="fx-line-fig"><SessionFig n="oh" /></span>
                 <span className="fx-num fx-num--oh">+</span>
-                <span className="fx-row-c"><span className="fx-row-t">{o.label}</span><span className="fx-row-l">{o.format}</span></span>
-                <span className="lw"><span className="lw-d">{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "~")}</span><span className="lw-t">{o.duration_min} min</span></span>
-                <span className="fx-st">To confirm</span>
+                <span className="fx-row-t">{o.label}</span>
+                <span className="fx-row-l fx-line-l">{o.format}</span>
+                <span className="lw-d">{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "~")}</span>
+                <span className="fx-line-st">To confirm</span>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="sF fx-grid" id="schedule">
+            {SESSIONS.map((s, i) => {
+              const st = i < doneN ? "done" : s === nextS ? "next" : "up";
+              return (
+                <Link key={s.n} href={sessionHref(s)} className={`fx-tile is-${st} fx-tone-${i % 3}`}>
+                  {st === "up" ? <span className="fx-tile-fig"><SessionFig n={s.n} /></span> : <Win src={`/two-palms/img/l/session-${s.number}.jpg`} w={480} h={480} className="fx-tile-img" />}
+                  {st === "up" ? <span className="fx-tile-num">{s.number}</span> : null}
+                  <span className="fx-tile-lab">
+                    <span className="fx-tile-t">{st === "up" ? "" : `${s.number} · `}{sessionTitle(s)}</span>
+                    <span className="fx-tile-s">{st === "done" ? "✓ Done · wrap-up" : st === "next" ? `Next · ${s.when.date.replace(/ \d{4}$/, "")}` : s.when.date.replace(/ \d{4}$/, "")}</span>
+                  </span>
+                </Link>
+              );
+            })}
+            {FC.office_hours.map((o) => (
+              <div key={o.n} className="fx-tile fx-tile--oh">
+                <span className="fx-tile-fig"><SessionFig n="oh" /></span>
+                <span className="fx-tile-lab"><span className="fx-tile-t">{o.label}</span><span className="fx-tile-s">{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "~")} · to confirm</span></span>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* ── 03 · Around the sessions ── */}
         <Sec n="03" eyebrow="Resources" title="What's around the sessions." lede="The work happens in the hour. The support happens in between." />
 
-        <a className="t fx-res fx-res--slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
+        <a className="t fx-res fx-res--mustard" href={HUB.slackUrl} target="_blank" rel="noreferrer">
           <span className="fx-res-k"><IconHash /> Slack</span><span className="fx-res-t">#ai-training</span>
           <span className="fx-res-d">Post what you make, half-finished included. Stuck? Ask your Claude, then the channel, then Jem.</span>
         </a>
@@ -158,6 +227,10 @@ export default function Page() {
           <span className="fx-res-k">Every session</span><span className="fx-res-t">After each hour</span>
           <span className="fx-res-d">{(P.every_session_short ?? P.every_session).join(" ")}</span>
         </div>
+
+        <figure className="sF fx-foot">
+          <img src="/two-palms/img/h/foundations-flatlay.jpg" alt="Two Palms AI Training Foundations kit laid out on a desk: floppy disk, coffee, flip clock, stickers." loading="lazy" />
+        </figure>
       </Bento>
     </>
   );
