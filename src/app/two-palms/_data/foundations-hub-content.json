@@ -287,7 +287,8 @@
             "d": "Check the AI policy. Still unsure with client material? Ask Ed or Jem first."
           }
         ]
-      }
+      },
+      "meet_url": "https://meet.google.com/jox-jibf-eam"
     },
     {
       "n": 2,
@@ -369,7 +370,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     },
     {
       "n": 3,
@@ -448,7 +450,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     },
     {
       "n": 4,
@@ -522,7 +525,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     },
     {
       "n": 5,
@@ -595,7 +599,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     },
     {
       "n": 6,
@@ -664,7 +669,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     },
     {
       "n": 7,
@@ -727,7 +733,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     },
     {
       "n": 8,
@@ -796,7 +803,8 @@
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
-      "wrap_notes": null
+      "wrap_notes": null,
+      "meet_url": null
     }
   ],
   "forms": {

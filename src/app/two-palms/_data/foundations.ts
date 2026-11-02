@@ -48,6 +48,7 @@ export interface FSession {
   cheat_sheet: string | null;
   wrap_notes: string | null;
   recap?: Recap;
+  meet_url?: string | null;
 }
 
 export interface FQuestion {
