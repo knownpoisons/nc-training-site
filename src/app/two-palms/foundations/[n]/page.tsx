@@ -5,6 +5,7 @@ import { notFound, redirect } from "next/navigation";
 import { isAdminAuthed } from "../../_lib/auth";
 import { SESSIONS, countEvents, presenterFor, sessionByParam, sessionHref, sessionTitle, teamSession, twoZones, type PresenterContent, type TeamSession } from "../../_data/foundations";
 import { AdminUnlock, IsNextMark } from "../../_ui/b-client";
+import { VideoEmbed } from "../../_ui/video-embed";
 import { Bento, IconArrow, IconHash, Lab, PageTitle, Tile, Win } from "../../_ui/b";
 
 type Params = { params: Promise<{ n: string }> };
@@ -64,6 +65,13 @@ export default async function Page({ params }: Params) {
               </div>
             </div>
           </Tile>
+
+          {s.recording_url ? (
+            <Tile span="F" label="Watch it back" className="rc-watch" id="watch">
+              <Lab l={sec("Watch it back")} r={`${s.duration_min} min`} />
+              <VideoEmbed url={s.recording_url} title={`Session ${s.n}: ${s.title}`} />
+            </Tile>
+          ) : null}
 
           <Tile span={2} label="What we covered">
             <Lab l={sec("What we covered")} r={pad(r.agenda.length - 1)} />
@@ -136,8 +144,8 @@ export default async function Page({ params }: Params) {
             <Lab l={sec("Take it with you")} />
             <div className="rc-res">
               {s.recording_url ? (
-                <a className="rc-res-c is-rec" href={s.recording_url} target="_blank" rel="noreferrer">
-                  <span className="rc-res-k">Recording</span><span className="rc-res-t">Session {s.n} video</span><span className="rc-res-d">The full session, start to finish.</span><span className="rc-res-go">Watch <IconArrow /></span>
+                <a className="rc-res-c is-rec" href="#watch">
+                  <span className="rc-res-k">Recording</span><span className="rc-res-t">Session {s.n} video</span><span className="rc-res-d">The full session, start to finish. Watch it at 1.25x.</span><span className="rc-res-go">Watch it <IconArrow /></span>
                 </a>
               ) : (
                 <div className="rc-res-c is-rec is-wait">
