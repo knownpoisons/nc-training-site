@@ -1,0 +1,87 @@
+/* AI policy page. Rides on the Bento system (bento.css); only what that lacks lives here. */
+
+.tpb .pol-big { font: 400 clamp(34px, 2.4vw + 18px, 56px)/1.02 var(--f-serif); letter-spacing: -.015em; color: var(--text); text-wrap: balance; }
+.tpb .pol-lead { margin-top: 14px; max-width: 62ch; font-size: 16px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+.tpb .pol-hero .t-body { justify-content: flex-end; padding-top: 28px; }
+.tpb .pol-status { display: flex; align-items: center; gap: 8px; font: 400 var(--fs-tt)/1.2 var(--f-serif); color: var(--text); text-wrap: balance; }
+.tpb .pol-status .dot { width: 8px; height: 8px; }
+.tpb .pol-why { font-size: 15px; line-height: 1.55; color: var(--text); text-wrap: pretty; }
+.tpb .pol-why + .tp { margin-top: 10px; }
+
+/* numbered rows: number, then text */
+.tpb .pol-list { margin: 0; padding: 0; }
+.tpb .pol-list li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--text); text-wrap: pretty; }
+.tpb .pol-list li:last-child { border-bottom: 0; padding-bottom: 0; }
+.tpb .pol-n { font-size: 12px; line-height: 21px; color: var(--text-2); }
+
+/* three columns of care */
+.tpb .pol-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0 calc(-1 * var(--pad)) calc(-1 * var(--pad)); padding: 0; }
+.tpb .pol-cols li { display: flex; flex-direction: column; gap: 6px; padding: 14px var(--pad) var(--pad); border-left: 1px solid var(--rule); }
+.tpb .pol-cols li:first-child { border-left: 0; }
+.tpb .pol-cols .tp { color: var(--text); margin-top: 2px; }
+
+/* hard no's: the one dark tile */
+.tpb .t.pol-dark { background: var(--text); border-color: var(--text); color: var(--card); }
+.tpb .pol-dark .lab { border-bottom-color: rgba(248, 244, 237, .18); }
+.tpb .pol-dark .lab-l, .tpb .pol-dark .lab-r { color: var(--card); }
+.tpb .pol-dark-k { font: 400 var(--fs-tt)/1.2 var(--f-serif); color: var(--card); }
+.tpb .pol-x { margin: 6px 0 0; padding: 0; }
+.tpb .pol-x li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; padding: 11px 0; border-bottom: 1px solid rgba(248, 244, 237, .14); font-size: 14px; line-height: 1.5; color: #e9e3da; text-wrap: pretty; }
+.tpb .pol-x li:last-child { border-bottom: 0; padding-bottom: 0; }
+.tpb .pol-xm { color: var(--accent); font-size: 13px; line-height: 21px; }
+
+/* client levels strip */
+.tpb .pol-levels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 8px 0 6px; padding: 0; border: 1px solid var(--rule-2); border-radius: 2px; }
+.tpb .pol-levels li { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; border-left: 1px solid var(--rule-2); background: var(--card); }
+.tpb .pol-levels li:first-child { border-left: 0; }
+.tpb .pol-levels .tp { margin-top: 0; }
+
+/* term + description pairs */
+.tpb .pol-dl { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; margin: 6px 0 0; }
+.tpb .pol-dl > div { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.tpb .pol-dl dd { margin: 4px 0 0; color: var(--text); }
+.tpb .pol-dl .tt { font-size: 17px; }
+.tpb .pol-dl--1 { grid-template-columns: 1fr; margin-top: 2px; }
+.tpb .pol-dl--1 > div:last-child { border-bottom: 0; padding-bottom: 0; }
+
+/* what goes wrong */
+.tpb .pol-trig { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; padding: 0; }
+.tpb .pol-trig li { padding: 10px 12px; border: 1px solid var(--rule-2); border-radius: 6px; background: var(--card); font-size: 14px; line-height: 1.4; color: var(--text); }
+
+/* who to ask, living guides */
+.tpb .pol-ask, .tpb .pol-guides { margin: 0; padding: 0; }
+.tpb .pol-ask li { display: flex; flex-direction: column; padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.tpb .pol-ask li:last-child { border-bottom: 0; padding-bottom: 0; }
+.tpb .pol-ask .tp { margin-top: 2px; }
+.tpb .pol-guides li { border-bottom: 1px solid var(--rule); }
+.tpb .pol-guides li:last-child { border-bottom: 0; }
+.tpb .pol-g { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 44px; padding: 10px 0; color: var(--text); }
+.tpb .pol-g > span:first-child { display: flex; flex-direction: column; min-width: 0; }
+.tpb .pol-g .tt { font-size: 16px; }
+.tpb .pol-g .tp { margin-top: 2px; font-size: 13px; }
+.tpb a.pol-g:hover .tt { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 4px; }
+.tpb .pol-g.is-wait .tt { color: var(--text-2); }
+.tpb .pol-soon { display: inline-flex; align-items: center; gap: 6px; flex: none; font: 400 11px/1 var(--f-mono); text-transform: uppercase; color: var(--text-2); }
+
+/* policy details */
+.tpb .pol-meta { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 24px; margin: 4px 0 0; }
+.tpb .pol-meta > div { padding: 12px 0; border-bottom: 1px solid var(--rule); }
+.tpb .pol-meta dd { margin: 4px 0 0; font-size: 14px; color: var(--text); text-wrap: pretty; }
+
+@media (max-width: 1099px) {
+  .tpb .pol-cols { grid-template-columns: 1fr; }
+  .tpb .pol-cols li { border-left: 0; border-top: 1px solid var(--rule); }
+  .tpb .pol-cols li:first-child { border-top: 0; }
+  .tpb .pol-meta { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 599px) {
+  .tpb .pol-dl, .tpb .pol-trig, .tpb .pol-meta { grid-template-columns: 1fr; }
+  .tpb .pol-levels { grid-template-columns: 1fr; }
+  .tpb .pol-levels li { border-left: 0; border-top: 1px solid var(--rule-2); }
+  .tpb .pol-levels li:first-child { border-top: 0; }
+  .tpb .pol-hero .t-body { padding-top: 18px; }
+}
+
+/* own list reset (the shared .b-list grid would squeeze these) */
+.tpb :is(.pol-list, .pol-cols, .pol-x, .pol-levels, .pol-trig, .pol-ask, .pol-guides) { list-style: none; padding: 0; }
+.tpb .pol-g > span:first-child { flex: 1 1 auto; }

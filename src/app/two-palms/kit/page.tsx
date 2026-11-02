@@ -1,4 +1,6 @@
-import { CLAUDE_BOARD, CREATIVE_BOARD, GLOSSARY, MENTAL_MODELS, POLICY_ONE_PAGER, RULES, TOOL_REGISTER } from "../_data/hub";
+import Link from "next/link";
+import { CLAUDE_BOARD, CREATIVE_BOARD, GLOSSARY, MENTAL_MODELS, TOOL_REGISTER } from "../_data/hub";
+import { POLICY_HARD_NOS, POLICY_META, POLICY_RULE_ONE, POLICY_TEXT } from "../_data/policy";
 import { Circled, CopyButton, Reveal, Sketch } from "../_ui/bits";
 import { KitTabs } from "./tabs";
 
@@ -17,7 +19,7 @@ export default function Page() {
           <Reveal>
             <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />The Kit · rules, models, words</div>
             <h1 className="tp-h1"><span className="tp-outline">The</span> Kit.</h1>
-            <p className="tp-lede" style={{ marginTop: 18 }}>The policy on one page. Which model for which job. The mental models we keep coming back to. And the words, explained once.</p>
+            <p className="tp-lede" style={{ marginTop: 18 }}>The policy in short. Which model for which job. The mental models we keep coming back to. And the words, explained once.</p>
           </Reveal>
         </div>
       </section>
@@ -29,43 +31,26 @@ export default function Page() {
               <div className="tp-split">
                 <div>
                   <Reveal>
-                    <h2 className="tp-h2" style={{ marginBottom: 18 }}><span className="tp-outline">The</span> ten <Circled delay={500}>rules</Circled>.</h2>
+                    <h2 className="tp-h2" style={{ marginBottom: 18 }}><span className="tp-outline">One</span> rule <Circled delay={500}>above all</Circled>.</h2>
+                    <p className="tp-lede">{POLICY_RULE_ONE.title}. {POLICY_RULE_ONE.body}</p>
+                    <p style={{ marginTop: 22 }}><Link className="btn btn--pri" href="/two-palms/policy">Read the full AI policy</Link></p>
                   </Reveal>
-                  <ul className="tp-rules">
-                    {RULES.map((r, i) => (
-                      <Reveal as="li" key={r.n} delay={i * 50}>
-                        <span className="tp-num">{r.n}</span>
-                        <div><h3 className="tp-h3">{r.t}</h3><div className="tp-small tp-mute">{r.d}</div></div>
-                      </Reveal>
-                    ))}
-                  </ul>
                 </div>
                 <div className="tp-stack">
                   <Reveal delay={200}>
-                    <div className="tp-prompt">
-                      <div className="tp-prompt-head">
-                        <div><h3 className="tp-h3">AI policy, the short version</h3><div className="tp-prompt-when">The one page everyone reads. Full policy in Drive, and inside Claude as a skill.</div></div>
-                        <CopyButton text={POLICY_ONE_PAGER} />
-                      </div>
-                      <div className="tp-prompt-scroll"><pre style={{ maxHeight: 520 }}>{POLICY_ONE_PAGER}</pre></div>
+                    <div className="tp-card tp-card-black">
+                      <div className="tp-eyebrow" style={{ color: "#a9a9a9" }}>Hard no&rsquo;s · never, in any tool</div>
+                      <ul style={{ margin: "10px 0 0", paddingLeft: 18 }}>
+                        {POLICY_HARD_NOS.map((x) => <li key={x} className="tp-small" style={{ marginTop: 6 }}>{x}</li>)}
+                      </ul>
                     </div>
                   </Reveal>
                   <Reveal delay={250}>
-                    <div className="tp-card">
-                      <div className="tp-eyebrow"><span className="tp-dot" />Client AI levels · set by the account lead, written in the brief</div>
-                      <dl className="tp-gloss" style={{ marginTop: 6 }}>
-                        <div><dt>0 · No AI</dt><dd>No AI at any stage, including note-takers and drafting.</dd></div>
-                        <div><dt>1 · Assist</dt><dd>AI helps you work. Anything it drafts is rewritten and checked by a person before the client sees it. No AI images, video, voice or music in final work. A client brief can go in, Claude only, minimum needed.</dd></div>
-                        <div><dt>2 · Create</dt><dd>AI-made images, video, voice or copy can appear in final work, with client approval and agreed labelling.</dd></div>
-                      </dl>
-                      <p className="tp-small tp-mute" style={{ marginTop: 10 }}>Don&rsquo;t know the level? Treat it as 1 and ask the account lead before client material goes in.</p>
-                    </div>
-                  </Reveal>
-                  <Reveal delay={300}>
-                    <div className="tp-grid tp-grid-3">
-                      <div className="tp-card tp-card-pina"><div className="tp-eyebrow">Green</div><p className="tp-small">Public info, your own drafts, general research, non-sensitive internal stuff.</p></div>
-                      <div className="tp-card" style={{ background: "var(--tp-orange-tint)", borderColor: "transparent" }}><div className="tp-eyebrow" style={{ color: "var(--tp-orange-deep)" }}>Amber</div><p className="tp-small">Client material. Claude or Granola only, minimum needed, and only if the client&rsquo;s AI level allows.</p></div>
-                      <div className="tp-card tp-card-black"><div className="tp-eyebrow" style={{ color: "#a9a9a9" }}>Red</div><p className="tp-small">Passwords, bank details, ID numbers, health, children, anything a client said no to. Never.</p></div>
+                    <div className="tp-prompt">
+                      <div className="tp-prompt-head">
+                        <div><h3 className="tp-h3">The policy, for Claude</h3><div className="tp-prompt-when">{POLICY_META.number} · Version {POLICY_META.version}. Paste it in and ask Claude to check your work against it.</div></div>
+                        <CopyButton text={POLICY_TEXT} />
+                      </div>
                     </div>
                   </Reveal>
                 </div>

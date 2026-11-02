@@ -265,53 +265,6 @@ export const TOOL_REGISTER: { tool: string; status: "Approved" | "Testing" | "No
   { tool: "Higgsfield and other personal image tools", status: "Not approved", note: "Ask before client use." },
 ];
 
-export const POLICY_ONE_PAGER = `TWO PALMS AI POLICY, THE SHORT VERSION
-
-AI is part of how we work. Used well, it frees up time for the work only people do: ideas, craft, judgement and relationships. These rules keep us, and our clients, safe.
-
-THE 10 RULES
-1. Two Palms accounts only. All work happens in approved tools on your Two Palms account: Claude, Granola, the AI inside tools we already use, or a tool our Head of AI has approved for a job. Never a personal account.
-2. You own what goes out. If your name or ours is on it, you've read it, checked it and you stand behind it.
-3. Check every fact. Names, numbers, dates, quotes, stats and links. AI makes things up and sounds sure about it.
-4. Protect what isn't ours. Only put in what the task needs (see the traffic lights).
-5. Know the client's AI level before you start (below).
-6. No fake people, no fake voices. Never create or change a real person's face, body or voice without their written consent.
-7. No fake proof. Never invent reviews, comments, results or user content and present them as real.
-8. Be open. Tell clients when AI plays a real part in their work, and label it for the public when people wouldn't otherwise know.
-9. Freelancers play by the same rules, and declare their AI use with every deliverable.
-10. Speak up fast. Something gone wrong? Tell the Operations Manager (the policy owner) the same day. Honest mistakes reported quickly are fixable.
-
-TRAFFIC LIGHTS
-Green, go ahead: public info, your own drafts, general research, non-sensitive internal stuff.
-Amber, Claude or Granola only, only what's needed, and only if the client's AI level allows it: client briefs, strategy, unreleased work, performance data, budgets, pitches, meeting notes, people's contact details.
-Red, never: passwords and logins, bank and card details, tax file or ID numbers, health information, anything that identifies a child, anything a client has told us not to put into AI, one client's material in another client's work.
-Not sure? Treat it as the next colour up, and ask.
-
-CLIENT AI LEVELS (set by the account lead, recorded in the brief)
-0 · No AI: no AI at any stage, including note-takers and drafting.
-1 · Assist: AI helps us work. Anything AI drafted is rewritten and checked by a person before it reaches the client. No AI images, video, voice or music in final work.
-2 · Create: AI-made images, video, voice or copy can appear in final work, with client approval and agreed labelling.
-Don't know the level? Treat it as 1, and keep client information out of AI until the account lead confirms.
-
-AGENTS AND AUTOMATIONS
-Anything that runs on its own (scheduled tasks, Slack bots, reply assistants) can draft, sort and remind. A person sends, posts or approves.
-
-NOT SURE?
-Ask Claude to check it against the Two Palms AI policy. Then ask the Operations Manager. Full policy: in Drive, and inside Claude as a skill.`;
-
-export const RULES = [
-  { n: "01", t: "Two Palms accounts only", d: "Never a personal account for work." },
-  { n: "02", t: "You own what goes out", d: "Read it, checked it, stand behind it." },
-  { n: "03", t: "Check every fact", d: "Names, numbers, dates, quotes, links." },
-  { n: "04", t: "Protect what isn't ours", d: "Only what the task needs. Traffic lights." },
-  { n: "05", t: "Know the client's AI level", d: "Set by the account lead, written in the brief. Unknown means level 1." },
-  { n: "06", t: "No fake people, no fake voices", d: "Written consent or it doesn't happen." },
-  { n: "07", t: "No fake proof", d: "No invented reviews, comments or results." },
-  { n: "08", t: "Be open", d: "Tell clients. Label it for the public." },
-  { n: "09", t: "Freelancers, same rules", d: "And they declare AI use per deliverable." },
-  { n: "10", t: "Speak up fast", d: "Tell the Operations Manager, the policy owner, the same day." },
-];
-
 export const MENTAL_MODELS = [
   { t: "10 / 80 / 10", d: "Human brief, AI execution, human QA. The value lives in the two tens. Clients only ever see the middle." },
   { t: "Describe the problem, not the solution", d: "Tell it what's wrong and what done looks like. Let it find the route. If you describe your own fix, you get your own fix." },

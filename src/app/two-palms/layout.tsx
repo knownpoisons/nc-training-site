@@ -53,7 +53,8 @@ export default async function TwoPalmsLayout({ children }: { children: React.Rea
     { href: "/two-palms/foundations", label: FC.programme.name, img: "/two-palms/img/foundations.jpg", status: `${SESSIONS.length} sessions` },
     { href: "/two-palms/time-money-pain", label: FC.forms.time_money_pain.label, img: "/two-palms/img/prompt-04.jpg", status: tmpOpen ? `Due ${FC.forms.time_money_pain.due.replace(/ \d{4}$/, "")}` : "After Session 1", wait: !tmpOpen },
     { href: "/two-palms/prompts", label: "Prompt library", img: "/two-palms/img/prompts.jpg", status: `${PROMPTS.length} prompts` },
-    { href: "/two-palms/kit", label: "Rules + Kit", img: "/two-palms/img/rules.jpg", status: "10 rules" },
+    { href: "/two-palms/policy", label: "AI policy", img: "/two-palms/img/rules.jpg", status: "Version 6" },
+    { href: "/two-palms/kit", label: "The Kit", img: "/two-palms/img/ai-level-dial.jpg", status: "Models + words" },
     { href: "/two-palms/tools", label: "Approved tools", img: "/two-palms/img/showcase.jpg", status: toolsAreOpen(now) ? "Open" : "After Session 6", wait: !toolsAreOpen(now) },
     { href: "/two-palms/creative", label: "Creative Programme", img: "/two-palms/img/creative.jpg", status: "Coming soon", wait: true },
   ];

@@ -1,7 +1,8 @@
 import Link from "next/link";
 import type { CSSProperties } from "react";
 import { FC, SESSIONS, nextEvent, sessionHref, sessionTitle, tmpIsOpen, toolsAreOpen, twoZones } from "./_data/foundations";
-import { HUB, PROMPTS, RULES, SETUP_STEPS } from "./_data/hub";
+import { HUB, PROMPTS, SETUP_STEPS } from "./_data/hub";
+import { POLICY_META } from "./_data/policy";
 import { CopyButton } from "./_ui/bits";
 import { SetupMeter } from "./_ui/b-client";
 import { Bento, IconArrow, IconClock, IconHash, IconLock, Lab, PageTitle, PrintTile, Tile, Win } from "./_ui/b";
@@ -106,10 +107,10 @@ export default function Home() {
           title="Good prompts to steal" line="Every one has a copy button."
         />
         <PrintTile
-          style={g(1, 1, 1, 6)} hue="blush" href="/two-palms/kit" label="Rules for use"
-          lab={<Lab l="Rules + Kit" r={`${RULES.length} rules`} />}
+          style={g(1, 1, 1, 6)} hue="blush" href="/two-palms/policy" label="Rules for use"
+          lab={<Lab l="AI policy" r={`V${POLICY_META.version.replace(/\.0$/, "")}`} />}
           img="/two-palms/img/h/rules.jpg" w={640} h={480}
-          title="Rules for use" line="The policy on one page."
+          title="Rules for use" line="The AI policy, two pages, easy read."
         />
         <PrintTile
           style={g(1, 1, 1, 7)} hue="bone" href="/two-palms/tools" label="Approved team-built tools"
