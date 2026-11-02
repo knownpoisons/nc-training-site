@@ -35,6 +35,64 @@ export default async function Page({ params }: Params) {
   const next = idx < SESSIONS.length - 1 ? SESSIONS[idx + 1] : null;
   const delivered = !!(s.recording_url || s.cheat_sheet || s.wrap_notes);
 
+  // After the session has run: a tight, past-tense wrap. Recap, homework, a tiny Slack nudge.
+  const r = s.recap;
+  if (r && Date.now() >= s.end_ms) {
+    return (
+      <>
+        <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<><span className="mono">S{s.number}</span><span className="lab-x">{s.phase}</span></>} />
+        <Bento>
+          <Tile span="F" label="What it was for" className="rc-hero">
+            <div className="rc-hero-in">
+              <Win src={`/two-palms/img/l/session-${s.number}.jpg`} w={520} h={520} className="rc-disk" eager />
+              <div className="rc-hero-c">
+                <p className="lab-x">S{s.number} · {s.title} · Done {strip(s.date)}</p>
+                <h2 className="rc-line">{r.line}</h2>
+                <p className="tp rc-goal">{r.goal}</p>
+                <div className="acts">
+                  {s.recording_url
+                    ? <a className="btn btn--pri" href={s.recording_url} target="_blank" rel="noreferrer">Watch the recording <IconArrow /></a>
+                    : <span className="rc-soon mono">Recording lands here soon</span>}
+                </div>
+              </div>
+            </div>
+          </Tile>
+
+          <Tile span={2} label="Homework" className="rc-hw">
+            <div className="rc-hw-head"><span>Homework</span><span className="mono">{String(s.homework.length).padStart(2, "0")} things</span></div>
+            <ol className="rc-hw-list">
+              {s.homework.map((h, i) => {
+                const ext = h.cta && /^https?:/.test(h.cta.href);
+                return (
+                  <li key={h.text} className={h.type === "submit" ? "is-submit" : undefined}>
+                    <span className="mono rc-n">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="rc-hw-t">{h.short ?? h.text}{h.type === "submit" ? <span className="rc-tag">Hand in</span> : null}</span>
+                    {h.cta ? (ext
+                      ? <a className={`btn ${h.type === "submit" ? "btn--hot" : "btn--sec"}`} href={h.cta.href} target="_blank" rel="noreferrer">{h.cta.label} <IconArrow /></a>
+                      : <Link className={`btn ${h.type === "submit" ? "btn--hot" : "btn--sec"}`} href={h.cta.href}>{h.cta.label} <IconArrow /></Link>) : null}
+                  </li>
+                );
+              })}
+            </ol>
+          </Tile>
+
+          <Tile span={2} hue="bone" label="What we covered">
+            <Lab l="What we covered" r={String(r.covered.length).padStart(2, "0")} />
+            <ol className="rc-cov">
+              {r.covered.map((c, i) => <li key={c.t}><span className="mono rc-n">{String(i + 1).padStart(2, "0")}</span><span><b>{c.t}</b> {c.d}</span></li>)}
+            </ol>
+          </Tile>
+
+          <a className="sF rc-slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
+            <IconHash /><span className="mono">#ai-training</span><span className="rc-slack-t">{s.slack}</span><IconArrow />
+          </a>
+
+          {presenter ? null : <div className="sF unlock" style={{ padding: "6px 2px" }}><AdminUnlock /></div>}
+        </Bento>
+      </>
+    );
+  }
+
   return (
     <>
       <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<><span className="mono">S{s.number}</span><span className="lab-x">{s.phase}</span></>} />

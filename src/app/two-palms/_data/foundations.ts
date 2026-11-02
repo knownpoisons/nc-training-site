@@ -15,7 +15,9 @@
 import raw from "./foundations-hub-content.json";
 
 export type HomeworkType = "submit" | "do" | "share";
-export interface Homework { type: HomeworkType | string; text: string; short?: string }
+export interface Homework { type: HomeworkType | string; text: string; short?: string; cta?: { label: string; href: string } }
+/** After a session has run: the past-tense wrap shown on its page. */
+export interface Recap { line: string; goal: string; covered: { t: string; d: string }[] }
 
 export interface FSession {
   n: number;
@@ -37,6 +39,7 @@ export interface FSession {
   recording_url: string | null;
   cheat_sheet: string | null;
   wrap_notes: string | null;
+  recap?: Recap;
 }
 
 export interface FQuestion {
@@ -145,6 +148,7 @@ export interface TeamSession {
   date: string; start_iso: string; duration_min: number;
   line: string; goal: string; cover: string[]; homework: Homework[]; slack: string; status: string;
   recording_url: string | null; cheat_sheet: string | null; wrap_notes: string | null;
+  recap: Recap | null; end_ms: number;
 }
 export function teamSession(s: FSession): TeamSession {
   return {
@@ -152,6 +156,7 @@ export function teamSession(s: FSession): TeamSession {
     date: s.when.date, start_iso: s.when.start_iso, duration_min: s.when.duration_min,
     line: s.line, goal: s.goal, cover: s.cover, homework: s.homework, slack: s.slack, status: s.status,
     recording_url: s.recording_url, cheat_sheet: s.cheat_sheet, wrap_notes: s.wrap_notes,
+    recap: s.recap ?? null, end_ms: new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000,
   };
 }
 
