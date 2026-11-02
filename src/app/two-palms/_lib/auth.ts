@@ -58,7 +58,7 @@ async function setCookie(name: string, value: string, maxAge = MONTH) {
 export async function loginTeam(password: string): Promise<boolean> {
   const s = teamSecret();
   if (!s || password.trim() !== s) return false;
-  await setCookie(TEAM, token(s, "tp-team-v1"));
+  await setCookie(TEAM, token(s, "tp-team-v1"), YEAR); // type it once, not monthly
   return true;
 }
 
