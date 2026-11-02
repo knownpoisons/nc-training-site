@@ -11,8 +11,8 @@ import type { ComponentType } from "react";
 type F = ComponentType<{ play?: boolean; intensity?: number; theme?: "light" | "dark" | "auto"; className?: string; label?: string }>;
 const BY_N: Record<number, F> = { 1: Settle, 2: Format, 3: Drawer, 4: Plug, 5: Exploded, 6: Hub, 7: Rail, 8: Slow };
 
-export function SessionFig({ n, play = false, className = "", label }: { n: number | "oh"; play?: boolean; className?: string; label?: string }) {
+export function SessionFig({ n, play = false, intensity = 0.6, className = "", label }: { n: number | "oh"; play?: boolean; intensity?: number; className?: string; label?: string }) {
   const Fig = n === "oh" ? (Query as F) : BY_N[n];
   if (!Fig) return null;
-  return <Fig play={play} intensity={0.6} theme="light" className={`fx-fig ${className}`} label={label} />;
+  return <Fig play={play} intensity={intensity} theme="light" className={`fx-fig ${className}`} label={label} />;
 }

@@ -6,7 +6,10 @@ import { useEffect, useState } from "react";
 
 function fmt(iso: string, tz?: string) {
   const d = new Date(iso);
-  const day = new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short" }).format(d);
+  // Built from parts so server and browser ICU builds can't disagree on commas.
+  const dp = new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short" }).formatToParts(d);
+  const q = (t: string) => dp.find((x) => x.type === t)?.value ?? "";
+  const day = `${q("weekday")} ${q("day")} ${q("month")}`;
   const p = new Intl.DateTimeFormat("en-US", { timeZone: tz, hour: "numeric", minute: "2-digit", hour12: true }).formatToParts(d);
   const g = (t: string) => p.find((x) => x.type === t)?.value ?? "";
   return { day, time: `${g("hour")}:${g("minute")}${g("dayPeriod").toLowerCase()}` };
