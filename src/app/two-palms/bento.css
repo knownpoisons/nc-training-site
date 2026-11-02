@@ -1006,3 +1006,14 @@
   .tpb .tpb-bento--d > .t--plate.pl-wide-phone { grid-column: span 2; min-height: 220px; }
   .tpb .tpb-bento--d > .t--plate.pl-wide-phone .tp { display: block; }
 }
+
+/* ═══ THE SYSTEM: hub-wide (approved with Home D, 2 Nov). Rules in ./DESIGN.md ═══
+   Boxes 12 · anything inside a box 6 · controls fully round · no label underlines · numbers only when they mean something. */
+.tpb { --r-box: 12px; --r-in: 6px; --tp-r: 6px; --tp-r-lg: 12px; }
+.tpb .t, .tpb .tp-card, .tpb .tp-prompt, .tpb .tp-callout, .tpb .tpb-menu-in, .tpb .fx-row, .tpb .fx-tile, .tpb .fx-foot, .tpb .fx-list--b, .tpb .tp-b5-block { border-radius: var(--r-box); }
+.tpb .t { border-color: rgba(27, 23, 20, .14); }
+.tpb .win, .tpb .vx-cover, .tpb .vx-frame, .tpb .rc-split-c, .tpb .rc-cards li, .tpb .rc-res-c, .tpb .hw-in, .tpb .fx-plate, .tpb .fx-line-fig, .tpb .fld, .tpb .opt, .tpb .cells, .tpb .form-prog, .tpb .tp-note, .tpb .tp-session-live { border-radius: var(--r-in); }
+.tpb .win::after { display: none; }
+.tpb .btn, .tpb .tpb-join, .tpb .tp-btn, .tpb .tp-copy, .tpb .tpb-menu-btn, .tpb .tpb-lockup { border-radius: 999px; }
+.tpb .lab { border-bottom: 0; padding-bottom: 4px; }
+.tpb .tp-num { color: var(--text-2); }

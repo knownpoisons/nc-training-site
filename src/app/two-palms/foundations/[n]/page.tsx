@@ -43,18 +43,16 @@ export default async function Page({ params }: Params) {
   if (r && new Date().getTime() >= s.end_ms) {
     const nz = next ? twoZones(next.when.start_iso) : null;
     const due = s.homework.find((h) => h.type === "submit")?.short?.match(/by (.+)$/)?.[1];
-    const pad = (i: number) => String(i + 1).padStart(2, "0");
-    let k = 0;
-    const sec = (l: string) => `${pad(k++)} · ${l}`;
+    const sec = (l: string) => l; // section index numbers removed (design pass, 2 Nov)
     return (
       <>
-        <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<><span className="mono">S{s.number}</span><span className="lab-x">{s.phase}</span></>} />
+        <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<span className="lab-x">{s.phase}</span>} />
         <Bento>
           <Tile span="F" label="Session" className="rc-hero">
             <div className="rc-hero-in">
               <Win src={`/two-palms/img/l/session-${s.number}.jpg`} w={520} h={520} className="rc-disk" eager />
               <div className="rc-hero-c">
-                <p className="lab-x"><span className="mono">S{s.number}</span> / Session · {s.phase}</p>
+                <p className="lab-x">Session {s.n} · {s.phase}</p>
                 <h2 className="rc-title">{s.title}</h2>
                 <p className="tp rc-goal">{r.goal}</p>
                 <dl className="rc-meta">
@@ -74,9 +72,9 @@ export default async function Page({ params }: Params) {
           ) : null}
 
           <Tile span={2} label="What we covered">
-            <Lab l={sec("What we covered")} r={pad(r.agenda.length - 1)} />
+            <Lab l={sec("What we covered")} />
             <ol className="rc-agenda">
-              {r.agenda.map((c, i) => <li key={c}><span className="mono rc-n">{pad(i)}</span><span>{c}</span></li>)}
+              {r.agenda.map((c) => <li key={c}><span className="mono rc-n" aria-hidden="true">·</span><span>{c}</span></li>)}
             </ol>
           </Tile>
 
@@ -122,14 +120,14 @@ export default async function Page({ params }: Params) {
           ) : null}
 
           <Tile span={2} label="Homework" className="rc-hw">
-            <div className="rc-hw-head"><span>{sec("Homework")}</span><span className="mono">{due ? `Due ${due}` : `${pad(s.homework.length - 1)} things`}</span></div>
+            <div className="rc-hw-head"><span>{sec("Homework")}</span><span className="mono">{due ? `Due ${due}` : ""}</span></div>
             <ol className="rc-hw-list">
-              {s.homework.map((h, i) => {
+              {s.homework.map((h) => {
                 const ext = h.cta && /^https?:/.test(h.cta.href);
                 const cls = `btn ${h.type === "submit" ? "btn--hot" : "btn--sec"}`;
                 return (
                   <li key={h.text} className={h.type === "submit" ? "is-submit" : undefined}>
-                    <span className="mono rc-n">{pad(i)}</span>
+                    <span className="mono rc-n" aria-hidden="true">·</span>
                     <span className="rc-hw-t">{h.short ?? h.text}{h.type === "submit" ? <span className="rc-tag">Hand in</span> : null}</span>
                     {h.cta ? (ext
                       ? <a className={cls} href={h.cta.href} target="_blank" rel="noreferrer">{h.cta.label} <IconArrow /></a>
@@ -161,7 +159,7 @@ export default async function Page({ params }: Params) {
           {next && nz ? (
             <Link className="t sF rc-next" href={sessionHref(next)}>
               <span className="rc-next-c">
-                <span className="lab-x"><span className="mono">{sec("Coming next")}</span> · S{next.number} · {strip(next.when.date)} · {nz.sydney} Sydney · {nz.munich} Munich</span>
+                <span className="lab-x"><span className="mono">{sec("Coming next")}</span> · {strip(next.when.date)} · {nz.sydney} Sydney · {nz.munich} Munich</span>
                 <span className="rc-next-t">Session {next.n}: {sessionTitle(next)}</span>
                 <span className="tp">{next.line}</span>
               </span>
@@ -176,10 +174,10 @@ export default async function Page({ params }: Params) {
   }
   return (
     <>
-      <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<><span className="mono">S{s.number}</span><span className="lab-x">{s.phase}</span></>} />
+      <PageTitle back={{ href: "/two-palms/foundations", label: "AI Foundations" }} title={s.label} right={<span className="lab-x">{s.phase}</span>} />
       <Bento>
         <Tile span={2} hue="mustard" label="What it's for">
-          <Lab l="What it's for" r={`S${s.number} · ${s.phase}`} />
+          <Lab l="What it's for" r={s.phase} />
           <div className="t-body">
             <p className="tt-lg">{s.line}</p>
             <p className="tp" style={{ marginTop: 14, fontSize: 15, maxWidth: "58ch" }}><b style={{ color: "var(--text)" }}>The goal:</b> {s.goal}</p>
@@ -204,14 +202,14 @@ export default async function Page({ params }: Params) {
         </Tile>
 
         <Tile span={2} label="What we'll cover">
-          <Lab l="What we'll cover" r={String(s.cover.length).padStart(2, "0")} />
+          <Lab l="What we'll cover" />
           <ol className="b-list">
-            {s.cover.map((c, i) => <li key={c}><span className="mono">{String(i + 1).padStart(2, "0")}</span><span>{c}</span></li>)}
+            {s.cover.map((c) => <li key={c}><span className="mono" aria-hidden="true">·</span><span>{c}</span></li>)}
           </ol>
         </Tile>
 
         <Tile span={2} hue="ember" label="Homework">
-          <Lab l="Homework" r={`${String(s.homework.length).padStart(2, "0")} things`} />
+          <Lab l="Homework" />
           <ol className="b-list hw">
             {s.homework.map((h) =>
               h.type === "submit" ? (
@@ -263,18 +261,18 @@ export default async function Page({ params }: Params) {
         </Tile>
 
         <Tile span={2} label="Sessions">
-          <Lab l="Sessions" r={`${s.number}/${String(SESSIONS.length).padStart(2, "0")}`} />
+          <Lab l="Sessions" />
           <ul className="b-rows" style={{ marginTop: 10 }}>
             <li>
               {prev ? (
-                <Link className="row" href={sessionHref(prev)}><IconArrow back /><span className="row-c"><span className="row-s">Previous · S{prev.number}</span><span className="row-t">{sessionTitle(prev)}</span></span><span className="row-st">{strip(prev.when.date)}</span></Link>
+                <Link className="row" href={sessionHref(prev)}><IconArrow back /><span className="row-c"><span className="row-s">Previous · Session {prev.n}</span><span className="row-t">{sessionTitle(prev)}</span></span><span className="row-st">{strip(prev.when.date)}</span></Link>
               ) : (
                 <Link className="row" href="/two-palms/foundations#pre-brief"><IconArrow back /><span className="row-c"><span className="row-s">Before this</span><span className="row-t">The pre-brief</span></span></Link>
               )}
             </li>
             <li>
               {next ? (
-                <Link className="row" href={sessionHref(next)}><span className="row-c"><span className="row-s">Next · S{next.number}</span><span className="row-t">{sessionTitle(next)}</span></span><span className="row-st">{strip(next.when.date)} <IconArrow /></span></Link>
+                <Link className="row" href={sessionHref(next)}><span className="row-c"><span className="row-s">Next · Session {next.n}</span><span className="row-t">{sessionTitle(next)}</span></span><span className="row-st">{strip(next.when.date)} <IconArrow /></span></Link>
               ) : (
                 <Link className="row" href="/two-palms/foundations"><span className="row-c"><span className="row-s">That&rsquo;s the programme</span><span className="row-t">All sessions</span></span><span className="row-st"><IconArrow /></span></Link>
               )}

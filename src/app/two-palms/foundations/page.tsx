@@ -18,7 +18,7 @@ const short = (d: string) => d.replace(/^\w+ /, "").replace(/ \d{4}$/, "");
 function Sec({ n, eyebrow, title, lede }: { n: string; eyebrow: string; title: string; lede?: React.ReactNode }) {
   return (
     <div className="sF fx-sec">
-      <p className="fx-eye"><span className="mono">{n}</span> / {eyebrow}</p>
+      <p className="fx-eye">{eyebrow}</p>
       <h2 className="fx-h2">{title}</h2>
       {lede ? <p className="fx-lede">{lede}</p> : null}
     </div>
@@ -72,8 +72,8 @@ export default function Page() {
           <Tile span={2} label="Current homework" className="fx-hw">
             <div className="fx-hw-head"><span>Current homework</span><span className="mono">From session {hwSession.n}</span></div>
             <ol className="fx-hw-list">
-              {hwSession.homework.map((h, i) => (
-                <li key={h.text}><span className="mono">{pad(i + 1)}</span><span>{h.short ?? h.text}{h.type === "submit" ? <b className="fx-tag">Hand in</b> : null}</span></li>
+              {hwSession.homework.map((h) => (
+                <li key={h.text}><span className="mono" aria-hidden="true">·</span><span>{h.short ?? h.text}{h.type === "submit" ? <b className="fx-tag">Hand in</b> : null}</span></li>
               ))}
             </ol>
             <div className="acts">
@@ -84,14 +84,14 @@ export default function Page() {
         ) : null}
 
         <Tile span={hwSession ? 2 : "F"} label="The four phases">
-          <div className="fx-mini-h"><span>The four phases</span><span className="mono">{pad(P.phases.length)}</span></div>
+          <div className="fx-mini-h"><span>The four phases</span></div>
           <ol className="fx-phases">
-            {P.phases.map((ph, i) => {
+            {P.phases.map((ph) => {
               const ss = ph.sessions.map((n) => SESSIONS.find((x) => x.n === n)!).filter(Boolean);
               const state = ss.every((s) => end(s) <= now) ? "is-done" : ss.some((s) => s === nextS) ? "is-now" : "";
               return (
                 <li key={ph.name} className={state}>
-                  <span className="mono">{state === "is-done" ? "✓" : pad(i + 1)}</span>
+                  <span className="mono">{state === "is-done" ? "✓" : "·"}</span>
                   <b>{ph.name}</b>
                   <span className="fx-ph-s">{ss.map((s) => sessionTitle(s)).join(" · ")}</span>
                 </li>
@@ -116,7 +116,7 @@ export default function Page() {
                   <span className={`fx-chip is-${st}`}>{st === "done" ? "✓ Complete" : st === "next" ? "● Next" : "Upcoming"}</span>
                 </Link>
                 <div className="fx-tile-body">
-                  <span className="fx-tile-eye">S{s.number} · {phaseOf(s.n)}</span>
+                  <span className="fx-tile-eye">{phaseOf(s.n)}</span>
                   <Link href={sessionHref(s)} className="fx-tile-t">{sessionTitle(s)}</Link>
                   <span className="fx-tile-l">{s.line}</span>
                   <span className="fx-tile-when"><LocalWhen iso={s.when.start_iso} mins={s.when.duration_min} /></span>
@@ -130,12 +130,12 @@ export default function Page() {
         </div>
 
         <details className="t s2 fx-dd">
-          <summary><span>What good looks like</span><span className="mono">{pad(P.outcomes.length)}</span></summary>
-          <ol className="b-list">{P.outcomes.map((o, i) => <li key={o}><span className="mono">{pad(i + 1)}</span><span>{o}</span></li>)}</ol>
+          <summary><span>What good looks like</span><span className="mono" /></summary>
+          <ol className="b-list">{P.outcomes.map((o) => <li key={o}><span className="mono" aria-hidden="true">·</span><span>{o}</span></li>)}</ol>
         </details>
         <details className="t s2 fx-dd">
-          <summary><span>Rules of engagement</span><span className="mono">{pad(P.rules_of_engagement.length)}</span></summary>
-          <ol className="b-list">{P.rules_of_engagement.map((o, i) => <li key={o}><span className="mono">{pad(i + 1)}</span><span>{o}</span></li>)}</ol>
+          <summary><span>Rules of engagement</span><span className="mono" /></summary>
+          <ol className="b-list">{P.rules_of_engagement.map((o) => <li key={o}><span className="mono" aria-hidden="true">·</span><span>{o}</span></li>)}</ol>
         </details>
 
         {/* ── 03 · Around the sessions ── */}
