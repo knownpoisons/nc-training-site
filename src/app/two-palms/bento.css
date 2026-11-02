@@ -532,3 +532,13 @@
 .tpb .fo-hw { margin-top: 12px; display: grid; gap: 6px; }
 .tpb .fo-hw-i { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font: 400 13.5px/1.35 var(--f-sans); color: var(--text); }
 .tpb .fo-hw-i .mono { font: 400 11px/19px var(--f-mono); color: var(--hot); }
+
+/* The wrap-up cell is the hub's front door between sessions: solid Two Palms orange, white type */
+.tpb .fo-wrap { background: var(--hot); color: #fff; }
+.tpb .fo-wrap:hover { background: #9e3a1a; }
+.tpb .fo-wrap::before { display: none; }
+.tpb .fo-wrap .fo-top, .tpb .fo-wrap .tt, .tpb .fo-wrap .tp, .tpb .fo-wrap .fo-hw-i, .tpb .fo-wrap .fo-hw-i .mono { color: #fff; }
+.tpb .fo-wrap .tp { opacity: .88; }
+.tpb .fo-wrap .fo-hw-i .mono { opacity: .75; }
+.tpb .fo-pill { background: #fff; color: var(--hot); border-radius: 999px; padding: 2px 9px; font: 600 10.5px/16px var(--f-sans); font-stretch: 112%; letter-spacing: .06em; }
+.tpb .fo-wrap :focus-visible, .tpb .fo-wrap:focus-visible { outline-color: #fff; }

@@ -58,8 +58,8 @@ export default function Home() {
           <Lab l={FC.programme.name} sub={`${SESSIONS.length} sessions`} r={<Link className="lnk" href="/two-palms/foundations#schedule">The schedule <IconArrow /></Link>} />
           <div className="fo fo--big">
             {wrap ? (
-              <Link className="fo-feat" href={sessionHref(wrap)}>
-                <span className="fo-top"><span>S{wrap.number} · Done</span><span className="hot">Wrap-up</span></span>
+              <Link className="fo-feat fo-wrap" href={sessionHref(wrap)}>
+                <span className="fo-top"><span>S{wrap.number} · Done</span><span className="fo-pill">Start here</span></span>
                 <span className="fo-b">
                   <Win src={`/two-palms/img/l/session-${wrap.number}.jpg`} w={720} h={720} />
                   <span>
