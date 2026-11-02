@@ -1,135 +1,163 @@
-import { HUB } from "@/app/two-palms/_data/hub";
+import { HUB, PROMPTS } from "@/app/two-palms/_data/hub";
 import Link from "next/link";
-import { FC, SESSIONS, countEvents, scheduleEvents, sessionHref, sessionTitle, twoZones } from "../_data/foundations";
-import { IsNextMark } from "../_ui/b-client";
-import { Bento, IconArrow, IconHash, Lab, PageTitle, Tile, Win } from "../_ui/b";
-import { NextUpTile, TmpTile } from "../_ui/b-parts";
+import { FC, SESSIONS, sessionHref, sessionTitle } from "../_data/foundations";
+import { POLICY_META } from "../_data/policy";
+import { Bento, IconArrow, IconHash, PageTitle, Tile } from "../_ui/b";
+import { LocalWhen } from "../_ui/local-when";
 
 export const metadata = { title: "AI Foundations" };
 
-const strip = (d: string) => d.replace(/ \d{4}$/, "");
+// Same three beats as the January Digital hub page: 01 the programme and its
+// through-line, 02 the sessions, 03 what's around the sessions. In bento.
+
+const pad = (n: number) => String(n).padStart(2, "0");
+const short = (d: string) => d.replace(/^\w+ /, "").replace(/ \d{4}$/, "");
+
+function Sec({ n, eyebrow, title, lede }: { n: string; eyebrow: string; title: string; lede?: string }) {
+  return (
+    <div className="sF fx-sec">
+      <p className="fx-eye"><span className="mono">{n}</span> / {eyebrow}</p>
+      <h2 className="fx-h2">{title}</h2>
+      {lede ? <p className="fx-lede">{lede}</p> : null}
+    </div>
+  );
+}
 
 export default function Page() {
-  const now = new Date();
+  const now = new Date().getTime();
   const P = FC.programme;
-  const ev = scheduleEvents();
-  const cev = countEvents();
-  const pb = FC.pre_brief;
+  const end = (s: (typeof SESSIONS)[number]) => new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000;
+  const doneN = SESSIONS.filter((s) => end(s) <= now).length;
+  const nextS = SESSIONS.find((s) => end(s) > now) ?? null;
+  const lastDone = doneN ? SESSIONS[doneN - 1] : null;
+  const hwSession = lastDone && lastDone.homework.length ? lastDone : null;
+  const first = SESSIONS[0], last = SESSIONS[SESSIONS.length - 1];
+  const joinHref = P.meet_url || HUB.slackUrl;
+
   return (
     <>
-      <PageTitle back={{ href: "/two-palms", label: "Home" }} title={P.name} lede={P.slot} right={<span className="lab-x">Times in Sydney · Munich</span>} />
+      <PageTitle back={{ href: "/two-palms", label: "Home" }} title={P.name} right={<span className="lab-x">{SESSIONS.length} × 60 min</span>} />
       <Bento>
-        <Tile span={2} hue="mustard" label="Programme overview">
-          <Lab l="Programme overview" r={`${SESSIONS.length} × 60 min`} />
-          <div className="t-body">
-            <p className="through">{P.through_line}</p>
-            <p className="tp" style={{ marginTop: 14, maxWidth: "60ch", fontSize: 15 }}>{P.summary}</p>
+        {/* ── 01 · The programme ── */}
+        <Sec n="01" eyebrow="Programme overview" title="Two Palms learns to work with AI." />
+
+        <Tile span="F" label="Programme overview" className="fx-ov">
+          <p className="fx-through">{P.through_line.split(". ")[0]}. <em>{P.through_line.split(". ").slice(1).join(". ")}</em></p>
+          <p className="fx-sum">{P.summary}</p>
+          <dl className="fx-stats">
+            <div><dt>Programme</dt><dd>{SESSIONS.length} weeks</dd><span>{short(first.when.date)} → {short(last.when.date)}</span></div>
+            <div><dt>Sessions</dt><dd>{SESSIONS.length} × 60 min</dd><span>Plus {FC.office_hours.length} office hours</span></div>
+            <div><dt>Cadence</dt><dd>Tuesdays</dd><span>Recorded, every one</span></div>
+            <div><dt>Phases</dt><dd>{P.phases.length}</dd><span>{P.phases.map((p) => p.name.replace(/ it$/, "")).join(" · ")}</span></div>
+          </dl>
+          <div className="fx-prog">
+            <div className="fx-prog-h"><span>Programme progress</span><span><b>{pad(doneN)}</b> of {pad(SESSIONS.length)} sessions delivered</span></div>
+            <div className="fx-track" role="progressbar" aria-valuemin={0} aria-valuemax={SESSIONS.length} aria-valuenow={doneN}>
+              {SESSIONS.map((s, i) => <span key={s.n} className={`fx-seg${i < doneN ? " is-done" : i === doneN ? " is-now" : ""}`} style={{ ["--i" as string]: i }} />)}
+            </div>
+            <div className="fx-marks">{SESSIONS.map((s, i) => <span key={s.n} className={i === doneN ? "is-now" : undefined}>{pad(s.n)}</span>)}</div>
           </div>
-          <ul className="trio">
-            <li><b className="mono">{String(SESSIONS.length).padStart(2, "0")}</b><span>Sessions</span></li>
-            <li><b className="mono">{String(FC.office_hours.length).padStart(2, "0")}</b><span>Office hours</span></li>
-            <li><b className="mono">{String(P.phases.length).padStart(2, "0")}</b><span>Phases</span></li>
-          </ul>
-        </Tile>
-        <NextUpTile now={now} />
-        <TmpTile now={now} />
-
-        <Tile span={2} label="Outcomes">
-          <Lab l="What good looks like" r={`${String(P.outcomes.length).padStart(2, "0")} outcomes`} />
-          <ol className="b-list">
-            {P.outcomes.map((o, i) => <li key={o}><span className="mono">{String(i + 1).padStart(2, "0")}</span><span>{o}</span></li>)}
-          </ol>
-        </Tile>
-        <Tile span={2} label="Rules of engagement">
-          <Lab l="Rules of engagement" r={`${String(P.rules_of_engagement.length).padStart(2, "0")} rules`} />
-          <ol className="b-list">
-            {P.rules_of_engagement.map((o, i) => <li key={o}><span className="mono">{String(i + 1).padStart(2, "0")}</span><span>{o}</span></li>)}
-          </ol>
         </Tile>
 
-        <Tile span="F" label="The four phases">
-          <Lab l="The four phases" r={String(P.phases.length).padStart(2, "0")} />
-          <ol className="phases">
-            {P.phases.map((ph, i) => (
-              <li key={ph.name}>
-                <div className="ph-h"><span className="tt">{ph.name}</span><span className="ph-n mono">{String(i + 1).padStart(2, "0")}</span></div>
-                <Win src={`/two-palms/img/session-0${ph.sessions[0]}.jpg`} w={320} h={180} wait />
-                <ul>
-                  {ph.sessions.map((n) => {
-                    const s = SESSIONS.find((x) => x.n === n);
-                    if (!s) return null;
-                    return <li key={n}><Link href={sessionHref(s)}><span>{n}. {sessionTitle(s)}</span><span className="mono">{strip(s.when.date)}</span></Link></li>;
-                  })}
-                </ul>
-              </li>
-            ))}
-          </ol>
-        </Tile>
+        {hwSession ? (
+          <Tile span={2} label="Current homework" className="fx-hw">
+            <div className="fx-hw-head"><span>Current homework</span><span className="mono">From session {hwSession.n}</span></div>
+            <ol className="fx-hw-list">
+              {hwSession.homework.map((h, i) => (
+                <li key={h.text}><span className="mono">{pad(i + 1)}</span><span>{h.short ?? h.text}{h.type === "submit" ? <b className="fx-tag">Hand in</b> : null}</span></li>
+              ))}
+            </ol>
+            <div className="acts">
+              {hwSession.homework.find((h) => h.type === "submit")?.cta ? (
+                <Link className="btn btn--hot" href={hwSession.homework.find((h) => h.type === "submit")!.cta!.href}>Open the form <IconArrow /></Link>
+              ) : null}
+              <Link className="btn btn--sec" href={sessionHref(hwSession)}>Session {hwSession.n} wrap-up <IconArrow /></Link>
+            </div>
+          </Tile>
+        ) : null}
 
-        <Tile span="F" id="schedule" label="The schedule">
-          <Lab l="The schedule" sub="Pre-brief, eight sessions, two office hours" r="Sydney · Munich" />
-          <div className="sched-h" aria-hidden="true"><span>No.</span><span /><span>Session</span><span className="dt">Date</span><span>Sydney</span><span>Munich</span><span style={{ textAlign: "right" }}>Status</span></div>
-          <ol className="sched">
-            {ev.map((e) => {
-              const z = e.start_iso ? twoZones(e.start_iso) : null;
-              const sess = e.kind === "session" ? SESSIONS.find((s) => `s${s.n}` === e.id) : null;
-              const img = sess ? `/two-palms/img/session-${sess.number}.jpg` : e.kind === "prebrief" ? "/two-palms/img/spotlight.jpg" : "/two-palms/img/office-hours.jpg";
-              const inner = (
-                <>
-                  <span className="tag">{e.tag}</span>
-                  <Win src={img} w={44} h={44} wait={e.kind !== "prebrief" && sess?.n !== 1} />
-                  <span className="c">
-                    <span className="nm" style={{ display: "block" }}>{e.title}</span>
-                    <span className="ln" style={{ display: "block" }}>{e.line}{sess ? ` · ${sess.phase}` : ""}</span>
-                  </span>
-                  <span className="dt">{e.dateLabel}{e.kind === "office" ? "" : ` · ${e.duration_min} min`}</span>
-                  <span className="tzs">
-                    <span className="tz"><small>Sydney</small>{z ? `${z.sydneyDay.split(" ")[0]} ${z.sydney}` : "to confirm"}</span>
-                    <span className="tz"><small>Munich</small>{z ? `${z.munichDay.split(" ")[0]} ${z.munich}` : "to confirm"}</span>
-                  </span>
-                  {e.toConfirm ? <span className="st">To confirm</span> : e.start_iso ? (
-                    <span style={{ justifySelf: "end", display: "inline-flex", alignItems: "center", gap: 8 }} className="st-wrap">
-                      <IsNextMark events={cev} startIso={e.start_iso} />
-                      {e.href ? <IconArrow /> : null}
-                    </span>
-                  ) : null}
-                  {e.note ? <span className="mnote">{e.note}</span> : null}
-                </>
-              );
+        <Tile span={hwSession ? 2 : "F"} label="The four phases">
+          <div className="fx-mini-h"><span>The four phases</span><span className="mono">{pad(P.phases.length)}</span></div>
+          <ol className="fx-phases">
+            {P.phases.map((ph, i) => {
+              const ss = ph.sessions.map((n) => SESSIONS.find((x) => x.n === n)!).filter(Boolean);
+              const state = ss.every((s) => end(s) <= now) ? "is-done" : ss.some((s) => s === nextS) ? "is-now" : "";
               return (
-                <li key={e.id} id={e.kind === "prebrief" ? "pre-brief" : undefined}>
-                  {e.kind === "session" && e.href ? <Link className="srow" href={e.href}>{inner}</Link> : <div className="srow">{inner}</div>}
+                <li key={ph.name} className={state}>
+                  <span className="mono">{state === "is-done" ? "✓" : pad(i + 1)}</span>
+                  <b>{ph.name}</b>
+                  <span className="fx-ph-s">{ss.map((s) => sessionTitle(s)).join(" · ")}</span>
                 </li>
               );
             })}
           </ol>
         </Tile>
 
-        <Tile span={2} label="The pre-brief">
-          <Lab l={pb.label} r={`${strip(pb.date)} · ${pb.duration_min} min`} />
-          <div className="t-body">
-            <h3 className="tt">{pb.line}</h3>
-            <p className="zone2"><b>{twoZones(pb.start_iso).sydney}</b> Sydney · <b>{twoZones(pb.start_iso).munich}</b> Munich · {pb.where}</p>
-            <ol className="b-list" style={{ marginTop: 8 }}>
-              {pb.cover.map((c, i) => <li key={c}><span className="mono">{String(i + 1).padStart(2, "0")}</span><span>{c}</span></li>)}
-            </ol>
-            <p className="note">{pb.munich_note}</p>
-          </div>
-        </Tile>
-        <Tile label="Every session">
-          <Lab l="Every session" r={String(P.every_session.length).padStart(2, "0")} />
-          <ul className="b-list b-list--dash">
-            {P.every_session.map((o) => <li key={o}><span>{o}</span></li>)}
-          </ul>
-        </Tile>
-        <Tile hue="sky" label="Slack">
-          <Lab icon={<IconHash />} l="Slack" r="Open now" />
-          <div className="t-body">
-            <h3 className="tt"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></h3>
-            <p className="tp">Post what you make, half-finished included. Stuck? Ask your Claude first, then the channel, then Jem.</p>
-            <p className="note">Office hours: {FC.office_hours.map((o) => o.date).join(" and ")}.</p>
-          </div>
-        </Tile>
+        <details className="t s2 fx-dd">
+          <summary><span>What good looks like</span><span className="mono">{pad(P.outcomes.length)}</span></summary>
+          <ol className="b-list">{P.outcomes.map((o, i) => <li key={o}><span className="mono">{pad(i + 1)}</span><span>{o}</span></li>)}</ol>
+        </details>
+        <details className="t s2 fx-dd">
+          <summary><span>Rules of engagement</span><span className="mono">{pad(P.rules_of_engagement.length)}</span></summary>
+          <ol className="b-list">{P.rules_of_engagement.map((o, i) => <li key={o}><span className="mono">{pad(i + 1)}</span><span>{o}</span></li>)}</ol>
+        </details>
+
+        {/* ── 02 · The sessions ── */}
+        <Sec n="02" eyebrow="The eight sessions" title="What we cover, week by week." lede="Times show in your own timezone. Every session is recorded, and the wrap-up lands on its page." />
+
+        <div className="sF fx-list" id="schedule">
+          {SESSIONS.map((s, i) => {
+            const st = i < doneN ? "done" : s === nextS ? "next" : "up";
+            return (
+              <div key={s.n} className={`fx-row is-${st}`}>
+                <Link href={sessionHref(s)} className="fx-row-main">
+                  <span className="fx-num">{s.number}</span>
+                  <span className="fx-row-c">
+                    <span className="fx-row-t">{sessionTitle(s)}</span>
+                    <span className="fx-row-l">{s.line}</span>
+                  </span>
+                  <LocalWhen iso={s.when.start_iso} mins={s.when.duration_min} />
+                  <span className="fx-st">{st === "done" ? "✓ Done" : st === "next" ? "Next" : "Upcoming"}</span>
+                </Link>
+                {st === "done" ? (
+                  <Link href={sessionHref(s)} className="fx-bar">Wrap-up, recording &amp; homework <IconArrow /></Link>
+                ) : st === "next" ? (
+                  <a href={joinHref} target="_blank" rel="noreferrer" className="fx-bar fx-bar--join">{P.meet_url ? "Join session" : "Join session · link in #ai-training"} <IconArrow /></a>
+                ) : null}
+              </div>
+            );
+          })}
+          {FC.office_hours.map((o) => (
+            <div key={o.n} className="fx-row is-oh">
+              <div className="fx-row-main">
+                <span className="fx-num fx-num--oh">+</span>
+                <span className="fx-row-c"><span className="fx-row-t">{o.label}</span><span className="fx-row-l">{o.format}</span></span>
+                <span className="lw"><span className="lw-d">{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "~")}</span><span className="lw-t">{o.duration_min} min</span></span>
+                <span className="fx-st">To confirm</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ── 03 · Around the sessions ── */}
+        <Sec n="03" eyebrow="Resources" title="What's around the sessions." lede="The work happens in the hour. The support happens in between." />
+
+        <a className="t fx-res fx-res--slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
+          <span className="fx-res-k"><IconHash /> Slack</span><span className="fx-res-t">#ai-training</span>
+          <span className="fx-res-d">Post what you make, half-finished included. Stuck? Ask your Claude, then the channel, then Jem.</span>
+        </a>
+        <Link className="t fx-res" href="/two-palms/prompts">
+          <span className="fx-res-k">Library</span><span className="fx-res-t">Prompt library</span>
+          <span className="fx-res-d">{PROMPTS.length} prompts to steal. Every one has a copy button.</span>
+        </Link>
+        <Link className="t fx-res" href="/two-palms/policy">
+          <span className="fx-res-k">Rules</span><span className="fx-res-t">AI policy</span>
+          <span className="fx-res-d">Version {POLICY_META.version.replace(/\.0$/, "")}. What can and can&apos;t go in.</span>
+        </Link>
+        <div className="t fx-res fx-res--plain">
+          <span className="fx-res-k">Every session</span><span className="fx-res-t">After each hour</span>
+          <span className="fx-res-d">{(P.every_session_short ?? P.every_session).join(" ")}</span>
+        </div>
       </Bento>
     </>
   );

@@ -71,6 +71,8 @@ export interface FoundationsContent {
     rules_of_engagement: string[];
     every_session: string[];
     big5_note?: string;
+    meet_url?: string | null;
+    every_session_short?: string[];
   };
   pre_brief: {
     label: string;
