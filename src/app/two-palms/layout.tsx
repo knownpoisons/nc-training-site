@@ -4,7 +4,8 @@ import localFont from "next/font/local";
 import Link from "next/link";
 import "./tp.css";
 import "./bento.css";
-import { hubConfigured, isTeamAuthed } from "./_lib/auth";
+import { hubConfigured, isAdminAuthed, isIntakeDone, isTeamAuthed } from "./_lib/auth";
+import { IntakeForm } from "./_ui/intake";
 import { Lock } from "./_ui/gates";
 import { Header, type MenuArea, type MenuSession } from "./_ui/b-client";
 import { IconHash, IconArrow } from "./_ui/b";
@@ -44,6 +45,11 @@ export default async function TwoPalmsLayout({ children }: { children: React.Rea
   const authed = await isTeamAuthed();
   if (!authed) {
     return <div className={`tp-root tpb ${fonts}`}><Lock kind="team" configured={cfg.team} /></div>;
+  }
+  // First arrival: the intake must be completed before the hub opens (Jem, session 1, 2 Nov).
+  // The trainer/admin cookie skips it so Backstage stays reachable.
+  if (!(await isIntakeDone()) && !(await isAdminAuthed())) {
+    return <div className={`tp-root tpb tpb-gate ${fonts}`}><IntakeForm gate adminConfigured={cfg.admin} /></div>;
   }
   const now = new Date();
   const tmpOpen = tmpIsOpen(now);

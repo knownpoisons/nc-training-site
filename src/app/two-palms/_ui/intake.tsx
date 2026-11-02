@@ -2,27 +2,18 @@
 
 import { useEffect, useRef, useState, useTransition } from "react";
 import Link from "next/link";
-import { INTAKE_QS, type IntakeQ } from "../_data/intake";
+import { useRouter } from "next/navigation";
+import { INTAKE_QS, isAnswered } from "../_data/intake";
+import { Lock } from "./gates";
 import { submitIntakeV2, type IntakeV2 } from "../_lib/intake";
 
 const DRAFT = "tp-intake-v2-draft";
 
-function answered(q: IntakeQ, a: IntakeV2): boolean {
-  if (q.optional) return true;
-  if (q.kind === "grid") return q.rows.every((r) => a[r.col] !== undefined && a[r.col] !== "");
-  const v = a[q.col];
-  if (q.kind === "multi") {
-    const arr = (v as string[] | undefined) ?? [];
-    if (!arr.length) return false;
-    if (q.other && arr.includes(q.other.option)) return String(a[q.other.col] ?? "").trim().length > 0;
-    return true;
-  }
-  if (v === undefined || v === null || String(v).trim() === "") return false;
-  if (q.kind === "pills" && q.other && v === q.other.option) return String(a[q.other.col] ?? "").trim().length > 0;
-  return true;
-}
-
-export function IntakeForm() {
+/** gate = shown full-screen on first arrival; the hub stays locked until it's sent. */
+export function IntakeForm({ gate = false, adminConfigured = false }: { gate?: boolean; adminConfigured?: boolean }) {
+  const router = useRouter();
+  const [intro, setIntro] = useState(gate);
+  const [admin, setAdmin] = useState(false);
   const [i, setI] = useState(0);
   const [a, setA] = useState<IntakeV2>({});
   const [done, setDone] = useState(false);
@@ -36,7 +27,7 @@ export function IntakeForm() {
   useEffect(() => {
     try {
       const d = JSON.parse(localStorage.getItem(DRAFT) || "null");
-      if (d && typeof d === "object") { setA(d.a ?? {}); setI(Math.min(d.i ?? 0, total - 1)); }
+      if (d && typeof d === "object") { setA(d.a ?? {}); setI(Math.min(d.i ?? 0, total - 1)); if ((d.i ?? 0) > 0) setIntro(false); }
     } catch {}
   }, [total]);
   useEffect(() => {
@@ -45,7 +36,7 @@ export function IntakeForm() {
   useEffect(() => { top.current?.focus({ preventScroll: true }); window.scrollTo({ top: 0 }); }, [i]);
 
   const set = (col: string, v: string | string[] | number) => setA((p) => ({ ...p, [col]: v }));
-  const ok = answered(q, a);
+  const ok = isAnswered(q, a);
 
   const next = () => {
     if (!ok) return;
@@ -55,6 +46,7 @@ export function IntakeForm() {
       try {
         const r = await submitIntakeV2(a);
         if (r.ok) { setDone(true); try { localStorage.removeItem(DRAFT); } catch {} }
+        else if (r.missing?.length) { const j = INTAKE_QS.findIndex((x) => x.id === r.missing![0]); if (j >= 0) setI(j); setErr("One answer is missing. Fill it in and keep going."); }
         else setErr("That didn't save. Try once more in a minute, or message Jem in #ai-training.");
       } catch {
         setErr("That didn't save. Try once more in a minute, or message Jem in #ai-training.");
@@ -69,11 +61,49 @@ export function IntakeForm() {
           <div className="tp-intake-q tp-slide-enter">
             <p className="tp-eyebrow" style={{ marginBottom: 14 }}><span className="tp-dot" />Done</p>
             <h2 className="tp-h2">Thank you.</h2>
-            <p className="tp-lede tp-mute" style={{ marginBottom: 24 }}>That&rsquo;s everything. Your answers go to Jem only, and they&rsquo;ll shape the sessions from here.</p>
-            <Link className="tp-btn tp-btn-orange" href="/two-palms">Back to the hub</Link>
+            <p className="tp-lede tp-mute" style={{ marginBottom: 24 }}>That&rsquo;s everything. Your answers go to Jem only, and they&rsquo;ll shape the sessions from here.{gate ? " The hub is open." : ""}</p>
+            {gate ? (
+              <button type="button" className="tp-btn tp-btn-orange" onClick={() => router.refresh()}>Open the hub</button>
+            ) : (
+              <Link className="tp-btn tp-btn-orange" href="/two-palms">Back to the hub</Link>
+            )}
           </div>
         </div>
         <div className="tp-intake-foot"><span>Answers go to Jem only.</span><span>Two Palms x NotContent</span></div>
+      </div>
+    );
+  }
+
+  if (admin) {
+    return (
+      <div>
+        <Lock kind="admin" configured={adminConfigured} />
+        <p className="tp-small tp-mute" style={{ textAlign: "center", marginTop: -24 }}><button type="button" className="tp-linkbtn" onClick={() => setAdmin(false)}>Back to the intake</button></p>
+      </div>
+    );
+  }
+
+  if (intro) {
+    return (
+      <div className="tp-intake tp-intake-v2">
+        <div className="tp-intake-top">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/two-palms/mark-black.png" alt="" width={24} height={24} />
+          <span className="tp-eyebrow">Two Palms AI Hub</span>
+        </div>
+        <div className="tp-intake-body">
+          <div className="tp-intake-q tp-slide-enter">
+            <p className="tp-eyebrow" style={{ marginBottom: 14 }}><span className="tp-dot" />Before you&rsquo;re in</p>
+            <h2 className="tp-h2">One thing first: the intake.</h2>
+            <p className="tp-lede tp-mute" style={{ marginBottom: 14 }}>{total} questions about your work and how you use AI today. About 10 minutes. Answer every one, take your time and be as detailed as you like: it tells Jem where each of you is at, so the sessions teach the right things.</p>
+            <p className="tp-lede tp-mute" style={{ marginBottom: 24 }}>The hub opens the moment you send it. Tip: download Fluid Voice, set your hotkey and talk your answers instead of typing them.</p>
+            <button type="button" className="tp-btn tp-btn-orange" onClick={() => setIntro(false)}>Start</button>
+          </div>
+        </div>
+        <div className="tp-intake-foot">
+          <span>Answers go to Jem only. Nobody at Two Palms sees them with your name on.</span>
+          {adminConfigured ? <button type="button" className="tp-linkbtn" onClick={() => setAdmin(true)}>Trainer sign-in</button> : null}
+        </div>
       </div>
     );
   }
@@ -91,7 +121,6 @@ export function IntakeForm() {
           ) : null}
           <h2 className="tp-h2">{q.q}</h2>
           {q.sub ? <p className="tp-lede tp-mute" style={{ marginBottom: 18 }}>{q.sub}</p> : null}
-          {q.optional ? <p className="tp-small tp-mute" style={{ marginTop: -8, marginBottom: 14 }}>Optional</p> : null}
 
           {q.kind === "pills" ? (
             <>
@@ -167,10 +196,11 @@ export function IntakeForm() {
           <div className="tp-intake-nav">
             {i > 0 ? <button type="button" className="tp-btn tp-btn-ghost tp-btn-sm" onClick={() => setI(i - 1)}>Back</button> : null}
             <button type="button" className="tp-btn tp-btn-orange" disabled={!ok || pending} onClick={next}>
-              {i === total - 1 ? (pending ? "Sending" : "Send to Jem") : q.optional && !String(a[(q as { col?: string }).col ?? ""] ?? "").trim() ? "Skip" : "Next"}
+              {i === total - 1 ? (pending ? "Sending" : gate ? "Send and open the hub" : "Send to Jem") : "Next"}
             </button>
-            {q.kind === "text" ? <span className="tp-small tp-mute">or press Enter</span> : null}
+            {q.kind === "text" && ok ? <span className="tp-small tp-mute">or press Enter</span> : null}
           </div>
+          {!ok ? <p className="tp-small tp-mute" style={{ marginTop: 12 }}>Every question needs an answer.</p> : null}
         </div>
       </div>
       <div className="tp-intake-foot">

@@ -14,6 +14,7 @@ const TEAM = "tp_team";
 const INTAKE = "tp_intake";
 const ADMIN = "tp_admin";
 const MONTH = 60 * 60 * 24 * 30;
+const YEAR = 60 * 60 * 24 * 365; // the intake is once per person, so it should outlast the programme
 
 function teamSecret(): string | null {
   return process.env.TP_HUB_PASSWORD ?? null;
@@ -49,9 +50,9 @@ export async function isAdminAuthed(): Promise<boolean> {
   return matches(ADMIN, s ? token(s, "tp-admin-v1") : null);
 }
 
-async function setCookie(name: string, value: string) {
+async function setCookie(name: string, value: string, maxAge = MONTH) {
   const jar = await cookies();
-  jar.set(name, value, { httpOnly: true, secure: true, sameSite: "lax", path: "/two-palms", maxAge: MONTH });
+  jar.set(name, value, { httpOnly: true, secure: true, sameSite: "lax", path: "/two-palms", maxAge });
 }
 
 export async function loginTeam(password: string): Promise<boolean> {
@@ -64,7 +65,7 @@ export async function loginTeam(password: string): Promise<boolean> {
 export async function markIntakeDone(): Promise<void> {
   const s = teamSecret();
   if (!s) return;
-  await setCookie(INTAKE, token(s, "tp-intake-v1"));
+  await setCookie(INTAKE, token(s, "tp-intake-v1"), YEAR);
 }
 
 export async function loginAdmin(password: string): Promise<boolean> {

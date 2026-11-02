@@ -2,14 +2,17 @@
 
 import { getSupabaseServer } from "@/lib/supabase";
 import { isTeamAuthed, markIntakeDone } from "./auth";
-import { INTAKE_ARRAY_COLUMNS, INTAKE_COLUMNS, INTAKE_INT_COLUMNS } from "../_data/intake";
+import { INTAKE_ARRAY_COLUMNS, INTAKE_COLUMNS, INTAKE_INT_COLUMNS, missingQuestions } from "../_data/intake";
 
 export type IntakeV2 = Record<string, string | string[] | number | null>;
 
 /** Saves one intake response. Only known columns are written; text is trimmed and capped.
  *  If the insert fails the answers are logged server-side so nothing is lost. */
-export async function submitIntakeV2(a: IntakeV2): Promise<{ ok: boolean; stored: boolean }> {
+export async function submitIntakeV2(a: IntakeV2): Promise<{ ok: boolean; stored: boolean; missing?: string[] }> {
   if (!(await isTeamAuthed())) return { ok: false, stored: false };
+  // The intake unlocks the hub, so it must be complete: checked here too, not only in the browser.
+  const missing = missingQuestions(a);
+  if (missing.length) return { ok: false, stored: false, missing };
   const row: Record<string, unknown> = {};
   for (const c of INTAKE_COLUMNS) {
     const v = a[c];

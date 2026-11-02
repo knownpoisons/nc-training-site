@@ -70,16 +70,16 @@ export const INTAKE_QS: IntakeQ[] = [
       { col: "c_client_data", label: "Knowing what's OK to put into AI from a client" },
     ],
   },
-  { id: "ai_fail", kind: "long", col: "ai_fail", optional: true, q: "The last time AI didn't work for you.", sub: "What were you trying to do, and what went wrong? Skip if nothing comes to mind.", placeholder: "I asked it to…" },
-  { id: "ai_win", kind: "long", col: "ai_win", optional: true, q: "The last time AI really helped.", sub: "What did you do, and what came out of it? Even something small.", placeholder: "I used it to…" },
-  { id: "feeling", kind: "pills", col: "feeling", q: "How do you feel about AI and your work, honestly?", options: ["Worried", "Sceptical", "Curious", "Excited", "Already all in"], why: { col: "feeling_why", placeholder: "Anything behind that? (optional)" } },
+  { id: "ai_fail", kind: "long", col: "ai_fail", q: "The last time AI didn't work for you.", sub: "What were you trying to do, and what went wrong? If you've never tried, say what puts you off.", placeholder: "I asked it to…" },
+  { id: "ai_win", kind: "long", col: "ai_win", q: "The last time AI really helped.", sub: "What did you do, and what came out of it? Even something small. If nothing yet, say what you'd most like it to help with.", placeholder: "I used it to…" },
+  { id: "feeling", kind: "pills", col: "feeling", q: "How do you feel about AI and your work, honestly?", options: ["Worried", "Sceptical", "Curious", "Excited", "Already all in"], why: { col: "feeling_why", placeholder: "What's behind that?" } },
   { id: "rules_clarity", kind: "scale", col: "rules_clarity", q: "How clear are you on what you can and can't use AI for at Two Palms?", low: "No idea", high: "Completely clear" },
 
   // Part 4: set-up and logistics
   { id: "claude_account", kind: "pills", col: "claude_account", q: "Your Claude account.", options: ["It's set up and I've used it", "I've got the invite but haven't set it up", "I haven't seen an invite yet", "Not sure"] },
   { id: "device", kind: "pills", col: "device", q: "What do you mostly work on?", options: ["Mac", "Windows PC", "Both", "Mostly phone or tablet"] },
   { id: "install", kind: "pills", col: "can_install", q: "Can you install apps on your work computer?", options: ["Yes", "Some restrictions", "No", "Not sure"] },
-  { id: "anything_else", kind: "long", col: "anything_else", optional: true, q: "Anything else Jem should know?", sub: "Concerns, hopes, a project you'd love to bring, how you learn best, or anything that would make the sessions easier (captions, timing, anything).", placeholder: "Optional" },
+  { id: "anything_else", kind: "long", col: "anything_else", q: "Anything else Jem should know?", sub: "Concerns, hopes, a project you'd love to bring, how you learn best, or anything that would make the sessions easier (captions, timing, anything). If there's nothing, write \"nothing\".", placeholder: "Concerns, hopes, how you learn best…" },
 ];
 
 /** Every database column the form writes, in question order: the CSV header. */
@@ -93,3 +93,28 @@ export const INTAKE_COLUMNS: string[] = INTAKE_QS.flatMap((q) => {
 
 export const INTAKE_INT_COLUMNS = new Set<string>(["rules_clarity", ...((INTAKE_QS.find((q) => q.id === "confidence") as Extract<IntakeQ, { kind: "grid" }>).rows.map((r) => r.col))]);
 export const INTAKE_ARRAY_COLUMNS = new Set<string>(["tools"]);
+
+type Answers = Record<string, string | string[] | number | null | undefined>;
+const filled = (v: unknown) => v !== undefined && v !== null && String(v).trim() !== "";
+
+/** True when this question is fully answered (including its "Other" and "why" follow-ups).
+ *  Every question is required: the intake is the door into the hub. */
+export function isAnswered(q: IntakeQ, a: Answers): boolean {
+  if (q.kind === "grid") return q.rows.every((r) => filled(a[r.col]));
+  const v = a[q.col];
+  if (q.kind === "multi") {
+    const arr = Array.isArray(v) ? v : [];
+    if (!arr.length) return false;
+    if (q.other && arr.includes(q.other.option)) return filled(a[q.other.col]);
+    return true;
+  }
+  if (!filled(v)) return false;
+  if (q.kind === "pills" && q.other && v === q.other.option && !filled(a[q.other.col])) return false;
+  if (q.kind === "pills" && q.why && !filled(a[q.why.col])) return false;
+  return true;
+}
+
+/** Ids of every question still missing an answer. Empty = complete. Used by the form and the server. */
+export function missingQuestions(a: Answers): string[] {
+  return INTAKE_QS.filter((q) => !isAnswered(q, a)).map((q) => q.id);
+}
