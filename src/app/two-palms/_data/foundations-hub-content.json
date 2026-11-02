@@ -129,15 +129,18 @@
       "homework": [
         {
           "type": "submit",
-          "text": "Fill in the Time · Money · Pain form here in the hub by Fri 6 Nov. Your most time-consuming, most expensive and most annoying process, and roughly how many hours a week each takes. It's the only homework you hand in."
+          "text": "Fill in the Time · Money · Pain form here in the hub by Fri 6 Nov. Your most time-consuming, most expensive and most annoying process, and roughly how many hours a week each takes. It's the only homework you hand in.",
+          "short": "Time · Money · Pain form, by Fri 6 Nov"
         },
         {
           "type": "do",
-          "text": "Work through the Set up Claude page before Tue 10 Nov (about 40 minutes, once): accept your invite, run the onboarding prompt, and move across anything worth keeping with the Moving work prompts."
+          "text": "Work through the Set up Claude page before Tue 10 Nov (about 40 minutes, once): accept your invite, run the onboarding prompt, and move across anything worth keeping with the Moving work prompts.",
+          "short": "Set up Claude, about 40 min, before Tue 10 Nov"
         },
         {
           "type": "do",
-          "text": "Install Fluid Voice (free, Mac: fluidvoice.com) or use your computer's built-in dictation (Windows: Win + H), and talk to Claude for 10 minutes about your job."
+          "text": "Install Fluid Voice (free, Mac: fluidvoice.com) or use your computer's built-in dictation (Windows: Win + H), and talk to Claude for 10 minutes about your job.",
+          "short": "Talk to Claude for 10 min about your job"
         }
       ],
       "slack": "Post one thing Claude said about your job that surprised you.",

@@ -527,3 +527,8 @@
 .tpb-top .tpb-join .dot { background: #b8441f; }
 .tpb-top .tpb-join:hover { background: #fdf3ee; border-color: #fff; }
 .tpb-bar :focus-visible { outline-color: #fff; }
+
+/* Session wrap-up: homework list inside the featured cell */
+.tpb .fo-hw { margin-top: 12px; display: grid; gap: 6px; }
+.tpb .fo-hw-i { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 8px; font: 400 13.5px/1.35 var(--f-sans); color: var(--text); }
+.tpb .fo-hw-i .mono { font: 400 11px/19px var(--f-mono); color: var(--hot); }

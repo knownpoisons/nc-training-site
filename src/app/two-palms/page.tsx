@@ -19,8 +19,11 @@ export default function Home() {
   const nxt = nextEvent(now);
   const featIdx = Math.max(0, SESSIONS.findIndex((s) => new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000 > now.getTime()));
   const feat = SESSIONS[featIdx] ?? SESSIONS[0];
-  const after = SESSIONS[featIdx + 1] ?? null;
-  const rest = SESSIONS.filter((s) => s !== feat && s !== after);
+  // Between sessions, the last one's wrap-up (recap + homework) leads and the next sits beside it.
+  const wrap = featIdx > 0 && now.getTime() >= new Date(SESSIONS[featIdx - 1].when.start_iso).getTime() ? SESSIONS[featIdx - 1] : null;
+  const after = wrap ? null : SESSIONS[featIdx + 1] ?? null;
+  const rest = SESSIONS.filter((s) => s !== feat && s !== after && s !== wrap);
+  const short = (t: string) => t.split(/[.:(]/)[0].trim();
   const toolsOpen = toolsAreOpen(now);
   const tmpOpen = tmpIsOpen(now);
   const tz = twoZones(feat.when.start_iso);
@@ -54,7 +57,22 @@ export default function Home() {
         <Tile hue="mustard" label={FC.programme.name} style={g(3, 3, 2, 5)}>
           <Lab l={FC.programme.name} sub={`${SESSIONS.length} sessions`} r={<Link className="lnk" href="/two-palms/foundations#schedule">The schedule <IconArrow /></Link>} />
           <div className="fo fo--big">
-            <Link className="fo-feat" href={sessionHref(feat)}>
+            {wrap ? (
+              <Link className="fo-feat" href={sessionHref(wrap)}>
+                <span className="fo-top"><span>S{wrap.number} · Done</span><span className="hot">Wrap-up</span></span>
+                <span className="fo-b">
+                  <Win src={`/two-palms/img/l/session-${wrap.number}.jpg`} w={720} h={720} />
+                  <span>
+                    <span className="tt" style={{ display: "block" }}>Session {wrap.n} wrap-up</span>
+                    <span className="tp" style={{ display: "block" }}>Cheat sheet, recap and this week&apos;s homework.</span>
+                    <span className="fo-hw" style={{ display: "block" }}>
+                      {wrap.homework.map((h, i) => <span key={i} className="fo-hw-i"><span className="mono">{String(i + 1).padStart(2, "0")}</span>{h.short ?? short(h.text)}</span>)}
+                    </span>
+                  </span>
+                </span>
+              </Link>
+            ) : null}
+            <Link className={wrap ? "fo-next" : "fo-feat"} href={sessionHref(feat)}>
               <span className="fo-top"><span>S{feat.number}</span><span className={nextIsFeat ? "hot" : "w"}>{nextIsFeat ? "Next" : feat.phase}</span></span>
               <span className="fo-b">
                 <Win src={`/two-palms/img/l/session-${feat.number}.jpg`} w={720} h={720} />

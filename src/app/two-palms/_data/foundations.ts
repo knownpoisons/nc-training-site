@@ -15,7 +15,7 @@
 import raw from "./foundations-hub-content.json";
 
 export type HomeworkType = "submit" | "do" | "share";
-export interface Homework { type: HomeworkType | string; text: string }
+export interface Homework { type: HomeworkType | string; text: string; short?: string }
 
 export interface FSession {
   n: number;
