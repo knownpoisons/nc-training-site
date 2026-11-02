@@ -17,7 +17,15 @@ import raw from "./foundations-hub-content.json";
 export type HomeworkType = "submit" | "do" | "share";
 export interface Homework { type: HomeworkType | string; text: string; short?: string; cta?: { label: string; href: string } }
 /** After a session has run: the past-tense wrap shown on its page. */
-export interface Recap { line: string; goal: string; covered: { t: string; d: string }[] }
+export interface RecapItem { t: string; d: string }
+export interface Recap {
+  goal: string;
+  agenda: string[];
+  big_idea?: { head: string; body: string[] };
+  framework?: { head: string; intro: string; split: { n: string; who: string; d: string }[]; twist: string };
+  remember?: RecapItem[];
+  hints?: RecapItem[];
+}
 
 export interface FSession {
   n: number;

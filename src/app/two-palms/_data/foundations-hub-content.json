@@ -205,40 +205,81 @@
       "cheat_sheet": "THE ONE IDEA\nYou direct. It makes. You write the brief (10%), AI does the making (80%), you check it (10%). The craft stays yours.\n\nWHAT AI IS\nA very well-read assistant that predicts the next word. Brilliant at drafts, options, summaries and structure. Trips up on facts, numbers and anything it can't see. Always check what it gives you.\n\nTHE FOUR BARRIERS, AND THE WAY PAST\n\"I'm not technical\": you don't need to be. You talk to it in plain English.\n\"It changes too fast\" and \"too many tools\": we use one tool, Claude, and go deep.\n\"I can't keep up\": you don't need to. Keep using it and the hub keeps you current.\n\nHABIT 1 · ASK YOUR CLAUDE, NOT ME\nStuck? Ask Claude first. Then #ai-training. Then Jem.\n\nHABIT 2 · TALK, DON'T TYPE\nFluid Voice (free, Mac): fluidvoice.com\nWindows: Win + H for built-in dictation.\nOpen office: headphones with a mic, so it only hears you.\n\nNOT SURE IF SOMETHING CAN GO IN?\nCheck the AI policy page. Still unsure, especially with client material: ask Ed or Jem before you paste it in.\n\nTHIS WEEK\n1. Time · Money · Pain form, by Fri 6 Nov. The only thing you hand in.\n2. Set up Claude page, about 40 minutes, before Tue 10 Nov.\n3. Talk to Claude for 10 minutes about your job.\n4. Post one thing it said that surprised you in #ai-training.",
       "wrap_notes": "Good first one. Questions from the room:\n\nVoice in an open office? Headphones with a mic. It stops the dictation picking up everyone around you.\n\nWhat do I bring over from my personal AI accounts? Only live work you still need, using the Moving work prompts. Your client context comes in through the company Claude, not from old chats.\n\nWhat about clients with strict confidentiality? Check before anything goes in. Ed is confirming the rules per client, and Session 2 opens with the AI policy, line by line.\n\nWin already: one of the team had Claude build an After Effects set-up for a CCTV overlay. That's the shape of it: you know what you want, it does the making.\n\nNext: Session 2 · Brief, Tue 10 Nov.",
       "recap": {
-        "line": "What's changed, and why it matters.",
         "goal": "We got clear on what AI actually is, dropped some of the fear, and picked up the habits that carry the whole programme.",
-        "covered": [
+        "agenda": [
+          "Who Jem is, and why he's here",
+          "What AI actually is",
+          "The Four Barriers",
+          "You direct. It makes.",
+          "It's not Google",
+          "Ask your Claude, not me",
+          "Talk, don't type",
+          "Time · Money · Pain"
+        ],
+        "big_idea": {
+          "head": "Stop searching. Start directing.",
+          "body": [
+            "The old way: AI is a search box you poke at when you're stuck. You get the internet's worth of answers, and most of them are average.",
+            "The new way: Claude is a teammate that knows Two Palms, your clients and you. You brief it, it makes, you finish it. The making scales. The thinking stays yours.",
+            "That's the next eight weeks."
+          ]
+        },
+        "framework": {
+          "head": "You direct. It makes.",
+          "intro": "Everything we make with AI runs on a 10/80/10 split.",
+          "split": [
+            {
+              "n": "10%",
+              "who": "You",
+              "d": "The brief. Context, references, what good looks like."
+            },
+            {
+              "n": "80%",
+              "who": "AI",
+              "d": "The making. Drafts, options, versions, volume."
+            },
+            {
+              "n": "10%",
+              "who": "You",
+              "d": "The finish. Checking, editing, taste, sign-off."
+            }
+          ],
+          "twist": "The twist: the 20% you put in is worth 80% of the result. The middle scales. The ends are where the craft is."
+        },
+        "remember": [
           {
-            "t": "What AI actually is",
-            "d": "A language model predicts the next word from everything people have written. Brilliant at solving problems, not original on its own. The ideas stay yours."
+            "t": "Ask your Claude, not me.",
+            "d": "Stuck? Claude first, then #ai-training, then Jem."
           },
           {
-            "t": "The Four Barriers",
-            "d": "Not technical, changes too fast, too many tools, can't keep up. Limiting beliefs, not facts. We knock them over one by one."
+            "t": "It's not Google.",
+            "d": "Lazy questions get lazy answers. Context is what makes it smart."
           },
           {
-            "t": "You direct. It makes.",
-            "d": "10/80/10: you brief, AI makes, you check. Your 20% is worth 80% of the result."
+            "t": "The barriers aren't real.",
+            "d": "Not technical, too fast, too many tools, can't keep up. We knock them over one by one."
           },
           {
-            "t": "It's not Google",
-            "d": "Lazy questions get lazy answers. Give it context and it gets smart fast. How to brief it is Session 2."
+            "t": "We only rise together.",
+            "d": "Post what you make, half-finished included. Nothing is embarrassing."
+          }
+        ],
+        "hints": [
+          {
+            "t": "Talk, don't type.",
+            "d": "Fluid Voice is free on Mac. Set a hotkey and start talking."
           },
           {
-            "t": "Ask your Claude, not me",
-            "d": "Stuck? Ask Claude first, then #ai-training, then Jem."
+            "t": "Headphones in the office.",
+            "d": "A headset mic stops dictation picking up the whole room."
           },
           {
-            "t": "Talk, don't type",
-            "d": "Fluid Voice runs a small model on your Mac. Headphones with a mic in the office."
+            "t": "Your Claude learns the house.",
+            "d": "Two Palms, your clients, the AI policy and every session. Ask it what Jem said."
           },
           {
-            "t": "Your Claude learns the house",
-            "d": "Two Palms, your clients, the AI policy and every session. It flags anything against the rules."
-          },
-          {
-            "t": "Time · Money · Pain",
-            "d": "What eats your time, what costs Two Palms money, what annoys you most. It shapes what we build next."
+            "t": "Not sure it can go in?",
+            "d": "Check the AI policy. Still unsure with client material? Ask Ed or Jem first."
           }
         ]
       }
