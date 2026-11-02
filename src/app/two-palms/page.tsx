@@ -5,6 +5,7 @@ import { HUB, PROMPTS } from "./_data/hub";
 import { CopyButton } from "./_ui/bits";
 import { Bento, IconArrow, IconClock, IconHash, IconLock, Lab, PageTitle, PrintTile, Tile, Win } from "./_ui/b";
 import { NextUpTile } from "./_ui/b-parts";
+import { HomeD } from "./_ui/home-d";
 
 const strip = (d: string) => d.replace(/ \d{4}$/, "");
 /** Column span at 4 / 3 / 2 columns, and order at 3 columns (no row ever ends with a lone tile). */
@@ -12,7 +13,7 @@ const g = (c4: number, c3: number, c2: number, o3: number) => ({ "--c4": c4, "--
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ v?: string }> }) {
   const sp = await searchParams;
-  const v = ["a", "b", "c"].includes(sp.v ?? "") ? sp.v : "a";
+  const v = ["a", "b", "c", "d"].includes(sp.v ?? "") ? sp.v : "a";
   const now = new Date();
   const onboarding = PROMPTS.find((p) => p.id === "onboarding")!;
   // Feature the next session (Session 1 until it has run), preview the one after.
@@ -30,6 +31,14 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ v
   const nextIsFeat = nxt?.start_iso === feat.when.start_iso;
   const tmp = FC.forms.time_money_pain;
 
+  if (v === "d") {
+    return (
+      <div className="tidy tidy--d">
+        <PageTitle title={FC.programme.hub_name} lede="Where Two Palms learns to work with AI." right={<span className="lab-x">{FC.programme.through_line}</span>} />
+        <HomeD now={now} onboardingBody={onboarding.body} feat={feat} featIdx={featIdx} wrap={wrap} tmpOpen={tmpOpen} toolsOpen={toolsOpen} />
+      </div>
+    );
+  }
   return (
     <>
       <PageTitle title={FC.programme.hub_name} lede="Where Two Palms learns to work with AI." right={<span className="lab-x">{FC.programme.through_line}</span>} />
