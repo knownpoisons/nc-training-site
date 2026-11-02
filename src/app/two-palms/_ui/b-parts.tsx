@@ -20,7 +20,7 @@ export function NextUpTile({ now, span, print, style }: { now: Date; span?: 2; p
   );
   return (
     <Tile hue="orange" next span={span} label="Next up" style={style}>
-      <Lab l={<><i className="dot dot--live" aria-hidden="true" />Next up</>} r="Sydney · Munich" />
+      <Lab l={<><i className="dot dot--live" aria-hidden="true" />Next up</>} />
       {print ? (
         <div className="split split--big">
           <div className="split-c"><NextUpBody events={ev} fallback={fb} />{acts}</div>
