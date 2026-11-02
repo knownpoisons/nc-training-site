@@ -851,3 +851,49 @@
 .tpb .vx-out { display: inline-block; margin-top: 10px; font: 600 10.5px/16px var(--f-sans); letter-spacing: .1em; text-transform: uppercase; color: var(--text-2); }
 .tpb .vx-out:hover { color: var(--hot); }
 @media (max-width: 720px) { .tpb .vx-play { width: 56px; height: 56px; margin: -28px 0 0 -28px; } .tpb .vx-lab { font-size: 16px; left: 10px; bottom: 10px; } }
+/* ═══ Home tidy (preview, 2 Nov): one radius system, orange once, fewer lines ═══
+   Containers 12 · anything inside a container 6 · controls fully round. */
+.tpb .tidy { --r-box: 12px; --r-in: 6px; }
+.tpb .tidy .t { border-radius: var(--r-box); border-color: rgba(27, 23, 20, .14); }
+.tpb .tidy .win, .tpb .tidy .fo-wrap { border-radius: var(--r-in); }
+.tpb .tidy .win::after { display: none; }
+.tpb .tidy .btn, .tpb:has(.tidy) .tpb-join { border-radius: 999px; }
+.tpb .tidy .btn { padding: 0 16px; }
+.tpb .tidy .acts { flex-wrap: nowrap; }
+.tpb .tidy .fo-when { display: none !important; }
+/* labels: no underline, just a quiet line of type */
+.tpb .tidy .lab { border-bottom: 0; padding-bottom: 0; }
+.tpb .tidy .split, .tpb .tidy .pt { padding-top: 16px; }
+/* orange: only the wrap-up (the one thing to do now) and the live dot */
+.tpb .tidy .t--next::before, .tpb .tidy .fo-feat::before { display: none; }
+.tpb .tidy .lab-r.is-hot, .tpb .tidy .fo-top .hot { color: var(--text); }
+/* Next up: the countdown lives in the header pill, so it goes here */
+.tpb .tidy .cd-in { display: none; }
+/* Foundations: no internal grid lines; the wrap-up is a rounded inset */
+.tpb .tidy .fo { margin: 14px 0 0; gap: 12px; border-bottom: 0; }
+.tpb .tidy .fo-next { border-left: 0; }
+.tpb .tidy .fo-feat, .tpb .tidy .fo-next { padding: 14px; border-radius: var(--r-in); }
+.tpb .tidy .fo-top { font: 500 11px/16px var(--f-sans); font-stretch: 112%; letter-spacing: .06em; }
+.tpb .tidy .fo-hw-i { grid-template-columns: 12px minmax(0, 1fr); }
+.tpb .tidy .b-strip { margin: 12px 0 0; gap: 8px; }
+.tpb .tidy .cell { border-left: 0 !important; border-top: 0 !important; border-radius: var(--r-in); padding: 8px; min-height: 0; }
+.tpb .tidy .cell-row { align-items: center; }
+.tpb .tidy .oh li { border-top: 0; padding: 3px 0; }
+@media (max-width: 899px) { .tpb .tidy .fo-next { border-top: 0; } }
+
+/* B: fewer containers. The kit row, office hours and Creative sit on the page; a card appears only on hover. */
+.tpb .tidy--b .t--print { background: transparent; border-color: transparent; }
+.tpb .tidy--b .t--print[data-hue]:hover, .tpb .tidy--b .t--print[data-hue]:focus-visible { border-color: transparent; }
+.tpb .tidy--b .tpb-bento--home { row-gap: 18px; }
+
+/* C: photo-first. Kit photos run to the card's edge; the label rides on the photo as one chip. */
+.tpb .tidy--c .t--print { padding-top: 0; }
+.tpb .tidy--c .t--print > .lab { position: absolute; top: 12px; left: 12px; right: auto; z-index: 3; margin: 0; padding: 5px 11px; min-height: 0; background: rgba(248, 244, 237, .94); border-radius: 999px; gap: 8px; }
+.tpb .tidy--c .t--print > .lab .lab-r { color: var(--text-2); }
+.tpb .tidy--c .t--print .pt { padding-top: 0; }
+.tpb .tidy--c .t--print .pt-img { margin: 0 calc(-1 * var(--pad)); width: auto; border-radius: 0; }
+.tpb .tidy--c .t .split--big { padding-top: 16px; }
+@container (min-width: 520px) {
+  .tpb .tidy--c .t--print .pt-img { margin: 0 calc(-1 * var(--pad)) calc(-1 * var(--pad)) 0; width: auto; height: calc(100% + var(--pad)); border-radius: 0; }
+  .tpb .tidy--c .t--print .pt-c { padding: 56px 0 0; }
+}
