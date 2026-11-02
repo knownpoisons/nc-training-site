@@ -121,7 +121,7 @@ export const CREATIVE: Programme = {
 // ─── Prompt library ─────────────────────────────────────────────────────────────
 export interface Prompt {
   id: string;
-  tab: "Start here" | "Everyday" | "Moving work" | "Admin";
+  tab: "Start here" | "Beginner" | "Everyday" | "Moving work" | "Admin";
   title: string;
   when: string;
   body: string;
@@ -166,6 +166,38 @@ Don't put any client confidential details into my personal preferences.`,
 2. What's the most costly, where money or outside people change hands?
 3. What's the most annoying, even if it's quick?
 Then pick the one you'd start with, explain why in two lines, and tell me what you need from me to do it. Don't build anything yet.`,
+  },
+  {
+    id: "beginner-speed-up",
+    tab: "Beginner",
+    title: "Speed up my computer",
+    when: "See Claude work on your computer. Needs the Claude desktop app with computer use switched on. About 15 minutes.",
+    body: `Help me speed up my computer. I'm not technical, so be kind and gentle, keep explanations short and tell me how each change will help me. First, list the background services and startup programs that are running, and mark which ones look safe to switch off and which I should keep, and why. Never touch anything to do with security, antivirus, VPN, backups, device management or software licences (Adobe, Microsoft), and if you're unsure what something is, mark it "keep". Don't change or remove anything until I've approved your list, and tell me how to undo each change. You're done when the approved items are switched off and you've given me a short summary of what changed.`,
+  },
+  {
+    id: "beginner-downloads",
+    tab: "Beginner",
+    title: "Tidy my Downloads folder",
+    when: "See Claude sort real files for you. Needs the Claude desktop app. About 10 minutes.",
+    body: `My Downloads folder is a mess. I'm not technical, so keep it simple. Look through it and suggest a handful of folders to sort everything into (for example by client, by type or by month), and show me which files would go where. Don't move or delete anything until I've said yes. Never delete anything: put anything that looks like junk or a duplicate into a folder called "Check before deleting" so I can decide. When you're done, tell me in three lines what you did and how to put it back if I don't like it.`,
+  },
+  {
+    id: "beginner-tiny-tool",
+    tab: "Beginner",
+    title: "Build me a tiny tool",
+    when: "Do the account set-up prompt first, so Claude knows your job. It might build something brilliant, or something useless. Both teach you something. About 10 minutes.",
+    body: `Using everything you already know about me (my personal preferences, my role, my clients and anything from our past chats), work out one small, repetitive task I do every week that a tiny tool could make faster or less annoying. If you don't know enough about me yet, ask me up to 3 quick questions first, one at a time. Then build that tool right here in the chat so I can use it straight away. Keep it simple, clean and friendly: one job, done well. I'm not technical, so after you build it, tell me in plain English: 1) which task you picked and why, 2) what you assumed about how I work, 3) how to use it in two lines, and 4) honestly, how useful you think it will be out of 10. If it misses the mark, I'll tell you what's wrong and we'll fix it together.`,
+  },
+  {
+    id: "beginner-talk-dont-type",
+    tab: "Beginner",
+    title: "Talk, don't type: a 5-minute warm-up",
+    when: "After you've installed Fluid Voice and set your hotkey (on Windows, press Windows key + H instead). Speak every answer, don't type.",
+    body: `Help me build the habit of talking to you instead of typing. I've just set up voice dictation, and from now on I'm going to speak my answers out loud, so they'll be rambly and that's fine. Run me through a 5-minute warm-up, one step at a time, and wait for me each time:
+1. Ask me to describe, out loud, one annoying task from my week as if I were explaining it to a friend. Then show me what you can do with all that detail, and tell me what you'd have got if I'd typed one short line instead.
+2. Ask me to talk you through something I need to write today (an email, a Slack message or a brief) and turn my ramble into a clean, short version. Don't invent facts, names, dates or numbers: leave a [gap] for anything missing.
+3. Give me three everyday moments in my job where talking will save me the most time, and one simple rule to help me remember to use my hotkey instead of the keyboard.
+Keep everything short, friendly and in plain English. I'm not technical.`,
   },
   {
     id: "describe-the-problem",
