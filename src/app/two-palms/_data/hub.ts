@@ -192,7 +192,7 @@ Then pick the one you'd start with, explain why in two lines, and tell me what y
     id: "beginner-talk-dont-type",
     tab: "Beginner",
     title: "Talk, don't type: a 5-minute warm-up",
-    when: "After you've installed Fluid Voice and set your hotkey (on Windows, press Windows key + H instead). Speak every answer, don't type.",
+    when: "After you've installed Fluid Voice and set your hotkey. Speak every answer, don't type.",
     body: `Help me build the habit of talking to you instead of typing. I've just set up voice dictation, and from now on I'm going to speak my answers out loud, so they'll be rambly and that's fine. Run me through a 5-minute warm-up, one step at a time, and wait for me each time:
 1. Ask me to describe, out loud, one annoying task from my week as if I were explaining it to a friend. Then show me what you can do with all that detail, and tell me what you'd have got if I'd typed one short line instead.
 2. Ask me to talk you through something I need to write today (an email, a Slack message or a brief) and turn my ramble into a clean, short version. Don't invent facts, names, dates or numbers: leave a [gap] for anything missing.
