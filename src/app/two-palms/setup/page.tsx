@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PROMPTS, SETUP_STEPS } from "../_data/hub";
-import { CopyButton, Reveal, Underline } from "../_ui/bits";
+import { CopyButton, Reveal } from "../_ui/bits";
+import { PageCover } from "../_ui/cover";
 import { SetupSteps } from "./steps";
 
 export const metadata = { title: "Setup" };
@@ -9,17 +10,7 @@ export default function Page() {
   const onboarding = PROMPTS.find((p) => p.id === "onboarding")!;
   return (
     <>
-      <section className="tp-hero" style={{ paddingBottom: 24 }}>
-        <div className="tp-wrap tp-headrow">
-          <Reveal>
-            <div className="tp-eyebrow" style={{ marginBottom: 16 }}><span className="tp-dot" />Setup · about 40 minutes, once</div>
-            <h1 className="tp-h1"><span className="tp-outline">Fresh account,</span><br />done <Underline delay={600}>right</Underline>.</h1>
-            <p className="tp-lede" style={{ marginTop: 18 }}>
-              Start clean. Claude finds your context in Drive, Slack and your client projects, so nothing old needs importing. Eight steps. Do them in order.
-            </p>
-          </Reveal>
-        </div>
-      </section>
+      <PageCover label="Set up · about 40 minutes, once" title="Fresh account, done right." lede="Start clean. Claude finds your context in Drive, Slack and your client projects, so nothing old needs importing. Eight steps. Do them in order." img="/two-palms/img/h/setup.jpg" />
 
       <section className="tp-section" style={{ paddingTop: 24 }}>
         <div className="tp-wrap tp-split">
