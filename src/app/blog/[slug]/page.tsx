@@ -10,6 +10,8 @@ import {
 } from "@/lib/blog";
 import { BlogScorecardCta } from "@/components/blog-scorecard-cta";
 import { BlogAuthorCard } from "@/components/blog-author-card";
+import { JsonLd } from "@/components/json-ld";
+import { articleNode, graph, webPageNode } from "@/lib/schema";
 import { BlogLinkedInCta } from "@/components/blog-linkedin-cta";
 import { BlogRelatedPosts } from "@/components/blog-related-posts";
 import { EndCta } from "@/components/end-cta";
@@ -68,6 +70,7 @@ export default async function BlogPostPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd data={graph(webPageNode(`/blog/${post.slug}`, post.title), articleNode(post))} />
       {/* ─── HERO ──────────────────────────────────────────────────────── */}
       <section className="relative bg-[#1338BE] text-white overflow-hidden pt-32 lg:pt-36 pb-14 lg:pb-20">
         {/* Cover illustration — full-bleed background, faded behind cobalt gradient */}

@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CaseStudyVideo } from "@/components/case-study-video";
@@ -11,6 +12,7 @@ export const metadata: Metadata = {
 export default function CashAppCaseStudy() {
   return (
     <>
+      <PageSchema path="/results/cash-app" name="Cash App case study" />
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         {/* Header image — full bleed, faded behind content */}

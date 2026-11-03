@@ -9,6 +9,8 @@ export interface BlogPost {
   title: string;
   description: string;
   date: string;
+  /** Optional frontmatter. Feeds dateModified; falls back to date. */
+  updated?: string;
   author: string;
   tags: string[];
   category: string;
@@ -39,6 +41,7 @@ export function getAllPosts(): BlogPost[] {
       title: data.title ?? "",
       description: data.description ?? "",
       date: data.date ?? "",
+      updated: data.updated,
       author: data.author ?? "",
       tags: data.tags ?? [],
       category: data.category ?? "Insight",

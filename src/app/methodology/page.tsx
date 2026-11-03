@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
@@ -171,6 +172,7 @@ const EYEBROW = "text-[11px] uppercase tracking-[0.22em]";
 export default function MethodologyPage() {
   return (
     <>
+      <PageSchema path="/methodology" name="Methodology" />
       <MethodologyTopbar />
 
       {/* ═══ HERO — Cobalt 60vh ═══ */}

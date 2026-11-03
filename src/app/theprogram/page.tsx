@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import Link from "next/link";
 import {
   CTA,
@@ -65,6 +66,7 @@ function ColumnIcon({ name }: { name: IncludedIcon }) {
 export default function StoryPage() {
   return (
     <StoryShell>
+      <PageSchema path="/theprogram" name="The Operating Model" />
       {/* minimal top bar — wordmark + booking, nothing else */}
       <nav className="om-topbar" aria-label="Story">
         <Link href={TOPBAR.brandHref}>{TOPBAR.brand}</Link>

@@ -8,6 +8,8 @@ import { Footer } from "@/components/footer";
 import { ExitIntent } from "@/components/exit-intent";
 import { AnnouncementBar } from "@/components/announcement-bar";
 import { ChromeGate } from "@/components/chrome-gate";
+import { JsonLd } from "@/components/json-ld";
+import { graph, organizationNode, personNode, webSiteNode } from "@/lib/schema";
 
 const ibmPlexMono = IBM_Plex_Mono({
   variable: "--font-ibm-plex-mono",
@@ -76,6 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${ibmPlexMono.variable} ${ibmPlexSans.variable} ${sourceSerif.variable} font-mono antialiased`}>
+        <JsonLd data={graph(organizationNode(), personNode(), webSiteNode())} />
         <ChromeGate>
           <AnnouncementBar />
           <Header />

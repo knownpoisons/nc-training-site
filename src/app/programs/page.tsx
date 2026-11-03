@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -33,6 +34,7 @@ const programs = [
 export default function ProgramsPage() {
   return (
     <>
+      <PageSchema path="/programs" name="Programs" />
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">

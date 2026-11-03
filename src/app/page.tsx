@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import Link from "next/link";
 import { Reveal } from "@/components/reveal";
 import { AnimatedCounter } from "@/components/animated-counter";
@@ -22,6 +23,7 @@ const clients = [
 export default function Home() {
   return (
     <>
+      <PageSchema path="/" name="NotContent Training" />
       {/* ═══ SECTION 1: HERO — Full-viewport cobalt with brand logo feature ═══ */}
       <section className="relative min-h-screen bg-[#1338BE] text-white overflow-hidden oci-grid-lines-light">
         {/* Grid overlay lines */}
