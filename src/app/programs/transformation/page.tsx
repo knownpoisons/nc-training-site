@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import type { Metadata } from "next";
 import Link from "next/link";
 
@@ -64,6 +65,7 @@ const included = [
 export default function TransformationPage() {
   return (
     <>
+      <PageSchema path="/programs/transformation" name="The Operating Model" />
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="absolute inset-0">

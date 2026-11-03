@@ -10,6 +10,7 @@ const navigation = [
   { name: "Methodology", href: "/methodology" },
   { name: "Results", href: "/results" },
   { name: "Blog", href: "/blog" },
+  { name: "NotContent", href: "https://www.notcontent.ai" },
 ];
 
 export function Header() {

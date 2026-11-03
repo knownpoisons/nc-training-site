@@ -8,6 +8,7 @@ const footerLinks = [
   { name: "Blog", href: "/blog" },
   { name: "About", href: "/about" },
   { name: "Readiness Scorecard", href: "/assess" },
+  { name: "NotContent", href: "https://www.notcontent.ai" },
 ];
 
 const socialLinks = [
@@ -107,7 +108,7 @@ export function Footer() {
                   Privacy Policy
                 </Link>
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
-                  Los Angeles · Hawaii · Sydney
+                  Sydney-founded. Working globally across Sydney, LA, NYC and Bangkok. AU morning and US afternoon calls.
                 </p>
               </div>
             </div>

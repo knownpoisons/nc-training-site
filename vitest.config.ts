@@ -5,7 +5,7 @@ import path from "node:path";
 // deliberately has zero framework dependencies so these run fast and offline.
 export default defineConfig({
   test: {
-    include: ["src/cockpit/**/*.test.ts", "src/app/two-palms/**/*.test.ts"],
+    include: ["src/lib/**/*.test.ts", "src/cockpit/**/*.test.ts", "src/app/two-palms/**/*.test.ts"],
     environment: "node",
   },
   resolve: {

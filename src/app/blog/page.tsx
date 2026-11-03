@@ -1,3 +1,4 @@
+import { PageSchema } from "@/components/json-ld";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts, formatPostDate, getReadingTime } from "@/lib/blog";
@@ -18,6 +19,7 @@ export default function BlogPage() {
 
   return (
     <>
+      <PageSchema path="/blog" name="Blog" />
       {/* Hero — cobalt */}
       <section className="relative min-h-[60vh] bg-[#1338BE] text-white overflow-hidden flex items-end">
         <div className="oci-grid-lines-light" />
