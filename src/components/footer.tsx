@@ -108,7 +108,7 @@ export function Footer() {
                   Privacy Policy
                 </Link>
                 <p className="text-[11px] uppercase tracking-[0.15em] text-foreground/30">
-                  Sydney-founded, working across Australia and the US. AU morning and US afternoon calls.
+                  Sydney-founded. Working globally across Sydney, LA, NYC and Bangkok. AU morning and US afternoon calls.
                 </p>
               </div>
             </div>

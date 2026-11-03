@@ -37,7 +37,7 @@ export function organizationNode() {
     founder: { "@id": PERSON_ID },
     ...(ENTITY_LINE ? { description: ENTITY_LINE } : {}),
     sameAs: ORGANIZATION_SAME_AS,
-    areaServed: ["Australia", "United States"],
+    areaServed: "Worldwide",
     knowsAbout: [
       "Creative AI consulting",
       "On-brand AI systems",
