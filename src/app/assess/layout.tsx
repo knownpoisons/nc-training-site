@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PageSchema } from "@/components/json-ld";
 
 export const metadata: Metadata = {
   title: "AI Creative Readiness Assessment | NotContent Training",
@@ -11,5 +12,10 @@ export default function AssessLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <>
+      <PageSchema path="/assess" name="Readiness Scorecard" />
+      {children}
+    </>
+  );
 }
