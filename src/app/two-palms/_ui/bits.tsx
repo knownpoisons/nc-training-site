@@ -142,13 +142,13 @@ export function Countdown({ iso, label }: { iso: string; label: string }) {
 }
 
 // ─── Tabs ───────────────────────────────────────────────────────────────────────
-export function Tabs({ tabs, children }: { tabs: string[]; children: (active: string) => ReactNode }) {
+export function Tabs({ tabs, children, hot }: { tabs: string[]; children: (active: string) => ReactNode; hot?: string }) {
   const [active, setActive] = useState(tabs[0]);
   return (
     <div>
       <div className="tp-tabs" role="tablist">
         {tabs.map((t) => (
-          <button key={t} role="tab" className="tp-tab" aria-selected={active === t} onClick={() => setActive(t)}>{t}</button>
+          <button key={t} role="tab" className={`tp-tab${t === hot ? " tp-tab--hot" : ""}`} aria-selected={active === t} onClick={() => setActive(t)}>{t}</button>
         ))}
       </div>
       <div key={active} className="tp-slide-enter">{children(active)}</div>

@@ -1267,3 +1267,15 @@
 .tpb .b5-card.is-wait:hover { background: var(--card); border-style: solid; }
 .tpb .b5-card.is-wait:hover > * { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .tpb .b5-card.is-wait > * { transition: none; } }
+/* Backstage: the Big 5 leads. Orange call-out with the title, then what's coming up. */
+.tpb .tp-tab--hot { color: var(--hot); font-weight: 700; }
+.tpb .tp-tab--hot[aria-selected="true"] { color: var(--hot); border-bottom-color: var(--hot); }
+.tpb .b5-week--lead { grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 28px; padding: 26px 28px; align-items: start; }
+.tpb .b5-week-h { display: grid; gap: 8px; }
+.tpb .b5-week-t { margin: 0; font: 400 clamp(40px, 3vw + 16px, 64px)/.95 var(--f-serif); letter-spacing: -.02em; color: #fff; }
+.tpb .b5-week-h p { margin: 0; font-size: 15px; line-height: 1.45; color: rgba(255,255,255,.9); max-width: 42ch; }
+.tpb .b5-week-up { display: grid; gap: 10px; }
+.tpb .b5-week--lead .b5-week-up a { grid-template-columns: 100px 120px 1fr; }
+.tpb .b5-week--lead:not(:has(.b5-week-h)) { grid-template-columns: 1fr; }
+@media (max-width: 900px) { .tpb .b5-week--lead { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .tpb .b5-week--lead .b5-week-up a { grid-template-columns: 1fr; } }

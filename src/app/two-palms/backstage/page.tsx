@@ -6,6 +6,8 @@ import { Checklist, Lock } from "../_ui/gates";
 import Link from "next/link";
 import { BackstageTabs } from "./tabs";
 import { readTmp } from "../_lib/tmp";
+import { readBig5Ticks } from "../_lib/big5";
+import { Big5Board } from "./big-5/board";
 import { tmpSummary, TMP_QUESTIONS } from "../_data/tmp";
 import { FC } from "../_data/foundations";
 import { PageTitle } from "../_ui/b";
@@ -32,7 +34,7 @@ export default async function Page() {
   }
   const persisted = !!getSupabaseServer();
   const sb = getSupabaseServer();
-  const [state, countRes, tmpRows] = await Promise.all([readChecklist(), sb ? sb.from("tp_intake_v2").select("id", { count: "exact", head: true }) : Promise.resolve({ count: 0 }), readTmp()]);
+  const [state, countRes, tmpRows, b5] = await Promise.all([readChecklist(), sb ? sb.from("tp_intake_v2").select("id", { count: "exact", head: true }) : Promise.resolve({ count: 0 }), readTmp(), readBig5Ticks()]);
   const tmp = tmpSummary(tmpRows);
   const qText = (id: string) => TMP_QUESTIONS.find((q) => q.id === id)?.q.split(":")[0] ?? id;
   const intakeCount = (countRes as { count: number | null }).count ?? 0;
@@ -42,11 +44,12 @@ export default async function Page() {
       <PageTitle
         title="Backstage"
         lede="What has to happen before the team walks in, who's doing it, and what the forms are telling us. Leadership and the trainer only."
-        right={<><span className="mono">{String(tmp.total).padStart(2, "0")} TMP · {String(intakeCount).padStart(2, "0")} intake</span><Link className="lnk" href="/two-palms/backstage/big-5">The Big 5 →</Link></>}
+        right={<><span className="mono">{String(tmp.total).padStart(2, "0")} TMP · {String(intakeCount).padStart(2, "0")} intake</span></>}
       />
       <section className="tp-section" style={{ paddingTop: 8 }}>
         <div className="tp-wrap">
           <BackstageTabs
+            big5={<Big5Board ticks={b5.ticks} />}
             tmp={
               <div>
                 <h2 className="tp-h2" style={{ marginBottom: 6 }}>{FC.forms.time_money_pain.label}</h2>
