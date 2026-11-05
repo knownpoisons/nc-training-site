@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: Promise<{ job: string }
                         {n.heard?.length ? <><h4>What we heard</h4><ul>{n.heard.map((x) => <li key={x}>{x}</li>)}</ul></> : null}
                         {n.decided?.length ? <><h4>Decided</h4><ul>{n.decided.map((x) => <li key={x}>{x}</li>)}</ul></> : null}
                         {n.open?.length ? <><h4>Still open</h4><ul>{n.open.map((x) => <li key={x}>{x}</li>)}</ul></> : null}
-                        {n.actions?.length ? <><h4>Actions</h4><ul>{n.actions.map((x) => <li key={x.task}>{x.task} · {x.who} · <span className="mono">{x.when}</span></li>)}</ul></> : null}
+                        {n.actions?.length ? <><h4>Actions</h4><ul>{n.actions.map((x) => <li key={x.task}>{x.task} · {x.who} · <span className={x.when === "to confirm" ? "is-tbc" : "mono"}>{x.when}</span></li>)}</ul></> : null}
                       </details>
                     </li>
                   ))}

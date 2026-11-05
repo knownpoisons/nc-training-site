@@ -3,7 +3,7 @@
 // updates this file (stage, now, next, to-dos, a new note, any new doc) and pushes; the page
 // shows it on the next deploy. Ticks live in the database (tp_big5_todos), keyed by to-do id,
 // so keep ids stable once published. Dates are only written when they are confirmed.
-import { REPORTING_INTAKE, TIMESHEETS_BRIEF } from "./big5-docs";
+import { REPORTING_INTAKE, REPORTING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
@@ -86,23 +86,59 @@ export const BIG5: B5Job[] = [
   {
     id: "reporting", n: 3, name: "Retainer and project reporting", short: "Reporting",
     owner: "Stef (Stefanie Jung)", with: "Fergus (the client's voice)",
-    tools: "Nothing standard today",
-    done_looks_like: "Designed once, then a consistent report at the press of a button.",
+    tools: "Fergus's client portal (a password-protected dashboard built on a spreadsheet), Sprout Social for most clients, Zambrero's and Netflix's own platforms",
+    done_looks_like: "Claude fills the portal's spreadsheet from every platform on its own, checks it, then pings the owner in Slack to approve. One locked template for every client.",
     stage: 0,
-    now: "Intake call Thursday 11:30 Phuket with Stef and Fergus. The 20 questions are in the invite.",
-    next: { what: "Intake call: pick the one report to automate first", who: "Stef, Fergus, Jem", when: "Thu 5 Nov" },
+    now: "Intake call done. The portal already makes the reports look good; the job is getting the data into it without anyone touching it. Waiting on two things from Stef and Fergus.",
+    next: { what: "Send Jem the list of every client with reports (who does the data, which platform, who has the logins) plus 2 or 3 current reports. Slack, email or drop it in Drive and say where", who: "Stef, Fergus", when: "to confirm" },
     todos: [
       { id: "reporting-2", stage: 0, task: "Book the intake call", who: "Jem", when: "Thu 5 Nov", done: true },
       { id: "reporting-3", stage: 0, task: "Put the 20 intake questions in the invite", who: "Jem", when: "Wed 4 Nov", done: true },
-      { id: "reporting-4", stage: 0, task: "Hold the intake call", who: "Stef, Fergus, Jem", when: "Thu 5 Nov" },
+      { id: "reporting-4", stage: 0, task: "Hold the intake call", who: "Stef, Fergus, Jem", when: "Thu 5 Nov", done: true },
+      { id: "reporting-9", stage: 0, task: "List every client with reports: who handles the data now, which platform it comes from, who has the logins", who: "Stef", when: "to confirm" },
+      { id: "reporting-6", stage: 0, task: "Share 2 or 3 current reports (portal links and the spreadsheets behind them)", who: "Stef, Fergus", when: "to confirm" },
+      { id: "reporting-10", stage: 0, task: "Each talk it through with your own Claude, using the call transcript: how could reporting go ten levels up, and what new paid services could it open?", who: "Stef, Fergus (separately)", when: "to confirm" },
       { id: "reporting-1", stage: 0, task: "Confirm Stef as owner", who: "Ed", when: "to confirm" },
-      { id: "reporting-5", stage: 1, task: "Pick one client and one report as the pilot", who: "Stef", when: "to confirm" },
-      { id: "reporting-6", stage: 1, task: "Send the last 2 or 3 versions of it plus the raw data behind one", who: "Stef", when: "to confirm" },
-      { id: "reporting-7", stage: 2, task: "Build the first automated version", who: "Jem", when: "to confirm" },
+      { id: "reporting-11", stage: 1, task: "Write the project plan and timeline", who: "Jem", when: "to confirm" },
+      { id: "reporting-5", stage: 1, task: "Pick the test client (live, but not sent to the client)", who: "Stef, Fergus, Jem", when: "to confirm" },
+      { id: "reporting-7", stage: 2, task: "Build the data feed: Claude fills the portal spreadsheet from Sprout, Zambrero's and Netflix's platforms", who: "Jem", when: "to confirm" },
+      { id: "reporting-12", stage: 2, task: "Build the check before anything goes out (data and branding), then a Slack ping to the owner to approve", who: "Jem", when: "to confirm" },
+      { id: "reporting-13", stage: 2, task: "Automate influencer data requests and reminders from the contracts in the client folders", who: "Jem", when: "to confirm" },
       { id: "reporting-8", stage: 3, task: "Sign off the automated version against the real one", who: "Stef, Fergus", when: "to confirm" },
+      { id: "reporting-14", stage: 4, task: "Lock the template and roll it out to every reporting client", who: "Stef, Fergus", when: "to confirm" },
     ],
-    notes: [{ ...KICKOFF, heard: ["Nobody owns reporting today. Ed proposed Stef, with Fergus as the client's voice."] }],
-    docs: [{ id: "intake", title: "Intake questions", date: "Wed 4 Nov", line: "The 20 questions for the intake call.", body: REPORTING_INTAKE }],
+    notes: [{
+      date: "Thu 5 Nov", title: "Intake", who: "Stef, Fergus, Jem",
+      heard: [
+        "How often and how deep each report goes depends on the client's contract: weekly, monthly, quarterly or yearly. There's a baseline social and talent template deck.",
+        "Most clients report from Sprout Social; Zambrero and Netflix use their own platforms. Some clients include paid as well as organic.",
+        "Fergus built a client portal that turns a spreadsheet into a password-protected dashboard. It has run for 5 or 6 Zambrero campaigns, and Stef extended it for an integrated PR and social campaign. Clients love it and no end-of-campaign decks have been needed.",
+        "The spreadsheet is filled by hand (now partly by dropping posts into Claude), so the numbers are only as current as the last entry, and gaps or mistakes slip through.",
+        "Influencer results have no shared platform: managers email each influencer for their backend stats.",
+      ],
+      decided: [
+        "Keep the portal as the front end. The job is moving the data: Claude fills the spreadsheet from each platform through browser access, so no special connector is needed.",
+        "A check runs before anything reaches the team, then the owner gets a Slack ping to approve. Nobody adds their own version of the report: leadership locks one template.",
+        "Influencer data requests and reminders get sent automatically, based on the contracts in the client folders.",
+        "Map the upgrades and paid add-ons first (more frequent reporting, next month's briefs built from the insights) so the build is planned with them in mind. The core can still be built first.",
+        "Send things to Jem however is easiest: Slack, email, or drop it in Drive and say where.",
+      ],
+      open: [
+        "Which client is the test.",
+        "What the people who enter the data today do with the time they get back.",
+        "Fergus wants a separate conversation on standardising operational documents (WIP docs, timelines, follow-up emails).",
+      ],
+      actions: [
+        { task: "List every reporting client, who handles it, the platform and the logins", who: "Stef", when: "to confirm" },
+        { task: "Share 2 or 3 current reports", who: "Stef, Fergus", when: "to confirm" },
+        { task: "Talk the upgrades through with your own Claude, using the transcript", who: "Stef, Fergus", when: "to confirm" },
+        { task: "Project plan, timeline and test client, once the above arrives", who: "Jem", when: "to confirm" },
+      ],
+    }, { ...KICKOFF, heard: ["Nobody owns reporting today. Ed proposed Stef, with Fergus as the client's voice."] }],
+    docs: [
+      { id: "transcript", title: "Intake call transcript", date: "Thu 5 Nov", line: "The full call, for pasting into Claude.", body: REPORTING_TRANSCRIPT },
+      { id: "intake", title: "Intake questions", date: "Wed 4 Nov", line: "The 20 questions for the intake call.", body: REPORTING_INTAKE },
+    ],
   },
   {
     id: "finance", n: 4, name: "Budgets, invoicing, recon", short: "Budgets and recon",
