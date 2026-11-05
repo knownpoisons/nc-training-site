@@ -200,6 +200,22 @@ Then pick the one you'd start with, explain why in two lines, and tell me what y
 Keep everything short, friendly and in plain English. I'm not technical.`,
   },
   {
+    id: "interview-me",
+    tab: "Everyday",
+    title: "Interview me first",
+    when: "Before any task that matters. Paste it, then talk your answers.",
+    body: `Before you start, interview me one question at a time until you have everything you need to do this well. Ask about the goal, the audience, what good looks like and what to avoid. Then sum up the brief before you begin.`,
+  },
+  {
+    id: "icc-brief",
+    tab: "Everyday",
+    title: "Brief it with ICC",
+    when: "Instructions, Context, Constraints. Replace the brackets.",
+    body: `Instructions: [the ask: what you want made, and what good looks like].
+Context: [the background: who it's for, what's happened, what it needs to know].
+Constraints: [the mandatories: length, tone, format, what to leave out].`,
+  },
+  {
     id: "describe-the-problem",
     tab: "Everyday",
     title: "Describe the problem, not the solution",
