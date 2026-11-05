@@ -1,8 +1,11 @@
 -- ═══════════════════════════════════════════════════════════════════════════════
 -- GTM COCKPIT: archive the untouched NEW queue (cold outbound stopped, 5 Nov 2026)
 --
--- NOT RUN. Prepared on branch cockpit/archive-untouched-prospects.
--- Run only on Jem's go for the exact count below.
+-- RUN on production on 5 Nov 2026 at 13:59 UTC, on Jem's go for the exact
+-- count below ("Go, archive 4,838"). It was run in the Supabase SQL editor
+-- from commit 625ad947. Only this header has changed since: the SQL is the same.
+-- Result: ARCHIVED 4838, IN_SEQUENCE 5, LOST 5, total still 4848. Checked
+-- again through the API at 14:00 UTC.
 -- Where: Supabase Dashboard, SQL, New query. Paste the whole file.
 --
 -- What it does
@@ -25,7 +28,7 @@
 --   The email dedupe (listExistingEmails, findProspectByEmail) reads all
 --     stages, so a later import will not re-create an archived person.
 --
--- Counts, read from production on 5 Nov 2026 at 13:13 UTC (read only)
+-- Counts before the run, read from production on 5 Nov 2026 at 13:13 UTC
 --   cockpit_prospects total   4848
 --   NEW                       4838   (2478 pipeline lane, 2360 broadcast_only)
 --   IN_SEQUENCE                  5   (kept, exported to Zoidberg people.json)
