@@ -3,7 +3,7 @@
 // updates this file (stage, now, next, to-dos, a new note, any new doc) and pushes; the page
 // shows it on the next deploy. Ticks live in the database (tp_big5_todos), keyed by to-do id,
 // so keep ids stable once published. Dates are only written when they are confirmed.
-import { REPORTING_INTAKE, REPORTING_TRANSCRIPT, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
+import { REPORTING_INTAKE, REPORTING_TRANSCRIPT, SCOPING_OPTIONS, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
@@ -37,15 +37,18 @@ export const BIG5: B5Job[] = [
     tools: "Barry the Budget Builder in Claude, the master scoping sheet, rate cards, Xero. Productive until March.",
     done_looks_like: "Everyone who scopes uses Barry in Claude, from one live rate card. Every quote goes out as the branded Xero quote. A senior does the final check.",
     stage: 1,
-    now: "Intake done. Barry is the base and Xero is the quote. Jem is writing the options for where Barry lives and what replaces Productive.",
-    next: { what: "Options: where Barry lives, and what replaces Productive", who: "Jem", when: "to confirm" },
+    now: "Intake done. Barry is the base and Xero is the quote. The options are up: where Barry lives and what replaces Productive.",
+    next: { what: "Read the options (Documents) and pick where Barry lives and what replaces Productive", who: "Ed, Sam", when: "Tue 10 Nov" },
     todos: [
       { id: "scoping-3", stage: 0, task: "Book the intake call", who: "Jem", when: "Thu 5 Nov", done: true },
       { id: "scoping-4", stage: 0, task: "Hold the intake call", who: "Sam, Ed, Jem", when: "Thu 5 Nov", done: true },
       { id: "scoping-11", stage: 0, task: "Send Jem times for your remaining Big 5 sessions", who: "Sam", when: "before Wed 11 Nov" },
       { id: "scoping-2", stage: 0, task: "Fix the influencer markup formula in the master sheet (20% to 5%)", who: "Allyssa", when: "to confirm" },
       { id: "scoping-1", stage: 1, task: "Pick one quote template (branded Xero quote)", who: "Ed, Sam", when: "Thu 5 Nov", done: true },
-      { id: "scoping-10", stage: 1, task: "Options: where Barry lives, and what replaces Productive", who: "Jem", when: "to confirm" },
+      { id: "scoping-10", stage: 1, task: "Options: where Barry lives, and what replaces Productive", who: "Jem", when: "Thu 5 Nov", done: true },
+      { id: "scoping-12", stage: 1, task: "Pick where Barry lives and what replaces Productive", who: "Ed, Sam", when: "Tue 10 Nov" },
+      { id: "scoping-13", stage: 1, task: "Confirm whether Munich invoices from Xero or a German system", who: "Ed", when: "to confirm" },
+      { id: "scoping-14", stage: 1, task: "Add any new tools (HubSpot, Harvest, a Xero connector) to the AI policy tool list", who: "Micky", when: "to confirm" },
       { id: "scoping-8", stage: 1, task: "Update the rate cards into one live source: per client, per role, AU and Germany", who: "Allyssa, Ed", when: "to confirm" },
       { id: "scoping-9", stage: 1, task: "Record 20 to 30 minutes on how you want to price from now on (Barry's context)", who: "Ed, Sam", when: "to confirm" },
       { id: "scoping-5", stage: 1, task: "Decide time-based or output-based pricing (its own session)", who: "Ed, Fergus, Jem", when: "to confirm" },
@@ -67,18 +70,21 @@ export const BIG5: B5Job[] = [
         "The final gut check on price stays with a senior.",
         "Productive is not renewed in March (Ed).",
       ],
-      open: ["Where Barry lives in Claude, and what replaces Productive. Options from Jem."],
+      open: ["Where Barry lives in Claude, and what replaces Productive. Options are in Documents."],
       actions: [
         { task: "Update the rate cards into one live source", who: "Allyssa, Ed", when: "to confirm" },
         { task: "Send times for the remaining Big 5 sessions", who: "Sam", when: "before Wed 11 Nov" },
-        { task: "Options for Barry and Productive", who: "Jem", when: "to confirm" },
+        { task: "Pick from the options", who: "Ed, Sam", when: "Tue 10 Nov" },
       ],
     }, {
       ...KICKOFF,
       heard: ["Around 10 different quote styles went out in 4 weeks. Ed wants one standard.", "The influencer markup in the master scoping sheet is 20% because of a formula error. It was meant to be 5%.", "Around 70% of the business is retainer."],
       decided: ["Ed and Sam standardise the quote and define what should trigger automation.", "Time-based versus output-based pricing gets its own session."],
     }],
-    docs: [{ id: "transcript", title: "Intake call transcript", date: "Thu 5 Nov", line: "The full call, for pasting into Claude.", body: SCOPING_TRANSCRIPT }],
+    docs: [
+      { id: "options", title: "The options", date: "Thu 5 Nov", line: "Where Barry lives, the rate card, the quote, replacing Productive. One page.", body: SCOPING_OPTIONS },
+      { id: "transcript", title: "Intake call transcript", date: "Thu 5 Nov", line: "The full call, for pasting into Claude.", body: SCOPING_TRANSCRIPT },
+    ],
   },
   {
     id: "timesheets", n: 2, name: "Timesheets", short: "Timesheets",
