@@ -167,7 +167,11 @@ export const BIG5: B5Job[] = [
       { id: "tasks-1", stage: 0, task: "Book the intake call", who: "Jem", when: "to confirm" },
       { id: "tasks-2", stage: 0, task: "Decide where a task lives: personal to-do or client board", who: "Nicky, Sam", when: "to confirm" },
     ],
-    notes: [KICKOFF],
+    notes: [{
+      date: "Thu 5 Nov", title: "From the reporting intake", who: "Fergus, Jem",
+      heard: ["Fergus wants the next conversation to cover standardising the operational documents around account management: WIP documents, follow-up emails, project timelines. Granola should already help with follow-up notes."],
+      open: ["Whether this sits inside job 5 or gets its own session with Fergus."],
+    }, KICKOFF],
     docs: [],
   },
 ];
