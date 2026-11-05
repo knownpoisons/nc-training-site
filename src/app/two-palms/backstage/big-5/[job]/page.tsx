@@ -62,7 +62,7 @@ export default async function Page({ params }: { params: Promise<{ job: string }
                 <ul className="b5-notes">
                   {j.notes.map((n, k) => (
                     <li key={k}>
-                      <details open={k === 0}>
+                      <details>
                         <summary><span className="mono">{n.date}</span><b>{n.title}</b><span className="b5-who">{n.who}</span></summary>
                         {n.heard?.length ? <><h4>What we heard</h4><ul>{n.heard.map((x) => <li key={x}>{x}</li>)}</ul></> : null}
                         {n.decided?.length ? <><h4>Decided</h4><ul>{n.decided.map((x) => <li key={x}>{x}</li>)}</ul></> : null}

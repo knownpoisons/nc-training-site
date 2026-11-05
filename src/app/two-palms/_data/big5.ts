@@ -3,7 +3,7 @@
 // updates this file (stage, now, next, to-dos, a new note, any new doc) and pushes; the page
 // shows it on the next deploy. Ticks live in the database (tp_big5_todos), keyed by to-do id,
 // so keep ids stable once published. Dates are only written when they are confirmed.
-import { REPORTING_INTAKE, REPORTING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
+import { REPORTING_INTAKE, REPORTING_TRANSCRIPT, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
@@ -33,27 +33,52 @@ const KICKOFF: B5Note = {
 export const BIG5: B5Job[] = [
   {
     id: "scoping", n: 1, name: "Scoping to flighting", short: "Scoping",
-    owner: "Allyssa (AU) and Sam (EU)", with: "Ed",
-    tools: "Barry the Budget Builder in Claude, the master scoping spreadsheet, Productive",
-    done_looks_like: "One quote template, plus a Claude Skill that drafts scopes and asks juniors the questions they miss, with approval thresholds built in.",
-    stage: 0,
-    now: "Intake call Thursday 16:30 Phuket with Sam and Ed.",
-    next: { what: "Intake call: walk through how a scope gets built today", who: "Sam, Ed, Jem", when: "Thu 5 Nov" },
+    owner: "Ed and Allyssa (AU), Sam (EU)", with: "Will (EU check)",
+    tools: "Barry the Budget Builder in Claude, the master scoping sheet, rate cards, Xero. Productive until March.",
+    done_looks_like: "Everyone who scopes uses Barry in Claude, from one live rate card. Every quote goes out as the branded Xero quote. A senior does the final check.",
+    stage: 1,
+    now: "Intake done. Barry is the base and Xero is the quote. Jem is writing the options for where Barry lives and what replaces Productive.",
+    next: { what: "Options: where Barry lives, and what replaces Productive", who: "Jem", when: "to confirm" },
     todos: [
       { id: "scoping-3", stage: 0, task: "Book the intake call", who: "Jem", when: "Thu 5 Nov", done: true },
-      { id: "scoping-4", stage: 0, task: "Hold the intake call", who: "Sam, Ed, Jem", when: "Thu 5 Nov" },
+      { id: "scoping-4", stage: 0, task: "Hold the intake call", who: "Sam, Ed, Jem", when: "Thu 5 Nov", done: true },
+      { id: "scoping-11", stage: 0, task: "Send Jem times for your remaining Big 5 sessions", who: "Sam", when: "before Wed 11 Nov" },
       { id: "scoping-2", stage: 0, task: "Fix the influencer markup formula in the master sheet (20% to 5%)", who: "Allyssa", when: "to confirm" },
-      { id: "scoping-1", stage: 1, task: "Pick one quote template", who: "Ed, Sam", when: "to confirm" },
+      { id: "scoping-1", stage: 1, task: "Pick one quote template (branded Xero quote)", who: "Ed, Sam", when: "Thu 5 Nov", done: true },
+      { id: "scoping-10", stage: 1, task: "Options: where Barry lives, and what replaces Productive", who: "Jem", when: "to confirm" },
+      { id: "scoping-8", stage: 1, task: "Update the rate cards into one live source: per client, per role, AU and Germany", who: "Allyssa, Ed", when: "to confirm" },
+      { id: "scoping-9", stage: 1, task: "Record 20 to 30 minutes on how you want to price from now on (Barry's context)", who: "Ed, Sam", when: "to confirm" },
       { id: "scoping-5", stage: 1, task: "Decide time-based or output-based pricing (its own session)", who: "Ed, Fergus, Jem", when: "to confirm" },
-      { id: "scoping-6", stage: 2, task: "Build the scoping Skill on the chosen template", who: "Jem", when: "to confirm" },
+      { id: "scoping-6", stage: 2, task: "Build Barry into the Claude Team setup on the approved quote formats", who: "Jem", when: "to confirm" },
       { id: "scoping-7", stage: 3, task: "Run three real scopes through it with the owners", who: "Allyssa, Sam", when: "to confirm" },
     ],
     notes: [{
+      date: "Thu 5 Nov", title: "Intake", who: "Ed, Sam, Allyssa, Jem",
+      heard: [
+        "Ed built Barry in Claude after the resource manager left. Only Ed and Allyssa use it. It drafts the scope from the master sheet, rate cards and past scopes; Ed adjusts.",
+        "Europe scopes on day rates plus a 10% production fee. Sam builds it, Will checks it.",
+        "Quotes go out as Xero, Excel PDFs and emails, sometimes with columns left showing.",
+        "Work slips through: Munich missed about $60K of invoicing last year and about $170K the year before.",
+        "Rate cards haven't been updated since last year, and several clients have their own version.",
+      ],
+      decided: [
+        "Default quote: a branded Xero quote with a summary and grouped lines (pre-production, production, post-production, hard costs). Full breakdown only when the client asks.",
+        "Barry is the base. It only outputs approved formats and flags the right senior in Slack at a judgement call.",
+        "The final gut check on price stays with a senior.",
+        "Productive is not renewed in March (Ed).",
+      ],
+      open: ["Where Barry lives in Claude, and what replaces Productive. Options from Jem."],
+      actions: [
+        { task: "Update the rate cards into one live source", who: "Allyssa, Ed", when: "to confirm" },
+        { task: "Send times for the remaining Big 5 sessions", who: "Sam", when: "before Wed 11 Nov" },
+        { task: "Options for Barry and Productive", who: "Jem", when: "to confirm" },
+      ],
+    }, {
       ...KICKOFF,
       heard: ["Around 10 different quote styles went out in 4 weeks. Ed wants one standard.", "The influencer markup in the master scoping sheet is 20% because of a formula error. It was meant to be 5%.", "Around 70% of the business is retainer."],
       decided: ["Ed and Sam standardise the quote and define what should trigger automation.", "Time-based versus output-based pricing gets its own session."],
     }],
-    docs: [],
+    docs: [{ id: "transcript", title: "Intake call transcript", date: "Thu 5 Nov", line: "The full call, for pasting into Claude.", body: SCOPING_TRANSCRIPT }],
   },
   {
     id: "timesheets", n: 2, name: "Timesheets", short: "Timesheets",
