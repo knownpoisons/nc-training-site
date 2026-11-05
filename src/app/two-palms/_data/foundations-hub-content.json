@@ -305,73 +305,100 @@
           "phuket": "1:30pm"
         }
       },
-      "line": "Find your way around Claude, and brief it like a pro.",
-      "goal": "Get around Claude with confidence and brief it properly.",
+      "line": "Brief Claude like you'd brief a creative, and know when to hand it the whole job.",
+      "goal": "Write a brief that gets a usable first draft, and know the difference between Chat and Code.",
       "cover": [
-        "A walk around Claude: chat, Cowork and Code, and when you'd use each",
-        "Projects: set one up, add instructions and Drive docs",
-        "Connectors: sign in to the ones your admin has switched on, and turn them on in a chat",
-        "Your personal preferences",
-        "The words you need: model, prompt, context, project, artifact, MD file, skill, connector (MCP), API, agent, scheduled task",
-        "ICC: Instructions, Context, Constraints",
-        "Give it the problem, not your solution. Ask for the answer in the shape you want",
-        "The \"interview me\" prompt",
-        "What's possible: real things built at Two Palms this month"
+        "Green Light: the AI policy, as a game",
+        "Chat to think, Code to hand over a job",
+        "ICC: the ask (Instructions), the background (Context), the mandatories (Constraints)",
+        "Give it the problem, not your solution",
+        "The \"interview me\" prompt, on your own Time · Money · Pain task",
+        "Picking the model and effort, and checking what comes back",
+        "Your personal preferences: three lines that change every answer"
       ],
       "homework": [
         {
           "type": "do",
-          "text": "Take one real task and brief it three times with ICC, out loud."
+          "text": "Brief one real task three ways: lazy, ICC, then \"interview me\". Talk it, don't type it."
         },
         {
           "type": "do",
-          "text": "Use the \"interview me\" prompt once."
+          "text": "Add three lines to your personal preferences: your role, how you want answers, what to push back on."
         },
         {
           "type": "share",
-          "text": "Post your before and after in the channel."
+          "text": "Post your worst brief and your best one for the same task in the channel."
+        },
+        {
+          "type": "do",
+          "text": "Stretch, if you build already: point the Code tab at a folder and give it one real job. Post what happened."
         }
       ],
       "slack": "Show your worst brief and your best one for the same task.",
       "slides": [
-        "Chat vs Cowork vs Code",
-        "Definitions",
-        "ICC"
+        "Cover",
+        "Map: you are here",
+        "Green Light (the policy game)",
+        "Chat vs Code",
+        "Same job, twice (demo)",
+        "ICC",
+        "Problem, not solution",
+        "Build 1 together",
+        "Build 2: interview me",
+        "Model, effort, check",
+        "Your preferences",
+        "Show one",
+        "This week",
+        "See you Tue 17 Nov"
       ],
       "ros": [
         [
-          "0-15",
-          "Claude walkaround: chat/Cowork vs Code, projects, connectors (admin adds once, each person signs in, toggle per chat), preferences"
+          "0-3",
+          "Open. ChatGPT access ends today. One post from the channel. Map: you are here (Learn it, Use it, Build it, Run it)."
         ],
         [
-          "15-20",
-          "Recap and first Time · Money · Pain patterns, anonymised"
+          "3-13",
+          "Green Light in room mode (hub, /two-palms/green-light?mode=room). Room votes G / A / R in the Meet chat, reveal, one line on each. Then everyone asks their own Claude one policy question. Pays off the S1 promise to go through the policy first."
+        ],
+        [
+          "13-20",
+          "Chat vs Code: Chat to think, Code to hand over a job. Same job twice: a folder of call transcripts into a status report. Why only; hands-on is MAKE (1 Dec)."
         ],
         [
           "20-30",
-          "Definitions (glossary in Kit)"
+          "Build 1 together: one anonymised Time · Money · Pain task. Lazy brief, then ICC, then problem not solution. Pick model and effort. Check one claim."
         ],
         [
-          "30-45",
-          "ICC, problem not solution, answer in your shape, interview me"
+          "30-40",
+          "Build 2 on your own: interview me on your own TMP task, answers by voice. Drop into two or three screens."
         ],
         [
-          "45-55",
-          "What's possible: setup pack from a call transcript, the hub, Notchy; preview the deck in the Two Palms template (they make it in MAKE)"
+          "40-50",
+          "Preferences: fix Jem's own account instructions live (feedback: too agreeable, too long). Everyone adds three lines."
+        ],
+        [
+          "50-55",
+          "Show one: Ed's Barry or Fergus's report portal, two minutes, not Jem."
         ],
         [
           "55-60",
-          "Homework"
+          "Homework and see you Tue 17 Nov."
         ]
       ],
-      "notes": "",
+      "notes": "Before Tuesday: Micky to confirm the Code tab is on TP Team seats (else pre-record the demo). Ask Ed or Fergus for the 2-min show. Ask Ed if Jem can name the 'too agreeable' feedback. TMP forms close Fri 6 Nov; fallback for Build 1 is the reporting data-entry job. Slides: 03 Working/WS2/2026-11-05 Session 2 Brief slides + presenter.html.",
       "number": "02",
       "label": "AI Foundations Training · Session 2: Brief",
       "status": "upcoming",
       "recording_url": null,
       "cheat_sheet": null,
       "wrap_notes": null,
-      "meet_url": null
+      "meet_url": null,
+      "play": {
+        "href": "/two-palms/green-light",
+        "title": "Green Light",
+        "line": "The AI policy as a game. Eight real moments: green, amber or red?",
+        "img": "/two-palms/img/h/green-light.jpg"
+      }
     },
     {
       "n": 3,

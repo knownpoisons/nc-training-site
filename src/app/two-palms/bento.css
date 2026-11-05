@@ -1284,3 +1284,8 @@
 .tpb .b5-week--lead:not(:has(.b5-week-h)) { grid-template-columns: 1fr; }
 @media (max-width: 900px) { .tpb .b5-week--lead { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .tpb .b5-week--lead .b5-week-up a { grid-template-columns: 1fr; } }
+
+/* Play tiles (Green Light on Session 2 and the policy page): photo beside the words once the tile is wide. */
+.tpb .t--play { container-type: inline-size; }
+.tpb .t--play .pt-img img { object-position: 46% 50%; }
+@container (min-width: 520px) { .tpb .t--play .pt-img { min-height: 260px; } }

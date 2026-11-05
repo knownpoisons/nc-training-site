@@ -7,7 +7,7 @@ import { SESSIONS, countEvents, presenterFor, sessionByParam, sessionHref, sessi
 import { AdminUnlock, IsNextMark } from "../../_ui/b-client";
 import { VideoEmbed } from "../../_ui/video-embed";
 import { Wrap } from "../../_ui/wrap";
-import { Bento, IconArrow, IconHash, Lab, PageTitle, Tile, Win } from "../../_ui/b";
+import { Bento, IconArrow, IconHash, Lab, PageTitle, PrintTile, Tile, Win } from "../../_ui/b";
 
 type Params = { params: Promise<{ n: string }>; searchParams?: Promise<{ wrap?: string }> };
 
@@ -211,6 +211,23 @@ export default async function Page({ params, searchParams }: Params) {
             {s.cover.map((c) => <li key={c}><span className="mono" aria-hidden="true">·</span><span>{c}</span></li>)}
           </ol>
         </Tile>
+
+        {s.play ? (
+          <PrintTile
+            href={s.play.href}
+            hue="blush"
+            label={s.play.title}
+            className="s2 t--play"
+            lab={<Lab l="Play" r="About 10 min" />}
+            img={s.play.img}
+            w={1600}
+            h={1200}
+            title={s.play.title}
+            line={s.play.line}
+          >
+            <div className="acts"><span className="btn btn--sec">Play it <IconArrow /></span></div>
+          </PrintTile>
+        ) : null}
 
         <Tile span={2} hue="ember" label="Homework">
           <Lab l="Homework" />

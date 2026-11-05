@@ -1,0 +1,116 @@
+/* Green Light: the AI policy game. Hub style guide (2 Nov): cream ground, 12px boxes, 6px inside,
+   round controls, DM Serif for the one big moment, Archivo to read, DM Mono for numbers.
+   The photo does the decorating. One signature move: the lamp landing. */
+
+.tpb .gl-wrap { max-width: calc(var(--max) + 2 * var(--edge)); margin: 0 auto; padding: 0 var(--edge); }
+.tpb .gl :where(h2, p, ol, ul) { margin: 0; }
+.tpb .gl ol, .tpb .gl ul { list-style: none; padding: 0; }
+
+.tpb .gl-stage {
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: var(--gap);
+  --g: #2f8a4a; --a: #a8690a; --r: #b3261e;
+  --g-l: #63ff7e; --a-l: #ffb340; --r-l: #ff3b2f;
+}
+@media (max-width: 900px) { .tpb .gl-stage { grid-template-columns: 1fr; } }
+
+/* ── the photo + lamps ─────────────────────────────────────────── */
+.tpb .gl-photo { position: relative; border-radius: 12px; overflow: hidden; border: 1px solid rgba(27, 23, 20, .14); background: #6b2a2a; aspect-ratio: 4 / 3; }
+.tpb .gl-photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.tpb .gl-lamp {
+  position: absolute; width: 12.4%; aspect-ratio: 1; border-radius: 50%; translate: -50% -50%;
+  border: 0; padding: 0; background: transparent; cursor: default;
+}
+.tpb .gl-lamp--red { left: 44.6%; top: 23.4%; --c: var(--r-l); --cycle-delay: 0s; }
+.tpb .gl-lamp--amber { left: 44.3%; top: 48.2%; --c: var(--a-l); --cycle-delay: 1.2s; }
+.tpb .gl-lamp--green { left: 44.2%; top: 73%; --c: var(--g-l); --cycle-delay: 2.4s; }
+/* off: a dark lens over the lit photo */
+.tpb .gl-lamp::before {
+  content: ""; position: absolute; inset: -4%; border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(10, 6, 5, .84) 0 56%, rgba(10, 6, 5, .6) 68%, rgba(10, 6, 5, 0) 74%);
+  transition: opacity .35s var(--out);
+}
+/* on: the lens clears and throws light */
+.tpb .gl-lamp::after {
+  content: ""; position: absolute; inset: -70%; border-radius: 50%; pointer-events: none;
+  background: radial-gradient(circle, color-mix(in srgb, var(--c) 70%, transparent) 0 16%, color-mix(in srgb, var(--c) 30%, transparent) 34%, transparent 64%);
+  mix-blend-mode: screen; opacity: 0; scale: .6; transition: opacity .35s var(--out), scale .5s var(--out);
+}
+.tpb .gl-lamp.is-on::before { opacity: 0; }
+.tpb .gl-lamp.is-on::after { opacity: 1; scale: 1; animation: gl-hum 2.4s ease-in-out .5s infinite; }
+@keyframes gl-hum { 50% { opacity: .78; } }
+
+/* waiting: the light runs its own sequence */
+.tpb .gl-photo.is-cycling .gl-lamp::before { animation: gl-cyc-off 3.6s linear infinite; animation-delay: var(--cycle-delay); }
+.tpb .gl-photo.is-cycling .gl-lamp::after { animation: gl-cyc-on 3.6s linear infinite; animation-delay: var(--cycle-delay); }
+@keyframes gl-cyc-off { 0%, 30% { opacity: .15; } 34%, 100% { opacity: 1; } }
+@keyframes gl-cyc-on { 0%, 30% { opacity: .55; scale: .9; } 34%, 100% { opacity: 0; scale: .6; } }
+
+/* solo: the lamps are buttons */
+.tpb button.gl-lamp { cursor: pointer; }
+.tpb button.gl-lamp:hover::before, .tpb button.gl-lamp:focus-visible::before { opacity: .25; }
+.tpb button.gl-lamp:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* ── the card ──────────────────────────────────────────────────── */
+.tpb .gl-card { display: flex; background: var(--card); border: 1px solid rgba(27, 23, 20, .14); border-radius: 12px; padding: clamp(18px, 2vw, 32px); min-height: 100%; }
+.tpb .gl-in { display: flex; flex-direction: column; gap: 16px; width: 100%; animation: gl-in .45s var(--out) both; }
+@keyframes gl-in { from { opacity: 0; translate: 0 8px; } }
+.tpb .gl-title { font: 400 clamp(40px, 3.4vw + 12px, 76px)/.98 var(--f-serif); letter-spacing: -.02em; color: var(--text); }
+.tpb .gl-lede { font: 400 17px/1.45 var(--f-sans); color: var(--text-2); max-width: 40ch; }
+.tpb .gl-score { font-size: 22px; color: var(--text); }
+
+.tpb .gl-key { display: grid; gap: 8px; margin-top: 4px; }
+.tpb .gl-key li { display: grid; grid-template-columns: 14px 64px 1fr; align-items: center; gap: 10px; font-size: 15px; color: var(--text-2); }
+.tpb .gl-key b { font-weight: 600; color: var(--text); }
+.tpb .gl-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; flex: none; }
+.tpb .gl-dot--green { background: var(--g); }
+.tpb .gl-dot--amber { background: #d99412; }
+.tpb .gl-dot--red { background: var(--r); }
+
+.tpb .gl-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.tpb .gl-dots { display: flex; gap: 6px; }
+.tpb .gl-dots li { width: 22px; height: 6px; border-radius: 99px; background: var(--rule); transition: background-color .3s var(--out); }
+.tpb .gl-dots li.is-done { background: var(--text-2); }
+.tpb .gl-dots li.is-right { background: var(--g); }
+.tpb .gl-dots li.is-wrong { background: var(--r); }
+.tpb .gl-dots li.is-now { background: var(--text); }
+
+.tpb .gl-moment { font: 400 clamp(24px, 1.1vw + 17px, 34px)/1.18 var(--f-serif); letter-spacing: -.01em; color: var(--text); text-wrap: pretty; }
+
+.tpb .gl-picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin-top: auto; padding-top: 8px; }
+.tpb .gl-pick { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; border-radius: 99px; border: 1px solid var(--text); background: transparent; color: var(--text); font: 500 15px/1 var(--f-sans); cursor: pointer; transition: background-color .2s var(--out), color .2s var(--out); }
+.tpb .gl-pick:hover { background: var(--well); }
+.tpb .gl-pick:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
+.tpb .gl-pick kbd, .tpb .gl-vote kbd { font: 400 11px/1 var(--f-mono); padding: 3px 5px; border-radius: 4px; border: 1px solid currentColor; opacity: .55; }
+.tpb .gl-pick--green:hover { background: color-mix(in srgb, var(--g) 12%, var(--card)); }
+.tpb .gl-pick--amber:hover { background: color-mix(in srgb, #d99412 14%, var(--card)); }
+.tpb .gl-pick--red:hover { background: color-mix(in srgb, var(--r) 10%, var(--card)); }
+@media (max-width: 520px) { .tpb .gl-picks { grid-template-columns: 1fr; } .tpb .gl-pick kbd { display: none; } }
+
+.tpb .gl-vote { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; padding-top: 8px; }
+.tpb .gl-vote-l { font-size: 17px; color: var(--text-2); }
+.tpb .gl-vote-l b { color: var(--text); font-weight: 600; }
+.tpb .gl-vote .btn { border-radius: 99px; padding: 0 20px; min-height: 46px; }
+
+.tpb .gl-ans { display: flex; flex-direction: column; gap: 12px; flex: 1; }
+.tpb .gl-verdict { font: 400 clamp(30px, 1.6vw + 20px, 46px)/1.02 var(--f-serif); letter-spacing: -.015em; color: var(--text); animation: gl-land .5s var(--out) both; }
+.tpb .gl-verdict-w { display: inline-block; }
+.tpb .gl-verdict--green .gl-verdict-w { color: var(--g); }
+.tpb .gl-verdict--amber .gl-verdict-w { color: var(--a); }
+.tpb .gl-verdict--red .gl-verdict-w { color: var(--r); }
+@keyframes gl-land { from { opacity: 0; scale: .96; transform-origin: left center; } }
+.tpb .gl-you { font: 500 13px/1 var(--f-sans); letter-spacing: .02em; }
+.tpb .gl-you.is-right { color: var(--g); }
+.tpb .gl-you.is-wrong { color: var(--r); }
+.tpb .gl-why { font-size: 16px; line-height: 1.5; color: var(--text); max-width: 46ch; }
+.tpb .gl-rule { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--text-2); padding-top: 12px; border-top: 1px solid var(--rule); }
+.tpb .gl .acts .btn { border-radius: 99px; }
+
+.tpb .gl-ask { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; background: var(--well); border-radius: 6px; padding: 14px 16px; margin-top: 6px; }
+.tpb .gl-ask-q { font: 400 20px/1.25 var(--f-serif); color: var(--text); }
+.tpb .gl-ask .btn { border-radius: 99px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .tpb .gl-photo.is-cycling .gl-lamp::before, .tpb .gl-photo.is-cycling .gl-lamp::after,
+  .tpb .gl-lamp.is-on::after, .tpb .gl-in, .tpb .gl-verdict { animation: none; }
+  .tpb .gl-lamp::before, .tpb .gl-lamp::after { transition: none; }
+}

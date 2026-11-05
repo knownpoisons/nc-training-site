@@ -3,7 +3,7 @@ import {
   POLICY_AGENTS, POLICY_ASK, POLICY_CARE, POLICY_CLIENTS, POLICY_FREELY, POLICY_GUIDES, POLICY_HARD_NOS,
   POLICY_LEARNING, POLICY_LEVELS, POLICY_META, POLICY_RULE_ONE, POLICY_TEXT, POLICY_WHY, POLICY_WRONG,
 } from "../_data/policy";
-import { Bento, IconArrow, IconLock, Lab, PageTitle, Tile } from "../_ui/b";
+import { Bento, IconArrow, IconLock, Lab, PageTitle, PrintTile, Tile } from "../_ui/b";
 import { CopyButton } from "../_ui/bits";
 import "./policy.css";
 
@@ -149,6 +149,21 @@ export default function Page() {
             ))}
           </ul>
         </Tile>
+
+        <PrintTile
+          href="/two-palms/green-light"
+          className="sF t--play"
+          hue="blush"
+          label="Green Light"
+          lab={<Lab l="Play" r="About 10 min" />}
+          img="/two-palms/img/h/green-light.jpg"
+          w={1600}
+          h={1200}
+          title="Green Light"
+          line="Eight real moments from a Two Palms week. Green, amber or red? The fastest way to learn this page."
+        >
+          <div className="acts"><span className="btn btn--sec">Play it <IconArrow /></span></div>
+        </PrintTile>
 
         {/* the paperwork */}
         <Tile span="F" hue="bone" label="Policy details">

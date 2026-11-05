@@ -49,7 +49,11 @@ export interface FSession {
   wrap_notes: string | null;
   recap?: Recap;
   meet_url?: string | null;
+  /** Something to play or open with this session (Session 2: Green Light). */
+  play?: Play;
 }
+
+export interface Play { href: string; title: string; line: string; img: string }
 
 export interface FQuestion {
   id: string;
@@ -159,7 +163,7 @@ export interface TeamSession {
   date: string; start_iso: string; duration_min: number;
   line: string; goal: string; cover: string[]; homework: Homework[]; slack: string; status: string;
   recording_url: string | null; cheat_sheet: string | null; wrap_notes: string | null;
-  recap: Recap | null; end_ms: number;
+  recap: Recap | null; end_ms: number; play: Play | null;
 }
 export function teamSession(s: FSession): TeamSession {
   return {
@@ -167,7 +171,7 @@ export function teamSession(s: FSession): TeamSession {
     date: s.when.date, start_iso: s.when.start_iso, duration_min: s.when.duration_min,
     line: s.line, goal: s.goal, cover: s.cover, homework: s.homework, slack: s.slack, status: s.status,
     recording_url: s.recording_url, cheat_sheet: s.cheat_sheet, wrap_notes: s.wrap_notes,
-    recap: s.recap ?? null, end_ms: new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000,
+    recap: s.recap ?? null, play: s.play ?? null, end_ms: new Date(s.when.start_iso).getTime() + s.when.duration_min * 60000,
   };
 }
 
