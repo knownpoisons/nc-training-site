@@ -40,7 +40,7 @@ export default async function Page() {
             {BIG5.map((j) => {
               const d = doneCount(j, ticks);
               return (
-                <Link key={j.id} href={`/two-palms/backstage/big-5/${j.id}`} className="t b5-card">
+                <Link key={j.id} href={`/two-palms/backstage/big-5/${j.id}`} className={`t b5-card${j.stage < 0 ? " is-wait" : ""}`}>
                   <span className="b5-card-top"><span className="pl-k">{stageName(j)}</span><Meter stage={j.stage} /></span>
                   <h2 className="b5-card-t">{j.name}</h2>
                   <p className="b5-own">{j.owner}</p>

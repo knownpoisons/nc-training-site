@@ -1261,3 +1261,9 @@
   .tpb .b5-docpage .b5-doc { padding: 20px; }
 }
 @media (prefers-reduced-motion: reduce) { .tpb .b5-card { transition: none; } }
+/* Big 5: jobs not started yet are greyed out, coming into colour on hover (DESIGN.md: not ready = grey) */
+.tpb .b5-card.is-wait { background: transparent; border-style: dashed; }
+.tpb .b5-card.is-wait > * { opacity: .55; transition: opacity .2s; }
+.tpb .b5-card.is-wait:hover { background: var(--card); border-style: solid; }
+.tpb .b5-card.is-wait:hover > * { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .tpb .b5-card.is-wait > * { transition: none; } }

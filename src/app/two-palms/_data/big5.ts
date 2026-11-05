@@ -117,7 +117,7 @@ export const BIG5: B5Job[] = [
         "Influencer results have no shared platform: managers email each influencer for their backend stats.",
       ],
       decided: [
-        "Keep the portal as the front end. The job is moving the data: Claude fills the spreadsheet from each platform through browser access, so no special connector is needed.",
+        "Keep the portal as the front end. The job is moving the data: Claude fills the spreadsheet from each platform automatically. How it connects to each platform gets settled in the plan.",
         "A check runs before anything reaches the team, then the owner gets a Slack ping to approve. Nobody adds their own version of the report: leadership locks one template.",
         "Influencer data requests and reminders get sent automatically, based on the contracts in the client folders.",
         "Map the upgrades and paid add-ons first (more frequent reporting, next month's briefs built from the insights) so the build is planned with them in mind. The core can still be built first.",
@@ -125,6 +125,7 @@ export const BIG5: B5Job[] = [
       ],
       open: [
         "Which client is the test.",
+        "How Claude gets the data from each platform: logging in for us, or working from exports and connectors. Jem decides this in the plan, with security in mind.",
         "What the people who enter the data today do with the time they get back.",
         "Fergus wants a separate conversation on standardising operational documents (WIP docs, timelines, follow-up emails).",
       ],
