@@ -35,9 +35,9 @@ export const BIG5: B5Job[] = [
     id: "scoping", n: 1, name: "Scoping to flighting", short: "Scoping",
     owner: "Ed and Allyssa (AU), Sam (EU)", with: "Will (EU check)",
     tools: "Barry the Budget Builder in Claude, the master scoping sheet, rate cards, Xero. Productive until March.",
-    done_looks_like: "Everyone who scopes uses Barry in Claude, from one live rate card. Every quote goes out as the branded Xero quote. A senior does the final check.",
+    done_looks_like: "Everyone who scopes uses Barry in Claude, from one live rate card. Every quote goes out as the branded Xero quote, with a Munich version to work out. A senior does the final check.",
     stage: 1,
-    now: "Intake done. Barry is the base and Xero is the quote. The options are up: where Barry lives and what replaces Productive.",
+    now: "Intake done. Barry is the base and Xero is the quote. The options are up: where Barry lives and what replaces Productive. Munich runs on Qonto and DATEV, not Xero, so the quote and finance side needs a Munich version too.",
     next: { what: "Read the options (Documents) and pick where Barry lives and what replaces Productive", who: "Ed, Sam", when: "Tue 10 Nov" },
     todos: [
       { id: "scoping-3", stage: 0, task: "Book the intake call", who: "Jem", when: "Thu 5 Nov", done: true },
@@ -48,6 +48,7 @@ export const BIG5: B5Job[] = [
       { id: "scoping-10", stage: 1, task: "Options: where Barry lives, and what replaces Productive", who: "Jem", when: "Thu 5 Nov", done: true },
       { id: "scoping-12", stage: 1, task: "Pick where Barry lives and what replaces Productive", who: "Ed, Sam", when: "Tue 10 Nov" },
       { id: "scoping-13", stage: 1, task: "Confirm whether Munich invoices from Xero or a German system", who: "Ed", when: "to confirm" },
+      { id: "scoping-15", stage: 1, task: "Work out the Munich version of the quote and finance side (Qonto, DATEV). Not urgent, but don't build everything around Xero", who: "to confirm", when: "to confirm" },
       { id: "scoping-14", stage: 1, task: "Add any new tools (HubSpot, Harvest, a Xero connector) to the AI policy tool list", who: "Micky", when: "to confirm" },
       { id: "scoping-8", stage: 1, task: "Update the rate cards into one live source: per client, per role, AU and Germany", who: "Allyssa, Ed", when: "to confirm" },
       { id: "scoping-9", stage: 1, task: "Record 20 to 30 minutes on how you want to price from now on (Barry's context)", who: "Ed, Sam", when: "to confirm" },
@@ -56,6 +57,17 @@ export const BIG5: B5Job[] = [
       { id: "scoping-7", stage: 3, task: "Run three real scopes through it with the owners", who: "Allyssa, Sam", when: "to confirm" },
     ],
     notes: [{
+      date: "Thu 5 Nov", title: "Slack update", who: "Sam",
+      heard: [
+        "Australia runs everything through Xero. Munich banks with Qonto and uses DATEV for reconciliation.",
+        "So the quote and finance side will always need a Munich and an Australian version. It doesn't need solving now; Sam wants it on the page so nothing gets built only around Xero.",
+        "Sam is reading the options and will pick with Ed.",
+      ],
+      open: [
+        "Sam is still working out times for the three sessions owed (timesheets, budgets and invoicing, task management). The booking link only shows him 1am to 6am Munich time. He's out from Wed 11 Nov and back the week after.",
+        "Whether Munich's invoices themselves come from a German system is still to confirm.",
+      ],
+    }, {
       date: "Thu 5 Nov", title: "Intake", who: "Ed, Sam, Allyssa, Jem",
       heard: [
         "Ed built Barry in Claude after the resource manager left. Only Ed and Allyssa use it. It drafts the scope from the master sheet, rate cards and past scopes; Ed adjusts.",
@@ -175,16 +187,20 @@ export const BIG5: B5Job[] = [
   {
     id: "finance", n: 4, name: "Budgets, invoicing, recon", short: "Budgets and recon",
     owner: "Ed and Sam", with: "to confirm",
-    tools: "Productive plus a finance tool (Xero, to confirm)",
+    tools: "Productive, Xero in Australia, Qonto and DATEV in Munich",
     done_looks_like: "To shape at intake.",
     stage: -1,
-    now: "Not started. Waiting on which finance tool Two Palms uses.",
-    next: { what: "Confirm the finance tool", who: "Ed", when: "to confirm" },
+    now: "Not started. Finance tools are confirmed: Xero in Australia, Qonto and DATEV in Munich. The intake call is next.",
+    next: { what: "Book the intake call", who: "Jem", when: "to confirm" },
     todos: [
-      { id: "finance-1", stage: 0, task: "Confirm the finance tool", who: "Ed", when: "to confirm" },
+      { id: "finance-1", stage: 0, task: "Confirm the finance tool", who: "Ed", when: "to confirm", done: true },
       { id: "finance-2", stage: 0, task: "Book the intake call", who: "Jem", when: "to confirm" },
     ],
-    notes: [KICKOFF],
+    notes: [{
+      date: "Thu 5 Nov", title: "Slack update", who: "Sam",
+      heard: ["Australia runs everything through Xero. Munich banks with Qonto and uses DATEV for reconciliation, so this job needs a Munich and an Australian version."],
+      open: ["Sam needs to find a time for this intake. He's out from Wed 11 Nov and back the week after."],
+    }, KICKOFF],
     docs: [],
   },
   {
