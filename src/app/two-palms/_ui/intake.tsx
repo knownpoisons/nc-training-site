@@ -47,9 +47,9 @@ export function IntakeForm({ gate = false, adminConfigured = false }: { gate?: b
         const r = await submitIntakeV2(a);
         if (r.ok) { setDone(true); try { localStorage.removeItem(DRAFT); } catch {} }
         else if (r.missing?.length) { const j = INTAKE_QS.findIndex((x) => x.id === r.missing![0]); if (j >= 0) setI(j); setErr("One answer is missing. Fill it in and keep going."); }
-        else setErr("That didn't save. Try once more in a minute, or message Jem in #ai-training.");
+        else setErr("That didn't save. Try once more in a minute, or message Jem in #tpm_ai_training.");
       } catch {
-        setErr("That didn't save. Try once more in a minute, or message Jem in #ai-training.");
+        setErr("That didn't save. Try once more in a minute, or message Jem in #tpm_ai_training.");
       }
     });
   };
@@ -95,13 +95,13 @@ export function IntakeForm({ gate = false, adminConfigured = false }: { gate?: b
           <div className="tp-intake-q tp-slide-enter">
             <p className="tp-eyebrow" style={{ marginBottom: 14 }}><span className="tp-dot" />Before you&rsquo;re in</p>
             <h2 className="tp-h2">One thing first: the intake.</h2>
-            <p className="tp-lede tp-mute" style={{ marginBottom: 14 }}>{total} questions about your work and how you use AI today. About 10 minutes. Answer every one, take your time and be as detailed as you like: it tells Jem where each of you is at, so the sessions teach the right things.</p>
+            <p className="tp-lede tp-mute" style={{ marginBottom: 14 }}>{total} questions about your work and how you use AI today. About 10 minutes. Answer every one, take your time and be as detailed as you like: it tells Jem (Jeremy Somers, your trainer) where each of you is at, so the sessions teach the right things.</p>
             <p className="tp-lede tp-mute" style={{ marginBottom: 24 }}>The hub opens the moment you send it. Tip: download Fluid Voice, set your hotkey and talk your answers instead of typing them.</p>
             <button type="button" className="tp-btn tp-btn-orange" onClick={() => setIntro(false)}>Start</button>
           </div>
         </div>
         <div className="tp-intake-foot">
-          <span>Answers go to Jem only. Nobody at Two Palms sees them with your name on.</span>
+          <span>Answers go to Jem (Jeremy Somers) only. Nobody at Two Palms sees them with your name on.</span>
           {adminConfigured ? <button type="button" className="tp-linkbtn" onClick={() => setAdmin(true)}>Trainer sign-in</button> : null}
         </div>
       </div>

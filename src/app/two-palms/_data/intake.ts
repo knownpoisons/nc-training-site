@@ -18,7 +18,7 @@ export const HOURS = ["0", "Under 1 hr", "1 to 3 hrs", "3 to 5 hrs", "5+ hrs"];
 
 export const INTAKE_QS: IntakeQ[] = [
   // Part 1: you and your work
-  { id: "name", kind: "text", col: "name", q: "First, your name.", sub: "Only Jem sees your answers. Nobody at Two Palms sees them with your name on.", placeholder: "First and last" },
+  { id: "name", kind: "text", col: "name", q: "First, your name.", sub: "Only Jem (Jeremy Somers, your trainer) sees your answers. Nobody at Two Palms sees them with your name on.", placeholder: "First and last" },
   {
     id: "role", kind: "pills", col: "role", q: "Which best describes your role?",
     options: ["Account / client services", "Strategy", "Creative (design, copy, art direction)", "Content, social and community", "Production, video and editing", "Project management / operations", "Finance / admin", "Leadership", "Other"],

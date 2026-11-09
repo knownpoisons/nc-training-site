@@ -12,7 +12,7 @@ export interface TmpQuestion extends FQuestion {
   sub?: string;
 }
 
-const NAME_Q: TmpQuestion = { id: "name", q: "First, your name.", type: "text", sub: "Only Jem and Backstage see answers with names on. Nothing here appears on the hub." };
+const NAME_Q: TmpQuestion = { id: "name", q: "First, your name.", type: "text", sub: "Only Jem (Jeremy Somers) and Backstage see answers with names on. Nothing here appears on the hub." };
 
 export const TMP_QUESTIONS: TmpQuestion[] = [
   NAME_Q,
