@@ -354,6 +354,7 @@
         "Cover",
         "You are here",
         "Show one",
+        "My week (Jem)",
         "Where things live (tour)",
         "Chat vs Code",
         "Connect once",
@@ -383,7 +384,11 @@
           "Show one: the Next on Netflix carousel skill."
         ],
         [
-          "6-15",
+          "6-9",
+          "Jem's week, built with AI: Zambrero Signature Bowl takes, new model tests, the org bot, Green Light, the hub, this deck."
+        ],
+        [
+          "9-18",
           "Know your way around: the Claude tour (chats, projects, the box, settings, Claude in Chrome, the desktop app), Chat vs Code in one line, connect once, tidy habits, the model picker."
         ],
         [
@@ -415,7 +420,7 @@
           "The last line, see you Tue 17 Nov."
         ]
       ],
-      "notes": "Instructional session: Sydney is in the boardroom without laptops. No build-together, no Code demo, no lazy-vs-ICC demo (parked items: 03 Working/WS2/2026-11-10 Session 2 parked items.md). Slides: 2026-11-10 Session 2 Brief slides + presenter v9.html.",
+      "notes": "Instructional session: Sydney is in the boardroom without laptops. No build-together, no Code demo, no lazy-vs-ICC demo (parked items: 03 Working/WS2/2026-11-10 Session 2 parked items.md). Slides: 2026-11-10 Session 2 Brief slides + presenter v10.html.",
       "number": "02",
       "label": "AI Foundations Training · Session 2: Brief",
       "status": "upcoming",
