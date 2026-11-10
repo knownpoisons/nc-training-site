@@ -1,13 +1,13 @@
 "use client";
 
 // Green Light: the AI policy game. One photo (the '84 traffic light), eight moments.
-// Solo: pick a light, see the rule, get a licence. Room: Jem shares his screen, the room
+// Solo: pick a light, see the rule, get a score. Room: Jem shares his screen, the room
 // votes G / A / R in the Meet chat, he reveals. The signature move is the lamp landing.
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { CopyButton } from "../_ui/bits";
-import { LIGHTS, MOMENTS, licence, type Light } from "../_data/green-light";
+import { LIGHTS, MOMENTS, result, type Light } from "../_data/green-light";
 import { POLICY_TEXT } from "../_data/policy";
 
 type Mode = "solo" | "room";
@@ -146,9 +146,9 @@ export function GreenLight({ startMode = "solo" }: { startMode?: Mode }) {
               {mode === "solo" ? (
                 <>
                   <p className="lab-x">Your result</p>
-                  <h2 className="gl-title">{licence(score).title}</h2>
+                  <h2 className="gl-title">{result(score).title}</h2>
                   <p className="gl-score mono">{score} / {MOMENTS.length}</p>
-                  <p className="gl-lede">{licence(score).line}</p>
+                  <p className="gl-lede">{result(score).line}</p>
                 </>
               ) : (
                 <>

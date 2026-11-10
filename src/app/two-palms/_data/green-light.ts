@@ -91,9 +91,9 @@ export const MOMENTS: Moment[] = [
   },
 ];
 
-/** Solo-play result, by score out of MOMENTS.length. Australian licence stages, for the Sydney office. */
-export function licence(score: number, total = MOMENTS.length): { title: string; line: string } {
-  if (score === total) return { title: "Full licence", line: "Clean run. You know the road rules." };
-  if (score >= total - 2) return { title: "P-plates", line: "Nearly there. Read the policy once more and you're off them." };
-  return { title: "L-plates", line: "Have another lap, then give the policy a proper read." };
+/** Solo-play result, by score out of MOMENTS.length. */
+export function result(score: number, total = MOMENTS.length): { title: string; line: string } {
+  if (score === total) return { title: "Clean run.", line: "You know the policy. Your Claude knows it too." };
+  if (score >= total - 2) return { title: "Nearly there.", line: "Read the rules on the ones you missed, then have another go." };
+  return { title: "Have another go.", line: "Then give the policy a proper read. It's two pages." };
 }

@@ -310,13 +310,15 @@
       "cover": [
         "Show one: a skill built here in week one",
         "A five-minute tour: where things live, and how Claude can use your browser and your computer",
+        "Chat vs Code, in one line",
+        "Connect once, tidy habits, and the right model",
         "Bring it the problem, not your solution",
         "From \"what can AI do?\" to \"what do I need done?\"",
         "ICC: the ask (Instructions), the background (Context), the mandatories (Constraints)",
         "Talk it, don't type it",
+        "Interview me",
         "Green Light: the AI policy, as a game",
-        "Chat vs Code, in one line",
-        "Interview me, and your profile"
+        "Your instructions, built live"
       ],
       "homework": [
         {
@@ -345,15 +347,6 @@
             "label": "The prompt",
             "href": "/two-palms/prompts"
           }
-        },
-        {
-          "type": "do",
-          "text": "Play Green Light solo for your licence.",
-          "short": "Green Light solo",
-          "cta": {
-            "label": "Play",
-            "href": "/two-palms/green-light"
-          }
         }
       ],
       "slack": "Post what Claude suggested for your Time · Money · Pain task.",
@@ -362,16 +355,19 @@
         "You are here",
         "Show one",
         "Where things live (tour)",
+        "Chat vs Code",
+        "Connect once",
+        "Tidy habits",
+        "Model picker",
         "Problem, not solution",
         "The shift",
         "ICC",
         "Same muscle (analogies)",
-        "Lazy, then ICC (demo)",
         "Talk it, don't type it",
-        "Green Light",
-        "Chat vs Code",
         "Interview me",
+        "Green Light",
         "Your profile",
+        "Live: my new Claude",
         "You told us",
         "This week",
         "The last line"
@@ -383,34 +379,34 @@
         ],
         [
           "2-6",
-          "Show one: the Next On Netflix carousel skill."
+          "Show one: the Next on Netflix carousel skill."
         ],
         [
-          "6-11",
-          "Five-minute Claude tour: chats, projects, the box, model and effort, profile, connectors, Claude in Chrome, the desktop app using your computer."
+          "6-15",
+          "Know your way around: the Claude tour (chats, projects, the box, settings, Claude in Chrome, the desktop app), Chat vs Code in one line, connect once, tidy habits, the model picker."
         ],
         [
-          "11-16",
+          "15-19",
           "Problem, not solution, then the big line: from what can AI do to what do I need done."
         ],
         [
-          "16-30",
-          "ICC at length: definitions, agency analogies (creator brief, editor brief, coffee order), live demo lazy then ICC talked in with Fluid Voice, talk it don't type it."
+          "19-29",
+          "ICC at length: definitions, agency analogies (creator brief, editor brief, coffee order), talk it don't type it."
         ],
         [
-          "30-38",
+          "29-34",
+          "Interview me."
+        ],
+        [
+          "34-42",
           "Green Light, the AI policy, room mode."
         ],
         [
-          "38-39",
-          "Chat vs Code, definition only."
+          "42-51",
+          "Your instructions: the five points, then live on Jem's brand-new Two Palms Claude."
         ],
         [
-          "39-49",
-          "Interview me, then your profile and the voice prompt."
-        ],
-        [
-          "49-58",
+          "51-58",
           "You told us (Time · Money · Pain) and this week's homework."
         ],
         [
@@ -418,7 +414,7 @@
           "The last line, see you Tue 17 Nov."
         ]
       ],
-      "notes": "Instructional session: Sydney is in the boardroom without laptops. No build-together, no Code demo (parked for Session 3 review: 03 Working/WS2/2026-11-10 Session 2 parked items.md). Slides: 2026-11-10 Session 2 Brief slides + presenter v3.html.",
+      "notes": "Instructional session: Sydney is in the boardroom without laptops. No build-together, no Code demo, no lazy-vs-ICC demo (parked items: 03 Working/WS2/2026-11-10 Session 2 parked items.md). Slides: 2026-11-10 Session 2 Brief slides + presenter v8.html.",
       "number": "02",
       "label": "AI Foundations Training · Session 2: Brief",
       "status": "upcoming",
@@ -437,14 +433,14 @@
         "agenda": [
           "Matt's Netflix carousel: the first Spotlight",
           "A tour of Claude: chats, projects, settings, browser and computer control",
+          "Chat vs Code",
           "Connect your Drive, Gmail, Calendar and Slack",
           "Tidy habits, and the right model",
           "Bring it the problem, not your solution",
           "ICC: Instructions, Context, Constraints",
           "Talk it, don't type it",
-          "Green Light: the AI policy",
-          "Chat vs Code",
           "Interview me",
+          "Green Light: the AI policy",
           "Your instructions, built live"
         ],
         "big_idea": {
