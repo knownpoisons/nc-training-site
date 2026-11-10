@@ -305,96 +305,120 @@
           "phuket": "1:30pm"
         }
       },
-      "line": "Brief Claude like you'd brief a creative, and know when to hand it the whole job.",
-      "goal": "Write a brief that gets a usable first draft, and know the difference between Chat and Code.",
+      "line": "Bring it the problem, brief it with ICC, and say it out loud.",
+      "goal": "Know your way around Claude, brief it with ICC, and turn one real time-waster into a prompt.",
       "cover": [
-        "Green Light: the AI policy, as a game",
-        "Chat to think, Code to hand over a job",
+        "Show one: a skill built here in week one",
+        "A five-minute tour: where things live, and how Claude can use your browser and your computer",
+        "Bring it the problem, not your solution",
+        "From \"what can AI do?\" to \"what do I need done?\"",
         "ICC: the ask (Instructions), the background (Context), the mandatories (Constraints)",
-        "Give it the problem, not your solution",
-        "The \"interview me\" prompt, on your own Time · Money · Pain task",
-        "Picking the model and effort, and checking what comes back",
-        "Your personal preferences: three lines that change every answer"
+        "Talk it, don't type it",
+        "Green Light: the AI policy, as a game",
+        "Chat vs Code, in one line",
+        "Interview me, and your profile"
       ],
       "homework": [
         {
           "type": "do",
-          "text": "Brief one real task three ways: lazy, ICC, then \"interview me\". Talk it, don't type it."
+          "text": "Talk to Claude every day this week. End every voice note with: \"Ask me a series of pertinent questions to understand more about my context and constraints before you get started.\"",
+          "short": "End every voice note with the questions line",
+          "cta": {
+            "label": "The prompt",
+            "href": "/two-palms/prompts"
+          }
         },
         {
           "type": "do",
-          "text": "Add three lines to your personal preferences: your role, how you want answers, what to push back on."
+          "text": "Set your profile: three lines (who you are, how you want answers, what to push back on). Then run the \"Teach Claude how you write\" prompt and keep the result.",
+          "short": "Profile: three lines, then the voice prompt",
+          "cta": {
+            "label": "Prompts",
+            "href": "/two-palms/prompts"
+          }
         },
         {
           "type": "share",
-          "text": "Post your worst brief and your best one for the same task in the channel."
+          "text": "Take your Time · Money · Pain answer and run it through the \"Turn a time-waster into a prompt\" prompt. Post what Claude suggested in #tpm_ai_training.",
+          "short": "Your Time · Money · Pain into a prompt, post it",
+          "cta": {
+            "label": "The prompt",
+            "href": "/two-palms/prompts"
+          }
         },
         {
           "type": "do",
-          "text": "Stretch, if you build already: point the Code tab at a folder and give it one real job. Post what happened."
+          "text": "Play Green Light solo for your licence.",
+          "short": "Green Light solo",
+          "cta": {
+            "label": "Play",
+            "href": "/two-palms/green-light"
+          }
         }
       ],
-      "slack": "Show your worst brief and your best one for the same task.",
+      "slack": "Post what Claude suggested for your Time · Money · Pain task.",
       "slides": [
         "Cover",
         "You are here",
-        "You told us (Time · Money · Pain)",
-        "Green Light (the policy game)",
-        "Chat vs Code",
-        "Same job, twice (demo)",
-        "ICC",
-        "Problem, not solution",
-        "Model, effort, check",
-        "Build 1 together",
-        "Build 2: interview me",
-        "Your preferences",
         "Show one",
+        "Where things live (tour)",
+        "Problem, not solution",
+        "The shift",
+        "ICC",
+        "Same muscle (analogies)",
+        "Lazy, then ICC (demo)",
+        "Talk it, don't type it",
+        "Green Light",
+        "Chat vs Code",
+        "Interview me",
+        "Your profile",
+        "You told us",
         "This week",
-        "See you Tue 17 Nov"
+        "The last line"
       ],
       "ros": [
         [
           "0-2",
-          "Open. You are here (Learn it, Use it, Build it, Run it). ChatGPT access ends today."
+          "Open. You are here."
         ],
         [
-          "2-4",
-          "You told us: 23 Time · Money · Pain answers, three patterns (briefs and feedback, hunting for files, timesheets). Tonight fixes the brief."
+          "2-6",
+          "Show one: the Next On Netflix carousel skill."
         ],
         [
-          "4-13",
-          "Green Light in room mode (hub, /two-palms/green-light?mode=room). Room votes G / A / R in the Meet chat, reveal, one line on each. Then everyone asks their own Claude one policy question."
+          "6-11",
+          "Five-minute Claude tour: chats, projects, the box, model and effort, profile, connectors, Claude in Chrome, the desktop app using your computer."
         ],
         [
-          "13-20",
-          "Chat vs Code, then the same job twice: five call notes (fictional client) into a status report, once in Chat, once in Code. Why only; hands-on is MAKE (1 Dec)."
+          "11-16",
+          "Problem, not solution, then the big line: from what can AI do to what do I need done."
         ],
         [
-          "20-24",
-          "ICC, problem not solution, model, effort, check."
+          "16-30",
+          "ICC at length: definitions, agency analogies (creator brief, editor brief, coffee order), live demo lazy then ICC talked in with Fluid Voice, talk it don't type it."
         ],
         [
-          "24-30",
-          "Build 1 together: messy client feedback into one clear brief for the editor. Lazy, then ICC, then the problem. Check one claim."
+          "30-38",
+          "Green Light, the AI policy, room mode."
         ],
         [
-          "30-40",
-          "Build 2 on your own: interview me on your own Time · Money · Pain task, answers by voice."
+          "38-39",
+          "Chat vs Code, definition only."
         ],
         [
-          "40-50",
-          "Preferences: Jem's old and new account instructions. Everyone adds three lines."
+          "39-49",
+          "Interview me, then your profile and the voice prompt."
         ],
         [
-          "50-55",
-          "Show one: the Next On Netflix carousel skill, two minutes."
+          "49-58",
+          "You told us (Time · Money · Pain) and this week's homework."
         ],
         [
-          "55-60",
-          "Homework and see you Tue 17 Nov."
+          "58-60",
+          "The last line, see you Tue 17 Nov."
         ]
       ],
-      "notes": "Demo kit: 03 Working/WS2/Session 2 demo (fictional Harbour Coffee Co: 5 call notes, Build 1 feedback). Show one: Matt's NoN carousel skill (first Spotlight). Slides: 2026-11-10 Session 2 Brief slides + presenter v2.html.",
+      "notes": "Instructional session: Sydney is in the boardroom without laptops. No build-together, no Code demo (parked for Session 3 review: 03 Working/WS2/2026-11-10 Session 2 parked items.md). Slides: 2026-11-10 Session 2 Brief slides + presenter v3.html.",
       "number": "02",
       "label": "AI Foundations Training · Session 2: Brief",
       "status": "upcoming",

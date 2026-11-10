@@ -216,6 +216,31 @@ Context: [the background: who it's for, what's happened, what it needs to know].
 Constraints: [the mandatories: length, tone, format, what to leave out].`,
   },
   {
+    id: "questions-closer",
+    tab: "Everyday",
+    title: "End every voice note with this",
+    when: "Session 2 habit. Talk your ask, then finish with this line.",
+    body: `Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "tmp-to-prompt",
+    tab: "Everyday",
+    title: "Turn a time-waster into a prompt",
+    when: "Session 2 homework. Talk it, don't type it. Use your Time · Money · Pain answer.",
+    body: `Here's a process that eats my week: [talk it through: what it is, who's involved, which tools, how often, and what good looks like when it's done].
+
+Help me work out which parts of it you could take off my plate, starting with the easiest. Then do the first one with me now.
+
+Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "voice-guide",
+    tab: "Everyday",
+    title: "Teach Claude how you write",
+    when: "Session 2 homework. Keep the result; Session 3 puts it to work.",
+    body: `Interview me one question at a time about how I write and talk at work: my tone, words and phrases I use, words I never use, how long my messages usually are, and how I open and sign off. Ask me to paste three real messages I've sent (Slack, email, a caption). Then write a short voice guide called voice.md that I can reuse, with five do's, five don'ts and one example in my voice.`,
+  },
+  {
     id: "describe-the-problem",
     tab: "Everyday",
     title: "Describe the problem, not the solution",
