@@ -62,10 +62,10 @@
       "The strongest users help out in Slack and at office hours"
     ],
     "big5_note": "Not on the team side of the hub. The Big 5 ops projects run separately with their owners (Backstage only).",
-    "meet_url": null,
+    "meet_url": "https://meet.google.com/gyb-owsb-mjf",
     "every_session_short": [
       "Recording, cheat sheet and homework land on each session page.",
-      "Fridays: show what you made in #ai-training."
+      "Fridays: show what you made in #tpm_ai_training."
     ]
   },
   "pre_brief": {
@@ -207,7 +207,7 @@
       "label": "AI Foundations Training · Session 1: Shift",
       "status": "upcoming",
       "recording_url": "https://drive.google.com/file/d/1Vt0BEe1gdnF1QE_J3fGFjGEWfu-HQxuu/view",
-      "cheat_sheet": "THE ONE IDEA\nYou direct. It makes. You write the brief (10%), AI does the making (80%), you check it (10%). The craft stays yours.\n\nWHAT AI IS\nA very well-read assistant that predicts the next word. Brilliant at drafts, options, summaries and structure. Trips up on facts, numbers and anything it can't see. Always check what it gives you.\n\nTHE FOUR BARRIERS, AND THE WAY PAST\n\"I'm not technical\": you don't need to be. You talk to it in plain English.\n\"It changes too fast\" and \"too many tools\": we use one tool, Claude, and go deep.\n\"I can't keep up\": you don't need to. Keep using it and the hub keeps you current.\n\nHABIT 1 · ASK YOUR CLAUDE, NOT ME\nStuck? Ask Claude first. Then #ai-training. Then Jem.\n\nHABIT 2 · TALK, DON'T TYPE\nFluid Voice (free, Mac): fluidvoice.com\nOpen office: headphones with a mic, so it only hears you.\n\nNOT SURE IF SOMETHING CAN GO IN?\nCheck the AI policy page. Still unsure, especially with client material: ask the leadership team or Jem before you paste it in.\n\nTHIS WEEK\n1. Time · Money · Pain form, by Fri 6 Nov. The only thing you hand in.\n2. Set up Claude page, about 40 minutes, before Tue 10 Nov.\n3. Talk to Claude for 10 minutes about your job.\n4. Post one thing it said that surprised you in #ai-training.",
+      "cheat_sheet": "THE ONE IDEA\nYou direct. It makes. You write the brief (10%), AI does the making (80%), you check it (10%). The craft stays yours.\n\nWHAT AI IS\nA very well-read assistant that predicts the next word. Brilliant at drafts, options, summaries and structure. Trips up on facts, numbers and anything it can't see. Always check what it gives you.\n\nTHE FOUR BARRIERS, AND THE WAY PAST\n\"I'm not technical\": you don't need to be. You talk to it in plain English.\n\"It changes too fast\" and \"too many tools\": we use one tool, Claude, and go deep.\n\"I can't keep up\": you don't need to. Keep using it and the hub keeps you current.\n\nHABIT 1 · ASK YOUR CLAUDE, NOT ME\nStuck? Ask Claude first. Then #tpm_ai_training. Then Jem.\n\nHABIT 2 · TALK, DON'T TYPE\nFluid Voice (free, Mac): fluidvoice.com\nOpen office: headphones with a mic, so it only hears you.\n\nNOT SURE IF SOMETHING CAN GO IN?\nCheck the AI policy page. Still unsure, especially with client material: ask the leadership team or Jem before you paste it in.\n\nTHIS WEEK\n1. Time · Money · Pain form, by Fri 6 Nov. The only thing you hand in.\n2. Set up Claude page, about 40 minutes, before Tue 10 Nov.\n3. Talk to Claude for 10 minutes about your job.\n4. Post one thing it said that surprised you in #tpm_ai_training.",
       "wrap_notes": "Good first one. Questions from the room:\n\nVoice in an open office? Headphones with a mic. It stops the dictation picking up everyone around you.\n\nWhat do I bring over from my personal AI accounts? Only live work you still need, using the Moving work prompts. Your client context comes in through the company Claude, not from old chats.\n\nWhat about clients with strict confidentiality? Check before anything goes in. The leadership team is confirming the rules per client, and Session 2 opens with the AI policy, line by line.\n\nWin already: one of the team had Claude build an After Effects set-up for a CCTV overlay. That's the shape of it: you know what you want, it does the making.\n\nNext: Session 2 · Brief, Tue 10 Nov.",
       "recap": {
         "goal": "We got clear on what AI actually is, dropped some of the fear, and picked up the habits that carry the whole programme.",
@@ -254,7 +254,7 @@
         "remember": [
           {
             "t": "Ask your Claude, not me.",
-            "d": "Stuck? Claude first, then #ai-training, then Jem."
+            "d": "Stuck? Claude first, then #tpm_ai_training, then Jem."
           },
           {
             "t": "It's not Google.",
@@ -338,6 +338,7 @@
       "slides": [
         "Cover",
         "You are here",
+        "You told us (Time · Money · Pain)",
         "Green Light (the policy game)",
         "Chat vs Code",
         "Same job, twice (demo)",
@@ -353,39 +354,47 @@
       ],
       "ros": [
         [
-          "0-3",
-          "Open. ChatGPT access ends today. One post from the channel. Map: you are here (Learn it, Use it, Build it, Run it)."
+          "0-2",
+          "Open. You are here (Learn it, Use it, Build it, Run it). ChatGPT access ends today."
         ],
         [
-          "3-13",
-          "Green Light in room mode (hub, /two-palms/green-light?mode=room). Room votes G / A / R in the Meet chat, reveal, one line on each. Then everyone asks their own Claude one policy question. Pays off the S1 promise to go through the policy first."
+          "2-4",
+          "You told us: 23 Time · Money · Pain answers, three patterns (briefs and feedback, hunting for files, timesheets). Tonight fixes the brief."
+        ],
+        [
+          "4-13",
+          "Green Light in room mode (hub, /two-palms/green-light?mode=room). Room votes G / A / R in the Meet chat, reveal, one line on each. Then everyone asks their own Claude one policy question."
         ],
         [
           "13-20",
-          "Chat vs Code: Chat to think, Code to hand over a job. Same job twice: a folder of call transcripts into a status report. Why only; hands-on is MAKE (1 Dec)."
+          "Chat vs Code, then the same job twice: five call notes (fictional client) into a status report, once in Chat, once in Code. Why only; hands-on is MAKE (1 Dec)."
         ],
         [
-          "20-30",
-          "Build 1 together: one anonymised Time · Money · Pain task. Lazy brief, then ICC, then problem not solution. Pick model and effort. Check one claim."
+          "20-24",
+          "ICC, problem not solution, model, effort, check."
+        ],
+        [
+          "24-30",
+          "Build 1 together: messy client feedback into one clear brief for the editor. Lazy, then ICC, then the problem. Check one claim."
         ],
         [
           "30-40",
-          "Build 2 on your own: interview me on your own TMP task, answers by voice. Drop into two or three screens."
+          "Build 2 on your own: interview me on your own Time · Money · Pain task, answers by voice."
         ],
         [
           "40-50",
-          "Preferences: fix Jem's own account instructions live (feedback: too agreeable, too long). Everyone adds three lines."
+          "Preferences: Jem's old and new account instructions. Everyone adds three lines."
         ],
         [
           "50-55",
-          "Show one: Ed's Barry or Fergus's report portal, two minutes, not Jem."
+          "Show one: the Next On Netflix carousel skill, two minutes."
         ],
         [
           "55-60",
           "Homework and see you Tue 17 Nov."
         ]
       ],
-      "notes": "Before Tuesday: Micky to confirm the Code tab is on TP Team seats (else pre-record the demo). Ask Ed or Fergus for the 2-min show. Ask Ed if Jem can name the 'too agreeable' feedback. TMP forms close Fri 6 Nov; fallback for Build 1 is the reporting data-entry job. Slides: 03 Working/WS2/2026-11-05 Session 2 Brief slides + presenter.html.",
+      "notes": "Demo kit: 03 Working/WS2/Session 2 demo (fictional Harbour Coffee Co: 5 call notes, Build 1 feedback). Show one: Matt's NoN carousel skill (first Spotlight). Slides: 2026-11-10 Session 2 Brief slides + presenter v2.html.",
       "number": "02",
       "label": "AI Foundations Training · Session 2: Brief",
       "status": "upcoming",
@@ -959,6 +968,6 @@
     "Freelancers in or out",
     "Client projects set up by account leads by Fri 13 Nov",
     "Drive folders locked before Drive connects",
-    "#ai-training Slack link"
+    "#tpm_ai_training Slack link"
   ]
 }

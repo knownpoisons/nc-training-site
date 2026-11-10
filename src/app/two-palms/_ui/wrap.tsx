@@ -105,7 +105,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
         ) : null}
         <a className="wp-res-c is-slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
           <Win src="/two-palms/img/h/spotlight.jpg" w={480} h={300} className="wp-res-img" />
-          <span className="wp-res-b"><span className="wp-k">Slack</span><span className="wp-res-t">#ai-training <IconArrow /></span><span className="wp-res-d">{s.slack}</span></span>
+          <span className="wp-res-b"><span className="wp-k">Slack</span><span className="wp-res-t">#tpm_ai_training <IconArrow /></span><span className="wp-res-d">{s.slack}</span></span>
         </a>
       </div>
     </Sec>

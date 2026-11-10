@@ -24,7 +24,7 @@ function SessionCard({ s, live }: { s: Session; live: boolean }) {
           <div className="tp-session-body">
             <div className="tp-session-live">
               <div style={{ display: "flex", gap: 10, flexWrap: "wrap", alignItems: "center" }}>
-                {s.meetUrl ? <a className="tp-btn tp-btn-orange" href={s.meetUrl} target="_blank" rel="noreferrer">Join on Meet</a> : <span className="tp-inert">Meet link: here and in #ai-training by Fri</span>}
+                {s.meetUrl ? <a className="tp-btn tp-btn-orange" href={s.meetUrl} target="_blank" rel="noreferrer">Join on Meet</a> : <span className="tp-inert">Meet link: here and in #tpm_ai_training by Fri</span>}
                 <span className="tp-small tp-mute">Cameras on. Phones away. Slack closed.</span>
               </div>
               {s.homework ? (

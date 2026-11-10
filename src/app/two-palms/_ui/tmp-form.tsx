@@ -64,10 +64,10 @@ export function TmpForm({ intro, due }: { intro: string; due: string }) {
         setErr(
           r.reason === "closed" ? "The form isn't open yet. It opens after Session 1."
             : r.reason === "invalid" ? "One of the answers is missing. Go back and check."
-            : "That didn't save. Your answers are kept in this browser: try again in a minute, or tell Jem in #ai-training.",
+            : "That didn't save. Your answers are kept in this browser: try again in a minute, or tell Jem in #tpm_ai_training.",
         );
       } catch {
-        setErr("That didn't save. Your answers are kept in this browser: try again in a minute, or tell Jem in #ai-training.");
+        setErr("That didn't save. Your answers are kept in this browser: try again in a minute, or tell Jem in #tpm_ai_training.");
       }
     });
   };

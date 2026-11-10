@@ -116,7 +116,7 @@ export function HomeD({ now, onboardingBody, feat, featIdx, wrap, tmpOpen, tools
       <Plate style={sp(7, 3)} hue="sky" href="/two-palms/prompts" label="Prompt library" lab="Prompt library" img="/two-palms/img/h/prompts.jpg" title="Good prompts to steal" line="Copy, paste, done." />
       <Plate style={sp(4, 2)} hue="blush" href="/two-palms/policy" label="Rules for use" lab="AI policy" img="/two-palms/img/h/rules.jpg" title="Rules for use" line="What you can and can't do with AI." />
       <Plate style={sp(4, 2)} hue="bone" href="/two-palms/tools" label="Approved tools" lab={<>{toolsOpen ? null : <IconLock />}Approved tools</>} img="/two-palms/img/h/showcase.jpg" wait={!toolsOpen} title="Team-built tools" line={toolsOpen ? "The best of what the team built." : "Opens after Session 6."} />
-      <Plate cls="pl-wide-phone" style={sp(4, 2)} hue="sky" href={HUB.slackUrl} ext label="#ai-training on Slack" lab={<><IconHash />Slack</>} img="/two-palms/img/h/spotlight.jpg" title="#ai-training" line="Post what you make." />
+      <Plate cls="pl-wide-phone" style={sp(4, 2)} hue="sky" href={HUB.slackUrl} ext label="#tpm_ai_training on Slack" lab={<><IconHash />Slack</>} img="/two-palms/img/h/spotlight.jpg" title="#tpm_ai_training" line="Post what you make." />
 
       <Plate style={sp(5, 3, { marginTop: 30 })} hue="bone" label="Office hours" lab={<><IconClock />Office hours · dates to confirm</>} img="/two-palms/img/h/office-hours.jpg" title="Bring a real job" line="Drop in. Bring what's stuck.">
         <ul className="oh">{FC.office_hours.map((o) => <li key={o.n} className="mono">{o.date.replace(/\s*\(to confirm\)/i, "").replace(/^around /, "")}</li>)}</ul>

@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { isAdminAuthed } from "../../_lib/auth";
-import { SESSIONS, countEvents, presenterFor, sessionByParam, sessionHref, sessionTitle, teamSession, twoZones, type PresenterContent, type TeamSession } from "../../_data/foundations";
+import { FC, SESSIONS, countEvents, presenterFor, sessionByParam, sessionHref, sessionTitle, teamSession, twoZones, type PresenterContent, type TeamSession } from "../../_data/foundations";
 import { AdminUnlock, IsNextMark } from "../../_ui/b-client";
 import { VideoEmbed } from "../../_ui/video-embed";
 import { Wrap } from "../../_ui/wrap";
@@ -155,7 +155,7 @@ export default async function Page({ params, searchParams }: Params) {
                 </div>
               )}
               <a className="rc-res-c is-slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
-                <span className="rc-res-k"><IconHash /> Slack</span><span className="rc-res-t">#ai-training</span><span className="rc-res-d">{s.slack}</span><span className="rc-res-go">Post it <IconArrow /></span>
+                <span className="rc-res-k"><IconHash /> Slack</span><span className="rc-res-t">#tpm_ai_training</span><span className="rc-res-d">{s.slack}</span><span className="rc-res-go">Post it <IconArrow /></span>
               </a>
             </div>
           </Tile>
@@ -194,7 +194,8 @@ export default async function Page({ params, searchParams }: Params) {
             <p className="mono" style={{ fontSize: 12.5 }}>{z.sydneyDay}</p>
             <div className="lockup-t" style={{ marginTop: 8 }}><span className="big mono">{z.sydney}</span><span className="lab-x">Sydney</span></div>
             <div className="lockup-t" style={{ marginTop: 8 }}><span className="mono" style={{ fontSize: 20, fontWeight: 300 }}>{z.munich}</span><span className="lab-x">Munich{z.munichDay !== z.sydneyDay ? ` · ${z.munichDay}` : ""}</span></div>
-            <p className="note">Google Meet. The link is in <a href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a>. Recorded.</p>
+            {FC.programme.meet_url ? <div className="acts" style={{ marginTop: 12 }}><a className="btn btn--hot" href={FC.programme.meet_url} target="_blank" rel="noreferrer">Join on Google Meet <IconArrow /></a></div> : null}
+            <p className="note">Google Meet, same link every week{FC.programme.meet_url ? "" : <>, in <a href={HUB.slackUrl} target="_blank" rel="noreferrer">#tpm_ai_training</a></>}. Recorded.</p>
           </div>
         </Tile>
 
@@ -251,7 +252,7 @@ export default async function Page({ params, searchParams }: Params) {
         <Tile hue="sky" label="Slack prompt">
           <Lab icon={<IconHash />} l="In the channel" r="Open now" />
           <div className="t-body">
-            <p className="lab-x"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#ai-training</a></p>
+            <p className="lab-x"><a className="tt-link" href={HUB.slackUrl} target="_blank" rel="noreferrer">#tpm_ai_training</a></p>
             <p className="tt" style={{ marginTop: 8 }}>{s.slack}</p>
           </div>
         </Tile>

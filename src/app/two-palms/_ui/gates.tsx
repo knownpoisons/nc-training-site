@@ -27,7 +27,7 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
           </div>
           <h1 id="tpb-lock-h" className="tt-lg" style={{ marginTop: 22 }}>{isAdmin ? "Backstage" : "Two Palms AI Hub"}</h1>
           <p className="tp" style={{ marginTop: 8 }}>
-            {isAdmin ? "Leadership and the trainer only. The checklist, the roster and the form answers." : "Everything from the training, in one place. The team password is in the pinned post in #ai-training."}
+            {isAdmin ? "Leadership and the trainer only. The checklist, the roster and the form answers." : "Everything from the training, in one place. The team password is in the pinned post in #tpm_ai_training."}
           </p>
           {!configured ? (
             <p className="note">This door has no password set yet. Set {isAdmin ? "TP_HUB_ADMIN_PASSWORD" : "TP_HUB_PASSWORD"} in Vercel and redeploy.</p>
@@ -41,7 +41,7 @@ export function Lock({ kind, configured }: { kind: "team" | "admin"; configured:
               start(async () => {
                 const r = isAdmin ? await adminLogin(v) : await teamLogin(v);
                 if (r.ok) router.refresh();
-                else { setErr("Wrong password. Try again, or ask in #ai-training."); setPw(""); }
+                else { setErr("Wrong password. Try again, or ask in #tpm_ai_training."); setPw(""); }
               });
             }}
           >
@@ -105,7 +105,7 @@ export function Intake() {
     start(async () => {
       const r = await submitIntake(a);
       if (r.ok) router.refresh();
-      else setErr("That didn't save. Try once more, or ask in #ai-training.");
+      else setErr("That didn't save. Try once more, or ask in #tpm_ai_training.");
     });
   };
 

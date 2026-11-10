@@ -43,7 +43,7 @@ export interface Programme {
 export const HUB = {
   name: "Two Palms AI Hub",
   url: "https://training.notcontent.ai/two-palms",
-  slackChannel: "#ai-training",
+  slackChannel: "#tpm_ai_training",
   slackUrl: "https://twopalmsmedia.slack.com/archives/C0CD6JZPVJ8",
   stance: "AI amplifies production. It doesn't replace the shoot.",
   tenEightyTen:
@@ -348,7 +348,7 @@ export const SETUP_STEPS = [
   { n: "02", t: "Run the onboarding prompt", d: "Open a new chat, paste the prompt shown on this page (it is also the first one in the library), and answer its questions one at a time.", who: "You", mins: "10" },
   { n: "03", t: "Paste your preferences", d: "Take the preferences block it gives you. Click your initials (bottom left) > Settings > Your Claude, and paste it into Instructions.", who: "You", mins: "2" },
   { n: "04", t: "Join your client projects", d: "Each client has one shared project, set up by that client's account lead. If that is you, set it up and share it with the team ('Can edit' for anyone who adds files). If not, ask them to add you.", who: "You + account lead", mins: "5" },
-  { n: "05", t: "Sign in to your connectors", d: "Go to Customize > Connectors and click Connect for Drive, Gmail, Calendar, Slack and Granola, signing in with your Two Palms account. If you see Request instead of Connect, say so in #ai-training. In a chat, switch them on under + > Connectors. Claude only sees what you can see.", who: "You", mins: "5" },
+  { n: "05", t: "Sign in to your connectors", d: "Go to Customize > Connectors and click Connect for Drive, Gmail, Calendar, Slack and Granola, signing in with your Two Palms account. If you see Request instead of Connect, say so in #tpm_ai_training. In a chat, switch them on under + > Connectors. Claude only sees what you can see.", who: "You", mins: "5" },
   { n: "06", t: "Talk, don't type", d: "Install Fluid Voice (free, fluidvoice.com, needs macOS 15 or later) and set a hotkey. Or use the Mac's own: System Settings > Keyboard > Dictation, then the microphone key. Say your next prompt out loud.", who: "You", mins: "3" },
   { n: "07", t: "Do one real thing", d: "Pick the starter task the onboarding prompt gave you. Ten minutes. See something useful today.", who: "You", mins: "10" },
   { n: "08", t: "Finish anything on the shared ChatGPT", d: "Shared logins switch off Fri 6 Nov. Anything worth keeping: use the Moving work prompts.", who: "You", mins: "varies" },

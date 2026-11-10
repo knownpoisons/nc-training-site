@@ -122,7 +122,7 @@ export default function Page() {
                   <span className="fx-tile-when"><LocalWhen iso={s.when.start_iso} mins={s.when.duration_min} /></span>
                 </div>
                 {st === "done" ? <Link href={sessionHref(s)} className="fx-act is-done">Wrap-up &amp; recording <IconArrow /></Link>
-                  : st === "next" ? <a href={s.meet_url || joinHref} target="_blank" rel="noreferrer" className="fx-act is-next">{s.meet_url || P.meet_url ? "Join session" : "Join · link in #ai-training"} <IconArrow /></a>
+                  : st === "next" ? <a href={s.meet_url || joinHref} target="_blank" rel="noreferrer" className="fx-act is-next">{s.meet_url || P.meet_url ? "Join session" : "Join · link in #tpm_ai_training"} <IconArrow /></a>
                   : <Link href={sessionHref(s)} className="fx-act">Session details <IconArrow /></Link>}
               </article>
             );
@@ -142,7 +142,7 @@ export default function Page() {
         <Sec n="03" eyebrow="Resources" title="What's around the sessions." lede="The work happens in the hour. The support happens in between." />
 
         <a className="t fx-res fx-res--mustard" href={HUB.slackUrl} target="_blank" rel="noreferrer">
-          <span className="fx-res-k"><IconHash /> Slack</span><span className="fx-res-t">#ai-training</span>
+          <span className="fx-res-k"><IconHash /> Slack</span><span className="fx-res-t">#tpm_ai_training</span>
           <span className="fx-res-d">Post what you make, half-finished included. Stuck? Ask your Claude, then the channel, then Jem.</span>
           <span className="fx-res-go">Open the channel <IconArrow /></span>
         </a>
