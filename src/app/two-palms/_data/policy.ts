@@ -1,5 +1,5 @@
 // TPM-POL-001 · Two Palms AI Policy, Version 6.
-// Source: Fergus's V6 draft (29 Oct 2026) with Jem's 29 Oct edits accepted.
+// Source: Fergus's V6 draft (29 Oct 2026) with Jem's 29 Oct edits accepted. Signed off by the Managing Director, 10 Nov 2026.
 // Team-side rule: no staff names, so people appear as roles.
 // To update the hub: change this file only. The page and the copy-to-Claude text both read from it.
 
@@ -7,8 +7,9 @@ export const POLICY_META = {
   number: "TPM-POL-001",
   version: "6.0",
   replaces: "V4",
-  status: "Draft until signed off by the Managing Director",
-  signedOff: false,
+  status: "In force. Signed off by the Managing Director on 10 Nov 2026",
+  signedOff: true,
+  signedOn: "10 Nov 2026",
   owner: "Head of AI",
   operations: "Operations Manager",
   approvedBy: "Managing Director",

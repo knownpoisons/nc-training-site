@@ -36,6 +36,7 @@ export default function Page() {
           <Lab l={m.number} r={`Version ${m.version}`} />
           <div className="t-body">
             <p className="pol-status"><span className={`dot ${m.signedOff ? "dot--ok" : "dot--live"}`} />{m.signedOff ? "In force" : m.status}</p>
+            {m.signedOff && <p className="tp">Signed off by the {m.approvedBy} on {m.signedOn}.</p>}
             <p className="tp">Reviewed {m.review.toLowerCase()}</p>
             <div className="acts">
               <CopyButton text={POLICY_TEXT} label="Copy for Claude" className="btn btn--pri" />
@@ -170,7 +171,7 @@ export default function Page() {
           <Lab l="Policy details" r={m.number} />
           <dl className="pol-meta">
             <div><dt className="lab-x">Version</dt><dd>{m.version} · replaces {m.replaces}</dd></div>
-            <div><dt className="lab-x">Status</dt><dd>{m.signedOff ? "In force" : m.status}</dd></div>
+            <div><dt className="lab-x">Status</dt><dd>{m.signedOff ? `In force · signed off ${m.signedOn}` : m.status}</dd></div>
             <div><dt className="lab-x">Policy owner</dt><dd>{m.owner}</dd></div>
             <div><dt className="lab-x">Approved by</dt><dd>{m.approvedBy}</dd></div>
             <div><dt className="lab-x">Applies to</dt><dd>{m.appliesTo}</dd></div>
