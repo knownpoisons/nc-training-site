@@ -42,7 +42,40 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
     </header>
   );
 
-  const homework = (
+  const detailed = s.homework.some((h) => h.steps);
+  const homework = detailed ? (
+    <section className="wp-hw wp-wk" aria-label="This week" id="this-week">
+      <div className="wp-hw-head"><span>Your week · before Session {s.n + 1}</span><span className="mono">{s.homework.length} things</span></div>
+      <ol className="wk-ol">
+        {s.homework.map((h, i) => (
+          <li key={h.text}>
+            <details open={i === 0}>
+              <summary>
+                <span className="wk-n">{i + 1}</span>
+                <span className="wk-t">{h.short ?? h.text}{h.type === "share" ? <em className="wp-tag">Post it</em> : null}</span>
+                {h.time ? <span className="wk-time mono">{h.time}</span> : null}
+              </summary>
+              <div className="wk-b">
+                {h.why ? <p className="wk-why">{h.why}</p> : null}
+                {h.steps ? <ol className="wk-steps">{h.steps.map((x) => <li key={x}>{x}</li>)}</ol> : null}
+                {h.prompt ? (
+                  <div className="wk-prompt">
+                    <p className="wp-k">{h.prompt_label ?? "The prompt"}</p>
+                    <pre>{h.prompt}</pre>
+                    <CopyButton text={h.prompt} label="Copy the prompt" className="btn btn--pri" />
+                  </div>
+                ) : null}
+                {h.cta ? (/^https?:/.test(h.cta.href)
+                  ? <a className="btn btn--sec" href={h.cta.href} target="_blank" rel="noreferrer">{h.cta.label} <IconArrow /></a>
+                  : <Link className="btn btn--sec" href={h.cta.href}>{h.cta.label} <IconArrow /></Link>) : null}
+              </div>
+            </details>
+          </li>
+        ))}
+      </ol>
+    </section>
+  ) : (
+
     <section className="wp-hw" aria-label="Homework">
       <div className="wp-hw-head"><span>Homework for Session {s.n + 1}</span></div>
       <ul className="wp-hw-list">

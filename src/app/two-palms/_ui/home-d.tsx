@@ -108,11 +108,19 @@ export function HomeD({ now, onboardingBody, feat, featIdx, wrap, tmpOpen, tools
       </Tile>
 
       {/* Contents */}
-      <Plate
-        style={sp(5, 3)} hue="ember" label={tmp.label} href={tmpOpen ? "/two-palms/time-money-pain" : undefined}
-        lab={<>{tmpOpen ? null : <IconLock />}Time · Money · Pain · {tmpOpen ? `due ${strip(tmp.due)}` : "after Session 1"}</>}
-        img="/two-palms/img/h/notebook.jpg" wait={!tmpOpen} title="Your three processes" line="The one piece of homework you hand in."
-      />
+      {wrap && wrap.homework.some((h) => h.steps) ? (
+        <Plate
+          style={sp(5, 3)} hue="ember" label="This week's homework" href={`${sessionHref(wrap)}#this-week`}
+          lab={<>Homework · from Session {wrap.n}</>}
+          img="/two-palms/img/h/notebook.jpg" title="This week's homework" line={`${wrap.homework.length} short things, step by step.`}
+        />
+      ) : (
+        <Plate
+          style={sp(5, 3)} hue="ember" label={tmp.label} href={tmpOpen ? "/two-palms/time-money-pain" : undefined}
+          lab={<>{tmpOpen ? null : <IconLock />}Time · Money · Pain · {tmpOpen ? `due ${strip(tmp.due)}` : "after Session 1"}</>}
+          img="/two-palms/img/h/notebook.jpg" wait={!tmpOpen} title="Your three processes" line="The one piece of homework you hand in."
+        />
+      )}
       <Plate style={sp(7, 3)} hue="sky" href="/two-palms/prompts" label="Prompt library" lab="Prompt library" img="/two-palms/img/h/prompts.jpg" title="Good prompts to steal" line="Copy, paste, done." />
       <Plate style={sp(4, 2)} hue="blush" href="/two-palms/policy" label="Rules for use" lab="AI policy" img="/two-palms/img/h/rules.jpg" title="Rules for use" line="What you can and can't do with AI." />
       <Plate style={sp(4, 2)} hue="bone" href="/two-palms/tools" label="Approved tools" lab={<>{toolsOpen ? null : <IconLock />}Approved tools</>} img="/two-palms/img/h/showcase.jpg" wait={!toolsOpen} title="Team-built tools" line={toolsOpen ? "The best of what the team built." : "Opens after Session 6."} />

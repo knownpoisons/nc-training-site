@@ -1302,3 +1302,27 @@
 .tpb .wp-ins-copy { align-self: flex-start; margin-top: 8px; }
 .tpb .wp-ins-note { margin-top: 14px; font-size: 14.5px; color: var(--text-2); }
 .tpb .wp-ins-note::before { content: "Not a creative? "; font-weight: 600; color: var(--text); }
+
+/* Wrap-up: "your week" detailed homework */
+.tpb .wk-ol { margin: 0; padding: 0; list-style: none; }
+.tpb .wk-ol > li { border-top: 1px solid var(--rule); }
+.tpb .wk-ol > li:first-child { border-top: 0; }
+.tpb .wk-ol summary { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; list-style: none; }
+.tpb .wk-ol summary::-webkit-details-marker { display: none; }
+.tpb .wk-ol summary::after { content: "+"; grid-column: 4; font: 300 22px/1 var(--f-sans); color: var(--text-2); }
+.tpb .wk-ol details[open] summary::after { content: "–"; }
+.tpb .wk-n { font: 400 28px/1 var(--f-serif); color: var(--hot); }
+.tpb .wk-t { font: 400 20px/1.25 var(--f-serif); }
+.tpb .wk-time { font-size: 12px; color: var(--text-2); white-space: nowrap; }
+.tpb .wk-b { padding: 0 20px 22px 70px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.tpb .wk-why { margin: 0; font-size: 15px; line-height: 1.55; color: var(--text-2); max-width: 62ch; }
+.tpb .wk-steps { margin: 0; padding-left: 20px; list-style: decimal; display: flex; flex-direction: column; gap: 6px; font-size: 15px; line-height: 1.5; max-width: 62ch; }
+.tpb .wk-steps li::marker { color: var(--hot); font-weight: 600; }
+.tpb .wk-prompt { width: 100%; max-width: 640px; padding: 16px 18px; border-radius: 12px; background: var(--card); border: 1px solid rgba(27, 23, 20, .14); display: flex; flex-direction: column; gap: 10px; align-items: flex-start; }
+.tpb .wk-prompt pre { margin: 0; white-space: pre-wrap; font: 400 14px/1.55 var(--f-sans); color: var(--text); }
+@media (max-width: 640px) { .tpb .wk-b { padding-left: 20px; } .tpb .wk-time { display: none; } }
+/* Upcoming: before you come */
+.tpb .bf-list { margin: 12px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; }
+.tpb .bf-list li { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 10px; padding: 12px 0; border-top: 1px solid var(--rule); font-size: 15px; line-height: 1.45; }
+.tpb .bf-list li:first-child { border-top: 0; }
+.tpb .bf-list li::before { content: ""; width: 14px; height: 14px; margin-top: 3px; border: 1.5px solid var(--text); border-radius: 3px; }

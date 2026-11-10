@@ -227,9 +227,28 @@ Constraints: [the mandatories: length, tone, format, what to leave out].`,
     tab: "Everyday",
     title: "Turn a time-waster into a prompt",
     when: "Session 2 homework. Talk it, don't type it. Use your Time · Money · Pain answer.",
-    body: `Here's a process that eats my week: [talk it through: what it is, who's involved, which tools, how often, and what good looks like when it's done].
+    body: `Here's a problem from my week: [talk for 3 or 4 minutes. What happens today, who's involved, which tools, how often, and why it's painful].
 
-Help me work out which parts of it you could take off my plate, starting with the easiest. Then do the first one with me now.
+Don't fix it the way I would. Come back with two or three ways you could take this off my plate, including ones I wouldn't think of, and tell me which one you'd start with.
+
+Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "set-instructions",
+    tab: "Everyday",
+    title: "Set your personal instructions",
+    when: "Session 2 homework. Talk the brackets out loud, then paste the result into Settings › Your Claude › Instructions.",
+    body: `I'm setting up my personal instructions for Claude. Here's me:
+
+Who I am: [your role, team and office, what you actually spend your week on, and how you think: creative, numbers or people]
+
+How I want answers: [length, format and spelling. Answer first. One pick or options. Code blocks for anything I'll copy. Written for whoever's reading it]
+
+What to push back on: [disagree with me, check the real-world cost, flag anything that risks time, money or a client, and give me a better option]
+
+Honesty: [no made-up numbers, names or dates. Label estimates. Say when you're unsure. Check the AI policy before anything with client data]
+
+Turn that into my personal instructions: a markdown file called instructions.md, under 200 words, talking to you in the second person, with a short heading for each part, in a code block so I can copy it.
 
 Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
   },

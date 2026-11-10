@@ -230,6 +230,12 @@ export default async function Page({ params, searchParams }: Params) {
           </PrintTile>
         ) : null}
 
+        {s.before ? (
+          <Tile span={2} hue="ember" label="Before you come">
+            <Lab l="Before you come" r={prev ? <Link className="tt-link" href={`${sessionHref(prev)}#this-week`}>Session {prev.n} homework →</Link> : null} />
+            <ul className="bf-list">{s.before.map((x) => <li key={x}><span>{x}</span></li>)}</ul>
+          </Tile>
+        ) : (
         <Tile span={2} hue="ember" label="Homework">
           <Lab l="Homework" />
           <ol className="b-list hw">
@@ -248,6 +254,7 @@ export default async function Page({ params, searchParams }: Params) {
             )}
           </ol>
         </Tile>
+        )}
 
         <Tile hue="sky" label="Slack prompt">
           <Lab icon={<IconHash />} l="In the channel" r="Open now" />

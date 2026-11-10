@@ -323,33 +323,67 @@
       "homework": [
         {
           "type": "do",
-          "text": "Talk to Claude every day this week. End every voice note with: \"Ask me a series of pertinent questions to understand more about my context and constraints before you get started.\"",
-          "short": "End every voice note with the questions line",
-          "cta": {
-            "label": "The prompt",
-            "href": "/two-palms/prompts"
-          }
+          "short": "Finish your setup",
+          "text": "Connect Drive, Gmail, Calendar and Slack, switch to Sonnet 5.5 on Medium, and ask Ask Two Palms Media one question.",
+          "time": "5 min",
+          "why": "Two minutes now saves you uploading files and burning your limit all week.",
+          "steps": [
+            "Claude › Settings › Connectors. Connect Google Drive, Gmail, Google Calendar and Slack with your Two Palms account. It only sees what you can already open.",
+            "Bottom of the chat box: switch the model to Sonnet 5.5, effort Medium. Leave it there. Need more? Ask Jem first.",
+            "Next time you're about to Slack Micky or Alyssa \"where's that file?\" or a policy question, ask Ask Two Palms Media in your sidebar first."
+          ]
         },
         {
           "type": "do",
-          "text": "Set your instructions: the five points from tonight (who you are, how you want answers, what to push back on, honesty, and the questions line). Then run the \"Teach Claude how you write\" prompt and keep the result.",
-          "short": "Your instructions: the five points, then the voice prompt",
+          "short": "Set your personal instructions",
+          "text": "Talk Claude through the five points, let it write your instructions.md, then paste it into Settings.",
+          "time": "10 min",
+          "why": "Set it once and every chat knows who you are and how you like answers. We ran out of time to do it live, so here it is step by step. Not a creative? Swap any creative-director example for your own role. It works the same.",
+          "steps": [
+            "New chat. Hold your Fluid Voice key.",
+            "Say the prompt below out loud, filling each bracket with your own answers. Rambling is fine. (Or copy it, paste it, and fill the brackets by voice.)",
+            "Answer two or three of its questions, then say \"That's enough, write it.\"",
+            "Copy what it writes. Settings › Your Claude › Instructions, paste, save.",
+            "Test it: new chat, ask \"What do you know about me and how I like to work?\""
+          ],
+          "prompt": "I'm setting up my personal instructions for Claude. Here's me:\n\nWho I am: [your role, team and office, what you actually spend your week on, and how you think: creative, numbers or people]\n\nHow I want answers: [length, format and spelling. Answer first. One pick or options. Code blocks for anything I'll copy. Written for whoever's reading it]\n\nWhat to push back on: [disagree with me, check the real-world cost, flag anything that risks time, money or a client, and give me a better option]\n\nHonesty: [no made-up numbers, names or dates. Label estimates. Say when you're unsure. Check the AI policy before anything with client data]\n\nTurn that into my personal instructions: a markdown file called instructions.md, under 200 words, talking to you in the second person, with a short heading for each part, in a code block so I can copy it.\n\nAsk me a series of pertinent questions to understand more about my context and constraints before you get started.",
+          "prompt_label": "The prompt: fill the brackets out loud",
           "cta": {
             "label": "The five points",
-            "href": "/two-palms/foundations/2#instructions"
+            "href": "#instructions"
           }
         },
         {
           "type": "share",
-          "text": "Take your Time · Money · Pain answer and run it through the \"Turn a time-waster into a prompt\" prompt. Post what Claude suggested in #tpm_ai_training.",
-          "short": "Your Time · Money · Pain into a prompt, post it",
+          "short": "Your Time · Money · Pain, as a problem",
+          "text": "Take one problem from your form, talk it through with Claude for 3 or 4 minutes, and let it come back with the fixes. Post what it suggested.",
+          "time": "10 min",
+          "why": "Bring it the problem, not your solution. Let Claude tell you what it could do. That's where the surprises are.",
+          "steps": [
+            "Pick one problem from your Time · Money · Pain answers.",
+            "New chat, Fluid Voice key, and explain it like you'd explain it to a person: what happens, who's involved, which tools, why it's painful.",
+            "Catch yourself giving it the solution? Stop and say \"Actually, I don't want to give you the fix. Come back with options.\"",
+            "End with the questions line, answer its questions, and let it cook.",
+            "Post what it suggested in #tpm_ai_training. Half-finished is fine."
+          ],
+          "prompt": "Here's a problem from my week: [talk for 3 or 4 minutes. What happens today, who's involved, which tools, how often, and why it's painful].\n\nDon't fix it the way I would. Come back with two or three ways you could take this off my plate, including ones I wouldn't think of, and tell me which one you'd start with.\n\nAsk me a series of pertinent questions to understand more about my context and constraints before you get started.",
+          "prompt_label": "Or use this to start",
           "cta": {
-            "label": "The prompt",
-            "href": "/two-palms/prompts"
+            "label": "#tpm_ai_training",
+            "href": "https://twopalmsmedia.slack.com/archives/C0CD6JZPVJ8"
           }
+        },
+        {
+          "type": "do",
+          "short": "End every chat with the questions line",
+          "text": "End every voice note to Claude with the questions line, even the quick ones.",
+          "time": "Every chat",
+          "why": "It makes Claude ask for the context you forgot to give. Answer by voice, no need to number your answers.",
+          "prompt": "Ask me a series of pertinent questions to understand more about my context and constraints before you get started.",
+          "prompt_label": "The line"
         }
       ],
-      "slack": "Post what Claude suggested for your Time · Money · Pain task.",
+      "slack": "Post what Claude suggested for your Time · Money · Pain problem. Wins, fails and frustrations all welcome.",
       "slides": [
         "Cover",
         "You are here",
@@ -437,19 +471,19 @@
         "img": "/two-palms/img/h/green-light.jpg"
       },
       "recap": {
-        "goal": "We toured Claude, swapped solutions for problems, learned to brief with ICC, and set up our own instructions so Claude knows who it's working for.",
+        "goal": "We saw what the team built in week one, toured Claude, set up habits that save your limit, learned to brief with ICC, and played the AI policy as a game.",
         "agenda": [
-          "Matt's Netflix carousel: the first Spotlight",
-          "A tour of Claude: chats, projects, settings, browser and computer control",
-          "Chat vs Code",
-          "Connect your Drive, Gmail, Calendar and Slack",
-          "Tidy habits, and the right model",
+          "Wins from the week: Charlie's cricket index, Matt's Netflix carousel, Nicky's self-briefing Zambrero project, Mia's timesheets",
+          "What Jem built: Tommy Hilfiger remade with a new image model, Zambrero, motion templates",
+          "A tour of Claude: chats, projects, artifacts, settings, Chat vs Code",
+          "Ask Two Palms Media, and why Claude only sees what you can see",
+          "Tidy habits, and Sonnet 5.5 on Medium",
           "Bring it the problem, not your solution",
+          "From \"what can AI do?\" to \"what do I need done?\"",
           "ICC: Instructions, Context, Constraints",
           "Talk it, don't type it",
-          "Interview me",
-          "Green Light: the AI policy",
-          "Your instructions, built live"
+          "The AI policy in five, then Green Light",
+          "What your Time · Money · Pain answers told us"
         ],
         "big_idea": {
           "head": "Bring it the problem, not your solution.",
@@ -511,33 +545,33 @@
           },
           {
             "t": "One job, one chat.",
-            "d": "Claude re-reads the whole chat every time. New topic, new chat."
+            "d": "Claude re-reads the whole chat every time you send. New topic, new chat."
           },
           {
             "t": "Your Claude sees what you see.",
             "d": "Connectors only reach what you can already open. Connected doesn't mean cleared: the AI policy still applies."
           },
           {
-            "t": "Ask Two Palms Media.",
-            "d": "Where's that file, what did we decide, what does the policy say. Ask it before you ask a person."
+            "t": "Ask Two Palms Media first.",
+            "d": "Where's that file, what did we decide, what does the policy say. Ask it before you Slack a person."
           }
         ],
         "hints": [
           {
             "t": "Long chat? Start fresh.",
-            "d": "\"Sum this up so I can start a new chat.\" Paste the summary into the next one."
-          },
-          {
-            "t": "Interview me.",
-            "d": "Stuck on a task? Ask Claude to interview you about it one question at a time."
+            "d": "After 20 to 30 minutes: \"Sum this up so I can start a new chat.\" Paste it into the next one."
           },
           {
             "t": "Attach what it needs.",
-            "d": "The three pages that matter, not the 60-slide deck. Switch off tools a chat doesn't need."
+            "d": "Point it at the file in Drive instead of uploading the folder. Switch web search off when you don't need it."
           },
           {
-            "t": "End with the questions line.",
-            "d": "Every voice note this week. It's the habit that makes everything else better."
+            "t": "Record calls? Ask first.",
+            "d": "Granola on a client call is amber: ask at the start. Some clients have said no."
+          },
+          {
+            "t": "Timesheets, for now.",
+            "d": "Ask Claude to scan your email and Slack for where your day went. A proper fix is coming."
           }
         ]
       }
@@ -557,15 +591,14 @@
           "phuket": "1:30pm"
         }
       },
-      "line": "Teach Claude who you are, so you stop re-explaining.",
-      "goal": "Claude knows who you are, how you work and which client you're on.",
+      "line": "Projects: set your client up once, so every chat already knows it.",
+      "goal": "Every client you work on has a project, and Claude stops needing the backstory.",
       "cover": [
-        "Projects matter, chats don't. Start a new chat every time",
-        "Your client's shared project, and how to use it",
-        "Build your me.md and voice.md, saved in your own Drive folder",
-        "What an MD file is, and why every AI can read it",
-        "What goes in, and what never does: the traffic lights and client AI levels",
-        "Who needs to know, and when? Ask the project, not a colleague"
+        "Projects, properly: why they beat long chats, and how they save your limit",
+        "Set up a client project from Drive, and let Claude brief itself",
+        "Your instructions and voice, put to work",
+        "A first look at the motion templates",
+        "Bring your laptop: we build it together, Sydney included"
       ],
       "homework": [
         {
@@ -581,7 +614,7 @@
           "text": "Post the most useful answer."
         }
       ],
-      "slack": "Which question did your project answer that you'd normally have asked a colleague?",
+      "slack": "Which client project are you setting up first?",
       "slides": [
         "Projects matter, chats don't",
         "me.md and voice.md",
@@ -620,7 +653,13 @@
       "recording_url": null,
       "cheat_sheet": null,
       "wrap_notes": null,
-      "meet_url": null
+      "meet_url": null,
+      "before": [
+        "Finish Session 2's homework, especially your personal instructions",
+        "Connectors on, and Sonnet 5.5 on Medium",
+        "Bring your laptop, Sydney included. We build live",
+        "Pick one client you'd like set up as a project"
+      ]
     },
     {
       "n": 4,
