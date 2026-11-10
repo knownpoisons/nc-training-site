@@ -330,11 +330,11 @@
         },
         {
           "type": "do",
-          "text": "Set your profile: three lines (who you are, how you want answers, what to push back on). Then run the \"Teach Claude how you write\" prompt and keep the result.",
-          "short": "Profile: three lines, then the voice prompt",
+          "text": "Set your instructions: the five points from tonight (who you are, how you want answers, what to push back on, honesty, and the questions line). Then run the \"Teach Claude how you write\" prompt and keep the result.",
+          "short": "Your instructions: the five points, then the voice prompt",
           "cta": {
-            "label": "Prompts",
-            "href": "/two-palms/prompts"
+            "label": "The five points",
+            "href": "/two-palms/foundations/2#instructions"
           }
         },
         {
@@ -431,6 +431,111 @@
         "title": "Green Light",
         "line": "The AI policy as a game. Eight real moments: green, amber or red?",
         "img": "/two-palms/img/h/green-light.jpg"
+      },
+      "recap": {
+        "goal": "We toured Claude, swapped solutions for problems, learned to brief with ICC, and set up our own instructions so Claude knows who it's working for.",
+        "agenda": [
+          "Matt's Netflix carousel: the first Spotlight",
+          "A tour of Claude: chats, projects, settings, browser and computer control",
+          "Connect your Drive, Gmail, Calendar and Slack",
+          "Tidy habits, and the right model",
+          "Bring it the problem, not your solution",
+          "ICC: Instructions, Context, Constraints",
+          "Talk it, don't type it",
+          "Green Light: the AI policy",
+          "Chat vs Code",
+          "Interview me",
+          "Your instructions, built live"
+        ],
+        "big_idea": {
+          "head": "Bring it the problem, not your solution.",
+          "body": [
+            "Most of us come to Claude with the answer already in our head. Write me three captions. Make this shorter. That's us doing the thinking and using Claude as a typist.",
+            "Describe the problem instead: what's going on, who it's for, what good looks like. Let it suggest the way through, then push back.",
+            "We've moved from the era of what can AI do to what do I need done."
+          ]
+        },
+        "framework": {
+          "head": "ICC: brief it like a person.",
+          "intro": "Every good brief, to a colleague or to Claude, has three parts.",
+          "split": [
+            {
+              "n": "I",
+              "who": "Instructions",
+              "d": "The ask. What you want made, and what done looks like."
+            },
+            {
+              "n": "C",
+              "who": "Context",
+              "d": "The background. Who it's for, what's happened, what you've tried, the files that matter."
+            },
+            {
+              "n": "C",
+              "who": "Constraints",
+              "d": "The mandatories. Length, format, tone, deadline, and what it must not do."
+            }
+          ],
+          "twist": "The twist: talk it, don't type it. ICC out loud in Fluid Voice is a full brief in thirty seconds."
+        },
+        "instructions": {
+          "head": "Set it once. It shows up in every chat.",
+          "items": [
+            {
+              "t": "Who you are",
+              "d": "Your role, team and office, what you actually spend your week on, and how you think: creative, numbers or people."
+            },
+            {
+              "t": "How you want answers",
+              "d": "Length, format and spelling. Answer first. One pick or options. Code blocks for anything you'll copy. Write for whoever's reading it."
+            },
+            {
+              "t": "What to push back on",
+              "d": "Tell it to disagree with you, check the real-world cost, flag anything that risks time, money or a client, and give you a better option."
+            },
+            {
+              "t": "Honesty",
+              "d": "No made-up numbers, names or dates. Estimates labelled as estimates. It says when it's unsure. Anything with client data checks the AI policy."
+            }
+          ],
+          "closer": "Ask me a series of pertinent questions to understand more about my context and constraints before you get started.",
+          "note": "Swap the creative director line for your own role and it works the same."
+        },
+        "remember": [
+          {
+            "t": "Sonnet 5.5, Medium.",
+            "d": "It covers everything you'll do. Want more? Ask Jem before you switch up."
+          },
+          {
+            "t": "One job, one chat.",
+            "d": "Claude re-reads the whole chat every time. New topic, new chat."
+          },
+          {
+            "t": "Your Claude sees what you see.",
+            "d": "Connectors only reach what you can already open. Connected doesn't mean cleared: the AI policy still applies."
+          },
+          {
+            "t": "Ask Two Palms Media.",
+            "d": "Where's that file, what did we decide, what does the policy say. Ask it before you ask a person."
+          }
+        ],
+        "hints": [
+          {
+            "t": "Long chat? Start fresh.",
+            "d": "\"Sum this up so I can start a new chat.\" Paste the summary into the next one."
+          },
+          {
+            "t": "Interview me.",
+            "d": "Stuck on a task? Ask Claude to interview you about it one question at a time."
+          },
+          {
+            "t": "Attach what it needs.",
+            "d": "The three pages that matter, not the 60-slide deck. Switch off tools a chat doesn't need."
+          },
+          {
+            "t": "End with the questions line.",
+            "d": "Every voice note this week. It's the habit that makes everything else better."
+          }
+        ]
       }
     },
     {

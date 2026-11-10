@@ -25,6 +25,8 @@ export interface Recap {
   framework?: { head: string; intro: string; split: { n: string; who: string; d: string }[]; twist: string };
   remember?: RecapItem[];
   hints?: RecapItem[];
+  /** Session 2: what goes in your personal instructions. Numbered, last item is the closer line (copyable). */
+  instructions?: { head: string; items: RecapItem[]; closer: string; note: string };
 }
 
 export interface FSession {

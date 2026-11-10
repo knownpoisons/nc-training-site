@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { HUB } from "../_data/hub";
 import { sessionHref, sessionTitle, twoZones, type FSession, type TeamSession } from "../_data/foundations";
 import { IconArrow, Win } from "./b";
+import { CopyButton } from "./bits";
 
 const strip = (d: string) => d.replace(/ \d{4}$/, "");
 const DAYS: Record<string, string> = { Mon: "Monday", Tue: "Tuesday", Wed: "Wednesday", Thu: "Thursday", Fri: "Friday" };
@@ -88,6 +89,21 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
     </Sec>
   ) : null;
 
+  const instr = r.instructions ? (
+    <Sec k="What goes in your instructions" h={r.instructions.head} id="instructions">
+      <ol className="wp-ins">
+        {r.instructions.items.map((x, i) => (
+          <li key={x.t}><span className="wp-ins-n">{i + 1}</span><span className="wp-ins-b"><b>{x.t}</b><span>{x.d}</span></span></li>
+        ))}
+        <li className="is-closer">
+          <span className="wp-ins-n">{r.instructions.items.length + 1}</span>
+          <span className="wp-ins-b"><b>Always end with</b><span className="wp-ins-q">&ldquo;{r.instructions.closer}&rdquo;</span><CopyButton text={r.instructions.closer} label="Copy the line" className="btn btn--sec wp-ins-copy" /></span>
+        </li>
+      </ol>
+      <p className="wp-ins-note">{r.instructions.note}</p>
+    </Sec>
+  ) : null;
+
   const cards = (k: string, h: string, items?: { t: string; d: string }[]) => items ? (
     <Sec k={k} h={h}>
       <ul className="wp-cards">{items.map((x) => <li key={x.t}><b>{x.t}</b><span>{x.d}</span></li>)}</ul>
@@ -131,7 +147,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
             {homework}
           </aside>
           <div className="wp-main">
-            {covered}{bigIdea}{framework}
+            {covered}{bigIdea}{framework}{instr}
             {cards("What to remember", "Worth remembering.", r.remember)}
             {cards("Helpful hints", "Habits that help.", r.hints)}
             {takeIt}{comingNext}
@@ -157,7 +173,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
       )}
       <div className="wp-col">
         {homework}
-        {covered}{bigIdea}{framework}
+        {covered}{bigIdea}{framework}{instr}
         {v === "b" ? (
           <div className="wp-two">
             <Sec k="What to remember"><ul className="wp-plain">{(r.remember ?? []).map((x) => <li key={x.t}><b>{x.t}</b> {x.d}</li>)}</ul></Sec>

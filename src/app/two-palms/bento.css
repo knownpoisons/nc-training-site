@@ -1289,3 +1289,16 @@
 .tpb .t--play { container-type: inline-size; }
 .tpb .t--play .pt-img img { object-position: 46% 50%; }
 @container (min-width: 520px) { .tpb .t--play .pt-img { min-height: 260px; } }
+
+/* S2: what goes in your instructions */
+.tpb .wp-ins { margin: 22px 0 0; padding: 0; list-style: none; }
+.tpb .wp-ins li { display: grid; grid-template-columns: 44px minmax(0, 1fr); gap: 16px; padding: 18px 0; border-top: 1px solid var(--rule); }
+.tpb .wp-ins-n { font: 400 30px/1 var(--f-serif); color: var(--hot); }
+.tpb .wp-ins-b { display: flex; flex-direction: column; gap: 6px; }
+.tpb .wp-ins-b b { font: 400 21px/1.2 var(--f-serif); }
+.tpb .wp-ins-b > span { font-size: 15px; line-height: 1.55; color: var(--text-2); }
+.tpb .wp-ins li.is-closer { margin-top: 6px; padding: 20px; border: 0; border-radius: 12px; background: var(--tp-orange-tint); }
+.tpb .wp-ins .wp-ins-q { font: 400 21px/1.35 var(--f-serif); color: var(--text); }
+.tpb .wp-ins-copy { align-self: flex-start; margin-top: 8px; }
+.tpb .wp-ins-note { margin-top: 14px; font-size: 14.5px; color: var(--text-2); }
+.tpb .wp-ins-note::before { content: "Not a creative? "; font-weight: 600; color: var(--text); }
