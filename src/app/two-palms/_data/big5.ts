@@ -133,12 +133,12 @@ export const BIG5: B5Job[] = [
     done_looks_like: "Claude fills the portal's spreadsheet from every platform on its own, checks it, then pings the owner in Slack to approve. One locked template for every client.",
     stage: 0,
     now: "Intake call done. The portal already makes the reports look good; the job is getting the data into it without anyone touching it. Waiting on two things from Stef and Fergus.",
-    next: { what: "Send Jem the list of every client with reports (who does the data, which platform, who has the logins) plus 2 or 3 current reports. Slack, email or drop it in Drive and say where", who: "Stef, Fergus", when: "to confirm" },
+    next: { what: "Send Jem the list of every client with reports (who does the data, which platform, who has the logins) plus 2 or 3 current reports. Slack, email or drop it in Drive and say where", who: "Stef, Fergus", when: "Wed 11 Nov (Stef hoping)" },
     todos: [
       { id: "reporting-2", stage: 0, task: "Book the intake call", who: "Jem", when: "Thu 5 Nov", done: true },
       { id: "reporting-3", stage: 0, task: "Put the 20 intake questions in the invite", who: "Jem", when: "Wed 4 Nov", done: true },
       { id: "reporting-4", stage: 0, task: "Hold the intake call", who: "Stef, Fergus, Jem", when: "Thu 5 Nov", done: true },
-      { id: "reporting-9", stage: 0, task: "List every client with reports: who handles the data now, which platform it comes from, who has the logins", who: "Stef", when: "to confirm" },
+      { id: "reporting-9", stage: 0, task: "List every client with reports: who handles the data now, which platform it comes from, who has the logins", who: "Stef", when: "Wed 11 Nov (Stef hoping)" },
       { id: "reporting-6", stage: 0, task: "Share 2 or 3 current reports (portal links and the spreadsheets behind them)", who: "Stef, Fergus", when: "to confirm" },
       { id: "reporting-10", stage: 0, task: "Each talk it through with your own Claude, using the call transcript: how could reporting go ten levels up, and what new paid services could it open?", who: "Stef, Fergus (separately)", when: "to confirm" },
       { id: "reporting-1", stage: 0, task: "Confirm Stef as owner", who: "Ed", when: "to confirm" },
@@ -151,6 +151,10 @@ export const BIG5: B5Job[] = [
       { id: "reporting-14", stage: 4, task: "Lock the template and roll it out to every reporting client", who: "Stef, Fergus", when: "to confirm" },
     ],
     notes: [{
+      date: "Tue 10 Nov", title: "Slack update", who: "Stef",
+      heard: ["Jem reminded Stef the call notes and transcript are in Backstage, and that the plan waits on the client list and 2 or 3 current reports."],
+      actions: [{ task: "Send the client list and current reports", who: "Stef", when: "Wed 11 Nov (Stef hoping)" }],
+    }, {
       date: "Thu 5 Nov", title: "Intake", who: "Stef, Fergus, Jem",
       heard: [
         "How often and how deep each report goes depends on the client's contract: weekly, monthly, quarterly or yearly. There's a baseline social and talent template deck.",
