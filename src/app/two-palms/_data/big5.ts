@@ -111,7 +111,7 @@ export const BIG5: B5Job[] = [
     tools: "Productive",
     done_looks_like: "Near-automatic entry with no chasing. People confirm a draft in about two minutes a day.",
     stage: 1,
-    now: "Plan drafted after the intake with Micky. Six checks with Micky and one workshop lock it. Sam's Munich session is booked.",
+    now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked.",
     next: { what: "Timesheets session with Sam (Munich side)", who: "Sam, Jem (Ed, Allyssa welcome)", when: "Tue 17 Nov, 10:30 Munich" },
     todos: [
       { id: "timesheets-3", stage: 0, task: "Intake call with Micky", who: "Micky, Jem", when: "Thu 29 Oct", done: true },
@@ -126,6 +126,11 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Thu 12 Nov", title: "Slack update", who: "Micky",
+      heard: ["Micky has set Claude up to do the timesheet chasing for her, so she no longer chases people by hand. She shared it in #tpm_ai_training as a tick for her time problem."],
+      decided: ["Her next step: make filling in timesheets easier, ideally fully automated."],
+      open: ["How her chasing setup works, and whether it slots into the Phase 1 plan (private daily drafts) or the pilot."],
+    }, {
       date: "Wed 11 Nov", title: "Slack update", who: "Sam, Jem",
       decided: ["Timesheets session with Sam booked for Tue 17 Nov, 10:30 Munich time (8:30pm Sydney). Ed and Allyssa can join if they want."],
     }, {
