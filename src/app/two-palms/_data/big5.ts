@@ -126,10 +126,11 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
-      date: "Thu 12 Nov", title: "Slack update", who: "Micky",
+      date: "Thu 12 Nov", title: "Slack update", who: "Micky, Stef, Jem",
       heard: ["Micky has set Claude up to do the timesheet chasing for her, so she no longer chases people by hand. She shared it in #tpm_ai_training as a tick for her time problem."],
-      decided: ["Her next step: make filling in timesheets easier, ideally fully automated."],
+      decided: ["Her next step: make filling in timesheets easier, ideally fully automated.", "Later in the thread Stef asked for the same setup. Jem said Micky will package it as a skill file anyone can paste in."],
       open: ["How her chasing setup works, and whether it slots into the Phase 1 plan (private daily drafts) or the pilot."],
+      actions: [{ task: "Package the timesheet-chasing setup as a skill file others can paste in", who: "Micky", when: "to confirm" }],
     }, {
       date: "Wed 11 Nov", title: "Slack update", who: "Sam, Jem",
       decided: ["Timesheets session with Sam booked for Tue 17 Nov, 10:30 Munich time (8:30pm Sydney). Ed and Allyssa can join if they want."],
