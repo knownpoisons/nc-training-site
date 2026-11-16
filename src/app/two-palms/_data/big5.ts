@@ -121,11 +121,17 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-6", stage: 1, task: "Get employment-law advice before the pilot (NSW notice, Munich works council)", who: "Micky", when: "to confirm" },
       { id: "timesheets-7", stage: 1, task: "Review Productive's own AI time-tracking agents", who: "Micky, Jem", when: "to confirm" },
       { id: "timesheets-10", stage: 1, task: "Timesheets session with Sam (Munich side)", who: "Sam, Jem", when: "Tue 17 Nov, 10:30 Munich" },
+      { id: "timesheets-11", stage: 1, task: "Check the Claude settings let staff create their own skills (Lucy is blocked)", who: "to confirm", when: "to confirm" },
       { id: "timesheets-2", stage: 2, task: "Proof of concept: automate Jem's own Productive timesheet", who: "Jem", when: "to confirm" },
       { id: "timesheets-8", stage: 3, task: "4-week pilot with about 6 volunteers across both offices", who: "Micky, Sam", when: "to confirm" },
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Mon 16 Nov", title: "Slack update", who: "Lucy",
+      heard: ["In the #tpm_ai_training thread on Micky's timesheet setup, Lucy said she has been trying to set up her own timesheet and email-triage skills, but Claude tells her she is blocked, possibly by company settings. She asked Jem whether the team has permission to create skills yet."],
+      open: ["Whether the Two Palms Claude settings let staff create their own skills. Until that is sorted, Micky's skill file can't be pasted in by others."],
+      actions: [{ task: "Check the Two Palms Claude settings allow staff to create skills, and reply to Lucy", who: "to confirm", when: "to confirm" }],
+    }, {
       date: "Thu 12 Nov", title: "Slack update", who: "Micky, Stef, Jem",
       heard: ["Micky has set Claude up to do the timesheet chasing for her, so she no longer chases people by hand. She shared it in #tpm_ai_training as a tick for her time problem."],
       decided: ["Her next step: make filling in timesheets easier, ideally fully automated.", "Later in the thread Stef asked for the same setup. Jem said Micky will package it as a skill file anyone can paste in."],
