@@ -111,7 +111,7 @@ export const BIG5: B5Job[] = [
     tools: "Productive",
     done_looks_like: "Near-automatic entry with no chasing. People confirm a draft in about two minutes a day.",
     stage: 1,
-    now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked.",
+    now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked. Micky is away until Mon 23 Nov; she and Jem will go through timesheets at a catch-up next week.",
     next: { what: "Timesheets session with Sam (Munich side)", who: "Sam, Jem (Ed, Allyssa welcome)", when: "Tue 17 Nov, 10:30 Munich" },
     todos: [
       { id: "timesheets-3", stage: 0, task: "Intake call with Micky", who: "Micky, Jem", when: "Thu 29 Oct", done: true },
@@ -122,11 +122,17 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-7", stage: 1, task: "Review Productive's own AI time-tracking agents", who: "Micky, Jem", when: "to confirm" },
       { id: "timesheets-10", stage: 1, task: "Timesheets session with Sam (Munich side)", who: "Sam, Jem", when: "Tue 17 Nov, 10:30 Munich" },
       { id: "timesheets-11", stage: 1, task: "Check the Claude settings let staff create their own skills (Lucy is blocked)", who: "to confirm", when: "to confirm" },
+      { id: "timesheets-12", stage: 1, task: "Send Micky a time for next week's catch-up, with timesheets on the agenda", who: "Jem", when: "next week (Micky back Mon 23 Nov)" },
       { id: "timesheets-2", stage: 2, task: "Proof of concept: automate Jem's own Productive timesheet", who: "Jem", when: "to confirm" },
       { id: "timesheets-8", stage: 3, task: "4-week pilot with about 6 volunteers across both offices", who: "Micky, Sam", when: "to confirm" },
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Tue 17 Nov", title: "Slack update", who: "Micky, Jem",
+      heard: ["Micky said she still needs to dig into timesheets. She is out of the office from 3pm today and back Mon 23 Nov.", "Jem has heard Stef, and maybe one other person, are already trying to automate parts of it."],
+      decided: ["Micky and Jem will go through timesheets together at a catch-up next week. Jem will send the time."],
+      actions: [{ task: "Send Micky a time for next week's catch-up, with timesheets on the agenda", who: "Jem", when: "next week (Micky back Mon 23 Nov)" }],
+    }, {
       date: "Mon 16 Nov", title: "Slack update", who: "Lucy",
       heard: ["In the #tpm_ai_training thread on Micky's timesheet setup, Lucy said she has been trying to set up her own timesheet and email-triage skills, but Claude tells her she is blocked, possibly by company settings. She asked Jem whether the team has permission to create skills yet."],
       open: ["Whether the Two Palms Claude settings let staff create their own skills. Until that is sorted, Micky's skill file can't be pasted in by others."],
