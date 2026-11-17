@@ -56,7 +56,7 @@ export default function Page() {
           <dl className="fx-stats">
             <div><dt>Programme</dt><dd>{SESSIONS.length} weeks</dd><span>{short(first.when.date)} → {short(last.when.date)}</span></div>
             <div><dt>Sessions</dt><dd>{SESSIONS.length} × 60 min</dd><span>Plus {FC.office_hours.length} office hours</span></div>
-            <div><dt>Cadence</dt><dd>Tuesdays</dd><span><LocalTime iso={(nextS ?? first).when.start_iso} />, your time</span></div>
+            <div><dt>Cadence</dt><dd>Wednesdays</dd><span><LocalTime iso={(nextS ?? first).when.start_iso} />, your time</span></div>
             <div><dt>Phases</dt><dd>{P.phases.length}</dd><span>{P.phases.map((p) => p.name.replace(/ it$/, "")).join(" · ")}</span></div>
           </dl>
           <div className="fx-prog">
