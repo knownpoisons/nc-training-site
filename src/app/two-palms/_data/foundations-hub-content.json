@@ -591,30 +591,31 @@
           "phuket": "1:30pm"
         }
       },
-      "line": "Projects: set your client up once, so every chat already knows it.",
-      "goal": "Every client you work on has a project, and Claude stops needing the backstory.",
+      "line": "You, your client, your job: set each up once, then stop repeating yourself.",
+      "goal": "Instructions know you, projects know the client, skills know the job. Leave with your own Expert Panel installed.",
       "cover": [
-        "Projects, properly: why they beat long chats, and how they save your limit",
-        "Set up a client project from Drive, and let Claude brief itself",
-        "Shared projects: what the team sees, what stays yours, and the Project Log",
-        "Your instructions and voice, put to work",
-        "Bring your laptop: we build it together, Sydney included"
+        "Spotlight: a timesheet robot, built in a week",
+        "Three layers: instructions (you), projects (the client), skills (the job)",
+        "Projects, the pro version: brief itself from Drive, shared vs private, the Project Log",
+        "Skills: turn any chat that worked into something you never explain again",
+        "The big one: build and install your own Expert Panel, then run it on real work",
+        "What's new in Claude this month, in five minutes"
       ],
       "homework": [
         {
           "type": "do",
-          "text": "Finish your me.md and voice.md."
+          "text": "Turn one job you repeat every week into a skill, using the \"Turn a chat that worked into a skill\" prompt."
         },
         {
           "type": "do",
-          "text": "Ask your client project three questions you'd normally ask a colleague."
+          "text": "Run your Expert Panel on one real piece of work before it goes out."
         },
         {
           "type": "share",
-          "text": "Post the most useful answer."
+          "text": "Post your panel's best catch in #tpm_ai_training."
         }
       ],
-      "slack": "Which client project are you setting up first?",
+      "slack": "What did your Expert Panel catch that you'd have missed?",
       "slides": [
         "Projects matter, chats don't",
         "me.md and voice.md",
@@ -646,7 +647,7 @@
           "Homework"
         ]
       ],
-      "notes": "Needs client projects set up by account leads (target Fri 13 Nov) and Drive folders locked first.",
+      "notes": "Rebuilt 17 Nov: team is ahead (Micky's timesheet robot, Lucy building skills, Ed's creative database). Cut basics; skills + Expert Panel are the core.",
       "number": "03",
       "label": "AI Foundations Training · Session 3: Context",
       "status": "upcoming",
@@ -655,10 +656,10 @@
       "wrap_notes": null,
       "meet_url": null,
       "before": [
-        "Finish Session 2's homework, especially your personal instructions",
-        "Connectors on, and Sonnet 5.5 on Medium",
+        "Personal instructions set (Session 2 homework)",
         "Bring your laptop, Sydney included. We build live",
-        "Pick one client you'd like set up as a project"
+        "Bring one real piece of work you're about to send: an email, deck, report or brief",
+        "Skills are now switched on for everyone. If Claude says you're blocked, tell us in the channel"
       ]
     },
     {

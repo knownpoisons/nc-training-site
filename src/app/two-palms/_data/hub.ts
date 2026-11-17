@@ -253,6 +253,38 @@ Turn that into my personal instructions: a markdown file called instructions.md,
 Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
   },
   {
+    id: "expert-panel",
+    tab: "Everyday",
+    title: "Build your Expert Panel (skill)",
+    when: "Session 3. Run once to build the skill. Then before anything goes out: \"Run my Expert Panel on this.\"",
+    body: `I want you to build me a reusable skill called "Expert Panel" that I can run on any piece of my work before it goes out.
+
+First, interview me one question at a time: my role at Two Palms, the work I produce most often (client emails, decks, reports, briefs, captions, plans), who reads it, and what great looks like in my job. Use what you already know about me and Two Palms from my instructions and Drive.
+
+Then propose a panel of 4 or 5 experts who would make my work better. Include someone who knows my craft deeply, the person on the receiving end (the client or reader), a sceptic who hunts for holes and risks, and someone two levels more senior than me. For each, give the role, what they care about and what they'd catch. Let me swap or add people before you go on.
+
+Then build the skill. When I run it on a piece of work, it should:
+1. Have each expert review it on their own and score it out of 10, with one line on why.
+2. List the holes: what's wrong, missing, unclear or risky, including anything against the Two Palms AI policy or the client's rules.
+3. Give the top 3 changes, ranked, each with a concrete fix.
+4. Give one idea that would level it up, not just fix it.
+5. Offer to make the changes and run the panel again.
+Keep the output short and scannable. Never invent facts, numbers or names.
+
+When it's ready, give me the skill to save, and tell me exactly how to run it.
+
+Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "make-it-a-skill",
+    tab: "Everyday",
+    title: "Turn a chat that worked into a skill",
+    when: "Session 3. At the end of any chat you'll want to repeat: timesheets, triage, reports, recaps.",
+    body: `That worked. Turn what we just did into a skill I can reuse. Give it a short name, say when it should be used, write the steps it follows and what good output looks like, and include anything I had to correct along the way so it gets it right first time. Then give me the skill to save.
+
+Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
     id: "project-log-rule",
     tab: "Everyday",
     title: "The Project Log rule (for project instructions)",
