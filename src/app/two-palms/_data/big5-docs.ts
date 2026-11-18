@@ -79,3 +79,36 @@ Not part of Foundations. Once A or B is built, one 30-minute session for everyon
 
 Prices are list prices seen on 5 Nov 2026.
 `;
+
+export const REPORTING_PLAN = `# Reporting: the plan, v1
+18 Nov 2026. Written from the 5 Nov intake, Stef's pack (17 Nov) and the research behind the build. Owner Stef, Fergus as the client's voice, Jem builds.
+
+## What this job is
+Three things, not one. The intake: get numbers out of Sprout, Sprinklr, Brandwatch, Klear and creators' phones into one place with nobody copying them. The report system: one data model, one check, one locked look, a few approved variants, per-client settings, no knobs. The product layer: live portals, integrated launch reports, forward looks, client newsletters. The first two are this job. The third is a product and goes to Ed first.
+
+## How the data moves
+Not by Claude logging into platforms with stored logins. No vendor supports it, 2FA breaks it, and it would put client logins (including a bank's) inside a bot. Instead: a Drive drop-zone per client. A human exports from the platform (or a connector snapshots it), Claude turns whatever lands there into one standard table, code computes every number and delta, Claude writes the so-what, a check lists what is missing or odd, the owner approves in Slack, the portal renders it.
+
+## The pilot
+Turo. Sprout, monthly, Taryn, no regulator, the report closest to the baseline template. November's report, built from the Sprout export, run beside Taryn's manual one. Nothing goes to Turo. We compare: errors, hours, what the check caught. That is what live on 18 Dec means. Then two more months in parallel before any client sees an automated report.
+
+## What has to happen, in order
+1. Stef and Fergus confirm the pilot.
+2. Stef and Taryn send the raw Sprout export behind Turo October and the Zambrero monthly template. Stef confirms the Sprout plan (Advanced has an API; below that, a human clicks Export) and whether the Xane account is switching.
+3. Fergus sends his PR reports.
+4. Jem writes the one-page definition of live and the data model. Stef and Fergus sign the first.
+5. Jem builds the pilot on Turo October as a dry run, compares with Taryn's October report.
+6. Early December: Turo November runs both ways. Mid December: Stef and Fergus sign off.
+
+## After the pilot
+January: Netflix, built on Shainah's weekly inputs doc, Sprinklr exports, four cadences. January: talent, Klear export plus a typed creator form, screenshots as evidence only, creator data requests and reminders automated from the contracts. Before Bank First or Netflix go near the portal: move it to a Two Palms domain with Workspace sign-in. Then roll out client by client: Owala, Zambrero once it is on Sprout, the rest.
+
+## Stef's level-up ideas
+1 is the pilot. 6, the running what-works tracker, is built into the pilot for free. 2 to 5 (live KPI portal, integrated launch reports, forward look, client newsletter) are a product. Jem takes them to Ed before anything is priced; they sit outside the signed scope unless Ed places them in Systems and Tools.
+
+## Straight talk on the numbers
+At 2 to 3 hours per report per client per month, automating the social reports saves a day or two a month across the clients. Real, and worth having, but the money in this job is in the product ideas and in reports that stop going out wrong. Judge the pilot on error rate and hours, not on a revolution.
+
+## Housekeeping
+The Zambrero portal password is written in the shared pack. It should live in NordPass with the rest and nowhere else. Ed still needs to confirm Stef as owner.
+`;
