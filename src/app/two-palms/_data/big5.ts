@@ -5,6 +5,9 @@
 // so keep ids stable once published. Dates are only written when they are confirmed.
 import { REPORTING_INTAKE, REPORTING_PLAN, REPORTING_TRANSCRIPT, SCOPING_OPTIONS, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
+/** When the quickfire summary was last checked. */
+export const B5_UPDATED = "Wed 18 Nov";
+
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
 export type B5Stage = -1 | 0 | 1 | 2 | 3 | 4;
@@ -21,6 +24,8 @@ export interface B5Job {
   owner: string; with: string; tools: string; done_looks_like: string;
   /** One short paragraph: what this job actually is, for someone landing on the page cold. */
   tldr: string;
+  /** One or two sentences for the orange 'where we are' box. */
+  quick: string;
   stage: B5Stage; now: string;
   next: { what: string; who: string; when: string };
   todos: B5Todo[]; notes: B5Note[]; docs: B5Doc[];
@@ -39,9 +44,10 @@ export const BIG5: B5Job[] = [
     tools: "Barry the Budget Builder in Claude, the master scoping sheet, rate cards, Xero. Productive until March.",
     done_looks_like: "Everyone who scopes uses Barry in Claude, from one live rate card. Every quote goes out as the branded Xero quote, with a Munich version to work out. A senior does the final check.",
     tldr: "Two Palms sends out quotes in about ten different shapes, and the numbers behind them live in a master spreadsheet with at least one formula error. This job picks one quote template and builds a Claude Skill that drafts a scope from a brief, asks a junior the questions they would otherwise miss, and knows which numbers need a senior sign-off. Done means a scope that looks the same whoever wrote it.",
+    quick: "Intake done. One quote format agreed (the branded Xero quote) and Barry is the base. Where Barry lives and what replaces Productive gets decided by end of January, once timesheets land.",
     stage: 1,
     now: "Intake done. Barry is the base and Xero is the quote. The options are up: where Barry lives and what replaces Productive. Munich runs on Qonto and DATEV, not Xero, so the quote and finance side needs a Munich version too.",
-    next: { what: "Read the options (Documents) and pick where Barry lives and what replaces Productive", who: "Ed, Sam", when: "Tue 10 Nov" },
+    next: { what: "Scoping regroup: settle the rate card and the quote, and park Barry's home and Productive until timesheets land", who: "Ed, Sam, Jem", when: "to confirm" },
     todos: [
       { id: "scoping-3", stage: 0, task: "Book the intake call", who: "Jem", when: "Thu 5 Nov", done: true },
       { id: "scoping-4", stage: 0, task: "Hold the intake call", who: "Sam, Ed, Jem", when: "Thu 5 Nov", done: true },
@@ -114,9 +120,10 @@ export const BIG5: B5Job[] = [
     tools: "Productive",
     done_looks_like: "Near-automatic entry with no chasing. People confirm a draft in about two minutes a day.",
     tldr: "Timesheets are late, thin and nobody visibly uses them, so nobody fills them in well. This job has Claude draft each person's day from their calendar, Granola, Slack and Productive, then ask them to confirm in two minutes. Nothing submits on its own. A weekly capacity brief and a monthly close-out give the data a reader, which is the real fix.",
+    quick: "Plan written with Micky. Next: her six checks and one workshop to lock it, with legal advice before any pilot. Pilot early in the new year, go or no-go by end of January.",
     stage: 1,
     now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked. Micky is away until Mon 23 Nov; she and Jem will go through timesheets at a catch-up next week.",
-    next: { what: "Timesheets session with Sam (Munich side)", who: "Sam, Jem (Ed, Allyssa welcome)", when: "Tue 17 Nov, 10:30 Munich" },
+    next: { what: "Answer the six checks in the brief, then book the workshop", who: "Micky, Jem", when: "to confirm" },
     todos: [
       { id: "timesheets-3", stage: 0, task: "Intake call with Micky", who: "Micky, Jem", when: "Thu 29 Oct", done: true },
       { id: "timesheets-4", stage: 0, task: "Write the plan as a brief for Micky", who: "Jem", when: "Thu 29 Oct", done: true },
@@ -124,7 +131,7 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-1", stage: 1, task: "Book and run the workshop", who: "Jem", when: "to confirm" },
       { id: "timesheets-6", stage: 1, task: "Get employment-law advice before the pilot (NSW notice, Munich works council)", who: "Micky", when: "to confirm" },
       { id: "timesheets-7", stage: 1, task: "Review Productive's own AI time-tracking agents", who: "Micky, Jem", when: "to confirm" },
-      { id: "timesheets-10", stage: 1, task: "Timesheets session with Sam (Munich side)", who: "Sam, Jem", when: "Tue 17 Nov, 10:30 Munich" },
+      { id: "timesheets-10", stage: 1, task: "Timesheets session with Sam (Munich side). Rebook: the 17 Nov slot didn't happen", who: "Sam, Jem", when: "to confirm" },
       { id: "timesheets-11", stage: 1, task: "Check the Claude settings let staff create their own skills (Lucy is blocked)", who: "to confirm", when: "to confirm" },
       { id: "timesheets-12", stage: 1, task: "Send Micky a time for next week's catch-up, with timesheets on the agenda", who: "Jem", when: "next week (Micky back Mon 23 Nov)" },
       { id: "timesheets-2", stage: 2, task: "Proof of concept: automate Jem's own Productive timesheet", who: "Jem", when: "to confirm" },
@@ -132,6 +139,9 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Wed 18 Nov", title: "Update", who: "Jem",
+      heard: ["The Munich session with Sam listed for Tue 17 Nov didn't happen: Sam was away. To rebook."],
+    }, {
       date: "Tue 17 Nov", title: "Slack update", who: "Micky, Jem",
       heard: ["Micky said she still needs to dig into timesheets. She is out of the office from 3pm today and back Mon 23 Nov.", "Jem has heard Stef, and maybe one other person, are already trying to automate parts of it."],
       decided: ["Micky and Jem will go through timesheets together at a catch-up next week. Jem will send the time."],
@@ -165,6 +175,7 @@ export const BIG5: B5Job[] = [
     tools: "Sprout Social (Turo, Owala; Zambrero moving to it by end Nov), Sprinklr for Netflix (client's tool), Brandwatch for Zambrero until the move, Klear plus creator screenshots for talent. Fergus's spreadsheet-to-portal as the front end. Logins live in NordPass",
     done_looks_like: "Exports land in a Drive drop-zone, Claude turns them into one standard table, code does the maths, Claude writes the so-what, a check flags gaps, the owner approves in Slack, the portal renders it. One locked template. Nobody copies numbers.",
     tldr: "Every client report is built by hand: someone pulls numbers out of Sprout, Sprinklr or Brandwatch, pastes them into a spreadsheet, and the spreadsheet feeds Fergus's client portal. The portal is good. This job automates the pipe behind it: exports land in a drop-zone, Claude turns them into one standard table, code does the maths, Claude writes the so-what, a check flags gaps, the owner approves in Slack. One locked template, no knobs. First live report is Turo in December.",
+    quick: "Stef's pack is in, so we're planning. One Sprout client (Turo), one monthly report, run beside the manual one and live 18 December. Netflix and talent follow in January.",
     stage: 1,
     now: "Stef's pack is in (client list, three reports, six level-up ideas). Pilot proposed: Turo, November's monthly report, built from a Sprout export and run beside Taryn's manual one. Live 18 Dec. Three inputs block the build: the raw Sprout export, the Sprout plan tier, Fergus's PR reports.",
     next: { what: "Send the raw Sprout export behind Turo October and confirm which Sprout plan Two Palms is on", who: "Stef", when: "to confirm" },
@@ -266,15 +277,19 @@ export const BIG5: B5Job[] = [
     tools: "Productive, Xero in Australia, Qonto and DATEV in Munich",
     done_looks_like: "To shape at intake.",
     tldr: "Budgets, invoicing and reconciliation run across Productive and a finance tool still to be confirmed. This job starts with an intake with Ed and Sam to map how money moves from a signed scope to a paid invoice, where it goes wrong, and which steps a system can own. Nothing is scoped until the finance tool is named.",
+    quick: "Not started: Sam co-owns it and was away. The intake gets rebooked with Sam, Ed and Allyssa, built for Xero in Australia and Qonto and DATEV in Munich from day one.",
     stage: -1,
-    now: "Not started. Finance tools are confirmed: Xero in Australia, Qonto and DATEV in Munich. The intake call is booked.",
-    next: { what: "Intake call: budgets and invoicing. Ed and Allyssa especially welcome, as the rate card sits with them", who: "Sam, Jem (Ed, Allyssa)", when: "Thu 19 Nov, 10:30 Munich" },
+    now: "Not started. Sam co-owns this and was away, so the intake didn't happen. Finance tools are confirmed: Xero in Australia, Qonto and DATEV in Munich.",
+    next: { what: "Rebook the intake call. Ed and Allyssa especially welcome, as the rate card sits with them", who: "Sam, Jem", when: "to confirm" },
     todos: [
       { id: "finance-1", stage: 0, task: "Confirm the finance tool", who: "Ed", when: "to confirm", done: true },
       { id: "finance-2", stage: 0, task: "Book the intake call", who: "Jem", when: "Wed 11 Nov", done: true },
-      { id: "finance-3", stage: 0, task: "Hold the intake call", who: "Sam, Jem (Ed, Allyssa)", when: "Thu 19 Nov, 10:30 Munich" },
+      { id: "finance-3", stage: 0, task: "Hold the intake call", who: "Sam, Jem (Ed, Allyssa)", when: "to confirm" },
     ],
     notes: [{
+      date: "Wed 18 Nov", title: "Update", who: "Jem",
+      heard: ["The intake listed for Thu 19 Nov wasn't booked: Sam was away. To rebook."],
+    }, {
       date: "Wed 11 Nov", title: "Slack update", who: "Sam, Jem",
       decided: ["Budgets and invoicing intake booked for Thu 19 Nov, 10:30 Munich time (8:30pm Sydney). Sam suggested Ed and Allyssa join this one, as the rate card sits with them."],
     }, {
@@ -290,14 +305,18 @@ export const BIG5: B5Job[] = [
     tools: "Slack client channels, monday.com for Zambrero, Sam's R&R docs",
     done_looks_like: "Claude reads email, Slack, Drive and Granola and puts each person's tasks into their daily briefing. No manual board updates.",
     tldr: "Tasks live in people's heads, Slack threads and the odd board, and client hygiene slips when nobody is watching. This job has Claude read email, Slack, Drive and Granola and put each person's tasks into their daily briefing, so nobody updates a board by hand. It starts with an intake with Nicky and Sam on where a task should live.",
+    quick: "Not started: Sam was away and the owner is changing. Munich intake with Sam and Will first; Australia starts in the new GAD's first week in December, with Fergus's WIP and follow-up standards folded in.",
     stage: -1,
-    now: "Not started. Intake time proposed, waiting on Sam.",
-    next: { what: "Confirm the intake time (Jem proposed Thu 19 Nov, 13:15 Munich)", who: "Sam", when: "to confirm" },
+    now: "Not started. Sam was away and the owner is changing: Nicky finishes 24 Nov and the new Group Account Director starts in December. Munich goes first with Sam and Will; Australia starts with the new GAD.",
+    next: { what: "Book the Munich intake", who: "Sam, Jem", when: "to confirm" },
     todos: [
       { id: "tasks-1", stage: 0, task: "Book the intake call", who: "Jem", when: "to confirm" },
       { id: "tasks-2", stage: 0, task: "Decide where a task lives: personal to-do or client board", who: "Nicky, Sam", when: "to confirm" },
     ],
     notes: [{
+      date: "Wed 18 Nov", title: "Update", who: "Jem",
+      heard: ["No intake was booked while Sam was away. Munich first with Sam and Will; Australia in the new GAD's first week in December."],
+    }, {
       date: "Wed 11 Nov", title: "Slack update", who: "Sam, Jem",
       heard: ["Sam offered Fri 20 Nov at 10:00 Munich for this intake."],
       decided: ["Fri 20 is Jem's day off, so he asked for Thu 19 Nov at 13:15 Munich instead."],
