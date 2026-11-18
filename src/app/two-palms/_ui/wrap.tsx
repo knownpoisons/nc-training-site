@@ -137,6 +137,18 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
     </Sec>
   ) : null;
 
+  const lines = r.lines ? (
+    <Sec k="Lines to keep" h={r.lines.head} id="lines">
+      {r.lines.intro ? <p className="wp-intro">{r.lines.intro}</p> : null}
+      <ul className="wp-lines">
+        {r.lines.items.map((x) => (
+          <li key={x.t}><span className="wp-lines-t">{x.t}</span><span className="wp-lines-p">&ldquo;{x.p}&rdquo;</span><CopyButton text={x.p} label="Copy" className="btn btn--sec wp-lines-copy" /></li>
+        ))}
+      </ul>
+      <p className="wp-lines-more"><Link href="/two-palms/prompts">All of these are in the prompt library too <IconArrow /></Link></p>
+    </Sec>
+  ) : null;
+
   const cards = (k: string, h: string, items?: { t: string; d: string }[]) => items ? (
     <Sec k={k} h={h}>
       <ul className="wp-cards">{items.map((x) => <li key={x.t}><b>{x.t}</b><span>{x.d}</span></li>)}</ul>
@@ -180,7 +192,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
             {homework}
           </aside>
           <div className="wp-main">
-            {covered}{bigIdea}{framework}{instr}
+            {lines}{covered}{bigIdea}{framework}{instr}
             {cards("What to remember", "Worth remembering.", r.remember)}
             {cards("Helpful hints", "Habits that help.", r.hints)}
             {takeIt}{comingNext}
@@ -206,7 +218,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
       )}
       <div className="wp-col">
         {homework}
-        {covered}{bigIdea}{framework}{instr}
+        {lines}{covered}{bigIdea}{framework}{instr}
         {v === "b" ? (
           <div className="wp-two">
             <Sec k="What to remember"><ul className="wp-plain">{(r.remember ?? []).map((x) => <li key={x.t}><b>{x.t}</b> {x.d}</li>)}</ul></Sec>

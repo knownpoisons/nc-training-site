@@ -31,6 +31,8 @@ export interface Recap {
   hints?: RecapItem[];
   /** Session 2: what goes in your personal instructions. Numbered, last item is the closer line (copyable). */
   instructions?: { head: string; items: RecapItem[]; closer: string; note: string };
+  /** Session 3+: short copyable lines from the session (also in the prompt library). */
+  lines?: { head: string; intro?: string; items: { t: string; p: string }[] };
 }
 
 export interface FSession {

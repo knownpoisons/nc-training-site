@@ -256,7 +256,7 @@ Ask me a series of pertinent questions to understand more about my context and c
     id: "expert-panel",
     tab: "Everyday",
     title: "Build your Expert Panel (skill)",
-    when: "Session 3. Run once to build the skill. Then before anything goes out: \"Run my Expert Panel on this.\" Say \"Run it again\" for a fresh pass.",
+    when: "Session 3. Run once to build the skill, then save it. Set your own bar: 90, 95 or 100. Then before anything goes out: \"Run my Expert Panel on this\" or type /expertpanel.",
     body: `INSTRUCTIONS
 Build me a reusable skill called "Expert Panel" that I can run on any piece of my work before it goes out.
 
@@ -266,7 +266,7 @@ Build me a reusable skill called "Expert Panel" that I can run on any piece of m
 4. Build the skill. When I run it on a piece of work:
 - Each expert reviews it on their own and scores it out of 10.
 - The Chair tallies everything into a confidence score out of 100: how sure the panel is that this is ready to go out.
-- If the confidence score is under 90, stop, make the fixes and run the panel again. Repeat up to 3 rounds. If it still can't reach 90, tell me what's blocking it.
+- If the confidence score is under 95, stop, make the fixes and run the panel again from scratch. Repeat up to 3 rounds. If it still can't reach 90, tell me in one line what's blocking it.
 - If I say "run it again", do a fresh pass from scratch.
 
 CONTEXT
@@ -290,6 +290,94 @@ Ask me a series of pertinent questions to understand more about my context and c
     body: `That worked. Turn what we just did into a skill I can reuse. Give it a short name, say when it should be used, write the steps it follows and what good output looks like, and include anything I had to correct along the way so it gets it right first time. Then give me the skill to save.
 
 Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "run-expert-panel",
+    tab: "Everyday",
+    title: "Run your Expert Panel",
+    when: "Session 3. Skills never run by themselves: ask for it in the chat, or type / and pick it.",
+    body: `Run my Expert Panel on this.`,
+  },
+  {
+    id: "panel-full-breakdown",
+    tab: "Everyday",
+    title: "Get the panel's full breakdown",
+    when: "Session 3. After a panel run, when the TL;DR isn't enough.",
+    body: `Give me the full breakdown.`,
+  },
+  {
+    id: "panel-run-again",
+    tab: "Everyday",
+    title: "Run the panel again",
+    when: "Session 3. After your own edits, or when you want a second opinion. Every run is a fresh pass.",
+    body: `Run my Expert Panel again, a completely fresh pass from scratch.`,
+  },
+  {
+    id: "make-it-better",
+    tab: "Everyday",
+    title: "Don't take the first answer",
+    when: "Session 3. Any chat, any output. Ask it to go again before you accept it.",
+    body: `How can I make this better? More succinct, and easier to understand for the person who's going to receive it.`,
+  },
+  {
+    id: "guest-panel",
+    tab: "Everyday",
+    title: "Add a famous name to the panel",
+    when: "Session 3. Add someone whose thinking you admire, or Snoop Dogg, and see what comes back. Remove them any time.",
+    body: `For this run, add [name, e.g. Snoop Dogg] to my Expert Panel as a guest. Give me their take in their own voice: one line on what they think, one thing they'd change and one idea to level it up. Then run my Expert Panel on this.`,
+  },
+  {
+    id: "second-panel",
+    tab: "Everyday",
+    title: "Make a second panel for a different kind of work",
+    when: "Session 3. One panel for creative, one for numbers, one for client decks. Give each a different name so you can call it.",
+    body: `Make me a second Expert Panel skill called [name], just for [creative work / reports and numbers / client decks]. Use the same structure, scoring and confidence loop as my Expert Panel, but propose experts who fit this kind of work. Let me swap people before you build it, then give me the skill to save.
+
+Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "share-skill",
+    tab: "Everyday",
+    title: "Share a skill with a teammate",
+    when: "Session 3. Skills are just text. Send the file and they save it in their own Claude.",
+    body: `Give me my [skill name] skill as an MD file so I can share it with [teammate]. Add two lines at the top telling them what it does and how to run it.`,
+  },
+  {
+    id: "rename-skill",
+    tab: "Everyday",
+    title: "Rename a skill",
+    when: "Session 3. Call it anything, as long as you'll remember it.",
+    body: `Rename my [skill name] skill to [new name], and tell me how to call it now.`,
+  },
+  {
+    id: "skills-cleanup",
+    tab: "Everyday",
+    title: "Clean up your skills",
+    when: "Session 3. Once you've got a handful. Skills can be upgraded, combined or deleted any time.",
+    body: `Give me a list of all my skills. For each one, suggest one upgrade. Then tell me which ones I should combine, and which ones I should delete because I don't use them.`,
+  },
+  {
+    id: "write-my-prompt",
+    tab: "Everyday",
+    title: "Get Claude to write the prompt",
+    when: "Session 3, from the spotlight. Don't ask for the output straight away. Give it the problem and let it write the prompt, then fix the prompt.",
+    body: `I want Claude to take over [the job, e.g. my timesheets]. Here's the problem: [what happens, which tools, why it's painful, what done looks like]. Write me the prompt to do it, and tell me anything you'd need from me to make it work.
+
+Ask me a series of pertinent questions to understand more about my context and constraints before you get started.`,
+  },
+  {
+    id: "wrap-to-md",
+    tab: "Everyday",
+    title: "Wrap a chat into an MD file",
+    when: "Session 3. When the context ring is nearly full, or to hand your work to a teammate. Paste it into a new chat in the same project.",
+    body: `Wrap up this chat into an MD file: what we did, decisions made, outputs and where they live, and what's next. Keep it short. I'll paste it into a new chat in this project or send it to a teammate.`,
+  },
+  {
+    id: "whats-new",
+    tab: "Everyday",
+    title: "Ask Claude what's new",
+    when: "Session 3. Claude is the best guide to its own new features. Ask once a week.",
+    body: `What's new in Claude this week? Based on my history and the work I do, what can you do now that I didn't know about? Is there anything I ran last week that would be better with a new feature? Keep it to the top 3.`,
   },
   {
     id: "project-log-rule",
