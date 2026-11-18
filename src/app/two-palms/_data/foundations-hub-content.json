@@ -604,15 +604,77 @@
       "homework": [
         {
           "type": "do",
-          "text": "Turn one job you repeat every week into a skill, using the \"Turn a chat that worked into a skill\" prompt."
+          "short": "Build your Expert Panel",
+          "text": "Paste the prompt, answer its questions about your job, pick your panel, save the skill.",
+          "time": "15 min",
+          "why": "This is the one we demoed. Claude picks a panel of experts for your job, plus a Chair who scores how ready your work is out of 100. Under 90, it fixes the work and runs again before you see it. Not a creative? It builds the panel for your role.",
+          "steps": [
+            "New chat on Sonnet 5.5. Copy the prompt below and paste it in.",
+            "Answer its questions one at a time, by voice. What your role is, what you make most, who reads it, what great looks like.",
+            "It proposes 4 or 5 experts and a Chair. Swap anyone you'd rather have. Then say \"Build it.\"",
+            "When it hands you the skill, click save on the skill card. No save button? Download the file, then Settings › Capabilities › Skills › Upload skill. Check it's switched on.",
+            "Stuck or blocked? Keep the chat (you can still run the panel inside it) and post in #tpm_ai_training."
+          ],
+          "prompt": "INSTRUCTIONS\nBuild me a reusable skill called \"Expert Panel\" that I can run on any piece of my work before it goes out.\n\n1. Interview me one question at a time: my role at Two Palms, the work I produce most often (client emails, decks, reports, briefs, captions, plans), who reads it, and what great looks like in my job.\n2. Propose a panel of 4 or 5 experts who would make my work better: someone who knows my craft deeply, the person on the receiving end (the client or reader), a sceptic who hunts for holes and risks, and someone two levels more senior than me. For each, give the role, what they care about and what they'd catch. Let me swap or add people before you go on.\n3. Add a Chair who doesn't review, only tallies.\n4. Build the skill. When I run it on a piece of work:\n- Each expert reviews it on their own and scores it out of 10.\n- The Chair tallies everything into a confidence score out of 100: how sure the panel is that this is ready to go out.\n- If the confidence score is under 90, stop, make the fixes and run the panel again. Repeat up to 3 rounds. If it still can't reach 90, tell me what's blocking it.\n- If I say \"run it again\", do a fresh pass from scratch.\n\nCONTEXT\nUse what you already know about me and Two Palms from my instructions and Drive. Check the work against the Two Palms AI policy and the client's rules.\n\nCONSTRAINTS (how the panel reports back)\n- Start with a one-line TL;DR: the confidence score, ready or not, and which round.\n- Then a short bullet list: each expert's score with one line why, the top 3 changes ranked with the fix, and one idea to level it up.\n- No long paragraphs. Give me the full breakdown only if I ask for it.\n- Never invent facts, numbers or names.\n\nWhen it's ready, give me the skill to save, and tell me exactly how to run it.\n\nAsk me a series of pertinent questions to understand more about my context and constraints before you get started.",
+          "prompt_label": "The Expert Panel prompt: paste it in whole"
         },
         {
           "type": "do",
-          "text": "Run your Expert Panel on one real piece of work before it goes out."
+          "short": "Run it on real work",
+          "text": "Before your next email, deck or brief goes out, run the panel on it.",
+          "time": "5 min",
+          "why": "It starts short on purpose: a one-line TL;DR with the confidence score, then a few bullets. Go deeper only if you need to.",
+          "steps": [
+            "New chat. Paste the piece of work, or point it at the file in Drive.",
+            "Say the line below.",
+            "Read the TL;DR and the top 3 changes. Want the detail? Say \"Give me the full breakdown.\"",
+            "Made your own edits? Say \"Run it again.\" Every run is a fresh pass and often finds something new.",
+            "Wrong expert for this job? \"Swap the sceptic for a lawyer\" works."
+          ],
+          "prompt": "Run my Expert Panel on this.",
+          "prompt_label": "The line"
+        },
+        {
+          "type": "do",
+          "short": "Turn one weekly job into a skill",
+          "text": "Pick a job you explain to Claude every week. Get one chat right, then turn it into a skill.",
+          "time": "10 min",
+          "why": "Timesheets, inbox triage, reports, recaps, briefs. Do it once well, save it, never explain it again. The corrections you make along the way are what make it right first time next week.",
+          "steps": [
+            "Pick the job. Ask yourself: what do I explain to Claude every single week?",
+            "Do it in a chat until the result is right. Correct it as you go.",
+            "At the end, paste the prompt below and answer its questions.",
+            "When it hands you the skill, click save on the skill card. No save button? Download the file, then Settings › Capabilities › Skills › Upload skill. Check it's switched on.",
+            "Next week, just ask for the job. It picks up the skill."
+          ],
+          "prompt": "That worked. Turn what we just did into a skill I can reuse. Give it a short name, say when it should be used, write the steps it follows and what good output looks like, and include anything I had to correct along the way so it gets it right first time. Then give me the skill to save.\n\nAsk me a series of pertinent questions to understand more about my context and constraints before you get started.",
+          "prompt_label": "Paste at the end of a chat that worked"
+        },
+        {
+          "type": "do",
+          "short": "Own a client project? Add the Project Log",
+          "text": "Paste the Project Log rule into your project's instructions once, and make a Project Log file in it.",
+          "time": "5 min",
+          "why": "Your chats in a shared project are private. The Project Log is where what you learn lands, so the next person starts where you left off. Only for whoever owns the project.",
+          "steps": [
+            "Open the client project › instructions. Paste the rule below at the end and save.",
+            "Add a file to the project called Project Log.",
+            "End of any useful chat in the project, Claude offers an entry. Or ask: \"Write a Project Log entry for this chat in the standard format, under 100 words.\"",
+            "Paste the entry into the Project Log file. Thirty seconds."
+          ],
+          "prompt": "At the end of any substantial chat in this project, offer a Project Log entry in this format: Date | Author | What we did | Decisions made | Outputs and where they live | Open questions. Keep it under 100 words so it can be pasted straight into the Project Log file.",
+          "prompt_label": "The Project Log rule: paste into project instructions"
         },
         {
           "type": "share",
-          "text": "Post your panel's best catch in #tpm_ai_training."
+          "short": "Share your panel's best catch",
+          "text": "Post the best thing your Expert Panel caught that you'd have missed.",
+          "time": "2 min",
+          "why": "Best catch gets the spotlight next week.",
+          "cta": {
+            "label": "#tpm_ai_training",
+            "href": "https://twopalmsmedia.slack.com/archives/C0CD6JZPVJ8"
+          }
         }
       ],
       "slack": "What did your Expert Panel catch that you'd have missed?",
@@ -659,7 +721,88 @@
         "Bring your laptop, Sydney included. We build live",
         "Bring one real piece of work you're about to send: an email, deck, report or brief",
         "Skills are now switched on for everyone. If Claude says you're blocked, tell us in the channel"
-      ]
+      ],
+      "recap": {
+        "goal": "We saw what the team built this week, set up the three layers of context, and built an Expert Panel skill live that checks your work and scores it before it goes out.",
+        "agenda": [
+          "Anyone can make it now. People make it good.",
+          "Wins from the week: a timesheet robot, skills for timesheets and inbox triage, a creative database with its own Chrome extension",
+          "Spotlight: a Claude-drafted timesheet that asks before it logs",
+          "Three layers: instructions, projects, skills",
+          "Projects, the pro version: let it brief itself from Drive",
+          "Shared projects and the Project Log",
+          "Skills: any chat that worked, never explained again",
+          "Can we trust our output? The Expert Panel, built live",
+          "The confidence score: under 90, it goes round again",
+          "What's new in Claude: one home, real documents, side chats, the context ring, keep going away"
+        ],
+        "big_idea": {
+          "head": "Can we trust our output? Make it check itself.",
+          "body": [
+            "It always sounds sure. A wrong answer reads exactly as confidently as a right one, and nobody has time to check every email, deck and brief line by line.",
+            "So build the check in. A panel of experts picked for your job reviews the work, a Chair scores how ready it is out of 100, and under 90 it fixes the work and goes again.",
+            "You only ever see the version that cleared the bar."
+          ]
+        },
+        "framework": {
+          "head": "Three layers. Set each up once.",
+          "intro": "Stop repeating yourself. Each layer knows something different.",
+          "split": [
+            {
+              "n": "1",
+              "who": "Instructions",
+              "d": "Know you. Who you are and how you want answers. Every chat. Set in Session 2."
+            },
+            {
+              "n": "2",
+              "who": "Projects",
+              "d": "Know the client. Their brief, rules, tone and files. Every chat inside the project."
+            },
+            {
+              "n": "3",
+              "who": "Skills",
+              "d": "Know the job. How a task is done, step by step. Any chat, whenever the job comes up."
+            }
+          ],
+          "twist": "The twist: you don't write any of it. Talk it through, then ask Claude to write the instructions, the project brief or the skill."
+        },
+        "remember": [
+          {
+            "t": "Short first, long if you need it.",
+            "d": "The panel gives a TL;DR and bullets. Say \"Give me the full breakdown\" for the rest."
+          },
+          {
+            "t": "Run it again.",
+            "d": "Every run is a fresh pass. Run it after your own edits too."
+          },
+          {
+            "t": "Your chats are yours. The project is ours.",
+            "d": "In a shared project, instructions and files are shared. Your chats stay private."
+          },
+          {
+            "t": "Nothing ships under 90.",
+            "d": "If the panel can't get there in 3 rounds, it tells you what's blocking it. Usually something only you know."
+          }
+        ],
+        "hints": [
+          {
+            "t": "Let the project brief itself.",
+            "d": "Connect the client's Drive folder and ask it to write the project instructions. Check it, fix it, paste it in."
+          },
+          {
+            "t": "Watch the ring.",
+            "d": "The ring by the chat box shows how full the chat is. Nearly closed? New chat."
+          },
+          {
+            "t": "Can't save a skill?",
+            "d": "Download the file and upload it in Settings › Capabilities › Skills. Still stuck, post in the channel."
+          },
+          {
+            "t": "Not everything's on our seats yet.",
+            "d": "New features are rolling out. If you don't see one, it's coming."
+          }
+        ]
+      }
     },
     {
       "n": 4,
