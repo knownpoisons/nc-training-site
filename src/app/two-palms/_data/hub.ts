@@ -260,7 +260,7 @@ Ask me a series of pertinent questions to understand more about my context and c
     body: `INSTRUCTIONS
 Build me a reusable skill called "Expert Panel" that I can run on any piece of my work before it goes out.
 
-1. Interview me one question at a time: my role at Two Palms, the work I produce most often (client emails, decks, reports, briefs, captions, plans), who reads it, and what great looks like in my job.
+1. Check my instructions first, and only ask me what they don't already cover. Interview me one question at a time: my role at Two Palms, the work I produce most often (client emails, decks, reports, briefs, captions, plans), who reads it, and what great looks like in my job.
 2. Propose a panel of 4 or 5 experts who would make my work better: someone who knows my craft deeply, the person on the receiving end (the client or reader), a sceptic who hunts for holes and risks, and someone two levels more senior than me. For each, give the role, what they care about and what they'd catch. Let me swap or add people before you go on.
 3. Add a Chair who doesn't review, only tallies.
 4. Build the skill. When I run it on a piece of work:
