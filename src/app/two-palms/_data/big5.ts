@@ -142,6 +142,14 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Wed 18 Nov", title: "AI training (timesheets segment)", who: "Lucy, Jem",
+      heard: [
+        "At this week's AI training Lucy walked the team through her timesheet setup, as agreed on Slack.",
+        "How she did it: she asked Claude to write the prompt for her, fixed what it got wrong (it missed some of what she wanted), did a trial run, then had it show a table to approve before anything goes into Productive. It took her a couple of hours, on and off.",
+        "Jem told the team Micky, Lucy and Fergus have each tried automating their own timesheets, and that he and Micky are working on one Two Palms-wide version.",
+      ],
+      open: ["Whether Lucy's approve-a-table step becomes the standard for the team-wide version."],
+    }, {
       date: "Wed 18 Nov", title: "Initiatives Connect", who: "Fergus, Ed, Stef, Jem",
       heard: [
         "Timesheet compliance is about 50%, and the data that does come in is probably not accurate.",
