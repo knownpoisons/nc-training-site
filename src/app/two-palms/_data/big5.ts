@@ -200,7 +200,9 @@ export const BIG5: B5Job[] = [
         "Influencer results have no shared platform: managers email each influencer for their backend stats.",
       ],
       decided: [
-        "Keep the portal as the front end. The job is moving the data: Claude fills the spreadsheet from each platform automatically. How it connects to each platform gets settled in the plan.",
+        "Keep the portal as the front end. The job is moving the data: the spreadsheet fills itself from each platform, nobody copies numbers.",
+        "How it connects (settled after the call, 5 Nov): not by Claude logging into Sprout or the other platforms with stored logins. No vendor supports it, 2FA breaks it, and it would put client logins inside a bot. Instead: exports land in a Drive drop-zone per client, Claude turns them into one standard table, code does the maths, Claude writes the so-what. Paid connectors start snapshotting Meta, IG and TikTok now, because TikTok only keeps about 60 days of history.",
+        "First live report by 18 Dec: one Sprout-based client, one monthly report, run alongside the manual version for three cycles. Not Zambrero, Netflix or Bank First.",
         "A check runs before anything reaches the team, then the owner gets a Slack ping to approve. Nobody adds their own version of the report: leadership locks one template.",
         "Influencer data requests and reminders get sent automatically, based on the contracts in the client folders.",
         "Map the upgrades and paid add-ons first (more frequent reporting, next month's briefs built from the insights) so the build is planned with them in mind. The core can still be built first.",
