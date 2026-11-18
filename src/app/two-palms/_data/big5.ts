@@ -120,9 +120,9 @@ export const BIG5: B5Job[] = [
     tools: "Productive",
     done_looks_like: "Near-automatic entry with no chasing. People confirm a draft in about two minutes a day.",
     tldr: "Timesheets are late, thin and nobody visibly uses them, so nobody fills them in well. This job has Claude draft each person's day from their calendar, Granola, Slack and Productive, then ask them to confirm in two minutes. Nothing submits on its own. A weekly capacity brief and a monthly close-out give the data a reader, which is the real fix.",
-    quick: "Plan written with Micky. Next: her six checks and one workshop to lock it, with legal advice before any pilot. Pilot early in the new year, go or no-go by end of January.",
+    quick: "Plan written with Micky; paused while she is away until Mon 23 Nov. Next: her six checks and one workshop to lock it, with legal advice before any pilot. Pilot early in the new year, go or no-go by end of January.",
     stage: 1,
-    now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked. Micky is away until Mon 23 Nov; she and Jem will go through timesheets at a catch-up next week.",
+    now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked. Micky is away until Mon 23 Nov, so the job is paused; she and Jem will go through timesheets at a catch-up next week. Fergus and Lucy have each built their own version of the plan (Claude drafts the timesheet, the person approves it), so Jem will talk to Lucy first to see if it changes the workshop.",
     next: { what: "Answer the six checks in the brief, then book the workshop", who: "Micky, Jem", when: "to confirm" },
     todos: [
       { id: "timesheets-3", stage: 0, task: "Intake call with Micky", who: "Micky, Jem", when: "Thu 29 Oct", done: true },
@@ -134,11 +134,43 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-10", stage: 1, task: "Timesheets session with Sam (Munich side). Rebook: the 17 Nov slot didn't happen", who: "Sam, Jem", when: "to confirm" },
       { id: "timesheets-11", stage: 1, task: "Check the Claude settings let staff create their own skills (Lucy is blocked)", who: "to confirm", when: "to confirm" },
       { id: "timesheets-12", stage: 1, task: "Send Micky a time for next week's catch-up, with timesheets on the agenda", who: "Jem", when: "next week (Micky back Mon 23 Nov)" },
+      { id: "timesheets-13", stage: 1, task: "Talk to Lucy about her timesheet setup and whether it changes the workshop and rollout", who: "Jem", when: "to confirm" },
+      { id: "timesheets-14", stage: 1, task: "Bring Nicky in on timesheets (she used to sell an AI time-tracking product)", who: "to confirm", when: "to confirm" },
+      { id: "timesheets-15", stage: 1, task: "Agree how to benchmark the AI change: admin time taken out, time moved to high-value work", who: "Fergus, Jem", when: "to confirm" },
       { id: "timesheets-2", stage: 2, task: "Proof of concept: automate Jem's own Productive timesheet", who: "Jem", when: "to confirm" },
       { id: "timesheets-8", stage: 3, task: "4-week pilot with about 6 volunteers across both offices", who: "Micky, Sam", when: "to confirm" },
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Wed 18 Nov", title: "Initiatives Connect", who: "Fergus, Ed, Stef, Jem",
+      heard: [
+        "Timesheet compliance is about 50%, and the data that does come in is probably not accurate.",
+        "Fergus has his own setup: Claude reads his email, diary, Slack, Granola and Drive activity and gives him a draft timesheet. It doesn't push to Productive yet; that would be the next step.",
+        "Lucy has automated her own timesheets (Stef raised it).",
+        "Fergus and Ed discussed an effective rate card with the CFO as a KPI: profit per client and per project, and better capacity planning.",
+        "Ed pointed out Nicky used to sell an AI time-tracking product, so she knows the pitfalls and the team's worries.",
+      ],
+      decided: [
+        "Timesheets are paused while Micky is away; Jem picks it up with her on her return.",
+        "Automation is there to help people, not to track or cut them.",
+        "Whatever method is chosen has to be the same for everyone.",
+      ],
+      open: [
+        "A leadership question: stop manual timesheets and have people approve a draft built from their activity, or go fully automatic and accept it won't be 100% right. Even 75% right would beat today.",
+        "Whether Lucy's setup changes the workshop and the team-wide rollout.",
+        "How to benchmark the AI change, e.g. more time on creative and strategy, less on admin, for next year's Best Place to Work entry.",
+      ],
+      actions: [
+        { task: "Talk to Lucy about her timesheet setup", who: "Jem", when: "to confirm" },
+        { task: "Pick timesheets back up with Micky", who: "Micky, Jem", when: "next week (Micky back Mon 23 Nov)" },
+        { task: "Bring Nicky in on timesheets", who: "to confirm", when: "to confirm" },
+        { task: "Agree how to benchmark the AI change", who: "Fergus, Jem", when: "to confirm" },
+      ],
+    }, {
+      date: "Wed 18 Nov", title: "Slack update", who: "Lucy, Jem",
+      heard: ["Lucy sent Jem her timesheet instructions: Claude builds a draft from her Calendar, Granola, Gmail, Slack and Productive bookings, matches each block to a client project, and shows her a table to OK before it logs anything in Productive. It lives in a Claude project for now, not a skill yet."],
+      decided: ["Lucy agreed to walk the team through how she set it up at training."],
+    }, {
       date: "Wed 18 Nov", title: "Update", who: "Jem",
       heard: ["The Munich session with Sam listed for Tue 17 Nov didn't happen: Sam was away. To rebook."],
     }, {
