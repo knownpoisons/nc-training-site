@@ -36,16 +36,17 @@ export default async function Page({ params }: { params: Promise<{ job: string }
             <Meter stage={j.stage} />
             <p className="b5-now b5-now--lg">{j.now}</p>
           </div>
-          <div className="b5-nextbox">
-            <span className="pl-k">Next step</span>
-            <p className="b5-next-t">{j.next.what}</p>
-            <dl className="b5-dl"><div><dt>Who</dt><dd>{j.next.who}</dd></div><div><dt>When</dt><dd className={j.next.when === "to confirm" ? "is-tbc" : "mono"}>{j.next.when}</dd></div></dl>
+          <div className="b5-nextbox b5-tldr">
+            <span className="pl-k">What this is</span>
+            <p className="b5-tldr-t">{j.tldr}</p>
           </div>
         </header>
 
         <dl className="b5-facts">
-          <div><dt>Owner</dt><dd>{j.owner}</dd></div>
-          <div><dt>With</dt><dd>{j.with}</dd></div>
+          <div className="b5-facts-people">
+            <dt>Owner</dt><dd>{j.owner}</dd>
+            <dt>With</dt><dd>{j.with}</dd>
+          </div>
           <div><dt>Runs on</dt><dd>{j.tools}</dd></div>
           <div><dt>Done looks like</dt><dd>{j.done_looks_like}</dd></div>
         </dl>

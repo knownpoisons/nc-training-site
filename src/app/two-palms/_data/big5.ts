@@ -19,6 +19,8 @@ export interface B5Doc { id: string; title: string; date: string; line: string; 
 export interface B5Job {
   id: string; n: number; name: string; short: string;
   owner: string; with: string; tools: string; done_looks_like: string;
+  /** One short paragraph: what this job actually is, for someone landing on the page cold. */
+  tldr: string;
   stage: B5Stage; now: string;
   next: { what: string; who: string; when: string };
   todos: B5Todo[]; notes: B5Note[]; docs: B5Doc[];
@@ -36,6 +38,7 @@ export const BIG5: B5Job[] = [
     owner: "Ed and Allyssa (AU), Sam (EU)", with: "Will (EU check)",
     tools: "Barry the Budget Builder in Claude, the master scoping sheet, rate cards, Xero. Productive until March.",
     done_looks_like: "Everyone who scopes uses Barry in Claude, from one live rate card. Every quote goes out as the branded Xero quote, with a Munich version to work out. A senior does the final check.",
+    tldr: "Two Palms sends out quotes in about ten different shapes, and the numbers behind them live in a master spreadsheet with at least one formula error. This job picks one quote template and builds a Claude Skill that drafts a scope from a brief, asks a junior the questions they would otherwise miss, and knows which numbers need a senior sign-off. Done means a scope that looks the same whoever wrote it.",
     stage: 1,
     now: "Intake done. Barry is the base and Xero is the quote. The options are up: where Barry lives and what replaces Productive. Munich runs on Qonto and DATEV, not Xero, so the quote and finance side needs a Munich version too.",
     next: { what: "Read the options (Documents) and pick where Barry lives and what replaces Productive", who: "Ed, Sam", when: "Tue 10 Nov" },
@@ -110,6 +113,7 @@ export const BIG5: B5Job[] = [
     owner: "Micky (AU) and Sam (EU)", with: "Ed, Allyssa",
     tools: "Productive",
     done_looks_like: "Near-automatic entry with no chasing. People confirm a draft in about two minutes a day.",
+    tldr: "Timesheets are late, thin and nobody visibly uses them, so nobody fills them in well. This job has Claude draft each person's day from their calendar, Granola, Slack and Productive, then ask them to confirm in two minutes. Nothing submits on its own. A weekly capacity brief and a monthly close-out give the data a reader, which is the real fix.",
     stage: 1,
     now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked. Micky is away until Mon 23 Nov; she and Jem will go through timesheets at a catch-up next week.",
     next: { what: "Timesheets session with Sam (Munich side)", who: "Sam, Jem (Ed, Allyssa welcome)", when: "Tue 17 Nov, 10:30 Munich" },
@@ -160,6 +164,7 @@ export const BIG5: B5Job[] = [
     owner: "Stef (Stefanie Jung)", with: "Fergus (the client's voice)",
     tools: "Sprout Social (Turo, Owala; Zambrero moving to it by end Nov), Sprinklr for Netflix (client's tool), Brandwatch for Zambrero until the move, Klear plus creator screenshots for talent. Fergus's spreadsheet-to-portal as the front end. Logins live in NordPass",
     done_looks_like: "Exports land in a Drive drop-zone, Claude turns them into one standard table, code does the maths, Claude writes the so-what, a check flags gaps, the owner approves in Slack, the portal renders it. One locked template. Nobody copies numbers.",
+    tldr: "Every client report is built by hand: someone pulls numbers out of Sprout, Sprinklr or Brandwatch, pastes them into a spreadsheet, and the spreadsheet feeds Fergus's client portal. The portal is good. This job automates the pipe behind it: exports land in a drop-zone, Claude turns them into one standard table, code does the maths, Claude writes the so-what, a check flags gaps, the owner approves in Slack. One locked template, no knobs. First live report is Turo in December.",
     stage: 1,
     now: "Stef's pack is in (client list, three reports, six level-up ideas). Pilot proposed: Turo, November's monthly report, built from a Sprout export and run beside Taryn's manual one. Live 18 Dec. Three inputs block the build: the raw Sprout export, the Sprout plan tier, Fergus's PR reports.",
     next: { what: "Send the raw Sprout export behind Turo October and confirm which Sprout plan Two Palms is on", who: "Stef", when: "to confirm" },
@@ -172,7 +177,6 @@ export const BIG5: B5Job[] = [
       { id: "reporting-10", stage: 0, task: "Level-up ideas from a Claude brainstorm off the transcript (Stef's six are in; Fergus's still to come)", who: "Stef done, Fergus to confirm", when: "to confirm" },
       { id: "reporting-15", stage: 0, task: "Read Stef's pack and reply with next steps", who: "Jem", when: "Wed 18 Nov", done: true },
       { id: "reporting-16", stage: 0, task: "Send Jem your 2 or 3 PR reports (Forward portal and the spreadsheets behind them)", who: "Fergus", when: "to confirm" },
-      { id: "reporting-1", stage: 0, task: "Confirm Stef as owner", who: "Ed", when: "to confirm" },
       { id: "reporting-5", stage: 1, task: "Agree the pilot: Turo, November monthly report, Taryn as the AM, run beside the manual version, not sent to the client", who: "Stef, Fergus, Jem", when: "to confirm", done: false },
       { id: "reporting-17", stage: 1, task: "Send the raw Sprout export (CSV or XLSX) behind the Turo October report, plus the Zambrero monthly template", who: "Stef, Taryn", when: "to confirm" },
       { id: "reporting-18", stage: 1, task: "Confirm which Sprout plan Two Palms is on and whether the Xane account is switching (Advanced has an API; anything below means a human clicks Export)", who: "Stef", when: "to confirm" },
@@ -211,7 +215,6 @@ export const BIG5: B5Job[] = [
       open: [
         "Which Sprout plan Two Palms is on, and whether the Xane account switches. Decides whether the pilot can pull from the API or starts from a human export.",
         "Fergus's PR reports and his own level-up ideas.",
-        "Ed confirming Stef as owner.",
         "The pack has the Zambrero portal password in plain text. It needs to come out of the doc.",
       ],
       actions: [
@@ -262,6 +265,7 @@ export const BIG5: B5Job[] = [
     owner: "Ed and Sam", with: "to confirm",
     tools: "Productive, Xero in Australia, Qonto and DATEV in Munich",
     done_looks_like: "To shape at intake.",
+    tldr: "Budgets, invoicing and reconciliation run across Productive and a finance tool still to be confirmed. This job starts with an intake with Ed and Sam to map how money moves from a signed scope to a paid invoice, where it goes wrong, and which steps a system can own. Nothing is scoped until the finance tool is named.",
     stage: -1,
     now: "Not started. Finance tools are confirmed: Xero in Australia, Qonto and DATEV in Munich. The intake call is booked.",
     next: { what: "Intake call: budgets and invoicing. Ed and Allyssa especially welcome, as the rate card sits with them", who: "Sam, Jem (Ed, Allyssa)", when: "Thu 19 Nov, 10:30 Munich" },
@@ -285,6 +289,7 @@ export const BIG5: B5Job[] = [
     owner: "Nicky now, then the new Group Account Director", with: "Sam and Will (EU)",
     tools: "Slack client channels, monday.com for Zambrero, Sam's R&R docs",
     done_looks_like: "Claude reads email, Slack, Drive and Granola and puts each person's tasks into their daily briefing. No manual board updates.",
+    tldr: "Tasks live in people's heads, Slack threads and the odd board, and client hygiene slips when nobody is watching. This job has Claude read email, Slack, Drive and Granola and put each person's tasks into their daily briefing, so nobody updates a board by hand. It starts with an intake with Nicky and Sam on where a task should live.",
     stage: -1,
     now: "Not started. Intake time proposed, waiting on Sam.",
     next: { what: "Confirm the intake time (Jem proposed Thu 19 Nov, 13:15 Munich)", who: "Sam", when: "to confirm" },

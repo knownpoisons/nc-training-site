@@ -1196,9 +1196,13 @@
 .tpb .b5-nextbox .b5-next-t { font: 400 24px/1.15 var(--f-serif); font-weight: 400; }
 .tpb .b5-dl { display: grid; gap: 6px; margin: 6px 0 0; }
 .tpb .b5-dl div { display: grid; grid-template-columns: 56px 1fr; gap: 10px; font-size: 14px; }
-.tpb .b5-dl dt, .tpb .b5-facts dt { color: var(--text-2); font: 500 11px/20px var(--f-sans); letter-spacing: .06em; text-transform: uppercase; }
+.tpb .b5-dl dt { color: var(--text-2); font: 500 11px/20px var(--f-sans); letter-spacing: .06em; text-transform: uppercase; }
+.tpb .b5-facts dt { color: var(--tp-orange-text); font: 600 11px/20px var(--f-sans); letter-spacing: .06em; text-transform: uppercase; }
 .tpb .b5-dl dd, .tpb .b5-facts dd { margin: 0; }
-.tpb .b5-facts { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; margin: 28px 0; font-size: 14px; line-height: 1.45; }
+.tpb .b5-facts { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, 1.6fr); gap: 24px; margin: 28px 0; font-size: 14px; line-height: 1.45; }
+.tpb .b5-facts-people dd + dt { margin-top: 12px; }
+.tpb .b5-tldr .pl-k { color: var(--tp-orange-text); }
+.tpb .b5-tldr-t { margin: 0; font-size: 15px; line-height: 1.5; }
 .tpb .b5-body { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(280px, 1fr); gap: 16px; align-items: start; }
 .tpb .b5-main, .tpb .b5-side .t { padding: 20px; background: var(--card); }
 .tpb .b5-side { display: grid; gap: 16px; }
@@ -1257,7 +1261,7 @@
 .tpb .b5-md ul, .tpb .b5-md ol { margin: 0 0 12px; padding-left: 22px; display: grid; gap: 6px; }
 @media (max-width: 900px) {
   .tpb .b5-head, .tpb .b5-body { grid-template-columns: 1fr; }
-  .tpb .b5-facts { grid-template-columns: 1fr 1fr; }
+  .tpb .b5-facts { grid-template-columns: 1fr; }
 }
 @media (max-width: 560px) {
   .tpb .b5-facts, .tpb .b5-roll { grid-template-columns: 1fr; }

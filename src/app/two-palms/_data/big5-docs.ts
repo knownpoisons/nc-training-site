@@ -110,5 +110,5 @@ January: Netflix, built on Shainah's weekly inputs doc, Sprinklr exports, four c
 At 2 to 3 hours per report per client per month, automating the social reports saves a day or two a month across the clients. Real, and worth having, but the money in this job is in the product ideas and in reports that stop going out wrong. Judge the pilot on error rate and hours, not on a revolution.
 
 ## Housekeeping
-The Zambrero portal password is written in the shared pack. It should live in NordPass with the rest and nowhere else. Ed still needs to confirm Stef as owner.
+The Zambrero portal password is written in the shared pack. It should live in NordPass with the rest and nowhere else. Owner confirmed: Stef, with Fergus as the client's voice.
 `;
