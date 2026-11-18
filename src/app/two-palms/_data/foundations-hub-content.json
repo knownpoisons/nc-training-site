@@ -594,12 +594,12 @@
       "line": "You, your client, your job: set each up once, then stop repeating yourself.",
       "goal": "Instructions know you, projects know the client, skills know the job. Leave with your own Expert Panel installed.",
       "cover": [
-        "Spotlight: a timesheet robot, built in a week",
+        "Spotlight: Lucy's skills, built in her first weeks",
         "Three layers: instructions (you), projects (the client), skills (the job)",
         "Projects, the pro version: brief itself from Drive, shared vs private, the Project Log",
         "Skills: turn any chat that worked into something you never explain again",
-        "The big one: build and install your own Expert Panel, then run it on real work",
-        "What's new in Claude this month, in five minutes"
+        "Can we trust our output? Build your own Expert Panel, with a confidence score that loops until it clears 90",
+        "What's new in Claude this month: five things"
       ],
       "homework": [
         {
@@ -617,34 +617,33 @@
       ],
       "slack": "What did your Expert Panel catch that you'd have missed?",
       "slides": [
-        "Projects matter, chats don't",
-        "me.md and voice.md",
-        "Traffic lights"
+        "You lot didn't wait",
+        "Three layers",
+        "Can we trust our output?",
+        "Your own Expert Panel",
+        "Under 90, it goes round again",
+        "What's new in Claude"
       ],
       "ros": [
         [
-          "0-5",
-          "Recap, best before/afters"
+          "0-10",
+          "Opening, this week's wins, Lucy spotlight, mind-blown reel"
         ],
         [
-          "5-15",
-          "Projects not chats, new chat each time, join your client project"
+          "10-24",
+          "Three layers, projects pro version, Project Log, skills"
         ],
         [
-          "15-35",
-          "Build me.md and voice.md live, personal Drive folder, linked from preferences; what MD is"
+          "24-46",
+          "Can we trust our output? Expert Panel built live, run on real work, the confidence loop"
         ],
         [
-          "35-47",
-          "Traffic lights and client AI levels; Claude sees what your Drive sees"
+          "46-52",
+          "What's new in Claude"
         ],
         [
-          "47-55",
-          "Who needs to know, and when"
-        ],
-        [
-          "55-60",
-          "Homework"
+          "52-60",
+          "Homework and last line"
         ]
       ],
       "notes": "Rebuilt 17 Nov: team is ahead (Micky's timesheet robot, Lucy building skills, Ed's creative database). Cut basics; skills + Expert Panel are the core.",
