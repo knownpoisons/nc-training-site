@@ -6,7 +6,7 @@
 import { REPORTING_INTAKE, REPORTING_PLAN, REPORTING_TRANSCRIPT, SCOPING_OPTIONS, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
 /** When the quickfire summary was last checked. */
-export const B5_UPDATED = "Wed 18 Nov";
+export const B5_UPDATED = "Fri 20 Nov";
 
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
@@ -354,6 +354,10 @@ export const BIG5: B5Job[] = [
       { id: "tasks-2", stage: 0, task: "Decide where a task lives: personal to-do or client board", who: "Nicky, Sam", when: "to confirm" },
     ],
     notes: [{
+      date: "Thu 19 Nov", title: "Slack update", who: "Stef",
+      heard: ["Stef has set Claude up to run her post-WIP steps on its own once a client WIP wraps: a client follow-up email with tasks split into ours and theirs, an internal WIP summary with actions posted to the client's Slack channel, and an update to the WIP tracker (that last one still being tested)."],
+      open: ["Whether Stef's setup is the starting point for the WIP and follow-up part of this job."],
+    }, {
       date: "Wed 18 Nov", title: "Update", who: "Jem",
       heard: ["No intake was booked while Sam was away. Munich first with Sam and Will; Australia in the new GAD's first week in December."],
     }, {
