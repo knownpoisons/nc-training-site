@@ -249,6 +249,18 @@ export const BIG5: B5Job[] = [
       { id: "reporting-14", stage: 4, task: "Lock the template and roll it out client by client (Owala, Zambrero once on Sprout, then the rest)", who: "Stef, Fergus", when: "to confirm" },
     ],
     notes: [{
+      date: "Mon 23 Nov", title: "Slack update", who: "Nicky, Stef",
+      heard: [
+        "Zambrero have sent a list of requests for their reporting dashboard. Stef is working through them with Claude.",
+        "One of the requests: they want the total campaign budget on campaign reports (fees, production and paid), not just the paid amplification spend.",
+      ],
+      decided: [
+        "Nicky: leave the total-budget request for now. Showing it live would mean connecting the finance tools, which is a much bigger job than Zambrero realise.",
+      ],
+      open: [
+        "Whether total campaign budget belongs in the reporting build later. It touches the Finance job, so it is parked rather than dropped.",
+      ],
+    }, {
       date: "Wed 18 Nov", title: "Stef's pack, and the plan", who: "Stef, Jem",
       heard: [
         "Who reports on what: Netflix ANZ (Shainah; weekly, monthly, quarterly, yearly plus ad hoc; Sprinklr, the client's tool; the weekly is already part-drafted by Claude from an inputs doc). Zambrero always-on and campaigns (Gee for social, Fergus and Karri for PR; Brandwatch, likely moving to Sprout by end of November; the only portal client; paid is in scope; creator data comes in by email). Turo and Owala (Taryn; Sprout; monthly). Bank First (Gee; retainer from 1 Oct, no report yet, no access yet). Talent campaigns (Klear, the INT KPI tracker, creators emailing screenshots).",
