@@ -1387,3 +1387,8 @@
 .tpb .wp-lines-p { font: 400 18px/1.35 var(--f-serif); color: var(--text); }
 @media (max-width: 640px) { .tpb .wp-lines li { grid-template-columns: minmax(0, 1fr) auto; } .tpb .wp-lines-t { grid-column: 1 / -1; } }
 .tpb .wp-lines-more { margin-top: 14px; font-size: 14.5px; }
+
+.tpb .wp-video { margin: 18px 0 22px; }
+.tpb .wp-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; background: #000; }
+.tpb .wp-video-note { margin-top: 10px; font-size: 13.5px; color: var(--text-2); }
+.tpb .wp-video-note a { color: var(--text); text-decoration: underline; }

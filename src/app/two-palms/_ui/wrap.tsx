@@ -155,8 +155,15 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
     </Sec>
   ) : null;
 
+  const driveId = s.recording_url?.match(/drive\.google\.com\/file\/d\/([^/?]+)/)?.[1] ?? null;
   const takeIt = (
     <Sec k="Take it with you" h="Watch it back, then post." id="watch">
+      {driveId ? (
+        <div className="wp-video">
+          <iframe src={`https://drive.google.com/file/d/${driveId}/preview`} title={`Session ${s.n} recording`} allow="autoplay; fullscreen" allowFullScreen loading="lazy" />
+          <p className="wp-video-note">Not playing? Make sure you're signed in to your Two Palms Google account, or <a href={s.recording_url!} target="_blank" rel="noreferrer">open it in Drive</a>.</p>
+        </div>
+      ) : null}
       <div className="wp-res">
         {s.recording_url ? (
           <a className="wp-res-c is-rec" href={s.recording_url} target="_blank" rel="noreferrer">
