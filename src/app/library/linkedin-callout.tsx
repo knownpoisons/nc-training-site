@@ -107,14 +107,17 @@ export function LinkedInCallout() {
               <p className="li-ba-head">Export today</p>
               <p className="li-ba-fields">
                 Name · Profile URL · <strong>Company</strong> ·{" "}
-                <strong>Job title</strong> · Connect date
+                <strong>Job title</strong> · <strong>Email</strong> (opted-in
+                only) · Connect date
               </p>
             </div>
             <div className="li-ba-col lose">
               <p className="li-ba-head">From December 2026</p>
               <p className="li-ba-fields">
                 Name · Profile URL · Connect date{" "}
-                <span className="li-ba-gone">— company &amp; title gone</span>
+                <span className="li-ba-gone">
+                  — company, title &amp; email gone
+                </span>
               </p>
             </div>
           </div>
