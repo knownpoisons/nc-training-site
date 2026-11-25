@@ -850,11 +850,47 @@
       "homework": [
         {
           "type": "do",
-          "text": "Run one connected workflow on your real week."
+          "short": "Connect everything",
+          "text": "Connect Drive, Gmail, Calendar, Slack and Granola, all signed in as you.",
+          "time": "10 min",
+          "why": "If Claude can't reach it, it can't use it. Connect it once and every chat can.",
+          "steps": [
+            "Claude › Settings › Connectors. Connect Google Drive, Gmail, Google Calendar, Slack and Granola.",
+            "On every Google screen, pick your twopalms account. Wrong account is the most common miss.",
+            "Open a new chat and paste the prompt below to check them.",
+            "In your main client project, add the client's Drive folder so the project can see it."
+          ],
+          "prompt": "Check every connector I have switched on. For each one, tell me which account it's signed in to. Flag anything that isn't my own Two Palms account, and anything I should connect that I haven't.",
+          "prompt_label": "Check your connectors"
+        },
+        {
+          "type": "do",
+          "short": "Ask one question across everything",
+          "text": "Ask one real question that needs Drive, Slack and email to answer.",
+          "time": "5 min",
+          "why": "This is the payoff. Check where each part of the answer came from.",
+          "steps": [
+            "Open a client project.",
+            "Paste the prompt below and swap in a real client and topic.",
+            "Check the sources it names. Missed one? Ask: did you check Slack?"
+          ],
+          "prompt": "What did [client] say about [topic], does the brand book allow it, and has anyone replied on Slack since? Give me the answer, where each part came from, and what I still need to check.",
+          "prompt_label": "Ask across everything"
         },
         {
           "type": "share",
-          "text": "Post what it saved you."
+          "short": "Build one skill and share it",
+          "text": "Turn one job you do every day or week into a skill, and post it in #tpm_ai_training.",
+          "time": "20 min",
+          "why": "Small is fine. The best ones go on the hub for everyone, like the two already on Team-built skills.",
+          "steps": [
+            "Pick a job you repeat: a recap, a check, a report, a brief.",
+            "Do it once with Claude in a chat until it's right.",
+            "Say the prompt below, then click Save skill.",
+            "Post it in #tpm_ai_training: what it does and how it works. Jem will help package it for the hub."
+          ],
+          "prompt": "Turn what we just did into a skill I can reuse. Ask me anything you need first. Then give it to me as an MD file I can share with the team.",
+          "prompt_label": "Make it a skill"
         }
       ],
       "slack": "What did you stop doing by hand this week?",
@@ -896,7 +932,104 @@
         "Watch the Session 3 recording if you missed it",
         "Laptop handy: we'll check your connectors together",
         "Built your Expert Panel? Bring your best catch"
-      ]
+      ],
+      "recap": {
+        "goal": "Give Claude everything it needs, from everywhere your work lives.",
+        "agenda": [
+          "Spotlight: a WIP wrap-up that drafts the email, the Slack recap and the tracker update",
+          "Context comes from everywhere: connect every tool your work lives in",
+          "One question across Drive, Slack and email",
+          "Whiteboards: brainstorms, maps and mood boards inside Claude",
+          "Claude Meetings: not yet, Granola stays",
+          "Working smarter: let it do it, run chats side by side",
+          "AI and our clients"
+        ],
+        "big_idea": {
+          "head": "Context comes from everywhere.",
+          "body": [
+            "On any job, the brief and brand book are in Drive, the budget's in a sheet, the changes are in Slack, the approvals are in email and the detail was said on a call.",
+            "If Claude can't reach it, it doesn't know it exists. Connect it once and every chat can use all of it."
+          ]
+        },
+        "lines": {
+          "head": "Say these to Claude.",
+          "intro": "Copy them, or just say them with Fluid Voice.",
+          "items": [
+            {
+              "t": "After connecting",
+              "p": "Check every connector I have switched on. For each one, tell me which account it's signed in to. Flag anything that isn't my own Two Palms account."
+            },
+            {
+              "t": "Ask across everything",
+              "p": "What did [client] say about [topic], does the brand book allow it, and has anyone replied on Slack since? Give me the answer, where each part came from, and what I still need to check."
+            },
+            {
+              "t": "When it gives you steps",
+              "p": "You go ahead and do it. Come back to me if and when you need something, and bring me your questions at the very end."
+            },
+            {
+              "t": "When it's over your head",
+              "p": "I'm non-technical, a creative and a visual learner. Explain that again simply."
+            },
+            {
+              "t": "Before you do it by hand",
+              "p": "Is this something you can do or automate for me?"
+            },
+            {
+              "t": "Make it visual",
+              "p": "Put this on a whiteboard in [client]'s brand style, using the brand book in Drive."
+            },
+            {
+              "t": "After you change a process",
+              "p": "Update my [skill name] skill with what we just changed, and give me the new MD file."
+            }
+          ]
+        },
+        "links": [
+          {
+            "t": "The whiteboard from the session",
+            "d": "Every use case on one board: the map, a brainstorm, a process, a table and poll, a mood board and video. Scroll it, then make your own.",
+            "href": "https://claude.ai/artifact/17TfziLHuRivXdxBsWwn9Z"
+          },
+          {
+            "t": "Team-built skills",
+            "d": "Download the Expert Panel for production and the client WIP wrap-up. Install in a minute.",
+            "href": "/two-palms/tools"
+          }
+        ],
+        "remember": [
+          {
+            "t": "Granola, not Claude Meetings.",
+            "d": "Claude Meetings is in your sidebar. Don't use it yet. It's untested here and Granola stays."
+          },
+          {
+            "t": "Check whose account it is.",
+            "d": "A connector signed in as a colleague puts your work under their name. Ask Claude to check (the first line above)."
+          },
+          {
+            "t": "Don't accept the first answer.",
+            "d": "Ask again, ask it differently, ask for another format."
+          },
+          {
+            "t": "AI is a tool, so tell the client.",
+            "d": "Get the client's sign-off on AI-assisted work. Some clients are a no-go for AI-generated content: check before you use it."
+          }
+        ],
+        "hints": [
+          {
+            "t": "Run chats side by side.",
+            "d": "Start a task, hit go, switch chats. Orange dot means it needs you, grey flashing means working, blue means done."
+          },
+          {
+            "t": "Mark it unread.",
+            "d": "Come back to a chat (or a Slack message) later by marking it unread."
+          },
+          {
+            "t": "Stuck?",
+            "d": "Ask Claude what went wrong first. Then #tpm_ai_training. Business questions to Micky or Ed, technical ones to Jem."
+          }
+        ]
+      }
     },
     {
       "n": 5,

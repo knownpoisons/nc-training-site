@@ -33,6 +33,8 @@ export interface Recap {
   instructions?: { head: string; items: RecapItem[]; closer: string; note: string };
   /** Session 3+: short copyable lines from the session (also in the prompt library). */
   lines?: { head: string; intro?: string; items: { t: string; p: string }[] };
+  /** Session 4+: artifacts and pages to open (boards, decks). */
+  links?: { t: string; d: string; href: string }[];
 }
 
 export interface FSession {

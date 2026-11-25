@@ -149,6 +149,24 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
     </Sec>
   ) : null;
 
+  const links = r.links?.length ? (
+    <Sec k="Open these" h="From the session." id="links">
+      <ul className="wp-links">
+        {r.links.map((x) => {
+          const ext = /^https?:/.test(x.href);
+          return (
+            <li key={x.href}>
+              <a href={x.href} {...(ext ? { target: "_blank", rel: "noreferrer" } : {})}>
+                <span className="wp-links-t">{x.t} <IconArrow /></span>
+                <span className="wp-links-d">{x.d}</span>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </Sec>
+  ) : null;
+
   const cards = (k: string, h: string, items?: { t: string; d: string }[]) => items ? (
     <Sec k={k} h={h}>
       <ul className="wp-cards">{items.map((x) => <li key={x.t}><b>{x.t}</b><span>{x.d}</span></li>)}</ul>
@@ -170,7 +188,12 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
             <Win src="/two-palms/img/h/recording.jpg" w={480} h={300} className="wp-res-img" />
             <span className="wp-res-b"><span className="wp-k">Recording</span><span className="wp-res-t">Session {s.n} video <IconArrow /></span><span className="wp-res-d">The full session. Watch it at&nbsp;1.25×.</span></span>
           </a>
-        ) : null}
+        ) : (
+          <div className="wp-res-c is-rec is-soon">
+            <Win src="/two-palms/img/h/recording.jpg" w={480} h={300} className="wp-res-img" />
+            <span className="wp-res-b"><span className="wp-k">Recording</span><span className="wp-res-t">Session {s.n} video</span><span className="wp-res-d">Coming in the next day. It will play right here.</span></span>
+          </div>
+        )}
         <a className="wp-res-c is-slack" href={HUB.slackUrl} target="_blank" rel="noreferrer">
           <Win src="/two-palms/img/h/spotlight.jpg" w={480} h={300} className="wp-res-img" />
           <span className="wp-res-b"><span className="wp-k">Slack</span><span className="wp-res-t">#tpm_ai_training <IconArrow /></span><span className="wp-res-d">{s.slack}</span></span>
@@ -199,7 +222,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
             {homework}
           </aside>
           <div className="wp-main">
-            {lines}{covered}{bigIdea}{framework}{instr}
+            {lines}{links}{covered}{bigIdea}{framework}{instr}
             {cards("What to remember", "Worth remembering.", r.remember)}
             {cards("Helpful hints", "Habits that help.", r.hints)}
             {takeIt}{comingNext}
@@ -225,7 +248,7 @@ export function Wrap({ s, next, v }: { s: TeamSession; next: FSession | null; v:
       )}
       <div className="wp-col">
         {homework}
-        {lines}{covered}{bigIdea}{framework}{instr}
+        {lines}{links}{covered}{bigIdea}{framework}{instr}
         {v === "b" ? (
           <div className="wp-two">
             <Sec k="What to remember"><ul className="wp-plain">{(r.remember ?? []).map((x) => <li key={x.t}><b>{x.t}</b> {x.d}</li>)}</ul></Sec>

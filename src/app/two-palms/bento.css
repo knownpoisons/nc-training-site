@@ -1422,3 +1422,12 @@
 @media (max-width: 960px) { .tpb .sk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .tpb .sk-grid { grid-template-columns: minmax(0, 1fr); } .tpb .sk-card { min-height: 0; } }
 @media (prefers-reduced-motion: reduce) { .tpb .sk-card { transition: none; } .tpb .sk-card:not(.sk-card--soon):hover { transform: none; } }
+
+/* Wrap-up: links to open */
+.tpb .wp-links { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.tpb .wp-links a { display: block; padding: 16px 18px; border: 1px solid var(--rule-2); border-radius: 8px; background: var(--card); color: var(--text); text-decoration: none; transition: border-color .2s var(--out); }
+.tpb .wp-links a:hover { border-color: var(--text); }
+.tpb .wp-links-t { display: flex; align-items: center; gap: 8px; font: 400 22px/1.15 var(--f-serif); }
+.tpb .wp-links-t .ic { width: 16px; height: 16px; }
+.tpb .wp-links-d { display: block; margin-top: 6px; font: 400 15px/22px var(--f-sans); color: var(--text-2); }
+.tpb .wp-res-c.is-soon { opacity: .7; cursor: default; }
