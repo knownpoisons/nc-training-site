@@ -840,12 +840,12 @@
       "line": "Plug Claude into the tools you already live in.",
       "goal": "Information moves between your tools without you moving it.",
       "cover": [
-        "Most admin is moving information from one place to another",
-        "Map one of your Time · Money · Pain processes",
-        "Connectors live: Slack, Gmail, Calendar, Drive, Granola",
-        "From meeting notes to actions to drafted messages",
-        "Ask three levels higher",
-        "When it breaks: who to ask, in what order"
+        "Spotlight: Claude doing the follow-up the moment a client WIP wraps",
+        "Context comes from everywhere: Drive, meetings, Slack, email",
+        "Connect, done on purpose: check all four, link client Drive folders to projects",
+        "Ask one question across every source",
+        "What's new: Claude Meetings, live in the call",
+        "What's new: Whiteboards, built live from one prompt"
       ],
       "homework": [
         {
@@ -864,28 +864,24 @@
       ],
       "ros": [
         [
-          "0-5",
-          "Recap"
+          "0-11",
+          "Spotlights and wins, team-built skills"
         ],
         [
-          "5-15",
-          "Transfer of information; map one TMP process"
+          "11-20",
+          "Context comes from everywhere: the map"
         ],
         [
-          "15-40",
-          "Connectors live (Productive if available); Granola to actions to Slack drafts; weekly summary"
+          "20-33",
+          "Connect all four, then ask across all of it"
         ],
         [
-          "40-50",
-          "Three levels higher"
+          "33-50",
+          "Claude Meetings, Whiteboards, live build"
         ],
         [
-          "50-55",
-          "When it breaks: ask Claude, the channel, then Jem"
-        ],
-        [
-          "55-60",
-          "Homework, office hours this week"
+          "50-60",
+          "When it breaks, homework, last line"
         ]
       ],
       "notes": "",
@@ -895,7 +891,12 @@
       "recording_url": null,
       "cheat_sheet": null,
       "wrap_notes": null,
-      "meet_url": null
+      "meet_url": null,
+      "before": [
+        "Watch the Session 3 recording if you missed it",
+        "Laptop handy: we'll check your connectors together",
+        "Built your Expert Panel? Bring your best catch"
+      ]
     },
     {
       "n": 5,
