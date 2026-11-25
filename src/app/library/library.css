@@ -683,102 +683,115 @@
   .library .gate-card { padding: 30px 22px; }
 }
 
-/* ─── Urgent LinkedIn export callout ───────────────────────────────────────
-   Unscoped (not under .library) so it styles identically above the gate and
-   above the library. Uses the global --nc-* brand tokens. Anchor: #linkedin-export
+/* ─── Urgent LinkedIn export callout (3 zones) ─────────────────────────────
+   Unscoped so it styles identically above the gate and the library.
+   Zone 1 .li-alert (cobalt) · Zone 2 .li-steps (surface) · Zone 3 .li-payoff (ink).
+   Anchor: #linkedin-export · uses global --nc-* tokens.
    ───────────────────────────────────────────────────────────────────────── */
-.li-callout {
-  font-family: var(--nc-sans);
-  background: var(--nc-cobalt);
-  color: #fff;
-  scroll-margin-top: 72px;
+.li-callout { font-family: var(--nc-sans); scroll-margin-top: 72px; }
+.li-callout .inner { max-width: 1080px; margin: 0 auto; }
+
+/* Zone 1 — alert */
+.li-alert { background: var(--nc-cobalt); color: #fff; }
+.li-alert .inner { padding: 46px 40px 48px; }
+.li-alert .eyebrow {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
 }
-.li-callout .inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 44px 40px 48px;
+.li-alert .eyebrow .dot { color: rgba(255,255,255,0.4); }
+.li-alert h2 {
+  font-family: var(--nc-serif); font-weight: 400;
+  font-size: clamp(27px, 4.2vw, 44px); line-height: 1.12; letter-spacing: -0.01em;
+  margin: 14px 0 0; max-width: 24ch;
 }
-.li-callout .eyebrow {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+.li-alert .lead {
+  margin: 18px 0 0; max-width: 66ch; font-size: 15px; line-height: 1.65;
+  color: rgba(255,255,255,0.8);
 }
-.li-callout .eyebrow .dot { color: rgba(255, 255, 255, 0.4); }
-.li-callout h2 {
-  font-family: var(--nc-serif);
-  font-weight: 400;
-  font-size: clamp(26px, 4vw, 42px);
-  line-height: 1.14;
-  letter-spacing: -0.01em;
-  margin: 14px 0 0;
-  max-width: 22ch;
+.li-alert .lead strong { color: #fff; }
+.li-alert .lead em { font-style: italic; color: #fff; }
+.li-quote {
+  margin: 18px 0 0; padding: 2px 0 2px 20px;
+  border-left: 2px solid rgba(255,255,255,0.5);
+  font-family: var(--nc-serif); font-style: italic;
+  font-size: clamp(16px, 2vw, 19px); line-height: 1.5; color: #fff; max-width: 60ch;
 }
-.li-callout .lead {
-  margin: 18px 0 0;
-  max-width: 64ch;
-  font-size: 15px;
-  line-height: 1.65;
-  color: rgba(255, 255, 255, 0.78);
+/* before / after */
+.li-ba {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  margin: 28px 0 0;
 }
-.li-callout .lead strong { color: #fff; }
-.li-callout .cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 26px;
-  padding: 14px 28px;
-  background: #fff;
-  color: var(--nc-cobalt);
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: background 0.15s ease;
+@media (max-width: 640px){ .li-ba { grid-template-columns: 1fr; } }
+.li-ba-col { padding: 16px 18px; border: 1px solid rgba(255,255,255,0.22); }
+.li-ba-col.keep { background: rgba(255,255,255,0.08); }
+.li-ba-head {
+  margin: 0 0 8px; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
 }
-.li-callout .cta:hover { background: rgba(255, 255, 255, 0.88); }
-.li-callout .grid {
-  display: grid;
-  grid-template-columns: 1.25fr 1fr;
-  gap: 40px;
-  margin-top: 40px;
-  padding-top: 34px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
+.li-ba-fields { margin: 0; font-size: 14px; line-height: 1.55; color: rgba(255,255,255,0.9); }
+.li-ba-fields strong { color: #fff; font-weight: 600; }
+.li-ba-gone { color: rgba(255,255,255,0.55); font-style: italic; }
+.li-alert .cta {
+  display: inline-flex; align-items: center; gap: 8px; margin-top: 30px;
+  padding: 15px 30px; background: #fff; color: var(--nc-cobalt);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.15s ease;
 }
-@media (max-width: 720px) {
-  .li-callout .grid { grid-template-columns: 1fr; gap: 28px; }
-  .li-callout .inner { padding: 32px 24px 36px; }
+.li-alert .cta:hover { background: rgba(255,255,255,0.88); }
+.li-alert a:not(.cta) { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+
+/* Zone 2 — numbered steps */
+.li-steps { background: var(--nc-surface); color: var(--nc-ink); border-top: 1px solid var(--nc-rule); }
+.li-steps .inner { padding: 44px 40px; }
+.li-steps-head {
+  margin: 0 0 24px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--nc-muted);
 }
-.li-callout .label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 0 0 14px;
+.li-step-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 22px; }
+.li-step-list li {
+  display: grid; grid-template-columns: 56px 1fr; gap: 22px; align-items: start;
+  padding-bottom: 22px; border-bottom: 1px solid var(--nc-rule);
 }
-.li-callout .label-gap { margin-top: 24px; }
-.li-callout ol,
-.li-callout ul { margin: 0; padding-left: 1.2em; }
-.li-callout ol { color: rgba(255, 255, 255, 0.92); font-size: 14px; line-height: 1.75; }
-.li-callout ol li { margin-bottom: 8px; }
-.li-callout ul { color: rgba(255, 255, 255, 0.72); font-size: 13.5px; line-height: 1.7; }
-.li-callout ul li { margin-bottom: 7px; }
-.li-callout .whatsin {
-  margin: 0;
-  color: rgba(255, 255, 255, 0.92);
-  font-size: 14px;
-  line-height: 1.7;
+.li-step-list li:last-child { border-bottom: none; padding-bottom: 0; }
+.li-step-n {
+  font-family: var(--nc-serif); font-size: 34px; line-height: 1;
+  color: var(--nc-cobalt); font-variant-numeric: tabular-nums;
 }
-.li-callout a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
-.li-callout .cta { text-decoration: none; }
-.li-callout .tiein {
-  margin: 30px 0 0;
-  font-size: 13px;
-  line-height: 1.6;
-  color: rgba(255, 255, 255, 0.72);
+.li-step-body { font-size: 16px; line-height: 1.6; color: var(--nc-ink); max-width: 68ch; }
+.li-step-body strong { font-weight: 600; }
+.li-step-body a { color: var(--nc-cobalt); text-decoration: underline; text-underline-offset: 2px; }
+.li-fyi { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--nc-rule); }
+.li-fyi-head {
+  margin: 0 0 12px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--nc-muted);
 }
-.li-callout .tiein strong { color: #fff; }
+.li-fyi ul { margin: 0; padding-left: 1.2em; color: var(--nc-muted); font-size: 13.5px; line-height: 1.7; }
+.li-fyi ul li { margin-bottom: 7px; }
+
+/* Zone 3 — the big payoff CTA */
+.li-payoff { background: var(--nc-ink); color: #fff; }
+.li-payoff .inner {
+  padding: 48px 40px; display: flex; align-items: center; justify-content: space-between;
+  gap: 36px; flex-wrap: wrap;
+}
+.li-payoff-text { flex: 1 1 440px; }
+.li-payoff-eyebrow {
+  margin: 0 0 10px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+}
+.li-payoff h3 {
+  font-family: var(--nc-serif); font-weight: 400;
+  font-size: clamp(24px, 3.4vw, 38px); line-height: 1.12; letter-spacing: -0.01em; margin: 0;
+}
+.li-payoff-sub {
+  margin: 14px 0 0; max-width: 60ch; font-size: 15px; line-height: 1.6;
+  color: rgba(255,255,255,0.72);
+}
+.li-payoff-cta {
+  flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px;
+  padding: 18px 32px; background: var(--nc-cobalt); color: #fff;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none; transition: background 0.15s ease;
+}
+.li-payoff-cta:hover { background: #0e2c95; }
