@@ -1393,6 +1393,32 @@
 .tpb .wp-video-note { margin-top: 10px; font-size: 13.5px; color: var(--text-2); }
 .tpb .wp-video-note a { color: var(--text); text-decoration: underline; }
 
-/* TPM Tools & Skills: download link */
-.tp-dl { display: inline-block; padding: 10px 14px; border: 1px solid currentColor; text-decoration: none; font-size: 13px; letter-spacing: .04em; }
-.tp-dl:hover { background: #0E0E0C; color: #fff; }
+/* TPM Tools & Skills shelf */
+.tpb .sk-wrap { max-width: calc(var(--max) + 2 * var(--edge)); margin: 28px auto 64px; padding: 0 var(--edge); }
+.tpb .sk-head { display: flex; justify-content: space-between; align-items: baseline; padding-bottom: 12px; border-bottom: 1px solid var(--rule-2); margin-bottom: 14px; }
+.tpb .sk-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tpb .sk-card { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--rule); border-radius: 8px; padding: 22px 22px 20px; min-height: 460px; transition: border-color .25s var(--out), transform .25s var(--out); }
+.tpb .sk-card:not(.sk-card--soon):hover { border-color: var(--text); transform: translateY(-2px); }
+.tpb .sk-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; }
+.tpb .sk-n { font: 400 44px/1 var(--f-serif); color: var(--accent); letter-spacing: -.02em; }
+.tpb .sk-tag { font: 500 11px/16px var(--f-sans); font-stretch: 112%; letter-spacing: .06em; text-transform: uppercase; color: var(--text-2); border: 1px solid var(--rule-2); border-radius: 999px; padding: 4px 10px; }
+.tpb .sk-t { font: 400 clamp(28px, 1vw + 20px, 36px)/1.02 var(--f-serif); letter-spacing: -.02em; color: var(--text); text-wrap: balance; }
+.tpb .sk-by { margin-top: 10px; font: 400 14px/20px var(--f-sans); color: var(--text-2); }
+.tpb .sk-by strong { color: var(--text); font-weight: 600; }
+.tpb .sk-what { margin-top: 16px; font: 400 15px/23px var(--f-sans); color: var(--text); }
+.tpb .sk-sub { margin-top: 22px; }
+.tpb .sk-steps { margin: 8px 0 0; padding: 0; list-style: none; counter-reset: sk; }
+.tpb .sk-steps li { counter-increment: sk; position: relative; padding: 8px 0 8px 30px; border-top: 1px solid var(--rule); font: 400 14px/20px var(--f-sans); color: var(--text); }
+.tpb .sk-steps li::before { content: counter(sk); position: absolute; left: 0; top: 8px; font: 500 12px/20px var(--f-mono); color: var(--accent); }
+.tpb .sk-foot { margin-top: auto; padding-top: 22px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.tpb .sk-dl { display: inline-flex; align-items: center; gap: 8px; height: 42px; padding: 0 18px; background: var(--text); color: var(--card); border-radius: 999px; font: 500 14px/1 var(--f-sans); text-decoration: none; transition: background-color .2s var(--out); }
+.tpb .sk-dl:hover { background: var(--hot); }
+.tpb .sk-dl:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.tpb .sk-date { font: 400 12px/16px var(--f-mono); color: var(--text-2); }
+.tpb .sk-card--soon { background: transparent; border-style: dashed; border-color: var(--rule-2); }
+.tpb .sk-card--soon .sk-n { color: var(--rule-2); }
+.tpb .sk-card--soon .sk-t { color: var(--text-2); }
+.tpb .sk-card--soon .sk-what { color: var(--text-2); }
+@media (max-width: 960px) { .tpb .sk-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .tpb .sk-grid { grid-template-columns: minmax(0, 1fr); } .tpb .sk-card { min-height: 0; } }
+@media (prefers-reduced-motion: reduce) { .tpb .sk-card { transition: none; } .tpb .sk-card:not(.sk-card--soon):hover { transform: none; } }

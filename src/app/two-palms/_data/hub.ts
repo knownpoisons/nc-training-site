@@ -99,14 +99,23 @@ export interface ApprovedTool {
   href?: string;
   file?: string; // downloadable skill file under /public
   kind?: "Skill" | "Tool";
+  builtBy?: string; // credit line (Jem's call to name the builder)
+  steps?: string[]; // install + use steps
 }
 export const TOOLS: ApprovedTool[] = [
   {
     name: "Expert Panel: Production",
     kind: "Skill",
-    what: "A pre-send check for production plans, schedules, call sheets, safety plans and budgets. Five experts (Line Producer, Client Lead, WHS and Insurance, The Sceptic, Head of Production) score it, a Chair tallies a confidence score, and it fixes and re-runs until it hits 95. Short TL;DR back, full breakdown on request.",
+    what: "A pre-send check for production plans, schedules, call sheets, safety plans and budgets. Five experts score it, a Chair turns that into a confidence score, and it fixes and re-runs until it hits 95. You get a short TL;DR, the full breakdown if you ask.",
     forRole: "Producers",
+    builtBy: "Mia McLaren",
     how: "Download the file. Open a new Claude chat, attach it and say: Install this as a skill. Then on any production doc, say: expert panel. Say run it again for a fresh pass.",
+    steps: [
+      "Download the skill file below.",
+      "Open a new Claude chat, attach it and say: Install this as a skill.",
+      "On any plan, schedule, call sheet, safety plan or budget, say: expert panel.",
+      "Want a fresh pass? Say: run it again.",
+    ],
     addedOn: "Wed 25 Nov",
     file: "/two-palms/skills/expert-panel-production.md",
   },

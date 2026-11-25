@@ -1,56 +1,63 @@
-import { FC, TOOLS_OPENS_ISO, toolsAreOpen, twoZones } from "../_data/foundations";
+import { FC } from "../_data/foundations";
 import { TOOLS } from "../_data/hub";
-import { Bento, IconLock, Lab, PageTitle, Tile, Win } from "../_ui/b";
+import { PageCover } from "../_ui/cover";
 
 export const metadata = { title: "TPM Tools & Skills" };
 
+// Three per row. Empty slots show "coming soon" so the shelf reads as growing, not empty.
+const SLOTS = 3;
+
 export default function Page() {
   const cfg = FC.pages_to_add.approved_tools;
-  const open = toolsAreOpen(new Date());
-  const opens = twoZones(TOOLS_OPENS_ISO);
+  const filled = TOOLS.length;
+  const empties = Math.max(0, Math.ceil(Math.max(filled, 1) / SLOTS) * SLOTS - filled);
   return (
     <>
-      <PageTitle back={{ href: "/two-palms", label: "Home" }} title={cfg.label} lede="Skills and tools the team has built. Download one, install it in Claude, use it on real work. One version of each." right={<span className="mono">{open ? `${String(TOOLS.length).padStart(2, "0")} ${TOOLS.length === 1 ? "item" : "items"}` : "Opens after S06"}</span>} />
-      <Bento>
-        {!open ? (
-          <>
-            <Tile span={3} hue="bone" label={cfg.label}>
-              <Lab icon={<IconLock />} l={cfg.label} r="Locked" />
-              <div className="t-body">
-                <h2 className="tt-lg">Opens after Session 6, {opens.sydneyDay}</h2>
-                <p className="tp" style={{ maxWidth: "56ch" }}>{cfg.empty_state}</p>
-                <p className="note mono">Opens {opens.sydney} Sydney · {opens.munich} Munich</p>
+      <PageCover
+        label={`${cfg.label} · built by the team`}
+        title="Built here. Use it anywhere."
+        lede="Skills and tools the team has built for real work. Download one, install it in Claude in a minute, and use it on your next job. One version of each, so we all get better together."
+        img="/two-palms/img/h/showcase.jpg"
+      />
+      <div className="sk-wrap">
+        <div className="sk-head">
+          <span className="lab-x">The shelf</span>
+          <span className="lab-x">{String(filled).padStart(2, "0")} live · {String(empties).padStart(2, "0")} coming</span>
+        </div>
+        <div className="sk-grid">
+          {TOOLS.map((t, i) => (
+            <article key={t.name} className="sk-card">
+              <div className="sk-top">
+                <span className="sk-n">{String(i + 1).padStart(2, "0")}</span>
+                <span className="sk-tag">{t.kind ?? "Tool"} · {t.forRole}</span>
               </div>
-            </Tile>
-            <Tile className="fM" label="Print">
-              <Lab l="Session 6" r="Share" />
-              <div className="t-body"><Win src="/two-palms/img/showcase.jpg" w={240} h={240} wait style={{ width: "100%", aspectRatio: "4 / 3" }} /></div>
-            </Tile>
-          </>
-        ) : TOOLS.length === 0 ? (
-          <Tile span="F" hue="bone" label={cfg.label}>
-            <Lab l={cfg.label} r="00 tools" />
-            <div className="t-body"><h2 className="tt">Nothing here yet</h2><p className="tp">{cfg.empty_state}</p></div>
-          </Tile>
-        ) : (
-          TOOLS.map((t) => (
-            <Tile key={t.name} span={3} hue="bone" label={t.name} href={t.file ? undefined : t.href}>
-              <Lab l={`${t.kind ?? "Tool"} · ${t.forRole}`} r={`Added ${t.addedOn}`} />
-              <div className="t-body">
-                <h2 className="tt">{t.name}</h2>
-                <p className="tp">{t.what}</p>
-                <p className="lab-x" style={{ marginTop: 14 }}>How to use it</p>
-                <p className="tp" style={{ marginTop: 4 }}>{t.how}</p>
-                {t.file ? (
-                  <p style={{ marginTop: 18 }}>
-                    <a className="tp-dl mono" href={t.file} download>Download the skill (.md) ↓</a>
-                  </p>
-                ) : null}
+              <h2 className="sk-t">{t.name}</h2>
+              {t.builtBy ? <p className="sk-by">Built by <strong>{t.builtBy}</strong></p> : null}
+              <p className="sk-what">{t.what}</p>
+              <p className="lab-x sk-sub">How to use it</p>
+              {t.steps ? (
+                <ol className="sk-steps">{t.steps.map((s) => <li key={s}>{s}</li>)}</ol>
+              ) : (
+                <p className="sk-what">{t.how}</p>
+              )}
+              <div className="sk-foot">
+                {t.file ? <a className="sk-dl" href={t.file} download>Download skill <span aria-hidden="true">↓</span></a> : t.href ? <a className="sk-dl" href={t.href}>Open <span aria-hidden="true">→</span></a> : null}
+                <span className="sk-date">Added {t.addedOn}</span>
               </div>
-            </Tile>
-          ))
-        )}
-      </Bento>
+            </article>
+          ))}
+          {Array.from({ length: empties }, (_, k) => (
+            <article key={`soon-${k}`} className="sk-card sk-card--soon" aria-label="Coming soon">
+              <div className="sk-top">
+                <span className="sk-n">{String(filled + k + 1).padStart(2, "0")}</span>
+                <span className="sk-tag">Coming soon</span>
+              </div>
+              <h2 className="sk-t">Your skill here.</h2>
+              <p className="sk-what">Built something that saves you time every week? Turn it into a skill, run it through the Expert Panel, and send the file to the Head of AI. The best one of each job lands on this shelf.</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </>
   );
 }
