@@ -682,3 +682,103 @@
   .library .gate { margin: 5vh auto; }
   .library .gate-card { padding: 30px 22px; }
 }
+
+/* ─── Urgent LinkedIn export callout ───────────────────────────────────────
+   Unscoped (not under .library) so it styles identically above the gate and
+   above the library. Uses the global --nc-* brand tokens. Anchor: #linkedin-export
+   ───────────────────────────────────────────────────────────────────────── */
+.li-callout {
+  font-family: var(--nc-sans);
+  background: var(--nc-cobalt);
+  color: #fff;
+  scroll-margin-top: 72px;
+}
+.li-callout .inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 44px 40px 48px;
+}
+.li-callout .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.65);
+}
+.li-callout .eyebrow .dot { color: rgba(255, 255, 255, 0.4); }
+.li-callout h2 {
+  font-family: var(--nc-serif);
+  font-weight: 400;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.14;
+  letter-spacing: -0.01em;
+  margin: 14px 0 0;
+  max-width: 22ch;
+}
+.li-callout .lead {
+  margin: 18px 0 0;
+  max-width: 64ch;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(255, 255, 255, 0.78);
+}
+.li-callout .lead strong { color: #fff; }
+.li-callout .cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 26px;
+  padding: 14px 28px;
+  background: #fff;
+  color: var(--nc-cobalt);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.li-callout .cta:hover { background: rgba(255, 255, 255, 0.88); }
+.li-callout .grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 40px;
+  margin-top: 40px;
+  padding-top: 34px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+@media (max-width: 720px) {
+  .li-callout .grid { grid-template-columns: 1fr; gap: 28px; }
+  .li-callout .inner { padding: 32px 24px 36px; }
+}
+.li-callout .label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0 0 14px;
+}
+.li-callout .label-gap { margin-top: 24px; }
+.li-callout ol,
+.li-callout ul { margin: 0; padding-left: 1.2em; }
+.li-callout ol { color: rgba(255, 255, 255, 0.92); font-size: 14px; line-height: 1.75; }
+.li-callout ol li { margin-bottom: 8px; }
+.li-callout ul { color: rgba(255, 255, 255, 0.72); font-size: 13.5px; line-height: 1.7; }
+.li-callout ul li { margin-bottom: 7px; }
+.li-callout .whatsin {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+  line-height: 1.7;
+}
+.li-callout a { color: #fff; text-decoration: underline; text-underline-offset: 2px; }
+.li-callout .cta { text-decoration: none; }
+.li-callout .tiein {
+  margin: 30px 0 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+.li-callout .tiein strong { color: #fff; }

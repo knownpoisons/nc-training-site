@@ -6,6 +6,7 @@ import { COLLECTIONS } from "./collections";
 import { LibraryTopbar } from "./topbar";
 import { LibraryFooter } from "./footer";
 import { LibraryGate } from "./gate";
+import { LinkedInCallout } from "./linkedin-callout";
 import "./library.css";
 
 export const metadata: Metadata = {
@@ -21,7 +22,13 @@ export default async function LibraryIndex() {
   const hasAccess =
     !LIBRARY_GATE_ENABLED ||
     (await cookies()).get("nc_library_access")?.value === "1";
-  if (!hasAccess) return <LibraryGate total={PROMPTS.length} />;
+  if (!hasAccess)
+    return (
+      <>
+        <LinkedInCallout />
+        <LibraryGate total={PROMPTS.length} />
+      </>
+    );
 
   // Newest first
   const prompts = [...PROMPTS].sort((a, b) => a.number - b.number);
@@ -29,6 +36,8 @@ export default async function LibraryIndex() {
   return (
     <div className="library">
       <LibraryTopbar total={PROMPTS.length} />
+
+      <LinkedInCallout />
 
       {/* ─── Hero ────────────────────────────────────────────────────── */}
       <section className="hero">
