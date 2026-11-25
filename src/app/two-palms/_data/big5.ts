@@ -6,7 +6,7 @@
 import { REPORTING_INTAKE, REPORTING_PLAN, REPORTING_TRANSCRIPT, SCOPING_OPTIONS, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
 /** When the quickfire summary was last checked. */
-export const B5_UPDATED = "Fri 20 Nov";
+export const B5_UPDATED = "Wed 25 Nov";
 
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
@@ -120,10 +120,10 @@ export const BIG5: B5Job[] = [
     tools: "Productive",
     done_looks_like: "Near-automatic entry with no chasing. People confirm a draft in about two minutes a day.",
     tldr: "Timesheets are late, thin and nobody visibly uses them, so nobody fills them in well. This job has Claude draft each person's day from their calendar, Granola, Slack and Productive, then ask them to confirm in two minutes. Nothing submits on its own. A weekly capacity brief and a monthly close-out give the data a reader, which is the real fix.",
-    quick: "Plan written with Micky; paused while she is away until Mon 23 Nov. Next: her six checks and one workshop to lock it, with legal advice before any pilot. Pilot early in the new year, go or no-go by end of January.",
+    quick: "Interim plan agreed with Micky on Wed 25 Nov: the team installs Steph's timesheet skill together at next week's AI training, then people self-solve through December. In January, Jem and Micky go back to Ed ready to move off Productive.",
     stage: 1,
-    now: "Plan drafted after the intake with Micky. Micky now has Claude chasing timesheets for her; making them easier to fill in is her next step. Six checks with Micky and one workshop lock it. Sam's Munich session is booked. Micky is away until Mon 23 Nov, so the job is paused; she and Jem will go through timesheets at a catch-up next week. Fergus and Lucy have each built their own version of the plan (Claude drafts the timesheet, the person approves it), so Jem will talk to Lucy first to see if it changes the workshop.",
-    next: { what: "Answer the six checks in the brief, then book the workshop", who: "Micky, Jem", when: "to confirm" },
+    now: "Micky is back and the catch-up happened (Wed 25 Nov). Ed wants to drop Productive, but there is no rush. Lucy and Steph have already automated their own timesheets, so rather than build from scratch, Jem is taking Steph's version as a shared timesheet skill. Next week's AI training installs it with everyone, live. Through December the team self-solves, with Micky's Monday report and Slack nudges doing the chasing. In January, Jem and Micky go back to Ed ready to move off Productive and work out what else lives in it.",
+    next: { what: "Get Steph's timesheet skill, check it works, then install it with the team at next week's AI training", who: "Jem", when: "next week's AI training session" },
     todos: [
       { id: "timesheets-3", stage: 0, task: "Intake call with Micky", who: "Micky, Jem", when: "Thu 29 Oct", done: true },
       { id: "timesheets-4", stage: 0, task: "Write the plan as a brief for Micky", who: "Jem", when: "Thu 29 Oct", done: true },
@@ -133,15 +133,42 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-7", stage: 1, task: "Review Productive's own AI time-tracking agents", who: "Micky, Jem", when: "to confirm" },
       { id: "timesheets-10", stage: 1, task: "Timesheets session with Sam (Munich side). Rebook: the 17 Nov slot didn't happen", who: "Sam, Jem", when: "to confirm" },
       { id: "timesheets-11", stage: 1, task: "Check the Claude settings let staff create their own skills (Lucy is blocked)", who: "to confirm", when: "to confirm" },
-      { id: "timesheets-12", stage: 1, task: "Send Micky a time for next week's catch-up, with timesheets on the agenda", who: "Jem", when: "next week (Micky back Mon 23 Nov)" },
+      { id: "timesheets-12", stage: 1, task: "Send Micky a time for next week's catch-up, with timesheets on the agenda", who: "Jem", when: "next week (Micky back Mon 23 Nov)", done: true },
       { id: "timesheets-13", stage: 1, task: "Talk to Lucy about her timesheet setup and whether it changes the workshop and rollout", who: "Jem", when: "to confirm" },
       { id: "timesheets-14", stage: 1, task: "Bring Nicky in on timesheets (she used to sell an AI time-tracking product)", who: "to confirm", when: "to confirm" },
       { id: "timesheets-15", stage: 1, task: "Agree how to benchmark the AI change: admin time taken out, time moved to high-value work", who: "Fergus, Jem", when: "to confirm" },
+      { id: "timesheets-16", stage: 1, task: "Get Steph's timesheet skill and check it works before sharing it", who: "Jem", when: "before next week's AI training" },
+      { id: "timesheets-17", stage: 1, task: "Install the timesheet skill together, on laptops, at the AI training", who: "Jem, the team", when: "next week's AI training session" },
+      { id: "timesheets-18", stage: 1, task: "Add a line to the Monday timesheet nudges pointing people to the skill, and offer to help each person set it up", who: "Micky", when: "to confirm" },
+      { id: "timesheets-19", stage: 1, task: "Go back to Ed ready to move off Productive: list what else lives in it and what replaces it", who: "Jem, Micky", when: "January" },
       { id: "timesheets-2", stage: 2, task: "Proof of concept: automate Jem's own Productive timesheet", who: "Jem", when: "to confirm" },
       { id: "timesheets-8", stage: 3, task: "4-week pilot with about 6 volunteers across both offices", who: "Micky, Sam", when: "to confirm" },
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Wed 25 Nov", title: "Jem and Micky catch-up (timesheets)", who: "Micky, Jem",
+      heard: [
+        "Staff have started automating their own timesheets. Lucy and Steph each built one without being asked.",
+        "Ed wants to drop Productive. The plan was always to phase it out at some point; there is no rush yet.",
+        "Jem has asked Steph for her setup so it can be shared as one timesheet skill.",
+        "Micky's Monday timesheet report already has Claude nudge people on Slack who haven't filled theirs in.",
+      ],
+      decided: [
+        "No team-wide system change before January. Through December people get better at timesheets themselves, with the shared skill.",
+        "Next week's AI training (the skills session, after this week's connectors session) installs the timesheet skill with everyone, on laptops. Everyone has to do timesheets, so it is worth doing together.",
+        "In January, Jem and Micky go back to Ed ready to move off Productive for timesheets, and work out what else lives in it.",
+      ],
+      open: [
+        "What else runs in Productive beyond timesheets, and what replaces each part.",
+        "Whether the six checks and the workshop in the brief are still needed, or the group install covers it.",
+      ],
+      actions: [
+        { task: "Check Steph's timesheet skill works, ready to share", who: "Jem", when: "before next week's AI training" },
+        { task: "Install the timesheet skill with the team", who: "Jem", when: "next week's AI training session" },
+        { task: "Point people to the skill in the Monday nudges and offer one-to-one help", who: "Micky", when: "to confirm" },
+        { task: "Go back to Ed on moving off Productive", who: "Jem, Micky", when: "January" },
+      ],
+    }, {
       date: "Wed 18 Nov", title: "AI training (timesheets segment)", who: "Lucy, Jem",
       heard: [
         "At this week's AI training Lucy walked the team through her timesheet setup, as agreed on Slack.",
