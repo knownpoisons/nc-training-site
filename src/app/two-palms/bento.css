@@ -1392,3 +1392,7 @@
 .tpb .wp-video iframe { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; background: #000; }
 .tpb .wp-video-note { margin-top: 10px; font-size: 13.5px; color: var(--text-2); }
 .tpb .wp-video-note a { color: var(--text); text-decoration: underline; }
+
+/* TPM Tools & Skills: download link */
+.tp-dl { display: inline-block; padding: 10px 14px; border: 1px solid currentColor; text-decoration: none; font-size: 13px; letter-spacing: .04em; }
+.tp-dl:hover { background: #0E0E0C; color: #fff; }

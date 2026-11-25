@@ -123,7 +123,7 @@ export const FC = raw as unknown as FoundationsContent;
 /** Time · Money · Pain opens at the end of Session 1. */
 export const TMP_OPENS_ISO = "2026-11-02T18:30:00+11:00";
 /** Approved team-built tools opens at the end of Session 6. */
-export const TOOLS_OPENS_ISO = "2026-12-08T18:30:00+11:00";
+export const TOOLS_OPENS_ISO = "2026-11-25T12:00:00+11:00";
 
 export function tmpIsOpen(now: Date, isAdmin = false): boolean {
   return isAdmin || now.getTime() >= new Date(TMP_OPENS_ISO).getTime();

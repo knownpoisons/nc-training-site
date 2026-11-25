@@ -2,7 +2,7 @@ import { FC, TOOLS_OPENS_ISO, toolsAreOpen, twoZones } from "../_data/foundation
 import { TOOLS } from "../_data/hub";
 import { Bento, IconLock, Lab, PageTitle, Tile, Win } from "../_ui/b";
 
-export const metadata = { title: "Approved team-built tools" };
+export const metadata = { title: "TPM Tools & Skills" };
 
 export default function Page() {
   const cfg = FC.pages_to_add.approved_tools;
@@ -10,7 +10,7 @@ export default function Page() {
   const opens = twoZones(TOOLS_OPENS_ISO);
   return (
     <>
-      <PageTitle back={{ href: "/two-palms", label: "Home" }} title={cfg.label} lede="The best skills and tools the team builds. One version of each." right={<span className="mono">{open ? `${String(TOOLS.length).padStart(2, "0")} tools` : "Opens after S06"}</span>} />
+      <PageTitle back={{ href: "/two-palms", label: "Home" }} title={cfg.label} lede="Skills and tools the team has built. Download one, install it in Claude, use it on real work. One version of each." right={<span className="mono">{open ? `${String(TOOLS.length).padStart(2, "0")} ${TOOLS.length === 1 ? "item" : "items"}` : "Opens after S06"}</span>} />
       <Bento>
         {!open ? (
           <>
@@ -34,13 +34,18 @@ export default function Page() {
           </Tile>
         ) : (
           TOOLS.map((t) => (
-            <Tile key={t.name} span={2} hue="bone" label={t.name} href={t.href}>
-              <Lab l={t.forRole} r={`Added ${t.addedOn}`} />
+            <Tile key={t.name} span={3} hue="bone" label={t.name} href={t.file ? undefined : t.href}>
+              <Lab l={`${t.kind ?? "Tool"} · ${t.forRole}`} r={`Added ${t.addedOn}`} />
               <div className="t-body">
                 <h2 className="tt">{t.name}</h2>
                 <p className="tp">{t.what}</p>
                 <p className="lab-x" style={{ marginTop: 14 }}>How to use it</p>
                 <p className="tp" style={{ marginTop: 4 }}>{t.how}</p>
+                {t.file ? (
+                  <p style={{ marginTop: 18 }}>
+                    <a className="tp-dl mono" href={t.file} download>Download the skill (.md) ↓</a>
+                  </p>
+                ) : null}
               </div>
             </Tile>
           ))

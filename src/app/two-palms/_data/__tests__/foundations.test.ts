@@ -112,10 +112,10 @@ describe("Time · Money · Pain", () => {
 
 describe("Approved team-built tools", () => {
   it("locks before the end of Session 6, opens after", () => {
-    expect(TOOLS_OPENS_ISO).toBe("2026-12-08T18:30:00+11:00");
+    expect(TOOLS_OPENS_ISO).toBe("2026-11-25T12:00:00+11:00");
     expect(toolsAreOpen(new Date("2026-11-02T12:00:00+11:00"))).toBe(false);
-    expect(toolsAreOpen(new Date("2026-12-08T18:29:00+11:00"))).toBe(false);
-    expect(toolsAreOpen(new Date("2026-12-08T18:30:00+11:00"))).toBe(true);
+    expect(toolsAreOpen(new Date("2026-11-25T11:59:00+11:00"))).toBe(false);
+    expect(toolsAreOpen(new Date("2026-11-25T12:00:00+11:00"))).toBe(true);
     expect(Array.isArray(TOOLS)).toBe(true);
   });
 });

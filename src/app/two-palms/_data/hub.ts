@@ -89,7 +89,7 @@ export const FOUNDATIONS: Programme = {
 };
 
 // ─── Approved team-built tools ───────────────────────────────────────────────────
-// Opens after Session 6. Add one entry per approved tool; newest last.
+// TPM Tools & Skills. Add one entry per approved skill or tool; newest last.
 export interface ApprovedTool {
   name: string;
   what: string; // what it does
@@ -97,8 +97,20 @@ export interface ApprovedTool {
   how: string; // how to use it
   addedOn: string; // "Tue 8 Dec"
   href?: string;
+  file?: string; // downloadable skill file under /public
+  kind?: "Skill" | "Tool";
 }
-export const TOOLS: ApprovedTool[] = [];
+export const TOOLS: ApprovedTool[] = [
+  {
+    name: "Expert Panel: Production",
+    kind: "Skill",
+    what: "A pre-send check for production plans, schedules, call sheets, safety plans and budgets. Five experts (Line Producer, Client Lead, WHS and Insurance, The Sceptic, Head of Production) score it, a Chair tallies a confidence score, and it fixes and re-runs until it hits 95. Short TL;DR back, full breakdown on request.",
+    forRole: "Producers",
+    how: "Download the file. Open a new Claude chat, attach it and say: Install this as a skill. Then on any production doc, say: expert panel. Say run it again for a fresh pass.",
+    addedOn: "Wed 25 Nov",
+    file: "/two-palms/skills/expert-panel-production.md",
+  },
+];
 
 export const CREATIVE: Programme = {
   slug: "creative",

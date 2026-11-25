@@ -1284,8 +1284,8 @@
   },
   "pages_to_add": {
     "approved_tools": {
-      "label": "Approved team-built tools",
-      "empty_state": "Nothing here yet. From Session 6, the best skills and tools the team builds land here, one version of each.",
+      "label": "TPM Tools & Skills",
+      "empty_state": "Nothing here yet. The best skills and tools the team builds land here, one version of each.",
       "fields": [
         "name",
         "what it does",
