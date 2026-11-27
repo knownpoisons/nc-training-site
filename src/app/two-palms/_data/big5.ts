@@ -6,7 +6,7 @@
 import { REPORTING_INTAKE, REPORTING_PLAN, REPORTING_TRANSCRIPT, SCOPING_OPTIONS, SCOPING_TRANSCRIPT, TIMESHEETS_BRIEF } from "./big5-docs";
 
 /** When the quickfire summary was last checked. */
-export const B5_UPDATED = "Wed 25 Nov";
+export const B5_UPDATED = "Fri 27 Nov";
 
 export const B5_STAGES = ["Intake", "Plan", "Build", "Test", "Live"] as const;
 /** -1 = not started; 0..4 = the stage it is working through now. */
@@ -122,7 +122,7 @@ export const BIG5: B5Job[] = [
     tldr: "Timesheets are late, thin and nobody visibly uses them, so nobody fills them in well. This job has Claude draft each person's day from their calendar, Granola, Slack and Productive, then ask them to confirm in two minutes. Nothing submits on its own. A weekly capacity brief and a monthly close-out give the data a reader, which is the real fix.",
     quick: "Interim plan agreed with Micky on Wed 25 Nov: the team installs Steph's timesheet skill together at next week's AI training, then people self-solve through December. In January, Jem and Micky go back to Ed ready to move off Productive.",
     stage: 1,
-    now: "Micky is back and the catch-up happened (Wed 25 Nov). Ed wants to drop Productive, but there is no rush. Lucy and Steph have already automated their own timesheets, so rather than build from scratch, Jem is taking Steph's version as a shared timesheet skill. Next week's AI training installs it with everyone, live. Through December the team self-solves, with Micky's Monday report and Slack nudges doing the chasing. In January, Jem and Micky go back to Ed ready to move off Productive and work out what else lives in it.",
+    now: "Micky is back and the catch-up happened (Wed 25 Nov). Ed wants to drop Productive, but there is no rush. Lucy and Steph have already automated their own timesheets, so rather than build from scratch, Jem is taking Steph's version as a shared timesheet skill. Next week's AI training installs it with everyone, live. Through December the team self-solves, with Micky's Monday report and Slack nudges doing the chasing. In January, Jem and Micky go back to Ed ready to move off Productive and work out what else lives in it. Micky has since booked a Productive review for Tue 8 Dec, ahead of the renewal at the end of February.",
     next: { what: "Get Steph's timesheet skill, check it works, then install it with the team at next week's AI training", who: "Jem", when: "next week's AI training session" },
     todos: [
       { id: "timesheets-3", stage: 0, task: "Intake call with Micky", who: "Micky, Jem", when: "Thu 29 Oct", done: true },
@@ -141,11 +141,21 @@ export const BIG5: B5Job[] = [
       { id: "timesheets-17", stage: 1, task: "Install the timesheet skill together, on laptops, at the AI training", who: "Jem, the team", when: "next week's AI training session" },
       { id: "timesheets-18", stage: 1, task: "Add a line to the Monday timesheet nudges pointing people to the skill, and offer to help each person set it up", who: "Micky", when: "to confirm" },
       { id: "timesheets-19", stage: 1, task: "Go back to Ed ready to move off Productive: list what else lives in it and what replaces it", who: "Jem, Micky", when: "January" },
+      { id: "timesheets-20", stage: 1, task: "Resourcing & Capacity call: what Productive is used for, what works, what doesn't, and whether to switch tools or build some of it with Claude", who: "Micky, Ed, Fergus, Stef, Allyssa, Jem", when: "Tue 8 Dec" },
       { id: "timesheets-2", stage: 2, task: "Proof of concept: automate Jem's own Productive timesheet", who: "Jem", when: "to confirm" },
       { id: "timesheets-8", stage: 3, task: "4-week pilot with about 6 volunteers across both offices", who: "Micky, Sam", when: "to confirm" },
       { id: "timesheets-9", stage: 4, task: "Go or no-go at a capacity meeting before the January rollout", who: "Ed, Micky", when: "before January" },
     ],
     notes: [{
+      date: "Fri 27 Nov", title: "Email update", who: "Micky",
+      heard: [
+        "Micky sent an invite for Resourcing & Capacity V.02 on Tue 8 Dec, 11am Bangkok time, with Ed, Fergus, Stef, Allyssa and Jem.",
+        "The Productive renewal comes up at the end of February. The call looks at what Productive is used for, what is working and what isn't, how things run now and how they could change.",
+      ],
+      decided: ["The Productive review is booked for Tue 8 Dec: another tool, or build some or all of it with Claude."],
+      open: ["Whether this brings forward the January conversation with Ed about moving off Productive."],
+      actions: [{ task: "Resourcing & Capacity call on Productive", who: "Micky, Ed, Fergus, Stef, Allyssa, Jem", when: "Tue 8 Dec" }],
+    }, {
       date: "Wed 25 Nov", title: "Jem and Micky catch-up (timesheets)", who: "Micky, Jem",
       heard: [
         "Staff have started automating their own timesheets. Lucy and Steph each built one without being asked.",
